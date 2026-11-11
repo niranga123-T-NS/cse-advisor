@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSE Advisor</title>
+<script src="https://unpkg.com/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
+<style>
+  :root { --bg:#0f1216; --panel:#171b21; --line:#262c35; --text:#e6e8eb; --mute:#8b95a1;
+          --buy:#22c55e; --sell:#ef4444; --hold:#a1a1aa; --accent:#3b82f6; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:14px/1.4 system-ui, sans-serif; background:var(--bg); color:var(--text); }
+  header { display:flex; gap:12px; align-items:center; padding:12px 16px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  header h1 { font-size:16px; margin:0 12px 0 0; }
+  input, button { background:var(--panel); color:var(--text); border:1px solid var(--line); border-radius:6px; padding:6px 10px; font:inherit; }
+  button { cursor:pointer; } button:hover { border-color:var(--accent); }
+  main { display:grid; grid-template-columns: 420px 1fr; height:calc(100vh - 57px); }
+  @media (max-width: 900px) { main { grid-template-columns:1fr; height:auto; } #list { max-height:45vh; } }
+  #list { overflow:auto; border-right:1px solid var(--line); }
+  table { width:100%; border-collapse:collapse; }
+  th, td { padding:7px 10px; text-align:left; border-bottom:1px solid var(--line); white-space:nowrap; }
+  th { position:sticky; top:0; background:var(--panel); color:var(--mute); font-weight:500; font-size:12px; }
+  tr.row { cursor:pointer; } tr.row:hover, tr.sel { background:#1d232b; }
+  .num { text-align:right; font-variant-numeric:tabular-nums; }
+  .sig { font-weight:600; font-size:12px; }
+  .BUY, .STRONG.BUY { color:var(--buy); } .SELL, .STRONG.SELL { color:var(--sell); } .HOLD { color:var(--hold); }
+  .up { color:var(--buy); } .down { color:var(--sell); }
+  #detail { overflow:auto; padding:16px; }
+  #chart { height:380px; } #rsi, #macd { height:110px; margin-top:6px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px; margin-top:14px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; }
+  .card h3 { margin:0 0 8px; font-size:13px; color:var(--mute); font-weight:500; }
+  .card ul { margin:0; padding-left:18px; } .warn { color:#f59e0b; }
+  .kv { display:grid; grid-template-columns:auto 1fr; gap:4px 14px; }
+  .big { font-size:22px; font-weight:700; }
+  .mute { color:var(--mute); } .star { cursor:pointer; color:#eab308; }
+  #empty { padding:24px; color:var(--mute); }
+</style>
+</head>
+<body>
+<header>
+  <h1>CSE Advisor</h1>
+  <input id="sym" placeholder="Symbol e.g. JKH.N0000" size="22">
+  <button onclick="backfill()">Load history</button>
+  <button onclick="refresh()">Update today</button>
+  <label class="mute"><input type="checkbox" id="onlyWatch" onchange="loadList()"> Watchlist only</label>
+  <span id="status" class="mute"></span>
+</header>
+<main>
+  <section id="list"><table><thead><tr><th></th><th>Symbol</th><th class="num">Close</th><th class="num">Chg%</th><th>Signal</th><th class="num">Score</th></tr></thead><tbody id="rows"></tbody></table>
+    <div id="empty" hidden>No data yet. Type a symbol above and press <b>Load history</b>, or run <code>python collector.py backfill JKH.N0000</code>.</div>
+  </section>
+  <section id="detail"><div class="mute">Select a stock.</div></section>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+const status = t => $('#status').textContent = t || '';
+let current = null;
+
+async function loadList() {
+  const res = await fetch('/api/signals' + ($('#onlyWatch').checked ? '?watch=1' : ''));
+  const data = await res.json();
+  $('#empty').hidden = data.length > 0;
+  $('#rows').innerHTML = data.map(s => `
+    <tr class="row ${s.symbol===current?'sel':''}" onclick="show('${s.symbol}')">
+      <td class="star" onclick="event.stopPropagation(); toggleWatch('${s.symbol}', ${!s.watch})">${s.watch?'★':'☆'}</td>
+      <td><b>${s.symbol}</b><div class="mute" style="font-size:11px">${(s.name||'').slice(0,28)}</div></td>
+      <td class="num">${s.close.toFixed(2)}</td>
+      <td class="num ${s.change_pct>0?'up':s.change_pct<0?'down':''}">${s.change_pct??''}</td>
+      <td class="sig ${s.signal}">${s.signal}</td>
+      <td class="num">${s.score}</td>
+    </tr>`).join('');
+}
+
+async function toggleWatch(sym, on) {
+  await fetch('/api/watch/'+sym, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({on})});
+  loadList();
+}
+
+async function backfill() {
+  const sym = $('#sym').value.trim().toUpperCase(); if (!sym) return;
+  status('Loading ' + sym + '…');
+  await fetch('/api/refresh', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({backfill:sym})});
+  status(''); await loadList(); show(sym);
+}
+async function refresh() {
+  status('Fetching today’s board…');
+  const r = await (await fetch('/api/refresh', {method:'POST', headers:{'Content-Type':'application/json'}, body:'{}'})).json();
+  status(`Saved ${r.saved} stocks`); loadList(); if (current) show(current);
+}
+
+function mkChart(el, h) {
+  return LightweightCharts.createChart(el, { height:h, layout:{ background:{color:'#0f1216'}, textColor:'#8b95a1' },
+    grid:{ vertLines:{color:'#1b2028'}, horzLines:{color:'#1b2028'} }, timeScale:{ borderColor:'#262c35' },
+    rightPriceScale:{ borderColor:'#262c35' }, autoSize:true });
+}
+
+async function show(sym) {
+  current = sym; loadList();
+  const d = await (await fetch('/api/stock/'+sym)).json();
+  if (d.error) { $('#detail').innerHTML = `<div class="mute">No data for ${sym}.</div>`; return; }
+  const a = d.advice, b = d.backtest;
+  $('#detail').innerHTML = `
+    <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+      <span class="big">${sym}</span>
+      ${a ? `<span class="big sig ${a.signal}">${a.signal}</span><span class="mute">score ${a.score} · ${a.date}</span>` : '<span class="mute">Need 30+ days of data for a signal</span>'}
+    </div>
+    <div id="chart"></div><div id="rsi"></div><div id="macd"></div>
+    <div class="cards">
+      ${a ? `<div class="card"><h3>Why</h3><ul>${a.reasons.map(r=>`<li>${r}</li>`).join('')}</ul>
+        ${a.warnings.map(w=>`<p class="warn">⚠ ${w}</p>`).join('')}</div>
+      <div class="card"><h3>Levels</h3><div class="kv">
+        <span class="mute">Close</span><span>${a.close}</span>
+        <span class="mute">RSI</span><span>${a.rsi ?? '–'}</span>
+        <span class="mute">Suggested stop</span><span class="down">${a.stop ?? '–'}</span>
+        <span class="mute">Target</span><span class="up">${a.target ?? '–'}</span></div></div>` : ''}
+      ${b ? `<div class="card"><h3>Backtest of these rules on ${sym}</h3><div class="kv">
+        <span class="mute">Period</span><span>${b.period}</span>
+        <span class="mute">Strategy</span><span class="${b.strategy_return_pct>=0?'up':'down'}">${b.strategy_return_pct}%</span>
+        <span class="mute">Buy &amp; hold</span><span class="${b.buy_hold_return_pct>=0?'up':'down'}">${b.buy_hold_return_pct}%</span>
+        <span class="mute">Trades</span><span>${b.trades} (win ${b.win_rate_pct ?? '–'}%)</span>
+        <span class="mute">Max drawdown</span><span class="down">${b.max_drawdown_pct}%</span></div>
+        <p class="mute" style="font-size:12px;margin:8px 0 0">Includes ~1.12% cost per side. Past results don’t predict future ones.</p></div>` : ''}
+    </div>`;
+
+  const c = mkChart($('#chart'), 380);
+  c.addCandlestickSeries({ upColor:'#22c55e', downColor:'#ef4444', borderVisible:false, wickUpColor:'#22c55e', wickDownColor:'#ef4444' }).setData(d.candles);
+  c.addLineSeries({ color:'#3b82f6', lineWidth:1, title:'SMA20' }).setData(d.sma20);
+  c.addLineSeries({ color:'#f59e0b', lineWidth:1, title:'SMA50' }).setData(d.sma50);
+  const v = c.addHistogramSeries({ priceScaleId:'vol', priceFormat:{type:'volume'}, color:'#334155' });
+  c.priceScale('vol').applyOptions({ scaleMargins:{ top:0.8, bottom:0 } });
+  v.setData(d.volume);
+
+  const r = mkChart($('#rsi'), 110);
+  const rs = r.addLineSeries({ color:'#a78bfa', lineWidth:1, title:'RSI' }); rs.setData(d.rsi);
+  [30,70].forEach(p => rs.createPriceLine({ price:p, color:'#475569', lineStyle:2, lineWidth:1 }));
+  const m = mkChart($('#macd'), 110);
+  m.addHistogramSeries({ title:'MACD hist' }).setData(d.macd_hist.map(x => ({...x, color: x.value>=0?'#22c55e':'#ef4444'})));
+
+  const charts = [c, r, m];
+  charts.forEach(src => src.timeScale().subscribeVisibleLogicalRangeChange(range => {
+    if (range) charts.filter(x => x!==src).forEach(x => x.timeScale().setVisibleLogicalRange(range));
+  }));
+  c.timeScale().fitContent();
+}
+
+loadList();
+</script>
+</body>
+</html>

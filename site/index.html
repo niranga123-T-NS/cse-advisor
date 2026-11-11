@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>CSE Advisor</title>
+<script src="https://unpkg.com/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
+<style>
+  :root { --bg:#0f1216; --panel:#171b21; --line:#262c35; --text:#e6e8eb; --mute:#8b95a1;
+          --buy:#22c55e; --sell:#ef4444; --hold:#a1a1aa; --accent:#3b82f6; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:14px/1.4 system-ui, sans-serif; background:var(--bg); color:var(--text); }
+  header { display:flex; gap:10px; align-items:center; padding:10px 14px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  header h1 { font-size:16px; margin:0 8px 0 0; }
+  input, select, button, .btn { background:var(--panel); color:var(--text); border:1px solid var(--line); border-radius:6px; padding:6px 10px; font:inherit; text-decoration:none; }
+  .btn:hover, button:hover { border-color:var(--accent); }
+  main { display:grid; grid-template-columns: 430px 1fr; height:calc(100vh - 54px); }
+  @media (max-width: 900px) { main { grid-template-columns:1fr; height:auto; } #list { max-height:55vh; } }
+  #list { overflow:auto; border-right:1px solid var(--line); }
+  table { width:100%; border-collapse:collapse; }
+  th, td { padding:7px 9px; text-align:left; border-bottom:1px solid var(--line); white-space:nowrap; }
+  th { position:sticky; top:0; background:var(--panel); color:var(--mute); font-weight:500; font-size:12px; }
+  tr.row { cursor:pointer; } tr.row:hover, tr.sel { background:#1d232b; }
+  .num { text-align:right; font-variant-numeric:tabular-nums; }
+  .sig { font-weight:600; font-size:12px; }
+  .BUY { color:var(--buy); } .SELL { color:var(--sell); } .HOLD { color:var(--hold); }
+  .up { color:var(--buy); } .down { color:var(--sell); }
+  #detail { overflow:auto; padding:14px; }
+  #chart { height:360px; } #rsi, #macd { height:100px; margin-top:6px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px; margin-top:14px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; }
+  .card h3 { margin:0 0 8px; font-size:13px; color:var(--mute); font-weight:500; }
+  .card ul { margin:0; padding-left:18px; } .warn { color:#f59e0b; }
+  .kv { display:grid; grid-template-columns:auto 1fr; gap:4px 14px; }
+  .big { font-size:22px; font-weight:700; }
+  .mute { color:var(--mute); } .star { cursor:pointer; color:#eab308; font-size:16px; }
+  .note { padding:20px; color:var(--mute); }
+  footer { font-size:11px; color:var(--mute); padding:10px 14px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>CSE Advisor</h1>
+  <input id="q" placeholder="Search symbol/name" size="16" oninput="render()">
+  <select id="f" onchange="render()">
+    <option value="">All signals</option><option value="BUY">Buys</option><option value="SELL">Sells</option><option value="watch">★ Watchlist</option>
+  </select>
+  <a class="btn" id="addBtn" target="_blank" rel="noopener">+ Add stocks</a>
+  <span id="meta" class="mute"></span>
+</header>
+<main>
+  <section id="list">
+    <table><thead><tr><th></th><th>Symbol</th><th class="num">Close</th><th class="num">Chg%</th><th>Signal</th><th class="num">Score</th></tr></thead><tbody id="rows"></tbody></table>
+    <div id="empty" class="note" hidden></div>
+    <footer>Rule-based indicator signals, not financial advice. Data: Colombo Stock Exchange (cse.lk), updated after each session.</footer>
+  </section>
+  <section id="detail"><div class="mute">Select a stock.</div></section>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+let all = [], current = null;
+
+// Personal stars live in this browser; the repo's watchlist.txt controls what gets full history.
+const store = { get(){ try { return JSON.parse(localStorage.getItem('stars')||'[]'); } catch(e){ return []; } },
+                set(v){ try { localStorage.setItem('stars', JSON.stringify(v)); } catch(e){} } };
+let stars = new Set(store.get());
+
+// https://USER.github.io/REPO/  ->  https://github.com/USER/REPO/actions/workflows/update.yml
+(function(){
+  const m = location.hostname.match(/^([^.]+)\.github\.io$/);
+  const repo = location.pathname.split('/').filter(Boolean)[0];
+  if (m && repo) $('#addBtn').href = `https://github.com/${m[1]}/${repo}/actions/workflows/update.yml`;
+  else $('#addBtn').style.display = 'none';
+})();
+
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sigClass = s => s.includes('BUY') ? 'BUY' : s.includes('SELL') ? 'SELL' : 'HOLD';
+const isStar = s => stars.has(s.symbol) || s.watch;
+
+async function load() {
+  try {
+    const [sig, meta] = await Promise.all([fetch('data/signals.json').then(r=>r.json()), fetch('data/meta.json').then(r=>r.json())]);
+    all = sig; $('#meta').textContent = `Updated ${meta.updated} · ${meta.stocks} stocks`;
+  } catch (e) { all = []; }
+  render();
+}
+
+function render() {
+  const q = $('#q').value.trim().toLowerCase(), f = $('#f').value;
+  let rows = all.filter(s => (!q || s.symbol.toLowerCase().includes(q) || (s.name||'').toLowerCase().includes(q)) &&
+    (!f || (f === 'watch' ? isStar(s) : sigClass(s.signal) === f)));
+  rows.sort((a,b) => (isStar(b) - isStar(a)) || (b.score - a.score));
+  $('#empty').hidden = rows.length > 0;
+  $('#empty').innerHTML = all.length ? 'No stocks match.' :
+    'No data yet. On GitHub open <b>Actions → Update CSE data → Run workflow</b> and enter symbols like <code>JKH.N0000 COMB.N0000</code>.';
+  $('#rows').innerHTML = rows.map(s => `
+    <tr class="row ${s.symbol===current?'sel':''}" data-sym="${esc(s.symbol)}">
+      <td class="star" data-star="${esc(s.symbol)}">${isStar(s)?'★':'☆'}</td>
+      <td><b>${esc(s.symbol)}</b><div class="mute" style="font-size:11px">${esc((s.name||'').slice(0,26))}</div></td>
+      <td class="num">${s.close.toFixed(2)}</td>
+      <td class="num ${s.change_pct>0?'up':s.change_pct<0?'down':''}">${s.change_pct ?? ''}</td>
+      <td class="sig ${sigClass(s.signal)}">${esc(s.signal)}</td>
+      <td class="num">${s.score}</td>
+    </tr>`).join('');
+}
+
+$('#rows').addEventListener('click', e => {
+  const st = e.target.closest('[data-star]');
+  if (st) { const s = st.dataset.star; stars.has(s) ? stars.delete(s) : stars.add(s); store.set([...stars]); render(); return; }
+  const tr = e.target.closest('tr.row'); if (tr) show(tr.dataset.sym);
+});
+
+function mkChart(el, h) {
+  return LightweightCharts.createChart(el, { height:h, layout:{ background:{color:'#0f1216'}, textColor:'#8b95a1' },
+    grid:{ vertLines:{color:'#1b2028'}, horzLines:{color:'#1b2028'} }, timeScale:{ borderColor:'#262c35' },
+    rightPriceScale:{ borderColor:'#262c35' }, autoSize:true });
+}
+
+async function show(sym) {
+  current = sym; render();
+  let d;
+  try { d = await (await fetch('data/stocks/' + encodeURIComponent(sym) + '.json')).json(); }
+  catch (e) { $('#detail').innerHTML = `<div class="mute">No data for ${esc(sym)}.</div>`; return; }
+  const a = d.advice, b = d.backtest;
+  $('#detail').innerHTML = `
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+      <span class="big">${esc(sym)}</span>
+      <span class="big sig ${sigClass(a.signal)}">${esc(a.signal)}</span><span class="mute">score ${a.score} · ${a.date}</span>
+    </div>
+    <div id="chart"></div><div id="rsi"></div><div id="macd"></div>
+    <div class="cards">
+      <div class="card"><h3>Why</h3><ul>${a.reasons.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>
+        ${a.warnings.map(w=>`<p class="warn">⚠ ${esc(w)}</p>`).join('')}</div>
+      <div class="card"><h3>Levels</h3><div class="kv">
+        <span class="mute">Close</span><span>${a.close}</span>
+        <span class="mute">RSI</span><span>${a.rsi ?? '–'}</span>
+        <span class="mute">Suggested stop</span><span class="down">${a.stop ?? '–'}</span>
+        <span class="mute">Target</span><span class="up">${a.target ?? '–'}</span></div></div>
+      ${b ? `<div class="card"><h3>Backtest of these rules on ${esc(sym)}</h3><div class="kv">
+        <span class="mute">Period</span><span>${b.period}</span>
+        <span class="mute">Strategy</span><span class="${b.strategy_return_pct>=0?'up':'down'}">${b.strategy_return_pct}%</span>
+        <span class="mute">Buy &amp; hold</span><span class="${b.buy_hold_return_pct>=0?'up':'down'}">${b.buy_hold_return_pct}%</span>
+        <span class="mute">Trades</span><span>${b.trades} (win ${b.win_rate_pct ?? '–'}%)</span>
+        <span class="mute">Max drawdown</span><span class="down">${b.max_drawdown_pct}%</span></div>
+        <p class="mute" style="font-size:12px;margin:8px 0 0">Includes ~1.12% cost per side. Past results don’t predict future ones.</p></div>`
+        : '<div class="card"><h3>Backtest</h3><p class="mute">Needs 60+ days of history.</p></div>'}
+    </div>`;
+
+  const c = mkChart($('#chart'), 360);
+  c.addCandlestickSeries({ upColor:'#22c55e', downColor:'#ef4444', borderVisible:false, wickUpColor:'#22c55e', wickDownColor:'#ef4444' }).setData(d.candles);
+  c.addLineSeries({ color:'#3b82f6', lineWidth:1, title:'SMA20' }).setData(d.sma20);
+  c.addLineSeries({ color:'#f59e0b', lineWidth:1, title:'SMA50' }).setData(d.sma50);
+  const v = c.addHistogramSeries({ priceScaleId:'vol', priceFormat:{type:'volume'}, color:'#334155' });
+  c.priceScale('vol').applyOptions({ scaleMargins:{ top:0.8, bottom:0 } });
+  v.setData(d.volume);
+  const r = mkChart($('#rsi'), 100);
+  const rs = r.addLineSeries({ color:'#a78bfa', lineWidth:1, title:'RSI' }); rs.setData(d.rsi);
+  [30,70].forEach(p => rs.createPriceLine({ price:p, color:'#475569', lineStyle:2, lineWidth:1 }));
+  const m = mkChart($('#macd'), 100);
+  m.addHistogramSeries({ title:'MACD hist' }).setData(d.macd_hist.map(x => ({...x, color: x.value>=0?'#22c55e':'#ef4444'})));
+  const charts = [c, r, m];
+  charts.forEach(src => src.timeScale().subscribeVisibleLogicalRangeChange(range => {
+    if (range) charts.filter(x => x!==src).forEach(x => x.timeScale().setVisibleLogicalRange(range));
+  }));
+  c.timeScale().fitContent();
+  if (innerWidth < 900) $('#detail').scrollIntoView({ behavior:'smooth' });
+}
+
+load();
+</script>
+</body>
+</html>

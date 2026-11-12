@@ -1,0 +1,27 @@
+{
+ "symbol": "AGST.X0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 3,
+  "eps_ytd": 0.41,
+  "eps_ytd_prior": 0.11,
+  "eps_q": 0.41,
+  "eps_q_prior": 0.11,
+  "profit_ytd": 199.64,
+  "profit_ytd_prior": 54.36,
+  "revenue_ytd": 4639.65,
+  "revenue_ytd_prior": 3556.97,
+  "unit": "Rs Mn",
+  "navps": 17.3,
+  "page": 2
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": 0.4,
+  "page": 2
+ },
+ "notes": "Non-voting share of AGST: same per-share figures (Group)."
+}

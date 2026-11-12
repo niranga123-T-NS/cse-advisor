@@ -1,0 +1,21 @@
+{
+ "symbol": "YORK.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-09-30",
+  "months": 6,
+  "eps_ytd": 0.01,
+  "eps_ytd_prior": 0.01,
+  "navps": 1.45,
+  "page": 2
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": -0.02,
+  "navps": 1.43,
+  "page": 2
+ },
+ "notes": "Company, no revenue line. Earnings are around zero (FY2026 loss of 0.02 per share)."
+}

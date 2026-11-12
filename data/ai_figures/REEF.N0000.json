@@ -1,0 +1,27 @@
+{
+ "symbol": "REEF.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 3,
+  "eps_ytd": -0.25,
+  "eps_ytd_prior": -0.18,
+  "eps_q": -0.25,
+  "eps_q_prior": -0.18,
+  "profit_ytd": -161547,
+  "profit_ytd_prior": -114538,
+  "revenue_ytd": 277540,
+  "revenue_ytd_prior": 414696,
+  "unit": "Rs'000",
+  "navps": 3.96,
+  "page": 2
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": -0.16,
+  "page": 2
+ },
+ "notes": "Group. Loss-making. EPS = loss attributable \u00f7 645.6M shares; NAV = equity 2,557.3M \u00f7 645.6M."
+}

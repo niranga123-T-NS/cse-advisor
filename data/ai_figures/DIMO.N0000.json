@@ -1,0 +1,27 @@
+{
+ "symbol": "DIMO.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 3,
+  "eps_ytd": 64.97,
+  "eps_ytd_prior": 30.79,
+  "eps_q": 64.97,
+  "eps_q_prior": 30.79,
+  "profit_ytd": 599795,
+  "profit_ytd_prior": 284274,
+  "revenue_ytd": 26634841,
+  "revenue_ytd_prior": 16810545,
+  "unit": "Rs'000",
+  "navps": 1803.5,
+  "page": 2
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": 172.37,
+  "page": 2
+ },
+ "notes": "Group (Company-only Q1 EPS 49.70). Only 9.23M shares in issue, hence large per-share figures."
+}

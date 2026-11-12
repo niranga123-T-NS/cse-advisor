@@ -1,0 +1,21 @@
+{
+ "symbol": "WAPO.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 3,
+  "eps_ytd": 0.71,
+  "eps_ytd_prior": 2.54,
+  "eps_q": 0.71,
+  "eps_q_prior": 2.54,
+  "revenue_ytd": 74563,
+  "revenue_ytd_prior": 42322,
+  "unit": "Rs'000",
+  "navps": 24.56,
+  "page": 2
+ },
+ "fy": {},
+ "notes": "Investment company: revenue is dividends plus gains on share sales, so earnings swing a lot quarter to quarter."
+}

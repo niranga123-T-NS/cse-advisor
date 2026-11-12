@@ -17,7 +17,30 @@ RULES = {
     "target_atr": 3.0,   # suggested target = close + 3 x ATR
     "cost_per_side": 0.0112,   # ~1.12% CSE retail brokerage+fees per side; adjust to your broker
     "min_turnover": 1_000_000, # LKR/day average below this is flagged illiquid
+    "fib_lookback": 120,       # trading days (~6 months) to find the swing high and low
+    "fib_min_swing": 0.10,     # ignore swings smaller than 10% (no meaningful levels)
 }
+
+FIB_RATIOS = (0.236, 0.382, 0.5, 0.618, 0.786)
+
+
+def fib_swing(high: np.ndarray, low: np.ndarray, end: int, n: int):
+    """Swing high/low in the n bars up to `end` (inclusive). Returns (hi, lo, i_hi, i_lo) or None."""
+    a = max(0, end - n + 1)
+    hs, ls = high[a:end + 1], low[a:end + 1]
+    if len(hs) < 20:
+        return None
+    i_hi, i_lo = a + int(np.argmax(hs)), a + int(np.argmin(ls))
+    hi, lo = float(high[i_hi]), float(low[i_lo])
+    if lo <= 0 or (hi - lo) / lo < RULES["fib_min_swing"]:
+        return None
+    return hi, lo, i_hi, i_lo
+
+
+def fib_levels(hi, lo, up: bool) -> dict:
+    """Retracement levels. Uptrend (low came first): measured down from the high; downtrend: up from the low."""
+    rng = hi - lo
+    return {r: (hi - r * rng) if up else (lo + r * rng) for r in FIB_RATIOS}
 
 
 # ---------------------------------------------------------------- indicators
@@ -47,6 +70,14 @@ def indicators(df: pd.DataFrame) -> pd.DataFrame:
     tr = pd.concat([d["high"] - d["low"], (d["high"] - prev).abs(), (d["low"] - prev).abs()], axis=1).max(axis=1)
     d["atr"] = tr.ewm(alpha=1 / 14, adjust=False).mean()
 
+    # Fibonacci: swing high/low of the last ~6 months as of each day
+    h, l = d["high"].to_numpy(float), d["low"].to_numpy(float)
+    fh, fl, fu = [], [], []
+    for i in range(len(d)):
+        sw = fib_swing(h, l, i, RULES["fib_lookback"])
+        fh.append(sw[0] if sw else np.nan); fl.append(sw[1] if sw else np.nan)
+        fu.append((sw[3] < sw[2]) if sw else np.nan)  # True: low came before high -> uptrend
+    d["fib_hi"], d["fib_lo"], d["fib_up"] = fh, fl, fu
     d["vol_avg20"] = d["volume"].rolling(20).mean()
     d["turnover_avg20"] = (d["close"] * d["volume"]).rolling(20).mean()
     return d
@@ -87,6 +118,27 @@ def _score_row(r: pd.Series, prev: pd.Series | None) -> tuple[float, list[str]]:
             add(0.5, "Below lower Bollinger band (stretched down)")
         elif r.close > r.bb_up:
             add(-0.5, "Above upper Bollinger band (stretched up)")
+    # Fibonacci retracement: pullbacks to 38.2-61.8% often find support (uptrend) or resistance (downtrend);
+    # breaking the 78.6% level suggests the move is failing / reversing
+    if pd.notna(r.fib_hi) and prev is not None:
+        up = bool(r.fib_up)
+        lv = fib_levels(r.fib_hi, r.fib_lo, up)
+        atr = r.atr if pd.notna(r.atr) else 0
+        tol = max(0.01 * r.close, 0.5 * atr)
+        near = [k for k in (0.382, 0.5, 0.618) if abs(r.close - lv[k]) <= tol]
+        rising = r.close > prev.close
+        if up:
+            if r.close < lv[0.786]:
+                add(-1, f"Broke below 78.6% Fibonacci retracement ({lv[0.786]:.2f}) - uptrend failing")
+            elif near:
+                k = near[0]
+                add(1 if rising else 0.5, f"{'Bouncing off' if rising else 'At'} {k*100:.1f}% Fibonacci support ({lv[k]:.2f})")
+        else:
+            if r.close > lv[0.786]:
+                add(1, f"Broke above 78.6% Fibonacci retracement ({lv[0.786]:.2f}) - downtrend reversing")
+            elif near:
+                k = near[0]
+                add(-1 if not rising else -0.5, f"{'Rejected at' if not rising else 'At'} {k*100:.1f}% Fibonacci resistance ({lv[k]:.2f})")
     if pd.notna(r.vol_avg20) and r.vol_avg20 > 0 and prev is not None and r.volume > 1.5 * r.vol_avg20:
         up = r.close > prev.close
         add(0.5 if up else -0.5, f"Volume {r.volume / r.vol_avg20:.1f}x average on an {'up' if up else 'down'} day")
@@ -140,10 +192,32 @@ def advice(df: pd.DataFrame, fund: dict | None = None) -> dict | None:
         "rsi": None if pd.isna(r.rsi) else round(float(r.rsi), 1),
         "stop": None, "target": None,
         "warnings": [],
+        "fib": None,
     }
     if pd.notna(r.atr):
         out["stop"] = round(float(r.close - RULES["stop_atr"] * r.atr), 2)
         out["target"] = round(float(r.close + RULES["target_atr"] * r.atr), 2)
+    if pd.notna(r.fib_hi):
+        up = bool(r.fib_up)
+        sw = fib_swing(d["high"].to_numpy(float), d["low"].to_numpy(float), len(d) - 1, RULES["fib_lookback"])
+        lv = fib_levels(r.fib_hi, r.fib_lo, up)
+        rng = r.fib_hi - r.fib_lo
+        out["fib"] = {
+            "trend": "up" if up else "down",
+            "high": round(float(r.fib_hi), 2), "low": round(float(r.fib_lo), 2),
+            "high_date": d.index[sw[2]].strftime("%Y-%m-%d"), "low_date": d.index[sw[3]].strftime("%Y-%m-%d"),
+            "levels": {f"{k*100:.1f}": round(float(v), 2) for k, v in lv.items()},
+            # extensions beyond the high (uptrend) - common profit targets
+            "ext": {"127.2": round(float(r.fib_lo + 1.272 * rng), 2), "161.8": round(float(r.fib_lo + 1.618 * rng), 2)} if up else
+                   {"127.2": round(float(r.fib_hi - 1.272 * rng), 2), "161.8": round(float(r.fib_hi - 1.618 * rng), 2)},
+        }
+        # nearest Fibonacci level above the price is a natural first target
+        above = sorted(v for v in list(lv.values()) + [r.fib_hi] if v > r.close * 1.005)
+        if above:
+            out["fib"]["next_resistance"] = round(float(above[0]), 2)
+        below = sorted((v for v in list(lv.values()) + [r.fib_lo] if v < r.close * 0.995), reverse=True)
+        if below:
+            out["fib"]["next_support"] = round(float(below[0]), 2)
     if pd.notna(r.turnover_avg20) and r.turnover_avg20 < RULES["min_turnover"]:
         out["warnings"].append(f"Low liquidity: ~LKR {r.turnover_avg20:,.0f}/day traded - hard to exit")
     if len(df) < 200:

@@ -184,6 +184,24 @@ $('#rows').addEventListener('click', e => {
 const p2 = v => (v == null || isNaN(v)) ? '' : (+v).toFixed(2);
 const fmt = (v, suf='') => v == null ? '<span class="mute">–</span>' : `${v}${suf}`;
 const pct = v => v == null ? '<span class="mute">–</span>' : `<span class="${v>=0?'up':'down'}">${v>0?'+':''}${p2(v)}%</span>`;
+function fibCard(a) {
+  const f = a.fib;
+  if (!f) return '<div class="card"><h3>Fibonacci</h3><p class="mute">No clear swing (under 10%) in the last 6 months — no levels drawn.</p></div>';
+  const rows = Object.entries(f.levels).map(([k, v]) => {
+    const near = Math.abs(a.close - v) <= Math.max(0.01 * a.close, 0.005 * a.close);
+    return `<tr${near ? ' style="background:#2a2140"' : ''}><td>${k}%</td><td class="num">${v.toFixed(2)}</td><td class="mute">${v > a.close ? 'resistance' : 'support'}</td></tr>`;
+  }).join('');
+  return `<div class="card"><h3>Fibonacci retracement <span class="mute">· 6-month ${f.trend === 'up' ? 'up-move' : 'down-move'}</span></h3>
+    <div class="kv">
+      <span class="mute">Swing ${f.trend === 'up' ? 'low → high' : 'high → low'}</span><span>${f.trend === 'up' ? `${f.low.toFixed(2)} (${f.low_date}) → ${f.high.toFixed(2)} (${f.high_date})` : `${f.high.toFixed(2)} (${f.high_date}) → ${f.low.toFixed(2)} (${f.low_date})`}</span>
+      <span class="mute">Next support</span><span class="up">${f.next_support != null ? f.next_support.toFixed(2) : '–'}</span>
+      <span class="mute">Next resistance</span><span class="down">${f.next_resistance != null ? f.next_resistance.toFixed(2) : '–'}</span>
+      <span class="mute">Extensions</span><span>127.2%: ${f.ext['127.2'].toFixed(2)} · 161.8%: ${f.ext['161.8'].toFixed(2)}</span>
+    </div>
+    <table style="margin-top:8px"><tr><th>Level</th><th class="num">Price</th><th></th></tr>${rows}</table>
+    <p class="mute" style="font-size:11px;margin:8px 0 0">In an up-move, pullbacks to 38.2–61.8% often find buyers; a close below 78.6% suggests the up-move has failed. In a down-move the same levels act as resistance. Levels are drawn on the chart.</p></div>`;
+}
+
 function fundCard(a) {
   const f = a.fundamentals;
   if (!f) return '<div class="card"><h3>Fundamentals</h3><p class="mute">Reports not read yet — the nightly job works through all companies.</p></div>';
@@ -247,6 +265,7 @@ async function show(sym) {
     <div class="cards">
       <div class="card"><h3>Technical reasons</h3><ul>${a.reasons.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>
         ${a.warnings.map(w=>`<p class="warn">⚠ ${esc(w)}</p>`).join('')}</div>
+      ${fibCard(a)}
       ${fundCard(a)}
       <div class="card"><h3>Levels</h3><div class="kv">
         <span class="mute">Close</span><span>${a.close}</span>
@@ -267,6 +286,12 @@ async function show(sym) {
   const c = mkChart($('#chart'), 360);
   const cs = c.addCandlestickSeries({ upColor:'#22c55e', downColor:'#ef4444', borderVisible:false, wickUpColor:'#22c55e', wickDownColor:'#ef4444' });
   cs.setData(d.candles);
+  if (a && a.fib) {
+    Object.entries(a.fib.levels).forEach(([k, v]) => cs.createPriceLine({ price: v, color: k === '61.8' || k === '38.2' ? '#a78bfa' : '#6b5b95',
+      lineWidth: 1, lineStyle: 2, axisLabelVisible: true, title: 'Fib ' + k + '%' }));
+    cs.createPriceLine({ price: a.fib.high, color: '#475569', lineWidth: 1, lineStyle: 1, axisLabelVisible: false, title: 'swing high' });
+    cs.createPriceLine({ price: a.fib.low, color: '#475569', lineWidth: 1, lineStyle: 1, axisLabelVisible: false, title: 'swing low' });
+  }
   c.addLineSeries({ color:'#3b82f6', lineWidth:1, title:'SMA20' }).setData(d.sma20);
   c.addLineSeries({ color:'#f59e0b', lineWidth:1, title:'SMA50' }).setData(d.sma50);
   const v = c.addHistogramSeries({ priceScaleId:'vol', priceFormat:{type:'volume'}, color:'#334155' });

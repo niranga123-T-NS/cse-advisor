@@ -42,7 +42,8 @@ def snapshot() -> list[dict]:
         if not r.get("symbol") or p <= 0:
             continue
         num = lambda k: float(r[k]) if r.get(k) not in (None, "") else None
-        out.append({"s": r["symbol"], "p": p, "c": num("percentageChange"), "ch": num("change"),
+        pct = num("percentageChange")
+        out.append({"s": r["symbol"], "p": p, "c": None if pct is None else round(pct, 2), "ch": num("change"),
                     "v": num("sharevolume") or num("shareVolume") or num("quantity"),
                     "to": num("turnover"), "h": num("high"), "l": num("low"), "o": num("open"),
                     "pc": num("previousClose")})

@@ -1,0 +1,576 @@
+{
+ "annual": {},
+ "listed_at": "2026-11-12",
+ "listing": {
+  "annual": [
+   {
+    "amended": false,
+    "end": "2026-03-31",
+    "id": "53011",
+    "title": "Annual Report as at 31st March 2026",
+    "uploaded": 1788192287662,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1788192287662.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-03-31",
+    "id": "48925",
+    "title": "Annual Report 2024/25",
+    "uploaded": 1756695555955,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1756695555955.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2024-03-31",
+    "id": "46620",
+    "title": "Annual Report 2023/24",
+    "uploaded": 1725240805187,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1725240805187.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2023-12-31",
+    "id": "44142",
+    "title": "Annual Report as at 31.03.2023",
+    "uploaded": 1693568836823,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1693568836823.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2022-03-31",
+    "id": "41633",
+    "title": "Annual Report for the Financial Year ended 31st March 2022",
+    "uploaded": 1662113834750,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1662113834750.pdf",
+    "year_only": false
+   }
+  ],
+  "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-06-30",
+    "id": "52721",
+    "title": "Interim Financial Statements for the Quarter ended 30th June 2026",
+    "uploaded": 1786715903157,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1786715903157.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2026-03-31",
+    "id": "51707",
+    "title": "Interim Financial Statements for the Quarter ended 31st March 2026",
+    "uploaded": 1780322552299,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1780322552299.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-12-31",
+    "id": "50507",
+    "title": "Interim Financial Statements for the Quarter ended 31st December 2025",
+    "uploaded": 1771210176571,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1771210176571.12.2025_Upload.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-09-30",
+    "id": "49516",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2025",
+    "uploaded": 1763034793825,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1763034793825.09.2025.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-06-30",
+    "id": "48797",
+    "title": "Interim Financial Statements for the quarter ended 30th June 2025",
+    "uploaded": 1755485798778,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1755485798778.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-03-31",
+    "id": "48173",
+    "title": "Interim Financial Statements for the quarter ended 31st March 2025",
+    "uploaded": 1748831691842,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1748831691842.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2024-12-31",
+    "id": "47495",
+    "title": "Interim Financial Statements for the quarter ended 31st December 2024",
+    "uploaded": 1739759820498,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1739759820498.12.2024.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2024-09-30",
+    "id": "47043",
+    "title": "Interim Financial Statements for the quarter ended 30th September 2024",
+    "uploaded": 1731549712631,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1731549712631.09.2024.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2024-06-30",
+    "id": "46445",
+    "title": "Interim Financial Statements for the quarter ended 30th June 2024",
+    "uploaded": 1723718926138,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1723718926138.06.2024.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2024-03-31",
+    "id": "45849",
+    "title": "Interim Financial Statements for the quarter ended 31st March 2024",
+    "uploaded": 1717151756644,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1717151756644.03.2024.pdf",
+    "year_only": false
+   }
+  ]
+ },
+ "quarterly": {
+  "45849": {
+   "end": "2024-03-31",
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "ok": true,
+   "pages": 11,
+   "profit": 88023106.0,
+   "profit_growth": null,
+   "profit_prior": -363599207.0,
+   "revenue": 623292435.0,
+   "revenue_growth": 42.1,
+   "revenue_prior": 438497871.0,
+   "src_profit": "Equity Holders of the Parent  88,023,106  (363,599,207)  -124%  (479,309,153)  (1,148,060,387)  -58%",
+   "src_revenue": "Revenue from contracts with customers  623,292,435  438,497,871  42%  1,654,360,236  1,199,702,908  38%",
+   "title": "Interim Financial Statements for the quarter ended 31st March 2024",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1717151756644.03.2024.pdf",
+   "v": 6,
+   "vals_profit": [
+    88023106.0,
+    -363599207.0,
+    -479309153.0,
+    -1148060387.0
+   ],
+   "vals_revenue": [
+    623292435.0,
+    438497871.0,
+    1654360236.0,
+    1199702908.0
+   ],
+   "year_only": false
+  },
+  "46445": {
+   "end": "2024-06-30",
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "ok": true,
+   "pages": 10,
+   "profit": -108188226.0,
+   "profit_growth": null,
+   "profit_prior": -217765066.0,
+   "revenue": 356056754.0,
+   "revenue_growth": 33.8,
+   "revenue_prior": 266153222.0,
+   "src_profit": "Equity Holders of the Parent  (108,188,226)  (217,765,066)  -50%  (479,309,153)",
+   "src_revenue": "Revenue from contracts with customers  356,056,754  266,153,222  34%  1,654,360,236",
+   "title": "Interim Financial Statements for the quarter ended 30th June 2024",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1723718926138.06.2024.pdf",
+   "v": 6,
+   "vals_profit": [
+    -108188226.0,
+    -217765066.0,
+    -479309153.0
+   ],
+   "vals_revenue": [
+    356056754.0,
+    266153222.0,
+    1654360236.0
+   ],
+   "year_only": false
+  },
+  "47043": {
+   "end": "2024-09-30",
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "ok": true,
+   "pages": 10,
+   "profit": -127758857.0,
+   "profit_growth": null,
+   "profit_prior": -219946848.0,
+   "revenue": 335815119.0,
+   "revenue_growth": 8.5,
+   "revenue_prior": 309590618.0,
+   "src_profit": "Equity Holders of the Parent  (127,758,857)  (219,946,848)  -42%  (235,947,083)  (437,711,914)  -46%  (592,663,938)",
+   "src_revenue": "Revenue from contracts with customers  335,815,119  309,590,618  8%  691,871,873  575,743,840  20%  1,654,360,236",
+   "title": "Interim Financial Statements for the quarter ended 30th September 2024",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1731549712631.09.2024.pdf",
+   "v": 6,
+   "vals_profit": [
+    -127758857.0,
+    -219946848.0,
+    -235947083.0,
+    -437711914.0,
+    -592663938.0
+   ],
+   "vals_revenue": [
+    335815119.0,
+    309590618.0,
+    691871873.0,
+    575743840.0,
+    1654360236.0
+   ],
+   "year_only": false
+  },
+  "47495": {
+   "end": "2024-12-31",
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "ok": true,
+   "pages": 10,
+   "profit": 22406189.0,
+   "profit_growth": null,
+   "profit_prior": -129620345.0,
+   "revenue": 495857916.0,
+   "revenue_growth": 8.9,
+   "revenue_prior": 455323960.0,
+   "src_profit": "Equity Holders of the Parent  22,406,189  (129,620,345)  -117%  (213,540,894)  (567,332,259)  -62%  (592,663,938)",
+   "src_revenue": "Revenue from contracts with customers  495,857,916  455,323,960  9%  1,187,729,789  1,031,067,800  15%  1,654,360,236",
+   "title": "Interim Financial Statements for the quarter ended 31st December 2024",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1739759820498.12.2024.pdf",
+   "v": 6,
+   "vals_profit": [
+    22406189.0,
+    -129620345.0,
+    -213540894.0,
+    -567332259.0,
+    -592663938.0
+   ],
+   "vals_revenue": [
+    495857916.0,
+    455323960.0,
+    1187729789.0,
+    1031067800.0,
+    1654360236.0
+   ],
+   "year_only": false
+  },
+  "48173": {
+   "end": "2025-03-31",
+   "eps": 0.08,
+   "eps_prior": 0.31,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "ok": true,
+   "pages": 10,
+   "profit": 44017436.0,
+   "profit_growth": -50.0,
+   "profit_prior": 88023106.0,
+   "revenue": 629139130.0,
+   "revenue_growth": 0.9,
+   "revenue_prior": 623292435.0,
+   "src_eps": "Basic earnings / (Loss) per share(Rs.)  0.08  0.31  (0.31)  (2.08)",
+   "src_profit": "Equity Holders of the Parent  44,017,436  88,023,106  -50%  (169,523,458)  (592,663,938)  -71%",
+   "src_revenue": "Revenue from contracts with customers  629,139,130  623,292,435  1%  1,816,868,919  1,654,360,236  10%",
+   "title": "Interim Financial Statements for the quarter ended 31st March 2025",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1748831691842.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.08,
+    0.31,
+    -0.31,
+    -2.08
+   ],
+   "vals_profit": [
+    44017436.0,
+    88023106.0,
+    -169523458.0,
+    -592663938.0
+   ],
+   "vals_revenue": [
+    629139130.0,
+    623292435.0,
+    1816868919.0,
+    1654360236.0
+   ],
+   "year_only": false
+  },
+  "48797": {
+   "end": "2025-06-30",
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "ok": true,
+   "pages": 10,
+   "profit": -71658919.0,
+   "profit_growth": null,
+   "profit_prior": -108188226.0,
+   "revenue": 360646918.0,
+   "revenue_growth": 1.3,
+   "revenue_prior": 356056754.0,
+   "src_profit": "Equity Holders of the Parent  (71,658,919)  (108,188,226)  34%  (169,523,458)",
+   "src_revenue": "Revenue from contracts with customers  360,646,918  356,056,754  1%  1,816,868,919",
+   "title": "Interim Financial Statements for the quarter ended 30th June 2025",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1755485798778.pdf",
+   "v": 6,
+   "vals_profit": [
+    -71658919.0,
+    -108188226.0,
+    -169523458.0
+   ],
+   "vals_revenue": [
+    360646918.0,
+    356056754.0,
+    1816868919.0
+   ],
+   "year_only": false
+  },
+  "49516": {
+   "end": "2025-09-30",
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "ok": true,
+   "pages": 10,
+   "profit": 94964144.0,
+   "profit_growth": null,
+   "profit_prior": -127758857.0,
+   "revenue": 386367409.0,
+   "revenue_growth": 15.1,
+   "revenue_prior": 335815119.0,
+   "src_profit": "Equity Holders of the Parent  94,964,144  (127,758,857)  (174.33%)  23,305,225  (235,947,083)  (109.88%)  (163,704,249)",
+   "src_revenue": "Revenue from contracts with customers  386,367,409  335,815,119  15.05%  747,014,327  691,871,873  7.97%  1,816,868,919",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2025",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1763034793825.09.2025.pdf",
+   "v": 6,
+   "vals_profit": [
+    94964144.0,
+    -127758857.0,
+    23305225.0,
+    -235947083.0,
+    -163704249.0
+   ],
+   "vals_revenue": [
+    386367409.0,
+    335815119.0,
+    747014327.0,
+    691871873.0,
+    1816868919.0
+   ],
+   "year_only": false
+  },
+  "50507": {
+   "end": "2025-12-31",
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "ok": true,
+   "pages": 10,
+   "profit": 17929305.0,
+   "profit_growth": -20.0,
+   "profit_prior": 22406189.0,
+   "revenue": 503415322.0,
+   "revenue_growth": 1.5,
+   "revenue_prior": 495857916.0,
+   "src_profit": "Equity Holders of the Parent  17,929,305  22,406,189  (20%)  41,234,530  (213,540,894)  (119%)  (163,704,249)",
+   "src_revenue": "Revenue from contracts with customers  503,415,322  495,857,916  2%  1,250,429,650  1,187,729,789  5%  1,816,868,919",
+   "title": "Interim Financial Statements for the Quarter ended 31st December 2025",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1771210176571.12.2025_Upload.pdf",
+   "v": 6,
+   "vals_profit": [
+    17929305.0,
+    22406189.0,
+    41234530.0,
+    -213540894.0,
+    -163704249.0
+   ],
+   "vals_revenue": [
+    503415322.0,
+    495857916.0,
+    1250429650.0,
+    1187729789.0,
+    1816868919.0
+   ],
+   "year_only": false
+  },
+  "51707": {
+   "end": "2026-03-31",
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "ok": true,
+   "pages": 10,
+   "profit": 42785612.0,
+   "profit_growth": -54.5,
+   "profit_prior": 94007518.0,
+   "revenue": 628293196.0,
+   "revenue_growth": -0.1,
+   "revenue_prior": 629139130.0,
+   "src_profit": "Equity Holders of the Parent  42,785,612  94,007,518  (54%)  84,020,142  (119,533,375)  (170%)",
+   "src_revenue": "Revenue from contracts with customers  628,293,196  629,139,130  (0%)  1,878,722,846  1,816,868,919  3%",
+   "title": "Interim Financial Statements for the Quarter ended 31st March 2026",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1780322552299.pdf",
+   "v": 6,
+   "vals_profit": [
+    42785612.0,
+    94007518.0,
+    84020142.0,
+    -119533375.0
+   ],
+   "vals_revenue": [
+    628293196.0,
+    629139130.0,
+    1878722846.0,
+    1816868919.0
+   ],
+   "year_only": false
+  },
+  "52721": {
+   "end": "2026-06-30",
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "ok": true,
+   "pages": 9,
+   "profit": -153806351.0,
+   "profit_growth": null,
+   "profit_prior": -71658919.0,
+   "revenue": 163267528.0,
+   "revenue_growth": -54.7,
+   "revenue_prior": 360646918.0,
+   "src_profit": "Equity Holders of the Parent  (153,806,351)  (71,658,919)  115%  84,020,142",
+   "src_revenue": "Revenue from contracts with customers  163,267,528  360,646,918  (55%)  1,878,722,846",
+   "title": "Interim Financial Statements for the Quarter ended 30th June 2026",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1786715903157.pdf",
+   "v": 6,
+   "vals_profit": [
+    -153806351.0,
+    -71658919.0,
+    84020142.0
+   ],
+   "vals_revenue": [
+    163267528.0,
+    360646918.0,
+    1878722846.0
+   ],
+   "year_only": false
+  }
+ },
+ "shares": 542663531.0,
+ "shares_other_class": 0.0,
+ "symbol": "CITH.N0000"
+}

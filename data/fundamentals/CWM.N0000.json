@@ -1,0 +1,853 @@
+{
+ "annual": {},
+ "listed_at": "2026-11-12",
+ "listing": {
+  "annual": [
+   {
+    "amended": false,
+    "end": "2026-03-31",
+    "id": "51825",
+    "title": "Annual Report as at 31st March 2026",
+    "uploaded": 1780674792676,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1780674792676.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-03-31",
+    "id": "48240",
+    "title": "Annual Report 2024/25",
+    "uploaded": 1749120750163,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1749120750163.W.Mackie PLC Annual Report as of 31.03.2025.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2024-03-31",
+    "id": "45963",
+    "title": "Annual Report 2023/24",
+    "uploaded": 1717642429979,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1717642429979. W. Mackie PLC Annual Report 2023-24.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2023-03-31",
+    "id": "43596",
+    "title": "Annual Report 2022/23",
+    "uploaded": 1688611735940,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1688611735940. W. Mackie PLC Annual Report As of 31-03-2023.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2022-03-31",
+    "id": "40976",
+    "title": "Annual Report 2021/22",
+    "uploaded": 1656668601551,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1656668601551.22.pdf",
+    "year_only": false
+   }
+  ],
+  "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-06-30",
+    "id": "52554",
+    "title": "Interim Financial Statements for the Quarter ended 30th June 2026",
+    "uploaded": 1786677688956,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1786677688956.W.Mackie PLC Interim Report as of 30.06.2026.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2026-03-31",
+    "id": "51487",
+    "title": "Interim Financial Statements for the Quarter ended 31st March 2026",
+    "uploaded": 1779971800596,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1779971800596.W.Mackie PLC Interim Report as of 31.03.2026.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-12-31",
+    "id": "49929",
+    "title": "Interim Financial Statements for the Quarter ended 31st December 2025",
+    "uploaded": 1769085928193,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1769085928193.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-09-30",
+    "id": "49238",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2025",
+    "uploaded": 1762428093853,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1762428093853.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2024-12-31",
+    "id": "47338",
+    "title": "Quarterly Financial Report as of 31-12-2024",
+    "uploaded": 1739416858485,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1739416858485.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2023-12-31",
+    "id": "44861",
+    "title": "Quarterly Financial Report as of 31-12-2023",
+    "uploaded": 1705656806402,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1705656806402.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2022-12-31",
+    "id": "42530",
+    "title": "Quarterly Financial Report as of 31-12-2022",
+    "uploaded": 1675764277658,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1675764277658.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2021-12-31",
+    "id": "39859",
+    "title": "Quarterly Financial Report as of 31-12-2021",
+    "uploaded": 1644485698793,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1644485698793.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2020-12-31",
+    "id": "37177",
+    "title": "Quarterly Financial Report as of 31-12-2020",
+    "uploaded": 1612779576379,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1612779576379.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2019-12-31",
+    "id": "34896",
+    "title": "Interim Financial Statements as at 31.12.2019",
+    "uploaded": 1581504620225,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1581504620225.pdf",
+    "year_only": true
+   }
+  ]
+ },
+ "quarterly": {
+  "34896": {
+   "end": "2019-12-31",
+   "eps": -1.36,
+   "eps_prior": 0.14,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 3,
+   "navps": 68.93,
+   "navps_prior": 72.18,
+   "ok": true,
+   "pages": 10,
+   "profit": -48780.0,
+   "profit_growth": null,
+   "profit_prior": 4876.0,
+   "revenue": 1890469.0,
+   "revenue_growth": -15.0,
+   "revenue_prior": 2224621.0,
+   "src_eps": "Basic earnings per share (Rupees)  (1.36)  0.14  0.28  2.75",
+   "src_navps": "Net asset value per share (Rs.)  68.93  72.18  68.52  70.34",
+   "src_profit": "Equity holders of the parent company  (48,780)  4,876  9,951  98,972",
+   "src_revenue": "Revenue  1,890,469  2,224,621  (15.02)  6,211,014  6,891,043  (9.87)",
+   "title": "Interim Financial Statements as at 31.12.2019",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1581504620225.pdf",
+   "v": 6,
+   "vals_eps": [
+    -1.36,
+    0.14,
+    0.28,
+    2.75
+   ],
+   "vals_navps": [
+    68.93,
+    72.18,
+    68.52,
+    70.34
+   ],
+   "vals_profit": [
+    -48780.0,
+    4876.0,
+    9951.0,
+    98972.0
+   ],
+   "vals_revenue": [
+    1890469.0,
+    2224621.0,
+    -15.02,
+    6211014.0,
+    6891043.0,
+    -9.87
+   ],
+   "year_only": true
+  },
+  "37177": {
+   "end": "2020-12-31",
+   "eps": 2.21,
+   "eps_prior": -1.44,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 3,
+   "navps": 69.39,
+   "navps_prior": 65.91,
+   "ok": true,
+   "pages": 10,
+   "profit": 79356.0,
+   "profit_growth": null,
+   "profit_prior": -51738.0,
+   "revenue": 2605405.0,
+   "revenue_growth": 37.8,
+   "revenue_prior": 1890469.0,
+   "src_eps": "Basic earnings per share (Rupees)  2.21  (1.44)  3.49  0.28",
+   "src_navps": "Net asset value per share (Rs.)  69.39  65.91  70.55  66.40",
+   "src_profit": "Equity holders of the parent company  79,356  (51,738)  125,444  9,951",
+   "src_revenue": "Revenue  2,605,405  1,890,469  37.82  7,472,440  6,211,014  20.31",
+   "title": "Quarterly Financial Report as of 31-12-2020",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1612779576379.pdf",
+   "v": 6,
+   "vals_eps": [
+    2.21,
+    -1.44,
+    3.49,
+    0.28
+   ],
+   "vals_navps": [
+    69.39,
+    65.91,
+    70.55,
+    66.4
+   ],
+   "vals_profit": [
+    79356.0,
+    -51738.0,
+    125444.0,
+    9951.0
+   ],
+   "vals_revenue": [
+    2605405.0,
+    1890469.0,
+    37.82,
+    7472440.0,
+    6211014.0,
+    20.31
+   ],
+   "year_only": true
+  },
+  "39859": {
+   "end": "2021-12-31",
+   "eps": 3.87,
+   "eps_prior": 2.21,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 3,
+   "navps": 73.19,
+   "navps_prior": 72.24,
+   "ok": true,
+   "pages": 10,
+   "profit": 139410.0,
+   "profit_growth": 75.7,
+   "profit_prior": 79356.0,
+   "revenue": 2966673.0,
+   "revenue_growth": 13.9,
+   "revenue_prior": 2605405.0,
+   "src_eps": "Basic earnings per share (Rupees)  3.87  2.21  7.95  3.49",
+   "src_navps": "Net asset value per share (Rs.)  73.19  72.24  75.13  73.79",
+   "src_profit": "Equity holders of the parent company  139,410  79,356  286,191  125,444",
+   "src_revenue": "Revenue  2,966,673  2,605,405  13.87  9,278,189  7,472,440  24.17",
+   "title": "Quarterly Financial Report as of 31-12-2021",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1644485698793.pdf",
+   "v": 6,
+   "vals_eps": [
+    3.87,
+    2.21,
+    7.95,
+    3.49
+   ],
+   "vals_navps": [
+    73.19,
+    72.24,
+    75.13,
+    73.79
+   ],
+   "vals_profit": [
+    139410.0,
+    79356.0,
+    286191.0,
+    125444.0
+   ],
+   "vals_revenue": [
+    2966673.0,
+    2605405.0,
+    13.87,
+    9278189.0,
+    7472440.0,
+    24.17
+   ],
+   "year_only": true
+  },
+  "42530": {
+   "end": "2022-12-31",
+   "eps": 4.62,
+   "eps_prior": 3.87,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 3,
+   "navps": 104.6,
+   "navps_prior": 91.98,
+   "ok": true,
+   "pages": 10,
+   "profit": 166298.0,
+   "profit_growth": 19.3,
+   "profit_prior": 139410.0,
+   "revenue": 5034985.0,
+   "revenue_growth": 69.7,
+   "revenue_prior": 2966673.0,
+   "src_eps": "Basic earnings per share (Rupees)  4.62  3.87  22.62  7.95",
+   "src_navps": "Net asset value per share (Rs.)  104.60  91.98  94.93  86.78",
+   "src_profit": "Equity holders of the parent company  166,298  139,410  814,064  286,191",
+   "src_revenue": "Revenue  5,034,985  2,966,673  69.72  13,999,303  9,278,189  50.88",
+   "title": "Quarterly Financial Report as of 31-12-2022",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1675764277658.pdf",
+   "v": 6,
+   "vals_eps": [
+    4.62,
+    3.87,
+    22.62,
+    7.95
+   ],
+   "vals_navps": [
+    104.6,
+    91.98,
+    94.93,
+    86.78
+   ],
+   "vals_profit": [
+    166298.0,
+    139410.0,
+    814064.0,
+    286191.0
+   ],
+   "vals_revenue": [
+    5034985.0,
+    2966673.0,
+    69.72,
+    13999303.0,
+    9278189.0,
+    50.88
+   ],
+   "year_only": true
+  },
+  "44861": {
+   "end": "2023-12-31",
+   "eps": 2.64,
+   "eps_prior": 4.62,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 3,
+   "navps": 100.0,
+   "navps_prior": 105.51,
+   "ok": true,
+   "pages": 10,
+   "profit": 95087.0,
+   "profit_growth": -42.8,
+   "profit_prior": 166298.0,
+   "revenue": 4901018.0,
+   "revenue_growth": -2.7,
+   "revenue_prior": 5034985.0,
+   "src_eps": "Basic earnings per share (Rupees)  2.64  4.62  6.49  22.62",
+   "src_navps": "Net asset value per share (Rs.)  100.00  105.51  94.27  97.35",
+   "src_profit": "Equity holders of the parent company  95,087  166,298  233,604  814,064",
+   "src_revenue": "Revenue  4,901,018  5,034,985  (2.66)  14,380,266  13,999,303  2.72",
+   "title": "Quarterly Financial Report as of 31-12-2023",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1705656806402.pdf",
+   "v": 6,
+   "vals_eps": [
+    2.64,
+    4.62,
+    6.49,
+    22.62
+   ],
+   "vals_navps": [
+    100.0,
+    105.51,
+    94.27,
+    97.35
+   ],
+   "vals_profit": [
+    95087.0,
+    166298.0,
+    233604.0,
+    814064.0
+   ],
+   "vals_revenue": [
+    4901018.0,
+    5034985.0,
+    -2.66,
+    14380266.0,
+    13999303.0,
+    2.72
+   ],
+   "year_only": true
+  },
+  "47338": {
+   "end": "2024-12-31",
+   "eps": 2.77,
+   "eps_prior": 2.64,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 3,
+   "navps": 105.34,
+   "navps_prior": 106.13,
+   "ok": true,
+   "pages": 10,
+   "profit": 99732.0,
+   "profit_growth": 4.9,
+   "profit_prior": 95087.0,
+   "revenue": 6103273.0,
+   "revenue_growth": 24.5,
+   "revenue_prior": 4901018.0,
+   "src_eps": "Basic earnings per share (Rupees)  2.77  2.64  7.20  6.49",
+   "src_navps": "Net asset value per share (Rs.)  105.34  106.13  101.48  97.35",
+   "src_profit": "Equity holders of the parent Company  99,732  95,087  259,163  233,604",
+   "src_revenue": "Revenue  6,103,273  4,901,018  24.5  18,104,294  14,380,266  25.9",
+   "title": "Quarterly Financial Report as of 31-12-2024",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1739416858485.pdf",
+   "v": 6,
+   "vals_eps": [
+    2.77,
+    2.64,
+    7.2,
+    6.49
+   ],
+   "vals_navps": [
+    105.34,
+    106.13,
+    101.48,
+    97.35
+   ],
+   "vals_profit": [
+    99732.0,
+    95087.0,
+    259163.0,
+    233604.0
+   ],
+   "vals_revenue": [
+    6103273.0,
+    4901018.0,
+    24.5,
+    18104294.0,
+    14380266.0,
+    25.9
+   ],
+   "year_only": true
+  },
+  "49238": {
+   "end": "2025-09-30",
+   "eps": 2.26,
+   "eps_prior": 1.94,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 3,
+   "navps": 111.12,
+   "navps_prior": 114.36,
+   "ok": true,
+   "pages": 10,
+   "profit": 81513.0,
+   "profit_growth": 16.6,
+   "profit_prior": 69887.0,
+   "revenue": 5862037.0,
+   "revenue_growth": -6.6,
+   "revenue_prior": 6274635.0,
+   "src_eps": "Basic earnings per share (Rupees)  2.26  1.94  4.76  4.27",
+   "src_navps": "Net asset value per share (Rs.)  111.12  114.36  103.65  97.35",
+   "src_profit": "Equity holders of the parent company  81,513  69,887  171,198  153,574",
+   "src_revenue": "Revenue  5,862,037  6,274,635  (6.6)  11,692,966  12,001,021  (2.6)",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2025",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1762428093853.pdf",
+   "v": 6,
+   "vals_eps": [
+    2.26,
+    1.94,
+    4.76,
+    4.27
+   ],
+   "vals_navps": [
+    111.12,
+    114.36,
+    103.65,
+    97.35
+   ],
+   "vals_profit": [
+    81513.0,
+    69887.0,
+    171198.0,
+    153574.0
+   ],
+   "vals_revenue": [
+    5862037.0,
+    6274635.0,
+    -6.6,
+    11692966.0,
+    12001021.0,
+    -2.6
+   ],
+   "year_only": false
+  },
+  "49929": {
+   "end": "2025-12-31",
+   "eps": 2.65,
+   "eps_prior": 2.77,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 3,
+   "navps": 113.82,
+   "navps_prior": 114.36,
+   "ok": true,
+   "pages": 10,
+   "profit": 95501.0,
+   "profit_growth": -4.2,
+   "profit_prior": 99732.0,
+   "revenue": 5861184.0,
+   "revenue_growth": -4.0,
+   "revenue_prior": 6103273.0,
+   "src_eps": "Basic earnings per share (Rupees)  2.65  2.77  7.41  7.20",
+   "src_navps": "Net asset value per share (Rs.)  113.82  114.36  106.63  97.35",
+   "src_profit": "Equity holders of the parent company  95,501  99,732  266,699  259,163",
+   "src_revenue": "Revenue  5,861,184  6,103,273  (4.0)  17,554,150  18,104,294  (3.0)",
+   "title": "Interim Financial Statements for the Quarter ended 31st December 2025",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1769085928193.pdf",
+   "v": 6,
+   "vals_eps": [
+    2.65,
+    2.77,
+    7.41,
+    7.2
+   ],
+   "vals_navps": [
+    113.82,
+    114.36,
+    106.63,
+    97.35
+   ],
+   "vals_profit": [
+    95501.0,
+    99732.0,
+    266699.0,
+    259163.0
+   ],
+   "vals_revenue": [
+    5861184.0,
+    6103273.0,
+    -4.0,
+    17554150.0,
+    18104294.0,
+    -3.0
+   ],
+   "year_only": false
+  },
+  "51487": {
+   "end": "2026-03-31",
+   "eps": 0.88,
+   "eps_prior": 1.35,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 3,
+   "navps": 23.63,
+   "navps_prior": 22.87,
+   "ok": true,
+   "pages": 10,
+   "profit": 159146.0,
+   "profit_growth": -34.3,
+   "profit_prior": 242053.0,
+   "revenue": 6549416.0,
+   "revenue_growth": 6.0,
+   "revenue_prior": 6178427.0,
+   "src_eps": "Basic earnings per share (Rupees) (Note 6)  0.88  1.35  2.37  2.77",
+   "src_navps": "Net asset value per share (Rs.) (Note 6)  23.63  22.87  22.03  21.38",
+   "src_profit": "Equity holders of the parent company  159,146  242,053  425,845  497,911",
+   "src_revenue": "Revenue  6,549,416  6,178,427  6.0  24,103,566  24,282,721  (0.7)",
+   "title": "Interim Financial Statements for the Quarter ended 31st March 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1779971800596.W.Mackie PLC Interim Report as of 31.03.2026.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.88,
+    1.35,
+    2.37,
+    2.77
+   ],
+   "vals_navps": [
+    23.63,
+    22.87,
+    22.03,
+    21.38
+   ],
+   "vals_profit": [
+    159146.0,
+    242053.0,
+    425845.0,
+    497911.0
+   ],
+   "vals_revenue": [
+    6549416.0,
+    6178427.0,
+    6.0,
+    24103566.0,
+    24282721.0,
+    -0.7
+   ],
+   "year_only": false
+  },
+  "52554": {
+   "end": "2026-06-30",
+   "eps": 0.9,
+   "eps_prior": 0.5,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 3,
+   "navps": 22.93,
+   "navps_prior": 23.63,
+   "ok": true,
+   "pages": 10,
+   "profit": 162793.0,
+   "profit_growth": 81.5,
+   "profit_prior": 89685.0,
+   "revenue": 5521773.0,
+   "revenue_growth": -5.5,
+   "revenue_prior": 5846075.0,
+   "src_eps": "Basic earnings per share (Rupees)  0.90  0.50",
+   "src_navps": "Net asset value per share (Rs.)  22.93  23.63  21.36  22.03",
+   "src_profit": "Equity holders of the parent company  162,793  89,685",
+   "src_revenue": "Revenue  5,521,773  5,846,075  (5.55)",
+   "title": "Interim Financial Statements for the Quarter ended 30th June 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1786677688956.W.Mackie PLC Interim Report as of 30.06.2026.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.9,
+    0.5
+   ],
+   "vals_navps": [
+    22.93,
+    23.63,
+    21.36,
+    22.03
+   ],
+   "vals_profit": [
+    162793.0,
+    89685.0
+   ],
+   "vals_revenue": [
+    5521773.0,
+    5846075.0,
+    -5.55
+   ],
+   "year_only": false
+  }
+ },
+ "shares": 179942780.0,
+ "shares_other_class": 0.0,
+ "symbol": "CWM.N0000"
+}

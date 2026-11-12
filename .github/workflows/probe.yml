@@ -1,0 +1,14 @@
+name: Probe (temporary)
+on: workflow_dispatch
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "== POST tradeSummary with Origin"
+          curl -s -D - -o /tmp/b -X POST -H "Origin: https://niranga123-t-ns.github.io" -H "Content-Type: application/x-www-form-urlencoded" https://www.cse.lk/api/tradeSummary | head -30
+          head -c 300 /tmp/b; echo
+          echo "== OPTIONS preflight"
+          curl -s -D - -o /dev/null -X OPTIONS -H "Origin: https://niranga123-t-ns.github.io" -H "Access-Control-Request-Method: POST" https://www.cse.lk/api/tradeSummary | head -20
+          echo "== timing"
+          time curl -s -o /dev/null -X POST https://www.cse.lk/api/tradeSummary

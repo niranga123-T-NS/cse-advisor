@@ -54,7 +54,7 @@ def stock_payload(symbol: str, df) -> dict:
         "volume": [{"time": ti, "value": r.volume} for ti, r in zip(t, d.itertuples())],
         "sma20": series("sma20"), "sma50": series("sma50"),
         "rsi": series("rsi"), "macd_hist": series("macd_hist"),
-        "advice": analysis.advice(df, fund),
+        "advice": (lambda a: {**a, "style": analysis.classify(a)} if a else a)(analysis.advice(df, fund)),
         "backtest": analysis.backtest(df),
     }
 
@@ -71,7 +71,7 @@ def build():
             continue
         _dump(OUT / "stocks" / f"{s}.json", p)
         bt = p["backtest"] or {}
-        a = {k: v for k, v in p["advice"].items() if k not in ("fundamentals", "fund_reasons", "reasons")}
+        a = {k: v for k, v in p["advice"].items() if k not in ("fundamentals", "fund_reasons", "reasons", "style", "fib", "ind")}
         f = p["advice"].get("fundamentals") or {}
         signals.append({"symbol": s, "name": names.get(s, ""), "watch": s in watch, "bars": len(df),
                         "bt_edge": None if not bt else round(bt["strategy_return_pct"] - bt["buy_hold_return_pct"], 1),
@@ -81,6 +81,9 @@ def build():
                         "data_warn": (f.get("check_summary") or {}).get("warn", 0),
                         "data_fail": (f.get("check_summary") or {}).get("fail", 0),
                         "verified_n": sum((f.get("verified") or {}).values()),
+                        "trade": p["advice"]["style"]["trade"], "invest": p["advice"]["style"]["invest"],
+                        "trade_watch": p["advice"]["style"].get("trade_watch", False),
+                        "rr": p["advice"]["style"].get("reward_risk"),
                         "fields_n": len(f.get("verified") or {}), **a})
     signals.sort(key=lambda x: (not x["watch"], -x["score"]))
     _dump(OUT / "signals.json", signals)

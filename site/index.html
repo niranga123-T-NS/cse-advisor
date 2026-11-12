@@ -31,7 +31,8 @@
   .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px; margin-top:14px; }
   .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; }
   .card h3 { margin:0 0 8px; font-size:13px; color:var(--mute); font-weight:500; }
-  .card ul { margin:0; padding-left:18px; } .src { font:11px/1.35 ui-monospace,monospace; color:#cbd5e1; white-space:pre-wrap; word-break:break-word; } summary { cursor:pointer; color:var(--mute); } .card a { color:#93c5fd; } .card table td, .card table th { padding:4px 6px; position:static; } .warn { color:#f59e0b; }
+  .card ul { margin:0; padding-left:18px; } .tag { font-size:10px; font-weight:700; padding:1px 5px; border-radius:4px; vertical-align:middle; } .tag.inv { background:#14532d; color:#86efac; } .tag.trd { background:#1e3a8a; color:#93c5fd; } .tag.wat { background:#3f3f46; color:#d4d4d8; }
+  .src { font:11px/1.35 ui-monospace,monospace; color:#cbd5e1; white-space:pre-wrap; word-break:break-word; } summary { cursor:pointer; color:var(--mute); } .card a { color:#93c5fd; } .card table td, .card table th { padding:4px 6px; position:static; } .warn { color:#f59e0b; }
   .kv { display:grid; grid-template-columns:auto 1fr; gap:4px 14px; }
   .big { font-size:22px; font-weight:700; }
   .mute { color:var(--mute); } .star { cursor:pointer; color:#eab308; font-size:16px; }
@@ -47,7 +48,7 @@
   <h1>CSE Advisor</h1>
   <input id="q" placeholder="Search symbol/name" size="16" oninput="render()">
   <select id="f" onchange="render()">
-    <option value="">All signals</option><option value="BUY">Buys</option><option value="SELL">Sells</option><option value="watch">★ Favourites</option><option value="value">Value (P/E &lt; 10)</option><option value="div">Dividend ≥ 5%</option><option value="issues">Data issues</option>
+    <option value="">All signals</option><option value="invest">📈 Investment picks</option><option value="trade">⚡ Trading picks</option><option value="tradewatch">👀 Trade watch</option><option value="BUY">Buys</option><option value="SELL">Sells</option><option value="watch">★ Favourites</option><option value="value">Value (P/E &lt; 10)</option><option value="div">Dividend ≥ 5%</option><option value="issues">Data issues</option>
   </select>
   <a class="btn" id="addBtn" target="_blank" rel="noopener">+ Add stocks</a>
   <span id="live" class="mute"></span>
@@ -158,7 +159,7 @@ async function load() {
 function render() {
   const q = $('#q').value.trim().toLowerCase(), f = $('#f').value;
   let rows = all.filter(s => (!q || s.symbol.toLowerCase().includes(q) || (s.name||'').toLowerCase().includes(q)) &&
-    (!f || (f === 'watch' ? isStar(s) : f === 'value' ? (s.pe && s.pe < 10) : f === 'div' ? (s.div_yield >= 5) : f === 'issues' ? (s.data_fail > 0) : sigClass(s.signal) === f)));
+    (!f || (f === 'watch' ? isStar(s) : f === 'value' ? (s.pe && s.pe < 10) : f === 'div' ? (s.div_yield >= 5) : f === 'issues' ? (s.data_fail > 0) : f === 'invest' ? s.invest : f === 'trade' ? s.trade : f === 'tradewatch' ? (s.trade || s.trade_watch) : sigClass(s.signal) === f)));
   rows.sort((a,b) => (isStar(b) - isStar(a)) || (b.score - a.score));
   $('#empty').hidden = rows.length > 0;
   $('#empty').innerHTML = all.length ? 'No stocks match.' :
@@ -166,7 +167,7 @@ function render() {
   $('#rows').innerHTML = rows.map(s => `
     <tr class="row ${s.symbol===current?'sel':''}" data-sym="${esc(s.symbol)}">
       <td class="star" data-star="${esc(s.symbol)}">${isStar(s)?'★':'☆'}</td>
-      <td><b>${esc(s.symbol)}</b><div class="mute" style="font-size:11px">${esc((s.name||'').slice(0,26))}</div></td>
+      <td><b>${esc(s.symbol)}</b>${s.invest?' <span class="tag inv">INVEST</span>':''}${s.trade?' <span class="tag trd">TRADE</span>':s.trade_watch?' <span class="tag wat">WATCH</span>':''}<div class="mute" style="font-size:11px">${esc((s.name||'').slice(0,26))}</div></td>
       <td class="num">${(s.live ? s.live.p : s.close).toFixed(2)}${s.live ? ' <span class="livedot" title="live"></span>' : ''}</td>
       ${(() => { const c = s.live ? s.live.c : s.change_pct; return `<td class="num ${c>0?'up':c<0?'down':''}">${p2(c)}</td>`; })()}
       <td class="num">${s.pe ?? '<span class="mute">–</span>'}</td>
@@ -184,6 +185,19 @@ $('#rows').addEventListener('click', e => {
 const p2 = v => (v == null || isNaN(v)) ? '' : (+v).toFixed(2);
 const fmt = (v, suf='') => v == null ? '<span class="mute">–</span>' : `${v}${suf}`;
 const pct = v => v == null ? '<span class="mute">–</span>' : `<span class="${v>=0?'up':'down'}">${v>0?'+':''}${p2(v)}%</span>`;
+function styleCard(a) {
+  const st = a.style; if (!st) return '';
+  const li = (arr, cls) => arr.map(x => `<li class="${cls}">${esc(x)}</li>`).join('');
+  const head = (on, label, cls) => on ? `<span class="tag ${cls}">${label}</span>` : `<span class="mute">not a ${label.toLowerCase()} pick</span>`;
+  return `<div class="card"><h3>Trading or investing?</h3>
+    <p style="margin:0 0 4px">${head(st.trade, 'TRADE', 'trd')} ${!st.trade && st.trade_watch ? '<span class="tag wat">WATCH</span> one condition short' : ''}
+      <span class="mute" style="font-size:12px">— short-term setup, weeks</span></p>
+    <ul style="margin-bottom:8px">${li(st.trade_why, 'up')}${li(st.trade_missing, 'down')}</ul>
+    ${st.reward_risk != null ? `<p class="mute" style="font-size:12px;margin:0 0 8px">Target ${st.trade_target} · stop ${st.trade_stop} · reward/risk after ~2.24% round-trip costs: ${st.reward_risk}</p>` : ''}
+    <p style="margin:0 0 4px">${head(st.invest, 'INVEST', 'inv')} <span class="mute" style="font-size:12px">— long-term value, verified report figures only</span></p>
+    <ul>${li(st.invest_why, 'up')}${li(st.invest_missing, 'down')}</ul></div>`;
+}
+
 function fibCard(a) {
   const f = a.fib;
   if (!f) return '<div class="card"><h3>Fibonacci</h3><p class="mute">No clear swing (under 10%) in the last 6 months — no levels drawn.</p></div>';
@@ -265,6 +279,7 @@ async function show(sym) {
     <div class="cards">
       <div class="card"><h3>Technical reasons</h3><ul>${a.reasons.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>
         ${a.warnings.map(w=>`<p class="warn">⚠ ${esc(w)}</p>`).join('')}</div>
+      ${styleCard(a)}
       ${fibCard(a)}
       ${fundCard(a)}
       <div class="card"><h3>Levels</h3><div class="kv">

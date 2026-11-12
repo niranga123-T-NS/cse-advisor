@@ -22,6 +22,28 @@ From then on it updates itself every weekday after the market closes.
 - **Stars** ☆ on the site are saved in that browser only. `watchlist.txt` sets which stocks get full history.
 - Every stock that trades on a given day gets saved. Stocks outside your watchlist gain a signal once they have 30 days of saved data.
 
+## Trading vs investment picks
+
+Each stock page has a "Trading or investing?" card, and the list filters by **📈 Investment picks**, **⚡ Trading picks** and **👀 Trade watch**.
+
+- **TRADE** (short-term setup, weeks) — every condition must pass:
+  - average turnover of at least LKR 5M a day
+  - technical score of 2 or more
+  - price above its 50-day average
+  - MACD momentum positive
+  - RSI between 40 and 70
+  - fundamental score above −2
+  - **reward/risk of at least 1.5 after ~2.24% round-trip costs**, where the target is the first Fibonacci level or extension at least one ATR above the price, and the stop is 2×ATR below
+- **WATCH**: liquid, in an uptrend, and only one condition short.
+- **INVEST** (long term) — **verified** report figures only:
+  - P/E between 0 and 15
+  - earnings growing (year-to-date EPS, the EPS trend or profit)
+  - ROE of at least 12% or P/BV of 1.2 or less
+  - fundamental score of 2 or more
+  - average turnover of at least LKR 1M a day
+
+The labels refresh after each day's close.
+
 ## Live prices (every minute)
 
 On weekdays the **Live prices** job starts at 09:10, waits for the 09:30 open, then fetches every counter from CSE once a minute until 14:40. It publishes the prices to a separate branch called `live`, which keeps one commit that is overwritten each minute, so the repo doesn't grow. Each minute goes into its own file (`m/HHMM.json`), because GitHub caches a file for 5 minutes and a new file name always comes through fresh.

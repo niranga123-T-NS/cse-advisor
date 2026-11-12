@@ -165,6 +165,80 @@ def score_series(d: pd.DataFrame) -> pd.Series:
     return pd.Series(scores, index=d.index)
 
 
+def _f(v):
+    return None if v is None or pd.isna(v) else round(float(v), 4)
+
+
+def classify(a: dict) -> dict:
+    """Mark a stock as a TRADING candidate (short-term setup) and/or an INVESTMENT candidate (long-term value).
+
+    TRADE  - liquid enough to get in and out (avg >= LKR 5M/day), technical score >= 2,
+             price above its 50-day average with positive MACD momentum, RSI 40-70 (not overbought),
+             reward-to-risk >= 1.5 (next Fibonacci resistance or ATR target vs ATR stop),
+             and fundamentals not clearly bad (fundamental score > -2).
+    INVEST - only VERIFIED report figures count: profitable with P/E 0-15, earnings growing
+             (year-to-date EPS or multi-year EPS trend), quality or value (ROE >= 12% or P/BV <= 1.2),
+             fundamental score >= 2, and tradeable (avg >= LKR 1M/day).
+    """
+    ind, f = a.get("ind") or {}, a.get("fundamentals") or {}
+    V = f.get("verified") or {}
+    ok = lambda k: V.get(k, False) and f.get(k) is not None
+    close, tov = a["close"], ind.get("turnover_avg20") or 0
+    out = {"trade": False, "invest": False, "trade_why": [], "invest_why": [], "trade_missing": [], "invest_missing": []}
+
+    # ---- trading
+    t, miss = out["trade_why"], out["trade_missing"]
+    rr_target = (a.get("fib") or {}).get("trade_target") or a.get("target")
+    # reward/risk AFTER trading costs (buy + sell ~2 x 1.12% on CSE): reward shrinks, risk grows
+    cost = 2 * RULES["cost_per_side"] * close
+    risk = (close - a["stop"]) + cost if a.get("stop") else None
+    rr = (rr_target - close - cost) / risk if rr_target and risk and risk > 0 else None
+    checks = [
+        (tov >= 5_000_000, f"liquid (LKR {tov/1e6:.1f}M/day)", f"low liquidity (LKR {tov/1e6:.1f}M/day, need 5M)"),
+        (a["tech_score"] >= 2, f"technical score {a['tech_score']}", f"technical score {a['tech_score']} (need 2+)"),
+        (ind.get("sma50") is not None and close > ind["sma50"], "above 50-day average", "below 50-day average"),
+        ((ind.get("macd_hist") or 0) > 0, "MACD momentum positive", "MACD momentum not positive"),
+        (a.get("rsi") is not None and 40 <= a["rsi"] <= 70, f"RSI {a.get('rsi')} (room to run)", f"RSI {a.get('rsi')} (want 40-70)"),
+        (rr is not None and round(rr, 1) >= 1.5, f"reward/risk {rr:.1f} after costs (target {rr_target:.2f}, stop {a.get('stop')})" if rr else "",
+         f"reward/risk after costs {rr:.1f} (need 1.5)" if rr is not None else "no reward/risk"),
+        ((a.get("fund_score") is None) or a["fund_score"] > -2, "fundamentals not negative", f"weak fundamentals ({a.get('fund_score')})"),
+    ]
+    for passed, yes, no in checks:
+        (t if passed else miss).append(yes if passed else no)
+    out["trade"] = not miss
+    # one condition short (but liquid, uptrend and not fundamentally weak) -> worth watching
+    out["trade_watch"] = len(miss) == 1 and tov >= 5_000_000 and close > (ind.get("sma50") or 1e18) \
+        and ((a.get("fund_score") is None) or a["fund_score"] > -2)
+    if rr is not None:
+        out["reward_risk"] = round(rr, 2)
+        out["trade_target"], out["trade_stop"] = round(rr_target, 2), a.get("stop")
+
+    # ---- investment (verified figures only)
+    w, miss = out["invest_why"], out["invest_missing"]
+    pe = f.get("pe") if ok("pe") else None
+    growth = (ok("eps_growth_ytd") and f["eps_growth_ytd"] > 0) or (ok("eps_cagr") and f["eps_cagr"] > 0) \
+        or (ok("profit_growth") and f["profit_growth"] > 0)
+    quality = (ok("roe") and f["roe"] >= 12) or (ok("pbv") and 0 < f["pbv"] <= 1.2)
+    checks = [
+        (pe is not None and 0 < pe <= 15, f"verified P/E {pe}", "no verified P/E 0-15" if pe is None else f"P/E {pe} (want ≤ 15)"),
+        (growth, "earnings growing (verified)", "no verified earnings growth"),
+        (quality, " / ".join(x for x in [f"ROE {f.get('roe')}%" if ok("roe") and f["roe"] >= 12 else "",
+                                          f"P/BV {f.get('pbv')}" if ok("pbv") and 0 < f["pbv"] <= 1.2 else ""] if x) or "quality/value",
+         "no verified ROE ≥ 12% or P/BV ≤ 1.2"),
+        ((a.get("fund_score") or 0) >= 2, f"fundamental score {a.get('fund_score')}", f"fundamental score {a.get('fund_score')} (need 2+)"),
+        (tov >= 1_000_000, "tradeable", f"very illiquid (LKR {tov/1e6:.2f}M/day)"),
+    ]
+    for passed, yes, no in checks:
+        (w if passed else miss).append(yes if passed else no)
+    out["invest"] = not miss
+    if out["invest"]:
+        if ok("div_yield") and f["div_yield"] >= 4:
+            w.append(f"dividend yield {f['div_yield']}%")
+        if ind.get("sma200") and close < ind["sma200"]:
+            w.append("note: below 200-day average - consider buying in stages")
+    return out
+
+
 def advice(df: pd.DataFrame, fund: dict | None = None) -> dict | None:
     """Latest signal for one stock, with reasons and risk levels.
 
@@ -193,6 +267,8 @@ def advice(df: pd.DataFrame, fund: dict | None = None) -> dict | None:
         "stop": None, "target": None,
         "warnings": [],
         "fib": None,
+        "ind": {"sma50": _f(r.sma50), "sma200": _f(r.sma200), "macd_hist": _f(r.macd_hist),
+                "turnover_avg20": _f(r.turnover_avg20), "atr": _f(r.atr), "bars": len(d)},
     }
     if pd.notna(r.atr):
         out["stop"] = round(float(r.close - RULES["stop_atr"] * r.atr), 2)
@@ -211,7 +287,12 @@ def advice(df: pd.DataFrame, fund: dict | None = None) -> dict | None:
             "ext": {"127.2": round(float(r.fib_lo + 1.272 * rng), 2), "161.8": round(float(r.fib_lo + 1.618 * rng), 2)} if up else
                    {"127.2": round(float(r.fib_hi - 1.272 * rng), 2), "161.8": round(float(r.fib_hi - 1.618 * rng), 2)},
         }
-        # nearest Fibonacci level above the price is a natural first target
+        # trading target: first Fibonacci level / swing high / extension at least 1 ATR above the price
+        atr_ = r.atr if pd.notna(r.atr) else 0
+        cands = sorted(v for v in list(lv.values()) + [r.fib_hi] + list(out["fib"]["ext"].values()) if v >= r.close + atr_)
+        if cands:
+            out["fib"]["trade_target"] = round(float(cands[0]), 2)
+        # nearest Fibonacci level above the price is the next resistance
         above = sorted(v for v in list(lv.values()) + [r.fib_hi] if v > r.close * 1.005)
         if above:
             out["fib"]["next_resistance"] = round(float(above[0]), 2)

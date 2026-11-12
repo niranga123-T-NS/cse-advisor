@@ -1,5 +1,39 @@
 {
- "annual": {},
+ "annual": {
+  "52015": {
+   "end": "2026-03-31",
+   "eps": 0.46,
+   "eps_prior": 1.03,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 5.6,
+   "navps_prior": 5.04,
+   "ok": true,
+   "pages": 204,
+   "src_eps": "Basic Earnings/ (Loss) Per Ordinary Share - (Rs.)  0.46  1.03",
+   "src_navps": "Net Asset Per Share  Rs.  5.60  5.04  10.9%",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/3479_1784115525552.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.46,
+    1.03
+   ],
+   "vals_navps": [
+    5.6,
+    5.04
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

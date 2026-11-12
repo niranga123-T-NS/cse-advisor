@@ -1,0 +1,799 @@
+{
+ "annual": {},
+ "listed_at": "2026-11-12",
+ "listing": {
+  "annual": [
+   {
+    "amended": false,
+    "end": "2026-03-31",
+    "id": "52210",
+    "title": "Annual Report as at 31st March 2026",
+    "uploaded": 1785845844348,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1785845844348.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-03-31",
+    "id": "48424",
+    "title": "Annual Report 2024/25",
+    "uploaded": 1753353701786,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1753353701786.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2023-12-31",
+    "id": "45480",
+    "title": "Annual Report 2023",
+    "uploaded": 1714727517962,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1714727517962.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2022-12-31",
+    "id": "43378",
+    "title": "Annual Report 2022",
+    "uploaded": 1685532064216,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1685532064216.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-12-31",
+    "id": "40530",
+    "title": "Annual Report 2021",
+    "uploaded": 1653469716564,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1653469716564.pdf",
+    "year_only": false
+   }
+  ],
+  "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-06-30",
+    "id": "52675",
+    "title": "Interim Financial Statements for the Quarter ended 30th June 2026",
+    "uploaded": 1786705126732,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1786705126732.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2026-03-31",
+    "id": "51574",
+    "title": "Interim Financial Statements for the Quarter ended 31st March 2026",
+    "uploaded": 1780050571695,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1780050571695.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-12-31",
+    "id": "50457",
+    "title": "Interim Financial Statements for the Quarter ended 31st December 2025",
+    "uploaded": 1770979132856,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1770979132856.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-09-30",
+    "id": "49181",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2025",
+    "uploaded": 1762250232071,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1762250232071.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-06-30",
+    "id": "48764",
+    "title": "Interim Financial Statements for the Three Months ended 30th June 2025",
+    "uploaded": 1755253305262,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1755253305262.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-03-31",
+    "id": "48022",
+    "title": "Interim Financial Statements For The Fifteen Months ended 31st March 2025",
+    "uploaded": 1748513952711,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1748513952711.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2024-12-31",
+    "id": "47436",
+    "title": "Interim Financial Statements For The Twelve Months ended 31st December 2024",
+    "uploaded": 1739529078946,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1739529078946.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2024-09-30",
+    "id": "46849",
+    "title": "Interim Financial Statements For The Nine Months ended 30th September 2024",
+    "uploaded": 1730972466024,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1730972466024.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2024-06-30",
+    "id": "46417",
+    "title": "Interim Financial Statements For The Six Months ended 30th June 2024",
+    "uploaded": 1723714287013,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1723714287013.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2024-03-31",
+    "id": "45465",
+    "title": "Interim Financial Statements for the Three Months ended 31st March 2024",
+    "uploaded": 1714122689070,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1714122689070.pdf",
+    "year_only": false
+   }
+  ]
+ },
+ "quarterly": {
+  "45465": {
+   "end": "2024-03-31",
+   "eps": 1.83,
+   "eps_prior": -1.31,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 10.5,
+   "navps_prior": 14.06,
+   "ok": true,
+   "pages": 8,
+   "profit": 181479.0,
+   "profit_growth": null,
+   "profit_prior": -130557.0,
+   "revenue": 1642851.0,
+   "revenue_growth": 3.3,
+   "revenue_prior": 1590394.0,
+   "src_eps": "Basic Earnings / (Loss) Per Share (Rs.)  1.83  (1.31)  3.14",
+   "src_navps": "Net Assets Per Share (Rs.)  10.50  14.06  7.33",
+   "src_profit": "Profit/(Loss) for the period  181,479  (130,557)  312,036",
+   "src_revenue": "Revenue  1,642,851  1,590,394  52,457",
+   "title": "Interim Financial Statements for the Three Months ended 31st March 2024",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1714122689070.pdf",
+   "v": 6,
+   "vals_eps": [
+    1.83,
+    -1.31,
+    3.14
+   ],
+   "vals_navps": [
+    10.5,
+    14.06,
+    7.33
+   ],
+   "vals_profit": [
+    181479.0,
+    -130557.0,
+    312036.0
+   ],
+   "vals_revenue": [
+    1642851.0,
+    1590394.0,
+    52457.0
+   ],
+   "year_only": false
+  },
+  "46417": {
+   "end": "2024-06-30",
+   "eps": 0.44,
+   "eps_prior": -1.47,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 10.94,
+   "navps_prior": 12.7,
+   "ok": true,
+   "pages": 8,
+   "profit": 43564.0,
+   "profit_growth": null,
+   "profit_prior": -146079.0,
+   "revenue": 1404777.0,
+   "revenue_growth": 5.6,
+   "revenue_prior": 1330707.0,
+   "src_eps": "Basic Earnings / (Loss) Per Share (Rs.)  0.44  (1.47)  1.9  2.26  (2.78)  5.04",
+   "src_navps": "Net Assets Per Share (Rs.)  10.94  12.70  8.68",
+   "src_profit": "Profit/(Loss) for the period  43,564  (146,079)  189,643  225,043  (276,636)  501,679",
+   "src_revenue": "Revenue  1,404,777  1,330,707  74,070  3,047,628  2,921,101  126,527",
+   "title": "Interim Financial Statements For The Six Months ended 30th June 2024",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1723714287013.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.44,
+    -1.47,
+    1.9,
+    2.26,
+    -2.78,
+    5.04
+   ],
+   "vals_navps": [
+    10.94,
+    12.7,
+    8.68
+   ],
+   "vals_profit": [
+    43564.0,
+    -146079.0,
+    189643.0,
+    225043.0,
+    -276636.0,
+    501679.0
+   ],
+   "vals_revenue": [
+    1404777.0,
+    1330707.0,
+    74070.0,
+    3047628.0,
+    2921101.0,
+    126527.0
+   ],
+   "year_only": false
+  },
+  "46849": {
+   "end": "2024-09-30",
+   "eps": 0.65,
+   "eps_prior": -1.64,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 11.49,
+   "navps_prior": 11.05,
+   "ok": true,
+   "pages": 8,
+   "profit": 64283.0,
+   "profit_growth": null,
+   "profit_prior": -163339.0,
+   "revenue": 1347161.0,
+   "revenue_growth": 16.5,
+   "revenue_prior": 1156529.0,
+   "src_eps": "Basic Earnings / (Loss) Per Share (Rs.)  0.65  (1.64)  2.3  2.91  (4.43)  7.34",
+   "src_navps": "Net Assets Per Share (Rs.)  11.49  11.05  8.68",
+   "src_profit": "Profit/(Loss) for the period  64,283  (163,339)  227,622  289,326  (439,975)  729,301",
+   "src_revenue": "Revenue  1,347,161  1,156,529  190,632  4,394,789  4,077,630  317,159",
+   "title": "Interim Financial Statements For The Nine Months ended 30th September 2024",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1730972466024.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.65,
+    -1.64,
+    2.3,
+    2.91,
+    -4.43,
+    7.34
+   ],
+   "vals_navps": [
+    11.49,
+    11.05,
+    8.68
+   ],
+   "vals_profit": [
+    64283.0,
+    -163339.0,
+    227622.0,
+    289326.0,
+    -439975.0,
+    729301.0
+   ],
+   "vals_revenue": [
+    1347161.0,
+    1156529.0,
+    190632.0,
+    4394789.0,
+    4077630.0,
+    317159.0
+   ],
+   "year_only": false
+  },
+  "47436": {
+   "end": "2024-12-31",
+   "eps": -1.25,
+   "eps_prior": -1.4,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 10.2,
+   "navps_prior": 8.68,
+   "ok": true,
+   "pages": 8,
+   "profit": -123892.0,
+   "profit_growth": null,
+   "profit_prior": -139568.0,
+   "revenue": 1277600.0,
+   "revenue_growth": 18.7,
+   "revenue_prior": 1075997.0,
+   "src_eps": "Basic Earnings / (Loss) Per Share (Rs.)  (1.25)  (1.40)  0.2  1.66  (5.83)  7.49",
+   "src_navps": "Net Assets Per Share (Rs.)  10.20  8.68",
+   "src_profit": "Profit/(Loss) for the period  (123,892)  (139,568)  15,676  165,434  (579,544)  744,978",
+   "src_revenue": "Revenue  1,277,600  1,075,997  201,603  5,672,389  5,153,626  518,763",
+   "title": "Interim Financial Statements For The Twelve Months ended 31st December 2024",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1739529078946.pdf",
+   "v": 6,
+   "vals_eps": [
+    -1.25,
+    -1.4,
+    0.2,
+    1.66,
+    -5.83,
+    7.49
+   ],
+   "vals_navps": [
+    10.2,
+    8.68
+   ],
+   "vals_profit": [
+    -123892.0,
+    -139568.0,
+    15676.0,
+    165434.0,
+    -579544.0,
+    744978.0
+   ],
+   "vals_revenue": [
+    1277600.0,
+    1075997.0,
+    201603.0,
+    5672389.0,
+    5153626.0,
+    518763.0
+   ],
+   "year_only": false
+  },
+  "48022": {
+   "end": "2025-03-31",
+   "eps": -0.83,
+   "eps_prior": 1.83,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 9.45,
+   "navps_prior": 8.68,
+   "ok": true,
+   "pages": 8,
+   "profit": -82301.0,
+   "profit_growth": null,
+   "profit_prior": 181479.0,
+   "revenue": 1110891.0,
+   "revenue_growth": -32.4,
+   "revenue_prior": 1642851.0,
+   "src_eps": "Basic Earnings / (Loss) Per Share (Rs.)  (0.83)  1.83  (2.7)  0.84  (5.83)  6.67",
+   "src_navps": "Net Assets Per Share (Rs.)  9.45  8.68",
+   "src_profit": "Profit/(Loss) for the period  (82,301)  181,479  (263,780)  83,136  (579,544)  662,680",
+   "src_revenue": "Revenue  1,110,891  1,642,851  (531,960)  6,783,280  5,153,626  1,629,654",
+   "title": "Interim Financial Statements For The Fifteen Months ended 31st March 2025",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1748513952711.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.83,
+    1.83,
+    -2.7,
+    0.84,
+    -5.83,
+    6.67
+   ],
+   "vals_navps": [
+    9.45,
+    8.68
+   ],
+   "vals_profit": [
+    -82301.0,
+    181479.0,
+    -263780.0,
+    83136.0,
+    -579544.0,
+    662680.0
+   ],
+   "vals_revenue": [
+    1110891.0,
+    1642851.0,
+    -531960.0,
+    6783280.0,
+    5153626.0,
+    1629654.0
+   ],
+   "year_only": false
+  },
+  "48764": {
+   "end": "2025-06-30",
+   "eps": 0.59,
+   "eps_prior": 0.44,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 10.16,
+   "navps_prior": 10.94,
+   "ok": true,
+   "pages": 8,
+   "profit": 58660.0,
+   "profit_growth": 34.7,
+   "profit_prior": 43564.0,
+   "revenue": 1251467.0,
+   "revenue_growth": -10.9,
+   "revenue_prior": 1404777.0,
+   "src_eps": "Basic Earnings Per Share (Rs.)  0.59  0.44  0.15",
+   "src_navps": "Net Assets Per Share (Rs.)  10.16  10.94  9.57",
+   "src_profit": "Profit for the period  58,660  43,564  15,096",
+   "src_revenue": "Revenue  1,251,467  1,404,777  (153,310)",
+   "title": "Interim Financial Statements for the Three Months ended 30th June 2025",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1755253305262.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.59,
+    0.44,
+    0.15
+   ],
+   "vals_navps": [
+    10.16,
+    10.94,
+    9.57
+   ],
+   "vals_profit": [
+    58660.0,
+    43564.0,
+    15096.0
+   ],
+   "vals_revenue": [
+    1251467.0,
+    1404777.0,
+    -153310.0
+   ],
+   "year_only": false
+  },
+  "49181": {
+   "end": "2025-09-30",
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 10.18,
+   "navps_prior": 11.49,
+   "ok": true,
+   "pages": 8,
+   "profit": 2323.0,
+   "profit_growth": null,
+   "profit_prior": 64283.0,
+   "revenue": 1149599.0,
+   "revenue_growth": -14.7,
+   "revenue_prior": 1347161.0,
+   "src_navps": "Net Assets Per Share (Rs.)  10.18  11.49  9.57",
+   "src_profit": "Profit for the period  2,323  64,283  (61,960)  60,983  107,847  (46,864)",
+   "src_revenue": "Revenue  1,149,599  1,347,161  (197,562)  2,401,066  2,751,938  (350,872)",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2025",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1762250232071.pdf",
+   "v": 6,
+   "vals_navps": [
+    10.18,
+    11.49,
+    9.57
+   ],
+   "vals_profit": [
+    2323.0,
+    64283.0,
+    -61960.0,
+    60983.0,
+    107847.0,
+    -46864.0
+   ],
+   "vals_revenue": [
+    1149599.0,
+    1347161.0,
+    -197562.0,
+    2401066.0,
+    2751938.0,
+    -350872.0
+   ],
+   "year_only": false
+  },
+  "50457": {
+   "end": "2025-12-31",
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 10.5,
+   "navps_prior": 10.2,
+   "ok": true,
+   "pages": 8,
+   "profit": 31224.0,
+   "profit_growth": null,
+   "profit_prior": -123892.0,
+   "revenue": 1010218.0,
+   "revenue_growth": -20.9,
+   "revenue_prior": 1277600.0,
+   "src_navps": "Net Assets Per Share (Rs.)  10.50  10.20  9.57",
+   "src_profit": "Profit/(Loss) for the period  31,224  (123,892)  155,116  92,207  (16,045)  108,252",
+   "src_revenue": "Revenue  1,010,218  1,277,600  (267,382)  3,411,284  4,029,539  (618,255)",
+   "title": "Interim Financial Statements for the Quarter ended 31st December 2025",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1770979132856.pdf",
+   "v": 6,
+   "vals_navps": [
+    10.5,
+    10.2,
+    9.57
+   ],
+   "vals_profit": [
+    31224.0,
+    -123892.0,
+    155116.0,
+    92207.0,
+    -16045.0,
+    108252.0
+   ],
+   "vals_revenue": [
+    1010218.0,
+    1277600.0,
+    -267382.0,
+    3411284.0,
+    4029539.0,
+    -618255.0
+   ],
+   "year_only": false
+  },
+  "51574": {
+   "end": "2026-03-31",
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 11.2,
+   "navps_prior": 9.57,
+   "ok": true,
+   "pages": 8,
+   "profit": -159883.0,
+   "profit_growth": null,
+   "profit_prior": -70595.0,
+   "revenue": 1117861.0,
+   "revenue_growth": -0.0,
+   "revenue_prior": 1117933.0,
+   "src_navps": "Net Assets Per Share (Rs.)  11.20  9.57",
+   "src_profit": "Profit/(Loss) for the period  (159,883)  (70,595)  (89,288)  (67,676)  (86,639)  18,963",
+   "src_revenue": "Revenue  1,117,861  1,117,933  (72)  4,529,145  5,147,472  (618,327)",
+   "title": "Interim Financial Statements for the Quarter ended 31st March 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1780050571695.pdf",
+   "v": 6,
+   "vals_navps": [
+    11.2,
+    9.57
+   ],
+   "vals_profit": [
+    -159883.0,
+    -70595.0,
+    -89288.0,
+    -67676.0,
+    -86639.0,
+    18963.0
+   ],
+   "vals_revenue": [
+    1117861.0,
+    1117933.0,
+    -72.0,
+    4529145.0,
+    5147472.0,
+    -618327.0
+   ],
+   "year_only": false
+  },
+  "52675": {
+   "end": "2026-06-30",
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 10.46,
+   "navps_prior": 10.16,
+   "ok": true,
+   "pages": 8,
+   "profit": -66587.0,
+   "profit_growth": null,
+   "profit_prior": 58660.0,
+   "revenue": 957987.0,
+   "revenue_growth": -23.5,
+   "revenue_prior": 1251467.0,
+   "src_navps": "Net Assets Per Share (Rs.)  10.46  10.16  11.13",
+   "src_profit": "Profit/(Loss) for the period  (66,587)  58,660  (125,247)",
+   "src_revenue": "Revenue  957,987  1,251,467  (293,480)",
+   "title": "Interim Financial Statements for the Quarter ended 30th June 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/710_1786705126732.pdf",
+   "v": 6,
+   "vals_navps": [
+    10.46,
+    10.16,
+    11.13
+   ],
+   "vals_profit": [
+    -66587.0,
+    58660.0,
+    -125247.0
+   ],
+   "vals_revenue": [
+    957987.0,
+    1251467.0,
+    -293480.0
+   ],
+   "year_only": false
+  }
+ },
+ "shares": 99406691.0,
+ "shares_other_class": 0.0,
+ "symbol": "KAHA.N0000"
+}

@@ -1,36 +1,124 @@
 {
  "annual": {
   "40115": {
-   "dps": 0.02,
-   "dps_prior": 0.01,
+   "dps": 12.0,
+   "dps_prior": 8.0,
    "end": "2021-12-31",
    "eps": 10.89,
    "eps_prior": 7.01,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
    "navps": 103.77,
+   "navps_prior": 93.98,
    "ok": true,
    "pages": 382,
-   "src_dps": "Dividend per share \u23ce Dividend per share: Gross (US$)  0.02*  0.01",
+   "src_dps": "Dividend per share (Rs)  12.00  8.00  11.00  13.00  18.75  17.20  16.25  11.75  2.75*  4.25",
    "src_eps": "Earnings per share - Basic/Diluted (Rs)  10.89  7.01*  55.2  12.11  7.38*  64.1",
    "src_navps": "Net asset value per share (Rs)  103.77  93.98*  10.4  111.14  99.98*  11.2",
    "title": "Sampath Bank PLC - Annual Report 2021",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1646390362476.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    12.0,
+    8.0,
+    11.0,
+    13.0,
+    18.75,
+    17.2,
+    16.25,
+    11.75,
+    2.75,
+    4.25
+   ],
+   "vals_eps": [
+    10.89,
+    7.01,
+    55.2,
+    12.11,
+    7.38,
+    64.1
+   ],
+   "vals_navps": [
+    103.77,
+    93.98,
+    10.4,
+    111.14,
+    99.98,
+    11.2
+   ]
   },
   "42863": {
-   "dps": 0.013,
-   "dps_prior": 0.021,
+   "dps": 8.0,
+   "dps_prior": 11.0,
    "end": "2022-12-31",
    "eps": 11.48,
    "eps_prior": 10.89,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
    "navps": 110.44,
+   "navps_prior": 103.77,
    "ok": true,
    "pages": 530,
-   "src_dps": "Dividend per share \u23ce  Dividend per share: Gross (US$)  0.013*  0.021",
+   "src_dps": "Dividend per share (Rs)  8.00  11.00  13.00  18.75  17.20  16.25  3.92 [A]  2.75 [A]  4.25  4.60",
    "src_eps": "Earnings per share - Basic/Diluted (Rs)  11.48  10.89  5.4  12.29  12.11  1.5",
    "src_navps": "Net asset value per share (Rs)  110.44  103.77  6.4  118.45  111.14  6.6",
    "title": "Sampath Bank PLC - Annual Report 2022",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1677837108267.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    8.0,
+    11.0,
+    13.0,
+    18.75,
+    17.2,
+    16.25,
+    3.92,
+    2.75,
+    4.25,
+    4.6
+   ],
+   "vals_eps": [
+    11.48,
+    10.89,
+    5.4,
+    12.29,
+    12.11,
+    1.5
+   ],
+   "vals_navps": [
+    110.44,
+    103.77,
+    6.4,
+    118.45,
+    111.14,
+    6.6
+   ]
   },
   "45277": {
    "dps": 11.0,
@@ -38,7 +126,23 @@
    "end": "2023-12-31",
    "eps": 14.62,
    "eps_prior": 11.2,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
    "navps": 126.1,
+   "navps_prior": 107.77,
    "ok": true,
    "pages": 464,
    "src_dps": "Dividend per share (Rs) [A]  11.00  13.00  18.75  17.20  16.25  11.75  2.75  4.25  4.60  5.85",
@@ -46,23 +150,95 @@
    "src_navps": "Net asset value per share (Rs)  126.10  107.77  17.0  134.59  115.59  16.4",
    "title": "Sampath Bank PLC - Annual Report 2023",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1709205218085.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    11.0,
+    13.0,
+    18.75,
+    17.2,
+    16.25,
+    11.75,
+    2.75,
+    4.25,
+    4.6,
+    5.85
+   ],
+   "vals_eps": [
+    14.62,
+    11.2,
+    30.5,
+    15.28,
+    11.99,
+    27.5
+   ],
+   "vals_navps": [
+    126.1,
+    107.77,
+    17.0,
+    134.59,
+    115.59,
+    16.4
+   ]
   },
   "47595": {
    "dps": 13.0,
    "dps_prior": 18.75,
    "end": "2024-12-31",
-   "eps": 6.03,
-   "eps_prior": 8.98,
+   "eps": 23.3,
+   "eps_prior": 14.62,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
    "navps": 142.01,
+   "navps_prior": 126.1,
    "ok": true,
    "pages": 482,
    "src_dps": "Dividend per share (Rs) [A]  13.00  18.75  17.20  16.25  11.75  2.75  4.25  4.60  5.85  9.35",
-   "src_eps": "Earnings per share - Basic/ \u23ce Diluted (Rs) [B]  6.03  8.98  11.88  11.32  9.86  6.84  10.62  11.20  14.62  23.30",
+   "src_eps": "Earnings per share - Basic/Diluted (Rs)  23.30  14.62  59.4  24.48  15.28  60.1",
    "src_navps": "Net asset value per share (Rs)  142.01  126.10  12.6  151.69  134.59  12.7",
    "title": "Sampath Bank PLC - Annual Report 2024",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1741079000854.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    13.0,
+    18.75,
+    17.2,
+    16.25,
+    11.75,
+    2.75,
+    4.25,
+    4.6,
+    5.85,
+    9.35
+   ],
+   "vals_eps": [
+    23.3,
+    14.62,
+    59.4,
+    24.48,
+    15.28,
+    60.1
+   ],
+   "vals_navps": [
+    142.01,
+    126.1,
+    12.6,
+    151.69,
+    134.59,
+    12.7
+   ]
   },
   "50702": {
    "dps": 10.3,
@@ -70,7 +246,23 @@
    "end": "2025-12-31",
    "eps": 25.76,
    "eps_prior": 23.3,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
    "navps": 152.53,
+   "navps_prior": 142.01,
    "ok": true,
    "pages": 578,
    "src_dps": "Dividend per share (Rs) [A]  10.30  9.35  5.85  4.60  4.25  2.75  11.75  16.25  17.20  18.75",
@@ -78,7 +270,35 @@
    "src_navps": "Net asset value per share (Rs)  152.53  142.01  7.4  165.23  151.69  8.9",
    "title": "Annual Report as at 31st December 2025",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1772616197661.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    10.3,
+    9.35,
+    5.85,
+    4.6,
+    4.25,
+    2.75,
+    11.75,
+    16.25,
+    17.2,
+    18.75
+   ],
+   "vals_eps": [
+    25.76,
+    23.3,
+    10.6,
+    27.77,
+    24.48,
+    13.4
+   ],
+   "vals_navps": [
+    152.53,
+    142.01,
+    7.4,
+    165.23,
+    151.69,
+    8.9
+   ]
   }
  },
  "listed_at": "2026-11-12",
@@ -213,8 +433,29 @@
    "end": "2024-03-31",
    "eps": 2.86,
    "eps_prior": 2.24,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
    "months": 3,
    "navps": 124.88,
+   "navps_prior": 126.1,
    "ok": true,
    "pages": 25,
    "profit": 3354677.0,
@@ -230,14 +471,67 @@
    "title": "Interim Financial Statements for the period ended 31st March 2024",
    "unit": 1000.0,
    "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1715656570686.pdf",
-   "v": 3
+   "v": 4,
+   "vals_eps": [
+    2.86,
+    2.24,
+    27.8,
+    3.23,
+    2.57,
+    26.0
+   ],
+   "vals_navps": [
+    124.88,
+    126.1,
+    -1.0,
+    133.74,
+    134.59,
+    -0.6
+   ],
+   "vals_profit": [
+    3354677.0,
+    2625702.0,
+    27.8,
+    3793681.0,
+    3010231.0,
+    26.0
+   ],
+   "vals_revenue": [
+    50628353.0,
+    53899167.0,
+    -6.1,
+    53383629.0,
+    56329480.0,
+    -5.2
+   ]
   },
   "46243": {
    "end": "2024-06-30",
    "eps": 9.48,
    "eps_prior": 6.53,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
    "months": 6,
    "navps": 130.1,
+   "navps_prior": 126.1,
    "ok": true,
    "pages": 24,
    "profit": 11112534.0,
@@ -253,14 +547,79 @@
    "title": "Interim Financial Statements for the period ended 30th June 2024",
    "unit": 1000.0,
    "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1723085982533.pdf",
-   "v": 3
+   "v": 4,
+   "vals_eps": [
+    9.48,
+    6.53,
+    45.0,
+    6.62,
+    4.3,
+    54.0,
+    10.12,
+    6.51,
+    55.4,
+    6.88
+   ],
+   "vals_navps": [
+    130.1,
+    126.1,
+    3.2,
+    139.23,
+    134.59,
+    3.5
+   ],
+   "vals_profit": [
+    11112534.0,
+    7662551.0,
+    45.0,
+    7757857.0,
+    5036849.0,
+    54.0,
+    11867407.0,
+    7637951.0,
+    55.4,
+    8073726.0
+   ],
+   "vals_revenue": [
+    104463540.0,
+    109211604.0,
+    -4.3,
+    53835187.0,
+    55312437.0,
+    -2.7,
+    109805130.0,
+    113874087.0,
+    -3.6,
+    56421501.0
+   ]
   },
   "47019": {
    "end": "2024-09-30",
    "eps": 15.17,
    "eps_prior": 10.53,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
    "months": 9,
    "navps": 133.64,
+   "navps_prior": 126.1,
    "ok": true,
    "pages": 24,
    "profit": 17786111.0,
@@ -276,14 +635,79 @@
    "title": "Interim Financial Statements for the period ended 30th September 2024",
    "unit": 1000.0,
    "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1731496783976.pdf",
-   "v": 3
+   "v": 4,
+   "vals_eps": [
+    15.17,
+    10.53,
+    44.0,
+    5.69,
+    4.0,
+    42.4,
+    16.28,
+    10.86,
+    50.0,
+    6.16
+   ],
+   "vals_navps": [
+    133.64,
+    126.1,
+    6.0,
+    143.24,
+    134.59,
+    6.4
+   ],
+   "vals_profit": [
+    17786111.0,
+    12349694.0,
+    44.0,
+    6673577.0,
+    4687143.0,
+    42.4,
+    19090260.0,
+    12730137.0,
+    50.0,
+    7222853.0
+   ],
+   "vals_revenue": [
+    153526837.0,
+    170498299.0,
+    -10.0,
+    49063297.0,
+    61286695.0,
+    -19.9,
+    161786625.0,
+    178088935.0,
+    -9.2,
+    51981495.0
+   ]
   },
   "47512": {
    "end": "2024-12-31",
    "eps": 23.3,
    "eps_prior": 14.62,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
    "months": 12,
    "navps": 142.01,
+   "navps_prior": 126.1,
    "ok": true,
    "pages": 26,
    "profit": 27320612.0,
@@ -299,14 +723,79 @@
    "title": "Interim Financial Statements for the year ended 31st December 2024",
    "unit": 1000.0,
    "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1739848010408.pdf",
-   "v": 3
+   "v": 4,
+   "vals_eps": [
+    23.3,
+    14.62,
+    59.0,
+    8.13,
+    4.08,
+    99.0,
+    24.48,
+    15.28,
+    60.0,
+    8.2
+   ],
+   "vals_navps": [
+    142.01,
+    126.1,
+    13.0,
+    151.69,
+    134.59,
+    13.0
+   ],
+   "vals_profit": [
+    27320612.0,
+    17140079.0,
+    59.0,
+    9534501.0,
+    4790385.0,
+    99.0,
+    28703260.0,
+    17924282.0,
+    60.0,
+    9613000.0
+   ],
+   "vals_revenue": [
+    195321016.0,
+    226154096.0,
+    -14.0,
+    41794179.0,
+    55655797.0,
+    -25.0,
+    206569194.0,
+    236504470.0,
+    -13.0,
+    44782569.0
+   ]
   },
   "47833": {
    "end": "2025-03-31",
    "eps": 7.11,
    "eps_prior": 2.86,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
    "months": 3,
    "navps": 137.41,
+   "navps_prior": 142.01,
    "ok": true,
    "pages": 24,
    "profit": 8341954.0,
@@ -322,14 +811,67 @@
    "title": "Interim Financial Statements for the period ended 31st March 2025",
    "unit": 1000.0,
    "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1747222209936.pdf",
-   "v": 3
+   "v": 4,
+   "vals_eps": [
+    7.11,
+    2.86,
+    149.0,
+    7.61,
+    3.23,
+    135.0
+   ],
+   "vals_navps": [
+    137.41,
+    142.01,
+    -3.0,
+    147.58,
+    151.69,
+    -3.0
+   ],
+   "vals_profit": [
+    8341954.0,
+    3354677.0,
+    149.0,
+    8924738.0,
+    3793681.0,
+    135.0
+   ],
+   "vals_revenue": [
+    54218601.0,
+    50628353.0,
+    7.0,
+    57234252.0,
+    53383629.0,
+    7.0
+   ]
   },
   "48661": {
    "end": "2025-06-30",
    "eps": 12.53,
    "eps_prior": 9.48,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
    "months": 6,
    "navps": 141.06,
+   "navps_prior": 142.01,
    "ok": true,
    "pages": 24,
    "profit": 14695908.0,
@@ -345,14 +887,78 @@
    "title": "Interim Financial Statements for the period ended 30th June 2025",
    "unit": 1000.0,
    "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1755139913982.06.2025.pdf",
-   "v": 3
+   "v": 4,
+   "vals_eps": [
+    12.53,
+    9.48,
+    32.0,
+    5.42,
+    6.62,
+    -18.0,
+    13.33,
+    10.12,
+    32.0,
+    5.72
+   ],
+   "vals_navps": [
+    141.06,
+    142.01,
+    -1.0,
+    151.53,
+    151.69
+   ],
+   "vals_profit": [
+    14695908.0,
+    11112534.0,
+    32.0,
+    6353954.0,
+    7757857.0,
+    -18.0,
+    15627459.0,
+    11867407.0,
+    32.0,
+    6702721.0
+   ],
+   "vals_revenue": [
+    108107314.0,
+    104463540.0,
+    3.0,
+    53888713.0,
+    53835187.0,
+    114351458.0,
+    109805130.0,
+    4.0,
+    57117206.0,
+    56421501.0
+   ]
   },
   "49416": {
    "end": "2025-09-30",
    "eps": 18.3,
    "eps_prior": 15.17,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
    "months": 9,
    "navps": 146.05,
+   "navps_prior": 142.01,
    "ok": true,
    "pages": 24,
    "profit": 21455985.0,
@@ -368,14 +974,79 @@
    "title": "Interim Financial Statements for the Quarter ended 30th September 2025",
    "unit": 1000.0,
    "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1763002046323.09.2025.pdf",
-   "v": 3
+   "v": 4,
+   "vals_eps": [
+    18.3,
+    15.17,
+    21.0,
+    5.76,
+    5.69,
+    1.0,
+    19.74,
+    16.28,
+    21.0,
+    6.41
+   ],
+   "vals_navps": [
+    146.05,
+    142.01,
+    3.0,
+    157.17,
+    151.69,
+    4.0
+   ],
+   "vals_profit": [
+    21455985.0,
+    17786111.0,
+    21.0,
+    6760077.0,
+    6673577.0,
+    1.0,
+    23148888.0,
+    19090260.0,
+    21.0,
+    7521429.0
+   ],
+   "vals_revenue": [
+    162231046.0,
+    153526837.0,
+    6.0,
+    54123732.0,
+    49063297.0,
+    10.0,
+    172204362.0,
+    161786625.0,
+    6.0,
+    57852904.0
+   ]
   },
   "50565": {
    "end": "2025-12-31",
    "eps": 25.76,
    "eps_prior": 23.3,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
    "months": 12,
    "navps": 152.53,
+   "navps_prior": 142.01,
    "ok": true,
    "pages": 25,
    "profit": 30210717.0,
@@ -391,14 +1062,79 @@
    "title": "Interim Financial Statements for the Quarter ended 31st December 2025",
    "unit": 1000.0,
    "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1771556319859.12.2025.pdf",
-   "v": 3
+   "v": 4,
+   "vals_eps": [
+    25.76,
+    23.3,
+    11.0,
+    7.47,
+    8.13,
+    -8.0,
+    27.77,
+    24.48,
+    13.0,
+    8.03
+   ],
+   "vals_navps": [
+    152.53,
+    142.01,
+    7.0,
+    165.23,
+    151.69,
+    9.0
+   ],
+   "vals_profit": [
+    30210717.0,
+    27320612.0,
+    11.0,
+    8754732.0,
+    9534501.0,
+    -8.0,
+    32571337.0,
+    28703260.0,
+    13.0,
+    9422449.0
+   ],
+   "vals_revenue": [
+    218780329.0,
+    195321016.0,
+    12.0,
+    56549283.0,
+    41794179.0,
+    35.0,
+    232456906.0,
+    206569194.0,
+    13.0,
+    60252544.0
+   ]
   },
   "51063": {
    "end": "2026-03-31",
    "eps": 5.27,
    "eps_prior": 7.11,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
    "months": 3,
    "navps": 146.43,
+   "navps_prior": 152.53,
    "ok": true,
    "pages": 26,
    "profit": 6177096.0,
@@ -414,14 +1150,67 @@
    "title": "Interim Financial Statements for the Quarter ended 31st March 2026",
    "unit": 1000.0,
    "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1778641511402.03.2026.pdf",
-   "v": 3
+   "v": 4,
+   "vals_eps": [
+    5.27,
+    7.11,
+    -26.0,
+    5.82,
+    7.61,
+    -23.0
+   ],
+   "vals_navps": [
+    146.43,
+    152.53,
+    -4.0,
+    159.68,
+    165.23,
+    -3.0
+   ],
+   "vals_profit": [
+    6177096.0,
+    8341954.0,
+    -26.0,
+    6829845.0,
+    8924738.0,
+    -23.0
+   ],
+   "vals_revenue": [
+    56681396.0,
+    54141683.0,
+    5.0,
+    60772305.0,
+    57095534.0,
+    6.0
+   ]
   },
   "52416": {
    "end": "2026-06-30",
    "eps": 14.18,
    "eps_prior": 12.53,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
    "months": 6,
    "navps": 153.04,
+   "navps_prior": 152.53,
    "ok": true,
    "pages": 26,
    "profit": 16628598.0,
@@ -437,7 +1226,50 @@
    "title": "Interim Financial Statements for the Quarter ended 30th June 2026",
    "unit": 1000.0,
    "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1786590688111.06.2026.pdf",
-   "v": 3
+   "v": 4,
+   "vals_eps": [
+    14.18,
+    12.53,
+    13.0,
+    8.91,
+    5.42,
+    64.0,
+    15.23,
+    13.33,
+    14.0,
+    9.41
+   ],
+   "vals_navps": [
+    153.04,
+    152.53,
+    166.78,
+    165.23,
+    1.0
+   ],
+   "vals_profit": [
+    16628598.0,
+    14695908.0,
+    13.0,
+    10451502.0,
+    6353954.0,
+    64.0,
+    17859576.0,
+    15627459.0,
+    14.0,
+    11029731.0
+   ],
+   "vals_revenue": [
+    121744743.0,
+    107891545.0,
+    13.0,
+    65063347.0,
+    53749862.0,
+    21.0,
+    130538823.0,
+    114005154.0,
+    15.0,
+    69766518.0
+   ]
   }
  },
  "shares": 1172700760.0,

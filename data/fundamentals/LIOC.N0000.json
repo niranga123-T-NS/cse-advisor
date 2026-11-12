@@ -6,7 +6,23 @@
    "end": "2022-03-31",
    "eps": 9.05,
    "eps_prior": 1.66,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 45.61,
+   "navps_prior": 37.42,
    "ok": true,
    "pages": 162,
    "src_dps": "Dividend per share  Rs  0.85  0.75  0.75  0.65  1.25",
@@ -14,7 +30,26 @@
    "src_navps": "Net Assets Per Share  Rs  45.61  37.42  36.52  36.49  36.38",
    "title": "Lanka IOC PLC - Annual Report 2021-2022",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1660103592454.08.2022.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    0.85,
+    0.75,
+    0.75,
+    0.65,
+    1.25
+   ],
+   "vals_eps": [
+    9.05,
+    1.66,
+    0.79
+   ],
+   "vals_navps": [
+    45.61,
+    37.42,
+    36.52,
+    36.49,
+    36.38
+   ]
   },
   "43544": {
    "dps": 2.25,
@@ -22,7 +57,23 @@
    "end": "2023-03-31",
    "eps": 70.79,
    "eps_prior": 9.05,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 115.0,
+   "navps_prior": 45.61,
    "ok": true,
    "pages": 180,
    "src_dps": "Dividend per share  Rs  2.25  0.85  0.75  0.75  0.65",
@@ -30,7 +81,25 @@
    "src_navps": "Net Assets Per Share  Rs  115.00  45.61  37.42  36.52  36.49",
    "title": "Lanka IOC PLC - Annual Report 2022-23",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1686919331064.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    2.25,
+    0.85,
+    0.75,
+    0.75,
+    0.65
+   ],
+   "vals_eps": [
+    70.79,
+    9.05
+   ],
+   "vals_navps": [
+    115.0,
+    45.61,
+    37.42,
+    36.52,
+    36.49
+   ]
   },
   "45975": {
    "dps": 4.0,
@@ -38,7 +107,23 @@
    "end": "2024-03-31",
    "eps": 26.19,
    "eps_prior": 70.79,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 137.98,
+   "navps_prior": 115.0,
    "ok": true,
    "pages": 205,
    "src_dps": "Dividend per share  Rs  4.00  2.25  0.85  0.75  0.75",
@@ -46,7 +131,25 @@
    "src_navps": "Net Assets Per Share  Rs  137.98  115.00  45.61  37.42  36.52",
    "title": "Lanka IOC PLC Annual Report 2023-24",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1717780045599.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    4.0,
+    2.25,
+    0.85,
+    0.75,
+    0.75
+   ],
+   "vals_eps": [
+    26.19,
+    70.79
+   ],
+   "vals_navps": [
+    137.98,
+    115.0,
+    45.61,
+    37.42,
+    36.52
+   ]
   },
   "48157": {
    "dps": 5.0,
@@ -54,7 +157,23 @@
    "end": "2025-03-31",
    "eps": 20.94,
    "eps_prior": 26.19,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 155.3,
+   "navps_prior": 137.98,
    "ok": true,
    "pages": 200,
    "src_dps": "Dividend per share  Rs.  5  4  2.25  0.85  0.75",
@@ -62,7 +181,28 @@
    "src_navps": "Net Assets Per Share  Rs.  155.30  137.98  115.00  45.61  37.42",
    "title": "Annual Report 2024/25",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1748832079751.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    5.0,
+    4.0,
+    2.25,
+    0.85,
+    0.75
+   ],
+   "vals_eps": [
+    20.94,
+    26.19,
+    70.79,
+    9.05,
+    1.66
+   ],
+   "vals_navps": [
+    155.3,
+    137.98,
+    115.0,
+    45.61,
+    37.42
+   ]
   },
   "51913": {
    "dps": 5.0,
@@ -70,7 +210,23 @@
    "end": "2026-03-31",
    "eps": 19.84,
    "eps_prior": 20.94,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 172.86,
+   "navps_prior": 155.3,
    "ok": true,
    "pages": 244,
    "src_dps": "Dividend per share  Rs.  5.00  5.00  4.00  2.25  0.85",
@@ -78,7 +234,28 @@
    "src_navps": "Net Assets per share  Rs.  172.86  155.30  137.98  115.00  45.61",
    "title": "Annual Report as at 31st March 2026",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1782205466931.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    5.0,
+    5.0,
+    4.0,
+    2.25,
+    0.85
+   ],
+   "vals_eps": [
+    19.84,
+    20.94,
+    26.19,
+    70.79,
+    9.05
+   ],
+   "vals_navps": [
+    172.86,
+    155.3,
+    137.98,
+    115.0,
+    45.61
+   ]
   }
  },
  "listed_at": "2026-11-12",
@@ -218,7 +395,7 @@
    "revenue_growth": null,
    "title": "Interim Financial Statements as at 30th June 2024",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1721209706529.pdf",
-   "v": 3
+   "v": 4
   },
   "46736": {
    "end": "2024-09-30",
@@ -229,7 +406,7 @@
    "revenue_growth": null,
    "title": "Interim Financial Statements as at 30th September 2024",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1729480547371.09.2024.pdf",
-   "v": 3
+   "v": 4
   },
   "47181": {
    "end": "2024-12-31",
@@ -240,20 +417,18 @@
    "revenue_growth": null,
    "title": "Interim Financial Statements as at 31st December 2024",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1737342278277.pdf",
-   "v": 3
+   "v": 4
   },
   "47742": {
    "end": "2025-03-31",
-   "months": 12,
-   "navps": 31.0,
+   "months": null,
    "ok": true,
    "pages": 7,
    "profit_growth": null,
    "revenue_growth": null,
-   "src_navps": "Net Asset Value per share (31st March 2024) - LKR  137.98",
    "title": "Interim Financial Statements as at 31st March 2025",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1745205623440.pdf",
-   "v": 3
+   "v": 4
   },
   "48377": {
    "end": "2025-06-30",
@@ -264,7 +439,7 @@
    "revenue_growth": null,
    "title": "Interim Financial Statements as at 30th June 2025",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1752575742240.06.2025.pdf",
-   "v": 3
+   "v": 4
   },
   "49058": {
    "end": "2025-09-30",
@@ -275,14 +450,28 @@
    "revenue_growth": null,
    "title": "Interim Financial Statements as at 30th September 2025",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1760520219942.pdf",
-   "v": 3
+   "v": 4
   },
   "49913": {
    "end": "2025-12-31",
    "eps": 4.04,
    "eps_prior": 3.98,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
    "months": 3,
-   "navps": 31.0,
    "ok": true,
    "pages": 7,
    "profit": 2150714.0,
@@ -292,13 +481,30 @@
    "revenue_growth": 14.7,
    "revenue_prior": 62459449.0,
    "src_eps": "Earnings Per Share  4.04  3.98  13.96  15.82",
-   "src_navps": "Net Asset Value per share (31st March 2025) - LKR  155.30",
    "src_profit": "Profit/(Loss) for the period  2,150,714  2,120,161  7,430,997  8,421,372",
    "src_revenue": "Revenue  71,617,268  62,459,449  204,511,787  209,186,152",
    "title": "Interim Financial Statements for the Quarter ended 31st December 2025",
    "unit": null,
    "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1768390215217.12.2025.pdf",
-   "v": 3
+   "v": 4,
+   "vals_eps": [
+    4.04,
+    3.98,
+    13.96,
+    15.82
+   ],
+   "vals_profit": [
+    2150714.0,
+    2120161.0,
+    7430997.0,
+    8421372.0
+   ],
+   "vals_revenue": [
+    71617268.0,
+    62459449.0,
+    204511787.0,
+    209186152.0
+   ]
   },
   "50903": {
    "end": "2026-03-31",
@@ -309,14 +515,28 @@
    "revenue_growth": null,
    "title": "Interim Financial Statements for the Quarter ended 31st March 2026",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1776420076581.03.2026 - CSE.pdf",
-   "v": 3
+   "v": 4
   },
   "52032": {
    "end": "2026-06-30",
    "eps": 2.87,
    "eps_prior": 4.36,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
    "months": 3,
-   "navps": 30.0,
    "ok": true,
    "pages": 7,
    "profit": 1527296.0,
@@ -326,20 +546,45 @@
    "revenue_growth": 47.3,
    "revenue_prior": 62538420.0,
    "src_eps": "Earnings Per Share  2.87  4.36",
-   "src_navps": "Net Asset Value per share (30th June 2025) - LKR  154.66",
    "src_profit": "Profit/(Loss) for the period  1,527,296  2,323,025",
    "src_revenue": "Revenue  92,107,073  62,538,420",
    "title": "Interim Financial Statements for the Quarter ended 30th June 2026",
    "unit": null,
    "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1784289979695.pdf",
-   "v": 3
+   "v": 4,
+   "vals_eps": [
+    2.87,
+    4.36
+   ],
+   "vals_profit": [
+    1527296.0,
+    2323025.0
+   ],
+   "vals_revenue": [
+    92107073.0,
+    62538420.0
+   ]
   },
   "53231": {
    "end": "2026-09-30",
    "eps": 1.81,
    "eps_prior": 5.55,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
    "months": 3,
-   "navps": 30.0,
    "ok": true,
    "pages": 7,
    "profit": 962513.0,
@@ -349,13 +594,30 @@
    "revenue_growth": 38.3,
    "revenue_prior": 70356099.0,
    "src_eps": "Earnings Per Share  1.81  5.55  4.68  9.92",
-   "src_navps": "Net Asset Value per share (30th Sep 2025) - LKR  160.26",
    "src_profit": "Profit/(Loss) for the period  962,513  2,957,258  2,489,809  5,280,283",
    "src_revenue": "Revenue  97,311,908  70,356,099  189,418,981  132,894,520",
    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
    "unit": null,
    "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1792141405651.09.2026 - To CSE.pdf",
-   "v": 3
+   "v": 4,
+   "vals_eps": [
+    1.81,
+    5.55,
+    4.68,
+    9.92
+   ],
+   "vals_profit": [
+    962513.0,
+    2957258.0,
+    2489809.0,
+    5280283.0
+   ],
+   "vals_revenue": [
+    97311908.0,
+    70356099.0,
+    189418981.0,
+    132894520.0
+   ]
   }
  },
  "shares": 532465705.0,

@@ -97,9 +97,16 @@ function marketWindow() {
 async function pollLive(force) {
   if (!RAW || (!force && (!marketWindow() || document.hidden))) return;
   try {
-    const bust = '?t=' + Date.now();
-    const [l, i] = await Promise.all([fetch(RAW + 'live.json' + bust, {cache:'no-store'}).then(r => r.ok ? r.json() : null),
-                                      fetch(RAW + 'intraday.json' + bust, {cache:'no-store'}).then(r => r.ok ? r.json() : null)]);
+    // each minute is published under its own name (m/HHMM.json) so GitHub's 5-minute cache can't serve stale prices
+    const name = mins => { const t = new Date(colomboNow().getTime() - mins * 60000);
+      return 'm/' + String(t.getHours()).padStart(2,'0') + String(t.getMinutes()).padStart(2,'0') + '.json'; };
+    let l = null;
+    for (const back of [1, 2, 3]) {
+      const r = await fetch(RAW + name(back), {cache:'no-store'});
+      if (r.ok) { l = await r.json(); break; }
+    }
+    if (!l) { const r = await fetch(RAW + 'live.json', {cache:'no-store'}); l = r.ok ? await r.json() : null; }
+    const i = l && l.intraday ? l.intraday : intraday;
     const today = colomboNow().toISOString().slice(0, 10);
     if (!l || l.date !== today) { $('#live').textContent = ''; return; }
     live = l; intraday = i;

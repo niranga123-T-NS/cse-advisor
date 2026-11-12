@@ -56,11 +56,22 @@ def git(*args, inp: str | None = None) -> str:
 def publish(files: dict[str, str], msg: str) -> bool:
     """Write files as a single commit on branch `live` and force-push it (no history kept)."""
     try:
-        entries = []
+        def mktree(items: dict) -> str:
+            entries = []
+            for name, content in items.items():
+                if isinstance(content, dict):
+                    entries.append(f"040000 tree {mktree(content)}\t{name}")
+                else:
+                    entries.append(f"100644 blob {git('hash-object', '-w', '--stdin', inp=content)}\t{name}")
+            return git("mktree", inp="\n".join(entries) + "\n")
+        nested: dict = {}
         for name, content in files.items():
-            sha = git("hash-object", "-w", "--stdin", inp=content)
-            entries.append(f"100644 blob {sha}\t{name}")
-        tree = git("mktree", inp="\n".join(entries) + "\n")
+            parts = name.split("/")
+            node = nested
+            for p_ in parts[:-1]:
+                node = node.setdefault(p_, {})
+            node[parts[-1]] = content
+        tree = mktree(nested)
         commit = git("commit-tree", tree, "-m", msg)
         git("push", "-f", "origin", f"{commit}:refs/heads/live")
         return True
@@ -69,10 +80,23 @@ def publish(files: dict[str, str], msg: str) -> bool:
         return False
 
 
+def resume(day: str):
+    """If the job restarts mid-session, continue today's minute series from the published branch."""
+    try:
+        git("fetch", "-q", "origin", "+refs/heads/live:refs/remotes/origin/live")
+        old = json.loads(git("show", "origin/live:intraday.json"))
+        if old.get("date") == day:
+            print(f"Resuming today's series ({len(old['t'])} minutes so far)")
+            return old["t"], old["p"]
+    except (subprocess.CalledProcessError, ValueError, KeyError):
+        pass
+    return [], {}
+
+
 def main(once=False):
     day = now().strftime("%Y-%m-%d")
-    times: list[str] = []
-    series: dict[str, list] = {}   # symbol -> [[minute_index, price], ...] (only when price changes)
+    times, series = resume(day)    # series: symbol -> [[minute_index, price], ...] (only when price changes)
+    recent: dict[str, str] = {}    # "HHMM" -> payload, last few minutes
     last_sig, unchanged = None, 0
     while True:
         t = now()
@@ -91,8 +115,15 @@ def main(once=False):
             status = cse.market_status() or ""
             live = {"updated": t.strftime("%Y-%m-%d %H:%M:%S"), "date": day, "market": status, "rows": rows}
             intraday = {"date": day, "t": times, "p": series}
-            ok = publish({"live.json": json.dumps(live, separators=(",", ":")),
-                          "intraday.json": json.dumps(intraday, separators=(",", ":"))}, f"live {hhmm}")
+            # raw.githubusercontent.com caches a file for 5 minutes, so each minute also gets its own file
+            # name (m/HHMM.json): a name nobody has requested yet can't be stale.
+            recent[t.strftime("%H%M")] = json.dumps({**live, "intraday": intraday}, separators=(",", ":"))
+            for k in sorted(recent)[:-10]:
+                del recent[k]
+            files = {"live.json": json.dumps(live, separators=(",", ":")),
+                     "intraday.json": json.dumps(intraday, separators=(",", ":"))}
+            files.update({f"m/{k}.json": v for k, v in recent.items()})
+            ok = publish(files, f"live {hhmm}")
             print(f"{hhmm}  {len(rows)} counters  market={status!r}  published={ok}")
             # holiday / closed market: board never changes -> stop after 30 minutes past opening
             sig = hash(json.dumps(rows, sort_keys=True))

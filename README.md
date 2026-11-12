@@ -87,6 +87,10 @@ The scoring rules, buy/sell thresholds, stop and target multiples, and the ~1.12
 | MACD bullish / bearish crossover | +1.5 / −1.5 (otherwise ±0.5) |
 | Below lower / above upper Bollinger band | +0.5 / −0.5 |
 | Volume > 1.5× average on an up / down day | +0.5 / −0.5 |
+| Fibonacci (6-month swing): up-move bouncing off / sitting at 38.2–61.8% support | +1 / +0.5 |
+| Fibonacci: close below 78.6% in an up-move (move failing) | −1 |
+| Fibonacci: down-move rejected at / sitting at 38.2–61.8% resistance | −1 / −0.5 |
+| Fibonacci: close above 78.6% in a down-move (reversing) | +1 |
 
 A score of 1.5 or more is BUY (3 or more is STRONG BUY). A score of −1.5 or less is SELL.
 

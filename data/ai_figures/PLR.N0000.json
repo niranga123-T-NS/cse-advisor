@@ -1,0 +1,26 @@
+{
+ "symbol": "PLR.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 3,
+  "eps_ytd": 0.71,
+  "eps_ytd_prior": 0.43,
+  "eps_q": 0.71,
+  "eps_q_prior": 0.43,
+  "revenue_ytd": 4593256741,
+  "revenue_ytd_prior": 2316571403,
+  "unit": "Rs",
+  "page": 2
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": 2.2,
+  "eps_prior": 1.31,
+  "navps": 12.2,
+  "page": "annual"
+ },
+ "notes": "Single company (no group). FY EPS and net assets per share from the annual report."
+}

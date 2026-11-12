@@ -1,0 +1,29 @@
+{
+ "symbol": "DOCK.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-09-30",
+  "months": 6,
+  "eps_ytd": 0.64,
+  "eps_ytd_prior": -5.95,
+  "eps_q": 0.42,
+  "eps_q_prior": -2.44,
+  "profit_ytd": 251229,
+  "profit_ytd_prior": -1371934,
+  "revenue_ytd": 13328810,
+  "revenue_ytd_prior": 13983744,
+  "unit": "Rs'000",
+  "navps": 39.4,
+  "page": 2
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": -11.34,
+  "eps_prior": -11.89,
+  "navps": 38.74,
+  "page": "annual highlights"
+ },
+ "notes": "Group. Back to profit in 2026 after losses; 2025 EPS restated for the rights issue. Last 12 months still a loss (\u22124.75 per share)."
+}

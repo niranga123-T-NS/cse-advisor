@@ -1,0 +1,26 @@
+{
+ "symbol": "CWL.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-09-30",
+  "months": 6,
+  "eps_ytd": 0.59,
+  "eps_ytd_prior": 0.4,
+  "eps_q": 0.29,
+  "eps_q_prior": 0.37,
+  "revenue_ytd": 601335103,
+  "revenue_ytd_prior": 414580438,
+  "unit": "Rs",
+  "navps": 6.65,
+  "page": 2
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": 0.88,
+  "eps_prior": 0.76,
+  "page": 2
+ },
+ "notes": "Single company. FY figures from the year-end interim."
+}

@@ -1,0 +1,28 @@
+{
+ "symbol": "SUN.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-09-30",
+  "months": 6,
+  "eps_ytd": 1.08,
+  "eps_ytd_prior": 0.75,
+  "eps_q": 0.74,
+  "eps_q_prior": 0.41,
+  "profit_ytd": 2115938,
+  "profit_ytd_prior": 1479313,
+  "revenue_ytd": 40183559,
+  "revenue_ytd_prior": 32289561,
+  "unit": "Rs'000",
+  "navps": 10.38,
+  "page": 4
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": 1.55,
+  "eps_prior": 1.77,
+  "page": 4
+ },
+ "notes": "Group. FY figures from the year-end interim."
+}

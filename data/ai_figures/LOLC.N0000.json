@@ -1,0 +1,29 @@
+{
+ "symbol": "LOLC.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 3,
+  "eps_ytd": 13.0,
+  "eps_ytd_prior": 9.74,
+  "eps_q": 13.0,
+  "eps_q_prior": 9.74,
+  "profit_ytd": 6177747,
+  "profit_ytd_prior": 4878594,
+  "revenue_ytd": 123440078,
+  "revenue_ytd_prior": 92383034,
+  "unit": "Rs'000",
+  "navps": 877.59,
+  "page": 3
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": 65.02,
+  "eps_prior": 104.61,
+  "navps": 822.46,
+  "page": 3
+ },
+ "notes": "Group. FY2026 EPS 65.02 (FY2025 104.61 included large one-off gains). The year-end interim prints the quarter (21.23) before the full year. Revenue = gross income."
+}

@@ -1,0 +1,28 @@
+{
+ "symbol": "OSEA.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-09-30",
+  "months": 9,
+  "eps_ytd": 5.12,
+  "eps_ytd_prior": 5.2,
+  "eps_q": 1.65,
+  "eps_q_prior": 1.6,
+  "revenue_ytd": 10150670,
+  "revenue_ytd_prior": 8983791,
+  "unit": "Rs'000",
+  "navps": 56.32,
+  "page": 4
+ },
+ "fy": {
+  "end": "2025-12-31",
+  "eps": 6.94,
+  "eps_prior": 5.0,
+  "dps": 1.35,
+  "navps": 52.96,
+  "page": 4
+ },
+ "notes": "Group (Company-only 9M EPS 2.07). FY2025 dividend 1.35; 1.75 declared so far in 2026."
+}

@@ -1,0 +1,28 @@
+{
+ "symbol": "AEL.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 3,
+  "eps_ytd": 1.71,
+  "eps_ytd_prior": 0.96,
+  "eps_q": 1.71,
+  "eps_q_prior": 0.96,
+  "profit_ytd": 1714069833,
+  "profit_ytd_prior": 963460462,
+  "revenue_ytd": 16586197751,
+  "revenue_ytd_prior": 7732443596,
+  "unit": "Rs",
+  "navps": 41.95,
+  "page": 2
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": 7.09,
+  "eps_prior": 6.31,
+  "page": 3
+ },
+ "notes": "Group. Q1 EPS row numbers not legible in the extracted text, so EPS = profit attributable \u00f7 1,000M shares (1,714.1M \u2192 1.71; prior 963.5M \u2192 0.96)."
+}

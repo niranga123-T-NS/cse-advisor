@@ -1,0 +1,23 @@
+{
+ "symbol": "COCO.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 3,
+  "eps_ytd": 0.28,
+  "eps_ytd_prior": 0.43,
+  "eps_q": 0.28,
+  "eps_q_prior": 0.43,
+  "profit_ytd": 105675,
+  "profit_ytd_prior": 82431,
+  "revenue_ytd": 3768619,
+  "revenue_ytd_prior": 3797632,
+  "unit": "Rs'000",
+  "navps": 17.82,
+  "page": 2
+ },
+ "fy": {},
+ "notes": "Group. Profit to owners rose 28% but EPS fell (0.28 vs 0.43) because more shares are now in issue. Net assets per share = 6,699.9M \u00f7 375.9M shares (voting + non-voting) = 17.82. Full-year figures not legible."
+}

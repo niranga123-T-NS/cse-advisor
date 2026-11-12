@@ -1,0 +1,30 @@
+{
+ "symbol": "RCL.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-09-30",
+  "months": 6,
+  "eps_ytd": 3.0,
+  "eps_ytd_prior": 2.41,
+  "eps_q": 1.38,
+  "eps_q_prior": 1.37,
+  "profit_ytd": 3322663,
+  "profit_ytd_prior": 2672771,
+  "revenue_ytd": 33113398,
+  "revenue_ytd_prior": 30443858,
+  "unit": "Rs'000",
+  "navps": 51.91,
+  "page": 2
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": 6.29,
+  "eps_prior": 4.56,
+  "dps": 2.0,
+  "navps": 49.86,
+  "page": "annual note 26"
+ },
+ "notes": "Group (Company-only 6M EPS 1.57). Revenue = net revenue."
+}

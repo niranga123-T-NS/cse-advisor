@@ -1,0 +1,19 @@
+{
+ "symbol": "NDB.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-09-30",
+  "navps": 204.98,
+  "page": 1
+ },
+ "fy": {
+  "end": "2025-12-31",
+  "eps": 27.83,
+  "eps_prior": 23.05,
+  "navps": 215.45,
+  "page": 1
+ },
+ "notes": "Group (Bank-only FY2025 EPS 25.90). From the management commentary: 9M 2026 annualised Group EPS 23.90 (lower than FY2025), Group NAV per share 204.98. The interim statement table itself was not legible, so P/E uses FY2025 EPS."
+}

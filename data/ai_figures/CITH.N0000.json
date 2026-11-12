@@ -1,0 +1,28 @@
+{
+ "symbol": "CITH.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 3,
+  "eps_ytd": -0.28,
+  "eps_ytd_prior": -0.13,
+  "eps_q": -0.28,
+  "eps_q_prior": -0.13,
+  "profit_ytd": -153806351,
+  "profit_ytd_prior": -71658919,
+  "revenue_ytd": 163267528,
+  "revenue_ytd_prior": 360646918,
+  "unit": "Rs",
+  "navps": 8.43,
+  "page": 2
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": 0.15,
+  "eps_prior": -0.22,
+  "page": 2
+ },
+ "notes": "Group. EPS not printed in the extract: worked out as profit attributable \u00f7 542.7M shares (Q1 loss 153.8M \u2192 \u22120.28; FY profit 84.0M \u2192 0.15). Net assets per share = equity 4,572.9M \u00f7 542.7M = 8.43."
+}

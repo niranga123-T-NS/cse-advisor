@@ -1,0 +1,22 @@
+{
+ "symbol": "CRL.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-09-30",
+  "months": 6,
+  "eps_ytd": -0.19,
+  "eps_ytd_prior": 0.01,
+  "navps": 3.01,
+  "page": 2
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": 0.16,
+  "eps_prior": 0.15,
+  "navps": 3.2,
+  "page": "annual highlights"
+ },
+ "notes": "Company. The interim prints annualised EPS (6M \u22120.38 vs 0.02); actual six-month EPS \u2248 \u22120.19 vs 0.01."
+}

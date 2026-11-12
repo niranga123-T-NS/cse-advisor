@@ -1,0 +1,27 @@
+{
+ "symbol": "CTC.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 6,
+  "eps_ytd": 76.83,
+  "eps_ytd_prior": 74.97,
+  "eps_q": 41.07,
+  "eps_q_prior": 39.32,
+  "revenue_ytd": 32635,
+  "revenue_ytd_prior": 31128,
+  "unit": "Rs Mn",
+  "navps": 57.72,
+  "page": 2
+ },
+ "fy": {
+  "end": "2025-12-31",
+  "eps": 155.54,
+  "eps_prior": 158.24,
+  "navps": 58.97,
+  "page": 2
+ },
+ "notes": "Single company. Revenue = net revenue after excise (turnover 104,503 vs 100,788 Rs Mn). Pays out almost all profit, so net assets per share is low and P/BV high."
+}

@@ -1,5 +1,71 @@
 {
- "annual": {},
+ "annual": {
+  "41119": {
+   "end": "2022-03-31",
+   "eps": 3.42,
+   "eps_prior": 9.71,
+   "navps": 208.0,
+   "ok": true,
+   "pages": 72,
+   "src_eps": "Earnings per Share  13  3.42  9.71",
+   "src_navps": "Net Asset Per Share (Rs.)  208  204.49  190.65  187.34  183.92  17.29  14.92  14.03  13.54  13.42",
+   "title": "ANNUAL REPORT 2021/2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/641_1659352707378.07.2022) Final 4.pdf",
+   "v": 3
+  },
+  "43213": {
+   "end": "2023-03-31",
+   "eps": 17.79,
+   "eps_prior": 3.42,
+   "navps": 225.0,
+   "ok": true,
+   "pages": 70,
+   "src_eps": "Earnings per Share  13  17.79  3.42",
+   "src_navps": "Net Asset Per Share (Rs.)  225  208  204.49  190.65  187.34  183.92  17.29  14.92  14.03  13.54",
+   "title": "Annual Report 2022/2023",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/641_1685329101445.5.23.) .pdf",
+   "v": 3
+  },
+  "46486": {
+   "end": "2024-03-31",
+   "eps": 21.32,
+   "eps_prior": 17.79,
+   "navps": 247.0,
+   "ok": true,
+   "pages": 86,
+   "src_eps": "Earnings per Share  13  21.32  17.79",
+   "src_navps": "Net Asset Per Share (Rs.)  247  225  208  204.49  190.65  187.34  183.92  17.29  14.92  14.03",
+   "title": "Annual Report 2023/2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/641_1723804696914.pdf",
+   "v": 3
+  },
+  "48221": {
+   "end": "2025-03-31",
+   "eps": 2.38,
+   "eps_prior": 21.32,
+   "navps": 271.0,
+   "ok": true,
+   "pages": 68,
+   "src_eps": "Earnings per Share  12  2.38  21.32",
+   "src_navps": "Net Asset Per Share (Rs.)  271  247  225  208  204.49  190.65  187.34  183.92  17.29  14.92",
+   "title": "Annual Report 2024/2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/641_1749033047962.06.2025) Final.pdf",
+   "v": 3
+  },
+  "51897": {
+   "end": "2026-03-31",
+   "eps": -0.02,
+   "eps_prior": 0.01,
+   "navps": 1.43,
+   "ok": true,
+   "pages": 68,
+   "src_eps": "Earnings per Share (Rs.)  (0.02)  0.01",
+   "src_navps": "Net Asset Per Share (Rs.)  1.43  1.35  247  225  208  204.49  190.65  187.34  183.92  17.29",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/641_1781877317515.06.2026)- Final.pdf",
+   "v": 3
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

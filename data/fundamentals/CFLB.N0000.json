@@ -1,5 +1,71 @@
 {
- "annual": {},
+ "annual": {
+  "41672": {
+   "end": "2022-03-31",
+   "eps": -1.48,
+   "eps_prior": -2.35,
+   "navps": 16.31,
+   "ok": true,
+   "pages": 172,
+   "src_eps": "Earnings per Share  Rs.  (1.48)  (2.35)  37",
+   "src_navps": "Net Assets per Share  Rs.  16.31  12.79  27",
+   "title": "Annual Report 2021/2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/504_1662500278844.pdf",
+   "v": 3
+  },
+  "44148": {
+   "end": "2023-03-31",
+   "eps": 9.78,
+   "eps_prior": -1.48,
+   "navps": 24.08,
+   "ok": true,
+   "pages": 168,
+   "src_eps": "Earnings / (Loss) per Share  Rs.  9.78  (1.48)  761",
+   "src_navps": "Net Assets per Share  Rs.  24.08  16.31  48",
+   "title": "Annual Report 2022/2023",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/504_1693796684624.pdf",
+   "v": 3
+  },
+  "46635": {
+   "end": "2024-03-31",
+   "eps": -0.51,
+   "eps_prior": 9.87,
+   "navps": 19.61,
+   "ok": true,
+   "pages": 180,
+   "src_eps": "Earnings per Share  Rs.  (0.51)  9.87  105",
+   "src_navps": "Net Assets per Share  Rs.  19.61  24.28  (19)",
+   "title": "Annual Report 2023/2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/504_1725321843238.pdf",
+   "v": 3
+  },
+  "48903": {
+   "end": "2025-03-31",
+   "eps": 4.31,
+   "eps_prior": -0.51,
+   "navps": 27.02,
+   "ok": true,
+   "pages": 188,
+   "src_eps": "Earnings per Share  Rs.  4.31  (0.51)  943",
+   "src_navps": "Net Assets per Share  Rs.  27.02  20.23  34",
+   "title": "Annual Report 2024/2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/504_1756473055354.pdf",
+   "v": 3
+  },
+  "53029": {
+   "end": "2026-03-31",
+   "eps": 3.05,
+   "eps_prior": 4.31,
+   "navps": 29.92,
+   "ok": true,
+   "pages": 208,
+   "src_eps": "Earnings per Share  Rs.  3.05  4.31  29",
+   "src_navps": "Net Assets per Share  Rs.  29.92  27.02  11",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/504_1788204596987.pdf",
+   "v": 3
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

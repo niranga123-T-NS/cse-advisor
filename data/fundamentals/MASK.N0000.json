@@ -1,5 +1,77 @@
 {
- "annual": {},
+ "annual": {
+  "41561": {
+   "end": "2022-03-31",
+   "eps": 3.01,
+   "eps_prior": 1.92,
+   "navps": 18.7,
+   "ok": true,
+   "pages": 94,
+   "src_eps": "Earnings/Loss per share  Rs.  3.01  1.92  57%",
+   "src_navps": "Net Asset Value per share  Rs.  18.7  13.23  41%",
+   "title": "Annual Report For 2021-2022 Maskeliya Plantations PLC",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/723_1661944157277.pdf",
+   "v": 3
+  },
+  "44082": {
+   "end": "2023-03-31",
+   "eps": 16.43,
+   "eps_prior": 3.01,
+   "navps": 32.46,
+   "ok": true,
+   "pages": 104,
+   "src_eps": "Earnings/Loss per share  Rs.  16.43  3.01  445%",
+   "src_navps": "Net Asset Value per share  Rs.  32.46  18.71  731%",
+   "title": "Annual Report 2022/2023",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/723_1693476523167.pdf",
+   "v": 3
+  },
+  "46577": {
+   "end": "2024-03-31",
+   "eps": 8.68,
+   "eps_prior": 16.43,
+   "navps": 40.16,
+   "ok": true,
+   "pages": 106,
+   "src_eps": "Earnings/(Loss) Per Share  Rs.  8.68  16.43  (47%)",
+   "src_navps": "Net Asset Value Per Share  Rs.  40.16  32.46  24%",
+   "title": "Annual Report 2023/2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/723_1725014006880.pdf",
+   "v": 3
+  },
+  "48896": {
+   "dps": 11.3,
+   "dps_prior": 4.5,
+   "end": "2025-03-31",
+   "eps": 17.76,
+   "eps_prior": 8.68,
+   "navps": 49.83,
+   "ok": true,
+   "pages": 118,
+   "src_dps": "Dividend per Share  11.3  4.50  -",
+   "src_eps": "Earnings per Share  Rs  17.76  8.68  105%",
+   "src_navps": "Net Asset Value per Share  Rs  49.83  40.16  24%",
+   "title": "Annual Report 2024/2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/723_1756468040247.pdf",
+   "v": 3
+  },
+  "52936": {
+   "dps": 4.0,
+   "dps_prior": 4.5,
+   "end": "2026-03-31",
+   "eps": 12.2,
+   "eps_prior": 17.76,
+   "navps": 55.01,
+   "ok": true,
+   "pages": 275,
+   "src_dps": "Dividend per Share  Rs.  4.00  4.50  (11%)  Market Capitalization (Rs.Mn)",
+   "src_eps": "Earnings per Share  Rs.  12.20  17.76  (31%)  5.00",
+   "src_navps": "Net Asset Value per Share  Rs.  55.01  49.83  10%  0.00",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/723_1788174356440.pdf",
+   "v": 3
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

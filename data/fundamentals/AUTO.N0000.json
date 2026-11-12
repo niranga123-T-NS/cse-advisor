@@ -1,5 +1,171 @@
 {
- "annual": {},
+ "annual": {
+  "41555": {
+   "dps": 0.6,
+   "dps_prior": 0.3,
+   "end": "2022-03-31",
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 320.0,
+   "navps_prior": 800000.0,
+   "ok": true,
+   "pages": 69,
+   "src_dps": "Dividend per share  Rs.0.60  Rs.0.30",
+   "src_navps": "Net Asset Per Share  Turnover (Rs.000) \u23ce  320  800,000",
+   "title": "Annual Report 2021/22",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/692_1661943537150.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.6,
+    0.3
+   ],
+   "vals_navps": [
+    320.0,
+    800000.0
+   ],
+   "year_only": false
+  },
+  "44088": {
+   "dps": 0.0,
+   "dps_prior": 0.6,
+   "end": "2023-03-31",
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 320.0,
+   "navps_prior": 800000.0,
+   "ok": true,
+   "pages": 68,
+   "src_dps": "Dividend per share  Rs.0.00  Rs.0.60",
+   "src_navps": "Net Asset Per Share  Turnover (Rs.000) \u23ce  320  800,000",
+   "title": "Annual Report 2022/23",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/692_1693477697824.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.0,
+    0.6
+   ],
+   "vals_navps": [
+    320.0,
+    800000.0
+   ],
+   "year_only": false
+  },
+  "46485": {
+   "dps": 0.0,
+   "dps_prior": 0.0,
+   "end": "2024-03-31",
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 320.0,
+   "navps_prior": 800000.0,
+   "ok": true,
+   "pages": 69,
+   "src_dps": "Dividend per share  Rs.0.00  Rs.0.00",
+   "src_navps": "Net Asset Per Share  Turnover (Rs.000) \u23ce  320  800,000",
+   "title": "Annual Report 2023/24",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/692_1723804574060.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.0,
+    0.0
+   ],
+   "vals_navps": [
+    320.0,
+    800000.0
+   ],
+   "year_only": false
+  },
+  "48978": {
+   "dps": 0.0,
+   "dps_prior": 0.0,
+   "end": "2025-03-31",
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 320.0,
+   "navps_prior": 800000.0,
+   "ok": true,
+   "pages": 73,
+   "src_dps": "Dividend per share  Rs.0.00  Rs.0.00",
+   "src_navps": "Net Asset Per Share  Turnover (Rs.000) \u23ce  320  800,000",
+   "title": "AMENDED ANNUAL REPORT 2024/2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/692_1757676288007.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.0,
+    0.0
+   ],
+   "vals_navps": [
+    320.0,
+    800000.0
+   ],
+   "year_only": false
+  },
+  "52857": {
+   "dps": 0.0,
+   "dps_prior": 0.0,
+   "end": "2026-03-31",
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 320.0,
+   "navps_prior": 800000.0,
+   "ok": true,
+   "pages": 73,
+   "src_dps": "Dividend per share  Rs.0.00  Rs.0.00",
+   "src_navps": "Net Asset Per Share  Turnover (Rs.000) \u23ce  320  800,000",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/692_1787911627016.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.0,
+    0.0
+   ],
+   "vals_navps": [
+    320.0,
+    800000.0
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

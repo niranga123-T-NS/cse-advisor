@@ -1,5 +1,52 @@
 {
- "annual": {},
+ "annual": {
+  "48191": {
+   "end": "2025-03-31",
+   "eps": 3.51,
+   "eps_prior": 2.05,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 128,
+   "src_eps": "Basic earnings per share  3.51  2.05  3.46  2.06",
+   "title": "Annual Report 2024/2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/3218_1748918615265.pdf",
+   "v": 6,
+   "vals_eps": [
+    3.51,
+    2.05,
+    3.46,
+    2.06
+   ],
+   "year_only": false
+  },
+  "51769": {
+   "end": "2026-03-31",
+   "eps": 6.61,
+   "eps_prior": 3.51,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 164,
+   "src_eps": "Basic Earnings per Share  6.61  3.51  6.62  3.46",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/3218_1780589394253.pdf",
+   "v": 6,
+   "vals_eps": [
+    6.61,
+    3.51,
+    6.62,
+    3.46
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

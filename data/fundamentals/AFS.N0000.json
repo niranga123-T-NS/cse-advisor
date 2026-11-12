@@ -1,5 +1,114 @@
 {
- "annual": {},
+ "annual": {
+  "42210": {
+   "end": "2022-03-31",
+   "ok": true,
+   "pages": 53,
+   "title": "ANNUAL REPORT 2021/2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2772_1670319239620.pdf",
+   "v": 6,
+   "year_only": false
+  },
+  "44079": {
+   "end": "2023-03-31",
+   "eps": 5.07,
+   "eps_prior": 0.37,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 26.95,
+   "navps_prior": 12.9,
+   "ok": true,
+   "pages": 77,
+   "src_eps": "Earnings Per Share (Rs.)  5.07  0.37",
+   "src_navps": "Net Assets Value Per Share (Rs.)  26.95  12.90  2,882.40  2,690.64  2,507.81",
+   "title": "Annual Report 2022/23",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2774_1693479113452.pdf",
+   "v": 6,
+   "vals_eps": [
+    5.07,
+    0.37
+   ],
+   "vals_navps": [
+    26.95,
+    12.9,
+    2882.4,
+    2690.64,
+    2507.81
+   ],
+   "year_only": false
+  },
+  "46524": {
+   "end": "2024-03-31",
+   "eps": 0.65,
+   "eps_prior": 0.38,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 95,
+   "src_eps": "Earnings Per Share (Rs.)  0.65  0.38",
+   "title": "Annual Report 2023/24",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2774_1724816000439.08.27_compressed.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.65,
+    0.38
+   ],
+   "year_only": false
+  },
+  "48914": {
+   "end": "2025-03-31",
+   "eps": 1.04,
+   "eps_prior": 0.65,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 91,
+   "src_eps": "Earnings Per Share (Rs.)  1.04  0.65",
+   "title": "Annual Report 2024/25",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2774_1756694240492.pdf",
+   "v": 6,
+   "vals_eps": [
+    1.04,
+    0.65
+   ],
+   "year_only": false
+  },
+  "52961": {
+   "end": "2026-03-31",
+   "eps": 1.37,
+   "eps_prior": 1.09,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 112,
+   "src_eps": "Earnings Per Share (Rs.)  1.37  1.09",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2774_1788179099270.pdf",
+   "v": 6,
+   "vals_eps": [
+    1.37,
+    1.09
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

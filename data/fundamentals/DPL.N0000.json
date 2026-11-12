@@ -1,5 +1,209 @@
 {
- "annual": {},
+ "annual": {
+  "41596": {
+   "dps": 0.65,
+   "dps_prior": 0.4,
+   "end": "2022-03-31",
+   "eps": 196304024.0,
+   "eps_prior": -388249425.0,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 16.17,
+   "navps_prior": 13.85,
+   "ok": true,
+   "pages": 143,
+   "src_dps": "Dividend per Share(LKR)  -  -  -  -  -  0.65  -  -  0.40  -",
+   "src_eps": "Earnings Per Share  196,304,024  (388,249,425)  422,192,152  (170,250,076)",
+   "src_navps": "Net Assets per Share(LKR)  16.17  13.85  15.16  15.97  12.15  10.65  10.02  12.83  14.28  11.43",
+   "title": "Annual Report 2021/22",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/669_1661999610564.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.65,
+    0.4
+   ],
+   "vals_eps": [
+    196304024.0,
+    -388249425.0,
+    422192152.0,
+    -170250076.0
+   ],
+   "vals_navps": [
+    16.17,
+    13.85,
+    15.16,
+    15.97,
+    12.15,
+    10.65,
+    10.02,
+    12.83,
+    14.28,
+    11.43
+   ],
+   "year_only": false
+  },
+  "44118": {
+   "end": "2023-03-31",
+   "eps": 4.13,
+   "eps_prior": 1.21,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 19.92,
+   "navps_prior": 16.17,
+   "ok": true,
+   "pages": 206,
+   "src_eps": "Earnings per Share  LKR  4.13  1.21  3.83  2.60",
+   "src_navps": "Net Asset Value per Share  LKR  19.92  16.17  21.98  18.53",
+   "title": "Annual Report 2022/23",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/669_1693538092226.pdf",
+   "v": 6,
+   "vals_eps": [
+    4.13,
+    1.21,
+    3.83,
+    2.6
+   ],
+   "vals_navps": [
+    19.92,
+    16.17,
+    21.98,
+    18.53
+   ],
+   "year_only": false
+  },
+  "46602": {
+   "end": "2024-03-31",
+   "eps": 2.28,
+   "eps_prior": 4.13,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 22.71,
+   "navps_prior": 19.92,
+   "ok": true,
+   "pages": 194,
+   "src_eps": "Earnings per Share  LKR  2.28  4.13  2.72  3.83",
+   "src_navps": "Net Asset Value per Share  LKR  22.71  19.92  24.82  21.98",
+   "title": "Annual Report 2023/24",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/669_1725246075662.pdf",
+   "v": 6,
+   "vals_eps": [
+    2.28,
+    4.13,
+    2.72,
+    3.83
+   ],
+   "vals_navps": [
+    22.71,
+    19.92,
+    24.82,
+    21.98
+   ],
+   "year_only": false
+  },
+  "48885": {
+   "end": "2025-03-31",
+   "eps": -5.34,
+   "eps_prior": 2.28,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 17.82,
+   "navps_prior": 22.71,
+   "ok": true,
+   "pages": 160,
+   "src_eps": "Earnings/(Loss) per Share  LKR  (5.34)  2.28  (4.48)  2.72",
+   "src_navps": "Net Asset Value per Share  LKR  17.82  22.71  20.53  24.82",
+   "title": "Annual Report 2024/25",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/669_1756465495286.pdf",
+   "v": 6,
+   "vals_eps": [
+    -5.34,
+    2.28,
+    -4.48,
+    2.72
+   ],
+   "vals_navps": [
+    17.82,
+    22.71,
+    20.53,
+    24.82
+   ],
+   "year_only": false
+  },
+  "52900": {
+   "end": "2026-03-31",
+   "eps": -3.74,
+   "eps_prior": -5.34,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 14.38,
+   "navps_prior": 17.82,
+   "ok": true,
+   "pages": 150,
+   "src_eps": "Earnings per Share  LKR  (3.74)  (5.34)  (1.74)  (4.48)",
+   "src_navps": "Net Asset Value per Share  LKR  14.38  17.82  19.19  20.53",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/669_1788172340964.pdf",
+   "v": 6,
+   "vals_eps": [
+    -3.74,
+    -5.34,
+    -1.74,
+    -4.48
+   ],
+   "vals_navps": [
+    14.38,
+    17.82,
+    19.19,
+    20.53
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

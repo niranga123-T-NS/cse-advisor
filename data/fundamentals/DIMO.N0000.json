@@ -1,5 +1,277 @@
 {
- "annual": {},
+ "annual": {
+  "40816": {
+   "dps": 12.5,
+   "dps_prior": 2.5,
+   "end": "2022-03-31",
+   "eps": 76.06,
+   "eps_prior": 52.72,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 1696.73,
+   "navps_prior": 1638.27,
+   "ok": true,
+   "pages": 216,
+   "src_dps": "Dividend per share (Rs.)  12.50  2.50",
+   "src_eps": "Earnings per share (Rs.)  76.06  52.72  21.12  5.78  58.50  73.99  106.64  67.15  44.34  51.16",
+   "src_navps": "Net assets per share  1,696.73  1,638.27  1,541.45  1,483.86  Financial Statements.",
+   "title": "Annual Report for the financial year 2021/22",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/694_1654526608371.pdf",
+   "v": 6,
+   "vals_dps": [
+    12.5,
+    2.5
+   ],
+   "vals_eps": [
+    76.06,
+    52.72,
+    21.12,
+    5.78,
+    58.5,
+    73.99,
+    106.64,
+    67.15,
+    44.34,
+    51.16
+   ],
+   "vals_navps": [
+    1696.73,
+    1638.27,
+    1541.45,
+    1483.86
+   ],
+   "year_only": false
+  },
+  "43449": {
+   "dps": 4.8,
+   "dps_prior": 12.5,
+   "end": "2022-12-31",
+   "eps": 62.73,
+   "eps_prior": 76.06,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 1622.31,
+   "navps_prior": 1631.47,
+   "ok": true,
+   "pages": 216,
+   "src_dps": "Dividend per share (Rs.)  4.8  -  -  12.50  12.50",
+   "src_eps": "Earnings per share (Rs.)  62.73  76.06  52.72  21.12  5.78  58.50  73.99  106.64  67.15  44.34",
+   "src_navps": "Net assets per share  1,622.31  1,631.47  1,483.97  1,482.17  Financial Statements.",
+   "title": "DIESEL & MOTOR ENGINEERING PLC - INTEGRATED ANNUAL REPORT 2022 2023",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/694_1685974816079.pdf",
+   "v": 6,
+   "vals_dps": [
+    4.8,
+    12.5,
+    12.5
+   ],
+   "vals_eps": [
+    62.73,
+    76.06,
+    52.72,
+    21.12,
+    5.78,
+    58.5,
+    73.99,
+    106.64,
+    67.15,
+    44.34
+   ],
+   "vals_navps": [
+    1622.31,
+    1631.47,
+    1483.97,
+    1482.17
+   ],
+   "year_only": false
+  },
+  "46013": {
+   "dps": 4.8,
+   "dps_prior": 10.0,
+   "end": "2024-03-31",
+   "eps": 62.73,
+   "eps_prior": 4.65,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 1776.76,
+   "navps_prior": 1622.31,
+   "ok": true,
+   "pages": 270,
+   "src_dps": "Dividend per share (Rs.)  4.8  -  -  10.00  12.50",
+   "src_eps": "EPS  Rs.  62.73  4.65  are elaborated on page 23 - 24.",
+   "src_navps": "Net assets per share  1,776.76  1,622.31  1,671.23  1,483.97  Financial Statements.",
+   "title": "Annual Report 2023/24",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/694_1719198202523.pdf",
+   "v": 6,
+   "vals_dps": [
+    4.8,
+    10.0,
+    12.5
+   ],
+   "vals_eps": [
+    62.73,
+    4.65
+   ],
+   "vals_navps": [
+    1776.76,
+    1622.31,
+    1671.23,
+    1483.97
+   ],
+   "year_only": false
+  },
+  "48286": {
+   "dps": 4.8,
+   "dps_prior": 5.0,
+   "end": "2025-03-31",
+   "eps": -137.0,
+   "eps_prior": 4.65,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 1618.08,
+   "navps_prior": 1776.76,
+   "ok": true,
+   "pages": 322,
+   "src_dps": "Dividend per share (Rs.)  4.8  -  -  5.00  10.00",
+   "src_eps": "Earnings per share (Rs.)  (137.00)  4.65  62.73  76.06  52.72  21.12  5.78  58.50  73.99  106.64",
+   "src_navps": "Net assets per share  1,618.08  1,776.76  1,591.44  1,671.23  Financial Statements.",
+   "title": "UPDATED ANNUAL REPORT 2024/2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/694_1749727575663.pdf",
+   "v": 6,
+   "vals_dps": [
+    4.8,
+    5.0,
+    10.0
+   ],
+   "vals_eps": [
+    -137.0,
+    4.65,
+    62.73,
+    76.06,
+    52.72,
+    21.12,
+    5.78,
+    58.5,
+    73.99,
+    106.64
+   ],
+   "vals_navps": [
+    1618.08,
+    1776.76,
+    1591.44,
+    1671.23
+   ],
+   "year_only": false
+  },
+  "51743": {
+   "dps": 4.8,
+   "dps_prior": 10.0,
+   "end": "2026-03-31",
+   "eps": 172.37,
+   "eps_prior": -137.0,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 1780.14,
+   "navps_prior": 1618.08,
+   "ok": true,
+   "pages": 374,
+   "src_dps": "Dividend per share (Rs.)  4.8  -  -  10.00  5.00",
+   "src_eps": "Earnings per share (Rs.)  172.37  (137.00)  4.65  62.73  76.06  52.72  21.12  5.78  58.50  73.99",
+   "src_navps": "Net assets per share  1,780.14  1,618.08  1,696.11  1,591.44  Financial Statements..",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/694_1780511123442.pdf",
+   "v": 6,
+   "vals_dps": [
+    4.8,
+    10.0,
+    5.0
+   ],
+   "vals_eps": [
+    172.37,
+    -137.0,
+    4.65,
+    62.73,
+    76.06,
+    52.72,
+    21.12,
+    5.78,
+    58.5,
+    73.99
+   ],
+   "vals_navps": [
+    1780.14,
+    1618.08,
+    1696.11,
+    1591.44
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

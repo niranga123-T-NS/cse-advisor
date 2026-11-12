@@ -1,5 +1,233 @@
 {
- "annual": {},
+ "annual": {
+  "41532": {
+   "dps": 0.4,
+   "dps_prior": 3.5,
+   "end": "2022-03-31",
+   "eps": 2.67,
+   "eps_prior": 56.45,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 7.68,
+   "navps_prior": 71.9,
+   "ok": true,
+   "pages": 76,
+   "src_dps": "Dividend per share  0.40  3.50  1.50  6.00  18.54",
+   "src_eps": "Basic earnings per share  2.67  56.45  24.61",
+   "src_navps": "Net Assets Per Share (Rs.)  7.68  71.90  292.21  273.70  255.18",
+   "title": "Annual Report 2021-2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2790_1661938122866.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.4,
+    3.5,
+    1.5,
+    6.0,
+    18.54
+   ],
+   "vals_eps": [
+    2.67,
+    56.45,
+    24.61
+   ],
+   "vals_navps": [
+    7.68,
+    71.9,
+    292.21,
+    273.7,
+    255.18
+   ],
+   "year_only": false
+  },
+  "44046": {
+   "dps": 0.25,
+   "dps_prior": 0.25,
+   "end": "2023-03-31",
+   "eps": 0.4,
+   "eps_prior": 0.49,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 7.78,
+   "navps_prior": 7.68,
+   "ok": true,
+   "pages": 84,
+   "src_dps": "Dividend per share  0.25  0.25  0.40",
+   "src_eps": "Basic earnings per share  9  0.40  0.49  2.67",
+   "src_navps": "Net assets per share (rs.)  7.78  7.68  71.90  292.21  273.70",
+   "title": "Annual Report 2022/23",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2790_1693303323887.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.25,
+    0.25,
+    0.4
+   ],
+   "vals_eps": [
+    0.4,
+    0.49,
+    2.67
+   ],
+   "vals_navps": [
+    7.78,
+    7.68,
+    71.9,
+    292.21,
+    273.7
+   ],
+   "year_only": false
+  },
+  "46148": {
+   "dps": 0.25,
+   "dps_prior": 0.25,
+   "end": "2024-03-31",
+   "eps": 0.13,
+   "eps_prior": 0.4,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 7.85,
+   "navps_prior": 7.78,
+   "ok": true,
+   "pages": 128,
+   "src_dps": "Dividend per share  0.25  0.25  0.25  0.25",
+   "src_eps": "Basic earnings per share  09  0.13  0.40  0.34  0.49",
+   "src_navps": "Net assets per share (Rs.)  7.85  7.78  7.68  71.90  292.21",
+   "title": "Annual Report 2023/24",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2790_1722310564925.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.25,
+    0.25,
+    0.25,
+    0.25
+   ],
+   "vals_eps": [
+    0.13,
+    0.4,
+    0.34,
+    0.49
+   ],
+   "vals_navps": [
+    7.85,
+    7.78,
+    7.68,
+    71.9,
+    292.21
+   ],
+   "year_only": false
+  },
+  "48494": {
+   "dps": 0.25,
+   "dps_prior": 0.25,
+   "end": "2025-03-31",
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 7.08,
+   "navps_prior": 7.85,
+   "ok": true,
+   "pages": 108,
+   "src_dps": "Dividend per share  -  0.25  -  0.25",
+   "src_navps": "Net Assets Per Share (Rs.)  7.08  7.85  7.78  7.68  71.90",
+   "title": "Annual Report 2024/25",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2790_1754045892433.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.25,
+    0.25
+   ],
+   "vals_navps": [
+    7.08,
+    7.85,
+    7.78,
+    7.68,
+    71.9
+   ],
+   "year_only": false
+  },
+  "52176": {
+   "dps": 0.25,
+   "dps_prior": 0.25,
+   "end": "2026-03-31",
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 7.12,
+   "navps_prior": 7.08,
+   "ok": true,
+   "pages": 128,
+   "src_dps": "Dividend per share  -  -  0.25  0.25  0.40",
+   "src_navps": "Net assets per share (Rs.)  7.12  7.08  7.85  7.78  7.68",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2790_1785490476880.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.25,
+    0.25,
+    0.4
+   ],
+   "vals_navps": [
+    7.12,
+    7.08,
+    7.85,
+    7.78,
+    7.68
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

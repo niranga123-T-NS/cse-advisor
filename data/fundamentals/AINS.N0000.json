@@ -1,5 +1,130 @@
 {
- "annual": {},
+ "annual": {
+  "40254": {
+   "end": "2021-12-31",
+   "eps": 3.57,
+   "eps_prior": 3.03,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 204,
+   "src_eps": "Earnings per share  Rs.  3.57  3.03",
+   "title": "Annual Report 2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1405_1650454605796.pdf",
+   "v": 6,
+   "vals_eps": [
+    3.57,
+    3.03
+   ],
+   "year_only": false
+  },
+  "43257": {
+   "end": "2022-12-31",
+   "eps": 0.55,
+   "eps_prior": 3.57,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 30.2,
+   "navps_prior": 3700.0,
+   "ok": true,
+   "pages": 192,
+   "src_eps": "Earnings per Share  LKR  0.55  3.57",
+   "src_navps": "NET ASSET PER SHARE (RS)  FINANCIAL INVESTMENTS (RS.MN)  TOTAL ASSETS (RS.MN) \u23ce  30.2  3700  4650",
+   "title": "Annual Report-2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1405_1685438807430.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.55,
+    3.57
+   ],
+   "vals_navps": [
+    30.2,
+    3700.0,
+    4650.0
+   ],
+   "year_only": true
+  },
+  "45892": {
+   "end": "2023-12-31",
+   "ok": true,
+   "pages": 262,
+   "title": "Annual Report 2023",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1405_1717168337299.pdf",
+   "v": 6,
+   "year_only": false
+  },
+  "48068": {
+   "end": "2024-12-31",
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 28.0,
+   "navps_prior": 21.0,
+   "ok": true,
+   "pages": 284,
+   "src_navps": "Net Assets Per Share (Rs.)  28  21  29  31",
+   "title": "Annual Report 2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1405_1748608816948.pdf",
+   "v": 6,
+   "vals_navps": [
+    28.0,
+    21.0,
+    29.0,
+    31.0
+   ],
+   "year_only": false
+  },
+  "51914": {
+   "end": "2025-12-31",
+   "eps": 0.12,
+   "eps_prior": 4.0,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 25.0,
+   "navps_prior": 28.0,
+   "ok": true,
+   "pages": 298,
+   "src_eps": "Earnings per share  0.12  4  -3.88  -10",
+   "src_navps": "Net Assets Per Share (Rs.)  25  28  21  29",
+   "title": "Errata to the Annual Report as at 31st December 2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1405_1782268687110.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.12,
+    4.0,
+    -3.88,
+    -10.0
+   ],
+   "vals_navps": [
+    25.0,
+    28.0,
+    21.0,
+    29.0
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

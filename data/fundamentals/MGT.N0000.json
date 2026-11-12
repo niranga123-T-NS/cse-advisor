@@ -1,5 +1,201 @@
 {
- "annual": {},
+ "annual": {
+  "40769": {
+   "dps": 1.2,
+   "dps_prior": 1.2,
+   "end": "2022-03-31",
+   "eps": 0.031,
+   "eps_prior": 0.023,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "ok": true,
+   "pages": 216,
+   "src_dps": "Dividend per Share  Rs  1.20  1.20  0.60",
+   "src_eps": "Basic/diluted earnings per share  0.031  0.023  0.009",
+   "title": "Annual Report 2021/22",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/403_1654161786464.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.2,
+    1.2,
+    0.6
+   ],
+   "vals_eps": [
+    0.031,
+    0.023,
+    0.009
+   ],
+   "year_only": false
+  },
+  "43414": {
+   "dps": 2.5,
+   "dps_prior": 1.2,
+   "end": "2023-03-31",
+   "eps": 0.003,
+   "eps_prior": 0.005,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    2,
+    true
+   ],
+   "ok": true,
+   "pages": 248,
+   "src_dps": "Dividend per Share  Rs.  2.50  1.20  2.50  1.20",
+   "src_eps": "Basic/diluted earnings per share  0.003  0.031  0.005  0.023",
+   "title": "Annual Report 2022/23",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/403_1685613649621.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.5,
+    1.2,
+    2.5,
+    1.2
+   ],
+   "vals_eps": [
+    0.003,
+    0.031,
+    0.005,
+    0.023
+   ],
+   "year_only": false
+  },
+  "45808": {
+   "dps": 2.6,
+   "dps_prior": 2.5,
+   "end": "2024-03-31",
+   "eps": 0.019,
+   "eps_prior": 0.003,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "ok": true,
+   "pages": 240,
+   "src_dps": "Dividend per Share  Rs.  2.60  2.50  2.60  2.50",
+   "src_eps": "Earnings/(Loss) per share (basic)  0.019  0.003  0.031  0.009  0.003  0.005  (0.003)  0.002  0.009  0.004",
+   "title": "Annual Report 2023/24",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/403_1717146728435.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.6,
+    2.5,
+    2.6,
+    2.5
+   ],
+   "vals_eps": [
+    0.019,
+    0.003,
+    0.031,
+    0.009,
+    0.003,
+    0.005,
+    -0.003,
+    0.002,
+    0.009,
+    0.004
+   ],
+   "year_only": false
+  },
+  "48063": {
+   "dps": 1.85,
+   "dps_prior": 2.6,
+   "end": "2025-03-31",
+   "eps": 0.017,
+   "eps_prior": 0.019,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "ok": true,
+   "pages": 296,
+   "src_dps": "Dividend per Share  Rs.  1.85  2.60  1.85  2.60",
+   "src_eps": "Earnings/(Loss) per share (basic)  0.017  0.019  0.003  0.031  0.009  0.003  0.005  (0.003)  0.002  0.009",
+   "title": "Annual Report 2024/25",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/403_1748596760910.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.85,
+    2.6,
+    1.85,
+    2.6
+   ],
+   "vals_eps": [
+    0.017,
+    0.019,
+    0.003,
+    0.031,
+    0.009,
+    0.003,
+    0.005,
+    -0.003,
+    0.002,
+    0.009
+   ],
+   "year_only": false
+  },
+  "51721": {
+   "dps": 0.62,
+   "dps_prior": 1.85,
+   "end": "2026-03-31",
+   "eps": 0.005,
+   "eps_prior": 0.009,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    2,
+    true
+   ],
+   "ok": true,
+   "pages": 356,
+   "src_dps": "Dividend per Share  Rs.  0.62  1.85  0.62  1.85",
+   "src_eps": "Basic/diluted earnings per share  0.005  0.017  0.009  0.014",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/403_1780392094378.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.62,
+    1.85,
+    0.62,
+    1.85
+   ],
+   "vals_eps": [
+    0.005,
+    0.017,
+    0.009,
+    0.014
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

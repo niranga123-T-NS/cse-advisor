@@ -22,6 +22,15 @@ From then on it updates itself every weekday after the market closes.
 - **Stars** ☆ on the site are saved in that browser only. `watchlist.txt` sets which stocks get full history.
 - Every stock that trades on a given day gets saved. Stocks outside your watchlist gain a signal once they have 30 days of saved data.
 
+## Live prices (every minute)
+
+On weekdays the **Live prices** job starts at 09:10, waits for the 09:30 open, then fetches every counter from CSE once a minute until 14:40. It publishes the prices to a separate branch called `live`, which keeps one commit that is overwritten each minute, so the repo doesn't grow. Each minute goes into its own file (`m/HHMM.json`), because GitHub caches a file for 5 minutes and a new file name always comes through fresh.
+
+While the market is open, the site reads these files every minute. The list shows live prices with a green dot, and each stock page shows today's minute-by-minute chart and an updated candle. If the job ever stops, run **Actions → Live prices → Run workflow** and it carries on from today's saved series.
+
+- GitHub sometimes starts scheduled jobs 10–20 minutes late, so the first minutes after the open may be missing.
+- Signals are still based on daily closes; live prices are for watching.
+
 ## Company reports (fundamentals)
 
 Every night at 01:30 the **Read company reports** job checks CSE for new reports. For each company it reads the latest **10 quarterly** and **5 annual** report PDFs, using plain text matching (free, no API key). From them it works out:
@@ -87,7 +96,9 @@ A score of 1.5 or more is BUY (3 or more is STRONG BUY). A score of −1.5 or le
 |---|---|
 | `.github/workflows/update.yml` | The daily scheduled job |
 | `build_site.py` | Fetches data and builds `site/data/*.json` |
-| `.github/workflows/fundamentals.yml` | Nightly job that reads company reports |
+| `.github/workflows/fundamentals.yml` | Nightly job that reads company reports (4 parallel parts) |
+| `.github/workflows/live.yml`, `live.py` | Live prices every minute during market hours |
+| `.github/workflows/publish.yml` | Rebuild and publish the site on demand |
 | `reports.py` | Lists CSE report PDFs and reads figures out of them |
 | `fundamentals.py` | Collects report figures, works out P/E, growth, etc. and fundamental points |
 | `site/index.html` | The website |

@@ -24,7 +24,13 @@ def today() -> str:
     return dt.datetime.now(COLOMBO).strftime("%Y-%m-%d")
 
 
-def snapshot() -> int:
+def snapshot(force: bool = False) -> int:
+    now = dt.datetime.now(COLOMBO)
+    if not force and (now.weekday() >= 5 or (now.hour, now.minute) < (14, 35)):
+        # Before today's close the board still shows the previous session; saving it now
+        # would label yesterday's prices with today's date.
+        print("Market hasn't closed yet today - skipping snapshot (history backfill still runs).")
+        return 0
     rows = cse.trade_summary()
     if not rows:
         print("No data from tradeSummary (market closed/holiday, or the API changed - try probe.py).")
@@ -100,7 +106,7 @@ if __name__ == "__main__":
     if not args:
         print(__doc__)
     elif args[0] == "snapshot":
-        snapshot()
+        snapshot(force="--force" in args)
     elif args[0] == "backfill":
         syms = db.watchlist() if args[1:] == ["--watchlist"] else args[1:]
         if not syms:

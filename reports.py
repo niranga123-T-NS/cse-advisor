@@ -21,7 +21,7 @@ import requests
 import cse_client as cse
 
 CDN = "https://cdn.cse.lk/"
-PARSER_VERSION = 2
+PARSER_VERSION = 3
 MONTHS = {m: i for i, m in enumerate(
     ["january", "february", "march", "april", "may", "june", "july", "august",
      "september", "october", "november", "december"], 1)}
@@ -164,7 +164,15 @@ def _clean_label_line(line: str) -> str:
     return line
 
 
-def row_values(text: str, labels: list[str], per_share: bool, skip_if: tuple = ()) -> tuple[float, float] | None:
+class Row(tuple):
+    """(current, prior) plus where they came from: .src (line text) and .idx (line number)."""
+    def __new__(cls, cur, prior, src, idx, all_vals):
+        r = super().__new__(cls, (cur, prior))
+        r.src, r.idx, r.all = src, idx, all_vals
+        return r
+
+
+def row_values(text: str, labels: list[str], per_share: bool, skip_if: tuple = ()) -> Row | None:
     """Find the first line starting with one of `labels` that carries >= 2 values; return (current, prior)."""
     pats = [re.compile(r"^\s*[-•*]?\s*" + lab + r"\b", re.I) for lab in labels]
     lines = text.splitlines()
@@ -173,11 +181,13 @@ def row_values(text: str, labels: list[str], per_share: bool, skip_if: tuple = (
             continue
         if skip_if and any(s in raw.lower() for s in skip_if):
             continue
+        src = raw
         line = _clean_label_line(raw)
         vals = numbers(line)
         # label may wrap onto the next line, numbers on that one
         if len(vals) < 2 and i + 1 < len(lines):
             vals = numbers(_clean_label_line(lines[i + 1]))
+            src = raw.strip() + " ⏎ " + lines[i + 1]
         vals = [v for v in vals if not v[2]]  # ignore % columns
         if per_share:
             vals = [v for v in vals if not (not v[1] and 1990 <= v[0] <= 2040)]  # years, not values
@@ -187,7 +197,22 @@ def row_values(text: str, labels: list[str], per_share: bool, skip_if: tuple = (
         else:
             vals = [v for v in vals if not (not v[1] and abs(v[0]) < 100 and len(vals) > 2)]  # note refs
         if len(vals) >= 2:
-            return vals[0][0], vals[1][0]
+            return Row(vals[0][0], vals[1][0], re.sub(r"\s{2,}", "  ", src.strip())[:220], i, [v[0] for v in vals][:8])
+    return None
+
+
+UNIT_PATS = [(re.compile(r"(?:rs|lkr)\.?\s*['’`]?\s*0{3}\b|in thousands|['’]000", re.I), 1e3),
+             (re.compile(r"(?:rs|lkr)\.?\s*(?:mn|million|mio)\b|in millions", re.I), 1e6),
+             (re.compile(r"(?:rs|lkr)\.?\s*(?:bn|billion)\b", re.I), 1e9)]
+
+
+def unit_before(text: str, idx: int) -> float | None:
+    """Money unit stated in the column headers above line `idx` (Rs.'000 / Rs. Mn / ...)."""
+    lines = text.splitlines()
+    for l in reversed(lines[max(0, idx - 80):idx + 1]):
+        for pat, mult in UNIT_PATS:
+            if pat.search(l):
+                return mult
     return None
 
 
@@ -229,28 +254,34 @@ DPS = [r"dividends? per (?:ordinary )?share", r"dps\b"]
 ROE = [r"return on (?:average )?(?:shareholders'?\s*)?equity", r"roe\b"]
 
 
+def _pair(row, key):
+    if not row:
+        return {}
+    return {key: row[0], key + "_prior": row[1], "src_" + key: row.src}
+
+
 def parse_interim(text: str) -> dict:
     eps = row_values(text, EPS, per_share=True, skip_if=("diluted",)) or row_values(text, EPS, per_share=True)
     rev = row_values(text, REVENUE, per_share=False)
     prof = row_values(text, PROFIT_ATTR, per_share=False) or row_values(text, PROFIT, per_share=False)
     nav = row_values(text, NAVPS, per_share=True)
-    return {
-        "months": period_months(text),
-        "eps": eps[0] if eps else None, "eps_prior": eps[1] if eps else None,
-        "revenue_growth": _growth(rev), "profit_growth": _growth(prof),
-        "profit_sign": None if not prof else (1 if prof[0] > 0 else -1),
-        "navps": nav[0] if nav else None,
-    }
+    out = {"months": period_months(text), "revenue_growth": _growth(rev), "profit_growth": _growth(prof),
+           **_pair(eps, "eps"), **_pair(rev, "revenue"), **_pair(prof, "profit")}
+    if prof:
+        out["unit"] = unit_before(text, prof.idx)
+    if nav:
+        out["navps"], out["src_navps"] = nav[0], nav.src
+    return out
 
 
 def parse_annual(text: str) -> dict:
     eps = row_values(text, EPS, per_share=True, skip_if=("diluted",)) or row_values(text, EPS, per_share=True)
     dps = row_values(text, DPS, per_share=True, skip_if=("paid", "proposed dividend of"))
     nav = row_values(text, NAVPS, per_share=True)
-    roe = row_values(text, ROE, per_share=True)
-    return {"eps": eps[0] if eps else None, "eps_prior": eps[1] if eps else None,
-            "dps": dps[0] if dps else None, "navps": nav[0] if nav else None,
-            "roe": roe[0] if roe else None}
+    out = {**_pair(eps, "eps"), **_pair(dps, "dps")}
+    if nav:
+        out["navps"], out["src_navps"] = nav[0], nav.src
+    return out
 
 
 def _growth(pair):

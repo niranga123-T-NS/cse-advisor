@@ -75,9 +75,29 @@ def build():
         f = p["advice"].get("fundamentals") or {}
         signals.append({"symbol": s, "name": names.get(s, ""), "watch": s in watch, "bars": len(df),
                         "bt_edge": None if not bt else round(bt["strategy_return_pct"] - bt["buy_hold_return_pct"], 1),
-                        "pe": f.get("pe"), "pbv": f.get("pbv"), "div_yield": f.get("div_yield"), **a})
+                        "pe": f.get("pe") if (f.get("verified") or {}).get("pe") else None,
+                        "pbv": f.get("pbv"), "div_yield": f.get("div_yield") if (f.get("verified") or {}).get("div_yield") else None,
+                        "data_ok": (f.get("check_summary") or {}).get("ok", 0),
+                        "data_warn": (f.get("check_summary") or {}).get("warn", 0),
+                        "data_fail": (f.get("check_summary") or {}).get("fail", 0),
+                        "verified_n": sum((f.get("verified") or {}).values()),
+                        "fields_n": len(f.get("verified") or {}), **a})
     signals.sort(key=lambda x: (not x["watch"], -x["score"]))
     _dump(OUT / "signals.json", signals)
+
+    # data-quality audit across all companies
+    with_f = [x for x in signals if x["fields_n"]]
+    audit = {"companies_with_reports": len(with_f),
+             "checks_passed": sum(x["data_ok"] for x in with_f), "warnings": sum(x["data_warn"] for x in with_f),
+             "failures": sum(x["data_fail"] for x in with_f),
+             "figures_verified": sum(x["verified_n"] for x in with_f), "figures_total": sum(x["fields_n"] for x in with_f),
+             "worst": sorted(({"symbol": x["symbol"], "fail": x["data_fail"], "warn": x["data_warn"],
+                               "verified": f"{x['verified_n']}/{x['fields_n']}"} for x in with_f),
+                             key=lambda r: (-r["fail"], -r["warn"]))[:40]}
+    _dump(OUT / "audit.json", audit)
+    if with_f:
+        print(f"Audit: {audit['figures_verified']}/{audit['figures_total']} figures verified; "
+              f"{audit['checks_passed']} checks passed, {audit['warnings']} warnings, {audit['failures']} failures")
 
     meta = {"updated": dt.datetime.now(collector.COLOMBO).strftime("%Y-%m-%d %H:%M"), "stocks": len(signals),
             "tracked": len(db.symbols_with_data(1)), "watchlist": sorted(watch), "rules": analysis.RULES}

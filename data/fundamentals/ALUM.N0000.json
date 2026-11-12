@@ -1,5 +1,253 @@
 {
- "annual": {},
+ "annual": {
+  "40797": {
+   "dps": 0.6,
+   "dps_prior": 0.53,
+   "end": "2022-03-31",
+   "eps": 1.92,
+   "eps_prior": 1.4,
+   "layout_dps": [
+    0,
+    2,
+    true
+   ],
+   "layout_eps": [
+    0,
+    2,
+    true
+   ],
+   "layout_navps": [
+    0,
+    2,
+    true
+   ],
+   "navps": 6.49,
+   "navps_prior": 4.97,
+   "ok": true,
+   "pages": 248,
+   "src_dps": "Dividend Per Share  Rs.  0.60  14.29  0.53  -",
+   "src_eps": "Earnings Per Share (Basic)  Rs.  1.92  36.97  1.40  0.10",
+   "src_navps": "Net Assets Per Share  Rs.  6.49  30.48  4.97  7.96",
+   "title": "Annual Report 2021/22",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1323_1654510162987.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.6,
+    14.29,
+    0.53
+   ],
+   "vals_eps": [
+    1.92,
+    36.97,
+    1.4,
+    0.1
+   ],
+   "vals_navps": [
+    6.49,
+    30.48,
+    4.97,
+    7.96
+   ],
+   "year_only": false
+  },
+  "43426": {
+   "dps": 0.25,
+   "dps_prior": 0.6,
+   "end": "2023-03-31",
+   "eps": -0.02,
+   "eps_prior": 1.92,
+   "layout_dps": [
+    0,
+    2,
+    true
+   ],
+   "layout_eps": [
+    0,
+    2,
+    true
+   ],
+   "layout_navps": [
+    0,
+    2,
+    true
+   ],
+   "navps": 6.03,
+   "navps_prior": 6.49,
+   "ok": true,
+   "pages": 252,
+   "src_dps": "Dividend Per Share  Rs.  0.25  (58.33)  0.60  0.53",
+   "src_eps": "Earnings Per Share (Basic)  Rs.  (0.02)  (100.89)  1.92  1.40",
+   "src_navps": "Net Assets Per Share  Rs.  6.03  (7.02)  6.49  4.97",
+   "title": "Annual Report 2022/23",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1323_1685698633732.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.25,
+    -58.33,
+    0.6,
+    0.53
+   ],
+   "vals_eps": [
+    -0.02,
+    -100.89,
+    1.92,
+    1.4
+   ],
+   "vals_navps": [
+    6.03,
+    -7.02,
+    6.49,
+    4.97
+   ],
+   "year_only": false
+  },
+  "45695": {
+   "dps": 11.0,
+   "dps_prior": 0.25,
+   "end": "2024-03-31",
+   "eps": 0.31,
+   "eps_prior": -0.02,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 6.36,
+   "navps_prior": 6.03,
+   "ok": true,
+   "pages": 240,
+   "src_dps": "Dividend Per Share  11  -  0.25",
+   "src_eps": "Earnings Per Share  0.31  (0.02)  1.92",
+   "src_navps": "Net Assets Per Share  6.36  6.03  6.49",
+   "title": "Annual Report 2023/24",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1323_1716973539009.pdf",
+   "v": 6,
+   "vals_dps": [
+    11.0,
+    0.25
+   ],
+   "vals_eps": [
+    0.31,
+    -0.02,
+    1.92
+   ],
+   "vals_navps": [
+    6.36,
+    6.03,
+    6.49
+   ],
+   "year_only": false
+  },
+  "48106": {
+   "dps": 0.4,
+   "dps_prior": 0.25,
+   "end": "2025-03-31",
+   "eps": 1.45,
+   "eps_prior": 0.31,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    2,
+    true
+   ],
+   "layout_navps": [
+    0,
+    2,
+    true
+   ],
+   "navps": 7.76,
+   "navps_prior": 6.36,
+   "ok": true,
+   "pages": 272,
+   "src_dps": "Dividend Per Share  LKR  0.40  -  -  0.25",
+   "src_eps": "Earnings Per Share (Basic)  LKR  1.45  366  0.31  (0.02)",
+   "src_navps": "Net Assets Per Share  LKR  7.76  22  6.36  6.03",
+   "title": "Annual Report 2024/25",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1323_1748600615099.25.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.4,
+    0.25
+   ],
+   "vals_eps": [
+    1.45,
+    366.0,
+    0.31,
+    -0.02
+   ],
+   "vals_navps": [
+    7.76,
+    22.0,
+    6.36,
+    6.03
+   ],
+   "year_only": false
+  },
+  "51761": {
+   "dps": 0.47,
+   "dps_prior": 0.4,
+   "end": "2026-03-31",
+   "eps": 1.44,
+   "eps_prior": 1.45,
+   "layout_dps": [
+    0,
+    2,
+    true
+   ],
+   "layout_eps": [
+    0,
+    2,
+    true
+   ],
+   "layout_navps": [
+    0,
+    2,
+    true
+   ],
+   "navps": 8.74,
+   "navps_prior": 7.76,
+   "ok": true,
+   "pages": 276,
+   "src_dps": "Dividend per Share  LKR  0.47  18  0.40  -",
+   "src_eps": "Earnings per Share (Basic)  LKR  1.44  (0.4)  1.45  0.31",
+   "src_navps": "Net Assets per Share  LKR  8.74  13  7.76  6.36",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1323_1780572222177.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.47,
+    18.0,
+    0.4
+   ],
+   "vals_eps": [
+    1.44,
+    -0.4,
+    1.45,
+    0.31
+   ],
+   "vals_navps": [
+    8.74,
+    13.0,
+    7.76,
+    6.36
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

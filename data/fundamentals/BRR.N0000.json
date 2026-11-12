@@ -1,5 +1,111 @@
 {
- "annual": {},
+ "annual": {
+  "41101": {
+   "end": "2022-03-31",
+   "eps": 0.02,
+   "eps_prior": -0.43,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 74,
+   "src_eps": "Basic Earnings/(Loss) per share  0.02  (0.43)",
+   "title": "Annual Report 2021/2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1322_1659069787669.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.02,
+    -0.43
+   ],
+   "year_only": false
+  },
+  "43677": {
+   "end": "2023-03-31",
+   "eps": 0.31,
+   "eps_prior": 0.02,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 74,
+   "src_eps": "Basic Earnings/(Loss) per share  0.31  0.02",
+   "title": "Annual Report 2022/2023",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1322_1690974569697.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.31,
+    0.02
+   ],
+   "year_only": false
+  },
+  "46199": {
+   "end": "2024-03-31",
+   "eps": 0.41,
+   "eps_prior": 0.31,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 69,
+   "src_eps": "Basic Earnings/(Loss) per share  0.41  0.31",
+   "title": "Annual Report 2023/2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1322_1722596710065.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.41,
+    0.31
+   ],
+   "year_only": false
+  },
+  "48379": {
+   "end": "2025-03-31",
+   "eps": 0.4,
+   "eps_prior": 0.41,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 81,
+   "src_eps": "Basic Earnings/(Loss) per share  0.40  0.41",
+   "title": "Annual Report 2024/2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1322_1752746331343.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.4,
+    0.41
+   ],
+   "year_only": false
+  },
+  "52035": {
+   "end": "2026-03-31",
+   "eps": 0.29,
+   "eps_prior": 0.4,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 81,
+   "src_eps": "Basic Earnings/(Loss) per share  0.29  0.40",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1322_1784518977107.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.29,
+    0.4
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

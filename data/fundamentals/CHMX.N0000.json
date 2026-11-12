@@ -1,5 +1,227 @@
 {
- "annual": {},
+ "annual": {
+  "40782": {
+   "dps": 1.0,
+   "dps_prior": 2.0,
+   "end": "2022-03-31",
+   "eps": 6.32,
+   "eps_prior": 2.87,
+   "layout_dps": [
+    0,
+    1,
+    true
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 156.3,
+   "navps_prior": 151.57,
+   "ok": true,
+   "pages": 100,
+   "src_dps": "Dividend per Share  Rs.  1.00  2.00  (50.00)  1.00  2.00  (50.00)",
+   "src_eps": "Earnings per Share  Rs.  6.32  2.87  120.21  7.12  1.50  374.67",
+   "src_navps": "Net Assets per Share  Rs.  156.30  151.57  3.12  160.94  156.40  2.90",
+   "title": "Annual Report of Chemanex PLC - 2021/22",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/492_1654256006915.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.0,
+    2.0,
+    -50.0,
+    1.0,
+    2.0,
+    -50.0
+   ],
+   "vals_eps": [
+    6.32,
+    2.87,
+    120.21,
+    7.12,
+    1.5,
+    374.67
+   ],
+   "vals_navps": [
+    156.3,
+    151.57,
+    3.12,
+    160.94,
+    156.4,
+    2.9
+   ],
+   "year_only": false
+  },
+  "43444": {
+   "dps": 2.0,
+   "dps_prior": 1.0,
+   "end": "2023-03-31",
+   "eps": 10.67,
+   "eps_prior": 6.32,
+   "layout_dps": [
+    0,
+    1,
+    true
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 164.73,
+   "navps_prior": 156.3,
+   "ok": true,
+   "pages": 104,
+   "src_dps": "Dividend per Share  Rs.  2.00  1.00  100.00  2.00  1.00  100.00",
+   "src_eps": "Earnings per Share  Rs.  10.67  6.32  68.77  11.31  7.12  58.80",
+   "src_navps": "Net Assets per Share  Rs.  164.73  156.30  5.40  170.05  160.94  5.66",
+   "title": "Annual Report 2022/23",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/492_1685966797121.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.0,
+    1.0,
+    100.0,
+    2.0,
+    1.0,
+    100.0
+   ],
+   "vals_eps": [
+    10.67,
+    6.32,
+    68.77,
+    11.31,
+    7.12,
+    58.8
+   ],
+   "vals_navps": [
+    164.73,
+    156.3,
+    5.4,
+    170.05,
+    160.94,
+    5.66
+   ],
+   "year_only": false
+  },
+  "45884": {
+   "dps": 2.5,
+   "dps_prior": 2.0,
+   "end": "2024-03-31",
+   "eps": 7.11,
+   "eps_prior": 10.67,
+   "layout_dps": [
+    0,
+    1,
+    true
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 225.58,
+   "navps_prior": 164.73,
+   "ok": true,
+   "pages": 112,
+   "src_dps": "Dividend per Share  Rs.  2.50  2.00  25.00  2.50  2.00  25.00",
+   "src_eps": "Earnings per Share  Rs.  7.11  10.67  (33.33)  7.09  11.31  (37.28)",
+   "src_navps": "Net Assets per Share  Rs.  225.58  164.73  36.94  231.01  170.05  35.84",
+   "title": "Annual Report 2023/24",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/492_1717161411555.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.5,
+    2.0,
+    25.0,
+    2.5,
+    2.0,
+    25.0
+   ],
+   "vals_eps": [
+    7.11,
+    10.67,
+    -33.33,
+    7.09,
+    11.31,
+    -37.28
+   ],
+   "vals_navps": [
+    225.58,
+    164.73,
+    36.94,
+    231.01,
+    170.05,
+    35.84
+   ],
+   "year_only": false
+  },
+  "48305": {
+   "end": "2025-03-31",
+   "ok": true,
+   "pages": 7,
+   "title": "Further Announcement to the Notice of Meeting - Annual Report 2024/25",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/492_1750244778515.pdf",
+   "v": 6,
+   "year_only": false
+  },
+  "51787": {
+   "end": "2026-03-31",
+   "eps": 9.51,
+   "eps_prior": 7.48,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 254.08,
+   "navps_prior": 254.62,
+   "ok": true,
+   "pages": 116,
+   "src_eps": "Earnings per Share  Rs.  9.51  7.48  27.21  10.11  7.55  33.82",
+   "src_navps": "Net Assets per Share  Rs.  254.08  254.62  (0.22)  260.40  260.30  0.04",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/492_1780654665589.pdf",
+   "v": 6,
+   "vals_eps": [
+    9.51,
+    7.48,
+    27.21,
+    10.11,
+    7.55,
+    33.82
+   ],
+   "vals_navps": [
+    254.08,
+    254.62,
+    -0.22,
+    260.4,
+    260.3,
+    0.04
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

@@ -1,5 +1,193 @@
 {
- "annual": {},
+ "annual": {
+  "41132": {
+   "dps": 0.3,
+   "dps_prior": 0.14,
+   "end": "2022-03-31",
+   "eps": 1.93,
+   "eps_prior": 0.96,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 116,
+   "src_dps": "Dividends per Share (LKR)  0.30  0.14  0.09  0.12  -  -",
+   "src_eps": "Earnings Per Share \u23ce - Basic, profit for the year attributable to  10  1.93  0.96  1.63  1.05",
+   "title": "Annual report for the year ended 31st March 2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2652_1659437940666.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.3,
+    0.14,
+    0.09,
+    0.12
+   ],
+   "vals_eps": [
+    1.93,
+    0.96,
+    1.63,
+    1.05
+   ],
+   "year_only": false
+  },
+  "43643": {
+   "dps": 0.35,
+   "dps_prior": 0.3,
+   "end": "2023-03-31",
+   "eps": 0.68,
+   "eps_prior": 1.93,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 116,
+   "src_dps": "Dividends per share (LKR)  0.35  0.30  0.14  0.09  0.12  -",
+   "src_eps": "Basic earnings per share  0.68  1.93  0.32  1.63",
+   "title": "Annual Report 2022/2023",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2652_1690284346080.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.35,
+    0.3,
+    0.14,
+    0.09,
+    0.12
+   ],
+   "vals_eps": [
+    0.68,
+    1.93,
+    0.32,
+    1.63
+   ],
+   "year_only": false
+  },
+  "46111": {
+   "dps": 1.25,
+   "dps_prior": 0.35,
+   "end": "2024-03-31",
+   "eps": -1.06,
+   "eps_prior": 0.68,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 136,
+   "src_dps": "Dividends per Share (LKR)  1.25  0.35  0.30  0.14  0.09  0.12",
+   "src_eps": "Basic earnings per share  (1.06)  0.68  (1.11)  0.32",
+   "title": "Annual Report 2023/2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2652_1721820978525.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.25,
+    0.35,
+    0.3,
+    0.14,
+    0.09,
+    0.12
+   ],
+   "vals_eps": [
+    -1.06,
+    0.68,
+    -1.11,
+    0.32
+   ],
+   "year_only": false
+  },
+  "48414": {
+   "dps": 1.25,
+   "dps_prior": 0.35,
+   "end": "2025-03-31",
+   "eps": -1.01,
+   "eps_prior": -1.06,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 140,
+   "src_dps": "Dividends per Share (LKR)  -  1.25  0.35  0.30  0.14  0.09",
+   "src_eps": "Basic earnings per share  (1.01)  (1.06)  (0.64)  (1.11)",
+   "title": "Annual Report 2024/2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2652_1753270691492.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.25,
+    0.35,
+    0.3,
+    0.14,
+    0.09
+   ],
+   "vals_eps": [
+    -1.01,
+    -1.06,
+    -0.64,
+    -1.11
+   ],
+   "year_only": false
+  },
+  "52063": {
+   "dps": 1.25,
+   "dps_prior": 0.35,
+   "end": "2026-03-31",
+   "eps": 0.14,
+   "eps_prior": 541.0,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 144,
+   "src_dps": "Dividends Per Share  -  -  1.25  0.35  0.30  0.14",
+   "src_eps": "Earnings per share  Return on equity  Net cash \u23ce  (LKR 0.14)  (3.7%)  LKR 541Mn",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2652_1784803856128.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.25,
+    0.35,
+    0.3,
+    0.14
+   ],
+   "vals_eps": [
+    0.14,
+    541.0
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

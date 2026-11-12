@@ -1,0 +1,836 @@
+{
+ "annual": {},
+ "listed_at": "2026-11-12",
+ "listing": {
+  "annual": [
+   {
+    "amended": false,
+    "end": "2026-03-31",
+    "id": "53030",
+    "title": "Annual Report as at 31st March 2026",
+    "uploaded": 1788200465995,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1788200465995.PDF",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-03-31",
+    "id": "48826",
+    "title": "Annual Report 2024/25",
+    "uploaded": 1755652569338,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1755652569338.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2024-03-31",
+    "id": "46507",
+    "title": "Annual Report 2023/2024",
+    "uploaded": 1724325730545,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1724325730545.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2023-03-31",
+    "id": "44040",
+    "title": "Annual Report 2022/2023",
+    "uploaded": 1693277344401,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1693277344401.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2022-03-31",
+    "id": "41514",
+    "title": "Annual Report 2021/2022",
+    "uploaded": 1661851356971,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1661851356971.pdf",
+    "year_only": false
+   }
+  ],
+  "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53376",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1793795567428,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1793795567428.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2026-06-30",
+    "id": "52742",
+    "title": "Interim Financial Statements for the Quarter ended 30th June 2026",
+    "uploaded": 1786931840868,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1786931840868.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2026-03-31",
+    "id": "51196",
+    "title": "Interim Financial Statements for the Quarter ended 31st March 2026",
+    "uploaded": 1779190523308,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1779190523308.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-12-31",
+    "id": "50473",
+    "title": "Interim Financial Statements for the Quarter ended 31st December 2025",
+    "uploaded": 1770982038604,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1770982038604.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-09-30",
+    "id": "49359",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2025",
+    "uploaded": 1762861457926,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1762861457926.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2024-12-31",
+    "id": "47310",
+    "title": "Interim Financial Statements as at 31-12-2024",
+    "uploaded": 1739264505557,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1739264505557.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2023-12-31",
+    "id": "45189",
+    "title": "Interim Financial Statements as at 31-12-2023",
+    "uploaded": 1708053015755,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1708053015755.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2022-12-31",
+    "id": "42577",
+    "title": "Interim Financial Statements as at 31-12-2022",
+    "uploaded": 1676019728967,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1676019728967.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2021-12-31",
+    "id": "39978",
+    "title": "Interim Financial Statements as at 31-12-2021",
+    "uploaded": 1644916113443,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1644916113443.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2020-12-31",
+    "id": "37344",
+    "title": "Interim Financial Statements as at 31-12-2020",
+    "uploaded": 1613383147157,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1613383147157.pdf",
+    "year_only": true
+   }
+  ]
+ },
+ "quarterly": {
+  "37344": {
+   "end": "2020-12-31",
+   "eps": -0.39,
+   "eps_prior": -0.08,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 3.29,
+   "navps_prior": 3.67,
+   "ok": true,
+   "pages": 13,
+   "profit": -495229858.0,
+   "profit_growth": null,
+   "profit_prior": 63336907.0,
+   "revenue": 4483107668.0,
+   "revenue_growth": -13.5,
+   "revenue_prior": 5183218303.0,
+   "src_eps": "Basic Earnings per Ordinary Share (Rs.)  (0.39)  (0.08)  (0.06)  (0.20)",
+   "src_navps": "Net Assets Per Share (Rs.)  3.29  3.67  5.78  5.83",
+   "src_profit": "Equity Holders of the Company  (495,229,858)  63,336,907  (67,286,473)  (50,791,431)",
+   "src_revenue": "Revenue  4,483,107,668  5,183,218,303  -14%  60,338,041  76,641,692  -21%",
+   "title": "Interim Financial Statements as at 31-12-2020",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1613383147157.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.39,
+    -0.08,
+    -0.06,
+    -0.2
+   ],
+   "vals_navps": [
+    3.29,
+    3.67,
+    5.78,
+    5.83
+   ],
+   "vals_profit": [
+    -495229858.0,
+    63336907.0,
+    -67286473.0,
+    -50791431.0
+   ],
+   "vals_revenue": [
+    4483107668.0,
+    5183218303.0,
+    60338041.0,
+    76641692.0
+   ],
+   "year_only": true
+  },
+  "39978": {
+   "end": "2021-12-31",
+   "eps": 0.47,
+   "eps_prior": -0.49,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": null,
+   "navps": 4.35,
+   "navps_prior": 1.98,
+   "ok": true,
+   "pages": 14,
+   "profit": 470398.0,
+   "profit_growth": null,
+   "profit_prior": -495230.0,
+   "revenue": 4290910.0,
+   "revenue_growth": 67.3,
+   "revenue_prior": 2565489.0,
+   "src_eps": "Earnings/(Loss) per share \u23ce Basic  0.47  (0.49)  0.00  (0.07)",
+   "src_navps": "Net Assets Per Share (Rs.)  4.35  1.98  3.93  4.08",
+   "src_profit": "Equity Holders of the Company  470,398  (495,230)  3,129  (67,286)",
+   "src_revenue": "Revenue  4,290,910  2,565,489  67%  2,976  60,338  -95%",
+   "title": "Interim Financial Statements as at 31-12-2021",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1644916113443.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.47,
+    -0.49,
+    0.0,
+    -0.07
+   ],
+   "vals_navps": [
+    4.35,
+    1.98,
+    3.93,
+    4.08
+   ],
+   "vals_profit": [
+    470398.0,
+    -495230.0,
+    3129.0,
+    -67286.0
+   ],
+   "vals_revenue": [
+    4290910.0,
+    2565489.0,
+    2976.0,
+    60338.0
+   ],
+   "year_only": true
+  },
+  "42577": {
+   "end": "2022-12-31",
+   "eps": -0.12,
+   "eps_prior": 0.48,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": null,
+   "navps": 3.51,
+   "navps_prior": 3.8,
+   "ok": true,
+   "pages": 14,
+   "profit": -116898.0,
+   "profit_growth": null,
+   "profit_prior": 476360.0,
+   "revenue": 5649325.0,
+   "revenue_growth": 31.7,
+   "revenue_prior": 4290910.0,
+   "src_eps": "Earnings/(Loss) per share \u23ce Basic  (0.12)  0.48  (0.26)  0.00",
+   "src_navps": "Net Assets Per Share (Rs.)  3.51  3.80  5.31  5.06",
+   "src_profit": "Equity Holders of the Company  (116,898)  476,360  (257,787)  3,129",
+   "src_revenue": "Revenue  5,649,325  4,290,910  32%  44,075  2,976  1381%",
+   "title": "Interim Financial Statements as at 31-12-2022",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1676019728967.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.12,
+    0.48,
+    -0.26,
+    0.0
+   ],
+   "vals_navps": [
+    3.51,
+    3.8,
+    5.31,
+    5.06
+   ],
+   "vals_profit": [
+    -116898.0,
+    476360.0,
+    -257787.0,
+    3129.0
+   ],
+   "vals_revenue": [
+    5649325.0,
+    4290910.0,
+    44075.0,
+    2976.0
+   ],
+   "year_only": true
+  },
+  "45189": {
+   "end": "2023-12-31",
+   "eps": 0.12,
+   "eps_prior": -0.12,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": null,
+   "navps": 4.89,
+   "navps_prior": 3.62,
+   "ok": true,
+   "pages": 14,
+   "profit": 125012.0,
+   "profit_growth": null,
+   "profit_prior": -116898.0,
+   "revenue": 3378072.0,
+   "revenue_growth": -40.2,
+   "revenue_prior": 5649325.0,
+   "src_eps": "Earnings/(Loss) per share \u23ce Basic  0.12  (0.12)  0.36  (0.26)",
+   "src_navps": "Net Assets Per Share (Rs.)  4.89  3.62  4.95  4.55",
+   "src_profit": "Equity Holders of the Company  125,012  (116,898)  356,161  (257,787)",
+   "src_revenue": "Revenue  3,378,072  5,649,325  -40%  48,696  44,075  10%",
+   "title": "Interim Financial Statements as at 31-12-2023",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1708053015755.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.12,
+    -0.12,
+    0.36,
+    -0.26
+   ],
+   "vals_navps": [
+    4.89,
+    3.62,
+    4.95,
+    4.55
+   ],
+   "vals_profit": [
+    125012.0,
+    -116898.0,
+    356161.0,
+    -257787.0
+   ],
+   "vals_revenue": [
+    3378072.0,
+    5649325.0,
+    48696.0,
+    44075.0
+   ],
+   "year_only": true
+  },
+  "47310": {
+   "end": "2024-12-31",
+   "eps": 1.33,
+   "eps_prior": 0.12,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": null,
+   "navps": 6.58,
+   "navps_prior": 5.31,
+   "ok": true,
+   "pages": 13,
+   "profit": 1335943.0,
+   "profit_growth": 968.7,
+   "profit_prior": 125012.0,
+   "revenue": 3883368.0,
+   "revenue_growth": 15.0,
+   "revenue_prior": 3378072.0,
+   "src_eps": "Earnings/(Loss) per share \u23ce Basic  1.33  0.12  (0.06)  0.36",
+   "src_navps": "Net Assets Per Share (Rs.)  6.58  5.31  4.59  4.82",
+   "src_profit": "Equity Holders of the Company  1,335,943  125,012  (61,003)  356,161",
+   "src_revenue": "Revenue  3,883,368  3,378,072  15%  16,505  48,696  -66%",
+   "title": "Interim Financial Statements as at 31-12-2024",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1739264505557.pdf",
+   "v": 6,
+   "vals_eps": [
+    1.33,
+    0.12,
+    -0.06,
+    0.36
+   ],
+   "vals_navps": [
+    6.58,
+    5.31,
+    4.59,
+    4.82
+   ],
+   "vals_profit": [
+    1335943.0,
+    125012.0,
+    -61003.0,
+    356161.0
+   ],
+   "vals_revenue": [
+    3883368.0,
+    3378072.0,
+    16505.0,
+    48696.0
+   ],
+   "year_only": true
+  },
+  "49359": {
+   "end": "2025-09-30",
+   "eps": 3.12,
+   "eps_prior": -0.01,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": null,
+   "navps": 10.1,
+   "navps_prior": 6.37,
+   "ok": true,
+   "pages": 13,
+   "profit": 3132413.0,
+   "profit_growth": null,
+   "profit_prior": -10763.0,
+   "revenue": 4423074.0,
+   "revenue_growth": -8.1,
+   "revenue_prior": 4813610.0,
+   "src_eps": "Earnings/(Loss) per share \u23ce Basic  3.12  (0.01)  0.60  (0.08)",
+   "src_navps": "Net Assets Per Share (Rs.)  10.10  6.37  6.20  5.54",
+   "src_profit": "Equity Holders of the Company  3,132,413  (10,763)  605,090  (75,686)",
+   "src_revenue": "Revenue  4,423,074  4,813,610  -8%  -  1,643  -",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2025",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1762861457926.pdf",
+   "v": 6,
+   "vals_eps": [
+    3.12,
+    -0.01,
+    0.6,
+    -0.08
+   ],
+   "vals_navps": [
+    10.1,
+    6.37,
+    6.2,
+    5.54
+   ],
+   "vals_profit": [
+    3132413.0,
+    -10763.0,
+    605090.0,
+    -75686.0
+   ],
+   "vals_revenue": [
+    4423074.0,
+    4813610.0,
+    1643.0
+   ],
+   "year_only": false
+  },
+  "50473": {
+   "end": "2025-12-31",
+   "eps": -0.88,
+   "eps_prior": 1.33,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 9.21,
+   "navps_prior": 6.37,
+   "ok": true,
+   "pages": 15,
+   "profit": -886787.0,
+   "profit_growth": null,
+   "profit_prior": 1335943.0,
+   "revenue": 4008463.0,
+   "revenue_growth": 3.2,
+   "revenue_prior": 3883368.0,
+   "src_eps": "Earnings/(Loss) per share \u23ce Basic  (0.88)  1.33  3.83  (0.06)",
+   "src_navps": "Net Assets Per Share (Rs.)  9.21  6.37  10.03  5.54",
+   "src_profit": "Equity Holders of the Company  (886,787)  1,335,943  3,845,157  (61,003)",
+   "src_revenue": "Revenue  4,008,463  3,883,368  3%  -  16,505  -100%",
+   "title": "Interim Financial Statements for the Quarter ended 31st December 2025",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1770982038604.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.88,
+    1.33,
+    3.83,
+    -0.06
+   ],
+   "vals_navps": [
+    9.21,
+    6.37,
+    10.03,
+    5.54
+   ],
+   "vals_profit": [
+    -886787.0,
+    1335943.0,
+    3845157.0,
+    -61003.0
+   ],
+   "vals_revenue": [
+    4008463.0,
+    3883368.0,
+    16505.0
+   ],
+   "year_only": false
+  },
+  "51196": {
+   "end": "2026-03-31",
+   "eps": -0.38,
+   "eps_prior": -0.31,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 8.46,
+   "navps_prior": 6.37,
+   "ok": true,
+   "pages": 15,
+   "profit": -380472.0,
+   "profit_growth": null,
+   "profit_prior": -315740.0,
+   "revenue": 6975162.0,
+   "revenue_growth": 23.8,
+   "revenue_prior": 5631961.0,
+   "src_eps": "Earnings/(Loss) per share \u23ce Basic  (0.38)  (0.31)  (0.31)  0.95",
+   "src_navps": "Net Assets Per Share (Rs.)  8.46  6.37  9.40  5.54",
+   "src_profit": "Equity Holders of the Company  (380,472)  (315,740)  (309,843)  951,174",
+   "src_revenue": "Revenue  6,975,162  5,631,961  24%  766  329  132%",
+   "title": "Interim Financial Statements for the Quarter ended 31st March 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1779190523308.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.38,
+    -0.31,
+    -0.31,
+    0.95
+   ],
+   "vals_navps": [
+    8.46,
+    6.37,
+    9.4,
+    5.54
+   ],
+   "vals_profit": [
+    -380472.0,
+    -315740.0,
+    -309843.0,
+    951174.0
+   ],
+   "vals_revenue": [
+    6975162.0,
+    5631961.0,
+    766.0,
+    329.0
+   ],
+   "year_only": false
+  },
+  "52742": {
+   "end": "2026-06-30",
+   "eps": -0.39,
+   "eps_prior": 0.6,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": null,
+   "navps": 8.08,
+   "navps_prior": 8.47,
+   "ok": true,
+   "pages": 11,
+   "profit": -395130.0,
+   "profit_growth": null,
+   "profit_prior": 602889.0,
+   "revenue": 4761585.0,
+   "revenue_growth": 21.5,
+   "revenue_prior": 3919061.0,
+   "src_eps": "Earnings/(Loss) per share \u23ce Basic  (0.39)  0.60  (0.02)  0.05",
+   "src_navps": "Net Assets Per Share (Rs.)  8.08  8.47  9.28  9.30",
+   "src_profit": "Equity Holders of the Company  (395,130)  602,889  (25,003)  54,123",
+   "src_revenue": "Revenue  4,761,585  3,919,061  21%  10,656  -  -",
+   "title": "Interim Financial Statements for the Quarter ended 30th June 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1786931840868.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.39,
+    0.6,
+    -0.02,
+    0.05
+   ],
+   "vals_navps": [
+    8.08,
+    8.47,
+    9.28,
+    9.3
+   ],
+   "vals_profit": [
+    -395130.0,
+    602889.0,
+    -25003.0,
+    54123.0
+   ],
+   "vals_revenue": [
+    4761585.0,
+    3919061.0,
+    10656.0
+   ],
+   "year_only": false
+  },
+  "53376": {
+   "end": "2026-09-30",
+   "eps": -1.46,
+   "eps_prior": 3.06,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 6.61,
+   "navps_prior": 8.47,
+   "ok": true,
+   "pages": 13,
+   "profit": -1497566.0,
+   "profit_growth": null,
+   "profit_prior": 3132413.0,
+   "revenue": 7726674.0,
+   "revenue_growth": 74.7,
+   "revenue_prior": 4423074.0,
+   "src_eps": "Earnings/(Loss) per share \u23ce Basic  (1.46)  3.06  (0.92)  0.59",
+   "src_navps": "Net Assets Per Share (Rs.)  6.61  8.47  8.35  9.30",
+   "src_profit": "Equity Holders of the Company  (1,497,566)  3,132,413  (945,531)  605,090",
+   "src_revenue": "Revenue  7,726,674  4,423,074  75%  1,581  -  -",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1793795567428.pdf",
+   "v": 6,
+   "vals_eps": [
+    -1.46,
+    3.06,
+    -0.92,
+    0.59
+   ],
+   "vals_navps": [
+    6.61,
+    8.47,
+    8.35,
+    9.3
+   ],
+   "vals_profit": [
+    -1497566.0,
+    3132413.0,
+    -945531.0,
+    605090.0
+   ],
+   "vals_revenue": [
+    7726674.0,
+    4423074.0,
+    1581.0
+   ],
+   "year_only": false
+  }
+ },
+ "shares": 1022352863.0,
+ "shares_other_class": 0.0,
+ "symbol": "TAP.N0000"
+}

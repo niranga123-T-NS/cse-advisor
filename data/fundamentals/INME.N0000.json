@@ -1,5 +1,39 @@
 {
- "annual": {},
+ "annual": {
+  "52195": {
+   "end": "2026-03-31",
+   "eps": 38.32,
+   "eps_prior": 5.96,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 107.46,
+   "navps_prior": 69.7,
+   "ok": true,
+   "pages": 116,
+   "src_eps": "Basic EPS (Rs.)  38.32  5.96  \u2022 Continued investment in proprietary software",
+   "src_navps": "Net Assets per share (Rs.)  107.46  69.70",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/3421_1785753204121.pdf",
+   "v": 6,
+   "vals_eps": [
+    38.32,
+    5.96
+   ],
+   "vals_navps": [
+    107.46,
+    69.7
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

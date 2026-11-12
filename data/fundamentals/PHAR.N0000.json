@@ -1,5 +1,160 @@
 {
- "annual": {},
+ "annual": {
+  "41531": {
+   "dps": 50.0,
+   "dps_prior": 50.0,
+   "end": "2022-03-31",
+   "eps": 25.62,
+   "eps_prior": -240.16,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 80,
+   "src_dps": "DPS  -  50  -  50",
+   "src_eps": "EPS  25.62  (240.16)  23.16  (242.33)",
+   "title": "Annual Report 2021/22",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/744_1661937722946.pdf",
+   "v": 6,
+   "vals_dps": [
+    50.0,
+    50.0
+   ],
+   "vals_eps": [
+    25.62,
+    -240.16,
+    23.16,
+    -242.33
+   ],
+   "year_only": false
+  },
+  "44042": {
+   "end": "2023-03-31",
+   "eps": 67.63,
+   "eps_prior": 25.62,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 78,
+   "src_eps": "EPS  67.63  25.62  32.17  23.16",
+   "title": "Annual Report 2022/23",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/744_1693278020403.pdf",
+   "v": 6,
+   "vals_eps": [
+    67.63,
+    25.62,
+    32.17,
+    23.16
+   ],
+   "year_only": false
+  },
+  "46509": {
+   "end": "2024-03-31",
+   "eps": 16.47,
+   "eps_prior": 3.38,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 1588.0,
+   "navps_prior": 91.0,
+   "ok": true,
+   "pages": 80,
+   "src_eps": "EPS  16.47  3.38  14.10  1.61",
+   "src_navps": "NAV Per Share  96  1,588  91  1,539",
+   "title": "Annual Report 2023/24",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/744_1724326592065.pdf",
+   "v": 6,
+   "vals_eps": [
+    16.47,
+    3.38,
+    14.1,
+    1.61
+   ],
+   "vals_navps": [
+    1588.0,
+    91.0,
+    1539.0
+   ],
+   "year_only": false
+  },
+  "48825": {
+   "end": "2025-03-31",
+   "eps": 10.16,
+   "eps_prior": 16.47,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 96,
+   "src_eps": "EPS  10.16  16.47  9.59  14.10",
+   "title": "Annual Report 2024/25",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/744_1755652134999.pdf",
+   "v": 6,
+   "vals_eps": [
+    10.16,
+    16.47,
+    9.59,
+    14.1
+   ],
+   "year_only": false
+  },
+  "53019": {
+   "end": "2026-03-31",
+   "eps": 17.08,
+   "eps_prior": 10.16,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 123.14,
+   "navps_prior": 106.05,
+   "ok": true,
+   "pages": 104,
+   "src_eps": "EPS  17.08  10.16  14.02  9.59",
+   "src_navps": "NAV Per Share  123.14  106.05  114.66  100.64",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/744_1788225814071.pdf",
+   "v": 6,
+   "vals_eps": [
+    17.08,
+    10.16,
+    14.02,
+    9.59
+   ],
+   "vals_navps": [
+    123.14,
+    106.05,
+    114.66,
+    100.64
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

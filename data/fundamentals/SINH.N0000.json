@@ -1,5 +1,113 @@
 {
- "annual": {},
+ "annual": {
+  "40996": {
+   "end": "2022-03-31",
+   "ok": true,
+   "pages": 114,
+   "title": "Annual Report 2021/22",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1444_1657164148268.pdf",
+   "v": 6,
+   "year_only": false
+  },
+  "43601": {
+   "end": "2023-03-31",
+   "ok": true,
+   "pages": 114,
+   "title": "Annual Report for the year ended 31 March 2023",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1444_1689160963734.pdf",
+   "v": 6,
+   "year_only": false
+  },
+  "46163": {
+   "end": "2024-03-31",
+   "eps": -0.23,
+   "eps_prior": -0.25,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 1.85,
+   "navps_prior": 1.17,
+   "ok": true,
+   "pages": 128,
+   "src_eps": "Earnings Per Share \u23ce  (Rs.)  (0.23)  (0.25)  (0.20)  (0.12)  (0.03)  (0.01)  0.01  0.04  (0.03)  0.06",
+   "src_navps": "Net Assets Value per Share (Rs)  1.85  1.17",
+   "title": "Annual Report 2023/24",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1444_1722396220194.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.23,
+    -0.25,
+    -0.2,
+    -0.12,
+    -0.03,
+    -0.01,
+    0.01,
+    0.04,
+    -0.03,
+    0.06
+   ],
+   "vals_navps": [
+    1.85,
+    1.17
+   ],
+   "year_only": false
+  },
+  "48245": {
+   "end": "2025-03-31",
+   "eps": 0.01,
+   "eps_prior": 0.04,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 1.1,
+   "navps_prior": 1.15,
+   "ok": true,
+   "pages": 162,
+   "src_eps": "Earnings Per Share - EPS (Rs.)  0.01  0.04  (0.03)  0.06  0.27",
+   "src_navps": "Net Assets Per Share - NAPS (Rs.)  1.10  1.15  1.17  1.85  2.12",
+   "title": "Annual Report for the year ended 31 March 2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1444_1749128928064.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.01,
+    0.04,
+    -0.03,
+    0.06,
+    0.27
+   ],
+   "vals_navps": [
+    1.1,
+    1.15,
+    1.17,
+    1.85,
+    2.12
+   ],
+   "year_only": false
+  },
+  "51812": {
+   "end": "2026-03-31",
+   "ok": true,
+   "pages": 180,
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1444_1780663722905.pdf",
+   "v": 6,
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

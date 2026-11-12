@@ -1,5 +1,246 @@
 {
- "annual": {},
+ "annual": {
+  "41587": {
+   "dps": 1.0,
+   "dps_prior": 1.0,
+   "end": "2022-03-31",
+   "eps": -0.79,
+   "eps_prior": -1.05,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 88.96,
+   "navps_prior": 66.54,
+   "ok": true,
+   "pages": 84,
+   "src_dps": "Dividend per share (Rs.)  Nil  Nil  Nil  Nil  1.00  1.00  1.50  1.00  Nil  1.50",
+   "src_eps": "Earnings per Share  Rs.  (0.79)  (1.05)",
+   "src_navps": "Net Assets per Share  Rs.  88.96  66.54",
+   "title": "Annual Report 2021/2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/603_1662005091513.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.0,
+    1.0,
+    1.5,
+    1.0
+   ],
+   "vals_eps": [
+    -0.79,
+    -1.05
+   ],
+   "vals_navps": [
+    88.96,
+    66.54
+   ],
+   "year_only": false
+  },
+  "44127": {
+   "dps": 1.0,
+   "dps_prior": 1.0,
+   "end": "2023-03-31",
+   "eps": -2.02,
+   "eps_prior": -0.79,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 48.84,
+   "navps_prior": 88.96,
+   "ok": true,
+   "pages": 86,
+   "src_dps": "Dividend per share (Rs.)  Nil  Nil  Nil  Nil  Nil  1.00  1.00  1.50  1.00  Nil",
+   "src_eps": "Earnings / (loss) per share (Rs.)  (2.02)  (0.79)  (1.05)  1.41  4.65  4.71  3.17  6.58  4.93  3.50",
+   "src_navps": "Net Assets per Share  Rs.  48.84  88.96",
+   "title": "Annual Report 2022/2023",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/603_1693532412782.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.0,
+    1.0,
+    1.5,
+    1.0
+   ],
+   "vals_eps": [
+    -2.02,
+    -0.79,
+    -1.05,
+    1.41,
+    4.65,
+    4.71,
+    3.17,
+    6.58,
+    4.93,
+    3.5
+   ],
+   "vals_navps": [
+    48.84,
+    88.96
+   ],
+   "year_only": false
+  },
+  "46611": {
+   "dps": 1.0,
+   "dps_prior": 1.0,
+   "end": "2024-03-31",
+   "eps": 5.06,
+   "eps_prior": -1.63,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 53.83,
+   "navps_prior": 48.84,
+   "ok": true,
+   "pages": 98,
+   "src_dps": "Dividend per share (Rs.)  Nil  Nil  Nil  Nil  Nil  Nil  1.00  1.00  1.50  1.00",
+   "src_eps": "Earnings/ (Loss) per share  Rs.  5.06  (1.63)",
+   "src_navps": "Net Assets per Share  Rs.  53.83  48.84",
+   "title": "Annual Report 2023/24",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/603_1725244061380.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.0,
+    1.0,
+    1.5,
+    1.0
+   ],
+   "vals_eps": [
+    5.06,
+    -1.63
+   ],
+   "vals_navps": [
+    53.83,
+    48.84
+   ],
+   "year_only": false
+  },
+  "48848": {
+   "dps": 1.0,
+   "dps_prior": 1.0,
+   "end": "2025-03-31",
+   "eps": 2.65,
+   "eps_prior": 5.06,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 70.11,
+   "navps_prior": 53.83,
+   "ok": true,
+   "pages": 96,
+   "src_dps": "Dividend per share (Rs.)  Nil  Nil  Nil  Nil  Nil  Nil  Nil  1.00  1.00  1.50",
+   "src_eps": "Earnings per share  Rs.  2.65  5.06",
+   "src_navps": "Net Assets per Share  Rs.  70.11  53.83",
+   "title": "Annual Report 2024/25",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/603_1756350639940.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.0,
+    1.0,
+    1.5
+   ],
+   "vals_eps": [
+    2.65,
+    5.06
+   ],
+   "vals_navps": [
+    70.11,
+    53.83
+   ],
+   "year_only": false
+  },
+  "52825": {
+   "dps": 1.0,
+   "dps_prior": 1.0,
+   "end": "2026-03-31",
+   "eps": 3.5,
+   "eps_prior": 2.65,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 73.69,
+   "navps_prior": 70.11,
+   "ok": true,
+   "pages": 144,
+   "src_dps": "Dividend per share (Rs.)  Nil  Nil  Nil  Nil  Nil  Nil  Nil  Nil  1.00  1.00",
+   "src_eps": "Earnings per share  Rs.  3.50  2.65",
+   "src_navps": "Net Assets per Share  Rs.  73.69  70.11",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/603_1787648878254.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.0,
+    1.0
+   ],
+   "vals_eps": [
+    3.5,
+    2.65
+   ],
+   "vals_navps": [
+    73.69,
+    70.11
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

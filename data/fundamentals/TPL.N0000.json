@@ -1,5 +1,287 @@
 {
- "annual": {},
+ "annual": {
+  "40777": {
+   "dps": 2.15,
+   "dps_prior": 3.38,
+   "end": "2022-03-31",
+   "eps": 17.14,
+   "eps_prior": 14.98,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 90.65,
+   "navps_prior": 74.77,
+   "ok": true,
+   "pages": 278,
+   "src_dps": "Dividend per share  2.15  3.38  6.00  6.50  2.00  -  3.00  3.00  2.50",
+   "src_eps": "EPS (basic) (Rs.)  17.14  14.98  4.12  17.05  23.09  9.84  4.87  10.08  7.31  9.09",
+   "src_navps": "Net Assets Per Share (Rs.)  90.65  74.77  90.27  74.28",
+   "title": "Annual Report 2021/22",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/726_1654247832193.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.15,
+    3.38,
+    6.0,
+    6.5,
+    2.0,
+    3.0,
+    3.0,
+    2.5
+   ],
+   "vals_eps": [
+    17.14,
+    14.98,
+    4.12,
+    17.05,
+    23.09,
+    9.84,
+    4.87,
+    10.08,
+    7.31,
+    9.09
+   ],
+   "vals_navps": [
+    90.65,
+    74.77,
+    90.27,
+    74.28
+   ],
+   "year_only": false
+  },
+  "43425": {
+   "dps": 23.0,
+   "dps_prior": 22.0,
+   "end": "2023-03-31",
+   "eps": 23.0,
+   "eps_prior": 22.0,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 23.0,
+   "navps_prior": 22.0,
+   "ok": true,
+   "pages": 264,
+   "src_dps": "Dividend Per Share (Rs.)  Why is this a KPI?  2022/23 Performance \u23ce 2022/23  2021/22  Change  Dividend per share (DPS) is the sum of dividends,  Rs. 19, is the highest ever dividend per share",
+   "src_eps": "Earnings Per Share (Rs.)  Why is this a KPI?  2022/23 Performance \u23ce 2022/23  2021/22  Change  Earnings per share (EPS) measures the portion of  The Company recorded EPS of Rs 54.11",
+   "src_navps": "Net Asset Per Share (Rs.)  Why is this a KPI?  2022/23 Performance \u23ce 2022/23  2021/22  Change  Net asset per share shows the Book value of a  Due to higher profitability Net asset per",
+   "title": "Annual Report 2022/23",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/726_1685638811126.pdf",
+   "v": 6,
+   "vals_dps": [
+    23.0,
+    22.0
+   ],
+   "vals_eps": [
+    23.0,
+    22.0
+   ],
+   "vals_navps": [
+    23.0,
+    22.0
+   ],
+   "year_only": false
+  },
+  "45713": {
+   "dps": 26.85,
+   "dps_prior": 19.0,
+   "end": "2024-03-31",
+   "eps": 34.63,
+   "eps_prior": 54.21,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 134.1,
+   "navps_prior": 129.83,
+   "ok": true,
+   "pages": 335,
+   "src_dps": "Dividend per share (Rs.) - Company*****  26.85  19.00  2.15  3.38  -  6.00  6.50  2.00  -  3.00",
+   "src_eps": "EPS (basic) (Rs.)*****  34.63  54.21  17.14  14.98  4.12  17.05  23.09  9.84  4.87  10.08",
+   "src_navps": "Net Assets Per Share (Rs.)  134.10  129.83  131.91  126.24",
+   "title": "Annual Report 2023/24",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/726_1716978433995.pdf",
+   "v": 6,
+   "vals_dps": [
+    26.85,
+    19.0,
+    2.15,
+    3.38,
+    6.0,
+    6.5,
+    2.0,
+    3.0
+   ],
+   "vals_eps": [
+    34.63,
+    54.21,
+    17.14,
+    14.98,
+    4.12,
+    17.05,
+    23.09,
+    9.84,
+    4.87,
+    10.08
+   ],
+   "vals_navps": [
+    134.1,
+    129.83,
+    131.91,
+    126.24
+   ],
+   "year_only": false
+  },
+  "48019": {
+   "dps": 7.15,
+   "dps_prior": 26.85,
+   "end": "2025-03-31",
+   "eps": 26.0,
+   "eps_prior": 34.63,
+   "layout_dps": [
+    0,
+    1,
+    true
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 149.52,
+   "navps_prior": 134.1,
+   "ok": true,
+   "pages": 336,
+   "src_dps": "Dividend per share  Rs.  7.15  26.85  (73.37)  7.15  26.85  (73.37)",
+   "src_eps": "Earnings per share (basic)  Rs.  26.00  34.63  (24.92)  25.92  34.37  (24.59)",
+   "src_navps": "Net assets per share  Rs.  149.52  134.10  11.50  147.27  131.91  11.64",
+   "title": "Annual Report 2024/25",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/726_1748513042501.pdf",
+   "v": 6,
+   "vals_dps": [
+    7.15,
+    26.85,
+    -73.37,
+    7.15,
+    26.85,
+    -73.37
+   ],
+   "vals_eps": [
+    26.0,
+    34.63,
+    -24.92,
+    25.92,
+    34.37,
+    -24.59
+   ],
+   "vals_navps": [
+    149.52,
+    134.1,
+    11.5,
+    147.27,
+    131.91,
+    11.64
+   ],
+   "year_only": false
+  },
+  "51739": {
+   "dps": 7.89,
+   "dps_prior": 7.15,
+   "end": "2026-03-31",
+   "eps": 19.5,
+   "eps_prior": 26.0,
+   "layout_dps": [
+    0,
+    1,
+    true
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 160.33,
+   "navps_prior": 149.52,
+   "ok": true,
+   "pages": 384,
+   "src_dps": "Dividend per share  Rs.  7.89  7.15  10  7.89  7.15  10",
+   "src_eps": "Earnings per share (basic)  Rs.  19.50  26.00  (25)  20.43  25.92  (21)",
+   "src_navps": "Net assets per share  Rs.  160.33  149.52  7  159.00  147.27  8.0",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/726_1780482507511.pdf",
+   "v": 6,
+   "vals_dps": [
+    7.89,
+    7.15,
+    10.0,
+    7.89,
+    7.15,
+    10.0
+   ],
+   "vals_eps": [
+    19.5,
+    26.0,
+    -25.0,
+    20.43,
+    25.92,
+    -21.0
+   ],
+   "vals_navps": [
+    160.33,
+    149.52,
+    7.0,
+    159.0,
+    147.27,
+    8.0
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

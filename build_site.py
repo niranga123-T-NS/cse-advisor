@@ -88,15 +88,29 @@ def build():
     signals.sort(key=lambda x: (not x["watch"], -x["score"]))
     _dump(OUT / "signals.json", signals)
 
-    # data-quality audit across all companies
+    # data-quality audit across all companies (feeds site/audit.html)
+    import collections, re
     with_f = [x for x in signals if x["fields_n"]]
+    field_ok, field_n, kinds = collections.Counter(), collections.Counter(), collections.Counter()
+    companies = []
+    for x in with_f:
+        f = (json.loads((OUT / "stocks" / f"{x['symbol']}.json").read_text())["advice"].get("fundamentals") or {})
+        for k, v in (f.get("verified") or {}).items():
+            field_n[k] += 1; field_ok[k] += bool(v)
+        for c in f.get("checks") or []:
+            kind = re.sub(r"[-+\d.,()]+", " ", c["msg"].split(" - ")[0])
+            kind = " ".join(w for w in kind.split()[:6] if not w.endswith("%"))
+            kinds[(c["level"], kind)] += 1
+        companies.append({"symbol": x["symbol"], "name": x["name"], "ok": x["data_ok"], "warn": x["data_warn"],
+                          "fail": x["data_fail"], "verified": x["verified_n"], "fields": x["fields_n"],
+                          "confidence": f.get("confidence"), "q": f.get("quarters_read"), "a": f.get("annuals_read")})
     audit = {"companies_with_reports": len(with_f),
              "checks_passed": sum(x["data_ok"] for x in with_f), "warnings": sum(x["data_warn"] for x in with_f),
              "failures": sum(x["data_fail"] for x in with_f),
              "figures_verified": sum(x["verified_n"] for x in with_f), "figures_total": sum(x["fields_n"] for x in with_f),
-             "worst": sorted(({"symbol": x["symbol"], "fail": x["data_fail"], "warn": x["data_warn"],
-                               "verified": f"{x['verified_n']}/{x['fields_n']}"} for x in with_f),
-                             key=lambda r: (-r["fail"], -r["warn"]))[:40]}
+             "fields": [{"field": k, "verified": field_ok[k], "total": field_n[k]} for k in sorted(field_n, key=lambda k: -field_n[k])],
+             "kinds": [{"level": l, "kind": k, "count": n} for (l, k), n in kinds.most_common(60)],
+             "companies": sorted(companies, key=lambda r: r["symbol"])}
     _dump(OUT / "audit.json", audit)
     if with_f:
         print(f"Audit: {audit['figures_verified']}/{audit['figures_total']} figures verified; "

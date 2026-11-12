@@ -608,8 +608,9 @@ def metrics(symbol: str, price: float | None) -> dict | None:
     n_ok = sum(1 for c in checks if c["level"] == "ok")
     n_bad = sum(1 for c in checks if c["level"] == "fail")
     m["check_summary"] = {"ok": n_ok, "warn": sum(1 for c in checks if c["level"] == "warn"), "fail": n_bad}
-    nv = sum(ver.values())
-    m["confidence"] = "good" if nv >= 4 else "partial" if nv >= 2 else "low"
+    nv, nt = sum(ver.values()), len(ver)
+    share = nv / nt if nt else 0
+    m["confidence"] = "good" if nv >= 4 and share >= 0.7 else "partial" if nv >= 2 and share >= 0.4 else "low"
     return m
 
 

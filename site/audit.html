@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>CSE Advisor · Data checks</title>
+<style>
+  :root { --bg:#0f1216; --panel:#171b21; --line:#262c35; --text:#e6e8eb; --mute:#8b95a1; --ok:#22c55e; --warn:#f59e0b; --fail:#ef4444; --accent:#3b82f6; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:14px/1.45 system-ui, sans-serif; background:var(--bg); color:var(--text); }
+  header { display:flex; gap:12px; align-items:center; padding:10px 16px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  header h1 { font-size:16px; margin:0; } a { color:#93c5fd; }
+  main { max-width:1200px; margin:0 auto; padding:16px; }
+  h2 { font-size:15px; margin:26px 0 10px; }
+  .mute { color:var(--mute); } .ok { color:var(--ok); } .warn { color:var(--warn); } .fail { color:var(--fail); }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:12px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; }
+  .big { font-size:26px; font-weight:700; }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+  th, td { padding:7px 10px; text-align:left; border-bottom:1px solid var(--line); }
+  th { color:var(--mute); font-weight:500; font-size:12px; cursor:pointer; user-select:none; background:#13171c; position:sticky; top:0; }
+  .num { text-align:right; font-variant-numeric:tabular-nums; }
+  .bar { height:8px; background:#262c35; border-radius:4px; overflow:hidden; min-width:120px; }
+  .bar > i { display:block; height:100%; background:var(--ok); }
+  input, select { background:var(--panel); color:var(--text); border:1px solid var(--line); border-radius:6px; padding:6px 10px; font:inherit; }
+  tr.co { cursor:pointer; } tr.co:hover { background:#1d232b; }
+  .detail td { background:#12161b; }
+  .src { font:11px/1.35 ui-monospace,monospace; color:#cbd5e1; white-space:pre-wrap; word-break:break-word; }
+  ol.how li { margin-bottom:6px; }
+  .pill { font-size:11px; padding:1px 6px; border-radius:4px; background:#262c35; }
+</style>
+</head>
+<body>
+<header>
+  <a href="./">← CSE Advisor</a>
+  <h1>Data checks</h1>
+  <span class="mute" id="stamp"></span>
+</header>
+<main>
+  <div class="cards" id="summary"></div>
+
+  <h2>What is checked</h2>
+  <div class="card">
+    <p style="margin-top:0">Each figure read from a company report keeps the exact PDF line it came from. A figure only counts towards a score or a label if a cross-check confirms it (<span class="ok">✓ verified</span>). Figures that fail a check are shown with ⚠ and left out.</p>
+    <ol class="how">
+      <li><b>Last year's column = last year's report.</b> Each report prints the same period last year next to the current figures. When that matches last year's own report, the row and columns were read correctly. This match is also used to pick the right columns when a row holds several.</li>
+      <li><b>Printed % change.</b> Where a % change column is printed, it must agree with the current and prior figures.</li>
+      <li><b>Quarter vs year-to-date by arithmetic.</b> Year-to-date = the previous report's year-to-date + this quarter. The year-end figure must equal the annual report's EPS.</li>
+      <li><b>EPS = attributable profit ÷ shares in issue</b> (latest four reports).</li>
+      <li><b>EPS growth agrees with profit growth.</b></li>
+      <li><b>Net assets per share:</b> the balance sheet's comparative column must equal the figure at the last year-end.</li>
+      <li><b>Plausibility.</b> Per-share figures are checked against the share price. Full-year EPS more than 13 months old is never used. US-dollar rows are skipped. Long-term EPS growth is only measured across years whose figures link up, so share splits don't distort it.</li>
+    </ol>
+  </div>
+
+  <h2>Verified figures by type</h2>
+  <table id="fields"></table>
+
+  <h2>Check results by type</h2>
+  <p class="mute" style="margin-top:-4px">✓ passed · ⚠ warning (figure not used) · ✗ failed (misread caught and excluded)</p>
+  <table id="kinds"></table>
+
+  <h2>Every company</h2>
+  <p style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+    <input id="q" placeholder="Search symbol or name" oninput="renderCos()">
+    <select id="lvl" onchange="renderCos()">
+      <option value="">All companies</option><option value="fail">With failed checks</option>
+      <option value="low">Low data</option><option value="good">Good data</option>
+    </select>
+    <span class="mute">Tap a company to see its checks and the exact PDF lines.</span>
+  </p>
+  <table id="cos"></table>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const NAMES = { navps:'Net assets per share', pbv:'Price / book value', eps_ttm:'EPS, last 12 months', pe:'P/E', roe:'ROE',
+  revenue_growth:'Revenue growth', profit_growth:'Profit growth (latest column)', eps_growth_ytd:'EPS growth year-to-date',
+  profit_growth_hit:'Earnings consistency', div_yield:'Dividend yield', eps_cagr:'EPS growth per year (annual reports)' };
+const ICON = { ok:'<span class="ok">✓</span>', warn:'<span class="warn">⚠</span>', fail:'<span class="fail">✗</span>' };
+let A = null, sortKey = 'symbol', sortDir = 1, open = null;
+
+fetch('data/audit.json').then(r => r.json()).then(a => {
+  A = a;
+  fetch('data/meta.json').then(r => r.json()).then(m => $('#stamp').textContent = 'Updated ' + m.updated).catch(() => {});
+  const pct = a.figures_total ? Math.round(100 * a.figures_verified / a.figures_total) : 0;
+  $('#summary').innerHTML = `
+    <div class="card"><div class="mute">Figures verified</div><div class="big ok">${pct}%</div><div class="mute">${a.figures_verified.toLocaleString()} of ${a.figures_total.toLocaleString()}</div></div>
+    <div class="card"><div class="mute">Checks passed</div><div class="big ok">${a.checks_passed.toLocaleString()}</div></div>
+    <div class="card"><div class="mute">Warnings</div><div class="big warn">${a.warnings.toLocaleString()}</div><div class="mute">figure not used</div></div>
+    <div class="card"><div class="mute">Failed</div><div class="big fail">${a.failures.toLocaleString()}</div><div class="mute">misreads caught &amp; excluded</div></div>
+    <div class="card"><div class="mute">Companies</div><div class="big">${a.companies_with_reports}</div><div class="mute">up to 10 quarterly + 5 annual reports each</div></div>`;
+  $('#fields').innerHTML = '<tr><th>Figure</th><th class="num">Verified</th><th class="num">Found</th><th>Share verified</th></tr>' +
+    a.fields.map(f => { const p = f.total ? 100 * f.verified / f.total : 0;
+      return `<tr><td>${esc(NAMES[f.field] || f.field)}</td><td class="num">${f.verified}</td><td class="num">${f.total}</td>
+        <td><div class="bar"><i style="width:${p.toFixed(0)}%"></i></div> <span class="mute">${p.toFixed(0)}%</span></td></tr>`; }).join('');
+  $('#kinds').innerHTML = '<tr><th></th><th>Check</th><th class="num">Times</th></tr>' +
+    a.kinds.map(k => `<tr><td>${ICON[k.level]}</td><td>${esc(k.kind)}</td><td class="num">${k.count.toLocaleString()}</td></tr>`).join('');
+  renderCos();
+  if (location.hash) toggle(decodeURIComponent(location.hash.slice(1)));
+});
+
+function sortBy(k) { sortDir = sortKey === k ? -sortDir : (k === 'symbol' ? 1 : -1); sortKey = k; renderCos(); }
+
+function renderCos() {
+  if (!A) return;
+  const q = $('#q').value.trim().toLowerCase(), lvl = $('#lvl').value;
+  let rows = A.companies.filter(c => (!q || c.symbol.toLowerCase().includes(q) || (c.name || '').toLowerCase().includes(q)) &&
+    (!lvl || (lvl === 'fail' ? c.fail > 0 : c.confidence === lvl)));
+  const val = c => sortKey === 'share' ? (c.fields ? c.verified / c.fields : 0) : c[sortKey];
+  rows.sort((x, y) => (val(x) > val(y) ? 1 : val(x) < val(y) ? -1 : 0) * sortDir);
+  const th = (k, t, cls = '') => `<th class="${cls}" onclick="sortBy('${k}')">${t}${sortKey === k ? (sortDir > 0 ? ' ▲' : ' ▼') : ''}</th>`;
+  $('#cos').innerHTML = '<tr>' + th('symbol', 'Company') + th('share', 'Figures verified', 'num') + th('ok', '✓ Passed', 'num') +
+    th('warn', '⚠ Warnings', 'num') + th('fail', '✗ Failed', 'num') + th('confidence', 'Data') + '</tr>' +
+    rows.map(c => `<tr class="co" data-s="${esc(c.symbol)}" onclick="toggle('${esc(c.symbol)}')">
+      <td><b>${esc(c.symbol)}</b> <span class="mute" style="font-size:12px">${esc((c.name || '').slice(0, 30))}</span></td>
+      <td class="num">${c.verified}/${c.fields}</td><td class="num ok">${c.ok}</td><td class="num warn">${c.warn}</td>
+      <td class="num fail">${c.fail}</td><td><span class="pill">${esc(c.confidence || '')}</span> <span class="mute" style="font-size:11px">${c.q}q · ${c.a}a</span></td></tr>
+      ${open === c.symbol ? '<tr class="detail"><td colspan="6" id="det">Loading…</td></tr>' : ''}`).join('');
+  if (open) loadDetail(open);
+}
+
+function toggle(sym) { open = open === sym ? null : sym; history.replaceState(null, '', open ? '#' + encodeURIComponent(open) : location.pathname); renderCos(); }
+
+async function loadDetail(sym) {
+  const el = document.getElementById('det'); if (!el) return;
+  try {
+    const d = await (await fetch('data/stocks/' + encodeURIComponent(sym) + '.json')).json();
+    const f = d.advice && d.advice.fundamentals;
+    if (!f) { el.innerHTML = '<span class="mute">No report figures.</span>'; return; }
+    const V = f.verified || {};
+    const figs = Object.entries(V).map(([k, v]) => `<span style="margin-right:14px">${v ? ICON.ok : ICON.warn} ${esc(NAMES[k] || k)}${f[k] != null ? ': <b>' + esc(f[k]) + '</b>' : ''}</span>`).join('');
+    const checks = (f.checks || []).map(c => `<div>${ICON[c.level]} <span class="mute">${esc(c.end)}</span> ${esc(c.msg)}</div>`).join('');
+    const srcs = (f.quarters || []).filter(q => q.src && Object.keys(q.src).length).map(q =>
+        `<div style="margin-top:6px"><b>${esc(q.end)}</b> <a href="${esc(q.url)}" target="_blank" rel="noopener">report</a>${Object.entries(q.src).map(([k, v]) => `<div class="src"><span class="mute">${esc(k)}:</span> ${esc(v)}</div>`).join('')}</div>`).join('')
+      + (f.annual || []).filter(y => y.src_eps || y.src_dps).map(y =>
+        `<div style="margin-top:6px"><b>${esc(y.end)} annual</b> <a href="${esc(y.url)}" target="_blank" rel="noopener">report</a>${['eps', 'dps'].filter(k => y['src_' + k]).map(k => `<div class="src"><span class="mute">${k}:</span> ${esc(y['src_' + k])}</div>`).join('')}</div>`).join('');
+    el.innerHTML = `<div style="margin-bottom:8px">${figs}</div>
+      <p><a href="./#${encodeURIComponent(sym)}">Open ${esc(sym)} on the main page →</a></p>
+      <details open><summary>All checks (${(f.checks || []).length})</summary><div style="margin-top:6px">${checks || '<span class="mute">none</span>'}</div></details>
+      <details style="margin-top:8px"><summary>Exact lines read from the PDFs</summary>${srcs || '<span class="mute">none</span>'}</details>`;
+  } catch (e) { el.innerHTML = '<span class="mute">Could not load.</span>'; }
+}
+</script>
+</body>
+</html>

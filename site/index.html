@@ -51,6 +51,7 @@
     <option value="">All signals</option><option value="invest">📈 Investment picks</option><option value="trade">⚡ Trading picks</option><option value="tradewatch">👀 Trade watch</option><option value="BUY">Buys</option><option value="SELL">Sells</option><option value="watch">★ Favourites</option><option value="value">Value (P/E &lt; 10)</option><option value="div">Dividend ≥ 5%</option><option value="issues">Data issues</option>
   </select>
   <a class="btn" id="addBtn" target="_blank" rel="noopener">+ Add stocks</a>
+  <a class="btn" href="audit.html">✓ Data checks</a>
   <span id="live" class="mute"></span>
   <span id="meta" class="mute"></span>
 </header>
@@ -154,6 +155,7 @@ async function load() {
   } catch (e) { all = []; }
   render();
   pollLive(true);
+  if (location.hash) show(decodeURIComponent(location.hash.slice(1)));
 }
 
 function render() {
@@ -252,7 +254,7 @@ function fundCard(a) {
     <p class="mute" style="font-size:12px;margin:8px 0 0">✓ verified by a cross-check · ⚠ not verified — shown, but <b>not used in the score</b>.</p>
     ${yrs?`<h3 style="margin-top:12px">Annual reports</h3><table><tr><th>Year end</th><th class="num">EPS</th><th class="num">DPS</th></tr>${yrs}</table>`:''}
     ${qs?`<h3 style="margin-top:12px">Quarterly reports</h3><table><tr><th>Period end</th><th class="num">EPS quarter</th><th class="num">EPS year-to-date</th><th class="num">Profit YoY</th><th class="num">Revenue YoY</th></tr>${qs}</table>`:''}
-    <details style="margin-top:10px"><summary>Data checks: ${cs.ok} passed · ${cs.warn} warnings · ${cs.fail} failed</summary><ul style="margin-top:6px">${checks}</ul></details>
+    <details style="margin-top:10px"><summary>Data checks: ${cs.ok} passed · ${cs.warn} warnings · ${cs.fail} failed · <a href="audit.html#${encodeURIComponent(a.symbol||current)}">all checks page</a></summary><ul style="margin-top:6px">${checks}</ul></details>
     <details style="margin-top:6px"><summary>Exact lines read from the PDFs</summary>${srcs || '<p class="mute">none</p>'}</details>
   </div>`;
 }

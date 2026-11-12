@@ -55,7 +55,11 @@ def git(*args, inp: str | None = None) -> str:
 
 
 def publish(files: dict[str, str], msg: str) -> bool:
-    """Write files as a single commit on branch `live` and force-push it (no history kept)."""
+    return publish_to(files, "live", msg)
+
+
+def publish_to(files: dict[str, str], branch: str, msg: str) -> bool:
+    """Write files as a single commit on `branch` and force-push it (no history kept)."""
     try:
         def mktree(items: dict) -> str:
             entries = []
@@ -74,7 +78,7 @@ def publish(files: dict[str, str], msg: str) -> bool:
             node[parts[-1]] = content
         tree = mktree(nested)
         commit = git("commit-tree", tree, "-m", msg)
-        git("push", "-f", "origin", f"{commit}:refs/heads/live")
+        git("push", "-f", "origin", f"{commit}:refs/heads/{branch}")
         return True
     except subprocess.CalledProcessError as e:
         print("publish failed:", e.stderr[-300:] if e.stderr else e)

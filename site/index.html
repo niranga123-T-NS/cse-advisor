@@ -44,7 +44,7 @@
   <h1>CSE Advisor</h1>
   <input id="q" placeholder="Search symbol/name" size="16" oninput="render()">
   <select id="f" onchange="render()">
-    <option value="">All signals</option><option value="BUY">Buys</option><option value="SELL">Sells</option><option value="watch">★ Watchlist</option>
+    <option value="">All signals</option><option value="BUY">Buys</option><option value="SELL">Sells</option><option value="watch">★ Favourites</option>
   </select>
   <a class="btn" id="addBtn" target="_blank" rel="noopener">+ Add stocks</a>
   <span id="meta" class="mute"></span>
@@ -76,7 +76,7 @@ let stars = new Set(store.get());
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const sigClass = s => s.includes('BUY') ? 'BUY' : s.includes('SELL') ? 'SELL' : 'HOLD';
-const isStar = s => stars.has(s.symbol) || s.watch;
+const isStar = s => stars.has(s.symbol);  // personal favourites, saved in this browser
 
 async function load() {
   try {

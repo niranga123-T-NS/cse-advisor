@@ -96,8 +96,11 @@ def main():
         todo = set(requested)
         if a.backfill_all:
             todo |= {r["symbol"] for r in cse.trade_summary()}
-        # watchlist stocks with short history get a full backfill automatically
-        todo |= {s for s in db.watchlist() if db.bar_count(s) < 150}
+        # watchlist stocks with short history get a full backfill (at most once a month each,
+        # so thinly traded stocks aren't re-fetched every day)
+        done = db.last_backfill()
+        cutoff = (dt.datetime.now(collector.COLOMBO) - dt.timedelta(days=30)).strftime("%Y-%m-%d")
+        todo |= {s for s in db.watchlist() if db.bar_count(s) < 150 and done.get(s, "") < cutoff}
         if todo:
             collector.backfill(sorted(todo))
     build()

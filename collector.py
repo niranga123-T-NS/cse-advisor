@@ -50,6 +50,10 @@ def snapshot(force: bool = False) -> int:
     for r in rows:
         db.upsert_security(r["symbol"], r["name"], r["stock_id"])
         db.upsert_bars(r["symbol"], [{**r, "date": d}])
+    new = {r["symbol"] for r in rows} - set(db.watchlist())
+    if new:
+        db.add_watch(new)
+        print(f"New listings added to watchlist: {', '.join(sorted(new))}")
     print(f"Saved {len(rows)} bars for {d}")
     return len(rows)
 
@@ -60,6 +64,8 @@ def backfill(symbols: list[str], period: int = 5):
         n = db.upsert_bars(s, bars)
         db.upsert_security(s)
         print(f"{s}: {n} daily bars" + ("" if n else "  (none - check symbol, or run probe.py)"))
+        if n:
+            db.mark_backfilled([s], today())
 
 
 def import_csv(path: str, symbol: str):

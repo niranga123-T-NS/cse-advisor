@@ -86,8 +86,30 @@ def watchlist() -> list[str]:
     return sorted({l for l in lines if l})
 
 
-def set_watch(symbol: str, on: bool):
+HEADER = ("# One CSE symbol per line. These get full history loaded automatically.\n"
+          "# New listings are added automatically when they first trade.\n")
+BACKFILLED = ROOT / "data" / "backfilled.csv"
+
+
+def add_watch(symbols, on: bool = True):
     w = set(watchlist())
-    w.add(symbol) if on else w.discard(symbol)
-    header = "# One CSE symbol per line. These get full history loaded automatically.\n"
-    WATCH.write_text(header + "\n".join(sorted(w)) + "\n")
+    (w.update if on else w.difference_update)(symbols)
+    WATCH.write_text(HEADER + "\n".join(sorted(w)) + "\n")
+
+
+def set_watch(symbol: str, on: bool):
+    add_watch([symbol], on)
+
+
+def last_backfill() -> dict[str, str]:
+    if not BACKFILLED.exists():
+        return {}
+    df = pd.read_csv(BACKFILLED, dtype=str)
+    return dict(zip(df.symbol, df.date))
+
+
+def mark_backfilled(symbols, date: str):
+    d = last_backfill()
+    d.update({s: date for s in symbols})
+    BACKFILLED.parent.mkdir(parents=True, exist_ok=True)
+    pd.DataFrame(sorted(d.items()), columns=["symbol", "date"]).to_csv(BACKFILLED, index=False)

@@ -1,0 +1,24 @@
+{
+ "symbol": "NHL.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-09-30",
+  "months": 6,
+  "eps_ytd": 0.19,
+  "eps_ytd_prior": 0.21,
+  "profit_ytd": 270224,
+  "profit_ytd_prior": 294240,
+  "revenue_ytd": 3852268,
+  "revenue_ytd_prior": 3536949,
+  "unit": "Rs'000",
+  "navps": 4.84,
+  "page": 2
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "navps": 4.59
+ },
+ "notes": "Group. EPS = profit attributable \u00f7 1,409.5M shares (EPS row not legible)."
+}

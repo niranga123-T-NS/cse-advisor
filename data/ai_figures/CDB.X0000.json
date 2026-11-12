@@ -1,0 +1,27 @@
+{
+ "symbol": "CDB.X0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 3,
+  "eps_ytd": 1.4,
+  "eps_ytd_prior": 1.24,
+  "eps_q": 1.4,
+  "eps_q_prior": 1.24,
+  "revenue_ytd": 8857102,
+  "revenue_ytd_prior": 6881499,
+  "unit": "Rs'000",
+  "navps": 40.6,
+  "page": 2
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": 6.28,
+  "eps_prior": 5.65,
+  "navps": 39.62,
+  "page": 2
+ },
+ "notes": "Non-voting share of CDB: same per-share figures."
+}

@@ -1,0 +1,28 @@
+{
+ "symbol": "CONN.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-09-30",
+  "months": 6,
+  "eps_ytd": 1.37,
+  "eps_ytd_prior": 1.37,
+  "eps_q": 2.28,
+  "eps_q_prior": 1.82,
+  "profit_ytd": 147827,
+  "profit_ytd_prior": 148431,
+  "revenue_ytd": 1995963,
+  "revenue_ytd_prior": 1823027,
+  "unit": "Rs'000",
+  "navps": 12.9,
+  "page": 2
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": -2.22,
+  "navps": 11.53,
+  "page": 2
+ },
+ "notes": "Group (hotel). EPS = profit attributable \u00f7 108.0M shares: six months 147.8M \u2192 1.37; FY2026 loss 239.3M \u2192 \u22122.22."
+}

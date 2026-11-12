@@ -1,0 +1,23 @@
+{
+ "symbol": "HPWR.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 3,
+  "eps_ytd": 0.09,
+  "eps_ytd_prior": 0.25,
+  "eps_q": 0.09,
+  "eps_q_prior": 0.25,
+  "profit_ytd": 38049208,
+  "profit_ytd_prior": 106696009,
+  "revenue_ytd": 266171356,
+  "revenue_ytd_prior": 369254914,
+  "unit": "Rs",
+  "navps": 5.67,
+  "page": 2
+ },
+ "fy": {},
+ "notes": "Group (hydro power; output down). Net assets per share fell from 27.90 to 5.67 \u2014 consistent with a share subdivision; check the report."
+}

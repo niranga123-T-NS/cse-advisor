@@ -1,5 +1,115 @@
 {
- "annual": {},
+ "annual": {
+  "41421": {
+   "end": "2022-03-31",
+   "eps": 0.67,
+   "eps_prior": 0.39,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 2.66,
+   "navps_prior": 1.44,
+   "ok": true,
+   "pages": 112,
+   "src_eps": "Earnings Per Share  10  0.67  0.39",
+   "src_navps": "Net Asset per Share  2.66  1.44  230.68",
+   "title": "Annual Report 2021/22 - Amended",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2741_1660646258625.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.67,
+    0.39
+   ],
+   "vals_navps": [
+    2.66,
+    1.44,
+    230.68
+   ],
+   "year_only": false
+  },
+  "43788": {
+   "end": "2023-03-31",
+   "eps": 0.75,
+   "eps_prior": 0.67,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 3.14,
+   "navps_prior": 3.32,
+   "ok": true,
+   "pages": 124,
+   "src_eps": "Earnings Per Share  10  0.75  0.67",
+   "src_navps": "Net Asset per Share  3.14  3.32",
+   "title": "Annual Report -2022/2023 - Amended",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2741_1691753017429.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.75,
+    0.67
+   ],
+   "vals_navps": [
+    3.14,
+    3.32
+   ],
+   "year_only": false
+  },
+  "46658": {
+   "end": "2024-03-31",
+   "eps": 0.17,
+   "eps_prior": -0.25,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 128,
+   "src_eps": "Earnings per share based on profit / (loss)  13  0.17  (0.25)",
+   "title": "Annual Report -2023/2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2741_1726065027313.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.17,
+    -0.25
+   ],
+   "year_only": false
+  },
+  "49038": {
+   "end": "2025-03-31",
+   "eps": -0.22,
+   "eps_prior": 2.11,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 120,
+   "src_eps": "EARNINGS PER SHARE  NET ASSETS PER SHARE \u23ce (0.22)  2.11",
+   "title": "Annual Report 2024/2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2741_1759375113438.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.22,
+    2.11
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

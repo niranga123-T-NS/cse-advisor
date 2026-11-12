@@ -1,5 +1,208 @@
 {
- "annual": {},
+ "annual": {
+  "43577": {
+   "end": "2023-12-31",
+   "ok": true,
+   "pages": 102,
+   "title": "Audited Accounts 31/3/2023 Alliance Finance Company PLC",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1688040452312.pdf",
+   "v": 6,
+   "year_only": false
+  },
+  "44112": {
+   "dps": 5.0,
+   "dps_prior": 14.5,
+   "end": "2023-03-31",
+   "eps": 14.98,
+   "eps_prior": 43.42,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 206.5,
+   "navps_prior": 198.28,
+   "ok": true,
+   "pages": 292,
+   "src_dps": "Dividend per share  LKR  5  14.5  (66%)",
+   "src_eps": "EPS  LKR  14.98  43.42  (66%)  11",
+   "src_navps": "Net Asset Value Per Share  LKR  206.50  198.28  4%",
+   "title": "Annual Report 2022/23",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1693540187585.pdf",
+   "v": 6,
+   "vals_dps": [
+    5.0,
+    14.5
+   ],
+   "vals_eps": [
+    14.98,
+    43.42,
+    11.0
+   ],
+   "vals_navps": [
+    206.5,
+    198.28
+   ],
+   "year_only": false
+  },
+  "45912": {
+   "dps": 8.4,
+   "dps_prior": 5.0,
+   "end": "2024-03-31",
+   "eps": 13.82,
+   "eps_prior": 19.12,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 19.0,
+   "navps_prior": 241.0,
+   "ok": true,
+   "pages": 320,
+   "src_dps": "Dividend Per Share  18  8.40  5.00  8.40  5.00",
+   "src_eps": "Earnings per Share (LKR)  Liquidity Ratio  %  13.82  19.12  (5.30)",
+   "src_navps": "Net assets value per share (LKR)  19  241  206  246  210",
+   "title": "ANNUAL REPORT 2023/24",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1717467516981.pdf",
+   "v": 6,
+   "vals_dps": [
+    8.4,
+    5.0,
+    8.4,
+    5.0
+   ],
+   "vals_eps": [
+    13.82,
+    19.12,
+    -5.3
+   ],
+   "vals_navps": [
+    19.0,
+    241.0,
+    206.0,
+    246.0,
+    210.0
+   ],
+   "year_only": false
+  },
+  "48254": {
+   "dps": 17.2,
+   "dps_prior": 8.4,
+   "end": "2025-03-31",
+   "eps": 51.48,
+   "eps_prior": 27.21,
+   "layout_dps": [
+    0,
+    1,
+    true
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 277.47,
+   "navps_prior": 241.25,
+   "ok": true,
+   "pages": 312,
+   "src_dps": "Dividend per Share  LKR  17.20  8.40  104.76",
+   "src_eps": "Earnings per Share  LKR  51.48  27.21  89.21",
+   "src_navps": "Net Asset Value per Share  LKR  277.47  241.25  15.01",
+   "title": "ANNUAL REPORT 2024/25",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1749177212157.pdf",
+   "v": 6,
+   "vals_dps": [
+    17.2,
+    8.4,
+    104.76
+   ],
+   "vals_eps": [
+    51.48,
+    27.21,
+    89.21
+   ],
+   "vals_navps": [
+    277.47,
+    241.25,
+    15.01
+   ],
+   "year_only": false
+  },
+  "51954": {
+   "dps": 10.0,
+   "dps_prior": 17.2,
+   "end": "2026-03-31",
+   "eps": 60.49,
+   "eps_prior": 51.48,
+   "layout_dps": [
+    0,
+    1,
+    true
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 325.69,
+   "navps_prior": 277.47,
+   "ok": true,
+   "pages": 408,
+   "src_dps": "Dividend per Share  LKR  10.00  17.20  (41.86)  Gross NPL",
+   "src_eps": "Earnings per Share  LKR  60.49  51.48  17.49",
+   "src_navps": "Net Asset Value per Share  LKR  325.69  277.47  17.38  2025",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1782836942258.pdf",
+   "v": 6,
+   "vals_dps": [
+    10.0,
+    17.2,
+    -41.86
+   ],
+   "vals_eps": [
+    60.49,
+    51.48,
+    17.49
+   ],
+   "vals_navps": [
+    325.69,
+    277.47,
+    17.38
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

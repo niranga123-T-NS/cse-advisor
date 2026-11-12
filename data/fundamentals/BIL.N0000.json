@@ -1,5 +1,191 @@
 {
- "annual": {},
+ "annual": {
+  "41614": {
+   "end": "2022-03-31",
+   "eps": 2.19,
+   "eps_prior": -0.24,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 8.57,
+   "navps_prior": 4.72,
+   "ok": true,
+   "pages": 200,
+   "src_eps": "Earnings Per Share  Rs.  2.19  (0.24)  (0.03)  0.03",
+   "src_navps": "Net Assets Per Share  Rs.  8.57  4.72  2.62  2.55",
+   "title": "Annual Report 2021/2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1077_1662038799755.pdf",
+   "v": 6,
+   "vals_eps": [
+    2.19,
+    -0.24,
+    -0.03,
+    0.03
+   ],
+   "vals_navps": [
+    8.57,
+    4.72,
+    2.62,
+    2.55
+   ],
+   "year_only": false
+  },
+  "44132": {
+   "end": "2023-03-31",
+   "eps": -0.64,
+   "eps_prior": 2.19,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 7.91,
+   "navps_prior": 8.57,
+   "ok": true,
+   "pages": 206,
+   "src_eps": "Earnings Per Share  Rs.  (0.64)  2.19  (0.80)  (0.03)",
+   "src_navps": "Net Assets Per Share  Rs.  7.91  8.57  1.82  2.62",
+   "title": "ANNUAL REPORT FOR 2022/2023",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1077_1693540009738.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.64,
+    2.19,
+    -0.8,
+    -0.03
+   ],
+   "vals_navps": [
+    7.91,
+    8.57,
+    1.82,
+    2.62
+   ],
+   "year_only": false
+  },
+  "46604": {
+   "end": "2024-03-31",
+   "eps": 0.7,
+   "eps_prior": -0.64,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 9.02,
+   "navps_prior": 7.91,
+   "ok": true,
+   "pages": 200,
+   "src_eps": "Earnings Per Share  Rs.  0.70  (0.64)  0.70  (0.64)",
+   "src_navps": "Net Assets Per Share  Rs.  9.02  7.91  9.02  7.91",
+   "title": "Annual Report 2023/2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1077_1725243457494.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.7,
+    -0.64,
+    0.7,
+    -0.64
+   ],
+   "vals_navps": [
+    9.02,
+    7.91,
+    9.02,
+    7.91
+   ],
+   "year_only": false
+  },
+  "48868": {
+   "end": "2025-03-31",
+   "eps": 4.01,
+   "eps_prior": 0.7,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 13.58,
+   "navps_prior": 9.02,
+   "ok": true,
+   "pages": 208,
+   "src_eps": "Earnings Per Share  Rs.  4.01  0.70  4.01  0.70",
+   "src_navps": "Net Assets Per Share  Rs.  13.58  9.02  13.58  9.02",
+   "title": "Annual Report - 2024/25",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1077_1756468475064.pdf",
+   "v": 6,
+   "vals_eps": [
+    4.01,
+    0.7,
+    4.01,
+    0.7
+   ],
+   "vals_navps": [
+    13.58,
+    9.02,
+    13.58,
+    9.02
+   ],
+   "year_only": false
+  },
+  "52832": {
+   "end": "2026-03-31",
+   "eps": -1.52,
+   "eps_prior": 4.01,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 12.34,
+   "navps_prior": 13.58,
+   "ok": true,
+   "pages": 208,
+   "src_eps": "Earnings Per Share  Rs.  (1.52)  4.01  (1.52)  4.01",
+   "src_navps": "Net Assets Per Share  Rs.  12.34  13.58  12.34  13.58",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1077_1787651673613.pdf",
+   "v": 6,
+   "vals_eps": [
+    -1.52,
+    4.01,
+    -1.52,
+    4.01
+   ],
+   "vals_navps": [
+    12.34,
+    13.58,
+    12.34,
+    13.58
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

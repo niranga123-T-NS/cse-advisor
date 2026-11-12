@@ -1,5 +1,185 @@
 {
- "annual": {},
+ "annual": {
+  "40765": {
+   "end": "2021-12-31",
+   "eps": -0.07,
+   "eps_prior": 4.92,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 30.0,
+   "navps_prior": 34.0,
+   "ok": true,
+   "pages": 94,
+   "src_eps": "Basic Earnings/ (Loss) per Share  (0.07)  4.92",
+   "src_navps": "Net Assets per Share  30  34",
+   "title": "Annual Report 2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/705_1654157751691.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.07,
+    4.92
+   ],
+   "vals_navps": [
+    30.0,
+    34.0
+   ],
+   "year_only": false
+  },
+  "43427": {
+   "end": "2022-12-31",
+   "eps": 23.56,
+   "eps_prior": -0.07,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 47.0,
+   "navps_prior": 30.0,
+   "ok": true,
+   "pages": 94,
+   "src_eps": "Basic Earnings/ (Loss) per Share  13  23.56  (0.07)",
+   "src_navps": "Net Assets per Share  47  30",
+   "title": "BALANGODA PLANTATATIIONS PLC ANNUAL REPORT 2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/705_1685701749931.pdf",
+   "v": 6,
+   "vals_eps": [
+    23.56,
+    -0.07
+   ],
+   "vals_navps": [
+    47.0,
+    30.0
+   ],
+   "year_only": false
+  },
+  "45804": {
+   "end": "2023-12-31",
+   "eps": 1.48,
+   "eps_prior": 23.56,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 66.0,
+   "navps_prior": 47.0,
+   "ok": true,
+   "pages": 116,
+   "src_eps": "Basic Earnings per Share  13 1.48 23.56",
+   "src_navps": "Net Assets per Share  66  47",
+   "title": "Annual Report 2023",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/705_1717147530131.pdf",
+   "v": 6,
+   "vals_eps": [
+    1.48,
+    23.56
+   ],
+   "vals_navps": [
+    66.0,
+    47.0
+   ],
+   "year_only": false
+  },
+  "47978": {
+   "end": "2024-12-31",
+   "eps": 15.68,
+   "eps_prior": 1.48,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 78.63,
+   "navps_prior": 67.3,
+   "ok": true,
+   "pages": 138,
+   "src_eps": "Basic Earnings per Share  13  15.68  1.48",
+   "src_navps": "Net asset value per share Rs.  78.63 67.30  16.83",
+   "title": "ANNUAL REPORT 2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/705_1748401042612.pdf",
+   "v": 6,
+   "vals_eps": [
+    15.68,
+    1.48
+   ],
+   "vals_navps": [
+    78.63,
+    67.3,
+    16.83
+   ],
+   "year_only": false
+  },
+  "51537": {
+   "dps": 0.5,
+   "dps_prior": 1.0,
+   "end": "2025-12-31",
+   "eps": 12.62,
+   "eps_prior": 15.68,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 95.15,
+   "navps_prior": 78.63,
+   "ok": true,
+   "pages": 140,
+   "src_dps": "Dividend per Share Rs  0.50  1.00",
+   "src_eps": "Basic Earnings per Share (Rs.)  13  12.62  15.68",
+   "src_navps": "Net asset value per share Rs.  95.15 78.63  21.0",
+   "title": "Annual Report as at 31st December 2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/705_1780046541693.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.5,
+    1.0
+   ],
+   "vals_eps": [
+    12.62,
+    15.68
+   ],
+   "vals_navps": [
+    95.15,
+    78.63,
+    21.0
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

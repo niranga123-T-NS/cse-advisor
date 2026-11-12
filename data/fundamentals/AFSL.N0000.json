@@ -1,5 +1,123 @@
 {
- "annual": {},
+ "annual": {
+  "46037": {
+   "end": "2024-03-31",
+   "ok": true,
+   "pages": 76,
+   "title": "AUDITED FINANCIAL STATEMENT AS OF 31ST MARCH 2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1069_1719398632354.pdf",
+   "v": 6,
+   "year_only": false
+  },
+  "46516": {
+   "end": "2024-12-31",
+   "eps": 1.42,
+   "eps_prior": 4.82,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 41.78,
+   "navps_prior": 40.3,
+   "ok": true,
+   "pages": 212,
+   "src_eps": "Earnings Per Share (Rs.)  1.42  4.82  -70.63%",
+   "src_navps": "Net Assets Value per share (Rs.)  41.78  40.30  3.68%",
+   "title": "ANNUAL REPORT AS OF 31-03-2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1069_1724672115922.pdf",
+   "v": 6,
+   "vals_eps": [
+    1.42,
+    4.82
+   ],
+   "vals_navps": [
+    41.78,
+    40.3
+   ],
+   "year_only": true
+  },
+  "48261": {
+   "end": "2025-03-31",
+   "ok": true,
+   "pages": 78,
+   "title": "AUDITED FINANCIAL STATEMENT AS OF 31ST MARCH 2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1069_1749200776284.pdf",
+   "v": 6,
+   "year_only": false
+  },
+  "48875": {
+   "end": "2025-12-31",
+   "eps": 5.78,
+   "eps_prior": 1.42,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 47.53,
+   "navps_prior": 41.78,
+   "ok": true,
+   "pages": 260,
+   "src_eps": "Earnings Per Share (Rs.)  5.78  1.42  306.86%",
+   "src_navps": "Net Assets Value per share (Rs.)  47.53  41.78  13.76%",
+   "title": "ANNUAL REPORT AS OF 31-03-2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1069_1756460396267.pdf",
+   "v": 6,
+   "vals_eps": [
+    5.78,
+    1.42
+   ],
+   "vals_navps": [
+    47.53,
+    41.78
+   ],
+   "year_only": true
+  },
+  "52852": {
+   "end": "2026-03-31",
+   "eps": 11.63,
+   "eps_prior": 5.78,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 56.39,
+   "navps_prior": 47.53,
+   "ok": true,
+   "pages": 436,
+   "src_eps": "Earnings Per Share(Rs.)  11.63  5.78  101%",
+   "src_navps": "Net Assets value per share(Rs.)  56.39  47.53  19%",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1069_1787908304541.pdf",
+   "v": 6,
+   "vals_eps": [
+    11.63,
+    5.78
+   ],
+   "vals_navps": [
+    56.39,
+    47.53
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

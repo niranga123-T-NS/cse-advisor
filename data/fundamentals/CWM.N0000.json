@@ -1,5 +1,245 @@
 {
- "annual": {},
+ "annual": {
+  "40976": {
+   "dps": 400.0,
+   "dps_prior": 7.0,
+   "end": "2022-03-31",
+   "eps": 14.11,
+   "eps_prior": 7.35,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 91.98,
+   "navps_prior": 72.24,
+   "ok": true,
+   "pages": 180,
+   "src_dps": "Dividend Per Share  % \u23ce  400  7  12",
+   "src_eps": "Basic earnings per share (Rs.)  10  14.11  7.35  14.54  7.91",
+   "src_navps": "Net assets value per share  Rs.  91.98  72.24  27%",
+   "title": "Annual Report 2021/22",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1656668601551.22.pdf",
+   "v": 6,
+   "vals_dps": [
+    400.0,
+    7.0,
+    12.0
+   ],
+   "vals_eps": [
+    14.11,
+    7.35,
+    14.54,
+    7.91
+   ],
+   "vals_navps": [
+    91.98,
+    72.24
+   ],
+   "year_only": false
+  },
+  "43596": {
+   "dps": 10.0,
+   "dps_prior": 7.0,
+   "end": "2023-03-31",
+   "eps": 25.46,
+   "eps_prior": 13.67,
+   "layout_dps": [
+    0,
+    1,
+    true
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 105.51,
+   "navps_prior": 91.98,
+   "ok": true,
+   "pages": 164,
+   "src_dps": "Dividend per share*  Rs.  10.00  7.00  43",
+   "src_eps": "Earnings per share  Rs.  25.46  13.67  86",
+   "src_navps": "Net assets value per share  Rs.  105.51  91.98  15",
+   "title": "Annual Report 2022/23",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1688611735940. W. Mackie PLC Annual Report As of 31-03-2023.pdf",
+   "v": 6,
+   "vals_dps": [
+    10.0,
+    7.0,
+    43.0
+   ],
+   "vals_eps": [
+    25.46,
+    13.67,
+    86.0
+   ],
+   "vals_navps": [
+    105.51,
+    91.98,
+    15.0
+   ],
+   "year_only": false
+  },
+  "45963": {
+   "dps": 12.0,
+   "dps_prior": 10.0,
+   "end": "2024-03-31",
+   "eps": 11.56,
+   "eps_prior": 26.95,
+   "layout_dps": [
+    0,
+    1,
+    true
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 106.13,
+   "navps_prior": 109.04,
+   "ok": true,
+   "pages": 206,
+   "src_dps": "Dividend per share*  Rs.  12.00  10.00  20",
+   "src_eps": "Earnings per share  Rs.  11.56  26.95  -57",
+   "src_navps": "Net assets value per share  Rs.  106.13  109.04  -3",
+   "title": "Annual Report 2023/24",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1717642429979. W. Mackie PLC Annual Report 2023-24.pdf",
+   "v": 6,
+   "vals_dps": [
+    12.0,
+    10.0,
+    20.0
+   ],
+   "vals_eps": [
+    11.56,
+    26.95,
+    -57.0
+   ],
+   "vals_navps": [
+    106.13,
+    109.04,
+    -3.0
+   ],
+   "year_only": false
+  },
+  "48240": {
+   "dps": 8.0,
+   "dps_prior": 8.0,
+   "end": "2025-03-31",
+   "eps": 13.84,
+   "eps_prior": 11.56,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 114.36,
+   "navps_prior": 106.13,
+   "ok": true,
+   "pages": 202,
+   "src_dps": "Dividend per share*  Rs.  8.00  8.00  \u2013",
+   "src_eps": "Earnings per share  Rs.  13.84  11.56  20",
+   "src_navps": "Net assets value per share  Rs.  114.36  106.13  8",
+   "title": "Annual Report 2024/25",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1749120750163.W.Mackie PLC Annual Report as of 31.03.2025.pdf",
+   "v": 6,
+   "vals_dps": [
+    8.0,
+    8.0
+   ],
+   "vals_eps": [
+    13.84,
+    11.56,
+    20.0
+   ],
+   "vals_navps": [
+    114.36,
+    106.13,
+    8.0
+   ],
+   "year_only": false
+  },
+  "51825": {
+   "dps": 8.0,
+   "dps_prior": 8.0,
+   "end": "2026-03-31",
+   "eps": 2.37,
+   "eps_prior": 2.77,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 23.63,
+   "navps_prior": 22.87,
+   "ok": true,
+   "pages": 244,
+   "src_dps": "Dividend per share*/***  Rs.  8.00  8.00  0",
+   "src_eps": "Basic earnings per share**  Rs.  2.37  2.77  -14",
+   "src_navps": "Net assets value per share**  Rs.  23.63  22.87  3",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1780674792676.pdf",
+   "v": 6,
+   "vals_dps": [
+    8.0,
+    8.0,
+    0.0
+   ],
+   "vals_eps": [
+    2.37,
+    2.77,
+    -14.0
+   ],
+   "vals_navps": [
+    23.63,
+    22.87,
+    3.0
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

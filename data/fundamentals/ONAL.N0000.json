@@ -1,5 +1,224 @@
 {
- "annual": {},
+ "annual": {
+  "44101": {
+   "dps": 3.5,
+   "dps_prior": 0.66,
+   "end": "2023-03-31",
+   "eps": 11.2,
+   "eps_prior": 3.71,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 32.26,
+   "navps_prior": 30.58,
+   "ok": true,
+   "pages": 84,
+   "src_dps": "Dividend per share  3.50  0.66  0.43  2.10  2.10",
+   "src_eps": "Earnings per share - basic  11.2  3.71  7.08",
+   "src_navps": "Net Assets per Share  (Rs)  32.26  30.58",
+   "title": "Annual Report 2022/23",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/627_1693484542296.pdf",
+   "v": 6,
+   "vals_dps": [
+    3.5,
+    0.66,
+    0.43,
+    2.1,
+    2.1
+   ],
+   "vals_eps": [
+    11.2,
+    3.71,
+    7.08
+   ],
+   "vals_navps": [
+    32.26,
+    30.58
+   ],
+   "year_only": false
+  },
+  "46513": {
+   "end": "2024-12-31",
+   "eps": 11.2,
+   "eps_prior": 6.13,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 36,
+   "src_eps": "Earnings per share - basic  11.2  6.13  3.71",
+   "title": "Revised Audited Financial Statements for the year ended 31.03.2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/627_1724414713086.03.2024.pdf",
+   "v": 6,
+   "vals_eps": [
+    11.2,
+    6.13,
+    3.71
+   ],
+   "year_only": false
+  },
+  "46634": {
+   "dps": 0.66,
+   "dps_prior": 0.43,
+   "end": "2024-03-31",
+   "eps": 11.2,
+   "eps_prior": 6.13,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 36.32,
+   "navps_prior": 32.26,
+   "ok": true,
+   "pages": 96,
+   "src_dps": "Dividend per share  0.66  0.43  2.10  2.10  2.30",
+   "src_eps": "Earnings per share - basic  11.2  6.13  3.71",
+   "src_navps": "Net Assets per Share  (Rs)  36.32  32.26",
+   "title": "Annual Report 2023/24",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/627_1725275938263.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.66,
+    0.43,
+    2.1,
+    2.1,
+    2.3
+   ],
+   "vals_eps": [
+    11.2,
+    6.13,
+    3.71
+   ],
+   "vals_navps": [
+    36.32,
+    32.26
+   ],
+   "year_only": false
+  },
+  "48944": {
+   "dps": 0.43,
+   "dps_prior": 2.1,
+   "end": "2025-03-31",
+   "eps": 11.2,
+   "eps_prior": 5.5,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 38.24,
+   "navps_prior": 36.32,
+   "ok": true,
+   "pages": 102,
+   "src_dps": "Dividend per share  0.43  2.10  2.10  2.30  3.60",
+   "src_eps": "Earnings per share - basic  11.2  5.50  6.13",
+   "src_navps": "Net Assets per Share  (Rs)  38.24  36.32",
+   "title": "Annual Report 2024/25",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/627_1756867926884.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.43,
+    2.1,
+    2.1,
+    2.3,
+    3.6
+   ],
+   "vals_eps": [
+    11.2,
+    5.5,
+    6.13
+   ],
+   "vals_navps": [
+    38.24,
+    36.32
+   ],
+   "year_only": false
+  },
+  "52864": {
+   "dps": 2.1,
+   "dps_prior": 2.1,
+   "end": "2026-03-31",
+   "eps": 11.2,
+   "eps_prior": 12.9,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 50.21,
+   "navps_prior": 38.24,
+   "ok": true,
+   "pages": 108,
+   "src_dps": "Dividend per share  2.10  2.10  2.30  3.60  1.00",
+   "src_eps": "Earnings per share - basic  11.2  12.90  5.50",
+   "src_navps": "Net Assets per Share  (Rs)  50.21  38.24",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/627_1787919481971.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.1,
+    2.1,
+    2.3,
+    3.6,
+    1.0
+   ],
+   "vals_eps": [
+    11.2,
+    12.9,
+    5.5
+   ],
+   "vals_navps": [
+    50.21,
+    38.24
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

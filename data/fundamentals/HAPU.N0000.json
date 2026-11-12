@@ -1,5 +1,182 @@
 {
- "annual": {},
+ "annual": {
+  "40650": {
+   "end": "2021-12-31",
+   "eps": 3.43,
+   "eps_prior": -2.58,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 15.1,
+   "navps_prior": 12.35,
+   "ok": true,
+   "pages": 96,
+   "src_eps": "Basic earnings/(loss) per share (Rs.)  10  3.43  (2.58)  3.44  (2.37)",
+   "src_navps": "Net assets per share  (LKR)  15.10  12.35  22.27",
+   "title": "Annual Report 2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/708_1653987854805.pdf",
+   "v": 6,
+   "vals_eps": [
+    3.43,
+    -2.58,
+    3.44,
+    -2.37
+   ],
+   "vals_navps": [
+    15.1,
+    12.35,
+    22.27
+   ],
+   "year_only": false
+  },
+  "44105": {
+   "end": "2023-03-31",
+   "eps": 14.46,
+   "eps_prior": 3.43,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 73.8,
+   "navps_prior": 15.1,
+   "ok": true,
+   "pages": 102,
+   "src_eps": "Earnings per share  (LKR)  14.46  3.43  (321.43)",
+   "src_navps": "Net assets per share  (LKR)  73.80  15.10  388.72",
+   "title": "Annual Report 2022/23",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/708_1693486030540.pdf",
+   "v": 6,
+   "vals_eps": [
+    14.46,
+    3.43,
+    -321.43
+   ],
+   "vals_navps": [
+    73.8,
+    15.1,
+    388.72
+   ],
+   "year_only": false
+  },
+  "46595": {
+   "end": "2024-03-31",
+   "eps": 1.72,
+   "eps_prior": 14.46,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 74.04,
+   "navps_prior": 73.8,
+   "ok": true,
+   "pages": 126,
+   "src_eps": "Earnings per share (LKR)  1.72  14.46  (88.11)",
+   "src_navps": "Net assets per share (LKR)  74.04  73.80  0.33",
+   "title": "Annual Report 2023/2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/708_1725244797528.pdf",
+   "v": 6,
+   "vals_eps": [
+    1.72,
+    14.46,
+    -88.11
+   ],
+   "vals_navps": [
+    74.04,
+    73.8,
+    0.33
+   ],
+   "year_only": false
+  },
+  "48878": {
+   "end": "2025-03-31",
+   "eps": 7.29,
+   "eps_prior": 1.72,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 88.75,
+   "navps_prior": 74.04,
+   "ok": true,
+   "pages": 130,
+   "src_eps": "Earnings per share (LKR)  7.29  1.72  323.84",
+   "src_navps": "Net assets per share (LKR)  88.75  74.04  19.87",
+   "title": "Annual Report 2024/2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/708_1756468196099.pdf",
+   "v": 6,
+   "vals_eps": [
+    7.29,
+    1.72,
+    323.84
+   ],
+   "vals_navps": [
+    88.75,
+    74.04,
+    19.87
+   ],
+   "year_only": false
+  },
+  "52884": {
+   "end": "2026-03-31",
+   "eps": 4.32,
+   "eps_prior": 7.29,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 91.83,
+   "navps_prior": 88.75,
+   "ok": true,
+   "pages": 144,
+   "src_eps": "Earnings per share (LKR)  4.32  7.29  (40.69)",
+   "src_navps": "Net assets per share (LKR)  91.83  88.75  3.48",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/708_1788167054224.08.31.pdf",
+   "v": 6,
+   "vals_eps": [
+    4.32,
+    7.29,
+    -40.69
+   ],
+   "vals_navps": [
+    91.83,
+    88.75,
+    3.48
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

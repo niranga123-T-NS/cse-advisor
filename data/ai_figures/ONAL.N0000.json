@@ -1,0 +1,26 @@
+{
+ "symbol": "ONAL.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-09-30",
+  "months": 6,
+  "eps_ytd": 1.27,
+  "eps_ytd_prior": 0.78,
+  "eps_q": 0.64,
+  "eps_q_prior": 0.39,
+  "revenue_ytd": 295256,
+  "revenue_ytd_prior": 184547,
+  "unit": "Rs'000",
+  "navps": 50.08,
+  "page": 2
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": 13.02,
+  "eps_prior": 5.85,
+  "page": 2
+ },
+ "notes": "Company. FY2026 EPS 13.02 was inflated by a large final quarter (11.31), so the 12-month P/E looks lower than the run-rate."
+}

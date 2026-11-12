@@ -1,0 +1,26 @@
+{
+ "symbol": "MAL.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 6,
+  "eps_ytd": 0.4,
+  "eps_ytd_prior": 0.6,
+  "eps_q": 0.5,
+  "eps_q_prior": 0.5,
+  "revenue_ytd": 3490123,
+  "revenue_ytd_prior": 4098389,
+  "unit": "Rs'000",
+  "navps": 28.0,
+  "page": 2
+ },
+ "fy": {
+  "end": "2025-12-31",
+  "eps": 1.57,
+  "navps": 27.6,
+  "page": 2
+ },
+ "notes": "Company (financial year ends December). EPS printed to one decimal."
+}

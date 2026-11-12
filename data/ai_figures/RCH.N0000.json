@@ -1,0 +1,26 @@
+{
+ "symbol": "RCH.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 3,
+  "eps_ytd": 21.46,
+  "eps_ytd_prior": 11.26,
+  "eps_q": 21.46,
+  "eps_q_prior": 11.26,
+  "profit_ytd": 864707,
+  "profit_ytd_prior": 453752,
+  "revenue_ytd": 129444,
+  "revenue_ytd_prior": 109218,
+  "unit": "Rs'000",
+  "page": 2
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": 35.91,
+  "page": 2
+ },
+ "notes": "Group (investment holding; profit includes fair-value gains, so it swings). EPS = profit attributable \u00f7 40.3M shares."
+}

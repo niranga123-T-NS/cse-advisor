@@ -1,0 +1,23 @@
+{
+ "symbol": "SMOT.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-09-30",
+  "months": 6,
+  "eps_ytd": 243.88,
+  "eps_ytd_prior": 119.22,
+  "eps_q": 126.51,
+  "eps_q_prior": 97.57,
+  "profit_ytd": 1471462914,
+  "profit_ytd_prior": 719324661,
+  "revenue_ytd": 15735503321,
+  "revenue_ytd_prior": 10483816322,
+  "unit": "Rs",
+  "navps": 859.1,
+  "page": 2
+ },
+ "fy": {},
+ "notes": "Group (from the errata to the September interim). Only 6.03M shares, so per-share figures are large: EPS = profit attributable \u00f7 6.03M; NAV = equity 5,183.5M \u00f7 6.03M."
+}

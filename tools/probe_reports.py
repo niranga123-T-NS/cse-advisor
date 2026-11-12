@@ -1,22 +1,28 @@
-import json, sys
+import io, json, re, sys, collections
 sys.path.insert(0, ".")
-import cse_client as cse
-sym = "JKH.N0000"
-def show(name, j, n=1500):
-    print(f"\n=== {name} ===")
-    if j is None: print("FAILED"); return
-    if isinstance(j, dict):
-        print("keys:", list(j.keys()))
-        for k, v in j.items():
-            if isinstance(v, list):
-                print(f" {k}: list[{len(v)}]", json.dumps(v[:3], default=str)[:n])
-            else:
-                print(f" {k}:", json.dumps(v, default=str)[:400])
-    else:
-        print(json.dumps(j, default=str)[:n])
-for ep, data in [("financials", {"symbol": sym}), ("companyFinancials", {"symbol": sym}),
-                 ("getFinancialAnnouncement", {}), ("getFinancialAnnouncement", {"symbol": sym}),
-                 ("annualReports", {"symbol": sym}), ("companyAnnualReports", {"symbol": sym}),
-                 ("companyInfoSummery", {"symbol": sym})]:
-    show(f"{ep} {data}", cse.post(ep, data, retries=1))
-    show(f"{ep}?symbol (query)", cse.post(f"{ep}?symbol={sym}", {}, retries=1)) if data.get("symbol") else None
+import cse_client as cse, requests
+from pypdf import PdfReader
+for sym in ["JKH.N0000", "COMB.N0000"]:
+    j = cse.post("financials", {"symbol": sym})
+    rf = j.get("reqFinancial") or []
+    print(f"\n##### {sym} reqFinancial {len(rf)}")
+    c = collections.Counter((r.get("elmId"), r.get("data")) for r in rf)
+    for k, v in list(c.items())[:40]: print(v, k)
+    print("all keys:", sorted({k for r in rf for k in r}))
+    print("sample distinct rows:", json.dumps([r for r in rf if r.get("data") != "Financial Statements Summary"][:15])[:2500])
+    for kind in ["infoQuarterlyData", "infoAnnualData"]:
+        items = j.get(kind) or []
+        print(f"\n{kind}: {len(items)}; titles:", [i["fileText"] for i in items[:14]])
+        it = items[0]
+        url = "https://cdn.cse.lk/" + it["path"]
+        r = requests.get(url, timeout=60, headers={"User-Agent": "Mozilla/5.0"})
+        print("PDF", url, r.status_code, len(r.content)//1024, "KB")
+        try:
+            pdf = PdfReader(io.BytesIO(r.content)); print("pages", len(pdf.pages))
+            text = "\n".join((pdf.pages[i].extract_text() or "") for i in range(min(len(pdf.pages), 8 if kind=="infoQuarterlyData" else 40)))
+            print("chars", len(text))
+            for kw in ["Revenue", "Profit for the period", "Profit attributable", "Earnings per share", "Net assets per share", "Total equity", "Interest income", "Net interest"]:
+                m = [l for l in text.splitlines() if kw.lower() in l.lower()][:3]
+                print(f"  {kw}: {m}")
+        except Exception as e:
+            print("pdf err", e)

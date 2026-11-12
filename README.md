@@ -33,6 +33,20 @@ Every night at 01:30 the **Read company reports** job checks CSE for new reports
 
 Each figure is sanity-checked against the share price, and anything implausible is left blank rather than guessed. These points are added to the technical score; the stock page shows both separately, with links to every report used. The first full read of all companies takes 3–4 hours; after that, each night takes minutes.
 
+### How report figures are checked
+
+Each figure keeps the exact PDF line it came from; on a stock's page, open "Exact lines read from the PDFs" to see them. Before any figure affects the score it must pass a cross-check:
+
+1. **Last year's column = last year's report.** Every report prints the same period last year beside the current figures. When that column matches the figure in last year's own report, the row and columns were read correctly. The reader also uses this match to pick the right columns when a row holds several.
+2. **Printed % change.** Where a report prints a % change column, it must match the current and prior figures.
+3. **Quarter vs year-to-date by arithmetic.** Year-to-date = the previous report's year-to-date + this quarter, and the year-end figure must equal the annual report's EPS. Header wording isn't trusted.
+4. **EPS = attributable profit ÷ shares in issue** (latest four reports).
+5. **EPS growth must agree with profit growth.**
+6. **Net assets per share:** the balance sheet's comparative column must equal the figure at the last financial year end.
+7. **Plausibility:** every per-share figure is checked against the share price. Full-year EPS more than 13 months old is never used for P/E. US-dollar translation rows are skipped. Long-term EPS growth is only measured across years whose figures link up, so share splits don't create false trends.
+
+Figures that fail are shown with ⚠ and excluded from the score. The stock page lists every check (passed / warning / failed), and the header shows how many figures were verified across all companies. The filter "Data issues" lists companies with failed checks.
+
 Text matching can't read every company's layout. Some stocks will show "partial" or "low" data, so check the linked report before relying on a figure.
 
 ## If the run fails

@@ -21,7 +21,7 @@ import requests
 import cse_client as cse
 
 CDN = "https://cdn.cse.lk/"
-PARSER_VERSION = 5
+PARSER_VERSION = 6
 MONTHS = {m: i for i, m in enumerate(
     ["january", "february", "march", "april", "may", "june", "july", "august",
      "september", "october", "november", "december"], 1)}
@@ -318,7 +318,7 @@ EPS_SUB = r"\bbasic\b(?:\s*\(?rs\.?\)?)?"
 
 
 NOT_PROFIT = ("equity attributable", "total equity", "comprehensive", "equity holders' funds", "shareholders' funds",
-              "reserves", "capital")
+              "reserves", "capital", "transactions with", "distributions to", "contributions by")
 
 
 def profit_attributable(text: str):

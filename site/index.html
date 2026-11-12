@@ -82,6 +82,9 @@ async function load() {
   try {
     const [sig, meta] = await Promise.all([fetch('data/signals.json').then(r=>r.json()), fetch('data/meta.json').then(r=>r.json())]);
     all = sig; $('#meta').textContent = `Updated ${meta.updated} · ${meta.stocks} stocks`;
+    try { const au = await fetch('data/audit.json').then(r=>r.json());
+      if (au.companies_with_reports) $('#meta').textContent += ` · reports: ${au.companies_with_reports} companies, ${au.figures_verified}/${au.figures_total} figures verified`;
+    } catch (e) {}
   } catch (e) { all = []; }
   render();
 }

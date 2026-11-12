@@ -98,7 +98,8 @@ def collect(symbols: list[str], budget_min: float):
                 print(f"{s}  {kind:9}  {it['end']}  {it['title'][:60]}")
                 res = reports.read_report(it, kind)
                 if res.get("ok"):
-                    store[it["id"]] = {**res, "end": it["end"], "title": it["title"], "url": it["url"]}
+                    store[it["id"]] = {**res, "end": it["end"], "title": it["title"], "url": it["url"],
+                                       "year_only": it.get("year_only", False)}
                 time.sleep(0.5)
             # forget reports that dropped out of the window
             keep = {it["id"] for it in wanted}
@@ -156,7 +157,7 @@ def resolve_columns(q: list, a: list, checks: list):
     """
     import collections
     layouts = [(k, st) for k in (0, 1, 2) for st in (1, 2)]
-    for group, fields in ((q, ("eps", "profit", "revenue", "navps")), (a, ("eps", "dps", "navps"))):
+    for group, fields in ((q, ("eps", "profit", "revenue")), (a, ("eps", "dps"))):
         for f in fields:
             vk = "vals_" + f
             ev = collections.defaultdict(collections.Counter)
@@ -209,7 +210,76 @@ def resolve_columns(q: list, a: list, checks: list):
                 x["revenue_growth"] = reports._growth((x.get("revenue"), x.get("revenue_prior")))
 
 
-def audit(d: dict, price: float | None):
+def infer_periods(q: list, a: list, cum, checks: list):
+    """Work out, for each interim report, which EPS column is the quarter and which is year-to-date.
+
+    Reports print either [year-to-date | last year] first or [quarter | last year] first, and headers are
+    unreliable once converted to text. Arithmetic is not:  year-to-date = previous report's year-to-date + quarter.
+    For the year-end report the 12-month figure must also equal the annual report's EPS.
+    Sets x['months'] (period of the first column), x['eps_q'], x['eps_cum'], x['eps_cum_prior'], and
+    marks 'period' verified when the arithmetic confirms it.
+    """
+    import datetime as dt
+    tol = lambda a_, b_: abs(a_ - b_) <= 0.011 + 0.002 * max(abs(a_), abs(b_))  # rounding of printed figures only
+    by_end = {x["end"]: x for x in q if x.get("end")}
+    ann = {x["end"]: x for x in a if x.get("end")}
+    for x in sorted(q, key=lambda r: r["end"] or ""):
+        c = cum(x["end"]) if x.get("end") else None
+        v = x.get("vals_eps")
+        if not v or x.get("eps") is None or c is None:
+            continue
+        try:
+            k0 = v.index(x["eps"])
+        except ValueError:
+            continue
+        lay = x.get("layout_eps") or [0, 1, False]
+        st = lay[1] if len(lay) > 1 else 1
+        prior_of = lambda j: v[j + st] if len(v) > j + st else None
+        if c == 3:
+            x.update(months=3, eps_q=x["eps"], eps_cum=x["eps"], eps_cum_prior=x.get("eps_prior"))
+            continue
+        # previous report in the same financial year (3 months earlier)
+        d0 = dt.date.fromisoformat(x["end"])
+        p = next((r for e, r in by_end.items() if 70 <= (d0 - dt.date.fromisoformat(e)).days <= 110), None)
+        p_cums = []
+        if p is not None and cum(p["end"]) == c - 3:
+            p_cums = [p["eps_cum"]] if p.get("eps_cum") is not None else list(p.get("vals_eps") or [])[:4]
+        others = [j for j in range(len(v)) if j != k0 and j != k0 + st]
+        found = None
+        for pc in p_cums:
+            for j in others:
+                if tol(v[k0], pc + v[j]):          # first column is year-to-date
+                    found = ("cum_first", j); break
+                if tol(v[j], pc + v[k0]):          # first column is the quarter
+                    found = ("q_first", j); break
+            if found:
+                break
+        if not found and c == 12 and x["end"] in ann and ann[x["end"]].get("eps") is not None:
+            ae = ann[x["end"]]["eps"]
+            if tol(v[k0], ae):
+                found = ("cum_first", None)
+            else:
+                j = next((j for j in others if tol(v[j], ae)), None)
+                if j is not None:
+                    found = ("q_first", j)
+        if found:
+            kind, j = found
+            if kind == "cum_first":
+                x.update(months=c, eps_cum=x["eps"], eps_cum_prior=x.get("eps_prior"), eps_q=v[j] if j is not None else None)
+            else:
+                x.update(months=3, eps_q=x["eps"], eps_cum=v[j], eps_cum_prior=prior_of(j))
+            x["_ok"].add("period")
+            checks.append(("ok", x["end"], f"columns: {'year-to-date' if kind == 'cum_first' else 'quarter'} first "
+                                           f"({c}-month EPS {x['eps_cum']}) confirmed by adding up the quarters"))
+        elif x.get("months") == c:
+            x.update(eps_cum=x["eps"], eps_cum_prior=x.get("eps_prior"))
+        elif x.get("months") == 3:
+            x["eps_q"] = x["eps"]
+        else:
+            checks.append(("warn", x["end"], "could not tell whether the first EPS column is the quarter or year-to-date"))
+
+
+def audit(d: dict, price: float | None):  # noqa: C901
     """Cross-check every figure read from the reports.
 
     Marks per report which fields are VERIFIED (`_ok`) or CONTRADICTED (`_bad`) and returns
@@ -222,48 +292,56 @@ def audit(d: dict, price: float | None):
       5. net assets per share moves < 30% between consecutive reports
       6. per-share values plausible vs the share price; column period consistent with the financial year
     """
-    q = sorted((dict(x) for x in d.get("quarterly", {}).values()), key=lambda x: x["end"] or "", reverse=True)
-    a = sorted((dict(x) for x in d.get("annual", {}).values()), key=lambda x: x["end"] or "", reverse=True)
+    import calendar, collections
+    q = [dict(x) for x in d.get("quarterly", {}).values()]
+    a = [dict(x) for x in d.get("annual", {}).values()]
     checks = []
+
+    def chk(level, x, msg):
+        checks.append((level, x["end"], msg))
+
+    # financial year end month: majority of annual reports whose title gives a real date
+    months = collections.Counter(int(x["end"][5:7]) for x in a if x.get("end") and not x.get("year_only"))
+    fy_month = months.most_common(1)[0][0] if months else (12 if a else None)
+    # "Annual Report 2025" for a March-year-end company means the year ending March 2025
+    for x in a:
+        if x.get("year_only") and fy_month and x.get("end") and int(x["end"][5:7]) != fy_month:
+            y = int(x["end"][:4])
+            x["end"] = f"{y}-{fy_month:02d}-{calendar.monthrange(y, fy_month)[1]:02d}"
+    q.sort(key=lambda x: x["end"] or "", reverse=True)
+    a.sort(key=lambda x: x["end"] or "", reverse=True)
+    cum = lambda end: ((int(end[5:7]) - fy_month) % 12 or 12) if fy_month and end else None
+
     for x in q + a:
         x["_ok"], x["_bad"], x["_self"] = set(), set(), set()
     resolve_columns(q, a, checks)
+    infer_periods(q, a, cum, checks)
     for x in q + a:
-        for f in ("eps", "eps_prior", "navps", "dps", "dps_prior"):
+        for f in ("eps", "eps_prior", "eps_cum", "eps_cum_prior", "navps", "dps", "dps_prior"):
             if f.startswith("dps") and x.get(f) == 0:
                 continue  # no dividend is a valid figure
             if x.get(f) is not None and not _ok_per_share(x[f], price, lo=0.0001, hi=20 if "nav" in f else 5):
                 x["_bad"].add(f)
                 checks.append(("fail", x["end"], f"{f} {x[f]} implausible vs price {price} - ignored"))
 
-    def chk(level, x, msg):
-        checks.append((level, x["end"], msg))
-
-    # financial year end month
-    fy_month = next((int(x["end"][5:7]) for x in a if x.get("end")), None) or \
-        next((int(x["end"][5:7]) for x in q if x.get("months") == 12 and x.get("end")), None)
-    cum = lambda end: ((int(end[5:7]) - fy_month) % 12 or 12) if fy_month and end else None
-
-    # 6b. column period vs financial year
-    for x in q:
-        c = cum(x["end"])
-        if x.get("months") and c and x["months"] not in (3, c):
-            x["_bad"].update({"eps", "eps_prior", "profit", "revenue"})
-            chk("fail", x, f"first column is {x['months']} months but the period should be 3 or {c} months - column unclear, ignored")
-
-    # 1. EPS vs profit / shares
+    # 1. EPS vs profit / shares  (profit row and EPS row may print quarter / year-to-date in different order,
+    #    so compare against both EPS figures)
     shares = d.get("shares") or 0
     both = shares + (d.get("shares_other_class") or 0)
     for x in q[:4]:
-        if x.get("eps") and x.get("profit") and shares and "eps" not in x["_bad"]:
-            units = [x["unit"]] if x.get("unit") else [1, 1e3, 1e6]
-            hit = next(((u, S) for u in units for S in (shares, both) if S and _close(x["profit"] * u / S, x["eps"], 0.15)), None)
-            if hit:
-                x["_ok"].update({"eps", "profit"})
-                chk("ok", x, f"EPS {x['eps']} = profit {x['profit']:,.0f} x {hit[0]:g} / {hit[1]:,.0f} shares")
-            else:
-                implied = x["profit"] * (x.get("unit") or 1) / shares
-                chk("warn", x, f"EPS {x['eps']} does not match profit / shares ({implied:.2f}) - unit, share count or row may be wrong")
+        if not (x.get("profit") and shares):
+            continue
+        targets = [(f, x.get(f)) for f in ("eps", "eps_cum", "eps_q") if x.get(f) and f not in x["_bad"]]
+        units = [x["unit"]] if x.get("unit") else [1, 1e3, 1e6]
+        hit = next(((f, e, u, S) for f, e in targets for u in units for S in (shares, both)
+                    if S and _close(x["profit"] * u / S, e, 0.15)), None)
+        if hit:
+            f, e, u, S = hit
+            x["_ok"].update({f, "profit"})
+            chk("ok", x, f"EPS {e} = profit {x['profit']:,.0f} x {u:g} / {S:,.0f} shares")
+        elif targets:
+            implied = x["profit"] * (x.get("unit") or 1) / shares
+            chk("warn", x, f"EPS {targets[0][1]} does not match profit / shares ({implied:.2f}) - unit, share count or row may be wrong")
 
     # 2. prior-year column vs last year's report
     for group, fields in ((q, ("eps", "profit", "revenue")), (a, ("eps", "dps"))):
@@ -285,15 +363,26 @@ def audit(d: dict, price: float | None):
                 else:
                     chk("warn", x, f"{f} last-year column {pv:,} vs {y['end']} report {cv:,} (small difference, likely restated)")
 
-    # 3. annual EPS vs 12-month interim EPS
+    # 3. annual EPS vs the 12-month figure in the year-end interim report
     for x in a:
-        r = next((y for y in q if y["end"] == x["end"] and y.get("months") == 12), None)
-        if r and x.get("eps") is not None and r.get("eps") is not None:
-            if _close(x["eps"], r["eps"], 0.03):
-                x["_ok"].add("eps"); r["_ok"].add("eps")
-                chk("ok", x, f"annual EPS {x['eps']} = 12-month interim EPS {r['eps']}")
+        r = next((y for y in q if y["end"] == x["end"] and y.get("eps_cum") is not None and cum(y["end"]) == 12), None)
+        if r and x.get("eps") is not None and "eps" not in x["_bad"]:
+            if _close(x["eps"], r["eps_cum"], 0.03):
+                x["_ok"].add("eps"); r["_ok"].add("eps_cum")
+                chk("ok", x, f"annual EPS {x['eps']} = 12-month EPS in the year-end interim report {r['eps_cum']}")
             else:
-                chk("warn", x, f"annual EPS {x['eps']} ≠ 12-month interim EPS {r['eps']} (group vs company, or mis-read)")
+                x["_conflict"] = r["eps_cum"]
+                chk("warn", x, f"annual EPS {x['eps']} ≠ 12-month interim EPS {r['eps_cum']} (group vs company, or mis-read)")
+
+    # 3b. year-to-date EPS: last-year column = last year's report
+    for x in q:
+        y = _year_before(x["end"], q, None)
+        if y and x.get("eps_cum_prior") is not None and y.get("eps_cum") is not None:
+            if _close(x["eps_cum_prior"], y["eps_cum"], 0.02) or abs(x["eps_cum_prior"] - y["eps_cum"]) < 0.011:
+                x["_ok"].update({"eps_cum", "eps_cum_prior"}); y["_ok"].add("eps_cum")
+            elif not _close(x["eps_cum_prior"], y["eps_cum"], 0.10):
+                x["_bad"].add("eps_cum_prior")
+                chk("warn", x, f"year-to-date EPS last-year column {x['eps_cum_prior']} ≠ {y['end']} report {y['eps_cum']}")
 
     # 4. EPS growth vs profit growth
     for x in q:
@@ -310,14 +399,33 @@ def audit(d: dict, price: float | None):
             x["_bad"].add("growth")
             chk("warn", x, f"EPS growth {ge:+.0%} vs profit growth {gp:+.0%} disagree - growth not used")
 
-    # 5. NAV stability
+    # 5. net assets per share: the balance sheet's comparative column is the last financial year end,
+    #    so it must equal the NAV reported at that year end (interim Q4 or annual report)
+    for x in q:
+        v = x.get("vals_navps")
+        if not v or "navps" in x["_bad"]:
+            continue
+        x["navps"] = v[0]
+        if fy_month and len(v) > 1:
+            y, mth = int(x["end"][:4]), int(x["end"][5:7])
+            fy_end_year = y if mth > fy_month else y - 1
+            fe = f"{fy_end_year}-{fy_month:02d}"
+            ref = next((r for r in q + a if r is not x and (r.get("end") or "").startswith(fe) and r.get("vals_navps")), None)
+            if ref:
+                if _close(v[1], ref["vals_navps"][0], 0.02):
+                    x["_ok"].add("navps"); ref["_ok"].add("navps")
+                    chk("ok", x, f"net assets/share comparative {v[1]} = year-end {ref['end']} figure {ref['vals_navps'][0]}")
+                elif _close(v[1], ref["vals_navps"][0], 0.15) is False and not any(_close(v[1], w, 0.02) for w in ref["vals_navps"][:4]):
+                    x["_bad"].add("navps")
+                    chk("warn", x, f"net assets/share comparative {v[1]} ≠ year-end {ref['end']} figure {ref['vals_navps'][0]} - not used")
     navs = [x for x in q if x.get("navps") and "navps" not in x["_bad"]]
     for n, o in zip(navs, navs[1:]):
-        if _close(n["navps"], o["navps"], 0.30):
-            n["_ok"].add("navps"); o["_ok"].add("navps")
-        else:
-            n["_bad"].add("navps")
+        if not _close(n["navps"], o["navps"], 0.30):
+            n["_bad"].add("navps"); n["_ok"].discard("navps")
             chk("warn", n, f"net assets/share {n['navps']} jumped from {o['navps']} ({o['end']}) - not used")
+    for x in a:
+        if x.get("vals_navps"):
+            x["navps"] = x["vals_navps"][0]
     return q, a, [{"level": l, "end": e, "msg": m} for l, e, m in checks], fy_month, cum
 
 
@@ -333,53 +441,85 @@ def metrics(symbol: str, price: float | None) -> dict | None:
     m = {"quarters_read": len(q), "annuals_read": len(a), "fy_month": fy_month}
     ver = {}
 
-    # --- full-year EPS per year end: verified if two sources agree or a cross-check confirmed it
+    # --- full-year EPS per year end: annual report and the 12-month column of the year-end interim report.
+    #     Verified if a cross-check confirmed it or both sources agree; conflicting sources are not verified.
     fy = {}
-    def add_fy(end, v, ok):
-        if end and v is not None and _ok_per_share(v, price, lo=0.0005):
-            fy.setdefault(end, []).append((v, ok))
+    def add_fy(end, v, ok, src):
+        if end and v is not None and _ok_per_share(v, price, lo=0.0001):
+            fy.setdefault(end, []).append((v, ok, src))
     for x in a:
-        add_fy(x["end"], x.get("eps"), _v(x, "eps"))
+        if "eps" not in x["_bad"]:
+            add_fy(x["end"], x.get("eps"), _v(x, "eps"), "annual")
     for x in q:
-        if cum(x["end"]) == 12 and x.get("months") == 12 and "eps" not in x["_bad"]:
-            add_fy(x["end"], x.get("eps"), _v(x, "eps"))
+        if cum(x["end"]) == 12 and x.get("eps_cum") is not None and "eps_cum" not in x["_bad"]:
+            add_fy(x["end"], x["eps_cum"], "eps_cum" in x["_ok"] or ("period" in x["_ok"] and _v(x, "eps")), "interim")
     fy_eps = {}
     for end, lst in fy.items():
-        v, ok = max(lst, key=lambda t: (t[1], sum(_close(t[0], w, 0.03) for w, _ in lst)))
-        agree = sum(_close(v, w, 0.03) for w, _ in lst)
-        fy_eps[end] = (v, ok or agree >= 2)
+        agree_n = lambda t: sum(_close(t[0], w[0], 0.03) for w in lst)
+        v, ok, src = max(lst, key=lambda t: (t[1], agree_n(t), t[2] == "annual"))
+        conflict = any(not _close(v, w[0], 0.03) and w[1] for w in lst)
+        fy_eps[end] = (v, (ok or agree_n((v,)) >= 2) and not conflict)
     m["fy_eps"] = [{"end": e, "eps": round(v, 3), "verified": ok} for e, (v, ok) in sorted(fy_eps.items(), reverse=True)][:6]
 
-    # --- trailing 12-month EPS
+    # --- trailing 12-month EPS = year-to-date + last full year − same period last year
     ttm, how, ttm_ok = None, None, False
     if q:
         L = q[0]
         c = cum(L["end"])
         prior_fy = max((e for e in fy_eps if e < L["end"]), default=None)
-        if c and c < 12 and L.get("months") == c and prior_fy and L.get("eps") is not None and L.get("eps_prior") is not None \
-                and not ({"eps", "eps_prior"} & L["_bad"]):
-            ttm = L["eps"] + fy_eps[prior_fy][0] - L["eps_prior"]
+        if c == 12 and L.get("eps_cum") is not None and "eps_cum" not in L["_bad"]:
+            ttm, how = L["eps_cum"], f"12 months to {L['end']}"
+            ttm_ok = "eps_cum" in L["_ok"] or ("period" in L["_ok"] and _v(L, "eps"))
+        elif c and L.get("eps_cum") is not None and L.get("eps_cum_prior") is not None and prior_fy \
+                and not ({"eps_cum", "eps_cum_prior"} & L["_bad"]):
+            ttm = L["eps_cum"] + fy_eps[prior_fy][0] - L["eps_cum_prior"]
             how = f"{c} months to {L['end']} + full year to {prior_fy} − same {c} months last year"
-            ttm_ok = _v(L, "eps") and _v(L, "eps_prior") and fy_eps[prior_fy][1]
-        elif len(q) >= 4 and all(x.get("months") == 3 and x.get("eps") is not None and "eps" not in x["_bad"] for x in q[:4]) \
-                and _consecutive([x["end"] for x in q[:4]]):
-            ttm = sum(x["eps"] for x in q[:4])
-            how = f"sum of the last 4 quarters to {L['end']}"
-            ttm_ok = sum(_v(x, "eps") for x in q[:4]) >= 2
+            ttm_ok = (("eps_cum" in L["_ok"] and "eps_cum_prior" in L["_ok"]) or
+                      (c == 3 and _v(L, "eps") and _v(L, "eps_prior")) or
+                      ("period" in L["_ok"] and _v(L, "eps") and _v(L, "eps_prior"))) and fy_eps[prior_fy][1]
+        else:
+            qs = [x for x in q[:4] if x.get("eps_q") is not None]
+            if len(qs) == 4 and _consecutive([x["end"] for x in qs]):
+                ttm, how = sum(x["eps_q"] for x in qs), f"sum of the last 4 quarters to {L['end']}"
+                ttm_ok = all(("period" in x["_ok"] or cum(x["end"]) == 3) and _v(x, "eps") for x in qs)
     last_fy = max(fy_eps) if fy_eps else None
-    if ttm is not None and last_fy and fy_eps[last_fy][0] > 0 and not 0.4 <= ttm / fy_eps[last_fy][0] <= 2.5:
+    if ttm is not None and last_fy and fy_eps[last_fy][0] > 0 and not 0.33 <= ttm / fy_eps[last_fy][0] <= 3:
         checks.append({"level": "fail", "end": q[0]["end"], "msg": f"12-month EPS {ttm:.2f} far from last full year {fy_eps[last_fy][0]} - not used"})
         ttm = None
     if ttm is None and last_fy:
-        ttm, how, ttm_ok = fy_eps[last_fy][0], f"full year to {last_fy}", fy_eps[last_fy][1]
+        import datetime as dt
+        newest = q[0]["end"] if q else last_fy
+        age = (dt.date.fromisoformat(newest) - dt.date.fromisoformat(last_fy)).days
+        if age <= 400:
+            ttm, how, ttm_ok = fy_eps[last_fy][0], f"full year to {last_fy}", fy_eps[last_fy][1]
+        else:
+            checks.append({"level": "warn", "end": newest, "msg": f"latest full-year EPS found is for {last_fy} - too old for P/E, not used"})
     if ttm is not None:
         m["eps_ttm"], m["eps_basis"] = round(ttm, 3), how
-        ver["eps_ttm"] = ttm_ok
+        ver["eps_ttm"] = bool(ttm_ok)
         if price and ttm > 0:
             m["pe"] = round(price / ttm, 1)
-            ver["pe"] = ttm_ok
+            ver["pe"] = bool(ttm_ok)
 
     # --- growth from the latest report
+    def ytd_growth(x):
+        c_, p_ = x.get("eps_cum"), x.get("eps_cum_prior")
+        if c_ is None or p_ is None or p_ <= 0 or {"eps_cum", "eps_cum_prior"} & x["_bad"]:
+            return None, False
+        ok_ = ({"eps_cum", "eps_cum_prior"} <= x["_ok"]) or (("period" in x["_ok"] or cum(x["end"]) == 3)
+                                                          and _v(x, "eps") and _v(x, "eps_prior"))
+        g_ = round((c_ / p_ - 1) * 100, 1)
+        return (g_ if -95 <= g_ <= 1000 else None), ok_
+    if q:
+        g, gok = ytd_growth(q[0])
+        if g is not None:
+            m["eps_growth_ytd"], m["eps_growth_months"] = g, cum(q[0]["end"])
+            ver["eps_growth_ytd"] = gok
+        hits = [ytd_growth(x) for x in q]
+        hits = [g_ for g_, ok_ in hits if g_ is not None and ok_]
+        if len(hits) >= 4:
+            m["eps_growth_hit"] = f"{sum(g_ > 0 for g_ in hits)}/{len(hits)}"
+            m["_eg_ratio"] = sum(g_ > 0 for g_ in hits) / len(hits)
     if q:
         L = q[0]
         m["latest_report"] = {"end": L["end"], "title": L["title"], "url": L["url"]}
@@ -433,15 +573,26 @@ def metrics(symbol: str, price: float | None) -> dict | None:
     if dsrc and price:
         m["dps"], m["div_yield"] = dsrc["dps"], round(dsrc["dps"] / price * 100, 1)
         ver["div_yield"] = dsrc.get("dps_ok", False)
-    e = [(y["eps"], y.get("eps_ok")) for y in years if "eps" in y]
-    if len(e) >= 3 and e[-1][0] > 0 and e[0][0] > 0:
-        n = len(e) - 1
-        m["eps_cagr"] = round(((e[0][0] / e[-1][0]) ** (1 / n) - 1) * 100, 1)
+    # EPS growth per year only along an unbroken chain: each year's "last year" column must equal the
+    # previous annual report's figure (a share split or restatement breaks the chain - no false trend)
+    chain = []
+    x = next((r for r in a if r.get("eps") is not None and "eps" not in r["_bad"]), None)
+    while x is not None:
+        chain.append(x["eps"])
+        y = _year_before(x["end"], a, None)
+        if not (y and y.get("eps") is not None and x.get("eps_prior") is not None
+                and (_close(x["eps_prior"], y["eps"], 0.03) or abs(x["eps_prior"] - y["eps"]) < 0.011)):
+            break
+        x = y
+    if len(chain) >= 3 and chain[0] > 0 and chain[-1] > 0:
+        n = len(chain) - 1
+        m["eps_cagr"] = round(((chain[0] / chain[-1]) ** (1 / n) - 1) * 100, 1)
         m["eps_cagr_years"] = n
-        ver["eps_cagr"] = bool(e[0][1] and e[-1][1])
-
+        ver["eps_cagr"] = True  # every link in the chain is itself a passed cross-check
     m["quarters"] = [{"end": x["end"], "months": x.get("months"), "url": x["url"], "title": x.get("title"),
                       "eps": x.get("eps") if "eps" not in x["_bad"] else None, "eps_ok": _v(x, "eps"),
+                      "eps_cum": x.get("eps_cum") if "eps_cum" not in x["_bad"] else None, "cum_months": cum(x["end"]),
+                      "eps_q": x.get("eps_q"), "period_ok": "period" in x["_ok"] or cum(x["end"]) == 3,
                       "profit_growth": x.get("profit_growth") if "growth" not in x["_bad"] else None,
                       "growth_ok": "growth" in x["_ok"] or (_v(x, "profit") and _v(x, "profit_prior")),
                       "revenue_growth": x.get("revenue_growth"),
@@ -481,19 +632,25 @@ def score(m: dict | None) -> tuple[float, list[str]]:
     if "pbv" in m and ok("pbv"):
         if m["pbv"] < 0.8: add(0.5, f"Trades below book value (P/BV {m['pbv']})")
         elif m["pbv"] > 3: add(-0.5, f"High P/BV {m['pbv']}")
-    g = m.get("profit_growth") if ok("profit_growth") else None
+    if ok("eps_growth_ytd"):
+        g, what = m["eps_growth_ytd"], f"EPS {m.get('eps_growth_months')}-month year-to-date"
+    elif ok("profit_growth"):
+        g, what = m["profit_growth"], "Profit (latest period)"
+    else:
+        g = None
     if g is not None:
-        if g > 15: add(1, f"Profit up {g}% vs same period last year")
-        elif g > 0: add(0.5, f"Profit up {g}% vs last year")
-        elif g < -15: add(-1, f"Profit down {abs(g)}% vs last year")
-        else: add(-0.5, f"Profit down {abs(g)}% vs last year")
+        if g > 15: add(1, f"{what} up {g}% vs last year")
+        elif g > 0: add(0.5, f"{what} up {g}% vs last year")
+        elif g < -15: add(-1, f"{what} down {abs(g)}% vs last year")
+        else: add(-0.5, f"{what} down {abs(g)}% vs last year")
     r = m.get("revenue_growth") if ok("revenue_growth") else None
     if r is not None:
         if r > 10: add(0.5, f"Revenue up {r}%")
         elif r < -10: add(-0.5, f"Revenue down {abs(r)}%")
-    if m.get("_pg_ratio") is not None:
-        if m["_pg_ratio"] >= 0.75: add(0.5, f"Consistent profit growth ({m['profit_growth_hit']} reports)")
-        elif m["_pg_ratio"] <= 0.25: add(-0.5, f"Profits mostly falling ({m['profit_growth_hit']} reports grew)")
+    ratio, hit = (m.get("_eg_ratio"), m.get("eps_growth_hit")) if m.get("_eg_ratio") is not None else (m.get("_pg_ratio"), m.get("profit_growth_hit"))
+    if ratio is not None:
+        if ratio >= 0.75: add(0.5, f"Consistent earnings growth ({hit} verified reports up)")
+        elif ratio <= 0.25: add(-0.5, f"Earnings mostly falling ({hit} verified reports up)")
     if "roe" in m and ok("roe"):
         if m["roe"] >= 15: add(0.5, f"Strong ROE {m['roe']}%")
         elif m["roe"] < 5: add(-0.5, f"Weak ROE {m['roe']}%")

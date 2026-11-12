@@ -21,7 +21,7 @@ import requests
 import cse_client as cse
 
 CDN = "https://cdn.cse.lk/"
-PARSER_VERSION = 4
+PARSER_VERSION = 5
 MONTHS = {m: i for i, m in enumerate(
     ["january", "february", "march", "april", "may", "june", "july", "august",
      "september", "october", "november", "december"], 1)}
@@ -43,6 +43,7 @@ def list_reports(symbol: str) -> dict:
             title = (it.get("fileText") or "").strip()
             end = period_end(title) or _ms_date(it.get("manualDate"))
             items.append({"id": str(it.get("id")), "url": CDN + path.lstrip("/"), "title": title, "end": end,
+                          "year_only": bool(end) and not re.search(r"[a-z]{3,9}\.?\s+\d|\d\s*[a-z]{3,9}|\d{4}\s*[/-]\s*\d{2}", title.lower()),
                           "amended": "amend" in title.lower(), "uploaded": it.get("uploadedDate") or 0})
         # one report per period end; prefer amended / later upload
         best = {}
@@ -226,7 +227,7 @@ def row_values(text: str, labels: list[str], per_share: bool, skip_if: tuple = (
     """First row whose label matches; values are read only to the right of the label."""
     pats = [re.compile((r"" if midline else r"^\s*[-•*]?\s*") + lab + r"\b", re.I) for lab in labels]
     lines = text.splitlines()
-    skip = tuple(skip_if) + ("usd", "us$", "us dollar")
+    skip = tuple(skip_if) + ("usd", "us$", "us dollar", "$")
     for i, raw in enumerate(lines):
         m = next((mm for p in pats for mm in [p.search(raw)] if mm), None)
         if not m or any(s in raw.lower() for s in skip):
@@ -316,10 +317,29 @@ def _pair(row, key):
 EPS_SUB = r"\bbasic\b(?:\s*\(?rs\.?\)?)?"
 
 
+NOT_PROFIT = ("equity attributable", "total equity", "comprehensive", "equity holders' funds", "shareholders' funds",
+              "reserves", "capital")
+
+
+def profit_attributable(text: str):
+    """The 'owners of the parent' line inside the 'Profit ... attributable to' block of the income statement
+    (not the balance-sheet equity line, and not the comprehensive-income block)."""
+    lines = text.splitlines()
+    for i, l in enumerate(lines):
+        ll = l.lower()
+        if re.search(r"profit.{0,40}attributable|attributable to\s*:?\s*$", ll) and "comprehensive" not in ll:
+            block = "\n".join(lines[i:i + 6])
+            r = row_values(block, PROFIT_ATTR, False, midline=True, skip_if=NOT_PROFIT)
+            if r:
+                r.idx += i
+                return r
+    return row_values(text, PROFIT_ATTR, False, midline=True, skip_if=NOT_PROFIT)
+
+
 def parse_interim(text: str) -> dict:
     eps = row_values(text, EPS, True, skip_if=("diluted",), sublabel=EPS_SUB) or row_values(text, EPS, True, sublabel=EPS_SUB)
     rev = row_values(text, REVENUE, False)
-    prof = row_values(text, PROFIT_ATTR, False, midline=True) or row_values(text, PROFIT, False)
+    prof = profit_attributable(text) or row_values(text, PROFIT, False, skip_if=NOT_PROFIT)
     nav = row_values(text, NAVPS, True)
     out = {"months": period_months(text), "revenue_growth": _growth(rev), "profit_growth": _growth(prof),
            **_pair(eps, "eps"), **_pair(rev, "revenue"), **_pair(prof, "profit"), **_pair(nav, "navps")}

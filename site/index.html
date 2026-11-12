@@ -122,8 +122,9 @@ function fundCard(a) {
   const yrs = (f.annual||[]).map(y => `<tr><td><a href="${esc(y.url)}" target="_blank" rel="noopener">${esc(y.end)}</a></td>
       <td class="num">${fmt(y.eps)}${y.eps!=null?(y.eps_ok?' <span class="up">✓</span>':' <span class="warn">⚠</span>'):''}</td>
       <td class="num">${fmt(y.dps)}${y.dps!=null?(y.dps_ok?' <span class="up">✓</span>':' <span class="warn">⚠</span>'):''}</td></tr>`).join('');
-  const qs = (f.quarters||[]).map(q => `<tr><td><a href="${esc(q.url)}" target="_blank" rel="noopener">${esc(q.end)}</a>${q.months?` <span class="mute">${q.months}m</span>`:''}</td>
-      <td class="num">${fmt(q.eps)}${q.eps!=null?(q.eps_ok?' <span class="up">✓</span>':' <span class="warn">⚠</span>'):''}</td>
+  const qs = (f.quarters||[]).map(q => `<tr><td><a href="${esc(q.url)}" target="_blank" rel="noopener">${esc(q.end)}</a></td>
+      <td class="num">${fmt(q.eps_q)}</td>
+      <td class="num">${fmt(q.eps_cum)}${q.eps_cum!=null?` <span class="mute">${q.cum_months}m</span>`+(q.period_ok&&q.eps_ok?' <span class="up">✓</span>':' <span class="warn">⚠</span>'):''}</td>
       <td class="num">${pct(q.profit_growth)}${q.profit_growth!=null?(q.growth_ok?' <span class="up">✓</span>':' <span class="warn">⚠</span>'):''}</td>
       <td class="num">${pct(q.revenue_growth)}</td></tr>`).join('');
   const srcs = (f.quarters||[]).filter(q => q.src && Object.keys(q.src).length).map(q =>
@@ -140,14 +141,15 @@ function fundCard(a) {
       <span class="mute">P/E</span><span>${fmt(f.pe)}${tick('pe')}</span>
       <span class="mute">Net assets/share</span><span>${fmt(f.navps)}${tick('navps')} ${f.pbv!=null?`<span class="mute">(P/BV ${f.pbv})</span>`:''}</span>
       <span class="mute">ROE</span><span>${fmt(f.roe,'%')}${tick('roe')}</span>
-      <span class="mute">Profit growth</span><span>${pct(f.profit_growth)}${tick('profit_growth')} ${f.profit_growth_hit?`<span class="mute">(${f.profit_growth_hit} verified reports up)</span>`:''}</span>
+      <span class="mute">EPS growth (year-to-date)</span><span>${pct(f.eps_growth_ytd)}${tick('eps_growth_ytd')} ${f.eps_growth_months?`<span class="mute">${f.eps_growth_months} months vs last year</span>`:''} ${f.eps_growth_hit?`<span class="mute">(${f.eps_growth_hit} verified reports up)</span>`:''}</span>
+      <span class="mute">Profit growth (latest column)</span><span>${pct(f.profit_growth)}${tick('profit_growth')}</span>
       <span class="mute">Revenue growth</span><span>${pct(f.revenue_growth)}${tick('revenue_growth')}</span>
       <span class="mute">Dividend/share</span><span>${fmt(f.dps)}${tick('div_yield')} ${f.div_yield!=null?`<span class="mute">(yield ${f.div_yield}%)</span>`:''}</span>
       <span class="mute">EPS growth/yr</span><span>${f.eps_cagr!=null?pct(f.eps_cagr)+tick('eps_cagr')+` <span class="mute">over ${f.eps_cagr_years}y</span>`:fmt(null)}</span>
     </div>
     <p class="mute" style="font-size:12px;margin:8px 0 0">✓ verified by a cross-check · ⚠ not verified — shown, but <b>not used in the score</b>.</p>
     ${yrs?`<h3 style="margin-top:12px">Annual reports</h3><table><tr><th>Year end</th><th class="num">EPS</th><th class="num">DPS</th></tr>${yrs}</table>`:''}
-    ${qs?`<h3 style="margin-top:12px">Quarterly reports</h3><table><tr><th>Period end</th><th class="num">EPS (1st col)</th><th class="num">Profit YoY</th><th class="num">Revenue YoY</th></tr>${qs}</table>`:''}
+    ${qs?`<h3 style="margin-top:12px">Quarterly reports</h3><table><tr><th>Period end</th><th class="num">EPS quarter</th><th class="num">EPS year-to-date</th><th class="num">Profit YoY</th><th class="num">Revenue YoY</th></tr>${qs}</table>`:''}
     <details style="margin-top:10px"><summary>Data checks: ${cs.ok} passed · ${cs.warn} warnings · ${cs.fail} failed</summary><ul style="margin-top:6px">${checks}</ul></details>
     <details style="margin-top:6px"><summary>Exact lines read from the PDFs</summary>${srcs || '<p class="mute">none</p>'}</details>
   </div>`;

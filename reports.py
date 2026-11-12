@@ -21,7 +21,7 @@ import requests
 import cse_client as cse
 
 CDN = "https://cdn.cse.lk/"
-PARSER_VERSION = 3
+PARSER_VERSION = 4
 MONTHS = {m: i for i, m in enumerate(
     ["january", "february", "march", "april", "may", "june", "july", "august",
      "september", "october", "november", "december"], 1)}
@@ -158,46 +158,102 @@ def numbers(s: str) -> list[tuple[float, bool, bool]]:
 
 
 def _clean_label_line(line: str) -> str:
-    # drop things that look like numbers but aren't values: years in labels, "Rs.", "(Rs.)", note refs like "Note 12"
-    line = re.sub(r"\((?:rs|lkr)\.?\s*(?:'000|mn|bn)?\)", " ", line, flags=re.I)
+    # remove unit markers that contain digits so they aren't read as values: (Rs.'000), Rs. 000, "Note 12"
+    line = re.sub(r"\(?(?:rs|lkr)\.?\s*['’`]?\s*0{3}\)?", " ", line, flags=re.I)
+    line = re.sub(r"\((?:rs|lkr)\.?\s*(?:cts?\.?|mn|bn)?\)", " ", line, flags=re.I)
     line = re.sub(r"\bnote\s*\d+\b", " ", line, flags=re.I)
     return line
 
 
+ALLOWED_WORDS = {"rs", "lkr", "cts", "ct", "rs.", "mn", "bn", "basic", "diluted", "and", "per", "share", "x", "times"}
+WORD = re.compile(r"[A-Za-z][A-Za-z'’]{2,}")
+
+
+def _values_after(s: str, start: int, per_share: bool) -> list[tuple[float, bool, bool]]:
+    """Numbers after position `start`, stopping at the next text label (another column's row)."""
+    tail = _clean_label_line(s[start:])
+    seen_num, cut = False, len(tail)
+    for m in re.finditer(r"[A-Za-z][A-Za-z.'’]*|\(?-?\d[\d,]*(?:\.\d+)?\)?%?", tail):
+        tok = m.group(0)
+        if tok[0].isalpha() or (tok[0] == "(" and len(tok) > 1 and tok[1].isalpha()):
+            if seen_num and len(tok.strip(".")) >= 3 and tok.lower().strip(".") not in ALLOWED_WORDS:
+                cut = m.start(); break
+        else:
+            seen_num = True
+    vals = [v for v in numbers(tail[:cut]) if not v[2]]  # drop % tokens
+    if per_share:
+        vals = [v for v in vals if not (not v[1] and 1990 <= v[0] <= 2040)]  # years
+    # a leading small integer is a note reference when real values (decimals / thousands) follow
+    if len(vals) >= 3 and not vals[0][1] and 0 < abs(vals[0][0]) < 100 and (vals[1][1] or abs(vals[1][0]) >= 1000):
+        vals = vals[1:]
+    return vals
+
+
 class Row(tuple):
-    """(current, prior) plus where they came from: .src (line text) and .idx (line number)."""
-    def __new__(cls, cur, prior, src, idx, all_vals):
+    """(current, prior) with provenance: .src line text, .idx line number, .all every value on the row."""
+    def __new__(cls, cur, prior, src, idx, all_vals, layout):
         r = super().__new__(cls, (cur, prior))
-        r.src, r.idx, r.all = src, idx, all_vals
+        r.src, r.idx, r.all, r.layout = src, idx, all_vals, layout
         return r
 
 
-def row_values(text: str, labels: list[str], per_share: bool, skip_if: tuple = ()) -> Row | None:
-    """Find the first line starting with one of `labels` that carries >= 2 values; return (current, prior)."""
-    pats = [re.compile(r"^\s*[-•*]?\s*" + lab + r"\b", re.I) for lab in labels]
+def _is_chg(chg, cur, prior, per_share=True):
+    """Is `chg` the printed % change from prior to cur?  Tolerance = rounding of the printed figures only."""
+    if not prior or not cur or chg is None:
+        return False
+    real = (cur / prior - 1) * 100
+    h = 0.005 if per_share else 0.5            # rounding of the cur/prior figures
+    tol = (0.5 if float(chg).is_integer() else 0.05) + 100 * abs(cur / prior) * (h / abs(cur) + h / abs(prior))
+    return abs(real - chg) <= tol and abs(real) >= 0.5
+
+
+def choose_layout(v: list[float], per_share: bool = True) -> tuple[int, int, bool]:
+    """Pick (offset, step) so current=v[k], prior=v[k+step].  Returns (k, step, self_checked).
+
+    Self-check: reports print a % change column; if it matches cur/prior it confirms the columns.
+      [cur, prior, chg%, ...] -> (0, 1)    [cur, chg%, prior, ...] -> (0, 2)   with a leading extra value -> k=1
+    """
+    for k in (0, 1):
+        if len(v) > k + 2 and _is_chg(v[k + 2], v[k], v[k + 1], per_share):
+            return k, 1, True
+        if len(v) > k + 2 and _is_chg(v[k + 1], v[k], v[k + 2], per_share):
+            return k, 2, True
+    return 0, 1, False
+
+
+def row_values(text: str, labels: list[str], per_share: bool, skip_if: tuple = (), midline: bool = False,
+               sublabel: str | None = None) -> Row | None:
+    """First row whose label matches; values are read only to the right of the label."""
+    pats = [re.compile((r"" if midline else r"^\s*[-•*]?\s*") + lab + r"\b", re.I) for lab in labels]
     lines = text.splitlines()
+    skip = tuple(skip_if) + ("usd", "us$", "us dollar")
     for i, raw in enumerate(lines):
-        if not any(p.search(raw) for p in pats):
+        m = next((mm for p in pats for mm in [p.search(raw)] if mm), None)
+        if not m or any(s in raw.lower() for s in skip):
             continue
-        if skip_if and any(s in raw.lower() for s in skip_if):
-            continue
-        src = raw
-        line = _clean_label_line(raw)
-        vals = numbers(line)
-        # label may wrap onto the next line, numbers on that one
-        if len(vals) < 2 and i + 1 < len(lines):
-            vals = numbers(_clean_label_line(lines[i + 1]))
-            src = raw.strip() + " ⏎ " + lines[i + 1]
-        vals = [v for v in vals if not v[2]]  # ignore % columns
-        if per_share:
-            vals = [v for v in vals if not (not v[1] and 1990 <= v[0] <= 2040)]  # years, not values
-            # drop a leading small integer note reference when decimals follow ("Earnings per share 14  3.45  2.10")
-            if len(vals) >= 3 and not vals[0][1] and abs(vals[0][0]) <= 60 and vals[1][1]:
-                vals = vals[1:]
-        else:
-            vals = [v for v in vals if not (not v[1] and abs(v[0]) < 100 and len(vals) > 2)]  # note refs
+        vals, src = _values_after(raw, m.end(), per_share), raw
+        j = i
+        while len(vals) < 2 and j + 1 < len(lines) and j < i + 3:  # numbers wrapped onto following lines
+            j += 1
+            nxt = lines[j]
+            if any(s in nxt.lower() for s in skip):
+                break
+            sm = re.search(sublabel, nxt, re.I) if sublabel else None
+            if sm:
+                vals = _values_after(nxt, sm.end(), per_share)
+            else:
+                first_word = WORD.search(_clean_label_line(nxt))
+                first_num = NUM.search(nxt)
+                if first_word and (not first_num or first_word.start() < first_num.start()) \
+                        and first_word.group(0).lower() not in ALLOWED_WORDS:
+                    break  # next line is another row's label
+                vals = _values_after(nxt, 0, per_share)
+            src = raw.strip() + " ⏎ " + nxt
         if len(vals) >= 2:
-            return Row(vals[0][0], vals[1][0], re.sub(r"\s{2,}", "  ", src.strip())[:220], i, [v[0] for v in vals][:8])
+            v = [x[0] for x in vals][:10]
+            k, step, ok = choose_layout(v, per_share)
+            if len(v) > k + step:
+                return Row(v[k], v[k + step], re.sub(r"\s{2,}", "  ", src.strip())[:240], i, v, [k, step, ok])
     return None
 
 
@@ -217,28 +273,25 @@ def unit_before(text: str, idx: int) -> float | None:
 
 
 def period_months(text: str) -> int | None:
-    """Length of the first column's period, judged from the column headers above the first statement row."""
-    words = {"three": 3, "six": 6, "nine": 9, "twelve": 12, "3": 3, "6": 6, "9": 9, "12": 12}
+    """Length of the first column's period: the column-header line nearest above the first statement row,
+    leftmost period phrase on it."""
+    words = {"three": 3, "six": 6, "nine": 9, "twelve": 12, "3": 3, "6": 6, "9": 9, "12": 12,
+             "03": 3, "06": 6, "09": 9}
     lines = text.splitlines()
     anchor = next((i for i, l in enumerate(lines)
-                   if re.match(r"^\s*(revenue|turnover|gross income|interest income|total revenue|gross written premium)\b", l, re.I)
+                   if re.match(r"^\s*(revenue|turnover|gross income|interest income|total revenue|gross written premium|revenue from contracts)\b", l, re.I)
                    and len(numbers(l)) >= 2), None)
-    window = lines[max(0, anchor - 40):anchor] if anchor is not None else lines[:200]
-    for l in window:
+    if anchor is None:
+        return None
+    for l in reversed(lines[max(0, anchor - 25):anchor]):
         ll = l.lower()
-        m = re.search(r"\b(three|six|nine|twelve|3|6|9|12)\s*months?\b", ll)
-        y = re.search(r"\byear\s+ended\b|\b12\s*months\b", ll)
-        q = re.search(r"\bquarter\s+ended\b", ll)
-        hits = []
-        if m: hits.append((m.start(), words[m.group(1)]))
-        if y: hits.append((y.start(), 12))
-        if q: hits.append((q.start(), 3))
+        hits = [(m.start(), words[m.group(1)]) for m in re.finditer(r"\b(three|six|nine|twelve|0?3|0?6|0?9|12)\s*months?\b", ll)]
+        hits += [(m.start(), 12) for m in re.finditer(r"\b(?:year|twelve months)\s+(?:ended|to)\b", ll)]
+        hits += [(m.start(), 3) for m in re.finditer(r"\bquarter\s+(?:ended|to)\b", ll)]
         if hits:
             return min(hits)[1]
     return None
 
-
-# ------------------------------------------------------------------ parsers
 
 REVENUE = ["revenue", "total revenue", "turnover", "gross income", "gross written premium", "net interest income",
            "revenue from contracts with customers"]
@@ -257,37 +310,37 @@ ROE = [r"return on (?:average )?(?:shareholders'?\s*)?equity", r"roe\b"]
 def _pair(row, key):
     if not row:
         return {}
-    return {key: row[0], key + "_prior": row[1], "src_" + key: row.src}
+    return {key: row[0], key + "_prior": row[1], "src_" + key: row.src, "vals_" + key: row.all, "layout_" + key: row.layout}
+
+
+EPS_SUB = r"\bbasic\b(?:\s*\(?rs\.?\)?)?"
 
 
 def parse_interim(text: str) -> dict:
-    eps = row_values(text, EPS, per_share=True, skip_if=("diluted",)) or row_values(text, EPS, per_share=True)
-    rev = row_values(text, REVENUE, per_share=False)
-    prof = row_values(text, PROFIT_ATTR, per_share=False) or row_values(text, PROFIT, per_share=False)
-    nav = row_values(text, NAVPS, per_share=True)
+    eps = row_values(text, EPS, True, skip_if=("diluted",), sublabel=EPS_SUB) or row_values(text, EPS, True, sublabel=EPS_SUB)
+    rev = row_values(text, REVENUE, False)
+    prof = row_values(text, PROFIT_ATTR, False, midline=True) or row_values(text, PROFIT, False)
+    nav = row_values(text, NAVPS, True)
     out = {"months": period_months(text), "revenue_growth": _growth(rev), "profit_growth": _growth(prof),
-           **_pair(eps, "eps"), **_pair(rev, "revenue"), **_pair(prof, "profit")}
+           **_pair(eps, "eps"), **_pair(rev, "revenue"), **_pair(prof, "profit"), **_pair(nav, "navps")}
     if prof:
         out["unit"] = unit_before(text, prof.idx)
-    if nav:
-        out["navps"], out["src_navps"] = nav[0], nav.src
     return out
 
 
 def parse_annual(text: str) -> dict:
-    eps = row_values(text, EPS, per_share=True, skip_if=("diluted",)) or row_values(text, EPS, per_share=True)
-    dps = row_values(text, DPS, per_share=True, skip_if=("paid", "proposed dividend of"))
-    nav = row_values(text, NAVPS, per_share=True)
-    out = {**_pair(eps, "eps"), **_pair(dps, "dps")}
-    if nav:
-        out["navps"], out["src_navps"] = nav[0], nav.src
-    return out
+    eps = row_values(text, EPS, True, skip_if=("diluted",), sublabel=EPS_SUB) or row_values(text, EPS, True, sublabel=EPS_SUB)
+    dps = row_values(text, DPS, True, skip_if=("paid", "proposed dividend of"))
+    nav = row_values(text, NAVPS, True)
+    return {**_pair(eps, "eps"), **_pair(dps, "dps"), **_pair(nav, "navps")}
 
 
 def _growth(pair):
     if not pair:
         return None
     cur, prior = pair
+    if cur is None or prior is None:
+        return None
     if prior == 0 or (cur < 0 and prior < 0):
         return None
     if prior < 0 < cur:

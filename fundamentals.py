@@ -144,7 +144,72 @@ def _year_before(end: str, items: list[dict], months=None) -> dict | None:
     return None
 
 
-def audit(d: dict, price: float | None) :
+def resolve_columns(q: list, a: list, checks: list):
+    """Decide which values on each row are 'current' and 'same period last year'.
+
+    Every row keeps all its numbers (vals_<field>). A layout is (offset k, step): current = vals[k],
+    prior = vals[k+step]. Evidence, strongest first:
+      * year-to-year: this report's prior equals last year's report's current under the same layout
+        (companies keep one layout) -> both figures VERIFIED;
+      * the printed % change column matches cur/prior (self-check, from the parser);
+      * otherwise the layout most of the company's other reports resolved to.
+    """
+    import collections
+    layouts = [(k, st) for k in (0, 1, 2) for st in (1, 2)]
+    for group, fields in ((q, ("eps", "profit", "revenue", "navps")), (a, ("eps", "dps", "navps"))):
+        for f in fields:
+            vk = "vals_" + f
+            ev = collections.defaultdict(collections.Counter)
+            for x in group:
+                if not x.get(vk):
+                    continue
+                y = _year_before(x["end"], group, None)
+                if not y or not y.get(vk):
+                    continue
+                for k, st in layouts:
+                    xv, yv = x[vk], y[vk]
+                    if len(xv) > k + st and len(yv) > k + st and (
+                            _close(xv[k + st], yv[k], 0.02) or (abs(yv[k]) < 1 and abs(xv[k + st] - yv[k]) < 0.011)):
+                        ev[id(x)][(k, st)] += 1
+                        ev[id(y)][(k, st, "as_prev")] += 1
+                        break
+            majority = collections.Counter()
+            for x in group:
+                for lay, n in ev.get(id(x), {}).items():
+                    majority[lay[:2]] += n
+            for x in group:
+                v = x.get(vk)
+                if not v:
+                    continue
+                e = ev.get(id(x), {})
+                own = [lay for lay in e if len(lay) == 2]
+                parsed = tuple((x.get("layout_" + f) or [0, 1, False])[:2])
+                if own:
+                    k, st = max(own, key=lambda lay: (e[lay], lay == parsed, -lay[0], -lay[1]))
+                    x[f], x[f + "_prior"] = v[k], v[k + st]
+                    x["_ok"].update({f, f + "_prior"})
+                    if (k, st) != parsed:
+                        checks.append(("ok", x["end"], f"{f}: columns fixed by matching last year's report "
+                                                       f"(value {v[k]}, last year {v[k + st]})"))
+                elif any(len(lay) == 3 for lay in e):
+                    lay = next(lay for lay in e if len(lay) == 3)  # confirmed as the 'previous' report
+                    x[f] = v[lay[0]]
+                    if len(v) > lay[0] + lay[1]:
+                        x[f + "_prior"] = v[lay[0] + lay[1]]
+                    x["_ok"].add(f)
+                elif (x.get("layout_" + f) or [0, 1, False])[2]:
+                    x["_self"].add(f)  # % change column confirms the cur/prior pairing
+                elif majority:
+                    k, st = majority.most_common(1)[0][0]
+                    if len(v) > k + st:
+                        x[f], x[f + "_prior"] = v[k], v[k + st]
+        if group is q:
+            for x in group:
+                x["profit_growth"] = reports._growth((x.get("profit"), x.get("profit_prior")))
+                x["revenue_growth"] = reports._growth((x.get("revenue"), x.get("revenue_prior")))
+
+
+def audit(d: dict, price: float | None):
     """Cross-check every figure read from the reports.
 
     Marks per report which fields are VERIFIED (`_ok`) or CONTRADICTED (`_bad`) and returns
@@ -161,9 +226,13 @@ def audit(d: dict, price: float | None) :
     a = sorted((dict(x) for x in d.get("annual", {}).values()), key=lambda x: x["end"] or "", reverse=True)
     checks = []
     for x in q + a:
-        x["_ok"], x["_bad"] = set(), set()
+        x["_ok"], x["_bad"], x["_self"] = set(), set(), set()
+    resolve_columns(q, a, checks)
+    for x in q + a:
         for f in ("eps", "eps_prior", "navps", "dps", "dps_prior"):
-            if x.get(f) is not None and not _ok_per_share(x[f], price, lo=0.0005, hi=20 if "nav" in f else 5):
+            if f.startswith("dps") and x.get(f) == 0:
+                continue  # no dividend is a valid figure
+            if x.get(f) is not None and not _ok_per_share(x[f], price, lo=0.0001, hi=20 if "nav" in f else 5):
                 x["_bad"].add(f)
                 checks.append(("fail", x["end"], f"{f} {x[f]} implausible vs price {price} - ignored"))
 
@@ -235,6 +304,8 @@ def audit(d: dict, price: float | None) :
         if abs(ge - gp) <= 0.10 + 0.10 * abs(gp):
             x["_ok"].add("growth")
             chk("ok", x, f"EPS growth {ge:+.0%} consistent with profit growth {gp:+.0%}")
+        elif {"profit", "profit_prior"} <= x["_ok"]:
+            chk("warn", x, f"EPS growth {ge:+.0%} vs profit growth {gp:+.0%} differ (share count changed?) - profit figures verified, kept")
         else:
             x["_bad"].add("growth")
             chk("warn", x, f"EPS growth {ge:+.0%} vs profit growth {gp:+.0%} disagree - growth not used")
@@ -315,10 +386,11 @@ def metrics(symbol: str, price: float | None) -> dict | None:
         pg, rg = L.get("profit_growth"), L.get("revenue_growth")
         if pg is not None and "growth" not in L["_bad"] and not ({"profit", "profit_prior"} & L["_bad"]):
             m["profit_growth"] = pg
-            ver["profit_growth"] = "growth" in L["_ok"] or (_v(L, "profit") and _v(L, "profit_prior"))
+            ver["profit_growth"] = "growth" in L["_ok"] or (_v(L, "profit") and _v(L, "profit_prior")) \
+                or ("profit" in L["_self"] and _v(L, "eps"))
         if rg is not None and not ({"revenue", "revenue_prior"} & L["_bad"]):
             m["revenue_growth"] = rg
-            ver["revenue_growth"] = _v(L, "revenue_prior") and abs(rg) < 150
+            ver["revenue_growth"] = (_v(L, "revenue_prior") or "revenue" in L["_self"]) and abs(rg) < 150
         good = [x.get("profit_growth") for x in q if x.get("profit_growth") is not None
                 and ("growth" in x["_ok"] or (_v(x, "profit") and _v(x, "profit_prior")))]
         if len(good) >= 4:
@@ -346,7 +418,7 @@ def metrics(symbol: str, price: float | None) -> dict | None:
         row = {"end": x["end"], "url": x["url"], "title": x.get("title")}
         if x["end"] in fy_eps:
             row["eps"], row["eps_ok"] = round(fy_eps[x["end"]][0], 2), fy_eps[x["end"]][1]
-        if x.get("dps") is not None and "dps" not in x["_bad"] and price and 0 < x["dps"] <= 0.5 * price:
+        if x.get("dps") is not None and "dps" not in x["_bad"] and price and 0 <= x["dps"] <= 0.5 * price:
             e = row.get("eps")
             if e is None or e <= 0 or x["dps"] <= 1.5 * e:
                 row["dps"], row["dps_ok"] = round(x["dps"], 2), _v(x, "dps")

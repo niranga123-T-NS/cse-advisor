@@ -415,10 +415,12 @@ def audit(d: dict, price: float | None):  # noqa: C901
             fe = f"{fy_end_year}-{fy_month:02d}"
             ref = next((r for r in q + a if r is not x and (r.get("end") or "").startswith(fe) and r.get("vals_navps")), None)
             if ref:
-                if _close(v[1], ref["vals_navps"][0], 0.02):
+                # layouts: [now, last year-end] or [now, same date last year, last year-end] (+ company columns)
+                j = next((j for j in (1, 2, 3) if len(v) > j and _close(v[j], ref["vals_navps"][0], 0.02)), None)
+                if j is not None:
                     x["_ok"].add("navps"); ref["_ok"].add("navps")
-                    chk("ok", x, f"net assets/share comparative {v[1]} = year-end {ref['end']} figure {ref['vals_navps'][0]}")
-                elif _close(v[1], ref["vals_navps"][0], 0.15) is False and not any(_close(v[1], w, 0.02) for w in ref["vals_navps"][:4]):
+                    chk("ok", x, f"net assets/share comparative {v[j]} = year-end {ref['end']} figure {ref['vals_navps'][0]}")
+                elif not any(_close(w1, w2, 0.02) for w1 in v[1:4] for w2 in ref["vals_navps"][:4]):
                     x["_bad"].add("navps")
                     chk("warn", x, f"net assets/share comparative {v[1]} ≠ year-end {ref['end']} figure {ref['vals_navps'][0]} - not used")
     navs = [x for x in q if x.get("navps") and "navps" not in x["_bad"]]

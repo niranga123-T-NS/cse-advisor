@@ -103,7 +103,8 @@ def build():
             kinds[(c["level"], kind)] += 1
         companies.append({"symbol": x["symbol"], "name": x["name"], "ok": x["data_ok"], "warn": x["data_warn"],
                           "fail": x["data_fail"], "verified": x["verified_n"], "fields": x["fields_n"],
-                          "confidence": f.get("confidence"), "q": f.get("quarters_read"), "a": f.get("annuals_read")})
+                          "confidence": f.get("confidence"), "q": f.get("quarters_read"), "a": f.get("annuals_read"),
+                          "ai": bool(f.get("ai_read"))})
     audit = {"companies_with_reports": len(with_f),
              "checks_passed": sum(x["data_ok"] for x in with_f), "warnings": sum(x["data_warn"] for x in with_f),
              "failures": sum(x["data_fail"] for x in with_f),

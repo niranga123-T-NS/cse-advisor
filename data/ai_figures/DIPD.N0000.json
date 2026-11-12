@@ -1,0 +1,30 @@
+{
+ "symbol": "DIPD.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 3,
+  "eps_ytd": 2.06,
+  "eps_ytd_prior": 1.47,
+  "eps_q": 2.06,
+  "eps_q_prior": 1.47,
+  "profit_ytd": 1233357,
+  "profit_ytd_prior": 878672,
+  "unit": "Rs'000",
+  "navps": 59.84,
+  "page": 3,
+  "url": "https://cdn.cse.lk/cmt/upload_report_file/670_1786447666602.06.2026.pdf"
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": 5.88,
+  "eps_prior": 6.47,
+  "dps": 2.13,
+  "navps": 58.18,
+  "page": 28,
+  "url": "https://cdn.cse.lk/cmt/upload_report_file/670_1780916695628.pdf"
+ },
+ "notes": "Group. The EPS row's numbers were not legible in the extracted text, so quarter EPS = profit attributable to equity holders \u00f7 598.6M shares (1,233,357k \u2192 2.06; prior 878,672k \u2192 1.47). FY EPS 5.88 = 3,520,907k \u00f7 598.6M (annual report shows 5.9). Q1 revenue not legible."
+}

@@ -1,0 +1,30 @@
+{
+ "symbol": "CIC.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-09-30",
+  "months": 6,
+  "eps_ytd": 1.67,
+  "eps_ytd_prior": 1.37,
+  "eps_q": 0.87,
+  "eps_q_prior": 0.73,
+  "profit_ytd": 3165.63,
+  "profit_ytd_prior": 2601.23,
+  "revenue_ytd": 42914.84,
+  "revenue_ytd_prior": 41639.27,
+  "unit": "Rs Mn",
+  "navps": 25.52,
+  "page": 4,
+  "url": ""
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": 3.64,
+  "eps_prior": 2.87,
+  "page": 4,
+  "url": ""
+ },
+ "notes": "Group (Company-only 6M EPS 0.30). FY figures from the year-end interim. Dividend per share not in the extracted pages."
+}

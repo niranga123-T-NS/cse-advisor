@@ -1,0 +1,32 @@
+{
+ "symbol": "AMSL.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-09-30",
+  "months": 6,
+  "eps_ytd": 0.98,
+  "eps_ytd_prior": 0.7,
+  "eps_q": 0.61,
+  "eps_q_prior": 0.38,
+  "profit_ytd": 517264068,
+  "profit_ytd_prior": 369978537,
+  "revenue_ytd": 4376336666,
+  "revenue_ytd_prior": 3885875864,
+  "unit": "Rs",
+  "navps": 15.34,
+  "page": 2,
+  "url": ""
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": 1.54,
+  "eps_prior": 0.5,
+  "dps": 0.0,
+  "navps": 14.36,
+  "page": 7,
+  "url": ""
+ },
+ "notes": "Group. FY EPS 1.54 from the audited annual report (the year-end interim showed 1.56 unaudited). No dividend for FY2026."
+}

@@ -24,7 +24,9 @@ import reports
 KEY = re.compile(r"revenue|turnover|gross income|interest income|net interest|written premium|profit|attributable|"
                  r"owners of|equity holders|earnings per|eps\b|net assets? (value )?per|dividends? per|"
                  r"months|quarter|year ended|period ended|rs\.?\s*['’]?\s*000|rs\.?\s*mn|lkr|group|company|bank|audited", re.I)
-PAGE_HIT = re.compile(r"earnings\s*(/|\(loss\))?\s*per|net assets? (value )?per|dividends? per", re.I)
+PAGE_HIT = re.compile(r"earnings\s*(/|\(loss\))?\s*per|net assets? (value )?per|dividends? per|"
+                      r"profit attributable|attributable to|owners of the", re.I)
+NUMS = re.compile(r"\d[\d,]*\.?\d*")
 
 
 def pages_text(data: bytes, first: int, last: int) -> list[str]:
@@ -44,7 +46,16 @@ def extract_report(item: dict, kind: str, max_pages: int) -> str:
         if not PAGE_HIT.search(t):
             continue
         lines = [re.sub(r"\s{3,}", "   ", l.rstrip()) for l in t.splitlines() if l.strip()]
-        keep = [l for l in lines if KEY.search(l) and len(l) < 260]
+        keep, prev_label = [], False
+        for l in lines:
+            if len(l) >= 260:
+                continue
+            if KEY.search(l):
+                keep.append(l)
+                prev_label = len(NUMS.findall(l)) < 2   # a label whose numbers are on the next line
+            elif prev_label and len(NUMS.findall(l)) >= 2:
+                keep.append(l)                         # keep those numbers
+                prev_label = False
         if not keep:
             continue
         out.append(f"  --- page {p} ---")

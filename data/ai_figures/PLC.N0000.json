@@ -1,0 +1,31 @@
+{
+ "symbol": "PLC.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 3,
+  "eps_ytd": 0.6,
+  "eps_ytd_prior": 0.55,
+  "eps_q": 0.6,
+  "eps_q_prior": 0.55,
+  "profit_ytd": 1331,
+  "profit_ytd_prior": 1176,
+  "revenue_ytd": 14855,
+  "revenue_ytd_prior": 8985,
+  "unit": "Rs Mn",
+  "navps": 24.7,
+  "page": 4,
+  "url": "https://cdn.cse.lk/cmt/upload_report_file/1103_1786413386791.pdf"
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": 2.6,
+  "eps_prior": 1.81,
+  "navps": 24.15,
+  "page": 5,
+  "url": "https://cdn.cse.lk/cmt/upload_report_file/1103_1780060240820.pdf"
+ },
+ "notes": "Group (Company-only: Q1 EPS 0.55, FY EPS 2.30 as in the annual report highlights). Revenue = interest income. FY figures from the year-end interim (unaudited)."
+}

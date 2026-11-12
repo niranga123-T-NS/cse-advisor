@@ -611,6 +611,79 @@ def metrics(symbol: str, price: float | None) -> dict | None:
     nv, nt = sum(ver.values()), len(ver)
     share = nv / nt if nt else 0
     m["confidence"] = "good" if nv >= 4 and share >= 0.7 else "partial" if nv >= 2 and share >= 0.4 else "low"
+    return apply_ai(m, symbol, price)
+
+
+
+AIDIR = Path(__file__).parent / "data" / "ai_figures"
+
+
+def load_ai(symbol: str) -> dict | None:
+    p = AIDIR / f"{symbol}.json"
+    return json.loads(p.read_text()) if p.exists() else None
+
+
+def apply_ai(m: dict, symbol: str, price: float | None) -> dict:
+    """Overlay figures Claude read by hand from the reports (data/ai_figures/<SYM>.json).
+
+    They are treated as verified (read from the statement pages, with page references), but every one is
+    compared with the text-matched figure: where both exist and disagree by more than 3%, a warning is shown.
+    """
+    ai = load_ai(symbol)
+    if not ai:
+        return m
+    ver, checks = m.setdefault("verified", {}), m.setdefault("checks", [])
+    L, Y = ai.get("latest") or {}, ai.get("fy") or {}
+    src = lambda d: f"{d.get('end')} p{d.get('page', '?')}"
+
+    def put(key, val, note, dec=2):
+        if val is None:
+            return
+        old = m.get(key) if ver.get(key) else None
+        val = round(val, dec)
+        if old is not None and old and abs(val / old - 1) > 0.03:
+            checks.append({"level": "warn", "end": L.get("end") or Y.get("end"),
+                           "msg": f"{key}: Claude read {val}, text matching had {old} - using Claude's reading"})
+        m[key], ver[key] = val, True
+        checks.append({"level": "ok", "end": L.get("end") or Y.get("end"), "msg": f"{key} {val} read by Claude ({note})"})
+
+    # 12-month EPS
+    ttm = None
+    if L.get("eps_ytd") is not None and L.get("months") == 12:
+        ttm, basis = L["eps_ytd"], f"12 months to {L['end']} (read by Claude)"
+    elif L.get("eps_ytd") is not None and L.get("eps_ytd_prior") is not None and Y.get("eps") is not None \
+            and (L.get("end") or "") > (Y.get("end") or ""):
+        ttm = L["eps_ytd"] + Y["eps"] - L["eps_ytd_prior"]
+        basis = f"{L['months']} months to {L['end']} + full year to {Y['end']} − same period last year (read by Claude)"
+    elif Y.get("eps") is not None:
+        ttm, basis = Y["eps"], f"full year to {Y['end']} (read by Claude)"
+    if ttm is not None:
+        put("eps_ttm", ttm, src(L) + " / " + src(Y), 3)
+        m["eps_basis"] = basis
+        if price and ttm > 0:
+            put("pe", price / ttm, "price ÷ 12-month EPS", 1)
+        elif "pe" in m:
+            m.pop("pe"); ver.pop("pe", None)
+    if L.get("navps"):
+        put("navps", L["navps"], src(L))
+        if price:
+            put("pbv", price / L["navps"], "price ÷ net assets per share")
+        if ttm is not None:
+            put("roe", ttm / L["navps"] * 100, "12-month EPS ÷ net assets per share", 1)
+    if L.get("eps_ytd") is not None and L.get("eps_ytd_prior") and L["eps_ytd_prior"] > 0:
+        put("eps_growth_ytd", (L["eps_ytd"] / L["eps_ytd_prior"] - 1) * 100, src(L), 1)
+        m["eps_growth_months"] = L.get("months")
+    for k_val, k_prior, key in (("profit_ytd", "profit_ytd_prior", "profit_growth"),
+                                ("revenue_ytd", "revenue_ytd_prior", "revenue_growth")):
+        if L.get(k_val) is not None and L.get(k_prior) and L[k_prior] > 0:
+            put(key, (L[k_val] / L[k_prior] - 1) * 100, src(L), 1)
+    if Y.get("dps") is not None and price:
+        m["dps"] = Y["dps"]
+        put("div_yield", Y["dps"] / price * 100, src(Y), 1)
+    m["ai_read"] = {"by": ai.get("read_by", "Claude"), "at": ai.get("read_at"), "notes": ai.get("notes", ""),
+                    "latest": L, "fy": Y}
+    nv, nt = sum(ver.values()), len(ver)
+    m["confidence"] = "good" if nv >= 4 and nv / max(nt, 1) >= 0.7 else "partial" if nv >= 2 else "low"
     return m
 
 

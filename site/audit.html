@@ -58,7 +58,7 @@
   <table id="fields"></table>
 
   <h2>Check results by type</h2>
-  <p class="mute" style="margin-top:-4px">✓ passed · ⚠ warning (figure not used) · ✗ failed (misread caught and excluded)</p>
+  <p class="mute" style="margin-top:-4px">Companies marked 📖 Claude have their key figures read by Claude from the statement pages (Group/consolidated basis, with notes); those readings are compared with the text-matched figures. ✓ passed · ⚠ warning (figure not used) · ✗ failed (misread caught and excluded)</p>
   <table id="kinds"></table>
 
   <h2>Every company</h2>
@@ -66,7 +66,7 @@
     <input id="q" placeholder="Search symbol or name" oninput="renderCos()">
     <select id="lvl" onchange="renderCos()">
       <option value="">All companies</option><option value="fail">With failed checks</option>
-      <option value="low">Low data</option><option value="good">Good data</option>
+      <option value="low">Low data</option><option value="good">Good data</option><option value="ai">Read by Claude</option>
     </select>
     <span class="mute">Tap a company to see its checks and the exact PDF lines.</span>
   </p>
@@ -107,7 +107,7 @@ function renderCos() {
   if (!A) return;
   const q = $('#q').value.trim().toLowerCase(), lvl = $('#lvl').value;
   let rows = A.companies.filter(c => (!q || c.symbol.toLowerCase().includes(q) || (c.name || '').toLowerCase().includes(q)) &&
-    (!lvl || (lvl === 'fail' ? c.fail > 0 : c.confidence === lvl)));
+    (!lvl || (lvl === 'fail' ? c.fail > 0 : lvl === 'ai' ? c.ai : c.confidence === lvl)));
   const val = c => sortKey === 'share' ? (c.fields ? c.verified / c.fields : 0) : c[sortKey];
   rows.sort((x, y) => (val(x) > val(y) ? 1 : val(x) < val(y) ? -1 : 0) * sortDir);
   const th = (k, t, cls = '') => `<th class="${cls}" onclick="sortBy('${k}')">${t}${sortKey === k ? (sortDir > 0 ? ' ▲' : ' ▼') : ''}</th>`;
@@ -116,7 +116,7 @@ function renderCos() {
     rows.map(c => `<tr class="co" data-s="${esc(c.symbol)}" onclick="toggle('${esc(c.symbol)}')">
       <td><b>${esc(c.symbol)}</b> <span class="mute" style="font-size:12px">${esc((c.name || '').slice(0, 30))}</span></td>
       <td class="num">${c.verified}/${c.fields}</td><td class="num ok">${c.ok}</td><td class="num warn">${c.warn}</td>
-      <td class="num fail">${c.fail}</td><td><span class="pill">${esc(c.confidence || '')}</span> <span class="mute" style="font-size:11px">${c.q}q · ${c.a}a</span></td></tr>
+      <td class="num fail">${c.fail}</td><td>${c.ai ? '<span class="pill" style="background:#14532d;color:#86efac">📖 Claude</span> ' : ''}<span class="pill">${esc(c.confidence || '')}</span> <span class="mute" style="font-size:11px">${c.q}q · ${c.a}a</span></td></tr>
       ${open === c.symbol ? '<tr class="detail"><td colspan="6" id="det">Loading…</td></tr>' : ''}`).join('');
   if (open) loadDetail(open);
 }
@@ -136,7 +136,9 @@ async function loadDetail(sym) {
         `<div style="margin-top:6px"><b>${esc(q.end)}</b> <a href="${esc(q.url)}" target="_blank" rel="noopener">report</a>${Object.entries(q.src).map(([k, v]) => `<div class="src"><span class="mute">${esc(k)}:</span> ${esc(v)}</div>`).join('')}</div>`).join('')
       + (f.annual || []).filter(y => y.src_eps || y.src_dps).map(y =>
         `<div style="margin-top:6px"><b>${esc(y.end)} annual</b> <a href="${esc(y.url)}" target="_blank" rel="noopener">report</a>${['eps', 'dps'].filter(k => y['src_' + k]).map(k => `<div class="src"><span class="mute">${k}:</span> ${esc(y['src_' + k])}</div>`).join('')}</div>`).join('');
-    el.innerHTML = `<div style="margin-bottom:8px">${figs}</div>
+    const ai = f.ai_read ? `<div class="card" style="margin-bottom:8px;border-color:#1f5136">📖 <b>Read by Claude</b> on ${esc(f.ai_read.at)}: ${esc(f.ai_read.notes || '')}
+      <div class="src" style="margin-top:6px">latest: ${esc(JSON.stringify(f.ai_read.latest))}\nyear: ${esc(JSON.stringify(f.ai_read.fy))}</div></div>` : '';
+    el.innerHTML = ai + `<div style="margin-bottom:8px">${figs}</div>
       <p><a href="./#${encodeURIComponent(sym)}">Open ${esc(sym)} on the main page →</a></p>
       <details open><summary>All checks (${(f.checks || []).length})</summary><div style="margin-top:6px">${checks || '<span class="mute">none</span>'}</div></details>
       <details style="margin-top:8px"><summary>Exact lines read from the PDFs</summary>${srcs || '<span class="mute">none</span>'}</details>`;

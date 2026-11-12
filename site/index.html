@@ -239,6 +239,9 @@ function fundCard(a) {
   const icon = {ok:'<span class="up">✓</span>', warn:'<span class="warn">⚠</span>', fail:'<span class="down">✗</span>'};
   const checks = (f.checks||[]).map(c => `<li style="list-style:none;margin-left:-18px">${icon[c.level]} <span class="mute">${esc(c.end)}</span> ${esc(c.msg)}</li>`).join('');
   return `<div class="card"><h3>Fundamentals <span class="mute">· ${f.quarters_read} quarterly + ${f.annuals_read} annual reports · ${esc(f.confidence)} data</span></h3>
+    ${f.ai_read ? `<div style="background:#132a1f;border:1px solid #1f5136;border-radius:6px;padding:8px 10px;margin:4px 0 10px;font-size:13px">
+      📖 <b>Key figures read by Claude</b> from the reports on ${esc(f.ai_read.at)} (${esc((f.ai_read.latest||{}).end||'')} interim${(f.ai_read.fy||{}).end?` and year to ${esc(f.ai_read.fy.end)}`:''}).
+      ${f.ai_read.notes ? `<div class="mute" style="margin-top:4px">${esc(f.ai_read.notes)}</div>` : ''}</div>` : ''}
     <ul>${(a.fund_reasons||[]).map(r=>`<li>${esc(r)}</li>`).join('') || '<li class="mute">No verified fundamental points</li>'}</ul>
     <div class="kv" style="margin-top:8px">
       <span class="mute">EPS (12 months)</span><span>${fmt(f.eps_ttm)}${tick('eps_ttm')} <span class="mute" style="font-size:11px">${esc(f.eps_basis||'')}</span></span>

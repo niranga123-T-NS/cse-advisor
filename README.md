@@ -22,6 +22,19 @@ From then on it updates itself every weekday after the market closes.
 - **Stars** ☆ on the site are saved in that browser only. `watchlist.txt` sets which stocks get full history.
 - Every stock that trades on a given day gets saved. Stocks outside your watchlist gain a signal once they have 30 days of saved data.
 
+## Company reports (fundamentals)
+
+Every night at 01:30 the **Read company reports** job checks CSE for new reports. For each company it reads the latest **10 quarterly** and **5 annual** report PDFs, using plain text matching (free, no API key). From them it works out:
+
+- **EPS** for the last 12 months and **P/E**. A full year's EPS is only trusted when two sources agree, or when it comes from the annual report.
+- **Net assets per share**, **P/BV** and **ROE**.
+- **Profit and revenue growth** compared with the same period last year, and how consistent that growth has been.
+- **Dividend per share** and **yield**, plus **EPS growth per year** across the annual reports.
+
+Each figure is sanity-checked against the share price, and anything implausible is left blank rather than guessed. These points are added to the technical score; the stock page shows both separately, with links to every report used. The first full read of all companies takes 3–4 hours; after that, each night takes minutes.
+
+Text matching can't read every company's layout. Some stocks will show "partial" or "low" data, so check the linked report before relying on a figure.
+
 ## If the run fails
 
 Open the failed run in **Actions** and read the log.
@@ -60,6 +73,9 @@ A score of 1.5 or more is BUY (3 or more is STRONG BUY). A score of −1.5 or le
 |---|---|
 | `.github/workflows/update.yml` | The daily scheduled job |
 | `build_site.py` | Fetches data and builds `site/data/*.json` |
+| `.github/workflows/fundamentals.yml` | Nightly job that reads company reports |
+| `reports.py` | Lists CSE report PDFs and reads figures out of them |
+| `fundamentals.py` | Collects report figures, works out P/E, growth, etc. and fundamental points |
 | `site/index.html` | The website |
 | `cse_client.py` | Unofficial CSE API client (limited to 1 request/sec) |
 | `collector.py` | Daily snapshot (skips holidays), history backfill, CSV import |

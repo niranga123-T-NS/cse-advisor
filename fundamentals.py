@@ -43,8 +43,22 @@ def save(symbol: str, d: dict):
 
 # ------------------------------------------------------------------ collection job
 
+def _autocommit(msg: str):
+    """Save progress to the repo during long GitHub runs (set AUTOCOMMIT=1)."""
+    if os.environ.get("AUTOCOMMIT") != "1":
+        return
+    import subprocess
+    sh = lambda *c: subprocess.run(c, capture_output=True, text=True)
+    sh("git", "add", "data/fundamentals")
+    if sh("git", "diff", "--cached", "--quiet").returncode:
+        sh("git", "commit", "-m", msg)
+        sh("git", "pull", "--rebase", "-X", "theirs", "origin", "main")
+        print("  progress saved:", sh("git", "push").returncode == 0)
+
+
 def collect(symbols: list[str], budget_min: float):
     t0 = time.time()
+    last_commit = [time.time()]
     out_of_time = lambda: (time.time() - t0) / 60 > budget_min
     # Pass 1 lists reports and reads quarterlies (small PDFs); pass 2 reads annual reports (large PDFs).
     for kind, n_keep in (("quarterly", N_QUARTERLY), ("annual", N_ANNUAL)):
@@ -74,6 +88,9 @@ def collect(symbols: list[str], budget_min: float):
             keep = {it["id"] for it in wanted}
             d[kind] = {k: v for k, v in store.items() if k in keep}
             save(s, d)
+            if time.time() - last_commit[0] > 20 * 60:
+                _autocommit(f"Report figures (progress) {time.strftime('%Y-%m-%d %H:%M')}")
+                last_commit[0] = time.time()
 
 
 # ------------------------------------------------------------------ metrics
@@ -81,6 +98,13 @@ def collect(symbols: list[str], budget_min: float):
 def _ok_per_share(v, price, lo=0.002, hi=5.0):
     """Per-share value must be plausible relative to the price (rejects mis-read numbers/units)."""
     return v is not None and price and lo * price <= abs(v) <= hi * price
+
+
+def _consecutive(ends: list[str]) -> bool:
+    """Newest-first period ends roughly 3 months apart."""
+    import datetime as dt
+    d = [dt.date.fromisoformat(e) for e in ends if e]
+    return len(d) == len(ends) and all(70 <= (d[i] - d[i + 1]).days <= 110 for i in range(len(d) - 1))
 
 
 def metrics(symbol: str, price: float | None) -> dict | None:
@@ -91,28 +115,69 @@ def metrics(symbol: str, price: float | None) -> dict | None:
         return None
     m = {"quarters_read": len(q), "annuals_read": len(a), "notes": []}
 
+    # --- financial year end (month), from annual reports, else from 12-month interim reports
+    fy_month = None
+    for x in a + [x for x in q if x.get("months") == 12]:
+        if x.get("end"):
+            fy_month = int(x["end"][5:7]); break
+
+    def cum_months(end):
+        if not (fy_month and end):
+            return None
+        return (int(end[5:7]) - fy_month) % 12 or 12
+
+    # --- full-year EPS: collect every source per year end and prefer values two sources agree on
+    cands: dict[str, list[tuple[float, str]]] = {}
+    def cand(end, v, src):
+        if end and _ok_per_share(v, price):
+            cands.setdefault(end, []).append((v, src))
+    def prev_year(end):
+        return f"{int(end[:4]) - 1}{end[4:]}" if end else None
+    for x in a:
+        cand(x["end"], x.get("eps"), "annual")
+        cand(prev_year(x["end"]), x.get("eps_prior"), "annual-prior")
+    for x in q:
+        if cum_months(x["end"]) == 12 and x.get("months") == 12:
+            cand(x["end"], x.get("eps"), "interim")
+            cand(prev_year(x["end"]), x.get("eps_prior"), "interim-prior")
+    fy_eps = {}
+    for end, lst in cands.items():
+        best = None
+        for v, src in lst:
+            agree = sum(abs(v - w) <= 0.03 * abs(v) for w, _ in lst)
+            pri = (agree, src == "annual")
+            if best is None or pri > best[0]:
+                best = (pri, v, agree)
+        fy_eps[end] = (best[1], best[2])  # value, number of agreeing sources
+    m["fy_month"] = fy_month
+
     # --- trailing 12-month EPS
     ttm, how = None, None
+    last_fy_end = max(fy_eps) if fy_eps else None
     qv = [x for x in q if _ok_per_share(x.get("eps"), price)]
-    fy = [x for x in q if x.get("months") == 12 and _ok_per_share(x.get("eps"), price)]
-    fy_ann = [x for x in a if _ok_per_share(x.get("eps"), price)]
     if qv:
-        latest = qv[0]
-        if latest.get("months") == 12:
-            ttm, how = latest["eps"], f"full year to {latest['end']}"
-        elif latest.get("months") in (3, 6, 9) and _ok_per_share(latest.get("eps_prior"), price, lo=0):
-            last_fy = next((x["eps"] for x in fy if x["end"] < latest["end"]), None)
-            if last_fy is None and fy_ann and fy_ann[0]["end"] < latest["end"]:
-                last_fy = fy_ann[0]["eps"]
-            if last_fy is not None:
-                ttm = latest["eps"] + last_fy - latest["eps_prior"]
-                how = f"{latest['months']}m to {latest['end']} + last full year - same period last year"
-    if ttm is None and fy_ann:
-        ttm, how = fy_ann[0]["eps"], f"annual report {fy_ann[0]['end']}"
+        L = qv[0]
+        cm = cum_months(L["end"])
+        prior_fy = max((e for e in fy_eps if e < L["end"]), default=None)
+        if cm and cm < 12 and L.get("months") == cm and prior_fy and _ok_per_share(L.get("eps_prior"), price, lo=0) \
+                and abs(L["eps"] - fy_eps[prior_fy][0]) > 1e-9:
+            ttm = L["eps"] + fy_eps[prior_fy][0] - L["eps_prior"]
+            how = f"{cm} months to {L['end']} + last full year − same period last year"
+        elif all(x.get("months") == 3 for x in qv[:4]) and len(qv) >= 4 and _consecutive([x["end"] for x in qv[:4]]):
+            ttm = sum(x["eps"] for x in qv[:4])
+            how = f"sum of last 4 quarters to {L['end']}"
+        # sanity: TTM far from the last full year is more likely a mis-read than reality
+        if ttm is not None and last_fy_end and fy_eps[last_fy_end][0] > 0:
+            r = ttm / fy_eps[last_fy_end][0]
+            if not 0.5 <= r <= 2.0:
+                ttm, how = None, None
+    if ttm is None and last_fy_end:
+        ttm, how = fy_eps[last_fy_end][0], f"last full year to {last_fy_end}"
     if ttm is not None:
         m["eps_ttm"], m["eps_basis"] = round(ttm, 2), how
         if price and ttm > 0:
             m["pe"] = round(price / ttm, 1)
+    m["fy_eps"] = [{"end": e, "eps": round(v, 2), "sources": n} for e, (v, n) in sorted(fy_eps.items(), reverse=True)][:6]
 
     # --- growth (latest report vs same period last year)
     lq = q[0] if q else None
@@ -139,9 +204,11 @@ def metrics(symbol: str, price: float | None) -> dict | None:
     years = []
     for x in a:
         row = {"end": x["end"], "url": x["url"]}
-        if _ok_per_share(x.get("eps"), price, lo=0, hi=10):
-            row["eps"] = round(x["eps"], 2)
-        if x.get("dps") is not None and price and 0 < x["dps"] <= 0.5 * price:
+        if x["end"] in fy_eps:
+            row["eps"] = round(fy_eps[x["end"]][0], 2)
+        e_ref = row.get("eps")
+        if x.get("dps") is not None and price and 0 < x["dps"] <= 0.5 * price \
+                and (e_ref is None or e_ref <= 0 or x["dps"] <= 1.5 * e_ref):
             row["dps"] = round(x["dps"], 2)
         years.append(row)
     m["annual"] = years

@@ -21,7 +21,7 @@ import requests
 import cse_client as cse
 
 CDN = "https://cdn.cse.lk/"
-PARSER_VERSION = 1
+PARSER_VERSION = 2
 MONTHS = {m: i for i, m in enumerate(
     ["january", "february", "march", "april", "may", "june", "july", "august",
      "september", "october", "november", "december"], 1)}
@@ -180,6 +180,7 @@ def row_values(text: str, labels: list[str], per_share: bool, skip_if: tuple = (
             vals = numbers(_clean_label_line(lines[i + 1]))
         vals = [v for v in vals if not v[2]]  # ignore % columns
         if per_share:
+            vals = [v for v in vals if not (not v[1] and 1990 <= v[0] <= 2040)]  # years, not values
             # drop a leading small integer note reference when decimals follow ("Earnings per share 14  3.45  2.10")
             if len(vals) >= 3 and not vals[0][1] and abs(vals[0][0]) <= 60 and vals[1][1]:
                 vals = vals[1:]
@@ -261,6 +262,8 @@ def _growth(pair):
     if prior < 0 < cur:
         return None  # loss to profit: growth % is meaningless
     g = (cur / prior - 1) * 100
+    if g == 0:
+        return None  # identical figures almost always means the wrong row was read
     return round(g, 1) if -95 <= g <= 1000 else None
 
 

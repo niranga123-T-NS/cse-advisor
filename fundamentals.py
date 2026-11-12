@@ -52,8 +52,11 @@ def _autocommit(msg: str):
     sh("git", "add", "data/fundamentals")
     if sh("git", "diff", "--cached", "--quiet").returncode:
         sh("git", "commit", "-m", msg)
-        sh("git", "pull", "--rebase", "-X", "theirs", "origin", "main")
-        print("  progress saved:", sh("git", "push").returncode == 0)
+        for _ in range(4):  # several jobs push in parallel: rebase and retry
+            sh("git", "pull", "--rebase", "-X", "theirs", "origin", "main")
+            if sh("git", "push").returncode == 0:
+                print("  progress saved"); break
+            time.sleep(5)
 
 
 def share_counts(symbol: str) -> tuple[float | None, float]:
@@ -665,4 +668,9 @@ def score(m: dict | None) -> tuple[float, list[str]]:
 
 if __name__ == "__main__":
     syms = [a.upper() for a in sys.argv[1:]] or db.watchlist()
+    shard = os.environ.get("SHARD", "")  # "k/n": this job handles every n-th stock starting at k
+    if "/" in shard:
+        k, n = map(int, shard.split("/"))
+        syms = [s for i, s in enumerate(sorted(syms)) if i % n == k]
+        print(f"Shard {k}/{n}: {len(syms)} stocks")
     collect(syms, float(os.environ.get("FUND_BUDGET_MIN", "330")))

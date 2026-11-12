@@ -23,9 +23,10 @@ jobs:
   reports:
     runs-on: ubuntu-latest
     timeout-minutes: 350
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]   # 4 parallel jobs, each reads a quarter of the companies
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -34,25 +35,39 @@ jobs:
           cache: pip
       - run: sudo apt-get install -y -qq poppler-utils > /dev/null
       - run: pip install -r requirements.txt
-
       - name: Read quarterly and annual reports
         env:
           AUTOCOMMIT: "1"
           FUND_BUDGET_MIN: "300"
+          SHARD: "${{ matrix.shard }}/4"
           SYMBOLS: ${{ github.event.inputs.symbols }}
         run: |
           git config user.name "cse-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           python fundamentals.py $SYMBOLS
-
-      - name: Save figures and rebuild site
+      - name: Save figures
         run: |
           git add data/fundamentals
-          git diff --cached --quiet || git commit -m "Report figures $(date -u +%F)"
-          git pull --rebase -X theirs origin main || true
-          git push
-          python build_site.py --no-fetch
+          git diff --cached --quiet || git commit -m "Report figures $(date -u +%F) part ${{ matrix.shard }}"
+          for i in 1 2 3 4 5; do git pull --rebase -X theirs origin main && git push && break; sleep 7; done
 
+  publish:
+    needs: reports
+    if: always()
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python build_site.py --no-fetch
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

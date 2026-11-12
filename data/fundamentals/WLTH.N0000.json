@@ -1,0 +1,267 @@
+{
+ "annual": {},
+ "listed_at": "2026-11-12",
+ "listing": {
+  "annual": [
+   {
+    "amended": false,
+    "end": "2026-03-31",
+    "id": "52015",
+    "title": "Annual Report as at 31st March 2026",
+    "uploaded": 1784115525552,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/3479_1784115525552.pdf",
+    "year_only": false
+   }
+  ],
+  "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53387",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1793873149506,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/3479_1793873149506.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2026-06-30",
+    "id": "52019",
+    "title": "Interim Financial Statements for the Quarter ended 30th June 2026",
+    "uploaded": 1784171573367,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/3479_1784171573367.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2026-03-31",
+    "id": "51538",
+    "title": "Interim Financial Statements for the Quarter ended 31st March 2026",
+    "uploaded": 1780046159758,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/3479_1780046159758.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-12-31",
+    "id": "50398",
+    "title": "Twenty largest shareholders of the company as at 31st December 2025",
+    "uploaded": 1770977988206,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/3479_1770977988206.pdf",
+    "year_only": false
+   }
+  ]
+ },
+ "quarterly": {
+  "50398": {
+   "end": "2025-12-31",
+   "months": null,
+   "ok": true,
+   "pages": 1,
+   "profit_growth": null,
+   "revenue_growth": null,
+   "title": "Twenty largest shareholders of the company as at 31st December 2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/3479_1770977988206.pdf",
+   "v": 6,
+   "year_only": false
+  },
+  "51538": {
+   "end": "2026-03-31",
+   "eps": 0.02,
+   "eps_prior": 0.22,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 5.6,
+   "navps_prior": 5.04,
+   "ok": true,
+   "pages": 9,
+   "profit": 18516127.0,
+   "profit_growth": -92.7,
+   "profit_prior": 253681474.0,
+   "revenue": 398140696.0,
+   "revenue_growth": 37.2,
+   "revenue_prior": 290272048.0,
+   "src_eps": "Earnings/ (Loss) Per Ordinary Share - (Rs.)  0.02  0.22  0.46  1.03",
+   "src_navps": "Net Assets per Ordinary Share (Rs.)  11  5.60  5.04",
+   "src_profit": "Profit / (Loss) for the Period  18,516,127  253,681,474  541,225,223  1,193,515,582",
+   "src_revenue": "Net Interest Income  398,140,696  290,272,048  1,412,690,424  1,337,100,081",
+   "title": "Interim Financial Statements for the Quarter ended 31st March 2026",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/3479_1780046159758.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.02,
+    0.22,
+    0.46,
+    1.03
+   ],
+   "vals_navps": [
+    5.6,
+    5.04
+   ],
+   "vals_profit": [
+    18516127.0,
+    253681474.0,
+    541225223.0,
+    1193515582.0
+   ],
+   "vals_revenue": [
+    398140696.0,
+    290272048.0,
+    1412690424.0,
+    1337100081.0
+   ],
+   "year_only": false
+  },
+  "52019": {
+   "end": "2026-06-30",
+   "eps": -0.37,
+   "eps_prior": 0.26,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 5.23,
+   "navps_prior": 5.6,
+   "ok": true,
+   "pages": 9,
+   "profit": -455230316.0,
+   "profit_growth": null,
+   "profit_prior": 315025800.0,
+   "revenue": 365255962.0,
+   "revenue_growth": 19.9,
+   "revenue_prior": 304747907.0,
+   "src_eps": "Earnings/ (Loss) Per Ordinary Share (Rs.)  8  (0.37)  0.26",
+   "src_navps": "Net Assets per Ordinary Share (Rs.)  11  5.23  5.60",
+   "src_profit": "Profit / (Loss) for the Period  (455,230,316)  315,025,800",
+   "src_revenue": "Net Interest Income  365,255,962  304,747,907",
+   "title": "Interim Financial Statements for the Quarter ended 30th June 2026",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/3479_1784171573367.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.37,
+    0.26
+   ],
+   "vals_navps": [
+    5.23,
+    5.6
+   ],
+   "vals_profit": [
+    -455230316.0,
+    315025800.0
+   ],
+   "vals_revenue": [
+    365255962.0,
+    304747907.0
+   ],
+   "year_only": false
+  },
+  "53387": {
+   "end": "2026-09-30",
+   "eps": 0.13,
+   "eps_prior": 0.11,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 5.36,
+   "navps_prior": 5.6,
+   "ok": true,
+   "pages": 9,
+   "profit": 154550963.0,
+   "profit_growth": 26.6,
+   "profit_prior": 122095050.0,
+   "revenue": 301848109.0,
+   "revenue_growth": -18.7,
+   "revenue_prior": 371051367.0,
+   "src_eps": "Basic/Diluted Earnings/(Loss) Per Ordinary Share (Rs.)  8  0.13  0.11  (0.25)  0.38",
+   "src_navps": "Net Assets per Ordinary Share (Rs.)  11  5.36  5.60",
+   "src_profit": "Profit / (Loss) for the Period  154,550,963  122,095,050  (300,679,353)  437,120,850",
+   "src_revenue": "Net Interest Income  301,848,109  371,051,367  667,104,071  675,799,274",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/3479_1793873149506.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.13,
+    0.11,
+    -0.25,
+    0.38
+   ],
+   "vals_navps": [
+    5.36,
+    5.6
+   ],
+   "vals_profit": [
+    154550963.0,
+    122095050.0,
+    -300679353.0,
+    437120850.0
+   ],
+   "vals_revenue": [
+    301848109.0,
+    371051367.0,
+    667104071.0,
+    675799274.0
+   ],
+   "year_only": false
+  }
+ },
+ "shares": 1225052939.0,
+ "shares_other_class": 0.0,
+ "symbol": "WLTH.N0000"
+}

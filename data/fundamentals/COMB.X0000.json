@@ -1,5 +1,195 @@
 {
- "annual": {},
+ "annual": {
+  "40218": {
+   "dps": 5.0,
+   "dps_prior": 7.5,
+   "end": "2021-12-31",
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 140.24,
+   "navps_prior": 136.42,
+   "ok": true,
+   "pages": 420,
+   "src_dps": "Dividend per share (DPS) (Rs.)  Over Rs. 5.00  7.50  6.50  6.50  6.50  6.50",
+   "src_navps": "Net assets value per share (Rs.)  140.24  136.42  138.08  134.67",
+   "title": "Amended Commercial Bank of Ceylon PLC - Annual Report 2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/369_1648812033946.pdf",
+   "v": 6,
+   "vals_dps": [
+    5.0,
+    7.5,
+    6.5,
+    6.5,
+    6.5,
+    6.5
+   ],
+   "vals_navps": [
+    140.24,
+    136.42,
+    138.08,
+    134.67
+   ],
+   "year_only": false
+  },
+  "42896": {
+   "dps": 5.0,
+   "dps_prior": 4.5,
+   "end": "2022-12-31",
+   "eps": 1.914,
+   "eps_prior": 18.53,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 168.47,
+   "navps_prior": 140.24,
+   "ok": true,
+   "pages": 470,
+   "src_dps": "Dividend per share (DPS) (Rs.)  Over Rs. 5.00  4.50  7.50  6.50  6.50  6.50",
+   "src_eps": "Earnings per share (Basic/Diluted)  -2.7% \u23ce Rs. 1.914 Tn.  2022 \u2013 Rs.18.53",
+   "src_navps": "Net assets value per share (Rs.)  168.47  140.24  164.30  138.08",
+   "title": "Amended Commercial Bank of Ceylon PLC - Annual Report 2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/369_1680255608786.pdf",
+   "v": 6,
+   "vals_dps": [
+    5.0,
+    4.5,
+    7.5,
+    6.5,
+    6.5,
+    6.5
+   ],
+   "vals_eps": [
+    1.914,
+    18.53
+   ],
+   "vals_navps": [
+    168.47,
+    140.24,
+    164.3,
+    138.08
+   ],
+   "year_only": false
+  },
+  "45307": {
+   "dps": 5.0,
+   "dps_prior": 6.5,
+   "end": "2023-12-31",
+   "eps": 2.085,
+   "eps_prior": 15.57,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 518,
+   "src_dps": "Dividend per share (DPS) (Rs.)  Over Rs. 5.00  6.50  4.50  7.50  6.50  6.50",
+   "src_eps": "Earnings per share (Basic)  -11.0% \u23ce Rs. 2.085 Tn.  2023 \u2013 Rs. 15.57",
+   "title": "Commercial Bank of Ceylon PLC - Annual Report 2023",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/369_1709636062232.pdf",
+   "v": 6,
+   "vals_dps": [
+    5.0,
+    6.5,
+    4.5,
+    7.5,
+    6.5,
+    6.5
+   ],
+   "vals_eps": [
+    2.085,
+    15.57
+   ],
+   "year_only": false
+  },
+  "47609": {
+   "dps": 5.0,
+   "dps_prior": 9.5,
+   "end": "2024-12-31",
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 558,
+   "src_dps": "Dividend per share (DPS) (Rs.)  Over Rs. 5.00  9.50  6.50  4.50  7.50  6.50",
+   "title": "Commercial Bank of Ceylon PLC - Annual Report 2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/369_1741169817422.pdf",
+   "v": 6,
+   "vals_dps": [
+    5.0,
+    9.5,
+    6.5,
+    4.5,
+    7.5,
+    6.5
+   ],
+   "year_only": false
+  },
+  "50738": {
+   "dps": 8.0,
+   "dps_prior": 10.5,
+   "end": "2025-12-31",
+   "eps": 2.237,
+   "eps_prior": 37.25,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 576,
+   "src_dps": "Dividend per share (DPS) (Rs.)  Over Rs. 8.00  10.50  9.50  6.50  4.50  7.50",
+   "src_eps": "Earnings per share (Basic) \u23ce (2024 \u2013 Rs. 2.237 Tn.)  2024 \u2013 Rs. 37.25  (Minimum requirement \u2013 14%)",
+   "title": "Annual Report as at 31st December 2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/369_1773048532050.pdf",
+   "v": 6,
+   "vals_dps": [
+    8.0,
+    10.5,
+    9.5,
+    6.5,
+    4.5,
+    7.5
+   ],
+   "vals_eps": [
+    2.237,
+    37.25
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

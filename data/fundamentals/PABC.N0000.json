@@ -1,5 +1,218 @@
 {
- "annual": {},
+ "annual": {
+  "40130": {
+   "end": "2021-12-31",
+   "eps": 6.95,
+   "eps_prior": 4.63,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 41.92,
+   "navps_prior": 34.79,
+   "ok": true,
+   "pages": 288,
+   "src_eps": "Earnings per Share (Rs.)  6.95  4.63  50.11",
+   "src_navps": "Net Asset Value per Share (Rs.)  41.92  34.79  20.49",
+   "title": "Annual Report 2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/388_1646644013831.pdf",
+   "v": 6,
+   "vals_eps": [
+    6.95,
+    4.63,
+    50.11
+   ],
+   "vals_navps": [
+    41.92,
+    34.79,
+    20.49
+   ],
+   "year_only": false
+  },
+  "42875": {
+   "end": "2022-12-31",
+   "eps": 4.52,
+   "eps_prior": 6.95,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 46.58,
+   "navps_prior": 41.92,
+   "ok": true,
+   "pages": 280,
+   "src_eps": "Earnings Per Share (Rs.)  4.52  6.95  (34.96)",
+   "src_navps": "Net Asset Value Per Share (Rs.)  46.58  41.92  11.12",
+   "title": "Annual Report 2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/388_1678266791787.pdf",
+   "v": 6,
+   "vals_eps": [
+    4.52,
+    6.95,
+    -34.96
+   ],
+   "vals_navps": [
+    46.58,
+    41.92,
+    11.12
+   ],
+   "year_only": false
+  },
+  "45294": {
+   "dps": 0.25,
+   "dps_prior": 100.0,
+   "end": "2023-12-31",
+   "eps": 4.19,
+   "eps_prior": 4.52,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 51.06,
+   "navps_prior": 46.58,
+   "ok": true,
+   "pages": 276,
+   "src_dps": "Dividend Per Share (Rs.)  0.25  -  100.00",
+   "src_eps": "Earnings per Share (Rs.)  4.19  4.52  (7.30)",
+   "src_navps": "Net Asset Value Per Share (Rs.)  51.06  46.58  9.62",
+   "title": "Annual Report 2023",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/388_1709550808125.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.25,
+    100.0
+   ],
+   "vals_eps": [
+    4.19,
+    4.52,
+    -7.3
+   ],
+   "vals_navps": [
+    51.06,
+    46.58,
+    9.62
+   ],
+   "year_only": false
+  },
+  "47601": {
+   "dps": 1.0,
+   "dps_prior": 0.25,
+   "end": "2024-12-31",
+   "eps": 9.34,
+   "eps_prior": 4.19,
+   "layout_dps": [
+    0,
+    1,
+    true
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 60.51,
+   "navps_prior": 51.06,
+   "ok": true,
+   "pages": 300,
+   "src_dps": "Dividends per Share (Rs.)  1.00  0.25  300.00",
+   "src_eps": "Earnings per Share (Rs.)  9.34  4.19  122.91",
+   "src_navps": "Net Asset Value per Share (Rs.)  60.51  51.06  18.51",
+   "title": "Annual Report 2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/388_1741082391551.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.0,
+    0.25,
+    300.0
+   ],
+   "vals_eps": [
+    9.34,
+    4.19,
+    122.91
+   ],
+   "vals_navps": [
+    60.51,
+    51.06,
+    18.51
+   ],
+   "year_only": false
+  },
+  "50713": {
+   "dps": 1.0,
+   "dps_prior": 1.0,
+   "end": "2025-12-31",
+   "eps": 9.05,
+   "eps_prior": 9.34,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 68.67,
+   "navps_prior": 60.51,
+   "ok": true,
+   "pages": 380,
+   "src_dps": "Dividend per Share (Rs.)  1.00  1.00  -",
+   "src_eps": "Earnings per Share (Rs.)  9.05  9.34  (3.10)",
+   "src_navps": "Net Asset Value per Share (Rs.)  68.67  60.51  13.49",
+   "title": "Annual Report as at 31st December 2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/388_1772701851872..pdf",
+   "v": 6,
+   "vals_dps": [
+    1.0,
+    1.0
+   ],
+   "vals_eps": [
+    9.05,
+    9.34,
+    -3.1
+   ],
+   "vals_navps": [
+    68.67,
+    60.51,
+    13.49
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

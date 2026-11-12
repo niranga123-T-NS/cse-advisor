@@ -1,5 +1,87 @@
 {
- "annual": {},
+ "annual": {
+  "40690": {
+   "end": "2021-12-31",
+   "eps": 0.05,
+   "eps_prior": 0.1,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 80,
+   "src_eps": "Earnings Per Share - basic (Rs)  11  0.05  0.10",
+   "title": "Annual Report for the year 2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2386_1653990584278.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.05,
+    0.1
+   ],
+   "year_only": false
+  },
+  "43326": {
+   "end": "2022-12-31",
+   "eps": 0.7,
+   "eps_prior": 0.05,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 75,
+   "src_eps": "Earnings Per Share - basic (Rs)  11  0.70  0.05",
+   "title": "Annual Report for the year 2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2386_1685526753112.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.7,
+    0.05
+   ],
+   "year_only": false
+  },
+  "45842": {
+   "end": "2023-12-31",
+   "ok": true,
+   "pages": 76,
+   "title": "Annual Report for the year 2023",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2386_1717150743104.pdf",
+   "v": 6,
+   "year_only": false
+  },
+  "48100": {
+   "end": "2024-12-31",
+   "ok": true,
+   "pages": 75,
+   "title": "Annual Report 31.12.2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2386_1748599791204.pdf",
+   "v": 6,
+   "year_only": false
+  },
+  "51638": {
+   "end": "2025-12-31",
+   "eps": 0.02,
+   "eps_prior": -0.09,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 86,
+   "src_eps": "Earnings / (Loss) Per Share - Basic (Rs.)  11  0.02  (0.09)",
+   "title": "Annual Report as at 31st December 2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2386_1780051792998.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.02,
+    -0.09
+   ],
+   "year_only": false
+  }
+ },
  "listed_at": "2026-11-12",
  "listing": {
   "annual": [

@@ -6,7 +6,23 @@
    "end": "2022-03-31",
    "eps": 1.86,
    "eps_prior": 2.55,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 22.09,
+   "navps_prior": 21.43,
    "ok": true,
    "pages": 280,
    "src_dps": "Dividend per Share **  15  200  1.00  -",
@@ -14,7 +30,20 @@
    "src_navps": "Net Assets Value per Share  22.09  21.43  3.1%",
    "title": "Annual Report 2021/2022",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/2567_1654568822115.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    15.0,
+    200.0,
+    1.0
+   ],
+   "vals_eps": [
+    1.86,
+    2.55
+   ],
+   "vals_navps": [
+    22.09,
+    21.43
+   ]
   },
   "43442": {
    "dps": 15.0,
@@ -22,7 +51,23 @@
    "end": "2023-03-31",
    "eps": 1.48,
    "eps_prior": 1.86,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 23.06,
+   "navps_prior": 22.09,
    "ok": true,
    "pages": 284,
    "src_dps": "Dividend per Share (LKR)  15  212  -  1.00",
@@ -30,7 +75,20 @@
    "src_navps": "Net Assets Value per Share  23.06  22.09  4.4%",
    "title": "Annual Report 2022/23",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/2567_1685945435340.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    15.0,
+    212.0,
+    1.0
+   ],
+   "vals_eps": [
+    1.48,
+    1.86
+   ],
+   "vals_navps": [
+    23.06,
+    22.09
+   ]
   },
   "45935": {
    "dps": 15.0,
@@ -38,7 +96,23 @@
    "end": "2024-03-31",
    "eps": 1.67,
    "eps_prior": 1.48,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 23.87,
+   "navps_prior": 23.06,
    "ok": true,
    "pages": 304,
    "src_dps": "Dividend per Share **  15  233  -  0.75  (0.75)  (100)",
@@ -46,7 +120,22 @@
    "src_navps": "Net Assets Value per Share  23.87  23.06  3.51%  27.7%",
    "title": "Annual Report 2023/24",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/2567_1717508235298.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    15.0,
+    233.0,
+    0.75,
+    -0.75,
+    -100.0
+   ],
+   "vals_eps": [
+    1.67,
+    1.48
+   ],
+   "vals_navps": [
+    23.87,
+    23.06
+   ]
   },
   "48189": {
    "dps": 0.65,
@@ -54,7 +143,23 @@
    "end": "2025-03-31",
    "eps": 3.17,
    "eps_prior": 1.67,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 26.36,
+   "navps_prior": 23.87,
    "ok": true,
    "pages": 364,
    "src_dps": "Dividend Per Share  NA  0.65  0.75  0.50  -  -  -  0.50  -  -",
@@ -62,7 +167,21 @@
    "src_navps": "Net Assets Value per Share  26.36  23.87  10.4%",
    "title": "Annual Report 2024/2025",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/2567_1748866099752.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    0.65,
+    0.75,
+    0.5,
+    0.5
+   ],
+   "vals_eps": [
+    3.17,
+    1.67
+   ],
+   "vals_navps": [
+    26.36,
+    23.87
+   ]
   },
   "51837": {
    "dps": 1.0,
@@ -70,7 +189,23 @@
    "end": "2026-03-31",
    "eps": 5.48,
    "eps_prior": 3.17,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 29.57,
+   "navps_prior": 26.36,
    "ok": true,
    "pages": 432,
    "src_dps": "Dividend Per Share  1.00  1.25  0.65  0.75  0.50  -  -  -  0.50  -",
@@ -78,7 +213,23 @@
    "src_navps": "Net Assets Value per Share  29.57  26.36  12.2%",
    "title": "Annual Report as at 31st March 2026",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/2567_1780745370369.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    1.0,
+    1.25,
+    0.65,
+    0.75,
+    0.5,
+    0.5
+   ],
+   "vals_eps": [
+    5.48,
+    3.17
+   ],
+   "vals_navps": [
+    29.57,
+    26.36
+   ]
   }
  },
  "listed_at": "2026-11-12",

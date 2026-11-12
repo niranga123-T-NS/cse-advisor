@@ -2,56 +2,130 @@
  "annual": {
   "40804": {
    "end": "2021-12-31",
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 16.74,
+   "navps_prior": 18.15,
    "ok": true,
    "pages": 60,
    "src_navps": "Net assets value per share (Rs.)  16.74  18.15  21.28  21.13  20.57",
    "title": "Galadari Annual Report for the Year Ended 31st December 2021",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1654514126045.pdf",
-   "v": 3
+   "v": 4,
+   "vals_navps": [
+    16.74,
+    18.15,
+    21.28,
+    21.13,
+    20.57
+   ]
   },
   "43457": {
    "end": "2022-12-31",
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 16.18,
+   "navps_prior": 16.74,
    "ok": true,
    "pages": 60,
    "src_navps": "Net assets value per share (Rs.)  16.18  16.74  18.15  21.28  21.13",
    "title": "Galadari Annual Report for the Year Ended 31st December 2022",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1686043445431.pdf",
-   "v": 3
+   "v": 4,
+   "vals_navps": [
+    16.18,
+    16.74,
+    18.15,
+    21.28,
+    21.13
+   ]
   },
   "45930": {
    "end": "2023-12-31",
    "eps": 0.31,
    "eps_prior": -0.24,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 17.29,
+   "navps_prior": 16.18,
    "ok": true,
    "pages": 68,
    "src_eps": "Basic Earnings / (loss) per share - Rs.  0.31  (0.24)",
    "src_navps": "Net assets value per share  17.29  16.18  16.74  18.15  21.28",
    "title": "Galadari Annual Report for the Year Ended 31st December 2023",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1717501654562. Galadari Annual Report for the Year Ended 31st December 2023.pdf",
-   "v": 3
+   "v": 4,
+   "vals_eps": [
+    0.31,
+    -0.24
+   ],
+   "vals_navps": [
+    17.29,
+    16.18,
+    16.74,
+    18.15,
+    21.28
+   ]
   },
   "48213": {
    "end": "2024-12-31",
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 14.47,
+   "navps_prior": 17.29,
    "ok": true,
    "pages": 76,
    "src_navps": "Net assets value per share  14.47  17.29  16.18  16.74  18.15",
    "title": "Annual Report 2024",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1749006701825.pdf",
-   "v": 3
+   "v": 4,
+   "vals_navps": [
+    14.47,
+    17.29,
+    16.18,
+    16.74,
+    18.15
+   ]
   },
   "51760": {
    "end": "2025-12-31",
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 12.39,
+   "navps_prior": 14.47,
    "ok": true,
    "pages": 70,
    "src_navps": "Net assets value per share  12.39  14.47  17.29  16.18  16.74",
    "title": "Annual Report as at 31st December 2025",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1780571306065.06.2026) - FINAL.pdf",
-   "v": 3
+   "v": 4,
+   "vals_navps": [
+    12.39,
+    14.47,
+    17.29,
+    16.18,
+    16.74
+   ]
   }
  },
  "listed_at": "2026-11-12",

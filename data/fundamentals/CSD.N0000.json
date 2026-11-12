@@ -6,7 +6,23 @@
    "end": "2021-12-31",
    "eps": 2.37,
    "eps_prior": 1.76,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 35.64,
+   "navps_prior": 34.48,
    "ok": true,
    "pages": 156,
    "src_dps": "Dividend per share (Proposed)  Rs:  1.40  1.20  16.7%",
@@ -14,7 +30,19 @@
    "src_navps": "Net Assets per share  Rs:  35.64  34.48  3.4%",
    "title": "Annual Report - 2021",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/617_1646647021246.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    1.4,
+    1.2
+   ],
+   "vals_eps": [
+    2.37,
+    1.76
+   ],
+   "vals_navps": [
+    35.64,
+    34.48
+   ]
   },
   "42877": {
    "dps": 1.2,
@@ -22,7 +50,23 @@
    "end": "2022-12-31",
    "eps": 1.61,
    "eps_prior": 2.37,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 35.74,
+   "navps_prior": 35.64,
    "ok": true,
    "pages": 166,
    "src_dps": "Dividend per share (Proposed)  Rs:  1.20  1.40  -14.3%",
@@ -30,7 +74,19 @@
    "src_navps": "Net Assets per share  Rs:  35.74  35.64  0.3%",
    "title": "Annual Report 2022",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/617_1678269804740.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    1.2,
+    1.4
+   ],
+   "vals_eps": [
+    1.61,
+    2.37
+   ],
+   "vals_navps": [
+    35.74,
+    35.64
+   ]
   },
   "45835": {
    "dps": 1.0,
@@ -38,7 +94,23 @@
    "end": "2023-12-31",
    "eps": 2.39,
    "eps_prior": 1.61,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 36.97,
+   "navps_prior": 35.74,
    "ok": true,
    "pages": 152,
    "src_dps": "Dividend per share (Proposed)  Rs:  1.00  1.20  -16.7%",
@@ -46,7 +118,19 @@
    "src_navps": "Net Assets per share  Rs:  36.97  35.74  3.4%",
    "title": "Annual Report 2023",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/617_1717149871756.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    1.0,
+    1.2
+   ],
+   "vals_eps": [
+    2.39,
+    1.61
+   ],
+   "vals_navps": [
+    36.97,
+    35.74
+   ]
   },
   "47610": {
    "dps": 1.1,
@@ -54,7 +138,23 @@
    "end": "2024-12-31",
    "eps": 2.48,
    "eps_prior": 2.5,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 39.52,
+   "navps_prior": 36.97,
    "ok": true,
    "pages": 184,
    "src_dps": "Dividend per share (Proposed)  Rs:  1.10  1.00  10%",
@@ -62,7 +162,19 @@
    "src_navps": "Net Assets per share  Rs:  39.52  36.97  6.9%",
    "title": "Annual Report 2024",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/617_1741170554892.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    1.1,
+    1.0
+   ],
+   "vals_eps": [
+    2.48,
+    2.5
+   ],
+   "vals_navps": [
+    39.52,
+    36.97
+   ]
   },
   "50741": {
    "dps": 1.2,
@@ -70,7 +182,23 @@
    "end": "2025-12-31",
    "eps": 2.2,
    "eps_prior": 2.48,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
    "navps": 40.6,
+   "navps_prior": 39.52,
    "ok": true,
    "pages": 196,
    "src_dps": "Dividend per share (Proposed)  Rs:  1.20  1.10  9.09%",
@@ -78,7 +206,19 @@
    "src_navps": "Net Assets per share  Rs:  40.60  39.52  2.73%",
    "title": "Annual Report as at 31st December 2025",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/617_1773050449810.pdf",
-   "v": 3
+   "v": 4,
+   "vals_dps": [
+    1.2,
+    1.1
+   ],
+   "vals_eps": [
+    2.2,
+    2.48
+   ],
+   "vals_navps": [
+    40.6,
+    39.52
+   ]
   }
  },
  "listed_at": "2026-11-12",

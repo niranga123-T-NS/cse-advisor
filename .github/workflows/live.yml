@@ -1,0 +1,32 @@
+name: Live prices
+
+on:
+  schedule:
+    - cron: "40 3 * * 1-5"   # 09:10 Colombo time, Mon-Fri; the job waits for the open and stops at 14:40
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cse-live
+  cancel-in-progress: false
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: Wait for the market to open
+        run: |
+          while [ "$(TZ=Asia/Colombo date +%H%M)" -lt 0925 ]; do sleep 30; done
+      - name: Fetch prices every minute until the close
+        run: |
+          git config user.name "cse-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          python live.py

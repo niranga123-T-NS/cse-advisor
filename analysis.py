@@ -113,20 +113,30 @@ def score_series(d: pd.DataFrame) -> pd.Series:
     return pd.Series(scores, index=d.index)
 
 
-def advice(df: pd.DataFrame) -> dict | None:
-    """Latest signal for one stock, with reasons and risk levels."""
+def advice(df: pd.DataFrame, fund: dict | None = None) -> dict | None:
+    """Latest signal for one stock, with reasons and risk levels.
+
+    `fund` is the output of fundamentals.metrics(); its points are added to the technical score.
+    """
     if len(df) < 30:
         return None
+    import fundamentals  # local import keeps analysis usable on its own
     d = indicators(df)
     r, prev = d.iloc[-1], d.iloc[-2]
-    score, why = _score_row(r, prev)
+    tech, why = _score_row(r, prev)
+    fscore, fwhy = fundamentals.score(fund)
+    score = tech + fscore
     out = {
         "date": d.index[-1].strftime("%Y-%m-%d"),
         "close": round(float(r.close), 2),
         "change_pct": round(float((r.close / prev.close - 1) * 100), 2) if prev.close else None,
         "score": round(score, 1),
+        "tech_score": round(tech, 1),
+        "fund_score": round(fscore, 1) if fund else None,
         "signal": label(score),
         "reasons": why,
+        "fund_reasons": fwhy,
+        "fundamentals": {k: v for k, v in (fund or {}).items() if not k.startswith("_")} or None,
         "rsi": None if pd.isna(r.rsi) else round(float(r.rsi), 1),
         "stop": None, "target": None,
         "warnings": [],

@@ -15,7 +15,7 @@
   header h1 { font-size:16px; margin:0 8px 0 0; }
   input, select, button, .btn { background:var(--panel); color:var(--text); border:1px solid var(--line); border-radius:6px; padding:6px 10px; font:inherit; text-decoration:none; }
   .btn:hover, button:hover { border-color:var(--accent); }
-  main { display:grid; grid-template-columns: 500px 1fr; height:calc(100vh - 54px); }
+  main { display:grid; grid-template-columns: 560px 1fr; height:calc(100vh - 54px); }
   @media (max-width: 900px) { main { grid-template-columns:1fr; height:auto; } #list { max-height:55vh; } }
   #list { overflow:auto; border-right:1px solid var(--line); }
   table { width:100%; border-collapse:collapse; }
@@ -31,7 +31,7 @@
   .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px; margin-top:14px; }
   .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; }
   .card h3 { margin:0 0 8px; font-size:13px; color:var(--mute); font-weight:500; }
-  .card ul { margin:0; padding-left:18px; } .warn { color:#f59e0b; }
+  .card ul { margin:0; padding-left:18px; } .card a { color:#93c5fd; } .card table td, .card table th { padding:4px 6px; position:static; } .warn { color:#f59e0b; }
   .kv { display:grid; grid-template-columns:auto 1fr; gap:4px 14px; }
   .big { font-size:22px; font-weight:700; }
   .mute { color:var(--mute); } .star { cursor:pointer; color:#eab308; font-size:16px; }
@@ -44,14 +44,14 @@
   <h1>CSE Advisor</h1>
   <input id="q" placeholder="Search symbol/name" size="16" oninput="render()">
   <select id="f" onchange="render()">
-    <option value="">All signals</option><option value="BUY">Buys</option><option value="SELL">Sells</option><option value="watch">★ Favourites</option>
+    <option value="">All signals</option><option value="BUY">Buys</option><option value="SELL">Sells</option><option value="watch">★ Favourites</option><option value="value">Value (P/E &lt; 10)</option><option value="div">Dividend ≥ 5%</option>
   </select>
   <a class="btn" id="addBtn" target="_blank" rel="noopener">+ Add stocks</a>
   <span id="meta" class="mute"></span>
 </header>
 <main>
   <section id="list">
-    <table><thead><tr><th></th><th>Symbol</th><th class="num">Close</th><th class="num">Chg%</th><th>Signal</th><th class="num">Score</th></tr></thead><tbody id="rows"></tbody></table>
+    <table><thead><tr><th></th><th>Symbol</th><th class="num">Close</th><th class="num">Chg%</th><th class="num">P/E</th><th>Signal</th><th class="num">Score</th></tr></thead><tbody id="rows"></tbody></table>
     <div id="empty" class="note" hidden></div>
     <footer>Rule-based indicator signals, not financial advice. Data: Colombo Stock Exchange (cse.lk), updated after each session.</footer>
   </section>
@@ -89,7 +89,7 @@ async function load() {
 function render() {
   const q = $('#q').value.trim().toLowerCase(), f = $('#f').value;
   let rows = all.filter(s => (!q || s.symbol.toLowerCase().includes(q) || (s.name||'').toLowerCase().includes(q)) &&
-    (!f || (f === 'watch' ? isStar(s) : sigClass(s.signal) === f)));
+    (!f || (f === 'watch' ? isStar(s) : f === 'value' ? (s.pe && s.pe < 10) : f === 'div' ? (s.div_yield >= 5) : sigClass(s.signal) === f)));
   rows.sort((a,b) => (isStar(b) - isStar(a)) || (b.score - a.score));
   $('#empty').hidden = rows.length > 0;
   $('#empty').innerHTML = all.length ? 'No stocks match.' :
@@ -100,6 +100,7 @@ function render() {
       <td><b>${esc(s.symbol)}</b><div class="mute" style="font-size:11px">${esc((s.name||'').slice(0,26))}</div></td>
       <td class="num">${s.close.toFixed(2)}</td>
       <td class="num ${s.change_pct>0?'up':s.change_pct<0?'down':''}">${s.change_pct ?? ''}</td>
+      <td class="num">${s.pe ?? '<span class="mute">–</span>'}</td>
       <td class="sig ${sigClass(s.signal)}">${esc(s.signal)}</td>
       <td class="num">${s.score}</td>
     </tr>`).join('');
@@ -110,6 +111,30 @@ $('#rows').addEventListener('click', e => {
   if (st) { const s = st.dataset.star; stars.has(s) ? stars.delete(s) : stars.add(s); store.set([...stars]); render(); return; }
   const tr = e.target.closest('tr.row'); if (tr) show(tr.dataset.sym);
 });
+
+const fmt = (v, suf='') => v == null ? '<span class="mute">–</span>' : `${v}${suf}`;
+const pct = v => v == null ? '<span class="mute">–</span>' : `<span class="${v>=0?'up':'down'}">${v>0?'+':''}${v}%</span>`;
+function fundCard(a) {
+  const f = a.fundamentals;
+  if (!f) return '<div class="card"><h3>Fundamentals</h3><p class="mute">Reports not read yet — the nightly job works through all companies.</p></div>';
+  const yrs = (f.annual||[]).map(y => `<tr><td><a href="${esc(y.url)}" target="_blank" rel="noopener">${esc(y.end)}</a></td><td class="num">${fmt(y.eps)}</td><td class="num">${fmt(y.dps)}</td></tr>`).join('');
+  const qs = (f.quarters||[]).map(q => `<tr><td><a href="${esc(q.url)}" target="_blank" rel="noopener">${esc(q.end)}</a>${q.months?` <span class="mute">${q.months}m</span>`:''}</td><td class="num">${fmt(q.eps)}</td><td class="num">${pct(q.profit_growth)}</td><td class="num">${pct(q.revenue_growth)}</td></tr>`).join('');
+  return `<div class="card"><h3>Fundamentals <span class="mute">· from ${f.quarters_read} quarterly + ${f.annuals_read} annual reports · ${esc(f.confidence)} data</span></h3>
+    <ul>${(a.fund_reasons||[]).map(r=>`<li>${esc(r)}</li>`).join('') || '<li class="mute">No fundamental points scored</li>'}</ul>
+    <div class="kv" style="margin-top:8px">
+      <span class="mute">EPS (12 months)</span><span>${fmt(f.eps_ttm)} <span class="mute" style="font-size:11px">${esc(f.eps_basis||'')}</span></span>
+      <span class="mute">P/E</span><span>${fmt(f.pe)}</span>
+      <span class="mute">Net assets/share</span><span>${fmt(f.navps)} ${f.pbv!=null?`<span class="mute">(P/BV ${f.pbv})</span>`:''}</span>
+      <span class="mute">ROE</span><span>${fmt(f.roe,'%')}</span>
+      <span class="mute">Profit growth</span><span>${pct(f.profit_growth)} ${f.profit_growth_hit?`<span class="mute">(${f.profit_growth_hit} reports up)</span>`:''}</span>
+      <span class="mute">Revenue growth</span><span>${pct(f.revenue_growth)}</span>
+      <span class="mute">Dividend/share</span><span>${fmt(f.dps)} ${f.div_yield!=null?`<span class="mute">(yield ${f.div_yield}%)</span>`:''}</span>
+      <span class="mute">EPS growth/yr</span><span>${f.eps_cagr!=null?pct(f.eps_cagr)+` <span class="mute">over ${f.eps_cagr_years}y</span>`:fmt(null)}</span>
+    </div>
+    ${yrs?`<h3 style="margin-top:12px">Annual reports</h3><table><tr><th>Year end</th><th class="num">EPS</th><th class="num">DPS</th></tr>${yrs}</table>`:''}
+    ${qs?`<h3 style="margin-top:12px">Quarterly reports</h3><table><tr><th>Period end</th><th class="num">EPS (cum.)</th><th class="num">Profit YoY</th><th class="num">Revenue YoY</th></tr>${qs}</table>`:''}
+    <p class="mute" style="font-size:11px;margin:8px 0 0">Read automatically from the PDFs by text matching; figures that failed sanity checks are left blank. Tap a date to open the report.</p></div>`;
+}
 
 function mkChart(el, h) {
   return LightweightCharts.createChart(el, { height:h, layout:{ background:{color:'#0f1216'}, textColor:'#8b95a1' },
@@ -126,12 +151,13 @@ async function show(sym) {
   $('#detail').innerHTML = `
     <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
       <span class="big">${esc(sym)}</span>
-      <span class="big sig ${sigClass(a.signal)}">${esc(a.signal)}</span><span class="mute">score ${a.score} · ${a.date}</span>
+      <span class="big sig ${sigClass(a.signal)}">${esc(a.signal)}</span><span class="mute">score ${a.score} (technical ${a.tech_score}${a.fund_score!=null?`, fundamentals ${a.fund_score}`:''}) · ${a.date}</span>
     </div>
     <div id="chart"></div><div id="rsi"></div><div id="macd"></div>
     <div class="cards">
-      <div class="card"><h3>Why</h3><ul>${a.reasons.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>
+      <div class="card"><h3>Technical reasons</h3><ul>${a.reasons.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>
         ${a.warnings.map(w=>`<p class="warn">⚠ ${esc(w)}</p>`).join('')}</div>
+      ${fundCard(a)}
       <div class="card"><h3>Levels</h3><div class="kv">
         <span class="mute">Close</span><span>${a.close}</span>
         <span class="mute">RSI</span><span>${a.rsi ?? '–'}</span>

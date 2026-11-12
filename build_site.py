@@ -18,6 +18,7 @@ import analysis
 import collector
 import cse_client as cse
 import db
+import fundamentals
 
 SITE = Path(__file__).parent / "site"
 OUT = SITE / "data"
@@ -39,6 +40,7 @@ def _dump(path: Path, obj):
 
 
 def stock_payload(symbol: str, df) -> dict:
+    fund = fundamentals.metrics(symbol, float(df["close"].iloc[-1])) if len(df) else None
     d = analysis.indicators(df)
     t = [ts.strftime("%Y-%m-%d") for ts in d.index]
 
@@ -52,7 +54,7 @@ def stock_payload(symbol: str, df) -> dict:
         "volume": [{"time": ti, "value": r.volume} for ti, r in zip(t, d.itertuples())],
         "sma20": series("sma20"), "sma50": series("sma50"),
         "rsi": series("rsi"), "macd_hist": series("macd_hist"),
-        "advice": analysis.advice(df),
+        "advice": analysis.advice(df, fund),
         "backtest": analysis.backtest(df),
     }
 
@@ -69,9 +71,11 @@ def build():
             continue
         _dump(OUT / "stocks" / f"{s}.json", p)
         bt = p["backtest"] or {}
-        signals.append({"symbol": s, "name": names.get(s, ""), "watch": s in watch,
-                        "bars": len(df), "bt_edge": None if not bt else
-                        round(bt["strategy_return_pct"] - bt["buy_hold_return_pct"], 1), **p["advice"]})
+        a = {k: v for k, v in p["advice"].items() if k not in ("fundamentals", "fund_reasons", "reasons")}
+        f = p["advice"].get("fundamentals") or {}
+        signals.append({"symbol": s, "name": names.get(s, ""), "watch": s in watch, "bars": len(df),
+                        "bt_edge": None if not bt else round(bt["strategy_return_pct"] - bt["buy_hold_return_pct"], 1),
+                        "pe": f.get("pe"), "pbv": f.get("pbv"), "div_yield": f.get("div_yield"), **a})
     signals.sort(key=lambda x: (not x["watch"], -x["score"]))
     _dump(OUT / "signals.json", signals)
 

@@ -8,6 +8,7 @@ from flask import Flask, jsonify, render_template, request
 import analysis
 import collector
 import db
+import fundamentals
 
 app = Flask(__name__)
 
@@ -30,7 +31,8 @@ def signals():
     for s in db.symbols_with_data(30):
         if only_watch and s not in watch:
             continue
-        a = analysis.advice(db.load_bars(s))
+        df = db.load_bars(s)
+        a = analysis.advice(df, fundamentals.metrics(s, float(df["close"].iloc[-1])))
         if a:
             out.append({"symbol": s, "name": names.get(s, ""), "watch": s in watch, **a})
     out.sort(key=lambda x: (not x["watch"], -x["score"]))
@@ -55,7 +57,7 @@ def stock(symbol):
         "volume": [{"time": ti, "value": r.volume} for ti, r in zip(t, d.itertuples())],
         "sma20": series("sma20"), "sma50": series("sma50"),
         "rsi": series("rsi"), "macd_hist": series("macd_hist"),
-        "advice": analysis.advice(df),
+        "advice": analysis.advice(df, fundamentals.metrics(symbol, float(df["close"].iloc[-1]))),
         "backtest": analysis.backtest(df),
         "watch": symbol in db.watchlist(),
     })

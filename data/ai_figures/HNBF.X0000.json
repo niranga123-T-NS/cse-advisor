@@ -1,0 +1,27 @@
+{
+ "symbol": "HNBF.X0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 3,
+  "eps_ytd": 0.21,
+  "eps_ytd_prior": 0.1,
+  "eps_q": 0.21,
+  "eps_q_prior": 0.1,
+  "revenue_ytd": 5558790185,
+  "revenue_ytd_prior": 3600827215,
+  "unit": "Rs",
+  "navps": 4.66,
+  "page": 2
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": 0.81,
+  "eps_prior": 0.43,
+  "navps": 4.45,
+  "page": "annual highlights"
+ },
+ "notes": "Non-voting share of HNBF: same per-share figures."
+}

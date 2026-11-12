@@ -1,0 +1,26 @@
+{
+ "symbol": "CABO.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 3,
+  "eps_ytd": 8.69,
+  "eps_ytd_prior": 8.5,
+  "eps_q": 8.69,
+  "eps_q_prior": 8.5,
+  "revenue_ytd": 38113,
+  "revenue_ytd_prior": 35128,
+  "unit": "Rs'000",
+  "navps": 329.38,
+  "page": 2
+ },
+ "fy": {
+  "end": "2026-03-31",
+  "eps": 15.06,
+  "navps": 310.54,
+  "page": 2
+ },
+ "notes": "Company (investment holding; earnings driven by dividend income, so quarters are uneven)."
+}

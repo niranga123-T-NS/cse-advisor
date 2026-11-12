@@ -1,0 +1,21 @@
+{
+ "symbol": "MEL.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 3,
+  "eps_ytd": 0.0128,
+  "eps_ytd_prior": 0.0101,
+  "profit_ytd": 1280238,
+  "profit_ytd_prior": 1014103,
+  "revenue_ytd": 5342724,
+  "revenue_ytd_prior": 4725000,
+  "unit": "Rs",
+  "navps": 2.9,
+  "page": 2
+ },
+ "fy": {},
+ "notes": "Very small company (figures in rupees). EPS = profit to owners \u00f7 100M shares (report rounds to 0.01)."
+}

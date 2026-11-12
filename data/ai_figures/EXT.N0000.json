@@ -1,0 +1,20 @@
+{
+ "symbol": "EXT.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-06-30",
+  "months": 12,
+  "eps_ytd": 0.61,
+  "eps_ytd_prior": -0.24,
+  "eps_q": 0.07,
+  "eps_q_prior": 0.04,
+  "revenue_ytd": 157969281,
+  "revenue_ytd_prior": 153624292,
+  "unit": "Rs",
+  "page": 2
+ },
+ "fy": {},
+ "notes": "Group. The report prints the twelve months to June 2026 (EPS 0.61 vs loss 0.24), used directly as 12-month EPS. Q1 EPS 0.07 (0.04)."
+}

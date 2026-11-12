@@ -1,0 +1,20 @@
+{
+ "symbol": "EML.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-12",
+ "basis": "Group",
+ "latest": {
+  "end": "2026-09-30",
+  "months": 9,
+  "eps_ytd": -0.08,
+  "eps_ytd_prior": -0.04,
+  "eps_q": -0.11,
+  "eps_q_prior": 0.03,
+  "page": 2
+ },
+ "fy": {
+  "end": "2025-12-31",
+  "navps": 2.11
+ },
+ "notes": "Company (financial year ends December). The PDF text is partly garbled; nine-month EPS read as \u22120.08 (\u22120.04). Check the report."
+}

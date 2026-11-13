@@ -155,7 +155,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-12",
+ "listed_at": "2026-11-13",
  "listing": {
   "annual": [
    {
@@ -196,6 +196,15 @@
    }
   ],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53685",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794479814074,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/3027_1794479814074.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -778,6 +787,79 @@
     1751304.0,
     2068612.0,
     -317308.0
+   ],
+   "year_only": false
+  },
+  "53685": {
+   "end": "2026-09-30",
+   "eps": -0.11,
+   "eps_prior": 0.16,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 8.27,
+   "navps_prior": 8.24,
+   "ok": true,
+   "pages": 12,
+   "profit": -54740.0,
+   "profit_growth": null,
+   "profit_prior": 78898.0,
+   "revenue": 1949706.0,
+   "revenue_growth": 5.2,
+   "revenue_prior": 1852864.0,
+   "src_eps": "Basic Earnings/ (Loss) Per Share  (0.11)  0.16  0.03  0.38",
+   "src_navps": "Net Assets Per Share (Rs.)  8.27  8.24  8.22  8.20",
+   "src_profit": "Equity Holders of the Parent  (54,740)  78,898  (133,638)  13,744  188,150  (174,406)",
+   "src_revenue": "Revenue  1,949,706  1,852,864  96,842  3,701,010  3,921,476  (220,466)",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/3027_1794479814074.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.11,
+    0.16,
+    0.03,
+    0.38
+   ],
+   "vals_navps": [
+    8.27,
+    8.24,
+    8.22,
+    8.2
+   ],
+   "vals_profit": [
+    -54740.0,
+    78898.0,
+    -133638.0,
+    13744.0,
+    188150.0,
+    -174406.0
+   ],
+   "vals_revenue": [
+    1949706.0,
+    1852864.0,
+    96842.0,
+    3701010.0,
+    3921476.0,
+    -220466.0
    ],
    "year_only": false
   }

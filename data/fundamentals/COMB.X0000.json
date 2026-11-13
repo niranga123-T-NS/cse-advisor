@@ -190,7 +190,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-12",
+ "listed_at": "2026-11-13",
  "listing": {
   "annual": [
    {
@@ -240,6 +240,15 @@
    }
   ],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53686",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794482282493,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/369_1794482282493.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -320,96 +329,10 @@
     "uploaded": 1723628642650,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/369_1723628642650.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2024-03-31",
-    "id": "45532",
-    "title": "Interim Financial Statements for the three months ended March 31, 2024",
-    "uploaded": 1715683685180,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/369_1715683685180.pdf",
-    "year_only": false
    }
   ]
  },
  "quarterly": {
-  "45532": {
-   "end": "2024-03-31",
-   "eps": 7.94,
-   "eps_prior": 3.21,
-   "layout_eps": [
-    0,
-    1,
-    true
-   ],
-   "layout_navps": [
-    0,
-    1,
-    true
-   ],
-   "layout_profit": [
-    0,
-    1,
-    true
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    true
-   ],
-   "months": 3,
-   "navps": 164.93,
-   "navps_prior": 167.77,
-   "ok": true,
-   "pages": 27,
-   "profit": 10626538.0,
-   "profit_growth": 152.0,
-   "profit_prior": 4216403.0,
-   "revenue": 80207870.0,
-   "revenue_growth": -4.7,
-   "revenue_prior": 84149226.0,
-   "src_eps": "Earnings per share (EPS) \u23ce Basic earnings per ordinary share (Rs.)  7.94  3.21  147.35  7.81  3.11  151.13",
-   "src_navps": "Net Assets Value per Ordinary Share (Rs.)  164.93  167.77  (1.69)  161.05  163.55  (1.53)",
-   "src_profit": "Equity holders of the Bank  10,626,538  4,216,403  152.03  10,451,284  4,091,073  155.47",
-   "src_revenue": "Gross income  80,207,870  84,149,226  (4.68)  78,684,480  82,791,169  (4.96)",
-   "title": "Interim Financial Statements for the three months ended March 31, 2024",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/369_1715683685180.pdf",
-   "v": 6,
-   "vals_eps": [
-    7.94,
-    3.21,
-    147.35,
-    7.81,
-    3.11,
-    151.13
-   ],
-   "vals_navps": [
-    164.93,
-    167.77,
-    -1.69,
-    161.05,
-    163.55,
-    -1.53
-   ],
-   "vals_profit": [
-    10626538.0,
-    4216403.0,
-    152.03,
-    10451284.0,
-    4091073.0,
-    155.47
-   ],
-   "vals_revenue": [
-    80207870.0,
-    84149226.0,
-    -4.68,
-    78684480.0,
-    82791169.0,
-    -4.96
-   ],
-   "year_only": false
-  },
   "46344": {
    "end": "2024-06-30",
    "eps": 13.85,
@@ -1100,6 +1023,83 @@
     110159795.0,
     88807687.0,
     24.04
+   ],
+   "year_only": false
+  },
+  "53686": {
+   "end": "2026-09-30",
+   "eps": 31.08,
+   "eps_prior": 29.05,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 9,
+   "navps": 224.63,
+   "navps_prior": 203.04,
+   "ok": true,
+   "pages": 31,
+   "profit": 51369570.0,
+   "profit_growth": 8.5,
+   "profit_prior": 47352365.0,
+   "revenue": 318790090.0,
+   "revenue_growth": 18.9,
+   "revenue_prior": 268181665.0,
+   "src_eps": "Earnings per share (EPS) \u23ce Basic earnings per ordinary share (Rs.)  31.08  29.05  6.99  9.95  10.18  (2.26)",
+   "src_navps": "Net Asset Value per Ordinary Share (Rs.)  224.63  203.04  10.63  218.53  198.30  10.20",
+   "src_profit": "Equity holders of the Bank  51,369,570  47,352,365  8.48  16,440,969  16,595,511  (0.93)",
+   "src_revenue": "Gross income  318,790,090  268,181,665  18.87  109,627,207  91,349,075  20.01",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/369_1794482282493.pdf",
+   "v": 6,
+   "vals_eps": [
+    31.08,
+    29.05,
+    6.99,
+    9.95,
+    10.18,
+    -2.26
+   ],
+   "vals_navps": [
+    224.63,
+    203.04,
+    10.63,
+    218.53,
+    198.3,
+    10.2
+   ],
+   "vals_profit": [
+    51369570.0,
+    47352365.0,
+    8.48,
+    16440969.0,
+    16595511.0,
+    -0.93
+   ],
+   "vals_revenue": [
+    318790090.0,
+    268181665.0,
+    18.87,
+    109627207.0,
+    91349075.0,
+    20.01
    ],
    "year_only": false
   }

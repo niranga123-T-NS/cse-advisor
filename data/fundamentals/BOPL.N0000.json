@@ -166,7 +166,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-12",
+ "listed_at": "2026-11-13",
  "listing": {
   "annual": [
    {
@@ -216,6 +216,15 @@
    }
   ],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53654",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794475677308,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/706_1794475677308.09.2026 with Sgd.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -296,64 +305,10 @@
     "uploaded": 1723518334723,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/706_1723518334723.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2024-03-31",
-    "id": "45707",
-    "title": "Interim Financial Statements for the Quarter ended 31st March 2024",
-    "uploaded": 1717038178035,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/706_1717038178035.pdf",
-    "year_only": false
    }
   ]
  },
  "quarterly": {
-  "45707": {
-   "end": "2024-03-31",
-   "layout_profit": [
-    0,
-    1,
-    true
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 12,
-   "ok": true,
-   "pages": 10,
-   "profit": 342263.0,
-   "profit_growth": -12.0,
-   "profit_prior": 389156.0,
-   "revenue": 4808021.0,
-   "revenue_growth": -8.2,
-   "revenue_prior": 5239555.0,
-   "src_profit": "1,272,580 Equity holders of the parent  342,263  389,156  (12)  530,290  1,410,532  (62)",
-   "src_revenue": "Revenue  4,808,021  5,239,555  162,404  178,627  4,970,425  5,418,182",
-   "title": "Interim Financial Statements for the Quarter ended 31st March 2024",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/706_1717038178035.pdf",
-   "v": 6,
-   "vals_profit": [
-    342263.0,
-    389156.0,
-    -12.0,
-    530290.0,
-    1410532.0,
-    -62.0
-   ],
-   "vals_revenue": [
-    4808021.0,
-    5239555.0,
-    162404.0,
-    178627.0,
-    4970425.0,
-    5418182.0
-   ],
-   "year_only": false
-  },
   "46284": {
    "end": "2024-06-30",
    "layout_profit": [
@@ -758,6 +713,49 @@
     94000.0,
     1440870.0,
     1382211.0
+   ],
+   "year_only": false
+  },
+  "53654": {
+   "end": "2026-09-30",
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 6,
+   "ok": true,
+   "pages": 10,
+   "profit": -65572.0,
+   "profit_growth": null,
+   "profit_prior": 121565.0,
+   "revenue": 2671209.0,
+   "revenue_growth": 3.8,
+   "revenue_prior": 2572448.0,
+   "src_profit": "568,158 Equity holders of the parent  (65,572)  121,565  -154%  286,059  275,416  4%",
+   "src_revenue": "Revenue  2,671,209  2,572,448  155,975  163,368  2,827,185  2,735,816",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/706_1794475677308.09.2026 with Sgd.pdf",
+   "v": 6,
+   "vals_profit": [
+    -65572.0,
+    121565.0,
+    286059.0,
+    275416.0
+   ],
+   "vals_revenue": [
+    2671209.0,
+    2572448.0,
+    155975.0,
+    163368.0,
+    2827185.0,
+    2735816.0
    ],
    "year_only": false
   }

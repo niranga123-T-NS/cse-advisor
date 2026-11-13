@@ -231,7 +231,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-12",
+ "listed_at": "2026-11-13",
  "listing": {
   "annual": [
    {
@@ -281,6 +281,15 @@
    }
   ],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53638",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794475355632,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/711_1794475355632.27.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -361,95 +370,10 @@
     "uploaded": 1653995442203,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/711_1653995442203.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2021-12-31",
-    "id": "39399",
-    "title": "Interim Financial Statements as of 30/09/2021",
-    "uploaded": 1636715928263,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/711_1636715928263.pdf",
-    "year_only": true
    }
   ]
  },
  "quarterly": {
-  "39399": {
-   "end": "2021-12-31",
-   "eps": 6.37,
-   "eps_prior": 4.63,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    true
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    true
-   ],
-   "months": 6,
-   "navps": 172.12,
-   "navps_prior": 161.47,
-   "ok": true,
-   "pages": 11,
-   "profit": 159136.0,
-   "profit_growth": 37.5,
-   "profit_prior": 115720.0,
-   "revenue": 1019040.0,
-   "revenue_growth": 48.4,
-   "revenue_prior": 686905.0,
-   "src_eps": "Basic earnings per share (Rs.)  6.37  4.63  10.65  6.42  19.30",
-   "src_navps": "Net Asset Value per Share (Rs.)  172.12  161.47  123.33  115.93",
-   "src_profit": "Profit for the period  159,136  115,720  38  266,248  160,504  66  482,601",
-   "src_revenue": "Revenue  1,019,040  686,905  48  1,877,318  1,311,342  43  3,148,122",
-   "title": "Interim Financial Statements as of 30/09/2021",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/711_1636715928263.pdf",
-   "v": 6,
-   "vals_eps": [
-    6.37,
-    4.63,
-    10.65,
-    6.42,
-    19.3
-   ],
-   "vals_navps": [
-    172.12,
-    161.47,
-    123.33,
-    115.93
-   ],
-   "vals_profit": [
-    159136.0,
-    115720.0,
-    38.0,
-    266248.0,
-    160504.0,
-    66.0,
-    482601.0
-   ],
-   "vals_revenue": [
-    1019040.0,
-    686905.0,
-    48.0,
-    1877318.0,
-    1311342.0,
-    43.0,
-    3148122.0
-   ],
-   "year_only": true
-  },
   "40704": {
    "end": "2022-03-31",
    "eps": 13.26,
@@ -1113,6 +1037,82 @@
     727101.0,
     904534.0,
     -20.0,
+    3719137.0
+   ],
+   "year_only": false
+  },
+  "53638": {
+   "end": "2026-09-30",
+   "eps": 3.27,
+   "eps_prior": 5.5,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 6,
+   "navps": 211.09,
+   "navps_prior": 207.03,
+   "ok": true,
+   "pages": 11,
+   "profit": 81846.0,
+   "profit_growth": -40.5,
+   "profit_prior": 137615.0,
+   "revenue": 1049110.0,
+   "revenue_growth": -1.0,
+   "revenue_prior": 1059509.0,
+   "src_eps": "Basic earnings per share (Rs.)  3.27  5.50  4.06  7.28  4.15",
+   "src_navps": "Net Asset Value per Share (Rs.)  211.09  207.03  166.63  162.46",
+   "src_profit": "Profit for the period  81,846  137,615  (41)  101,406  182,009  (44)  103,720",
+   "src_revenue": "Revenue  1,049,110  1,059,509  (1)  1,776,212  1,964,043  (10)  3,719,137",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/711_1794475355632.27.pdf",
+   "v": 6,
+   "vals_eps": [
+    3.27,
+    5.5,
+    4.06,
+    7.28,
+    4.15
+   ],
+   "vals_navps": [
+    211.09,
+    207.03,
+    166.63,
+    162.46
+   ],
+   "vals_profit": [
+    81846.0,
+    137615.0,
+    -41.0,
+    101406.0,
+    182009.0,
+    -44.0,
+    103720.0
+   ],
+   "vals_revenue": [
+    1049110.0,
+    1059509.0,
+    -1.0,
+    1776212.0,
+    1964043.0,
+    -10.0,
     3719137.0
    ],
    "year_only": false

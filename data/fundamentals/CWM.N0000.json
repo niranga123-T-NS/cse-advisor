@@ -240,7 +240,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-12",
+ "listed_at": "2026-11-13",
  "listing": {
   "annual": [
    {
@@ -290,6 +290,15 @@
    }
   ],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53648",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794478080559,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1794478080559.09.2026.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -370,90 +379,10 @@
     "uploaded": 1612779576379,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1612779576379.pdf",
     "year_only": true
-   },
-   {
-    "amended": false,
-    "end": "2019-12-31",
-    "id": "34896",
-    "title": "Interim Financial Statements as at 31.12.2019",
-    "uploaded": 1581504620225,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1581504620225.pdf",
-    "year_only": true
    }
   ]
  },
  "quarterly": {
-  "34896": {
-   "end": "2019-12-31",
-   "eps": -1.36,
-   "eps_prior": 0.14,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    true
-   ],
-   "months": 3,
-   "navps": 68.93,
-   "navps_prior": 72.18,
-   "ok": true,
-   "pages": 10,
-   "profit": -48780.0,
-   "profit_growth": null,
-   "profit_prior": 4876.0,
-   "revenue": 1890469.0,
-   "revenue_growth": -15.0,
-   "revenue_prior": 2224621.0,
-   "src_eps": "Basic earnings per share (Rupees)  (1.36)  0.14  0.28  2.75",
-   "src_navps": "Net asset value per share (Rs.)  68.93  72.18  68.52  70.34",
-   "src_profit": "Equity holders of the parent company  (48,780)  4,876  9,951  98,972",
-   "src_revenue": "Revenue  1,890,469  2,224,621  (15.02)  6,211,014  6,891,043  (9.87)",
-   "title": "Interim Financial Statements as at 31.12.2019",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1581504620225.pdf",
-   "v": 6,
-   "vals_eps": [
-    -1.36,
-    0.14,
-    0.28,
-    2.75
-   ],
-   "vals_navps": [
-    68.93,
-    72.18,
-    68.52,
-    70.34
-   ],
-   "vals_profit": [
-    -48780.0,
-    4876.0,
-    9951.0,
-    98972.0
-   ],
-   "vals_revenue": [
-    1890469.0,
-    2224621.0,
-    -15.02,
-    6211014.0,
-    6891043.0,
-    -9.87
-   ],
-   "year_only": true
-  },
   "37177": {
    "end": "2020-12-31",
    "eps": 2.21,
@@ -1083,6 +1012,77 @@
     5521773.0,
     5846075.0,
     -5.55
+   ],
+   "year_only": false
+  },
+  "53648": {
+   "end": "2026-09-30",
+   "eps": 0.8,
+   "eps_prior": 0.45,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 3,
+   "navps": 23.73,
+   "navps_prior": 23.63,
+   "ok": true,
+   "pages": 10,
+   "profit": 143814.0,
+   "profit_growth": 76.4,
+   "profit_prior": 81513.0,
+   "revenue": 6682095.0,
+   "revenue_growth": 14.3,
+   "revenue_prior": 5846891.0,
+   "src_eps": "Basic earnings per share (Rupees)  0.80  0.45  1.70  0.95",
+   "src_navps": "Net asset value per share (Rs.)  23.73  23.63  22.08  22.03",
+   "src_profit": "Equity holders of the parent company  143,814  81,513  306,607  171,198",
+   "src_revenue": "Revenue  6,682,095  5,846,891  14.28  12,203,868  11,692,966  4.37",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1794478080559.09.2026.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.8,
+    0.45,
+    1.7,
+    0.95
+   ],
+   "vals_navps": [
+    23.73,
+    23.63,
+    22.08,
+    22.03
+   ],
+   "vals_profit": [
+    143814.0,
+    81513.0,
+    306607.0,
+    171198.0
+   ],
+   "vals_revenue": [
+    6682095.0,
+    5846891.0,
+    14.28,
+    12203868.0,
+    11692966.0,
+    4.37
    ],
    "year_only": false
   }

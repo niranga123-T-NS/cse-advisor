@@ -274,7 +274,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-12",
+ "listed_at": "2026-11-13",
  "listing": {
   "annual": [
    {
@@ -324,6 +324,15 @@
    }
   ],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53702",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794481476963,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/390_1794481476963.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -404,88 +413,10 @@
     "uploaded": 1723714654248,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/390_1723714654248.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2024-03-31",
-    "id": "45557",
-    "title": "Interim Financial Statements for period ended 31st March 2024",
-    "uploaded": 1715769588943,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/390_1715769588943.pdf",
-    "year_only": false
    }
   ]
  },
  "quarterly": {
-  "45557": {
-   "end": "2024-03-31",
-   "eps": 0.09,
-   "eps_prior": 0.53,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "navps": 49.31,
-   "navps_prior": 49.03,
-   "ok": true,
-   "pages": 13,
-   "profit": 154.0,
-   "profit_growth": -83.9,
-   "profit_prior": 956.0,
-   "revenue": 26929.0,
-   "revenue_growth": 1.4,
-   "revenue_prior": 26554.0,
-   "src_eps": "Earnings per share \u23ce  - Basic (Rs.)  0.09  0.53  0.16  0.35",
-   "src_navps": "Net asset value per share (Rs.)  49.31  49.03  38.09  37.75",
-   "src_profit": "Owners of the company  154  956  286  626",
-   "src_revenue": "Revenue  26,929  26,554  17,714  17,560",
-   "title": "Interim Financial Statements for period ended 31st March 2024",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/390_1715769588943.pdf",
-   "v": 6,
-   "vals_eps": [
-    0.09,
-    0.53,
-    0.16,
-    0.35
-   ],
-   "vals_navps": [
-    49.31,
-    49.03,
-    38.09,
-    37.75
-   ],
-   "vals_profit": [
-    154.0,
-    956.0,
-    286.0,
-    626.0
-   ],
-   "vals_revenue": [
-    26929.0,
-    26554.0,
-    17714.0,
-    17560.0
-   ],
-   "year_only": false
-  },
   "46419": {
    "end": "2024-06-30",
    "eps": -0.27,
@@ -1188,6 +1119,87 @@
     55167.0,
     39309.0,
     35513.0
+   ],
+   "year_only": false
+  },
+  "53702": {
+   "end": "2026-09-30",
+   "eps": 2.05,
+   "eps_prior": 1.21,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 60.94,
+   "navps_prior": 55.85,
+   "ok": true,
+   "pages": 12,
+   "profit": 3703.0,
+   "profit_growth": 69.4,
+   "profit_prior": 2186.0,
+   "revenue": 32689.0,
+   "revenue_growth": 10.9,
+   "revenue_prior": 29479.0,
+   "src_eps": "Earnings per share \u23ce  - Basic (Rs.)  2.05  1.21  1.00  0.79  5.71  3.58  3.56  2.25",
+   "src_navps": "Net asset value per share (Rs.)  60.94  55.85  45.00  42.06",
+   "src_profit": "Owners of the company  3,703  2,186  1,799  1,422  10,300  6,460  6,429  4,069",
+   "src_revenue": "Revenue  32,689  29,479  20,551  18,406  94,003  84,646  59,860  53,919",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/390_1794481476963.pdf",
+   "v": 6,
+   "vals_eps": [
+    2.05,
+    1.21,
+    1.0,
+    0.79,
+    5.71,
+    3.58,
+    3.56,
+    2.25
+   ],
+   "vals_navps": [
+    60.94,
+    55.85,
+    45.0,
+    42.06
+   ],
+   "vals_profit": [
+    3703.0,
+    2186.0,
+    1799.0,
+    1422.0,
+    10300.0,
+    6460.0,
+    6429.0,
+    4069.0
+   ],
+   "vals_revenue": [
+    32689.0,
+    29479.0,
+    20551.0,
+    18406.0,
+    94003.0,
+    84646.0,
+    59860.0,
+    53919.0
    ],
    "year_only": false
   }

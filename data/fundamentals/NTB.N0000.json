@@ -226,7 +226,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-12",
+ "listed_at": "2026-11-13",
  "listing": {
   "annual": [
    {
@@ -276,6 +276,15 @@
    }
   ],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53616",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794474325815,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/387_1794474325815.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -356,94 +365,10 @@
     "uploaded": 1723626450680,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/387_1723626450680.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2024-03-31",
-    "id": "45520",
-    "title": "Nations Trust Bank PLC- Interim Financial Statements for the three months ended 31st March 2024",
-    "uploaded": 1715678457755,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/387_1715678457755.pdf",
-    "year_only": false
    }
   ]
  },
  "quarterly": {
-  "45520": {
-   "end": "2024-03-31",
-   "eps": 11.34,
-   "eps_prior": 8.27,
-   "layout_eps": [
-    0,
-    1,
-    true
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    true
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    true
-   ],
-   "months": null,
-   "navps": 192.37,
-   "navps_prior": 184.42,
-   "ok": true,
-   "pages": 16,
-   "profit": 3698052.0,
-   "profit_growth": 37.0,
-   "profit_prior": 2699141.0,
-   "revenue": 9024332.0,
-   "revenue_growth": 2.0,
-   "revenue_prior": 8846712.0,
-   "src_eps": "Earnings Per Share \u23ce Basic/Diluted Earning Per Share (Rs.)  11.34  8.27  37  11.58  8.56  35",
-   "src_navps": "Net Assets Value Per Share (LKR)  192.37  184.42  199.29  191.25",
-   "src_profit": "Equity Holders of the Bank  3,698,052  2,699,141  37  3,776,084  2,793,165  35",
-   "src_revenue": "Net Interest Income  9,024,332  8,846,712  2  9,092,072  8,933,741  2",
-   "title": "Nations Trust Bank PLC- Interim Financial Statements for the three months ended 31st March 2024",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/387_1715678457755.pdf",
-   "v": 6,
-   "vals_eps": [
-    11.34,
-    8.27,
-    37.0,
-    11.58,
-    8.56,
-    35.0
-   ],
-   "vals_navps": [
-    192.37,
-    184.42,
-    199.29,
-    191.25
-   ],
-   "vals_profit": [
-    3698052.0,
-    2699141.0,
-    37.0,
-    3776084.0,
-    2793165.0,
-    35.0
-   ],
-   "vals_revenue": [
-    9024332.0,
-    8846712.0,
-    2.0,
-    9092072.0,
-    8933741.0,
-    2.0
-   ],
-   "year_only": false
-  },
   "46329": {
    "end": "2024-06-30",
    "eps": 24.12,
@@ -1180,6 +1105,93 @@
     44075.0,
     48050.0,
     61469.0
+   ],
+   "year_only": false
+  },
+  "53616": {
+   "end": "2026-09-30",
+   "eps": 65.49,
+   "eps_prior": 43.84,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 9,
+   "navps": 322.98,
+   "navps_prior": 283.97,
+   "ok": true,
+   "pages": 16,
+   "profit": 21835839.0,
+   "profit_growth": 49.4,
+   "profit_prior": 14616785.0,
+   "revenue": 1137605.0,
+   "revenue_growth": null,
+   "revenue_prior": 46308.0,
+   "src_eps": "Basic Earnings Per Share (LKR)  65.49  43.84  49  14.00  18.07  (23)  59.92  44.72  34  13.26  18.35  (28)",
+   "src_navps": "Net Asset Value Per Share (LKR)  322.98  283.97  326.48  293.12",
+   "src_profit": "Equity Holders of the Bank  21,835,839  14,616,785  49  4,669,099  6,026,335  (23)  19,979,818  14,910,696  34  4,420,418  6,117,997  (28)",
+   "src_revenue": "Net Interest Income  1,137,605  46,308  13,319,850  8,521,398  19,084,796  20,348,564  46,624  65,773  60,003  88,948  353,931  (246,153)  34,002,809  28,824,838",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/387_1794474325815.pdf",
+   "v": 6,
+   "vals_eps": [
+    65.49,
+    43.84,
+    49.0,
+    14.0,
+    18.07,
+    -23.0,
+    59.92,
+    44.72,
+    34.0,
+    13.26
+   ],
+   "vals_navps": [
+    322.98,
+    283.97,
+    326.48,
+    293.12
+   ],
+   "vals_profit": [
+    21835839.0,
+    14616785.0,
+    49.0,
+    4669099.0,
+    6026335.0,
+    -23.0,
+    19979818.0,
+    14910696.0,
+    34.0,
+    4420418.0
+   ],
+   "vals_revenue": [
+    1137605.0,
+    46308.0,
+    13319850.0,
+    8521398.0,
+    19084796.0,
+    20348564.0,
+    46624.0,
+    65773.0,
+    60003.0,
+    88948.0
    ],
    "year_only": false
   }

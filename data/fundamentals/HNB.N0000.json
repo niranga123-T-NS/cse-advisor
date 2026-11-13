@@ -238,7 +238,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-12",
+ "listed_at": "2026-11-13",
  "listing": {
   "annual": [
    {
@@ -288,6 +288,15 @@
    }
   ],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53690",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794482029963,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/373_1794482029963.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -368,96 +377,10 @@
     "uploaded": 1723605927695,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/373_1723605927695.06.2024.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2024-03-31",
-    "id": "45533",
-    "title": "Interim financial statements as at 31st March 2024",
-    "uploaded": 1715687063931,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/373_1715687063931.pdf",
-    "year_only": false
    }
   ]
  },
  "quarterly": {
-  "45533": {
-   "end": "2024-03-31",
-   "eps": 10.91,
-   "eps_prior": 12.0,
-   "layout_eps": [
-    0,
-    1,
-    true
-   ],
-   "layout_navps": [
-    0,
-    1,
-    true
-   ],
-   "layout_profit": [
-    0,
-    1,
-    true
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    true
-   ],
-   "months": 3,
-   "navps": 333.31,
-   "navps_prior": 323.49,
-   "ok": true,
-   "pages": 22,
-   "profit": 6237310.0,
-   "profit_growth": -9.1,
-   "profit_prior": 6860743.0,
-   "revenue": 62352602.0,
-   "revenue_growth": -20.1,
-   "revenue_prior": 78081222.0,
-   "src_eps": "Earnings per share \u23ce Basic earnings per ordinary share (Rs)  10.91  12.00  (9)  12.61  12.39  2",
-   "src_navps": "Net assets value per ordinary share (Rs.)  333.31  323.49  3  382.36  371.17  3",
-   "src_profit": "Equity holders of the Bank  6,237,310  6,860,743  (9)  7,208,538  7,087,586  2",
-   "src_revenue": "Gross income  62,352,602  78,081,222  (20)  71,926,490  87,281,125  (18)",
-   "title": "Interim financial statements as at 31st March 2024",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/373_1715687063931.pdf",
-   "v": 6,
-   "vals_eps": [
-    10.91,
-    12.0,
-    -9.0,
-    12.61,
-    12.39,
-    2.0
-   ],
-   "vals_navps": [
-    333.31,
-    323.49,
-    3.0,
-    382.36,
-    371.17,
-    3.0
-   ],
-   "vals_profit": [
-    6237310.0,
-    6860743.0,
-    -9.0,
-    7208538.0,
-    7087586.0,
-    2.0
-   ],
-   "vals_revenue": [
-    62352602.0,
-    78081222.0,
-    -20.0,
-    71926490.0,
-    87281125.0,
-    -18.0
-   ],
-   "year_only": false
-  },
   "46324": {
    "end": "2024-06-30",
    "eps": 26.88,
@@ -1232,6 +1155,95 @@
     142741725.0,
     19.85,
     87903790.0
+   ],
+   "year_only": false
+  },
+  "53690": {
+   "end": "2026-09-30",
+   "eps": 57.21,
+   "eps_prior": 54.58,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 9,
+   "navps": 500.83,
+   "navps_prior": 468.23,
+   "ok": true,
+   "pages": 22,
+   "profit": 33028005.0,
+   "profit_growth": 4.8,
+   "profit_prior": 31510890.0,
+   "revenue": 213113145.0,
+   "revenue_growth": 19.9,
+   "revenue_prior": 177687436.0,
+   "src_eps": "Earnings per share \u23ce Basic earnings per ordinary share (Rs)  57.21  54.58  4.81  17.12  17.88  (4.26)  56.11  57.99  (3.23)  18.24  19.12  (4.58)",
+   "src_navps": "Net assets value per ordinary share (Rs.)  500.83  468.23  6.96  554.63  524.47  5.75",
+   "src_profit": "Equity holders of the Bank  33,028,005  31,510,890  4.81  9,884,886  10,324,285  (4.26)  32,394,572  33,477,445  (3.23)  10,530,889  11,035,980  (4.58)",
+   "src_revenue": "Gross income  213,113,145  177,687,436  19.94  73,648,762  60,845,061  21.04  263,277,488  219,075,698  20.18  92,202,572  76,333,973  20.79",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/373_1794482029963.pdf",
+   "v": 6,
+   "vals_eps": [
+    57.21,
+    54.58,
+    4.81,
+    17.12,
+    17.88,
+    -4.26,
+    56.11,
+    57.99,
+    -3.23,
+    18.24
+   ],
+   "vals_navps": [
+    500.83,
+    468.23,
+    6.96,
+    554.63,
+    524.47,
+    5.75
+   ],
+   "vals_profit": [
+    33028005.0,
+    31510890.0,
+    4.81,
+    9884886.0,
+    10324285.0,
+    -4.26,
+    32394572.0,
+    33477445.0,
+    -3.23,
+    10530889.0
+   ],
+   "vals_revenue": [
+    213113145.0,
+    177687436.0,
+    19.94,
+    73648762.0,
+    60845061.0,
+    21.04,
+    263277488.0,
+    219075698.0,
+    20.18,
+    92202572.0
    ],
    "year_only": false
   }

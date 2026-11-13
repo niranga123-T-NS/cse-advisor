@@ -260,7 +260,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-12",
+ "listed_at": "2026-11-13",
  "listing": {
   "annual": [
    {
@@ -310,6 +310,15 @@
    }
   ],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53651",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794475583732,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/725_1794475583732.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -390,89 +399,10 @@
     "uploaded": 1653995277966,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/725_1653995277966.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2021-12-31",
-    "id": "39401",
-    "title": "Interim Financial Statements as of 30/09/2021",
-    "uploaded": 1636715775391,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/725_1636715775391.pdf",
-    "year_only": true
    }
   ]
  },
  "quarterly": {
-  "39401": {
-   "end": "2021-12-31",
-   "eps": 23.24,
-   "eps_prior": 10.59,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "navps": 196.85,
-   "navps_prior": 148.17,
-   "ok": true,
-   "pages": 9,
-   "profit": 30.09,
-   "profit_growth": null,
-   "profit_prior": 2021.0,
-   "revenue": 1098915.0,
-   "revenue_growth": 48.1,
-   "revenue_prior": 742220.0,
-   "src_eps": "Basic Earnings per Share (Rs.)  23.24  10.59  39.28  19.59  36.35",
-   "src_navps": "NET ASSETS PER SHARE (RS.)  196.85  148.17  157.57",
-   "src_profit": "13. Twenty largest shareholders of the company (Voting shares),  As at 30.09.2021  As at 31.03.2021",
-   "src_revenue": "Revenue  1,098,915  742,220  48%  1,992,312  1,403,285  42%  2,739,070",
-   "title": "Interim Financial Statements as of 30/09/2021",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/725_1636715775391.pdf",
-   "v": 6,
-   "vals_eps": [
-    23.24,
-    10.59,
-    39.28,
-    19.59,
-    36.35
-   ],
-   "vals_navps": [
-    196.85,
-    148.17,
-    157.57
-   ],
-   "vals_profit": [
-    30.09,
-    2021.0,
-    31.03,
-    2021.0
-   ],
-   "vals_revenue": [
-    1098915.0,
-    742220.0,
-    1992312.0,
-    1403285.0,
-    2739070.0
-   ],
-   "year_only": true
-  },
   "40707": {
    "end": "2022-03-31",
    "eps": 19.98,
@@ -1086,6 +1016,76 @@
    "vals_revenue": [
     1306081.0,
     1260182.0,
+    4977897.0
+   ],
+   "year_only": false
+  },
+  "53651": {
+   "end": "2026-09-30",
+   "eps": 3.46,
+   "eps_prior": 2.68,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 55.49,
+   "navps_prior": 49.1,
+   "ok": true,
+   "pages": 9,
+   "profit": 30.09,
+   "profit_growth": null,
+   "profit_prior": 2026.0,
+   "revenue": 1737579.0,
+   "revenue_growth": 17.0,
+   "revenue_prior": 1484734.0,
+   "src_eps": "Basic Earnings per Share (Rs.)  3.46  2.68  5.58  4.66  7.91",
+   "src_navps": "NET ASSETS PER SHARE (RS.)  55.49  49.10  50.35",
+   "src_profit": "13. Twenty three largest shareholders of the company (Voting shares),  As at 30.09.2026  As at 31.03.2026",
+   "src_revenue": "Revenue  1,737,579  1,484,734  17%  3,043,660  2,744,916  11%  4,977,897",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/725_1794475583732.pdf",
+   "v": 6,
+   "vals_eps": [
+    3.46,
+    2.68,
+    5.58,
+    4.66,
+    7.91
+   ],
+   "vals_navps": [
+    55.49,
+    49.1,
+    50.35
+   ],
+   "vals_profit": [
+    30.09,
+    2026.0,
+    31.03,
+    2026.0
+   ],
+   "vals_revenue": [
+    1737579.0,
+    1484734.0,
+    3043660.0,
+    2744916.0,
     4977897.0
    ],
    "year_only": false

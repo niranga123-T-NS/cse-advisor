@@ -218,7 +218,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-12",
+ "listed_at": "2026-11-13",
  "listing": {
   "annual": [
    {
@@ -268,6 +268,15 @@
    }
   ],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53635",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794475289272,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/509_1794475289272.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -348,84 +357,10 @@
     "uploaded": 1676458009103,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/509_1676458009103.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2022-03-31",
-    "id": "40709",
-    "title": "Financial statements as at 31st March 2022",
-    "uploaded": 1653995086203,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/509_1653995086203.pdf",
-    "year_only": false
    }
   ]
  },
  "quarterly": {
-  "40709": {
-   "end": "2022-03-31",
-   "eps": 0.93,
-   "eps_prior": 0.53,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": null,
-   "navps": 1.85,
-   "navps_prior": 1.48,
-   "ok": true,
-   "pages": 14,
-   "profit": 1889450.0,
-   "profit_growth": 74.9,
-   "profit_prior": 1080428.0,
-   "revenue": 21172672.0,
-   "revenue_growth": 37.3,
-   "revenue_prior": 15418372.0,
-   "src_eps": "Earnings per share \u23ce Basic (Rs.)  0.93  0.53  3.37  2.21",
-   "src_navps": "Net asset value per share - Company  1.85  1.48",
-   "src_profit": "Equity holders of the parent  1,889,450  1,080,428  75%  6,858,054  4,490,261  53%",
-   "src_revenue": "Revenue reserves  21,172,672  15,418,372",
-   "title": "Financial statements as at 31st March 2022",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/509_1653995086203.pdf",
-   "v": 6,
-   "vals_eps": [
-    0.93,
-    0.53,
-    3.37,
-    2.21
-   ],
-   "vals_navps": [
-    1.85,
-    1.48
-   ],
-   "vals_profit": [
-    1889450.0,
-    1080428.0,
-    6858054.0,
-    4490261.0
-   ],
-   "vals_revenue": [
-    21172672.0,
-    15418372.0
-   ],
-   "year_only": false
-  },
   "42728": {
    "end": "2022-12-31",
    "eps": 0.17,
@@ -1003,6 +938,71 @@
    ],
    "vals_revenue": [
     24573025.0,
+    24019205.0
+   ],
+   "year_only": false
+  },
+  "53635": {
+   "end": "2026-09-30",
+   "eps": 0.3,
+   "eps_prior": 0.48,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": null,
+   "navps": 13.23,
+   "navps_prior": 13.75,
+   "ok": true,
+   "pages": 14,
+   "profit": 612918.0,
+   "profit_growth": -37.5,
+   "profit_prior": 979929.0,
+   "revenue": 23557912.0,
+   "revenue_growth": -1.9,
+   "revenue_prior": 24019205.0,
+   "src_eps": "Earnings per share \u23ce Basic (Rs.)  0.30  0.48  0.57  0.97",
+   "src_navps": "Net Assets Per Share (Rs.)  13.23  13.75",
+   "src_profit": "Equity holders of the parent  612,918  979,929  -37%  1,166,738  1,965,554  -41%",
+   "src_revenue": "Revenue reserves  23,557,912  24,019,205",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/509_1794475289272.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.3,
+    0.48,
+    0.57,
+    0.97
+   ],
+   "vals_navps": [
+    13.23,
+    13.75
+   ],
+   "vals_profit": [
+    612918.0,
+    979929.0,
+    1166738.0,
+    1965554.0
+   ],
+   "vals_revenue": [
+    23557912.0,
     24019205.0
    ],
    "year_only": false

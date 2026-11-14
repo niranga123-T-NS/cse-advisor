@@ -1,38 +1,5 @@
 {
  "annual": {
-  "39549": {
-   "end": "2021-03-31",
-   "eps": 0.01,
-   "eps_prior": -2.81,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "navps": 2.83,
-   "navps_prior": 2.81,
-   "ok": true,
-   "pages": 55,
-   "src_eps": "Earnings Per Share (Rs)  0.01  (2.81)",
-   "src_navps": "Net Assets Per Share (Rs)  2.83  2.81",
-   "title": "Annual Report 2020-2021",
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1637578805240.pdf",
-   "v": 6,
-   "vals_eps": [
-    0.01,
-    -2.81
-   ],
-   "vals_navps": [
-    2.83,
-    2.81
-   ],
-   "year_only": false
-  },
   "41670": {
    "end": "2022-03-31",
    "eps": 0.02,
@@ -164,11 +131,53 @@
     2.88
    ],
    "year_only": false
+  },
+  "53717": {
+   "end": "2026-03-31",
+   "eps": 0.05,
+   "eps_prior": 0.03,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 3.0,
+   "navps_prior": 3.02,
+   "ok": true,
+   "pages": 57,
+   "src_eps": "Earnings Per Share (Rs)  0.05  0.03",
+   "src_navps": "Net Assets Per Share (Rs)  3.00  3.02",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1794481738892.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.05,
+    0.03
+   ],
+   "vals_navps": [
+    3.0,
+    3.02
+   ],
+   "year_only": false
   }
  },
- "listed_at": "2026-11-13",
+ "listed_at": "2026-11-14",
  "listing": {
   "annual": [
+   {
+    "amended": false,
+    "end": "2026-03-31",
+    "id": "53717",
+    "title": "Annual Report as at 31st March 2026",
+    "uploaded": 1794481738892,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1794481738892.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2025-03-31",
@@ -203,15 +212,6 @@
     "title": "ANNUAL REPORT 2021/2022",
     "uploaded": 1662456549398,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1662456549398.pdf",
-    "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2021-03-31",
-    "id": "39549",
-    "title": "Annual Report 2020-2021",
-    "uploaded": 1637578805240,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1637578805240.pdf",
     "year_only": false
    }
   ],

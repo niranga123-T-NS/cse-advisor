@@ -206,7 +206,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-13",
+ "listed_at": "2026-11-14",
  "listing": {
   "annual": [
    {
@@ -256,6 +256,15 @@
    }
   ],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53868",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794583529001,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1074_1794583529001. Consolidated Financial Statements_Vallibel One PLC_30September2026.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -336,89 +345,10 @@
     "uploaded": 1644809066824,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/1074_1644809066824.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2021-06-30",
-    "id": "38673",
-    "title": "Financial statements as at 30th June 2021",
-    "uploaded": 1628742578354,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/1074_1628742578354.pdf",
-    "year_only": false
    }
   ]
  },
  "quarterly": {
-  "38673": {
-   "end": "2021-06-30",
-   "eps": 0.62,
-   "eps_prior": 0.52,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    true
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    true
-   ],
-   "months": null,
-   "navps": 26.23,
-   "navps_prior": 26.81,
-   "ok": true,
-   "pages": 14,
-   "profit": 679062.0,
-   "profit_growth": 20.8,
-   "profit_prior": 562019.0,
-   "revenue": 12199987.0,
-   "revenue_growth": 88.9,
-   "revenue_prior": 6458298.0,
-   "src_eps": "Earnings Per Share (Rs.)  0.62  0.52  1.28  0.79",
-   "src_navps": "Net Asset Per Share (Rs.)  26.23  26.81  54.90  54.93",
-   "src_profit": "Equity holders of the parent  679,062  562,019  21  1,390,534  859,190  62",
-   "src_revenue": "Revenue from contract with customers  -  -  -  12,199,987  6,458,298  89",
-   "title": "Financial statements as at 30th June 2021",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/1074_1628742578354.pdf",
-   "v": 6,
-   "vals_eps": [
-    0.62,
-    0.52,
-    1.28,
-    0.79
-   ],
-   "vals_navps": [
-    26.23,
-    26.81,
-    54.9,
-    54.93
-   ],
-   "vals_profit": [
-    679062.0,
-    562019.0,
-    21.0,
-    1390534.0,
-    859190.0,
-    62.0
-   ],
-   "vals_revenue": [
-    12199987.0,
-    6458298.0,
-    89.0
-   ],
-   "year_only": false
-  },
   "39909": {
    "end": "2021-12-31",
    "eps": 0.81,
@@ -1125,6 +1055,86 @@
    "vals_revenue": [
     20198545.0,
     18202893.0,
+    11.0
+   ],
+   "year_only": false
+  },
+  "53868": {
+   "end": "2026-09-30",
+   "eps": 0.22,
+   "eps_prior": 0.1,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": null,
+   "navps": 48.67,
+   "navps_prior": 48.94,
+   "ok": true,
+   "pages": 14,
+   "profit": 246825.0,
+   "profit_growth": 114.4,
+   "profit_prior": 115103.0,
+   "revenue": 22709454.0,
+   "revenue_growth": 10.2,
+   "revenue_prior": 20610081.0,
+   "src_eps": "Earnings per share (Rs.)  0.22  0.10  2.04  1.34  2.51  2.33  4.93  4.03",
+   "src_navps": "Net assets per share (Rs.)  48.67  48.94  110.29  108.75",
+   "src_profit": "Equity holders of the parent  246,825  115,103  2,324,668  1,524,089  53  2,856,469  2,651,251  5,613,710  4,594,026  22",
+   "src_revenue": "Revenue from contract with customers  -  -  -  -  -  22,709,454  20,610,081  42,907,999  38,812,974  11",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1074_1794583529001. Consolidated Financial Statements_Vallibel One PLC_30September2026.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.22,
+    0.1,
+    2.04,
+    1.34,
+    2.51,
+    2.33,
+    4.93,
+    4.03
+   ],
+   "vals_navps": [
+    48.67,
+    48.94,
+    110.29,
+    108.75
+   ],
+   "vals_profit": [
+    246825.0,
+    115103.0,
+    2324668.0,
+    1524089.0,
+    53.0,
+    2856469.0,
+    2651251.0,
+    5613710.0,
+    4594026.0,
+    22.0
+   ],
+   "vals_revenue": [
+    22709454.0,
+    20610081.0,
+    42907999.0,
+    38812974.0,
     11.0
    ],
    "year_only": false

@@ -174,7 +174,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-13",
+ "listed_at": "2026-11-14",
  "listing": {
   "annual": [
    {
@@ -224,6 +224,15 @@
    }
   ],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53843",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794565566549,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/666_1794565566549.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -304,74 +313,10 @@
     "uploaded": 1644916513280,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/666_1644916513280.pdf",
     "year_only": true
-   },
-   {
-    "amended": false,
-    "end": "2020-12-31",
-    "id": "37154",
-    "title": "Quarterly Financial Report as of 31-12-2020",
-    "uploaded": 1612258646097,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/666_1612258646097.pdf",
-    "year_only": true
    }
   ]
  },
  "quarterly": {
-  "37154": {
-   "end": "2020-12-31",
-   "eps": 0.4,
-   "eps_prior": 0.25,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "ok": true,
-   "pages": 8,
-   "profit": 378287.0,
-   "profit_growth": 60.5,
-   "profit_prior": 235682.0,
-   "revenue": 2400946.0,
-   "revenue_growth": 4.1,
-   "revenue_prior": 2305397.0,
-   "src_eps": "Earnings Per Share - Basic/Diluted  0.40  0.25  0.73  0.35",
-   "src_profit": "Profit for the Period  378,287  235,682  694,104  330,199",
-   "src_revenue": "Revenue  2,400,946  2,305,397  5,960,604  5,832,482",
-   "title": "Quarterly Financial Report as of 31-12-2020",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/666_1612258646097.pdf",
-   "v": 6,
-   "vals_eps": [
-    0.4,
-    0.25,
-    0.73,
-    0.35
-   ],
-   "vals_profit": [
-    378287.0,
-    235682.0,
-    694104.0,
-    330199.0
-   ],
-   "vals_revenue": [
-    2400946.0,
-    2305397.0,
-    5960604.0,
-    5832482.0
-   ],
-   "year_only": true
-  },
   "39983": {
    "end": "2021-12-31",
    "months": null,
@@ -766,6 +711,72 @@
    "vals_revenue": [
     5097388.0,
     4600692.0
+   ],
+   "year_only": false
+  },
+  "53843": {
+   "end": "2026-09-30",
+   "eps": 1.05,
+   "eps_prior": 2.56,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 1514.0,
+   "navps_prior": 15.56,
+   "ok": true,
+   "pages": 8,
+   "profit": 995891.0,
+   "profit_growth": 308.9,
+   "profit_prior": 243554.0,
+   "revenue": 10209.0,
+   "revenue_growth": null,
+   "revenue_prior": 22.0,
+   "src_eps": "Earnings Per Share - Basic/Diluted  f.JJ  1.05  2.56  7.09",
+   "src_navps": "Net Assets per Share  15,14  15.56  13.44",
+   "src_profit": "Profit for the Period  t,260,7L7  995,891  2,435,54r.  1,983,094",
+   "src_revenue": "Revenue  s,010,209 4,492,L22  to,Lo7,s97  9,O92,4L4",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/666_1794565566549.pdf",
+   "v": 6,
+   "vals_eps": [
+    1.05,
+    2.56,
+    7.09
+   ],
+   "vals_navps": [
+    1514.0,
+    15.56,
+    13.44
+   ],
+   "vals_profit": [
+    995891.0,
+    243554.0,
+    1983094.0
+   ],
+   "vals_revenue": [
+    10209.0,
+    22.0,
+    97.0,
+    4.0
    ],
    "year_only": false
   }

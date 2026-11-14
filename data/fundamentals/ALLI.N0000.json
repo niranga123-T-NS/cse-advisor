@@ -203,7 +203,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-13",
+ "listed_at": "2026-11-14",
  "listing": {
   "annual": [
    {
@@ -253,6 +253,15 @@
    }
   ],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53855",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794569703978,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1794569703978.09.2025.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -333,78 +342,10 @@
     "uploaded": 1644897905333,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1644897905333.pdf",
     "year_only": true
-   },
-   {
-    "amended": false,
-    "end": "2021-03-31",
-    "id": "37840",
-    "title": "Financial statements as at 31st March 2021",
-    "uploaded": 1621504734709,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1621504734709. PLC - March 2021-Final (1).pdf",
-    "year_only": false
    }
   ]
  },
  "quarterly": {
-  "37840": {
-   "end": "2021-03-31",
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    true
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    true
-   ],
-   "months": 3,
-   "navps": 173.0,
-   "navps_prior": 137.0,
-   "ok": true,
-   "pages": 18,
-   "profit": 238945625.0,
-   "profit_growth": null,
-   "profit_prior": 18750072.0,
-   "revenue": 2402174499.0,
-   "revenue_growth": 26.8,
-   "revenue_prior": 1894088874.0,
-   "src_navps": "Net assets value per share (Rs.)  173  137  175  139",
-   "src_profit": "Equity holders of the Company  238,945,625  18,750,072  1,174.37  583,404,287  228,931,908  154.84",
-   "src_revenue": "Gross Income  2,402,174,499  1,894,088,874  26.82  7,799,463,274  7,679,217,661  1.57",
-   "title": "Financial statements as at 31st March 2021",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1621504734709. PLC - March 2021-Final (1).pdf",
-   "v": 6,
-   "vals_navps": [
-    173.0,
-    137.0,
-    175.0,
-    139.0
-   ],
-   "vals_profit": [
-    238945625.0,
-    18750072.0,
-    1174.37,
-    583404287.0,
-    228931908.0,
-    154.84
-   ],
-   "vals_revenue": [
-    2402174499.0,
-    1894088874.0,
-    26.82,
-    7799463274.0,
-    7679217661.0,
-    1.57
-   ],
-   "year_only": false
-  },
   "39950": {
    "end": "2021-12-31",
    "eps": 57.45,
@@ -1044,6 +985,79 @@
     4679352716.0,
     4425147134.0,
     6.0
+   ],
+   "year_only": false
+  },
+  "53855": {
+   "end": "2026-09-30",
+   "eps": 42.68,
+   "eps_prior": 60.91,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 3,
+   "navps": 335.0,
+   "navps_prior": 326.0,
+   "ok": true,
+   "pages": 16,
+   "profit": 359517156.0,
+   "profit_growth": -29.9,
+   "profit_prior": 513083707.0,
+   "revenue": 4780098832.0,
+   "revenue_growth": 4.5,
+   "revenue_prior": 4576258242.0,
+   "src_eps": "Basic Earnings Per Share (Annualised)  42.68  60.91  44.19  55.65",
+   "src_navps": "Net assets value per share (Rs.)  335  326  348  337",
+   "src_profit": "Equity holders of the Company  359,517,156  513,083,707  (30)  744,493,606  937,544,274  (21)",
+   "src_revenue": "Gross Income  4,780,098,832  4,576,258,242  4  9,385,423,354  8,953,942,790  5",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1794569703978.09.2025.pdf",
+   "v": 6,
+   "vals_eps": [
+    42.68,
+    60.91,
+    44.19,
+    55.65
+   ],
+   "vals_navps": [
+    335.0,
+    326.0,
+    348.0,
+    337.0
+   ],
+   "vals_profit": [
+    359517156.0,
+    513083707.0,
+    -30.0,
+    744493606.0,
+    937544274.0,
+    -21.0
+   ],
+   "vals_revenue": [
+    4780098832.0,
+    4576258242.0,
+    4.0,
+    9385423354.0,
+    8953942790.0,
+    5.0
    ],
    "year_only": false
   }

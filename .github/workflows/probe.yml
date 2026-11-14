@@ -11,11 +11,3 @@ jobs:
         with: { python-version: "3.12" }
       - run: pip install -q requests pandas
       - run: python tools/probe2.py
-      - run: |
-          python sectors.py
-          git config user.name "cse-bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/sectors.csv
-          git diff --cached --quiet || git commit -m "Sector map"
-          git pull --rebase -X theirs origin main || true
-          git push

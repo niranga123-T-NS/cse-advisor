@@ -122,8 +122,9 @@ async function getJSON(name) {
 }
 async function pollTick() {
   if (!RAW || !marketWindow() || document.hidden) return;
-  // ask for the tick published about 30 s ago first (it is certain to exist), then older ones
-  const base = Math.floor((colomboNow().getTime() - 30000) / 15000) * 15000;
+  // Ask first for the tick from about 25-40 s ago: it is sure to be published. Asking for a file before it
+  // exists makes GitHub remember "not found" for a minute, which would hide that tick.
+  const base = Math.floor((colomboNow().getTime() - 24000) / 15000) * 15000;
   let t = null;
   for (let k = 0; k < 6 && !t; k++) {
     const d = new Date(base - k * 15000);

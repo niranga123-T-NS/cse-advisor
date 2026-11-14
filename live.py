@@ -558,8 +558,8 @@ def main(test: bool = False):
         tick_no += 1
         time.sleep(max(1.0, TICK - (time.time() % TICK)))      # wake on the next :00/:15/:30/:45
 
-    eng.archive()
     if traded_today and not test:
+        eng.archive()
         dispatch("update.yml")
 
 

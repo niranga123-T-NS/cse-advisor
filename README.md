@@ -1,6 +1,6 @@
 # CSE Advisor (web version)
 
-A free website for the Colombo Stock Exchange. Every weekday at 14:45 a scheduled GitHub job fetches CSE prices, works out indicator signals (BUY/HOLD/SELL with reasons, stop and target levels, and a backtest), and publishes a dashboard you can open on any phone or computer.
+A free website for the Colombo Stock Exchange. Every weekday, right after the close, a GitHub job fetches CSE prices, works out indicator signals (BUY/HOLD/SELL with reasons, stop and target levels, and a backtest), and publishes a dashboard you can open on any phone or computer.
 
 > The signals are mechanical indicator rules. They are not financial advice.
 
@@ -44,14 +44,38 @@ Each stock page has a "Trading or investing?" card, and the list filters by **�
 
 The labels refresh after each day's close.
 
-## Live prices (every minute)
+## Live prices and alerts (every 15 seconds)
 
-On weekdays the **Live prices** job starts at 09:10, waits for the 09:30 open, then fetches every counter from CSE once a minute until 14:40. It publishes the prices to a separate branch called `live`, which keeps one commit that is overwritten each minute, so the repo doesn't grow. Each minute goes into its own file (`m/HHMM.json`), because GitHub caches a file for 5 minutes and a new file name always comes through fresh.
+While the market is open the **Live prices** job reads every counter from CSE every 15 seconds and publishes the result for the site (on a separate branch called `live`, one commit that is replaced each time). The site refreshes every 15 seconds and shows how old its data is; it runs 25–40 seconds behind the exchange feed (GitHub needs that long to serve a newly published file reliably).
 
-While the market is open, the site reads these files every minute. The list shows live prices with a green dot, and each stock page shows today's minute-by-minute chart and an updated candle. If the job ever stops, run **Actions → Live prices → Run workflow** and it carries on from today's saved series.
+Each tick the job compares every share with its own recent ticks and with what is normal for it, and raises an **alert** when something changes suddenly:
 
-- GitHub sometimes starts scheduled jobs 10–20 minutes late, so the first minutes after the open may be missing.
-- Signals are still based on daily closes; live prices are for watching.
+| Alert | Meaning |
+|---|---|
+| ▲ jump / ▼ drop | moved unusually fast in 5 or 15 minutes (threshold scales with the share's normal daily range) |
+| ◉ volume | 3×, 6× or 10× the normal volume for this time of day |
+| ★ high / ☆ low | new 1-year high or low |
+| ↗ breakout / ↘ breakdown | through the 20-day high or low on heavy volume |
+| ~ 50-day | crossed its 50-day average |
+| ⇅ gap | opened 3%+ away from yesterday's close |
+| ≠ peer | moving 3+ points against its own sector |
+| ▦ sector / ▣ market | an industry-group index moved 1.5%+ or the ASPI 1%+ |
+
+Open **🔔 Alerts** on the site to see them (filters: All, Important, ★ Favourites). Alerts describe what just happened; they are not predictions. In thin shares a single trade can trigger one. The job also records order-book totals (shares waiting to buy and to sell) for the most active shares, shown on the share's page.
+
+At the close the job saves the whole day's 15-second tape to `data/intraday/` (the raw material for testing intraday patterns later) and starts **Update CSE data** itself.
+
+**Scheduling.** GitHub's scheduler ran this repo's jobs 5–8 hours late, so the job no longer depends on one start time. It is scheduled every hour through the night and morning; the first run that finds the open within reach waits for it, later runs stand down, and a run that nears GitHub's 6-hour limit hands over to a fresh one. If live prices are ever missing, run **Actions → Live prices → Run workflow**.
+
+## Peers
+
+Every share has its industry group (from CSE's company profiles, `data/sectors.csv`). The share's page compares it with its peers: P/E, price/book, ROE, 1- and 3-month performance and score against the sector median, its rank, and the most traded peers with their live moves.
+
+## Pattern forecast and its accuracy
+
+`forecast.py` trains a gradient-boosted model on ~60 pattern measures from daily prices and volumes and estimates, for every tradeable share, the chance of a gain **after costs** over the next 5 trading days. It is re-trained and re-tested after every close.
+
+The test is strict: a walk-forward test in which each day is scored by a model built only from earlier days, with 2.24% round-trip costs taken off. **On the first test the forecast did not beat trading costs** (see **🎯 Accuracy** on the site for the current numbers, month by month). Every published forecast is also saved and scored once its 5 days are up, so the page builds a live record that cannot be adjusted afterwards. Treat the forecast as information, not as a trading signal, unless and until that page shows a proven edge.
 
 ## Company reports (fundamentals)
 
@@ -123,7 +147,10 @@ A score of 1.5 or more is BUY (3 or more is STRONG BUY). A score of −1.5 or le
 | `.github/workflows/update.yml` | The daily scheduled job |
 | `build_site.py` | Fetches data and builds `site/data/*.json` |
 | `.github/workflows/fundamentals.yml` | Nightly job that reads company reports (4 parallel parts) |
-| `.github/workflows/live.yml`, `live.py` | Live prices every minute during market hours |
+| `.github/workflows/live.yml`, `live.py` | Live prices and alerts every 15 seconds during market hours |
+| `forecast.py` | Pattern forecast, walk-forward accuracy test, live scoring |
+| `sectors.py` | Industry group for each counter |
+| `site/accuracy.html` | Forecast accuracy page |
 | `.github/workflows/publish.yml` | Rebuild and publish the site on demand |
 | `reports.py` | Lists CSE report PDFs and reads figures out of them |
 | `fundamentals.py` | Collects report figures, works out P/E, growth, etc. and fundamental points |

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>CSE Advisor · Forecast accuracy</title>
+<style>
+  :root { --bg:#0f1216; --panel:#171b21; --line:#262c35; --text:#e6e8eb; --mute:#8b95a1; --ok:#22c55e; --warn:#f59e0b; --fail:#ef4444; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:14px/1.5 system-ui, sans-serif; background:var(--bg); color:var(--text); }
+  header { display:flex; gap:12px; align-items:center; padding:10px 16px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  header h1 { font-size:16px; margin:0; } a { color:#93c5fd; }
+  main { max-width:1000px; margin:0 auto; padding:16px; }
+  h2 { font-size:15px; margin:26px 0 10px; }
+  .mute { color:var(--mute); } .ok { color:var(--ok); } .warn { color:var(--warn); } .fail { color:var(--fail); }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); gap:12px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; }
+  .big { font-size:26px; font-weight:700; }
+  .verdict { border-left:4px solid var(--warn); font-size:15px; }
+  .verdict.none { border-color:var(--fail); } .verdict.edge { border-color:var(--ok); }
+  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+  th, td { padding:7px 10px; text-align:left; border-bottom:1px solid var(--line); }
+  th { color:var(--mute); font-weight:500; font-size:12px; background:#13171c; }
+  .num { text-align:right; font-variant-numeric:tabular-nums; }
+  li { margin-bottom:6px; }
+</style>
+</head>
+<body>
+<header>
+  <a href="./">← CSE Advisor</a>
+  <h1>Forecast accuracy</h1>
+  <span class="mute" id="stamp"></span>
+</header>
+<main id="main"><p class="mute">Loading…</p></main>
+<script>
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const p2 = v => v == null ? '–' : (+v).toFixed(2);
+const sg = v => v == null ? '–' : `<span class="${v > 0 ? 'ok' : v < 0 ? 'fail' : ''}">${v > 0 ? '+' : ''}${p2(v)}%</span>`;
+const ci = a => a && a[0] === a[0] ? `<span class="mute">(${a[0]} to ${a[1]})</span>` : '';
+
+fetch('data/accuracy.json').then(r => r.json()).then(A => {
+  const v = A.validation, tr = A.track || {}, td = A.today;
+  if (!v) { document.getElementById('main').innerHTML = '<p class="mute">The forecast has not been tested yet. It is tested after each trading day.</p>'; return; }
+  document.getElementById('stamp').textContent = 'Tested ' + v.made;
+  const t5 = v.top['5'], all = v.all, lift = v.lift_top5;
+  const verdict = {
+    none: `<b>The pattern forecast cannot yet predict short-term gains well enough to trade on.</b> On days it had never seen, its best picks
+           gained after costs only ${t5.hit}% of the time and lost ${p2(-t5.avg_net)}% per trade on average.`,
+    possible: `<b>The pattern forecast shows a small gain after costs, but it is not proven.</b> The range of likely results still includes a loss.`,
+    edge: `<b>The pattern forecast shows a measurable gain after costs on unseen days.</b> Keep watching the live record below before relying on it.`
+  }[v.verdict];
+  const rowT = (label, s) => s && s.n ? `<tr><td>${label}</td><td class="num">${s.n.toLocaleString()}</td><td class="num"><b>${s.hit}%</b> ${ci(s.hit_ci)}</td>
+      <td class="num">${sg(s.avg_net)} ${ci(s.avg_ci)}</td><td class="num">${sg(s.median_net)}</td><td class="num">${s.gross_up}%</td></tr>` : '';
+  const liveRec = tr.forecast_days ? `
+      <table><tr><th>Group</th><th class="num">Forecasts</th><th class="num">Gained after costs</th><th class="num">Average result</th><th class="num">Median</th><th class="num">Price rose at all</th></tr>
+        ${rowT('Top pick each day', tr.top['1'])}${rowT('Top 5 each day', tr.top['5'])}${rowT('Top 10 each day', tr.top['10'])}${rowT('Every forecast', tr.all)}</table>
+      ${(tr.recent || []).length ? `<h2>Most recent top-5 forecasts that have finished</h2><table><tr><th>Forecast date</th><th>Share</th><th class="num">Rank</th><th class="num">Result after costs</th></tr>
+        ${tr.recent.slice().reverse().map(r => `<tr><td>${esc(r.date)}</td><td><a href="./#${encodeURIComponent(r.symbol)}">${esc(r.symbol)}</a></td><td class="num">${r.rank}</td><td class="num">${sg(r.net)}</td></tr>`).join('')}</table>` : ''}`
+    : `<div class="card"><p style="margin:0">No published forecast has finished its ${v.holding_days} trading days yet. From now on every day's forecast is saved, and once its ${v.holding_days} days are up
+       it is scored here against what the price actually did. This record cannot be adjusted after the fact, so it is the fairest measure of accuracy.</p></div>`;
+  document.getElementById('main').innerHTML = `
+    <div class="card verdict ${esc(v.verdict)}">${verdict}</div>
+
+    <h2>The test in numbers <span class="mute">· ${esc(v.period[0])} to ${esc(v.period[1])} · ${all.days} trading days never seen in training</span></h2>
+    <div class="cards">
+      <div class="card"><div class="mute">Top 5 picks each day: gained after costs</div><div class="big">${t5.hit}%</div><div class="mute">likely range ${t5.hit_ci[0]}–${t5.hit_ci[1]}%</div></div>
+      <div class="card"><div class="mute">Any tradeable share: gained after costs</div><div class="big">${all.hit}%</div><div class="mute">likely range ${all.hit_ci[0]}–${all.hit_ci[1]}%</div></div>
+      <div class="card"><div class="mute">Top 5 picks: average result per trade</div><div class="big ${t5.avg_net >= 0 ? 'ok' : 'fail'}">${t5.avg_net > 0 ? '+' : ''}${p2(t5.avg_net)}%</div><div class="mute">likely range ${p2(t5.avg_ci[0])} to ${p2(t5.avg_ci[1])}%</div></div>
+      <div class="card"><div class="mute">Any share: average result per trade</div><div class="big ${all.avg_net >= 0 ? 'ok' : 'fail'}">${all.avg_net > 0 ? '+' : ''}${p2(all.avg_net)}%</div><div class="mute">of which ${v.cost_pct}% is trading cost</div></div>
+    </div>
+    <p class="mute">Picking by pattern raised the chance of a gain by ${lift.hit_pts} points (likely range ${lift.hit_ci[0]} to ${lift.hit_ci[1]}),
+      but changed the average result by only ${lift.net_pts > 0 ? '+' : ''}${p2(lift.net_pts)} points (${p2(lift.net_ci[0])} to ${p2(lift.net_ci[1])}).
+      In plain words: the model finds shares that move more, not shares that earn more.</p>
+
+    <h2>What exactly is tested</h2>
+    <div class="card"><ul style="margin:0;padding-left:18px">
+      <li><b>The trade:</b> a forecast is made after the close. You buy at the next day's close and sell at the close ${v.holding_days} trading days later.</li>
+      <li><b>Costs:</b> ${v.cost_pct}% is taken off every trade (about 1.12% to buy and 1.12% to sell on the CSE). A trade "gained" only if it was up after that.</li>
+      <li><b>Shares included:</b> ${esc(v.universe)}, traded on nearly every day. Thinner shares are left out because you could not really buy and sell them at the quoted prices.</li>
+      <li><b>No peeking:</b> for every test day the model is rebuilt using only earlier days whose results were already known (a walk-forward test). Company-report figures are not model inputs, because today's figures were not known on past dates.</li>
+      <li><b>The model:</b> gradient-boosted trees on ${v.features} pattern measures from daily prices and volumes: momentum, trend, volatility, position in recent ranges, volume, and strength against the market and against sector peers.</li>
+      <li><b>Likely ranges</b> are 95% intervals from re-sampling whole days, because shares picked on the same day rise and fall together.</li>
+    </ul></div>
+
+    <h2>By how highly the model ranked the share</h2>
+    <table><tr><th>Group</th><th class="num">Trades</th><th class="num">Gained after costs</th><th class="num">Average result</th><th class="num">Median</th><th class="num">Price rose at all</th></tr>
+      ${rowT('Top pick each day', v.top['1'])}${rowT('Top 3 each day', v.top['3'])}${rowT('Top 5 each day', v.top['5'])}${rowT('Top 10 each day', v.top['10'])}
+      ${rowT('Bottom 5 each day', v.bottom5)}${rowT('Every tradeable share', v.all)}</table>
+
+    <h2>Month by month <span class="mute">· the market's direction matters far more than the pattern</span></h2>
+    <table><tr><th>Month</th><th class="num">Top 5: gained after costs</th><th class="num">Top 5: average result</th><th class="num">Any share: gained</th><th class="num">Any share: average</th></tr>
+      ${v.monthly_top5.map(m => { const a = v.monthly_all.find(x => x.month === m.month) || {}; return `<tr><td>${esc(m.month)}</td><td class="num">${m.hit}%</td><td class="num">${sg(m.avg_net)}</td><td class="num">${a.hit ?? '–'}%</td><td class="num">${sg(a.avg_net)}</td></tr>`; }).join('')}</table>
+
+    <h2>Live record <span class="mute">· forecasts published on this site, scored after the fact</span></h2>
+    ${liveRec}
+
+    ${td ? `<h2>Highest pattern ranks from ${esc(td.date)} <span class="mute">· shown for transparency, not as picks</span></h2>
+    <table><tr><th>Rank</th><th>Share</th><th class="num">Chance of a gain after costs</th><th class="num">Model's expected result</th></tr>
+      ${td.top.map(r => `<tr><td>${r.rank}</td><td><a href="./#${encodeURIComponent(r.symbol)}">${esc(r.symbol)}</a> <span class="mute">${esc((r.name || '').slice(0, 32))}</span></td><td class="num">${r.hit != null ? '~' + r.hit + '%' : '–'}</td><td class="num">${sg(r.exp)}</td></tr>`).join('')}</table>` : ''}
+
+    <h2>Why the accuracy is not higher, and what could raise it</h2>
+    <div class="card"><ul style="margin:0;padding-left:18px">
+      <li><b>Costs are the main hurdle.</b> A share must rise more than ${v.cost_pct}% in ${v.holding_days} days just to break even. In this test period only about one share in five did.</li>
+      <li><b>Only one year of daily prices is available</b> from the CSE. A model needs several years, covering rising and falling markets, to learn patterns that last. Longer history (for example exported from TradingView) can be imported.</li>
+      <li><b>No intraday history existed until now.</b> From this week the site saves every share's price and volume every 15 seconds, plus order-book totals. After some weeks there will be enough to test intraday patterns the same strict way.</li>
+      <li><b>No model predicts share prices with very high accuracy.</b> Prices already reflect what is publicly known. Any tool that claims otherwise should be asked for a test like the one on this page.</li>
+    </ul></div>
+    <p class="mute" style="margin-top:14px">For the accuracy of the company-report figures see <a href="audit.html">Data checks</a>. Each share's page also shows a backtest of the rule-based BUY/SELL signals.
+      Nothing on this site is financial advice.</p>`;
+}).catch(() => { document.getElementById('main').innerHTML = '<p class="mute">Could not load the accuracy data.</p>'; });
+</script>
+</body>
+</html>

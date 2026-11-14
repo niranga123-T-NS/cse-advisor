@@ -16,15 +16,44 @@ import db
 PATH = Path(__file__).parent / "data" / "sectors.csv"
 
 
-def load() -> dict[str, str]:
+def normalise(raw: str) -> str:
+    """CSE's profile pages spell the industry groups many ways; map them onto the standard list."""
+    t = "".join(ch for ch in (raw or "").lower() if ch.isalpha() or ch in " &").strip()
+    if not t:
+        return ""
+    rules = [(("food", "staples"), "Food & Staples Retailing"), (("food",), "Food, Beverage & Tobacco"),
+             (("beverage",), "Food, Beverage & Tobacco"), (("banks finance",), "Diversified Financials"),
+             (("insurance",), "Insurance"),
+             (("investment banking",), "Diversified Financials"), (("diversified financ",), "Diversified Financials"),
+             (("consumer finance",), "Diversified Financials"),
+             (("bank",), "Banks"), (("real estate",), "Real Estate"), (("health",), "Health Care Equipment & Services"),
+             (("capital goods",), "Capital Goods"), (("industrials",), "Capital Goods"), (("trading",), "Capital Goods"),
+             (("material",), "Materials"), (("power",), "Utilities"), (("utilit",), "Utilities"), (("energy",), "Energy"),
+             (("software",), "Software & Services"), (("telecom",), "Telecommunication Services"),
+             (("retail",), "Retailing"), (("consumer durables",), "Consumer Durables & Apparel"),
+             (("consumer services",), "Consumer Services"), (("household",), "Household & Personal Products"),
+             (("transport",), "Transportation"), (("auto",), "Automobiles & Components"),
+             (("commercial",), "Commercial & Professional Services"), (("services",), "Commercial & Professional Services")]
+    for keys, name in rules:
+        if all(k in t for k in keys):
+            return name
+    return raw.strip()
+
+
+def load_raw() -> dict[str, str]:
     if not PATH.exists():
         return {}
     df = pd.read_csv(PATH, dtype=str).fillna("")
     return dict(zip(df.symbol, df.sector))
 
 
+def load() -> dict[str, str]:
+    """symbol -> standard industry group."""
+    return {s: normalise(v) for s, v in load_raw().items()}
+
+
 def build(refresh_all: bool = False):
-    have = {} if refresh_all else load()
+    have = {} if refresh_all else load_raw()
     syms = sorted(set(db.security_names()) | set(db.symbols_with_data(1)))
     todo = [s for s in syms if not have.get(s)]
     for i, s in enumerate(todo):

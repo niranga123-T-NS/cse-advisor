@@ -19,6 +19,7 @@ import collector
 import cse_client as cse
 import db
 import fundamentals
+import sectors
 
 SITE = Path(__file__).parent / "site"
 OUT = SITE / "data"
@@ -39,10 +40,28 @@ def _dump(path: Path, obj):
     path.write_text(json.dumps(_clean(obj), separators=(",", ":")))
 
 
-def stock_payload(symbol: str, df) -> dict:
+def _latest_forecast() -> dict:
+    files = sorted((Path(__file__).parent / "data" / "forecasts").glob("*.json"))
+    if not files:
+        return {}
+    try:
+        return json.loads(files[-1].read_text())
+    except ValueError:
+        return {}
+
+
+def _perf(c, n):
+    return round(float(c.iloc[-1] / c.iloc[-1 - n] - 1) * 100, 2) if len(c) > n and c.iloc[-1 - n] else None
+
+
+def stock_payload(symbol: str, df, sector: str = "", forecast: dict | None = None) -> dict:
     fund = fundamentals.metrics(symbol, float(df["close"].iloc[-1])) if len(df) else None
     d = analysis.indicators(df)
     t = [ts.strftime("%Y-%m-%d") for ts in d.index]
+    c = df["close"]
+    fc = None
+    if forecast and symbol in forecast.get("forecasts", {}):
+        fc = {**forecast["forecasts"][symbol], "date": forecast["date"], "n": forecast["n"], "days": forecast["holding_days"]}
 
     def series(col):
         return [{"time": ti, "value": float(v)} for ti, v in zip(t, d[col]) if v == v]
@@ -56,6 +75,10 @@ def stock_payload(symbol: str, df) -> dict:
         "rsi": series("rsi"), "macd_hist": series("macd_hist"),
         "advice": (lambda a: {**a, "style": analysis.classify(a)} if a else a)(analysis.advice(df, fund)),
         "backtest": analysis.backtest(df),
+        "sector": sector,
+        "perf": {"d1": _perf(c, 1), "d5": _perf(c, 5), "d20": _perf(c, 20), "d60": _perf(c, 60)},
+        "atr_pct": round(float(d["atr"].iloc[-1] / c.iloc[-1] * 100), 2) if len(d) and d["atr"].iloc[-1] == d["atr"].iloc[-1] else None,
+        "forecast": fc,
     }
 
 
@@ -63,10 +86,11 @@ def build():
     if OUT.exists():
         shutil.rmtree(OUT)
     names, watch = db.security_names(), set(db.watchlist())
+    sec, forecast = sectors.load(), _latest_forecast()
     signals = []
     for s in db.symbols_with_data(30):
         df = db.load_bars(s)
-        p = stock_payload(s, df)
+        p = stock_payload(s, df, sec.get(s, ""), forecast)
         if not p["advice"]:
             continue
         _dump(OUT / "stocks" / f"{s}.json", p)
@@ -84,9 +108,49 @@ def build():
                         "trade": p["advice"]["style"]["trade"], "invest": p["advice"]["style"]["invest"],
                         "trade_watch": p["advice"]["style"].get("trade_watch", False),
                         "rr": p["advice"]["style"].get("reward_risk"),
+                        "sector": p["sector"], "d20": p["perf"]["d20"], "d60": p["perf"]["d60"],
+                        "roe": f.get("roe") if (f.get("verified") or {}).get("roe") else None,
+                        "pbv_ok": bool((f.get("verified") or {}).get("pbv")),
+                        "tov": (p["advice"].get("ind") or {}).get("turnover_avg20"),
+                        "fc_rank": (p["forecast"] or {}).get("rank"),
                         "fields_n": len(f.get("verified") or {}), **a})
     signals.sort(key=lambda x: (not x["watch"], -x["score"]))
     _dump(OUT / "signals.json", signals)
+
+    # peers: every industry group with its medians and members (most traded first)
+    def med(vals):
+        v = sorted(x for x in vals if x is not None)
+        return None if not v else round(v[len(v) // 2] if len(v) % 2 else (v[len(v) // 2 - 1] + v[len(v) // 2]) / 2, 2)
+    groups = {}
+    for x in signals:
+        if x["sector"]:
+            groups.setdefault(x["sector"], []).append(x)
+    peers = {}
+    for name, ms in groups.items():
+        ms.sort(key=lambda x: -(x["tov"] or 0))
+        peers[name] = {"n": len(ms),
+                       "median": {"pe": med(x["pe"] for x in ms), "pbv": med(x["pbv"] if x["pbv_ok"] else None for x in ms),
+                                  "roe": med(x["roe"] for x in ms), "div_yield": med(x["div_yield"] for x in ms),
+                                  "d20": med(x["d20"] for x in ms), "d60": med(x["d60"] for x in ms), "score": med(x["score"] for x in ms)},
+                       "members": [{"s": x["symbol"], "name": x["name"], "close": x["close"], "chg": x["change_pct"], "d20": x["d20"],
+                                    "d60": x["d60"], "pe": x["pe"], "pbv": x["pbv"] if x["pbv_ok"] else None, "roe": x["roe"],
+                                    "signal": x["signal"], "score": x["score"], "invest": x["invest"], "tov": x["tov"]} for x in ms]}
+    _dump(OUT / "peers.json", peers)
+
+    # forecast accuracy (walk-forward test + live track record) for site/accuracy.html
+    mdir = Path(__file__).parent / "data" / "model"
+    acc = {}
+    for key, fname in (("validation", "validation.json"), ("track", "track.json")):
+        if (mdir / fname).exists():
+            try:
+                acc[key] = json.loads((mdir / fname).read_text())
+            except ValueError:
+                pass
+    if forecast:
+        top = sorted(forecast.get("forecasts", {}).items(), key=lambda kv: kv[1]["rank"])[:10]
+        acc["today"] = {"date": forecast["date"], "n": forecast["n"],
+                        "top": [{"symbol": k, "name": names.get(k, ""), **v} for k, v in top]}
+    _dump(OUT / "accuracy.json", acc)
 
     # data-quality audit across all companies (feeds site/audit.html)
     import collections, re
@@ -145,6 +209,16 @@ def main():
         todo |= {s for s in db.watchlist() if db.bar_count(s) < 150 and done.get(s, "") < cutoff}
         if todo:
             collector.backfill(sorted(todo))
+        try:                                # retrain, re-test and forecast with the new day's bars
+            import forecast
+            X = forecast.build_dataset()
+            v = forecast.validate(X)
+            forecast.today(X)
+            forecast.score()
+            print(f"Forecast: walk-forward daily top 5 made a net gain {v['top']['5']['hit']}% of the time "
+                  f"(any stock {v['all']['hit']}%), average net {v['top']['5']['avg_net']}%")
+        except Exception as e:              # the site must still build if the model step fails
+            print("forecast step failed:", repr(e))
     build()
 
 

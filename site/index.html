@@ -30,6 +30,7 @@
   #chart { height:360px; } #rsi, #macd { height:100px; margin-top:6px; }
   .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px; margin-top:14px; }
   .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; }
+  .card.wide { grid-column:1 / -1; }
   .card h3 { margin:0 0 8px; font-size:13px; color:var(--mute); font-weight:500; }
   .card ul { margin:0; padding-left:18px; } .tag { font-size:10px; font-weight:700; padding:1px 5px; border-radius:4px; vertical-align:middle; } .tag.inv { background:#14532d; color:#86efac; } .tag.trd { background:#1e3a8a; color:#93c5fd; } .tag.wat { background:#3f3f46; color:#d4d4d8; }
   .src { font:11px/1.35 ui-monospace,monospace; color:#cbd5e1; white-space:pre-wrap; word-break:break-word; } summary { cursor:pointer; color:var(--mute); } .card a { color:#93c5fd; } .card table td, .card table th { padding:4px 6px; position:static; } .warn { color:#f59e0b; }
@@ -40,6 +41,17 @@
   .livedot { display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--buy); margin-right:5px; animation:pulse 2s infinite; }
   @keyframes pulse { 50% { opacity:.3; } }
   #intraday { height:140px; margin-top:6px; }
+  .badge { background:#ef4444; color:#fff; border-radius:9px; padding:0 6px; font-size:11px; font-weight:700; }
+  .abar { display:flex; gap:6px; align-items:center; padding:8px 10px; border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--panel); flex-wrap:wrap; }
+  .chip { padding:3px 9px; font-size:12px; border-radius:12px; } .chip.on { border-color:var(--accent); color:#93c5fd; }
+  .secs { padding:6px 10px; font-size:11px; border-bottom:1px solid var(--line); line-height:1.7; }
+  .al { display:grid; grid-template-columns:42px 18px 1fr; gap:6px; padding:7px 10px; border-bottom:1px solid var(--line); font-size:13px; }
+  .al[data-sym] { cursor:pointer; } .al[data-sym]:hover { background:#1d232b; } .al.big { background:#1a1622; }
+  .at { font-variant-numeric:tabular-nums; } .ak { text-align:center; }
+  @keyframes fu { from { background:rgba(34,197,94,.45); } to { background:transparent; } }
+  @keyframes fd { from { background:rgba(239,68,68,.45); } to { background:transparent; } }
+  td.fu { animation:fu 2.5s ease-out; } td.fd { animation:fd 2.5s ease-out; }
+  tr.peer { cursor:pointer; } tr.peer:hover { background:#1d232b; } tr.me { background:#1b2433; }
   footer { font-size:11px; color:var(--mute); padding:10px 14px; }
 </style>
 </head>
@@ -51,15 +63,18 @@
     <option value="">All signals</option><option value="invest">📈 Investment picks</option><option value="trade">⚡ Trading picks</option><option value="tradewatch">👀 Trade watch</option><option value="BUY">Buys</option><option value="SELL">Sells</option><option value="watch">★ Favourites</option><option value="value">Value (P/E &lt; 10)</option><option value="div">Dividend ≥ 5%</option><option value="issues">Data issues</option>
   </select>
   <a class="btn" id="addBtn" target="_blank" rel="noopener">+ Add stocks</a>
+  <button class="btn" onclick="toggleAlerts()">🔔 Alerts <span id="abadge" class="badge" style="display:none"></span></button>
+  <a class="btn" href="accuracy.html">🎯 Accuracy</a>
   <a class="btn" href="audit.html">✓ Data checks</a>
   <span id="live" class="mute"></span>
   <span id="meta" class="mute"></span>
 </header>
 <main>
   <section id="list">
-    <table><thead><tr><th></th><th>Symbol</th><th class="num">Close</th><th class="num">Chg%</th><th class="num">P/E</th><th>Signal</th><th class="num">Score</th></tr></thead><tbody id="rows"></tbody></table>
+    <div id="alerts" hidden></div>
+    <table id="listTable"><thead><tr><th></th><th>Symbol</th><th class="num">Close</th><th class="num">Chg%</th><th class="num">P/E</th><th>Signal</th><th class="num">Score</th></tr></thead><tbody id="rows"></tbody></table>
     <div id="empty" class="note" hidden></div>
-    <footer>Rule-based indicator signals, not financial advice. Data: Colombo Stock Exchange (cse.lk), updated after each session.</footer>
+    <footer>Rule-based indicator signals, not financial advice. Data: Colombo Stock Exchange (cse.lk): prices every 15 seconds in market hours, signals after each close.</footer>
   </section>
   <section id="detail"><div class="mute">Select a stock.</div></section>
 </main>
@@ -84,50 +99,135 @@ const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt
 const sigClass = s => s.includes('BUY') ? 'BUY' : s.includes('SELL') ? 'SELL' : 'HOLD';
 const isStar = s => stars.has(s.symbol);  // personal favourites, saved in this browser
 
-// ---------- live prices (published each minute during market hours by the "Live prices" job) ----------
-let live = null, intraday = null, liveChart = null, liveSeries = null;
-const RAW = (() => {
+// ---------- live: prices, alerts and sector moves every 15 seconds while the market is open ----------
+// The "Live prices" job publishes t/HHMMSS.json (every 15 s) and m/HHMM.json (every minute) on the `live` branch.
+// Every file has its own name because GitHub caches a file for 5 minutes; a name nobody asked for yet is fresh.
+let tick = null, minute = null, peers = null, acc = null, detailCtx = null, liveChart = null, liveSeries = null, changed = {}, dayAlerts = null;
+const QS = new URLSearchParams(location.search);          // testing: ?live=<folder>/&now=2026-11-12T12:30:40
+const RAW = QS.get('live') || (() => {
   const m = location.hostname.match(/^([^.]+)\.github\.io$/);
   const repo = location.pathname.split('/').filter(Boolean)[0];
   return m && repo ? `https://raw.githubusercontent.com/${m[1]}/${repo}/live/` : null;
 })();
-function colomboNow() { return new Date(Date.now() + (330 + new Date().getTimezoneOffset()) * 60000); }
+const T0 = QS.get('now') ? new Date(QS.get('now')).getTime() - Date.now() : null;
+function colomboNow() { return T0 != null ? new Date(Date.now() + T0) : new Date(Date.now() + (330 + new Date().getTimezoneOffset()) * 60000); }
+const ymd = t => `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;
+const two = n => String(n).padStart(2, '0');
 function marketWindow() {
   const t = colomboNow(), d = t.getDay(), hm = t.getHours() * 100 + t.getMinutes();
   return d >= 1 && d <= 5 && hm >= 925 && hm <= 1445;
 }
-async function pollLive(force) {
-  if (!RAW || (!force && (!marketWindow() || document.hidden))) return;
-  try {
-    // each minute is published under its own name (m/HHMM.json) so GitHub's 5-minute cache can't serve stale prices
-    const name = mins => { const t = new Date(colomboNow().getTime() - mins * 60000);
-      return 'm/' + String(t.getHours()).padStart(2,'0') + String(t.getMinutes()).padStart(2,'0') + '.json'; };
-    let l = null;
-    for (const back of [1, 2, 3]) {
-      const r = await fetch(RAW + name(back), {cache:'no-store'});
-      if (r.ok) { l = await r.json(); break; }
-    }
-    if (!l) { const r = await fetch(RAW + 'live.json', {cache:'no-store'}); l = r.ok ? await r.json() : null; }
-    const i = l && l.intraday ? l.intraday : intraday;
-    const today = colomboNow().toISOString().slice(0, 10);
-    if (!l || l.date !== today) { $('#live').textContent = ''; return; }
-    live = l; intraday = i;
-    const by = Object.fromEntries(l.rows.map(r => [r.s, r]));
-    all.forEach(s => { const r = by[s.symbol]; if (r) { s.live = r; } });
-    const open = marketWindow();
-    $('#live').innerHTML = `${open ? '<span class="livedot"></span>' : ''}Live ${esc(l.updated.slice(11, 16))}${l.market ? ' · ' + esc(l.market) : ''}`;
-    render();
-    if (current && by[current]) updateLiveDetail(current);
-  } catch (e) { /* keep last values */ }
+async function getJSON(name) {
+  try { const r = await fetch(RAW + name, {cache:'no-store'}); return r.ok ? await r.json() : null; } catch (e) { return null; }
 }
+async function pollTick() {
+  if (!RAW || !marketWindow() || document.hidden) return;
+  // ask for the tick published about 30 s ago first (it is certain to exist), then older ones
+  const base = Math.floor((colomboNow().getTime() - 30000) / 15000) * 15000;
+  let t = null;
+  for (let k = 0; k < 6 && !t; k++) {
+    const d = new Date(base - k * 15000);
+    t = await getJSON(`t/${two(d.getHours())}${two(d.getMinutes())}${two(d.getSeconds())}.json`);
+  }
+  if (!t || t.t.slice(0, 10) !== ymd(colomboNow())) { showLiveStatus(); return; }
+  if (tick && t.t <= tick.t) { showLiveStatus(); return; }
+  changed = {};
+  all.forEach(s => { const r = t.r[s.symbol]; if (r) {
+    if (s.live && s.live.p !== r[0]) changed[s.symbol] = r[0] > s.live.p ? 'fu' : 'fd';
+    s.live = { p: r[0], c: r[1], v: r[2] }; } });
+  tick = t;
+  showLiveStatus(); render(); renderAlerts();
+  if (current) { updateLiveDetail(current); if (!minute || Date.now() - minute._at > 55000) pollMinute(); }
+}
+async function pollMinute() {
+  if (!RAW) return;
+  const now = colomboNow();
+  let m = null;
+  for (const back of [1, 2, 3]) {
+    const d = new Date(now.getTime() - back * 60000);
+    m = await getJSON(`m/${two(d.getHours())}${two(d.getMinutes())}.json`);
+    if (m) break;
+  }
+  if (!m || m.date !== ymd(now)) return;
+  m._at = Date.now(); m.by = Object.fromEntries(m.rows.map(r => [r.s, r]));
+  minute = m;
+  if (current) updateLiveDetail(current);
+}
+function showLiveStatus() {
+  const el = $('#live');
+  if (!tick) { el.textContent = marketWindow() ? 'Waiting for live prices…' : ''; return; }
+  const age = Math.max(0, Math.round((colomboNow().getTime() - new Date(tick.t.replace(' ', 'T')).getTime()) / 1000));
+  const a = tick.x && tick.x.aspi;
+  el.innerHTML = `${marketWindow() ? '<span class="livedot"></span>' : ''}Live ${esc(tick.t.slice(11))} <span class="mute">(${age < 120 ? age + ' s' : Math.round(age/60) + ' min'} ago)</span>` +
+    `${tick.m ? ' · ' + esc(tick.m) : ''}${a && a[0] ? ` · ASPI ${Math.round(a[0]).toLocaleString()} <span class="${a[1]>0?'up':a[1]<0?'down':''}">${a[1]>0?'+':''}${p2(a[1])}%</span>` : ''}`;
+}
+setInterval(showLiveStatus, 5000);
+
+// ---------- alerts ----------
+const KIND = { jump:['▲','up'], drop:['▼','down'], volume:['◉','warn'], high:['★','up'], low:['☆','down'], breakout:['↗','up'], breakdown:['↘','down'],
+               sma50:['~',''], gap:['⇅','warn'], peer:['≠','warn'], sector:['▦',''], market:['▣',''] };
+let alertFilter = 'all', alertsOpen = false;
+const seenKey = () => 'alertsSeen-' + ymd(colomboNow());
+function alertList() { return (tick && tick.a) || (dayAlerts && dayAlerts.alerts.slice().reverse()) || []; }
+function renderAlerts() {
+  const total = tick ? tick.n : (dayAlerts ? dayAlerts.alerts.length : 0);
+  let seen = 0; try { seen = +(localStorage.getItem(seenKey()) || 0); } catch (e) {}
+  if (alertsOpen) { seen = total; try { localStorage.setItem(seenKey(), total); } catch (e) {} }
+  const fresh = Math.max(0, total - seen);
+  $('#abadge').textContent = fresh ? fresh : '';
+  $('#abadge').style.display = fresh ? '' : 'none';
+  document.title = (fresh ? `(${fresh}) ` : '') + 'CSE Advisor';
+  if (!alertsOpen) return;
+  const list = alertList().filter(a => alertFilter === 'all' || (alertFilter === 'big' ? a.v >= 2 : (a.s && stars.has(a.s))));
+  const secs = tick && tick.x && tick.x.sec ? Object.entries(tick.x.sec).sort((a, b) => b[1] - a[1]) : [];
+  const day = tick ? tick.t.slice(0, 10) : (dayAlerts ? dayAlerts.date : '');
+  $('#alerts').innerHTML = `
+    <div class="abar">
+      <b>Alerts</b> <span class="mute">${esc(day)} · ${total} today</span>
+      <span style="flex:1"></span>
+      ${['all','big','fav'].map(k => `<button class="chip ${alertFilter===k?'on':''}" data-af="${k}">${{all:'All',big:'Important',fav:'★ Favourites'}[k]}</button>`).join('')}
+      <button class="chip" data-af="close">✕ Close</button>
+    </div>
+    ${secs.length ? `<div class="secs">${secs.map(([n, v]) => `<span class="${v>0?'up':v<0?'down':'mute'}">${esc(n)} ${v>0?'+':''}${p2(v)}%</span>`).join(' · ')}</div>` : ''}
+    ${list.length ? list.map(a => { const k = KIND[a.k] || ['•','']; return `
+      <div class="al ${a.v>=2?'big':''}" ${a.s ? `data-sym="${esc(a.s)}"` : ''}>
+        <span class="mute at">${esc(a.t.slice(0,5))}</span><span class="${k[1]} ak">${k[0]}</span>
+        <span><b>${esc(a.s || 'Market')}</b> ${esc(a.m)}</span></div>`; }).join('')
+      : `<div class="note">${total ? 'No alerts match this filter.' : 'No alerts yet. During market hours this list fills as prices, volumes and sectors move sharply.'}</div>`}
+    <div class="note" style="font-size:11px">Alerts describe what just happened; they are not predictions. In thinly traded shares a single trade can trigger one.</div>`;
+}
+function toggleAlerts(on) {
+  alertsOpen = on ?? !alertsOpen;
+  $('#alerts').hidden = !alertsOpen; $('#listTable').hidden = alertsOpen;
+  renderAlerts();
+}
+document.addEventListener('click', e => {
+  const af = e.target.closest('[data-af]');
+  if (af) { if (af.dataset.af === 'close') toggleAlerts(false); else { alertFilter = af.dataset.af; renderAlerts(); } return; }
+  const al = e.target.closest('.al[data-sym]'); if (al) show(al.dataset.sym);
+  const pr = e.target.closest('[data-peer]'); if (pr) show(pr.dataset.peer);
+});
+
 function updateLiveDetail(sym) {
-  const r = live && live.rows.find(x => x.s === sym);
   const el = document.getElementById('livebox');
+  const r = tick && tick.r[sym];
   if (!r || !el) return;
-  el.innerHTML = `<b>Live ${esc(live.updated.slice(11, 16))}</b> &nbsp; ${r.p.toFixed(2)} <span class="${r.c>0?'up':r.c<0?'down':''}">${r.c>0?'+':''}${p2(r.c)}%</span>
-    <span class="mute">&nbsp; H ${r.h ?? '–'} · L ${r.l ?? '–'} · Vol ${r.v != null ? Math.round(r.v).toLocaleString() : '–'}</span>`;
-  const pts = intraday && intraday.p && intraday.p[sym];
+  const full = minute && minute.by && minute.by[sym];
+  const sec = el.dataset.sector, sp = sec && tick.x && tick.x.peers ? tick.x.peers[sec] : null;
+  const ob = tick.ob && tick.ob[sym];
+  const big = v => v >= 1e6 ? (v / 1e6).toFixed(2) + 'M' : Math.round(v).toLocaleString();
+  el.innerHTML = `<b>Live ${esc(tick.t.slice(11))}</b> &nbsp; ${r[0].toFixed(2)} <span class="${r[1]>0?'up':r[1]<0?'down':''}">${r[1]>0?'+':''}${p2(r[1])}%</span>
+    <span class="mute">&nbsp; ${full ? `H ${full.h ?? '–'} · L ${full.l ?? '–'} · ` : ''}Vol ${r[2] != null ? Math.round(r[2]).toLocaleString() : '–'}</span>
+    ${sp != null ? `<span class="mute"> · ${esc(sec)} peers today <span class="${sp>0?'up':sp<0?'down':''}">${sp>0?'+':''}${p2(sp)}%</span></span>` : ''}
+    ${ob ? `<div class="mute" style="font-size:12px;margin-top:2px">Orders waiting (${esc(ob[3])}): buy ${big(ob[0])} · sell ${big(ob[1])} shares${ob[2] ? ` · best bid ${ob[2]}` : ''}</div>` : ''}`;
+  if (detailCtx && detailCtx.sym === sym) {
+    const p = r[0], day = tick.t.slice(0, 10), lc = detailCtx.last;
+    try { detailCtx.cs.update({ time: day, open: (full && full.o) ?? (lc && lc.time === day ? lc.open : p),
+      high: Math.max((full && full.h) ?? p, p), low: Math.min((full && full.l) ?? p, p), close: p }); } catch (e) {}
+  }
+  const intraday = minute && minute.intraday, pts = intraday && intraday.p && intraday.p[sym];
   if (pts && pts.length && document.getElementById('intraday')) {
+    document.getElementById('intraday').style.display = '';
     if (!liveChart) {
       liveChart = mkChart($('#intraday'), 140);
       liveChart.applyOptions({ timeScale:{ timeVisible:true, secondsVisible:false } });
@@ -135,15 +235,14 @@ function updateLiveDetail(sym) {
     }
     const base = Date.parse(intraday.date + 'T00:00:00Z') / 1000;
     const toSec = hhmm => base + (+hhmm.slice(0,2)) * 3600 + (+hhmm.slice(3,5)) * 60;
-    // carry the last price forward to every minute
-    const data = []; let k = 0, last = null;
+    const data = []; let k = 0, last = null;   // carry the last price forward to every minute
     intraday.t.forEach((hhmm, idx) => { while (k < pts.length && pts[k][0] <= idx) { last = pts[k][1]; k++; } if (last != null) data.push({ time: toSec(hhmm), value: last }); });
     liveSeries.setData(data);
     liveChart.timeScale().fitContent();
   }
 }
-setInterval(() => pollLive(false), 60000);
-document.addEventListener('visibilitychange', () => { if (!document.hidden) pollLive(false); });
+setInterval(pollTick, 15000);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) pollTick(); });
 
 async function load() {
   try {
@@ -154,7 +253,10 @@ async function load() {
     } catch (e) {}
   } catch (e) { all = []; }
   render();
-  pollLive(true);
+  fetch('data/peers.json').then(r => r.json()).then(p => { peers = p; }).catch(() => {});
+  fetch('data/accuracy.json').then(r => r.json()).then(a => { acc = a; }).catch(() => {});
+  if (marketWindow()) { pollTick(); }
+  else if (RAW) { getJSON('alerts.json').then(a => { dayAlerts = a; renderAlerts(); }); }
   if (location.hash) show(decodeURIComponent(location.hash.slice(1)));
 }
 
@@ -169,8 +271,8 @@ function render() {
   $('#rows').innerHTML = rows.map(s => `
     <tr class="row ${s.symbol===current?'sel':''}" data-sym="${esc(s.symbol)}">
       <td class="star" data-star="${esc(s.symbol)}">${isStar(s)?'★':'☆'}</td>
-      <td><b>${esc(s.symbol)}</b>${s.invest?' <span class="tag inv">INVEST</span>':''}${s.trade?' <span class="tag trd">TRADE</span>':s.trade_watch?' <span class="tag wat">WATCH</span>':''}<div class="mute" style="font-size:11px">${esc((s.name||'').slice(0,26))}</div></td>
-      <td class="num">${(s.live ? s.live.p : s.close).toFixed(2)}${s.live ? ' <span class="livedot" title="live"></span>' : ''}</td>
+      <td><b>${esc(s.symbol)}</b><div class="mute" style="font-size:11px">${s.invest?'<span class="tag inv">INVEST</span> ':''}${s.trade?'<span class="tag trd">TRADE</span> ':s.trade_watch?'<span class="tag wat">WATCH</span> ':''}${esc((s.name||'').slice(0, (s.invest||s.trade||s.trade_watch) ? 18 : 26))}</div></td>
+      <td class="num ${changed[s.symbol] || ''}">${(s.live ? s.live.p : s.close).toFixed(2)}${s.live ? ' <span class="livedot" title="live"></span>' : ''}</td>
       ${(() => { const c = s.live ? s.live.c : s.change_pct; return `<td class="num ${c>0?'up':c<0?'down':''}">${p2(c)}</td>`; })()}
       <td class="num">${s.pe ?? '<span class="mute">–</span>'}</td>
       <td class="sig ${sigClass(s.signal)}">${esc(s.signal)}</td>
@@ -198,6 +300,46 @@ function styleCard(a) {
     ${st.reward_risk != null ? `<p class="mute" style="font-size:12px;margin:0 0 8px">Target ${st.trade_target} · stop ${st.trade_stop} · reward/risk after ~2.24% round-trip costs: ${st.reward_risk}</p>` : ''}
     <p style="margin:0 0 4px">${head(st.invest, 'INVEST', 'inv')} <span class="mute" style="font-size:12px">— long-term value, verified report figures only</span></p>
     <ul>${li(st.invest_why, 'up')}${li(st.invest_missing, 'down')}</ul></div>`;
+}
+
+function peersCard(d, sym) {
+  const g = peers && d.sector && peers[d.sector];
+  if (!g || g.n < 2) return `<div class="card"><h3>Peers</h3><p class="mute">${d.sector ? esc(d.sector) + ': no other listed companies to compare with.' : 'No industry group on record for this share.'}</p></div>`;
+  const me = g.members.find(m => m.s === sym) || {}, md = g.median;
+  const rank = (key, asc) => { const v = g.members.filter(m => m[key] != null).sort((a, b) => asc ? a[key] - b[key] : b[key] - a[key]);
+    const i = v.findIndex(m => m.s === sym); return i < 0 || v.length < 3 ? '' : ` <span class="mute">· #${i + 1} ${asc ? 'lowest' : 'highest'} of ${v.length}</span>`; };
+  const row = (label, key, asc, suf = '', sign = false) => { const v = me[key], m = md[key];
+    const f = x => x == null ? '–' : (sign && x > 0 ? '+' : '') + (suf === '%' ? p2(x) : x) + suf;
+    return `<span class="mute">${label}</span><span>${v == null ? '<span class="mute">–</span>' : `<b>${f(v)}</b>`} <span class="mute">vs peers ${f(m)}</span>${rank(key, asc)}</span>`; };
+  const today = m => { const r = tick && tick.r[m.s]; return r ? r[1] : m.chg; };
+  const shown = g.members.slice(0, 10); if (!shown.find(m => m.s === sym) && me.s) shown.push(me);
+  return `<div class="card wide"><h3>Peers <span class="mute">· ${esc(d.sector)} · ${g.n} listed</span></h3>
+    <div class="kv">
+      ${row('P/E', 'pe', true)}${row('Price / book', 'pbv', true)}${row('ROE', 'roe', false, '%')}
+      ${row('1 month', 'd20', false, '%', true)}${row('3 months', 'd60', false, '%', true)}${row('Score', 'score', false)}
+    </div>
+    <table style="margin-top:8px"><tr><th>Most traded peers</th><th class="num">Price</th><th class="num">Today</th><th class="num">1M</th><th class="num">P/E</th><th>Signal</th></tr>
+    ${shown.map(m => `<tr class="peer ${m.s === sym ? 'me' : ''}" data-peer="${esc(m.s)}"><td><b>${esc(m.s.split('.')[0])}</b>${m.s.includes('.X') ? '<span class="mute">.X</span>' : ''}${m.invest ? ' <span class="tag inv">INV</span>' : ''}</td>
+      <td class="num">${((tick && tick.r[m.s]) ? tick.r[m.s][0] : m.close).toFixed(2)}</td><td class="num">${pct(today(m))}</td><td class="num">${pct(m.d20)}</td>
+      <td class="num">${m.pe ?? '<span class="mute">–</span>'}</td><td class="sig ${sigClass(m.signal)}" style="font-size:11px">${esc(m.signal)}</td></tr>`).join('')}</table>
+    <p class="mute" style="font-size:11px;margin:8px 0 0">Peer medians use verified report figures only. Tap a peer to open it.</p></div>`;
+}
+
+function forecastCard(d) {
+  const f = d.forecast, v = acc && acc.validation;
+  const swing = d.atr_pct != null ? (d.atr_pct * Math.sqrt(5)).toFixed(1) : null;
+  const rel = v ? `<p class="warn" style="font-size:12px;margin:8px 0 0">How reliable is this? Tested on days the model had never seen, its 5 highest-ranked shares each day made a gain after costs
+      ${v.top['5'].hit}% of the time (any share: ${v.all.hit}%) and the average result was ${p2(v.top['5'].avg_net)}%. ${v.verdict === 'edge' ? 'That is a measurable edge.' : 'That does not beat trading costs, so do not trade on it alone.'}
+      <a href="accuracy.html">See the full accuracy report →</a></p>` : '';
+  if (!f) return `<div class="card"><h3>Pattern forecast</h3><p class="mute">Not forecast: this share trades too little (it needs about LKR 2M a day and a price of Rs 5 or more) for a short-term forecast to mean anything.</p>
+      ${swing ? `<div class="kv"><span class="mute">Typical 5-day swing</span><span>±${swing}%</span></div>` : ''}</div>`;
+  return `<div class="card"><h3>Pattern forecast <span class="mute">· next ${f.days} trading days · from ${esc(f.date)}</span></h3>
+    <div class="kv">
+      <span class="mute">Chance of a gain after costs</span><span><b>${f.hit != null ? '~' + f.hit + '%' : '–'}</b> ${v ? `<span class="mute">(average share ${v.all.hit}%)</span>` : ''}</span>
+      <span class="mute">Pattern rank</span><span>${f.rank} of ${f.n} tradeable shares</span>
+      <span class="mute">Model's expected result</span><span class="${f.exp >= 0 ? 'up' : 'down'}">${f.exp > 0 ? '+' : ''}${p2(f.exp)}% after ~2.24% costs</span>
+      ${swing ? `<span class="mute">Typical 5-day swing</span><span>±${swing}%</span>` : ''}
+    </div>${rel}</div>`;
 }
 
 function fibCard(a) {
@@ -269,7 +411,9 @@ function mkChart(el, h) {
 }
 
 async function show(sym) {
-  current = sym; render();
+  current = sym; render(); detailCtx = null;
+  if (alertsOpen && innerWidth < 900) toggleAlerts(false);
+  if (!peers) { try { peers = await (await fetch('data/peers.json')).json(); } catch (e) {} }
   let d;
   try { d = await (await fetch('data/stocks/' + encodeURIComponent(sym) + '.json')).json(); }
   catch (e) { $('#detail').innerHTML = `<div class="mute">No data for ${esc(sym)}.</div>`; return; }
@@ -279,12 +423,15 @@ async function show(sym) {
       <span class="big">${esc(sym)}</span>
       <span class="big sig ${sigClass(a.signal)}">${esc(a.signal)}</span><span class="mute">score ${a.score} (technical ${a.tech_score}${a.fund_score!=null?`, fundamentals ${a.fund_score}`:''}) · ${a.date}</span>
     </div>
-    <div id="livebox" class="mute" style="margin-top:6px"></div><div id="intraday"></div>
+    <div class="mute" style="font-size:12px;margin-top:2px">${esc(d.sector || '')}${d.perf ? ` · 1 week ${pct(d.perf.d5)} · 1 month ${pct(d.perf.d20)} · 3 months ${pct(d.perf.d60)}` : ''}</div>
+    <div id="livebox" class="mute" style="margin-top:6px" data-sector="${esc(d.sector || '')}"></div><div id="intraday" style="display:none"></div>
     <div id="chart"></div><div id="rsi"></div><div id="macd"></div>
     <div class="cards">
       <div class="card"><h3>Technical reasons</h3><ul>${a.reasons.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>
         ${a.warnings.map(w=>`<p class="warn">⚠ ${esc(w)}</p>`).join('')}</div>
       ${styleCard(a)}
+      ${peersCard(d, sym)}
+      ${forecastCard(d)}
       ${fibCard(a)}
       ${fundCard(a)}
       <div class="card"><h3>Levels</h3><div class="kv">
@@ -327,15 +474,9 @@ async function show(sym) {
     if (range) charts.filter(x => x!==src).forEach(x => x.timeScale().setVisibleLogicalRange(range));
   }));
   c.timeScale().fitContent();
-  // live: update today's candle, and draw today's minute chart
-  const lr = live && live.rows.find(x => x.s === sym);
-  if (lr) {
-    const today = live.date, lastC = d.candles[d.candles.length - 1];
-    const candle = { time: today, open: lr.o ?? (lastC && lastC.time === today ? lastC.open : lr.p),
-                     high: Math.max(lr.h ?? lr.p, lr.p), low: Math.min(lr.l ?? lr.p, lr.p), close: lr.p };
-    cs.update(candle);
-    updateLiveDetail(sym);
-  } else { const ib = document.getElementById('intraday'); if (ib) ib.style.display = 'none'; }
+  // live: today's candle, the minute chart and the peers line update on every tick
+  detailCtx = { sym, cs, last: d.candles[d.candles.length - 1] };
+  if (tick) { updateLiveDetail(sym); pollMinute(); }
   if (innerWidth < 900) $('#detail').scrollIntoView({ behavior:'smooth' });
 }
 

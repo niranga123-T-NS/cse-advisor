@@ -101,9 +101,47 @@ def trade_summary() -> list[dict]:
             "volume": _num(_pick(r, "sharevolume", "shareVolume", "quantity", "qty")) or 0.0,
             "turnover": _num(_pick(r, "turnover")) or 0.0,
             "change_pct": _num(_pick(r, "percentageChange", "changePercentage")),
+            "change": _num(_pick(r, "change")),
+            "prev_close": _num(_pick(r, "previousClose")),
+            "trades": _num(_pick(r, "tradevolume", "tradeVolume")) or 0.0,
+            "mcap": _num(_pick(r, "marketCap")),
+            "last_traded": _num(_pick(r, "lastTradedTime")),     # ms since 1970
             "stock_id": _pick(r, "id", "securityId"),
         })
     return out
+
+
+def colombo_date(ms) -> str | None:
+    """Colombo calendar date of a CSE timestamp in milliseconds."""
+    import datetime as dt
+    try:
+        return dt.datetime.fromtimestamp(float(ms) / 1000, tz=dt.timezone(dt.timedelta(hours=5, minutes=30))).strftime("%Y-%m-%d")
+    except (TypeError, ValueError):
+        return None
+
+
+def sector_indices() -> dict[str, dict]:
+    """Official S&P/CSE industry-group indices: {name: {value, pct, turnover}}."""
+    j = post("allSectors", retries=1)
+    out = {}
+    for s in j if isinstance(j, list) else []:
+        if s.get("name"):
+            out[s["name"]] = {"value": _num(s.get("indexValue")), "pct": _num(s.get("percentage")),
+                              "turnover": _num(s.get("sectorTurnoverToday"))}
+    return out
+
+
+def order_book(symbol: str) -> dict | None:
+    """Total shares waiting to buy and to sell, and the best bid."""
+    j = post("orderBook", {"symbol": symbol}, retries=1)
+    if not isinstance(j, dict):
+        return None
+    tot = j.get("reqOrderBookTotal") or {}
+    best = (j.get("reqOrderBook") or [{}])[0] or {}
+    b, a = _num(tot.get("totalBids")), _num(tot.get("totalAsks"))
+    if b is None and a is None:
+        return None
+    return {"bids": b or 0.0, "asks": a or 0.0, "best": _num(best.get("price"))}
 
 
 # ---------------------------------------------------------------- per-company

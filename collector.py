@@ -25,28 +25,28 @@ def today() -> str:
 
 
 def snapshot(force: bool = False) -> int:
-    now = dt.datetime.now(COLOMBO)
-    if not force and (now.weekday() >= 5 or (now.hour, now.minute) < (14, 35)):
-        # Before today's close the board still shows the previous session; saving it now
-        # would label yesterday's prices with today's date.
-        print("Market hasn't closed yet today - skipping snapshot (history backfill still runs).")
-        return 0
+    """Save the latest finished session's bar for every counter that traded in it.
+
+    The session date comes from the trades themselves (their last-traded time), not from the clock, so it
+    is right even when this job runs hours late or after midnight.
+    """
     rows = cse.trade_summary()
     if not rows:
-        print("No data from tradeSummary (market closed/holiday, or the API changed - try probe.py).")
+        print("No data from tradeSummary (the API may have changed - try probe.py).")
         return 0
-    d = today()
-    # Holiday guard: on non-trading days the board repeats the last session. If nearly every
-    # stock's close and volume match what we already saved, don't store a duplicate day.
-    same = checked = 0
-    for r in rows[:80]:
-        last = db.load_bars(r["symbol"]).tail(1)
-        if len(last) and last.index[-1].strftime("%Y-%m-%d") != d:
-            checked += 1
-            same += abs(last.close.iloc[0] - r["close"]) < 1e-6 and abs(last.volume.iloc[0] - r["volume"]) < 1e-6
-    if checked >= 10 and same / checked > 0.95:
-        print("Board is identical to the last saved session - looks like a non-trading day, skipping.")
-        return 0
+    now = dt.datetime.now(COLOMBO)
+    dates = [cse.colombo_date(r["last_traded"]) for r in rows if r.get("last_traded")]
+    if dates:
+        d = max(dates)
+        if not force and d == today() and (now.hour, now.minute) < (14, 35):
+            print("Today's session is still open - not saving a part-day bar.")
+            return 0
+        rows = [r for r in rows if cse.colombo_date(r.get("last_traded")) == d and r["volume"] > 0]
+    else:  # no timestamps (API change): fall back to the clock
+        if not force and (now.weekday() >= 5 or (now.hour, now.minute) < (14, 35)):
+            print("Market hasn't closed yet today - skipping snapshot.")
+            return 0
+        d = today()
     for r in rows:
         db.upsert_security(r["symbol"], r["name"], r["stock_id"])
         db.upsert_bars(r["symbol"], [{**r, "date": d}])

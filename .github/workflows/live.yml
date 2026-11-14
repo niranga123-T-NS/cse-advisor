@@ -1,32 +1,53 @@
 name: Live prices
 
+# GitHub's scheduler can run hours late, so this is scheduled every hour through the night and morning.
+# Each run checks whether a trading session is within reach; the first one that finds it waits for the open
+# and runs to the close, the rest stand down. At the close the run starts "Update CSE data" itself.
 on:
   schedule:
-    - cron: "40 3 * * 1-5"   # 09:10 Colombo time, Mon-Fri; the job waits for the open and stops at 14:40
+    - cron: "30 14-23 * * 0-4"   # 20:00-05:00 Colombo, evenings before a trading day
+    - cron: "30 0-8 * * 1-5"     # 06:00-14:00 Colombo, trading days
   workflow_dispatch:
+    inputs:
+      takeover:
+        description: "Internal: run being replaced (leave blank)"
+        required: false
+        default: ""
+      test:
+        description: "Test: publish a few ticks now to branch live-test, even if the market is closed"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
-
-concurrency:
-  group: cse-live
-  cancel-in-progress: false
+  actions: write
 
 jobs:
   live:
     runs-on: ubuntu-latest
-    timeout-minutes: 340
+    timeout-minutes: 350
     steps:
+      - name: Is a trading session within reach?
+        id: gate
+        run: |
+          H=$(TZ=Asia/Colombo date +%H%M); D=$(TZ=Asia/Colombo date +%u)
+          if [ "${{ inputs.test }}" = "true" ]; then echo "go=1" >> "$GITHUB_OUTPUT"
+          elif [ "$D" -le 5 ] && [ "$H" -ge 0405 ] && [ "$H" -lt 1440 ]; then echo "go=1" >> "$GITHUB_OUTPUT"
+          else echo "go=0" >> "$GITHUB_OUTPUT"; echo "No trading session within reach (Colombo time $H, weekday $D) - nothing to do."; fi
       - uses: actions/checkout@v4
+        if: steps.gate.outputs.go == '1'
       - uses: actions/setup-python@v5
+        if: steps.gate.outputs.go == '1'
         with:
           python-version: "3.12"
-      - run: pip install requests
-      - name: Wait for the market to open
-        run: |
-          while [ "$(TZ=Asia/Colombo date +%H%M)" -lt 0925 ]; do sleep 30; done
-      - name: Fetch prices every minute until the close
+      - if: steps.gate.outputs.go == '1'
+        run: pip install -q requests pandas numpy
+      - name: Every 15 seconds until the close
+        if: steps.gate.outputs.go == '1'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAKEOVER_FROM: ${{ inputs.takeover }}
         run: |
           git config user.name "cse-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          python live.py
+          python live.py ${{ inputs.test == true && '--test' || '' }}

@@ -2,7 +2,9 @@ name: Update CSE data
 
 on:
   schedule:
-    - cron: "15 9 * * 1-5"   # 14:45 Colombo time (09:15 UTC), Mon-Fri, after the 14:30 close
+    # Normally started by the "Live prices" job the moment the market closes. This schedule is only a fallback
+    # (GitHub's scheduler can be hours late; the saved bar is dated by the trades, not by the clock).
+    - cron: "15 9 * * 1-5"
   workflow_dispatch:
     inputs:
       symbols:

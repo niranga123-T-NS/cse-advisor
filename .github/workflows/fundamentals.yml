@@ -67,6 +67,13 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
+      - name: Sector for any new listing
+        run: |
+          python sectors.py
+          git config user.name "cse-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/sectors.csv
+          git diff --cached --quiet || (git commit -m "Sector map" && git pull --rebase -X theirs origin main && git push) || true
       - run: python build_site.py --no-fetch
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

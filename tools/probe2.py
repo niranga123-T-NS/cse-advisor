@@ -1,36 +1,26 @@
-import json, sys, time
+import json, sys, datetime as dt
 sys.path.insert(0, ".")
 import cse_client as cse
 cse.MIN_INTERVAL_SEC = 0.4
-def show(name, j, n=700):
-    print(f"\n=== {name} ===")
-    if j is None: print("FAILED"); return
-    if isinstance(j, dict):
-        print("keys:", list(j.keys())[:40])
-        for k, v in list(j.items())[:12]:
-            if isinstance(v, list):
-                print(f" {k}: list[{len(v)}]", json.dumps(v[:2], default=str)[:n])
-            elif isinstance(v, dict):
-                print(f" {k}: dict", json.dumps(v, default=str)[:n])
-            else:
-                print(f" {k}:", json.dumps(v, default=str)[:200])
-    elif isinstance(j, list):
-        print(f"list[{len(j)}]", json.dumps(j[:2], default=str)[:n])
-    else:
-        print(str(j)[:n])
-ts = cse.post("tradeSummary")
-rows = ts.get("reqTradeSummery") or []
-print("tradeSummary rows", len(rows)); print(json.dumps(rows[0], default=str)); print(json.dumps(next(r for r in rows if r.get("symbol")=="JKH.N0000"), default=str))
-show("marketStatus", cse.post("marketStatus")); show("marketSummery", cse.post("marketSummery")); show("aspiData", cse.post("aspiData"))
-info = cse.post("companyInfoSummery", {"symbol": "JKH.N0000"}); show("companyInfoSummery", info, 1500)
-sid = (info.get("reqSymbolInfo") or {}).get("id")
-for ep, data in [("allSectors", {}), ("companyProfile", {"symbol": "JKH.N0000"}), ("detailedTrades", {"symbol": "JKH.N0000"}), ("detailedTrades", {}),
-                 ("todaySharePrice", {}), ("dailyMarketSummery", {}), ("orderBook", {"symbol": "JKH.N0000"}), ("marketDepth", {"symbol": "JKH.N0000"}),
-                 ("sectors", {}), ("sectorList", {}), ("listedCompanies", {}), ("companiesBySector", {}), ("sectorCompanies", {"sectorId": 1}),
-                 ("allSecurityCode", {}), ("list_by_market_cap", {}), ("alphabetical", {"alphabet": "J"}), ("chartData", {"symbol": "JKH.N0000", "chartId": 1, "period": 1}),
-                 ("companyChartDataByStock", {"stockId": sid, "period": 1}), ("indexSectors", {}), ("gicsSectors", {}), ("getSectors", {}), ("sectorSummary", {}),
-                 ("allSectorCompanies", {}), ("securitiesBySector", {"sector": "Banks"}), ("companyDirectory", {}), ("listedCompanyDirectory", {})]:
-    try:
-        show(f"{ep} {data}", cse.post(ep, data, retries=1))
-    except Exception as e:
-        print(ep, "ERR", e)
+T = lambda ms: dt.datetime.fromtimestamp(ms/1000, tz=dt.timezone(dt.timedelta(hours=5, minutes=30))).strftime("%Y-%m-%d %H:%M:%S")
+for sym, sid in (("JKH.N0000", 297), ("ABAN.N0000", 204)):
+    for period in (1, 2, 3, 4, 5):
+        j = cse.post("companyChartDataByStock", {"stockId": sid, "period": period}, retries=1) or {}
+        pts = j.get("chartData") or []
+        if not pts: print(sym, period, "none"); continue
+        days = sorted({T(p["t"])[:10] for p in pts})
+        print(f"\n{sym} period {period}: {len(pts)} points, {len(days)} days, {T(pts[0]['t'])} .. {T(pts[-1]['t'])}")
+        print("  first", json.dumps(pts[0])); print("  last ", json.dumps(pts[-1]))
+        # points per day for the last 3 days and typical spacing
+        last = [p for p in pts if T(p["t"])[:10] == days[-1]]
+        print("  last day points", len(last), [T(p["t"])[11:] for p in last[:6]])
+for chart_id in (1, 2):
+    for period in (1, 2, 3, 5):
+        j = cse.post("chartData", {"symbol": "ASPI", "chartId": chart_id, "period": period}, retries=1)
+        if isinstance(j, list) and j:
+            print(f"\nindex chartId {chart_id} period {period}: {len(j)} pts {T(j[0]['d'])} .. {T(j[-1]['d'])} first {j[0]} last {j[-1]}")
+        else:
+            print("index", chart_id, period, "none", str(j)[:100])
+ob = cse.post("orderBook", {"symbol": "COMB.N0000"}); print("\norderBook COMB", json.dumps(ob)[:600])
+ob = cse.post("orderBook", {"symbol": "JKH.N0000"}); print("orderBook JKH", json.dumps(ob)[:900])
+secs = cse.post("allSectors"); print("\nsectors", [(s["name"], s["sectorId"], s["symbol"], round(s["percentage"], 2)) for s in secs])

@@ -558,7 +558,10 @@ def main(test: bool = False):
         tick_no += 1
         time.sleep(max(1.0, TICK - (time.time() % TICK)))      # wake on the next :00/:15/:30/:45
 
-    if traded_today and not test:
+    if test:    # self-check of the pieces the real run relies on: seeing other runs, and starting a workflow
+        print("self-check: older run active =", older_run_active(), "| can start workflows =", dispatch("publish.yml"))
+        return
+    if traded_today:
         eng.archive()
         dispatch("update.yml")
 

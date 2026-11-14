@@ -241,7 +241,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-13",
+ "listed_at": "2026-11-14",
  "listing": {
   "annual": [
    {
@@ -291,6 +291,15 @@
    }
   ],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53804",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794566420868,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/456_1794566420868.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -371,92 +380,10 @@
     "uploaded": 1707909576080,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/456_1707909576080.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2023-09-30",
-    "id": "44528",
-    "title": "Quarterly Report as of 30th September 2023",
-    "uploaded": 1699961691889,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/456_1699961691889.pdf",
-    "year_only": false
    }
   ]
  },
  "quarterly": {
-  "44528": {
-   "end": "2023-09-30",
-   "eps": 1.48,
-   "eps_prior": 1.07,
-   "layout_eps": [
-    0,
-    1,
-    true
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    true
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    true
-   ],
-   "months": 6,
-   "navps": 79.31,
-   "navps_prior": 77.24,
-   "ok": true,
-   "pages": 26,
-   "profit": 3136766.0,
-   "profit_growth": -40.7,
-   "profit_prior": 5292439.0,
-   "revenue": 191975.0,
-   "revenue_growth": 40.8,
-   "revenue_prior": 136380.0,
-   "src_eps": "Basic earnings per share (Rs.)  1.48  1.07  39  1.69  1.20  42",
-   "src_navps": "Net assets per ordinary share (Rs.)  79.31  77.24",
-   "src_profit": "Owners of the Company  3,136,766  5,292,439  (41) 4,924,093  10,564,132  (53)",
-   "src_revenue": "Revenue  191,975  136,380  41  224,708  159,484  41",
-   "title": "Quarterly Report as of 30th September 2023",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/456_1699961691889.pdf",
-   "v": 6,
-   "vals_eps": [
-    1.48,
-    1.07,
-    39.0,
-    1.69,
-    1.2,
-    42.0
-   ],
-   "vals_navps": [
-    79.31,
-    77.24
-   ],
-   "vals_profit": [
-    3136766.0,
-    5292439.0,
-    -41.0,
-    4924093.0,
-    10564132.0,
-    -53.0
-   ],
-   "vals_revenue": [
-    191975.0,
-    136380.0,
-    41.0,
-    224708.0,
-    159484.0,
-    41.0
-   ],
-   "year_only": false
-  },
   "45107": {
    "end": "2023-12-31",
    "eps": 0.25,
@@ -1085,6 +1012,79 @@
     27333.0,
     32970.0,
     -17.0
+   ],
+   "year_only": false
+  },
+  "53804": {
+   "end": "2026-09-30",
+   "eps": 5.52,
+   "eps_prior": 11.92,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 6,
+   "navps": 91.75,
+   "navps_prior": 89.96,
+   "ok": true,
+   "pages": 26,
+   "profit": 5866941.0,
+   "profit_growth": 34.7,
+   "profit_prior": 4355498.0,
+   "revenue": 668675.0,
+   "revenue_growth": -46.0,
+   "revenue_prior": 1237662.0,
+   "src_eps": "Basic earnings per share (Rs.)  5.52  11.92  (54)  5.58  12.09  (54)",
+   "src_navps": "Net assets per ordinary share (Rs.)  91.75  89.96",
+   "src_profit": "Owners of the Company  5,866,941  4,355,498  35  10,261,868  10,222,274  0.4",
+   "src_revenue": "Revenue  668,675  1,237,662  (46)  696,008  1,270,632  (45)",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/456_1794566420868.pdf",
+   "v": 6,
+   "vals_eps": [
+    5.52,
+    11.92,
+    -54.0,
+    5.58,
+    12.09,
+    -54.0
+   ],
+   "vals_navps": [
+    91.75,
+    89.96
+   ],
+   "vals_profit": [
+    5866941.0,
+    4355498.0,
+    35.0,
+    10261868.0,
+    10222274.0,
+    0.4
+   ],
+   "vals_revenue": [
+    668675.0,
+    1237662.0,
+    -46.0,
+    696008.0,
+    1270632.0,
+    -45.0
    ],
    "year_only": false
   }

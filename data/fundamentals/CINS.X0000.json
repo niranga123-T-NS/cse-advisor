@@ -326,7 +326,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-13",
+ "listed_at": "2026-11-14",
  "listing": {
   "annual": [
    {
@@ -376,6 +376,15 @@
    }
   ],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53776",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794566634319,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/367_1794566634319.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -456,87 +465,10 @@
     "uploaded": 1723626921418,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/367_1723626921418.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2024-03-31",
-    "id": "45551",
-    "title": "Interim Financial Statements Quarter Ended 31st March 2024",
-    "uploaded": 1715764549033,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/367_1715764549033.pdf",
-    "year_only": false
    }
   ]
  },
  "quarterly": {
-  "45551": {
-   "end": "2024-03-31",
-   "eps": 100.06,
-   "eps_prior": 72.8,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    true
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    true
-   ],
-   "months": 3,
-   "navps": 696.21,
-   "navps_prior": 695.57,
-   "ok": true,
-   "pages": 18,
-   "profit": 2642904.0,
-   "profit_growth": 37.4,
-   "profit_prior": 1923074.0,
-   "revenue": 1654755.0,
-   "revenue_growth": 26.7,
-   "revenue_prior": 1306351.0,
-   "src_eps": "Basic Earnings Per Share(Rs.)  100.06  72.80  0.54  0.20",
-   "src_navps": "Net Asset per Share (Rs.) Company  696.21  695.57",
-   "src_profit": "Equity holders of the parent  2,642,904  1,923,074  37  14,272  5,362  166",
-   "src_revenue": "Revenue from Non-Insurance Subsidiaries  1,654,755  1,306,351  27  -  -",
-   "title": "Interim Financial Statements Quarter Ended 31st March 2024",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/367_1715764549033.pdf",
-   "v": 6,
-   "vals_eps": [
-    100.06,
-    72.8,
-    0.54,
-    0.2
-   ],
-   "vals_navps": [
-    696.21,
-    695.57
-   ],
-   "vals_profit": [
-    2642904.0,
-    1923074.0,
-    37.0,
-    14272.0,
-    5362.0,
-    166.0
-   ],
-   "vals_revenue": [
-    1654755.0,
-    1306351.0,
-    27.0
-   ],
-   "year_only": false
-  },
   "46333": {
    "end": "2024-06-30",
    "eps": 172.36,
@@ -1144,6 +1076,72 @@
    "vals_revenue": [
     46409272.0,
     39028976.0
+   ],
+   "year_only": false
+  },
+  "53776": {
+   "end": "2026-09-30",
+   "eps": 205.37,
+   "eps_prior": 205.54,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": null,
+   "navps": 710.97,
+   "navps_prior": 727.84,
+   "ok": true,
+   "pages": 18,
+   "profit": 5424851.0,
+   "profit_growth": -0.1,
+   "profit_prior": 5429173.0,
+   "revenue": 69499537.0,
+   "revenue_growth": 18.4,
+   "revenue_prior": 58717104.0,
+   "src_eps": "Basic Earnings Per Share(Rs.)  205.37  205.54  34.13  72.46",
+   "src_navps": "Net Asset per Share -Company (Rs.)  710.97  727.84",
+   "src_profit": "Equity Holders of the Parent  5,424,851  5,429,173  -  901,500  1,914,079  (53)",
+   "src_revenue": "Gross Written Premium  69,499,537  58,717,104  -  -",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/367_1794566634319.pdf",
+   "v": 6,
+   "vals_eps": [
+    205.37,
+    205.54,
+    34.13,
+    72.46
+   ],
+   "vals_navps": [
+    710.97,
+    727.84
+   ],
+   "vals_profit": [
+    5424851.0,
+    5429173.0,
+    901500.0,
+    1914079.0,
+    -53.0
+   ],
+   "vals_revenue": [
+    69499537.0,
+    58717104.0
    ],
    "year_only": false
   }

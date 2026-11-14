@@ -166,7 +166,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-13",
+ "listed_at": "2026-11-14",
  "listing": {
   "annual": [
    {
@@ -216,6 +216,15 @@
    }
   ],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53766",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794560779095,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/770_1794560779095.09.2026.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -296,31 +305,10 @@
     "uploaded": 1723114638170,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/770_1723114638170.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2024-03-31",
-    "id": "45638",
-    "title": "Interim Financial Statements for the Quarter ended 31st March 2024",
-    "uploaded": 1716374176053,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/770_1716374176053.pdf",
-    "year_only": false
    }
   ]
  },
  "quarterly": {
-  "45638": {
-   "end": "2024-03-31",
-   "months": null,
-   "ok": true,
-   "pages": 6,
-   "profit_growth": null,
-   "revenue_growth": null,
-   "title": "Interim Financial Statements for the Quarter ended 31st March 2024",
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/770_1716374176053.pdf",
-   "v": 6,
-   "year_only": false
-  },
   "46251": {
    "end": "2024-06-30",
    "months": null,
@@ -586,6 +574,18 @@
    "revenue_growth": null,
    "title": "Interim Financial Statements for the Quarter ended 30th June 2026",
    "url": "https://cdn.cse.lk/cmt/upload_report_file/770_1786611993972.pdf",
+   "v": 6,
+   "year_only": false
+  },
+  "53766": {
+   "end": "2026-09-30",
+   "months": null,
+   "ok": true,
+   "pages": 6,
+   "profit_growth": null,
+   "revenue_growth": null,
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/770_1794560779095.09.2026.pdf",
    "v": 6,
    "year_only": false
   }

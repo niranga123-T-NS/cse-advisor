@@ -282,7 +282,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-13",
+ "listed_at": "2026-11-14",
  "listing": {
   "annual": [
    {
@@ -335,10 +335,10 @@
    {
     "amended": false,
     "end": "2026-09-30",
-    "id": "53421",
-    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
-    "uploaded": 1793962101299,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/503_1793962101299.pdf",
+    "id": "53864",
+    "title": "Errata to the Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794567508936,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/503_1794567508936.pdf",
     "year_only": false
    },
    {
@@ -1091,79 +1091,16 @@
    ],
    "year_only": false
   },
-  "53421": {
+  "53864": {
    "end": "2026-09-30",
-   "eps": 10.51,
-   "eps_prior": 9.62,
-   "layout_eps": [
-    0,
-    1,
-    true
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    true
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    true
-   ],
-   "months": 3,
-   "navps": 195.52,
-   "navps_prior": 185.16,
+   "months": null,
    "ok": true,
-   "pages": 14,
-   "profit": 2116770.0,
-   "profit_growth": 9.2,
-   "profit_prior": 1938079.0,
-   "revenue": 76739337.0,
-   "revenue_growth": 16.4,
-   "revenue_prior": 65915981.0,
-   "src_eps": "Earnings per share (Rs.)  10.51  9.62  9.00  20.68  17.48  18.00",
-   "src_navps": "Net Asset Value per Share (Rs.)  195.52  185.16  46.56  45.91",
-   "src_profit": "Owners of the parent  2,116,770  1,938,079  9.00  4,164,233  3,519,943  18.00",
-   "src_revenue": "Revenue  76,739,337  65,915,981  16.00  153,115,785  132,765,017  15.00",
-   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/503_1793962101299.pdf",
+   "pages": 3,
+   "profit_growth": null,
+   "revenue_growth": null,
+   "title": "Errata to the Interim Financial Statements for the Quarter ended 30th September 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/503_1794567508936.pdf",
    "v": 6,
-   "vals_eps": [
-    10.51,
-    9.62,
-    9.0,
-    20.68,
-    17.48,
-    18.0
-   ],
-   "vals_navps": [
-    195.52,
-    185.16,
-    46.56,
-    45.91
-   ],
-   "vals_profit": [
-    2116770.0,
-    1938079.0,
-    9.0,
-    4164233.0,
-    3519943.0,
-    18.0
-   ],
-   "vals_revenue": [
-    76739337.0,
-    65915981.0,
-    16.0,
-    153115785.0,
-    132765017.0,
-    15.0
-   ],
    "year_only": false
   }
  },

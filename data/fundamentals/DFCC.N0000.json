@@ -256,7 +256,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-13",
+ "listed_at": "2026-11-14",
  "listing": {
   "annual": [
    {
@@ -306,6 +306,15 @@
    }
   ],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53769",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794560982951,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1794560982951.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -386,108 +395,10 @@
     "uploaded": 1635500255007,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1635500255007.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2021-06-30",
-    "id": "38563",
-    "title": "Interim Financial Statements as at 30 June 2021",
-    "uploaded": 1628246373848,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1628246373848.pdf",
-    "year_only": false
    }
   ]
  },
  "quarterly": {
-  "38563": {
-   "end": "2021-06-30",
-   "eps": 6.45,
-   "eps_prior": 4.75,
-   "layout_eps": [
-    0,
-    1,
-    true
-   ],
-   "layout_navps": [
-    0,
-    1,
-    true
-   ],
-   "layout_profit": [
-    0,
-    1,
-    true
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    true
-   ],
-   "months": 3,
-   "navps": 158.29,
-   "navps_prior": 161.3,
-   "ok": true,
-   "pages": 23,
-   "profit": 2031405.0,
-   "profit_growth": 40.7,
-   "profit_prior": 1444283.0,
-   "revenue": 21418037.0,
-   "revenue_growth": -3.4,
-   "revenue_prior": 22171596.0,
-   "src_eps": "Basic/Diluted earnings per ordinary share (LKR)  6.45  4.75  36  1.75  1.71  3  6.89  5.93  16  1.98  2.59  (24)",
-   "src_navps": "Net assets value per share, LKR  158.29  161.30  (2)  165.42  168.06  (2)",
-   "src_profit": "Equity holders of the Bank  2,031,405  1,444,283  41  552,854  518,837  7  2,171,561  1,750,089  24  623,785  766,872  (19)",
-   "src_revenue": "Gross Income  21,418,037  22,171,596  (3)  10,328,194  10,875,160  (5)  21,664,330  22,411,396  (3)  10,427,366  10,977,528  (5)",
-   "title": "Interim Financial Statements as at 30 June 2021",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1628246373848.pdf",
-   "v": 6,
-   "vals_eps": [
-    6.45,
-    4.75,
-    36.0,
-    1.75,
-    1.71,
-    3.0,
-    6.89,
-    5.93,
-    16.0,
-    1.98
-   ],
-   "vals_navps": [
-    158.29,
-    161.3,
-    -2.0,
-    165.42,
-    168.06,
-    -2.0
-   ],
-   "vals_profit": [
-    2031405.0,
-    1444283.0,
-    41.0,
-    552854.0,
-    518837.0,
-    7.0,
-    2171561.0,
-    1750089.0,
-    24.0,
-    623785.0
-   ],
-   "vals_revenue": [
-    21418037.0,
-    22171596.0,
-    -3.0,
-    10328194.0,
-    10875160.0,
-    -5.0,
-    21664330.0,
-    22411396.0,
-    -3.0,
-    10427366.0
-   ],
-   "year_only": false
-  },
   "39200": {
    "end": "2021-09-30",
    "eps": 9.74,
@@ -1274,6 +1185,95 @@
     47571540.0,
     12.0,
     26843708.0
+   ],
+   "year_only": false
+  },
+  "53769": {
+   "end": "2026-09-30",
+   "eps": 16.38,
+   "eps_prior": 30.44,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 9,
+   "navps": 244.85,
+   "navps_prior": 245.01,
+   "ok": true,
+   "pages": 28,
+   "profit": 7323442.0,
+   "profit_growth": -44.9,
+   "profit_prior": 13296298.0,
+   "revenue": 80660211.0,
+   "revenue_growth": 12.0,
+   "revenue_prior": 71996358.0,
+   "src_eps": "Earnings per share \u23ce Basic/diluted earnings per ordinary share (LKR)  16.38  30.44  (46)  7.65  6.35  20  16.60  19.51  (15)  7.55  6.28  20",
+   "src_navps": "Net assets value per share (LKR)  244.85  245.01  (0)  246.64  246.62  0",
+   "src_profit": "Equity holders of the Bank  7,323,442  13,296,298  (45)  3,419,744  2,773,099  23  7,425,125  8,523,628  (13)  3,375,593  2,741,798  23",
+   "src_revenue": "Gross Income  80,660,211  71,996,358  12  27,613,220  24,779,701  11  81,211,840  72,475,093  12  27,742,667  24,903,553  11",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1794560982951.pdf",
+   "v": 6,
+   "vals_eps": [
+    16.38,
+    30.44,
+    -46.0,
+    7.65,
+    6.35,
+    20.0,
+    16.6,
+    19.51,
+    -15.0,
+    7.55
+   ],
+   "vals_navps": [
+    244.85,
+    245.01,
+    -0.0,
+    246.64,
+    246.62,
+    0.0
+   ],
+   "vals_profit": [
+    7323442.0,
+    13296298.0,
+    -45.0,
+    3419744.0,
+    2773099.0,
+    23.0,
+    7425125.0,
+    8523628.0,
+    -13.0,
+    3375593.0
+   ],
+   "vals_revenue": [
+    80660211.0,
+    71996358.0,
+    12.0,
+    27613220.0,
+    24779701.0,
+    11.0,
+    81211840.0,
+    72475093.0,
+    12.0,
+    27742667.0
    ],
    "year_only": false
   }

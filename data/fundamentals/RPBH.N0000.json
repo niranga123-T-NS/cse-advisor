@@ -176,7 +176,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-13",
+ "listed_at": "2026-11-14",
  "listing": {
   "annual": [
    {
@@ -226,6 +226,15 @@
    }
   ],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53720",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794541543229,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/581_1794541543229.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -306,95 +315,10 @@
     "uploaded": 1668422326043,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/581_1668422326043.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2021-12-31",
-    "id": "39919",
-    "title": "quarterly Financial Statements 12/31/2021",
-    "uploaded": 1644830444825,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/581_1644830444825.pdf",
-    "year_only": false
    }
   ]
  },
  "quarterly": {
-  "39919": {
-   "end": "2021-12-31",
-   "eps": -2.16,
-   "eps_prior": -2.42,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 9,
-   "navps": 4.0,
-   "navps_prior": 16.0,
-   "ok": true,
-   "pages": 6,
-   "profit": 7776.0,
-   "profit_growth": null,
-   "profit_prior": -121217.0,
-   "revenue": 154239.0,
-   "revenue_growth": 88.4,
-   "revenue_prior": 81878.0,
-   "src_eps": "Earnings Per Share - Basic  (2.16)  (2.42)  0.26  (0.5e)  (0.se)",
-   "src_navps": "Net Assets per Share (Rs.)  4s.16  47.44  47.28",
-   "src_profit": "Profit / (Loss) for the Period  (t07,776)  (121,217)  13.441  (29,4s0)  (2e,6s2)  202",
-   "src_revenue": "Revenue  154,239  81,878  72,361  91,002  Jt,t l5  58,229",
-   "title": "quarterly Financial Statements 12/31/2021",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/581_1644830444825.pdf",
-   "v": 6,
-   "vals_eps": [
-    -2.16,
-    -2.42,
-    0.26,
-    0.5,
-    0.0
-   ],
-   "vals_navps": [
-    4.0,
-    16.0,
-    47.44,
-    47.28
-   ],
-   "vals_profit": [
-    7776.0,
-    -121217.0,
-    13.441,
-    0.0,
-    2.0,
-    6.0,
-    2.0,
-    202.0
-   ],
-   "vals_revenue": [
-    154239.0,
-    81878.0,
-    72361.0,
-    91002.0,
-    5.0,
-    58229.0
-   ],
-   "year_only": false
-  },
   "42039": {
    "end": "2022-09-30",
    "months": null,
@@ -802,6 +726,80 @@
     159289.0,
     187871.0,
     -28582.0
+   ],
+   "year_only": false
+  },
+  "53720": {
+   "end": "2026-09-30",
+   "eps": -1.33,
+   "eps_prior": 0.04,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 6,
+   "navps": 57.45,
+   "navps_prior": 55.65,
+   "ok": true,
+   "pages": 7,
+   "profit": -66577.0,
+   "profit_growth": null,
+   "profit_prior": 2093.0,
+   "revenue": 325014.0,
+   "revenue_growth": -11.8,
+   "revenue_prior": 368586.0,
+   "src_eps": "Earnings Per Share - Basic  (1.33)  0.04  (1.37)  (1.40)  (0.37)  (1.03)",
+   "src_navps": "Net Assets per Share (Rs.)  57.45  55.65  58.71",
+   "src_profit": "Profit / (Loss) for the Period  (66,577)  2,093  (68,670)  (70,297)  (18,327)  (51,970)",
+   "src_revenue": "Revenue  325,014  368,586  (43,572)  165,725  180,715  (14,990)",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/581_1794541543229.pdf",
+   "v": 6,
+   "vals_eps": [
+    -1.33,
+    0.04,
+    -1.37,
+    -1.4,
+    -0.37,
+    -1.03
+   ],
+   "vals_navps": [
+    57.45,
+    55.65,
+    58.71
+   ],
+   "vals_profit": [
+    -66577.0,
+    2093.0,
+    -68670.0,
+    -70297.0,
+    -18327.0,
+    -51970.0
+   ],
+   "vals_revenue": [
+    325014.0,
+    368586.0,
+    -43572.0,
+    165725.0,
+    180715.0,
+    -14990.0
    ],
    "year_only": false
   }

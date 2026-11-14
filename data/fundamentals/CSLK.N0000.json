@@ -114,7 +114,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-13",
+ "listed_at": "2026-11-14",
  "listing": {
   "annual": [
    {
@@ -146,6 +146,15 @@
    }
   ],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53798",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794568204732,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/3198_1794568204732.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -559,6 +568,75 @@
     891859636.0,
     988146397.0,
     891859636.0
+   ],
+   "year_only": false
+  },
+  "53798": {
+   "end": "2026-09-30",
+   "eps": 0.63,
+   "eps_prior": 0.55,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 5.6,
+   "navps_prior": 4.54,
+   "ok": true,
+   "pages": 20,
+   "profit": 198804675.0,
+   "profit_growth": 61.7,
+   "profit_prior": 122949907.0,
+   "revenue": 1205128181.0,
+   "revenue_growth": 38.0,
+   "revenue_prior": 873165484.0,
+   "src_eps": "Earnings per Share (EPS) - LKR  0.63  0.55  0.63  0.57",
+   "src_navps": "Net Asset Value per Share - LKR  5.60  4.54  5.72  4.63",
+   "src_profit": "Equity holders of the Company  198,804,675  122,949,907  62%  297,889,167  257,470,279  16%",
+   "src_revenue": "Revenue  1,205,128,181  873,165,484  38%  2,193,274,578  1,765,025,120  24%",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/3198_1794568204732.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.63,
+    0.55,
+    0.63,
+    0.57
+   ],
+   "vals_navps": [
+    5.6,
+    4.54,
+    5.72,
+    4.63
+   ],
+   "vals_profit": [
+    198804675.0,
+    122949907.0,
+    297889167.0,
+    257470279.0
+   ],
+   "vals_revenue": [
+    1205128181.0,
+    873165484.0,
+    2193274578.0,
+    1765025120.0
    ],
    "year_only": false
   }

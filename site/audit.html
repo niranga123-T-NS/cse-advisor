@@ -2,58 +2,42 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>CSE Advisor · Data checks</title>
+<meta name="theme-color" content="#0c111b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="CSE Advisor">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+<title>Data checks, CSE Advisor</title>
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="app.css">
 <style>
-  :root { --bg:#0f1216; --panel:#171b21; --line:#262c35; --text:#e6e8eb; --mute:#8b95a1; --ok:#22c55e; --warn:#f59e0b; --fail:#ef4444; --accent:#3b82f6; }
-  * { box-sizing:border-box; }
-  html { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
-  body { margin:0; font:14px/1.45 system-ui, sans-serif; background:var(--bg); color:var(--text); }
-  header { display:flex; gap:12px; align-items:center; padding:10px 16px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
-  header h1 { font-size:16px; margin:0; } a { color:#93c5fd; }
-  main { max-width:1200px; margin:0 auto; padding:16px; }
-  h2 { font-size:15px; margin:26px 0 10px; }
-  .mute { color:var(--mute); } .ok { color:var(--ok); } .warn { color:var(--warn); } .fail { color:var(--fail); }
-  .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:12px; }
-  .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; }
-  .big { font-size:26px; font-weight:700; }
-  .tw { overflow-x:auto; -webkit-overflow-scrolling:touch; background:var(--panel); border:1px solid var(--line); border-radius:8px; }
-  table { width:100%; border-collapse:collapse; } .m-only { display:none; }
-  th, td { padding:7px 10px; text-align:left; border-bottom:1px solid var(--line); }
-  th { color:var(--mute); font-weight:500; font-size:12px; cursor:pointer; user-select:none; background:#13171c; position:sticky; top:0; }
-  .num { text-align:right; font-variant-numeric:tabular-nums; }
-  .bar { height:8px; background:#262c35; border-radius:4px; overflow:hidden; min-width:120px; }
-  .bar > i { display:block; height:100%; background:var(--ok); }
-  input, select { background:var(--panel); color:var(--text); border:1px solid var(--line); border-radius:6px; padding:6px 10px; font:inherit; }
-  tr.co { cursor:pointer; } tr.co:hover { background:#1d232b; }
-  .detail td { background:#12161b; }
-  .src { font:11px/1.35 ui-monospace,monospace; color:#cbd5e1; white-space:pre-wrap; word-break:break-word; }
-  ol.how li { margin-bottom:6px; }
-  .pill { font-size:11px; padding:1px 6px; border-radius:4px; background:#262c35; white-space:nowrap; }
-  @media (pointer:coarse) { input, select { font-size:16px; } }   /* smaller text makes iPhones zoom the page when a box is tapped */
-  /* Phones: everything fits the width. The company table keeps its key columns; the data labels move under the name. */
-  @media (max-width:600px) {
-    header { padding:10px 12px; gap:4px 12px; } main { padding:12px; } h2 { margin:22px 0 8px; }
-    .cards { grid-template-columns:repeat(2, minmax(0, 1fr)); gap:8px; } .card { padding:10px; } .big { font-size:22px; }
-    th, td { padding:6px 5px; font-size:12.5px; } th { font-size:11.5px; vertical-align:bottom; }
-    .bar { min-width:48px; } .d-only { display:none; } .m-only { display:block; margin-top:2px; } span.m-only { display:inline; margin:0; }
-    #q { flex:1 1 100%; } #lvl { flex:1 1 100%; } ol.how { padding-left:20px; } .detail td { padding:8px 6px; }
+  .m-only { display:none; }
+  #cos th { cursor:pointer; user-select:none; }
+  .meter { display:flex; align-items:center; gap:10px; } .meter .bar { flex:1; min-width:90px; max-width:260px; margin:0; } .meter .bar i { background:var(--emerald); }
+  tr.co { cursor:pointer; } tr.co:hover { background:var(--surface-2); }
+  .detail td { background:var(--surface-2); }
+  .src { font:11.5px/1.4 ui-monospace, Menlo, monospace; color:var(--ink-2); white-space:pre-wrap; word-break:break-word; }
+  ol.how { max-width:90ch; padding-left:22px; } ol.how li { margin-bottom:8px; }
+  .aibox { background:var(--emerald-soft); border-radius:12px; padding:10px 12px; margin-bottom:10px; }
+  @media (max-width:640px) {
+    .meter { gap:6px; } .meter .bar { min-width:30px; } .d-only { display:none; } .m-only { display:block; margin-top:3px; } span.m-only { display:inline; margin:0; }
+    #q { flex:1 1 100%; } #lvl { flex:1 1 100%; } .detail td { padding:8px 6px; }
   }
 </style>
 </head>
-<body>
-<header>
-  <a href="./">← CSE Advisor</a>
-  <h1>Data checks</h1>
-  <span class="mute" id="stamp"></span>
-</header>
-<main>
-  <div class="cards" id="summary"></div>
+<body class="app" data-page="audit" data-title="Data checks">
+<script src="app.js"></script>
+<main class="page">
+  <p class="say">Each figure read from a company report keeps the exact line of the PDF it came from. A figure counts towards a score, a label or a checklist only if a cross-check confirms it.
+    Figures that fail a check are still shown, marked ⚠, and are left out of everything else.</p>
+  <div class="stats" id="summary"></div>
 
   <h2>What is checked</h2>
-  <div class="card">
-    <p style="margin-top:0">Each figure read from a company report keeps the exact PDF line it came from. A figure only counts towards a score or a label if a cross-check confirms it (<span class="ok">✓ verified</span>). Figures that fail a check are shown with ⚠ and left out.</p>
     <ol class="how">
       <li><b>Last year's column = last year's report.</b> Each report prints the same period last year next to the current figures. When that matches last year's own report, the row and columns were read correctly. This match is also used to pick the right columns when a row holds several.</li>
       <li><b>Printed % change.</b> Where a % change column is printed, it must agree with the current and prior figures.</li>
@@ -61,35 +45,38 @@
       <li><b>EPS = attributable profit ÷ shares in issue</b> (latest four reports).</li>
       <li><b>EPS growth agrees with profit growth.</b></li>
       <li><b>Net assets per share:</b> the balance sheet's comparative column must equal the figure at the last year-end.</li>
+      <li><b>Dividends across a share split.</b> A dividend declared before a split is per old share. When a share has split during the report's year or since, its dividend yield is shown but not used.</li>
       <li><b>Plausibility.</b> Per-share figures are checked against the share price. Full-year EPS more than 13 months old is never used. US-dollar rows are skipped. Long-term EPS growth is only measured across years whose figures link up, so share splits don't distort it.</li>
     </ol>
-  </div>
 
   <h2>Verified figures by type</h2>
   <div class="tw"><table id="fields"></table></div>
 
   <h2>Check results by type</h2>
-  <p class="mute" style="margin-top:-4px">Companies marked 📖 Claude have their key figures read by Claude from the statement pages (Group/consolidated basis, with notes); those readings are compared with the text-matched figures. ✓ passed · ⚠ warning (figure not used) · ✗ failed (misread caught and excluded)</p>
+  <p class="note" style="margin:-4px 0 12px">Companies marked "Read by Claude" have their key figures read by Claude from the statement pages (group basis, with notes); those readings are compared with the text-matched figures.
+    ✓ passed, ⚠ warning (figure not used), ✗ failed (a misread caught and excluded).</p>
   <div class="tw"><table id="kinds"></table></div>
 
   <h2>Share splits found in the prices</h2>
-  <p class="mute" style="margin-top:-4px">CSE's price history is not adjusted for share splits: on the day a 10-for-1 split takes effect the price simply drops by 90%. Each such step is found and the earlier prices are divided by the ratio, so charts, signals, alerts and the forecast are on today's share basis. The ratio is taken from the company's own reports (the change in its share count) or a second price source where possible; otherwise from the price itself, which is approximate.</p>
+  <p class="note" style="margin:-4px 0 12px">CSE's price history is not adjusted for share splits: on the day a 10-for-1 split takes effect the price simply drops by 90%. Each such step is found and the earlier prices are divided by the ratio, so charts, signals, alerts and the forecast are on today's share basis. The ratio is taken from the company's own reports (the change in its share count) or a second price source where possible; otherwise from the price itself, which is approximate.</p>
   <div class="tw"><table id="splits"></table></div>
 
   <h2>Every company</h2>
   <p style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-    <input id="q" placeholder="Search symbol or name" oninput="renderCos()">
+    <input id="q" placeholder="Symbol or company name" aria-label="Find a company" oninput="renderCos()">
     <select id="lvl" onchange="renderCos()">
       <option value="">All companies</option><option value="fail">With failed checks</option>
       <option value="low">Low data</option><option value="good">Good data</option><option value="ai">Read by Claude</option>
     </select>
-    <span class="mute">Tap a company to see its checks and the exact PDF lines.</span>
+    <span class="sub">Tap a company to see its checks and the exact lines read.</span>
   </p>
   <div class="tw"><table id="cos"></table></div>
 </main>
 <script>
 const $ = s => document.querySelector(s);
-const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const App = window.CSEApp, esc = App.esc;
+const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const dmy = d => { const m = /^(\d{4})-(\d\d)-(\d\d)/.exec(d || ''); return m ? `${+m[3]} ${MON[m[2] - 1]} ${m[1]}` : esc(d || ''); };
 const NAMES = { navps:'Net assets per share', pbv:'Price / book value', eps_ttm:'EPS, last 12 months', pe:'P/E', roe:'ROE',
   revenue_growth:'Revenue growth', profit_growth:'Profit growth (latest column)', eps_growth_ytd:'EPS growth year-to-date',
   profit_growth_hit:'Earnings consistency', div_yield:'Dividend yield', eps_cagr:'EPS growth per year (annual reports)' };
@@ -98,22 +85,22 @@ let A = null, sortKey = 'symbol', sortDir = 1, open = null;
 
 fetch('data/audit.json').then(r => r.json()).then(a => {
   A = a;
-  fetch('data/meta.json').then(r => r.json()).then(m => $('#stamp').textContent = 'Updated ' + m.updated).catch(() => {});
+  fetch('data/meta.json').then(r => r.json()).then(m => App.setStatus('Updated ' + App.when(m.updated))).catch(() => {});
   const pct = a.figures_total ? Math.round(100 * a.figures_verified / a.figures_total) : 0;
   $('#summary').innerHTML = `
-    <div class="card"><div class="mute">Figures verified</div><div class="big ok">${pct}%</div><div class="mute">${a.figures_verified.toLocaleString()} of ${a.figures_total.toLocaleString()}</div></div>
-    <div class="card"><div class="mute">Checks passed</div><div class="big ok">${a.checks_passed.toLocaleString()}</div></div>
-    <div class="card"><div class="mute">Warnings</div><div class="big warn">${a.warnings.toLocaleString()}</div><div class="mute">figure not used</div></div>
-    <div class="card"><div class="mute">Failed</div><div class="big fail">${a.failures.toLocaleString()}</div><div class="mute">misreads caught &amp; excluded</div></div>
-    <div class="card"><div class="mute">Companies</div><div class="big">${a.companies_with_reports}</div><div class="mute">up to 10 quarterly + 5 annual reports each</div></div>`;
+    <div class="stat"><b class="up">${pct}%</b><span>of figures confirmed: ${a.figures_verified.toLocaleString()} of ${a.figures_total.toLocaleString()}</span></div>
+    <div class="stat"><b>${a.checks_passed.toLocaleString()}</b><span>checks passed</span></div>
+    <div class="stat"><b class="warn">${a.warnings.toLocaleString()}</b><span>warnings: the figure is not used</span></div>
+    <div class="stat"><b class="down">${a.failures.toLocaleString()}</b><span>failed: misreads caught and excluded</span></div>
+    <div class="stat"><b>${a.companies_with_reports}</b><span>companies, up to 10 quarterly and 5 annual reports each</span></div>`;
   $('#fields').innerHTML = '<tr><th>Figure</th><th class="num">Verified</th><th class="num">Found</th><th>Share verified</th></tr>' +
     a.fields.map(f => { const p = f.total ? 100 * f.verified / f.total : 0;
       return `<tr><td>${esc(NAMES[f.field] || f.field)}</td><td class="num">${f.verified}</td><td class="num">${f.total}</td>
-        <td><div class="bar"><i style="width:${p.toFixed(0)}%"></i></div> <span class="mute">${p.toFixed(0)}%</span></td></tr>`; }).join('');
+        <td><div class="meter"><span class="bar"><i style="width:${p.toFixed(0)}%"></i></span><span class="mute">${p.toFixed(0)}%</span></div></td></tr>`; }).join('');
   $('#kinds').innerHTML = '<tr><th></th><th>Check</th><th class="num">Times</th></tr>' +
     a.kinds.map(k => `<tr><td>${ICON[k.level]}</td><td>${esc(k.kind)}</td><td class="num">${k.count.toLocaleString()}</td></tr>`).join('');
   $('#splits').innerHTML = '<tr><th>Company</th><th>Date</th><th class="num">Prices divided by</th><th class="num d-only">Seen in the price</th><th>Ratio from</th></tr>' +
-    ((a.splits || []).map(x => `<tr><td><b>${esc(x.symbol)}</b> <span class="mute d-only" style="font-size:12px">${esc((x.name || '').slice(0, 28))}</span></td><td style="white-space:nowrap">${esc(x.date)}</td>
+    ((a.splits || []).map(x => `<tr><td><b>${esc(x.symbol)}</b> <span class="sub d-only">${esc((x.name || '').slice(0, 28))}</span></td><td>${dmy(x.date)}</td>
       <td class="num"><b>${x.factor}</b></td><td class="num d-only">${x.seen}</td><td>${/price$/.test(x.basis) ? '<span class="warn">⚠</span> price only (approximate)' : '<span class="ok">✓</span> ' + esc(x.basis)}</td></tr>`).join('')
      || '<tr><td colspan="5" class="mute">None found.</td></tr>');
   renderCos();
@@ -131,11 +118,11 @@ function renderCos() {
   rows.sort((x, y) => (val(x) > val(y) ? 1 : val(x) < val(y) ? -1 : 0) * sortDir);
   const th = (k, t, cls = '') => `<th class="${cls}" onclick="sortBy('${k}')">${t}${sortKey === k ? (sortDir > 0 ? ' ▲' : ' ▼') : ''}</th>`;
   const W = '<span class="d-only"> Warnings</span>', F = '<span class="d-only"> Failed</span>';
-  $('#cos').innerHTML = '<tr>' + th('symbol', 'Company') + th('share', 'Figures verified', 'num') + th('ok', '✓ Passed', 'num d-only') +
+  $('#cos').innerHTML = '<tr>' + th('symbol', 'Company') + th('share', 'Figures verified', 'num') + th('ok', 'Passed', 'num d-only') +
     th('warn', '⚠' + W, 'num') + th('fail', '✗' + F, 'num') + th('confidence', 'Data', 'd-only') + '</tr>' +
-    rows.map(c => { const pills = `${c.ai ? '<span class="pill" style="background:#14532d;color:#86efac">📖 Claude</span> ' : ''}<span class="pill">${esc(c.confidence || '')}</span> <span class="mute" style="font-size:11px">${c.q}q · ${c.a}a</span>`; return `<tr class="co" data-s="${esc(c.symbol)}" onclick="toggle('${esc(c.symbol)}')">
-      <td><b>${esc(c.symbol)}</b> <span class="mute" style="font-size:12px">${esc((c.name || '').slice(0, 30))}</span><div class="m-only">${pills}</div></td>
-      <td class="num">${c.verified}/${c.fields}</td><td class="num ok d-only">${c.ok}</td><td class="num warn">${c.warn}</td>
+    rows.map(c => { const pills = `${c.ai ? '<span class="tag inv">Read by Claude</span> ' : ''}<span class="tag">${esc(c.confidence || '')}</span> <span class="sub" title="Quarterly and annual reports read">${c.q} + ${c.a} reports</span>`; return `<tr class="co" data-s="${esc(c.symbol)}" onclick="toggle('${esc(c.symbol)}')">
+      <td><b>${esc(c.symbol)}</b> <span class="sub">${esc((c.name || '').slice(0, 30))}</span><div class="m-only">${pills}</div></td>
+      <td class="num">${c.verified} of ${c.fields}</td><td class="num ok d-only">${c.ok}</td><td class="num warn">${c.warn}</td>
       <td class="num fail">${c.fail}</td><td class="d-only">${pills}</td></tr>
       ${open === c.symbol ? '<tr class="detail"><td colspan="6" id="det">Loading…</td></tr>' : ''}`; }).join('');
   if (open) loadDetail(open);
@@ -156,12 +143,12 @@ async function loadDetail(sym) {
         `<div style="margin-top:6px"><b>${esc(q.end)}</b> <a href="${esc(q.url)}" target="_blank" rel="noopener">report</a>${Object.entries(q.src).map(([k, v]) => `<div class="src"><span class="mute">${esc(k)}:</span> ${esc(v)}</div>`).join('')}</div>`).join('')
       + (f.annual || []).filter(y => y.src_eps || y.src_dps).map(y =>
         `<div style="margin-top:6px"><b>${esc(y.end)} annual</b> <a href="${esc(y.url)}" target="_blank" rel="noopener">report</a>${['eps', 'dps'].filter(k => y['src_' + k]).map(k => `<div class="src"><span class="mute">${k}:</span> ${esc(y['src_' + k])}</div>`).join('')}</div>`).join('');
-    const ai = f.ai_read ? `<div class="card" style="margin-bottom:8px;border-color:#1f5136">📖 <b>Read by Claude</b> on ${esc(f.ai_read.at)}: ${esc(f.ai_read.notes || '')}
+    const ai = f.ai_read ? `<div class="aibox"><b>Read by Claude</b> on ${dmy(f.ai_read.at)}: ${esc(f.ai_read.notes || '')}
       <div class="src" style="margin-top:6px">latest: ${esc(JSON.stringify(f.ai_read.latest))}\nyear: ${esc(JSON.stringify(f.ai_read.fy))}</div></div>` : '';
     el.innerHTML = ai + `<div style="margin-bottom:8px">${figs}</div>
-      <p><a href="./#${encodeURIComponent(sym)}">Open ${esc(sym)} on the main page →</a></p>
+      <p><a href="./#${encodeURIComponent(sym)}">Open ${esc(sym)}</a></p>
       <details open><summary>All checks (${(f.checks || []).length})</summary><div style="margin-top:6px">${checks || '<span class="mute">none</span>'}</div></details>
-      <details style="margin-top:8px"><summary>Exact lines read from the PDFs</summary>${srcs || '<span class="mute">none</span>'}</details>`;
+      <details style="margin-top:8px"><summary>Exact lines read from the reports</summary>${srcs || '<span class="mute">none</span>'}</details>`;
   } catch (e) { el.innerHTML = '<span class="mute">Could not load.</span>'; }
 }
 </script>

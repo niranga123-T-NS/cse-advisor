@@ -2,109 +2,100 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>CSE Advisor · Trends</title>
+<meta name="theme-color" content="#0c111b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="CSE Advisor">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+<title>Trends, CSE Advisor</title>
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="app.css">
 <style>
-  :root { --bg:#0f1216; --panel:#171b21; --line:#262c35; --text:#e6e8eb; --mute:#8b95a1; --ok:#22c55e; --warn:#f59e0b; --fail:#ef4444; --accent:#3b82f6; }
-  * { box-sizing:border-box; }
-  html { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
-  body { margin:0; font:14px/1.5 system-ui, sans-serif; background:var(--bg); color:var(--text); }
-  header { display:flex; gap:12px; align-items:center; padding:10px 16px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
-  header h1 { font-size:16px; margin:0; } a { color:#93c5fd; }
-  main { max-width:1100px; margin:0 auto; padding:16px; }
-  h2 { font-size:15px; margin:28px 0 10px; }
-  .mute { color:var(--mute); } .ok { color:var(--ok); } .warn { color:var(--warn); } .fail { color:var(--fail); }
-  .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:12px; }
-  .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; min-width:0; }
-  .big { font-size:22px; font-weight:700; }
-  .tw { overflow-x:auto; -webkit-overflow-scrolling:touch; background:var(--panel); border:1px solid var(--line); border-radius:8px; }
-  table { width:100%; border-collapse:collapse; } tr:last-child td { border-bottom:0; }
-  th, td { padding:7px 10px; text-align:left; border-bottom:1px solid var(--line); }
-  th { color:var(--mute); font-weight:500; font-size:12px; background:#13171c; vertical-align:bottom; }
-  .num { text-align:right; font-variant-numeric:tabular-nums; }
-  .bar { display:flex; height:10px; border-radius:5px; overflow:hidden; background:#262c35; margin:4px 0 2px; } .bar i { display:block; height:100%; }
-  .pill { font-size:11px; padding:1px 7px; border-radius:10px; background:#262c35; white-space:nowrap; }
-  .pill.up { background:#12301f; color:#86efac; } .pill.down { background:#3a1717; color:#fca5a5; }
-  .lists { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:12px; }
-  .li { display:grid; grid-template-columns:minmax(0, 1fr) auto; gap:8px; padding:5px 0; border-top:1px solid var(--line); font-size:13px; text-decoration:none; color:inherit; }
-  .li:first-of-type { border-top:0; } .li:hover { background:#1d232b; } .li .nm { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .note { font-size:12px; color:var(--mute); margin:8px 0 0; }
-  .fr { display:grid; grid-template-columns:70px 92px minmax(0, 1fr); gap:6px; padding:3px 0; font-size:13px; align-items:baseline; }
-  @media (max-width:600px) {
-    header { padding:10px 12px; gap:4px 12px; } main { padding:12px; } h2 { margin:24px 0 8px; }
-    .cards { grid-template-columns:minmax(0, 1fr); gap:8px; } .card { padding:10px; } .lists { grid-template-columns:minmax(0, 1fr); }
-    th, td { padding:6px 5px; font-size:12.5px; } th { font-size:11.5px; } .x { display:none; }
-  }
+  .fr { display:grid; grid-template-columns:76px 100px minmax(0, 1fr); gap:8px; padding:6px 0; border-top:1px solid var(--line-soft); align-items:baseline; }
+  .br { margin-top:12px; } .br div:first-child { display:flex; justify-content:space-between; gap:8px; font-size:13px; }
+  .lists { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(310px, 100%), 1fr)); gap:14px; }
+  .lists .card .li:first-of-type { border-top:0; }
+  td a { color:inherit; text-decoration:none; } td a:hover { text-decoration:underline; }
 </style>
 </head>
-<body>
-<header>
-  <a href="./">← CSE Advisor</a>
-  <h1>Trends</h1>
-  <span class="mute" id="stamp"></span>
-</header>
-<main id="main"><p class="mute">Loading…</p></main>
+<body class="app" data-page="trends" data-title="Trends">
+<script src="app.js"></script>
+<main class="page" id="main"><p class="mute">Loading…</p></main>
 <script>
-const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const sg = (v, n = 1) => v == null ? '<span class="mute">–</span>' : `<span class="${v > 0 ? 'ok' : v < 0 ? 'fail' : ''}">${v > 0 ? '+' : ''}${(+v).toFixed(n)}%</span>`;
-const DIR = { '1': ['▲ rising', 'ok'], '-1': ['▼ falling', 'fail'], '0': ['▬ sideways', 'mute'] };
-const FRAME = { short:['Month', '20 days'], medium:['Quarter', '50 days'], long:['Year', '200 days'], years:['3 years', '750 days'] };
+const A = window.CSEApp, esc = A.esc;
+const sg = (v, n = 1) => v == null ? '<span class="mute">–</span>' : `<span class="${v > 0 ? 'up' : v < 0 ? 'down' : ''}">${v > 0 ? '+' : ''}${(+v).toFixed(n)}%</span>`;
+const DIR = { '1': ['▲ rising', 'up'], '-1': ['▼ falling', 'down'], '0': ['▬ sideways', 'mute'] };
+const FRAME = { short:['Month', '20-day'], medium:['Quarter', '50-day'], long:['Year', '200-day'], years:['3 years', '750-day'] };
 const dir = d => d == null ? '<span class="mute">–</span>' : `<span class="${DIR[d][1]}">${DIR[d][0]}</span>`;
 const since = f => f.all_data ? 'throughout the data' : `for ${f.days} trading day${f.days === 1 ? '' : 's'}`;
 const lkr = v => v >= 1e9 ? (v / 1e9).toFixed(2) + ' billion' : (v / 1e6).toFixed(0) + ' million';
-const bar = (up, down) => `<div class="bar"><i style="width:${up}%;background:var(--ok)"></i><i style="width:${100 - up - down}%;background:#3f3f46"></i><i style="width:${down}%;background:var(--fail)"></i></div>`;
+const bar = (up, down) => `<div class="bar"><i style="width:${up}%;background:var(--emerald)"></i><i style="width:${100 - up - down}%;background:transparent"></i><i style="width:${down}%;background:var(--ruby)"></i></div>`;
 const LISTS = [['all_up', 'Rising in every time frame', 'strongest first'], ['turned_up', 'Just turned up', 'quarter trend turned up in the last 10 days'],
   ['price_up_volume_up', 'Rising on growing volume', 'biggest rise in volume first'], ['new_highs', 'New 52-week highs', 'in the last 5 days'],
   ['earnings_up_price_down', 'Earnings rising, price falling', 'profits up in recent reports while the one-year price trend is down'],
   ['turned_down', 'Just turned down', 'quarter trend turned down in the last 10 days'], ['all_down', 'Falling in every time frame', 'weakest first'],
   ['new_lows', 'New 52-week lows', 'in the last 5 days']];
+const PICTURE = [['2', 'Rising in every time frame', 'var(--emerald)', 'up2'], ['1', 'Mostly rising', 'color-mix(in srgb, var(--emerald) 50%, var(--surface-3))', ''], ['0', 'Mixed or sideways', 'var(--surface-3)', ''],
+  ['-1', 'Mostly falling', 'color-mix(in srgb, var(--ruby) 50%, var(--surface-3))', ''], ['-2', 'Falling in every time frame', 'var(--ruby)', 'down2']];
 
 fetch('data/trends.json').then(r => r.json()).then(T => {
   const M = T.market, I = M.index, B = M.breadth, C = T.counts;
-  document.getElementById('stamp').textContent = 'Updated ' + T.made;
+  A.setStatus('Updated ' + A.when(T.made));
   const frames = I ? Object.keys(FRAME).filter(k => I.price[k]).map(k => { const f = I.price[k];
-    return `<div class="fr"><span class="mute">${FRAME[k][0]}</span><span>${dir(f.dir)}</span><span class="mute">${since(f)} · ${sg(f.chg)} · ${f.vs_avg >= 0 ? '+' : ''}${f.vs_avg}% from its ${FRAME[k][1].replace(' days', '-day')} average</span></div>`; }).join('') : '';
-  const breadth = Object.keys(FRAME).filter(k => B[k] && B[k].up != null).map(k => `<div style="margin-top:6px"><div style="display:flex;justify-content:space-between;font-size:12px"><span class="mute">${FRAME[k][0]}</span>
-      <span><span class="ok">${B[k].up}% rising</span> · <span class="fail">${B[k].down}% falling</span></span></div>${bar(B[k].up, B[k].down)}</div>`).join('');
+    return `<div class="fr"><span class="mute">${FRAME[k][0]}</span><span>${dir(f.dir)}</span><span class="sub">${since(f)}, ${sg(f.chg)}, ${f.vs_avg >= 0 ? '+' : ''}${f.vs_avg}% from its ${FRAME[k][1]} average</span></div>`; }).join('') : '';
+  const breadth = Object.keys(FRAME).filter(k => B[k] && B[k].up != null).map(k => `<div class="br"><div><span class="mute">${FRAME[k][0]}</span>
+      <span><span class="up">${B[k].up}% rising</span>, <span class="down">${B[k].down}% falling</span></span></div>${bar(B[k].up, B[k].down)}</div>`).join('');
   const total = Object.values(C).reduce((a, b) => a + b, 0);
-  const lists = LISTS.map(([k, title, sub]) => { const L = T.lists[k] || []; return `<div class="card"><b>${title}</b> <span class="mute" style="font-size:12px">· ${sub}</span>
-      <div style="margin-top:6px">${L.length ? L.map(x => `<a class="li" href="./#${encodeURIComponent(x.s)}"><span class="nm"><b>${esc(x.s.split('.')[0])}</b>${x.s.includes('.X') ? '<span class="mute">.X</span>' : ''} <span class="mute">${esc(x.name)}</span></span>
-        <span class="num">${sg(x.r60)} <span class="mute" style="font-size:11px">3m</span></span></a>`).join('') : '<span class="mute" style="font-size:13px">None today.</span>'}</div></div>`; }).join('');
+  const lists = LISTS.map(([k, title, sub]) => { const L = T.lists[k] || []; return `<div class="card"><h3>${title}</h3><div class="sub" style="margin:2px 0 8px">${sub}</div>
+      ${L.length ? L.map(x => `<a class="li" href="./#${encodeURIComponent(x.s)}"><span class="nm"><b>${esc(x.s.split('.')[0])}</b>${x.s.includes('.X') ? '<span class="mute">.X</span>' : ''} <span class="mute">${esc(x.name)}</span></span>
+        <span class="num">${sg(x.r60)} <span class="sub">3 months</span></span></a>`).join('') : '<div class="sub">None today.</div>'}</div>`; }).join('');
+  const stat = (v, label) => `<div class="stat"><b>${v}</b><span>${label}</span></div>`;
+  const tv = M.turnover;
   document.getElementById('main').innerHTML = `
-    <div class="cards">
-      <div class="card" style="grid-column:1 / -1"><div class="mute">The market (ASPI ${I ? Math.round(I.level).toLocaleString() : ''})</div><div class="big">${I ? esc(I.headline) : 'Not available'}</div>
-        <div style="margin-top:6px">${frames}</div>
-        ${I ? `<div class="note">${Math.abs(I.from_high)}% below its 52-week high · 1 month ${sg(I.r20)} · 3 months ${sg(I.r60)} · 12 months ${sg(I.r250)}</div>` : ''}</div>
-      <div class="card"><div class="mute">Shares by price trend</div>${breadth}<div class="note">Of ${M.shares} shares. The rest are moving sideways.</div></div>
-      <div class="card"><div class="mute">Breadth today</div>
-        <div style="margin-top:6px"><b>${M.above50}%</b> above their 50-day average · <b>${M.above200}%</b> above their 200-day</div>
-        <div style="margin-top:4px"><span class="ok"><b>${M.advancers}</b> up</span> and <span class="fail"><b>${M.decliners}</b> down</span> over the last month</div>
-        <div style="margin-top:4px"><span class="ok"><b>${M.new_highs}</b></span> at new 52-week highs · <span class="fail"><b>${M.new_lows}</b></span> at new lows</div></div>
-      <div class="card"><div class="mute">Activity and earnings</div>
-        ${M.turnover ? `<div style="margin-top:6px">Money traded a day: <b>LKR ${lkr(M.turnover.recent)}</b>, ${M.turnover.ratio >= 1.15 ? '<span class="ok">rising</span>' : M.turnover.ratio <= 0.85 ? '<span class="fail">falling</span>' : 'steady'} <span class="mute">(${M.turnover.ratio}x the three months before)</span></div>` : ''}
-        ${M.earnings_up != null ? `<div style="margin-top:4px">Company profits: <span class="ok"><b>${M.earnings_up}%</b> rising</span> · <span class="fail"><b>${M.earnings_down}%</b> falling</span> <span class="mute">of those with checked reports</span></div>` : ''}</div>
+    <section class="lead">
+      <div>
+        <p class="stamp">The market${I ? `: ASPI ${Math.round(I.level).toLocaleString()}, ${Math.abs(I.from_high)}% below its 52-week high` : ''}</p>
+        <h1 class="headline">${I ? esc(I.headline) : 'Not available'}</h1>
+        ${frames}
+        ${I ? `<p class="note">1 month ${sg(I.r20)}, 3 months ${sg(I.r60)}, 12 months ${sg(I.r250)}</p>` : ''}
+      </div>
+      <div>
+        <h3>How many shares are rising</h3>
+        ${breadth}
+        <p class="note">Of ${M.shares} shares. The rest are moving sideways.</p>
+      </div>
+    </section>
+    <div class="stats">
+      ${stat(M.above50 + '%', 'above their 50-day average')}${stat(M.above200 + '%', 'above their 200-day average')}
+      ${stat(`<span class="up">${M.new_highs}</span> <small>highs,</small> <span class="down">${M.new_lows}</span> <small>lows</small>`, 'new 52-week extremes')}
+      ${tv ? stat('LKR ' + lkr(tv.recent), `traded a day, ${tv.ratio >= 1.15 ? 'rising' : tv.ratio <= 0.85 ? 'falling' : 'steady'} (${tv.ratio} times the three months before)`) : ''}
+      ${M.earnings_up != null ? stat(`<span class="up">${M.earnings_up}%</span> <small>up,</small> <span class="down">${M.earnings_down}%</span> <small>down</small>`, 'company profits, of those with checked reports') : ''}
     </div>
-    <p class="note"><b>How a trend is read here.</b> A share is <span class="ok">rising</span> in a time frame when its price is above its average for that time frame and the average itself is going up;
-      <span class="fail">falling</span> when it is below a falling average; otherwise sideways. Month = 20 trading days, quarter = 50, year = 200, three years = 750.
+    <p class="note">A share is <span class="up">rising</span> in a time frame when its price is above its average for that time frame and the average itself is going up;
+      <span class="down">falling</span> when it is below a falling average; otherwise sideways. Month is 20 trading days, quarter 50, year 200, three years 750.
       A trend says what has been happening, not what will happen next.</p>
 
     <h2>Shares by overall picture</h2>
-    <div class="tw"><table><tr><th>Picture</th><th class="num">Shares</th><th class="num">Share of market</th></tr>
-      ${[['2', 'Rising in every time frame', 'ok'], ['1', 'Mostly rising', 'ok'], ['0', 'Mixed or sideways', 'mute'], ['-1', 'Mostly falling', 'fail'], ['-2', 'Falling in every time frame', 'fail']]
-        .map(([k, t, c]) => `<tr><td class="${c}">${t}</td><td class="num">${C[k] || 0}</td><td class="num">${total ? Math.round(100 * (C[k] || 0) / total) : 0}%</td></tr>`).join('')}</table></div>
+    <div class="seg">${PICTURE.map(([k, t, c]) => `<i style="flex:${C[k] || 0} 0 0;background:${c}" title="${t}: ${C[k] || 0}"></i>`).join('')}</div>
+    <div class="segkey">${PICTURE.map(([k, t, c, f]) => { const inner = `<i style="background:${c}"></i>${t} <b>${C[k] || 0}</b> <span class="mute">${total ? Math.round(100 * (C[k] || 0) / total) : 0}%</span>`;
+      return f ? `<a href="./#/shares/${f}">${inner}</a>` : `<span>${inner}</span>`; }).join('')}</div>
 
-    <h2>Industry groups <span class="mute">· strongest over three months first</span></h2>
-    <div class="tw"><table><tr><th>Group</th><th class="num">1 month</th><th class="num">3 months</th><th class="num x">1 year</th><th class="num x">Rising: quarter</th><th class="num">Rising: year</th><th class="num x">Profits rising</th><th>Trend</th><th class="x">Leaders</th></tr>
-      ${T.sectors.map(s => `<tr><td>${esc(s.sector)} <span class="mute" style="font-size:11px">${s.n}</span></td><td class="num">${sg(s.r20)}</td><td class="num">${sg(s.r60)}</td><td class="num x">${sg(s.r250)}</td>
-        <td class="num x">${s.up_medium}%</td><td class="num">${s.up_long}%</td><td class="num x">${s.earnings_up != null ? s.earnings_up + '%' : '–'}</td>
+    <h2>Industry groups <span class="mute">strongest over three months first</span></h2>
+    <div class="tw"><table><tr><th>Group</th><th class="num">1 month</th><th class="num">3 months</th><th class="num x">1 year</th><th class="num x">Rising: quarter</th><th class="num xs">Rising: year</th><th class="num x">Profits rising</th><th>Trend</th><th class="x">Leaders</th></tr>
+      ${T.sectors.map(s => `<tr><td><a href="./#/shares/sector:${encodeURIComponent(s.sector)}">${esc(s.sector)}</a> <span class="sub">${s.n}</span></td><td class="num">${sg(s.r20)}</td><td class="num">${sg(s.r60)}</td><td class="num x">${sg(s.r250)}</td>
+        <td class="num x">${s.up_medium}%</td><td class="num xs">${s.up_long}%</td><td class="num x">${s.earnings_up != null ? s.earnings_up + '%' : '–'}</td>
         <td><span class="pill ${s.label === 'rising' || s.label === 'turning up' ? 'up' : s.label === 'falling' || s.label === 'weakening' ? 'down' : ''}">${s.label}</span></td>
-        <td class="x mute" style="font-size:12px">${s.leaders.join(', ')}</td></tr>`).join('')}</table></div>
+        <td class="x sub">${s.leaders.join(', ')}</td></tr>`).join('')}</table></div>
     <p class="note">Changes are the middle share of each group (half did better, half worse). "Rising" columns are the share of the group's companies in a rising trend. Leaders are the tradeable shares up most over three months.</p>
 
-    <h2>Shares to look at <span class="mute">· tradeable shares only (LKR 1 million or more a day)</span></h2>
+    <h2>Shares to look at <span class="mute">tradeable shares only, LKR 1 million or more a day</span></h2>
     <div class="lists">${lists}</div>
-    <p class="note">Tap a share to open it; its page has a Trends card covering price, volume, earnings, dividends and strength against its sector. These lists describe the past. Nothing here is financial advice.</p>`;
+    <p class="note">Tap a share to open it; its page covers price, volume, earnings, dividends and strength against its group. These lists describe the past. Nothing here is financial advice.</p>`;
 }).catch(() => { document.getElementById('main').innerHTML = '<p class="mute">Trends are not available yet. They are built with the daily update.</p>'; });
 </script>
 </body>

@@ -18,7 +18,16 @@ From then on it updates itself every weekday after the market closes.
 
 ## Using it
 
-- **Add stocks:** press **+ Add stocks** on the site. It opens the GitHub run page, where you can enter symbols such as `HAYL.N0000 CTC.N0000`. They're added to `watchlist.txt` and their history is loaded. You can also edit `watchlist.txt` directly on GitHub.
+The site is one app with the same navigation on every page: a bar along the bottom on phones and upright tablets, a rail down the left on wide screens.
+
+- **Home** opens with the day in a few sentences, four key figures, a map of the whole market (every company as a block sized by its market value and coloured by today's change, one month, three months or its signal; tap a block to open the share), then *Worth a look*, *Take care*, Big orders, the latest alerts and the industry groups. The sentences are put together by fixed rules in `brief.py` from the same figures the pages show; no AI model writes them, and they are a description, not advice.
+- **Shares** is the full list with ready-made screens as chips (Investment picks, Trading watch, Buy, Sell, Rising everywhere, Quiet buying, P/E under 10, Graham, Buffett and so on), a sort box, and a 30-day line for each share.
+- **A share's page** starts with the price, the signal, a plain-English summary and the key figures, then a row of chips that jump to each section: chart, trends, signal, peers, 10 years, pressure, fundamentals, levels.
+- **Search** (the magnifier, or press `/` or Ctrl/⌘ K on a keyboard) finds shares by symbol or name, industry groups, screens and pages from anywhere.
+- **Alerts** shows the day's alerts; the red number on its tab is how many you have not seen.
+- **More** leads to Veterans' checklists, Market history, Forecast accuracy, Data checks, adding shares, and the light or dark theme. The theme follows your device until you choose one.
+- **Add to your home screen:** in Safari tap Share, then *Add to Home Screen*. The site then opens full-screen with its own icon, like an app. It still needs an internet connection.
+- **Add stocks:** *More*, then *Add shares or refresh the data*. It opens the GitHub run page, where you can enter symbols such as `HAYL.N0000 CTC.N0000`. They're added to `watchlist.txt` and their history is loaded. You can also edit `watchlist.txt` directly on GitHub.
 - **Stars** ☆ on the site are saved in that browser only. `watchlist.txt` sets which stocks get full history.
 - Every stock that trades on a given day gets saved. Stocks outside your watchlist gain a signal once they have 30 days of saved data.
 
@@ -107,7 +116,7 @@ Each figure is sanity-checked against the share price, and anything implausible 
 
 ### How report figures are checked
 
-Each figure keeps the exact PDF line it came from; on a stock's page, open "Exact lines read from the PDFs" to see them. Before any figure affects the score it must pass a cross-check:
+Each figure keeps the exact PDF line it came from; on a stock's page, open "Exact lines read from the reports" to see them. Before any figure affects the score it must pass a cross-check:
 
 1. **Last year's column = last year's report.** Every report prints the same period last year beside the current figures. When that column matches the figure in last year's own report, the row and columns were read correctly. The reader also uses this match to pick the right columns when a row holds several.
 2. **Printed % change.** Where a report prints a % change column, it must match the current and prior figures.
@@ -115,7 +124,8 @@ Each figure keeps the exact PDF line it came from; on a stock's page, open "Exac
 4. **EPS = attributable profit ÷ shares in issue** (latest four reports).
 5. **EPS growth must agree with profit growth.**
 6. **Net assets per share:** the balance sheet's comparative column must equal the figure at the last financial year end.
-7. **Plausibility:** every per-share figure is checked against the share price. Full-year EPS more than 13 months old is never used for P/E. US-dollar translation rows are skipped. Long-term EPS growth is only measured across years whose figures link up, so share splits don't create false trends.
+7. **Dividends across a share split.** A dividend declared before a split is per old share, and reports do not restate it. When a share split during the report's year or since, its dividend yield is shown but marked ⚠ and not used.
+8. **Plausibility:** every per-share figure is checked against the share price. Full-year EPS more than 13 months old is never used for P/E. US-dollar translation rows are skipped. Long-term EPS growth is only measured across years whose figures link up, so share splits don't create false trends.
 
 Figures that fail are shown with ⚠ and excluded from the score. The stock page lists every check (passed / warning / failed), and the header shows how many figures were verified across all companies. The filter "Data issues" lists companies with failed checks.
 
@@ -188,7 +198,7 @@ These are mechanical readings of published rules, **not the opinions of those pe
 
 ## Phones and tablets
 
-On a phone the list shows change under the price and score under the signal so every column fits, and tapping a share opens it full-screen with a **‹ All shares** bar (the phone's Back works too). Tablets held upright keep the list above the share; wide screens show them side by side.
+On phones and upright tablets one thing is shown at a time: the list shows change under the price and score under the signal so every column fits, and tapping a share opens it full-screen under a Back bar (the phone's own Back works too, and returns you to the same place in the list). Screens 900 points wide or more (an iPad held sideways, a computer) show the list and the open share side by side. Every page is tested at widths from 320 to 1920 points so that nothing runs off the side.
 
 ## Files
 
@@ -210,7 +220,10 @@ On a phone the list shows change under the price and score under the signal so e
 | `.github/workflows/publish.yml` | Rebuild and publish the site on demand |
 | `reports.py` | Lists CSE report PDFs and reads figures out of them |
 | `fundamentals.py` | Collects report figures, works out P/E, growth, etc. and fundamental points |
-| `site/index.html` | The website |
+| `site/index.html` | The app: Home, Shares, Alerts and each share's page |
+| `site/app.css`, `site/app.js` | The look and the frame shared by every page: colours, navigation, search, light and dark themes |
+| `brief.py` | Writes the Home summary, the "worth a look" and "take care" lists and each share's summary, by fixed rules |
+| `site/manifest.webmanifest`, `site/icon-*.png` | Let the site be added to a phone's home screen as an app |
 | `cse_client.py` | Unofficial CSE API client (limited to 1 request/sec) |
 | `collector.py` | Daily snapshot (skips holidays), history backfill, CSV import |
 | `db.py` | Storage as CSV files in `data/` |

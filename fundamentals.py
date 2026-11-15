@@ -611,7 +611,31 @@ def metrics(symbol: str, price: float | None) -> dict | None:
     nv, nt = sum(ver.values()), len(ver)
     share = nv / nt if nt else 0
     m["confidence"] = "good" if nv >= 4 and share >= 0.7 else "partial" if nv >= 2 and share >= 0.4 else "low"
-    return apply_ai(m, symbol, price)
+    return split_guard(apply_ai(m, symbol, price), symbol)
+
+
+def split_guard(m: dict, symbol: str) -> dict:
+    """A dividend declared before a share split is stated per OLD share, and annual reports do not restate it.
+    Set against today's price it can look ten times too generous. When the share split during the report's
+    year or since, the dividend figure is kept on show but marked unverified, so it is not scored or screened on."""
+    try:
+        sp = [x for x in db.splits(symbol) if x["factor"] >= 1.15]
+    except Exception:
+        sp = []
+    year = next((y for y in m.get("annual") or [] if y.get("dps") is not None), None)
+    if not sp or m.get("dps") is None or not year:
+        return m
+    last = max(x["date"] for x in sp)
+    start = f"{int(year['end'][:4]) - 1}{year['end'][4:]}"                 # the report's year began a year before its end
+    if last > start:
+        year["dps_ok"] = False
+        m.setdefault("verified", {})["div_yield"] = False
+        m.setdefault("checks", []).append({"level": "warn", "end": year["end"], "msg": f"dividend per share {m['dps']} may be per share as it was "
+                                           f"before the split of {last}; the yield is shown but not used"})
+        cs = m.get("check_summary")
+        if cs:
+            cs["warn"] = cs.get("warn", 0) + 1
+    return m
 
 
 

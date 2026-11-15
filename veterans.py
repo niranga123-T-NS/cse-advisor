@@ -267,7 +267,7 @@ def dreman(f, t, ctx, s):
     cs = [
         crit("In the cheapest fifth of the market by P/E or by price to net assets",
              None if pe is None and pb is None else bool((pe is not None and 0 < pe <= ctx["pe_q20"]) or (pb is not None and 0 < pb <= ctx["pb_q20"])),
-             " · ".join(x for x in (f"P/E {pe} (cheapest fifth: {ctx['pe_q20']:.1f} or less)" if pe is not None else "",
+             "; ".join(x for x in (f"P/E {pe} (cheapest fifth: {ctx['pe_q20']:.1f} or less)" if pe is not None else "",
                                     f"P/B {pb} (cheapest fifth: {ctx['pb_q20']:.2f} or less)" if pb is not None else "") if x) or None, must=True),
         crit("Dividend yield above the market's middle", None if dy is None else dy >= ctx["dy_median"], None if dy is None else f"yield {dy}% (market middle {ctx['dy_median']:.1f}%)"),
         crit("Earnings are not shrinking", None if pg is None else pg >= 0, None if pg is None else f"profit {pg:+.1f}% on last year"),

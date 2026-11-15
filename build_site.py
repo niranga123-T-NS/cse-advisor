@@ -200,14 +200,24 @@ def build():
         V, vsum = veterans.build(longterm.BARS, funds, sec, names, T, tsum["market"], longterm._shares())
         made = dt.datetime.now(collector.COLOMBO).strftime("%Y-%m-%d %H:%M")
         by_sym = {x["symbol"]: x for x in signals}
-        for s, t in T.items():
+        shares = longterm._shares()
+        for s, t in T.items():                  # what the list, the map and the search need about each share
             x = by_sym.get(s)
             if not x:
                 continue
-            _dump(OUT / "view" / f"{s}.json", {"symbol": s, "name": names.get(s, ""), "sector": sec.get(s, ""), "close": x["close"], "date": x["date"],
-                                                "signal": x["signal"], "trend": trends.public(t), "lenses": V.get(s, [])})
             x["tr"], x["trh"], x["rs"] = t["code"], t["headline"], t.get("rs")
             x["vet"] = "".join({"fits": "F", "partly": "P", "no": "N", "unknown": "U"}[l["verdict"]] for l in V.get(s, []))
+            x["mcap"] = round(shares[s] * x["close"]) if shares.get(s) else None
+            x["spark"] = [round(float(v), 4) for v in longterm.BARS[s]["close"].tail(30)]
+        # the words: the home brief and a summary for each share
+        import brief
+        words = brief.build(signals, T, V, tsum, mk, longterm.official()[1])
+        for s, t in T.items():
+            x = by_sym.get(s)
+            if x:
+                _dump(OUT / "view" / f"{s}.json", {"symbol": s, "name": names.get(s, ""), "sector": sec.get(s, ""), "close": x["close"], "date": x["date"],
+                                                    "signal": x["signal"], "summary": words["shares"].get(s, ""), "trend": trends.public(t), "lenses": V.get(s, [])})
+        _dump(OUT / "brief.json", {**words["home"], "made": made})
         _dump(OUT / "signals.json", signals)
         _dump(OUT / "trends.json", {**tsum, "made": made})
         _dump(OUT / "veterans.json", {**vsum, "made": made})

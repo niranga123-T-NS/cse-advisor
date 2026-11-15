@@ -17,6 +17,40 @@
 <script src="https://unpkg.com/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
 <link rel="stylesheet" href="app.css">
 <style>
+  /* ---------- the compare pop-up ---------- */
+  :root { --c1:#7198ff; --c2:#e5b455; --c3:#c08cf5; --c4:#3fc6d0; }
+  @media (prefers-color-scheme: light) { :root:not([data-theme=dark]) { --c1:#2f5bd8; --c2:#a86a00; --c3:#7b4fd0; --c4:#0d8a94; } }
+  :root[data-theme=light] { --c1:#2f5bd8; --c2:#a86a00; --c3:#7b4fd0; --c4:#0d8a94; }
+  .cmp { position:fixed; inset:0; z-index:55; background:rgba(5,8,14,.6); display:flex; align-items:center; justify-content:center; padding:24px; }
+  .cmp[hidden] { display:none; }
+  .cmpbox { width:min(1080px, 100%); max-height:100%; display:flex; flex-direction:column; background:var(--ground); border:1px solid var(--line); border-radius:20px; overflow:hidden; box-shadow:0 24px 70px rgba(0,0,0,.45); }
+  .cmphead { display:flex; align-items:center; gap:10px; padding:12px 12px 12px 20px; border-bottom:1px solid var(--line-soft); } .cmphead h2 { margin:0; flex:1; }
+  .cmpbody { overflow:auto; padding:16px 20px 26px; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; }
+  .cmpbody h3 { margin:26px 0 10px; font-size:16px; font-weight:650; }
+  .cmpsel { display:flex; flex-wrap:wrap; gap:8px; align-items:center; } .cmpsel input { flex:1 1 200px; max-width:320px; }
+  .cchip { display:inline-flex; align-items:center; gap:7px; padding:5px 4px 5px 11px; border-radius:18px; background:var(--surface-2); font-size:14px; }
+  .cchip i, .chead i, .cleg i { display:inline-block; width:10px; height:10px; border-radius:50%; background:var(--c); flex:none; }
+  .cchip button { display:inline-flex; width:26px; height:26px; align-items:center; justify-content:center; border:0; border-radius:50%; background:none; color:var(--ink-3); cursor:pointer; font-size:17px; line-height:1; }
+  .cchip button:hover { background:var(--surface-3); color:var(--ink); } .cchip button svg { width:15px; height:15px; }
+  .cmpsug { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-top:10px; }
+  #cmpchart { height:300px; margin-top:10px; }
+  .cleg { display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:8px; font-size:13.5px; } .cleg span { display:inline-flex; align-items:center; gap:6px; white-space:nowrap; }
+  .cleg i.dash { width:16px; height:0; border-radius:0; background:none; border-top:2px dashed var(--ink-3); }
+  .cmpt { table-layout:fixed; } .cmpt th:first-child, .cmpt td:first-child { width:34%; white-space:normal; color:var(--ink-2); }
+  .cmpt td, .cmpt th { white-space:normal; } .cmpt .best { color:var(--sapphire); font-weight:700; }
+  .cmpt tr.grp td { padding-top:14px; font-size:12.5px; font-weight:600; color:var(--ink-3); background:none; border-bottom:1px solid var(--line); }
+  .chead { border:0; border-bottom:3px solid var(--c); background:none; color:var(--ink); font:inherit; font-weight:650; cursor:pointer; padding:0 0 2px; } .chead:hover { color:var(--sapphire); }
+  .cmpt.corr { table-layout:auto; } .cmpt.corr td:first-child { width:auto; color:var(--ink); } .cmpt.corr td.num { font-variant-numeric:tabular-nums; }
+  .cmptips { margin:0; padding-left:20px; font-family:var(--serif); font-size:16px; line-height:1.5; max-width:80ch; } .cmptips li { margin-bottom:8px; }
+  .listmeta .btn, .dtitle .btn { padding:5px 11px; font-size:13px; }
+  @media (max-width:899.98px), (max-height:500px) {
+    .cmp { padding:0; } .cmpbox { width:100%; height:100%; border:0; border-radius:0; }
+    .cmphead { padding:calc(8px + env(safe-area-inset-top)) 8px 8px 16px; } .cmpbody { padding:12px 14px calc(26px + env(safe-area-inset-bottom)); }
+    #cmpchart { height:250px; } .cmpt th:first-child, .cmpt td:first-child { width:27%; } .cmpt td, .cmpt th { font-size:12.5px; padding:6px 3px; } .cmpt td:last-child, .cmpt th:last-child { padding-right:8px; }
+    .cmpt .sig { font-size:12px; }
+    .cmpt td:first-child, .cmpt th:first-child { padding-left:8px; } .cmptips { font-size:15.5px; }
+  }
+
   /* ---------- three views (Home, Shares, Alerts) and the share itself ---------- */
   #home, #list, #alertsPane, #detail { min-width:0; }
   body[data-view=home] #list, body[data-view=home] #alertsPane, body[data-view=shares] #home, body[data-view=shares] #alertsPane,
@@ -93,7 +127,8 @@
 
   /* ---------- Shares ---------- */
   .listbar { position:sticky; top:0; z-index:5; background:var(--ground); padding:10px 14px 8px; border-bottom:1px solid var(--line-soft); }
-  .listmeta { display:flex; align-items:center; gap:10px; margin-top:8px; font-size:12.5px; color:var(--ink-3); }
+  .listmeta { display:flex; align-items:center; gap:8px 10px; margin-top:8px; font-size:12.5px; color:var(--ink-3); }
+  .listmeta #count { white-space:nowrap; } .listmeta select { min-width:0; flex:0 1 auto; }
   .listmeta select { margin-left:auto; padding:5px 8px; font-size:13px; border-radius:8px; }
   #listTable { table-layout:fixed; } #listTable th, #listTable td { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   #listTable th { position:sticky; top:0; font-size:12px; padding-top:6px; padding-bottom:6px; }
@@ -207,7 +242,7 @@
   <section id="list">
     <div class="listbar">
       <div class="chips" id="filters"></div>
-      <div class="listmeta"><span id="count"></span>
+      <div class="listmeta"><span id="count"></span><button class="btn" id="cmpBtn" data-cmp="">Compare</button>
         <select id="sort" aria-label="Sort the list" onchange="render()">
           <option value="score">Sort: rating score</option><option value="chg">Change today</option><option value="tov">Money traded</option><option value="d20">1 month change</option>
           <option value="pe">Price to earnings, low first</option><option value="dy">Dividend yield</option><option value="rs">Strength</option><option value="name">Name</option></select></div>
@@ -220,6 +255,10 @@
   <section id="alertsPane"><div id="alerts"></div></section>
   <section id="detail"><div class="empty">Pick a share from the list, or press / to search.</div></section>
 </main>
+<div id="cmp" class="cmp" hidden><div class="cmpbox" role="dialog" aria-modal="true" aria-label="Compare shares">
+  <div class="cmphead"><h2>Compare shares</h2><button class="iconbtn" id="cmpClose" onclick="closeCompare()" aria-label="Close"></button></div>
+  <div class="cmpbody" id="cmpbody"></div></div></div>
+<script src="compare.js"></script>
 <script>
 const $ = s => document.querySelector(s);
 const A = window.CSEApp, esc = A.esc;
@@ -320,7 +359,7 @@ try { history.scrollRestoration = 'manual'; } catch (e) {}      // this page put
 function parseHash() {
   let h = ''; try { h = decodeURIComponent(location.hash.slice(1)); } catch (e) {}
   if (!h || h === '/') return { view:'home' };
-  if (h[0] === '/') { const [v, ...rest] = h.slice(1).split('/'); return { view: TITLE[v] ? v : 'home', arg: rest.join('/') }; }
+  if (h[0] === '/') { const [v, ...rest] = h.slice(1).split('/'); return { view: v === 'compare' || TITLE[v] ? v : 'home', arg: rest.join('/') }; }
   return { sym: h };
 }
 function setView(v) {
@@ -329,8 +368,11 @@ function setView(v) {
   const t = document.querySelector('.top .title'); if (t) t.textContent = TITLE[v];
   renderAlerts(); if (v === 'home') renderHome(); if (v === 'shares') render();
 }
+let routed = false;
 function route() {
   const r = parseHash();
+  if (r.view === 'compare') { if (!routed) setView(view); routed = true; showCompare(r.arg); return; }      // the pop-up opens over whatever is showing
+  routed = true; hideCompare();
   if (r.sym) { if (view === 'home') setView('shares'); show(r.sym); return; }
   closeDetail(); setView(r.view);
   if (r.view === 'shares' && r.arg) setFilter(r.arg);
@@ -351,7 +393,7 @@ function closeDetail() {
   if (!PHONE.matches) $('#detail').innerHTML = '<div class="empty">Pick a share from the list, or press / to search.</div>';
   if (was) scrollTo(0, scrollAt[view] || 0);
 }
-$('#backbtn').innerHTML = A.icon.back;
+$('#backbtn').innerHTML = A.icon.back; $('#cmpClose').innerHTML = A.icon.close || '×';
 
 // ---------- big orders: largest trades, large orders waiting, signs of hidden buying or selling ----------
 // CSE publishes trades and order totals, not who placed them. "Buying" / "selling" is worked out from how the price
@@ -529,6 +571,7 @@ function renderAlerts() {
 }
 
 document.addEventListener('click', e => {
+  const cb = e.target.closest('[data-cmp]'); if (cb) { openCompare(cb.dataset.cmp || null); return; }
   const b = e.target.closest('[data-bt]'); if (b) { bigTab = b.dataset.bt; renderBig(); return; }
   const af = e.target.closest('[data-af]'); if (af) { alertFilter = af.dataset.af; renderAlerts(); return; }
   const lr = e.target.closest('[data-lr]'); if (lr) { longRange = +lr.dataset.lr; drawLong(); return; }
@@ -866,6 +909,7 @@ async function show(sym) {
   $('#detail').innerHTML = `
     <div class="dtitle"><h1>${esc(sym)}</h1>
       <button class="starbtn ${on ? 'on' : ''}" data-star="${esc(sym)}" aria-label="Favourite">${on ? A.icon.starOn : A.icon.star}</button>
+      <button class="btn" data-cmp="${esc(sym)}">Compare</button>
       <span class="sigchip ${sigClass(a.signal)}">${sigWord(a.signal)}</span></div>
     <div class="dname">${esc(row.name || '')}${d.sector ? (row.name ? ', ' : '') + esc(d.sector) : ''}</div>
     <div class="dprice"><span class="px" id="dpx">${a.close.toFixed(2)}</span><span class="chg ${a.change_pct > 0 ? 'up' : a.change_pct < 0 ? 'down' : ''}" id="dchg">${a.change_pct > 0 ? '+' : ''}${p2(a.change_pct)}%</span>

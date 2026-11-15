@@ -22,6 +22,8 @@
     star: svg('<path d="M12 4l2.5 5.1 5.6.8-4 3.9.9 5.6-5-2.7-5 2.7.9-5.6-4-3.9 5.6-.8z"/>'),
     starOn: svg('<path d="M12 4l2.5 5.1 5.6.8-4 3.9.9 5.6-5-2.7-5 2.7.9-5.6-4-3.9 5.6-.8z"/>', true),
     plus: svg('<path d="M12 5v14M5 12h14"/>'),
+    compare: svg('<path d="M3 17l5-6 4 3 4-6 5 4"/><path d="M3 9l5 3 4-4 4 5 5-3" opacity=".45"/>'),
+    close: svg('<path d="M6 6l12 12M18 6L6 18"/>'),
     filter: svg('<path d="M4 6.5h16M7 12h10M10 17.5h4"/>'),
     chev: svg('<path d="M9.5 5.5 16 12l-6.5 6.5"/>'),
   };
@@ -72,11 +74,12 @@
   const repo = (() => { const m = location.hostname.match(/^([^.]+)\.github\.io$/), r = location.pathname.split('/').filter(Boolean)[0]; return m && r ? `https://github.com/${m[1]}/${r}` : null; })();
   function openMore() {
     const rows = NAV.slice(4).map(([k, label, href]) => `<a class="pi" href="${href}">${ICON[k]}<span class="t">${{ veterans:"Veterans' checklists", market:'Market history', accuracy:'Accuracy of ratings and forecasts', checks:'Data checks' }[k]}</span>${ICON.chev}</a>`).join('');
-    const sh = sheet(`<div class="list" style="padding:10px">${rows}
+    const sh = sheet(`<div class="list" style="padding:10px"><a class="pi" href="./#/compare">${ICON.compare}<span class="t">Compare shares</span><span class="s">up to four</span></a>${rows}
       ${repo ? `<a class="pi" href="${repo}/actions/workflows/update.yml" target="_blank" rel="noopener">${ICON.plus}<span class="t">Add shares or refresh the data</span><span class="s">on GitHub</span></a>` : ''}
       <button class="pi" data-theme-row>${dark() ? ICON.sun : ICON.moon}<span class="t">${dark() ? 'Use the light theme' : 'Use the dark theme'}</span></button></div>
       <div class="foot">Signals and checklists follow fixed rules. They are not financial advice.</div>`);
     sh.el.querySelector('[data-theme-row]').onclick = () => { setTheme(dark() ? 'light' : 'dark'); sh.close(); };
+    sh.el.querySelectorAll('a.pi').forEach(a => a.addEventListener('click', () => sh.close()));      // a link within this page does not reload it
   }
 
   // ---------- search: shares, ready-made screens, pages ----------
@@ -94,6 +97,7 @@
     const input = sh.el.querySelector('input'), list = sh.el.querySelector('.list');
     sh.el.querySelector('[data-x]').onclick = sh.close;
     let items = [], at = 0;
+    const CMP = { href: './#/compare', icon: 'compare', html: 'Compare shares', side: 'up to four' };
     const row = (it, i) => `<a class="pi ${i === at ? 'on' : ''}" href="${esc(it.href)}" data-i="${i}">${ICON[it.icon] || ICON.chev}<span class="t">${it.html}</span><span class="s">${esc(it.side || '')}</span></a>`;
     function draw() {
       const q = input.value.trim().toLowerCase(), S = shares || [];
@@ -102,7 +106,7 @@
         const rec = recent.get().map(s => S.find(x => x.symbol === s)).filter(Boolean);
         if (rec.length) groups.push(['Recently opened', rec.map(shareItem)]);
         groups.push(['Screens', SCREENS.slice(0, 7).map(screenItem)]);
-        groups.push(['Pages', NAV.map(pageItem)]);
+        groups.push(['Pages', NAV.map(pageItem).concat([CMP])]);
       } else {
         const sym = S.filter(x => x.symbol.toLowerCase().startsWith(q)), rest = S.filter(x => !sym.includes(x) && (x.symbol.toLowerCase().includes(q) || (x.name || '').toLowerCase().includes(q)));
         const found = sym.concat(rest).slice(0, 8);
@@ -112,7 +116,7 @@
         const secs = [...new Set(S.map(x => x.sector).filter(Boolean))].filter(x => x.toLowerCase().includes(q)).slice(0, 4);
         if (secs.length) groups.push(['Industry groups', secs.map(x => ({ icon:'filter', html:esc(x), side:S.filter(y => y.sector === x).length + ' shares', href:'./#/shares/sector:' + encodeURIComponent(x) }))]);
         const scr = SCREENS.filter(x => x[1].toLowerCase().includes(q)); if (scr.length) groups.push(['Screens', scr.map(screenItem)]);
-        const pg = NAV.filter(x => x[1].toLowerCase().includes(q)); if (pg.length) groups.push(['Pages', pg.map(pageItem)]);
+        const pg = NAV.filter(x => x[1].toLowerCase().includes(q)).map(pageItem); if ('compare shares'.includes(q)) pg.push(CMP); if (pg.length) groups.push(['Pages', pg]);
       }
       items = groups.flatMap(g => g[1]); at = Math.min(at, Math.max(0, items.length - 1));
       let i = 0;

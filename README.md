@@ -24,6 +24,7 @@ The site is one app with the same navigation on every page: a bar along the bott
 - **Shares** is the full list with ready-made screens as chips (Investment picks, Trading watch, Buy, Sell, Rising everywhere, Quiet buying, P/E under 10, Graham, Buffett and so on), a sort box, and a 30-day line for each share.
 - **A share's page** starts with the price, the signal, a plain-English summary and the key figures, then a row of chips that jump to each section: chart, trends, signal, peers, 10 years, pressure, fundamentals, levels.
 - **Search** (the magnifier, or press `/` or Ctrl/⌘ K on a keyboard) finds shares by symbol or name, industry groups, screens and pages from anywhere.
+- **Compare** (the button on the Shares list and on every share's page, or under More) opens a pop-up for up to four shares: their prices charted against the ASPI from a common start of 100, their ratings and checked figures side by side with the best in each row marked, how closely their weekly price changes have moved together and with the ASPI (correlation over 1, 3 or 5 years), and a short reading of what that suggests, such as which two overlap and which adds variety. The reading is put together by fixed rules in `site/compare.js`; a correlation from weekly figures is a rough guide, good to about ±0.15 on three years and ±0.25 on one.
 - **Alerts** shows the day's alerts; the red number on its tab is how many you have not seen.
 - **More** leads to Veterans' checklists, Market history, Forecast accuracy, Data checks, adding shares, and the light or dark theme. The theme follows your device until you choose one.
 - **Add to your home screen:** in Safari tap Share, then *Add to Home Screen*. The site then opens full-screen with its own icon, like an app. It still needs an internet connection.
@@ -238,6 +239,7 @@ On phones and upright tablets one thing is shown at a time: the list shows chang
 | `site/index.html` | The app: Home, Shares, Alerts and each share's page |
 | `site/app.css`, `site/app.js` | The look and the frame shared by every page: colours, navigation, search, light and dark themes |
 | `brief.py` | Writes the Home summary, the "worth a look" and "take care" lists and each share's summary, by fixed rules |
+| `site/compare.js` | The Compare pop-up: chart against the ASPI, figures side by side, correlations and the written reading |
 | `site/manifest.webmanifest`, `site/icon-*.png` | Let the site be added to a phone's home screen as an app |
 | `cse_client.py` | Unofficial CSE API client (limited to 1 request/sec) |
 | `collector.py` | Daily snapshot (skips holidays), history backfill, CSV import |

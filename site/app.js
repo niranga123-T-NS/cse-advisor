@@ -71,7 +71,7 @@
   }
   const repo = (() => { const m = location.hostname.match(/^([^.]+)\.github\.io$/), r = location.pathname.split('/').filter(Boolean)[0]; return m && r ? `https://github.com/${m[1]}/${r}` : null; })();
   function openMore() {
-    const rows = NAV.slice(4).map(([k, label, href]) => `<a class="pi" href="${href}">${ICON[k]}<span class="t">${{ veterans:"Veterans' checklists", market:'Market history', accuracy:'Forecast accuracy', checks:'Data checks' }[k]}</span>${ICON.chev}</a>`).join('');
+    const rows = NAV.slice(4).map(([k, label, href]) => `<a class="pi" href="${href}">${ICON[k]}<span class="t">${{ veterans:"Veterans' checklists", market:'Market history', accuracy:'Accuracy of ratings and forecasts', checks:'Data checks' }[k]}</span>${ICON.chev}</a>`).join('');
     const sh = sheet(`<div class="list" style="padding:10px">${rows}
       ${repo ? `<a class="pi" href="${repo}/actions/workflows/update.yml" target="_blank" rel="noopener">${ICON.plus}<span class="t">Add shares or refresh the data</span><span class="s">on GitHub</span></a>` : ''}
       <button class="pi" data-theme-row>${dark() ? ICON.sun : ICON.moon}<span class="t">${dark() ? 'Use the light theme' : 'Use the dark theme'}</span></button></div>
@@ -80,9 +80,9 @@
   }
 
   // ---------- search: shares, ready-made screens, pages ----------
-  const SCREENS = [['invest', 'Investment picks'], ['tradewatch', 'Trading picks and watch list'], ['BUY', 'Buy signals'], ['SELL', 'Sell signals'], ['up2', 'Rising in every time frame'],
+  const SCREENS = [['invest', 'Investment picks'], ['tradewatch', 'Trading picks and watch list'], ['sb', 'Strong buy ratings'], ['BUY', 'Buy ratings'], ['SELL', 'Sell ratings'], ['up2', 'Rising in every time frame'],
     ['down2', 'Falling in every time frame'], ['acc', 'Quiet buying'], ['dist', 'Quiet selling'], ['value', 'Low price to earnings (under 10)'], ['div', 'Dividend yield 5% or more'],
-    ['watch', 'My favourites'], ['graham', "Pass Graham's checklist"], ['buffett', "Pass Buffett's checklist"], ['minervini', "Pass Minervini's trend template"], ['issues', 'Shares with data issues']];
+    ['watch', 'My favourites'], ['graham', "Pass Graham's checklist"], ['buffett', "Pass Buffett's checklist"], ['minervini', "Pass Minervini's trend template"], ['unrated', 'Shares that are not rated'], ['issues', 'Shares with data issues']];
   let shares = null, loading = null;
   const getShares = () => shares ? Promise.resolve(shares) : (loading = loading || fetch('data/signals.json').then(r => r.json()).then(s => (shares = s)).catch(() => (shares = [])));
   const recent = { get() { try { return JSON.parse(localStorage.getItem('recent') || '[]'); } catch (e) { return []; } },
@@ -121,7 +121,7 @@
     }
     const shareItem = x => ({ icon:'shares', html:`<b>${esc(x.symbol)}</b> <span class="mute">${esc(x.name || '')}</span>`, side:x.signal ? x.signal.toLowerCase() : '', href:'./#' + encodeURIComponent(x.symbol), sym:x.symbol });
     const screenItem = x => ({ icon:'filter', html:esc(x[1]), href:'./#/shares/' + x[0] });
-    const pageItem = x => ({ icon:x[0], html:esc({ checks:'Data checks', veterans:"Veterans' checklists", market:'Market history', accuracy:'Forecast accuracy' }[x[0]] || x[1]), href:x[2] });
+    const pageItem = x => ({ icon:x[0], html:esc({ checks:'Data checks', veterans:"Veterans' checklists", market:'Market history', accuracy:'Accuracy of ratings and forecasts' }[x[0]] || x[1]), href:x[2] });
     const pick = it => { if (!it) return; if (it.sym) recent.add(it.sym); sh.close(); go(it.href); };
     input.addEventListener('input', () => { at = 0; draw(); });
     input.addEventListener('keydown', e => {

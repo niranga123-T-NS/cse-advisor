@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" href="icon-192.png">
-<title>Forecast accuracy, CSE Advisor</title>
+<title>Accuracy, CSE Advisor</title>
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="stylesheet" href="app.css">
 <style>
@@ -22,7 +22,7 @@
   @media (max-width:350px) { .ci { white-space:normal; } }
 </style>
 </head>
-<body class="app" data-page="accuracy" data-title="Forecast accuracy">
+<body class="app" data-page="accuracy" data-title="Accuracy">
 <script src="app.js"></script>
 <main class="page" id="main"><p class="mute">Loading…</p></main>
 <script>
@@ -34,9 +34,70 @@ const dmy = d => { const m = /^(\d{4})-(\d\d)-(\d\d)/.exec(d || ''); return m ? 
 const sg = v => v == null ? '–' : `<span class="${v > 0 ? 'ok' : v < 0 ? 'fail' : ''}">${v > 0 ? '+' : ''}${p2(v)}%</span>`;
 const ci = a => a && a[0] === a[0] ? `<span class="mute ci">(${a[0]} to ${a[1]})</span>` : '';
 
+// ---------- Buy / Sell / Hold ratings: what each grade went on to do ----------
+let RT = null, gradeHz = '60';
+const GRADE = [['STRONG BUY', 'Strong buy', 'up'], ['BUY', 'Buy', 'up'], ['HOLD', 'Hold', ''], ['SELL', 'Sell', 'down'], ['STRONG SELL', 'Strong sell', 'down'], ['ALL', 'All rated shares', 'mute']];
+const sgn = (v, n = 1) => v == null ? '–' : `<span class="${v > 0 ? 'ok' : v < 0 ? 'fail' : ''}">${v > 0 ? '+' : ''}${(+v).toFixed(n)}%</span>`;
+function drawGrades() {
+  const el = document.getElementById('gradeTable'); if (!el || !RT) return;
+  const H = RT.horizons[gradeHz];
+  document.querySelectorAll('[data-hz]').forEach(b => b.classList.toggle('on', b.dataset.hz === gradeHz));
+  el.innerHTML = `<div class="tw"><table><tr><th>Price rating</th><th class="num x">Cases</th><th class="num">Gained after costs</th><th class="num">Typical result</th><th class="num xs">Middle half of results</th>
+      <th class="num">Against the average share</th><th class="num x">Fell 10% or more</th></tr>
+    ${GRADE.filter(g => H.grades[g[0]]).map(([k, name, cls]) => { const x = H.grades[k]; return `<tr><td class="${cls}">${k === 'ALL' ? name : '<b>' + name + '</b>'}</td><td class="num x">${x.n.toLocaleString()}</td><td class="num"><b>${x.hit}%</b></td>
+      <td class="num">${sgn(x.median)}</td><td class="num xs">${sgn(x.p25)} to ${sgn(x.p75)}</td><td class="num">${k === 'ALL' ? '–' : sgn(x.excess, 2).replace('%', ' pts')}</td><td class="num x">${x.down10}%</td></tr>`; }).join('')}</table></div>
+    <p class="note">Held for ${H.label}, bought at the next day's close, after ${RT.cost_pct}% for buying and selling. "Typical" is the middle result; "against the average share" is the average result less that of all rated shares over the same days.
+      Buy grades did better than Sell grades in <b>${H.buy_beat_sell[0]} of ${H.buy_beat_sell[1]} years</b>; the gap between them averaged ${H.periods['2010 to 2019']} points in 2010 to 2019 and ${H.periods['2020 to now']} since 2020.</p>
+    <details style="margin-top:8px"><summary>Year by year, ${H.label}</summary><div class="tw" style="margin-top:8px"><table><tr><th>Year</th><th class="num">Buy grades against the average</th><th class="num">Sell grades against the average</th>
+      <th class="num">Buy grades gained</th><th class="num x">All gained</th><th class="num">Sell grades gained</th></tr>
+      ${H.years.map(y => `<tr><td>${y.y}</td><td class="num">${sgn(y.buy).replace('%', ' pts')}</td><td class="num">${sgn(y.sell).replace('%', ' pts')}</td><td class="num">${y.buy_hit}%</td><td class="num x">${y.all_hit}%</td><td class="num">${y.sell_hit}%</td></tr>`).join('')}</table></div></details>`;
+}
+document.addEventListener('click', e => { const b = e.target.closest('[data-hz]'); if (b) { gradeHz = b.dataset.hz; drawGrades(); } });
+function ratingsSection() {
+  const R = RT; if (!R) return '';
+  const h3 = R.horizons['60'], h12 = R.horizons['250'], sb = k => h3.grades[k] || {}, old = h3.old;
+  const cmp = old && old['STRONG BUY'] && old['STRONG SELL'] ? `<h2>Against the rules used before</h2>
+    <div class="tw"><table><tr><th>Held 3 months</th><th class="num">Strong buy gained after costs</th><th class="num">Strong sell gained</th><th class="num">Gap between them against the average share</th></tr>
+      <tr><td><b>New ratings</b></td><td class="num">${sb('STRONG BUY').hit}%</td><td class="num">${sb('STRONG SELL').hit}%</td><td class="num"><b>${(sb('STRONG BUY').excess - sb('STRONG SELL').excess).toFixed(1)} pts</b></td></tr>
+      <tr><td>Earlier chart rules</td><td class="num">${old['STRONG BUY'].hit}%</td><td class="num">${old['STRONG SELL'].hit}%</td><td class="num">${(old['STRONG BUY'].excess - old['STRONG SELL'].excess).toFixed(1)} pts</td></tr></table></div>
+    <p class="note">Both measured on the same shares and the same days. The earlier rules (price above its averages, MACD, RSI, Bollinger bands, Fibonacci levels) pointed the right way, but less sharply.
+      One of them was backwards for this market: a high RSI was scored as "overbought", yet shares with a high RSI went on to do better than average, not worse.</p>` : '';
+  return `<section id="ratings">
+    <p class="stamp">Buy, Sell and Hold ratings: ${R.cases.toLocaleString()} weekly readings from 2010 to ${h3.to.slice(0, 4)}; ${R.rated_now} of ${R.shares_now} shares rated today</p>
+    <h1 class="headline" style="max-width:30ch">A rating tilts the odds. It does not settle them.</h1>
+    <p class="say">Shares rated Buy or Strong buy went on to beat shares rated Sell or Strong sell in ${h3.buy_beat_sell[0]} of ${h3.buy_beat_sell[1]} years over three months, and in ${h12.buy_beat_sell[0]} of ${h12.buy_beat_sell[1]} over twelve.
+      But the margin is modest: held for three months, a Strong buy gained after costs ${sb('STRONG BUY').hit}% of the time and a Strong sell ${sb('STRONG SELL').hit}%.
+      Held for twelve months it was ${h12.grades['STRONG BUY'].hit}% against ${h12.grades['STRONG SELL'].hit}%. Which year you bought in has mattered more than the grade.</p>
+    <div class="chips" style="margin-top:14px">${Object.entries(R.horizons).map(([k, H]) => `<button class="chip" data-hz="${k}">${H.label}</button>`).join('')}</div>
+    <div id="gradeTable" style="margin-top:10px"></div>
+    ${cmp}
+    <h2>How a share is rated</h2>
+    <ul class="points">
+      <li><b>Who is rated.</b> Shares that have ${esc(R.rule)}. In the test the measures told far less about thinly traded shares (their chance of a gain was the same whatever the grade), so those are marked "Not rated" instead of being guessed at.</li>
+      ${Object.values(R.groups).map(g => `<li><b>${esc(g.title)}:</b> ${esc(g.what)}.</li>`).join('')}
+      <li><b>Adding up.</b> On each of the five, a share is placed against the other rated shares that day, and the five places are added with equal weight. The top 10% are Strong buy, the next 20% Buy, the middle 40% Hold, the next 20% Sell and the bottom 10% Strong sell.</li>
+      <li><b>Company reports.</b> Clearly strong checked figures (3 points or more) lift the rating one step and clearly weak ones (−2 or less) lower it one step; reports never create a Strong grade. This step is <b>not tested</b>: there are too few years of reports to test it, so the tables above are for the price rating alone.</li>
+    </ul>
+    <h2>What was tried and did not help</h2>
+    <ul class="points">
+      <li><b>Fitted weights and a tree model.</b> Weights learnt from earlier years, and a gradient-boosted tree model on all the measures, did no better on later years than simply adding the five places. The simple sum is used because it has nothing to over-tune.</li>
+      <li><b>The market's own state.</b> Whether the index was above or below its 200-day average, rising or falling, or how many shares were in an uptrend made no useful difference to what the ratings went on to do.</li>
+      <li><b>One month.</b> Over one month no grade gained after costs even half the time. The ratings are a guide for holding periods of three months or more, not for quick trades.</li>
+    </ul>
+    <h2>Limits of this test</h2>
+    <ul class="points">
+      <li><b>The measures were chosen after looking at this same history.</b> No weights are fitted, but the choice of what to measure was informed by the past, so the future margin is probably smaller than the past one. It has already narrowed since 2020.</li>
+      <li><b>Only companies still listed today are in the history.</b> Those that failed or left are missing, which flatters every figure for "gained after costs", for all grades alike.</li>
+      <li><b>Prices before the last year come from Yahoo Finance,</b> an unofficial source, cleaned and checked as described on <a href="market.html">Market history</a>. Dividends are not counted.</li>
+      <li><b>Past results do not predict future ones,</b> and nothing here is financial advice.</li>
+    </ul>
+  </section>`;
+}
+
 fetch('data/accuracy.json').then(r => r.json()).then(A => {
   const v = A.validation, tr = A.track || {}, td = A.today;
-  if (!v) { document.getElementById('main').innerHTML = '<p class="mute">The forecast has not been tested yet. It is tested after each trading day.</p>'; return; }
+  RT = A.ratings; const ratingsHtml = ratingsSection();
+  if (!v) { document.getElementById('main').innerHTML = ratingsHtml + '<p class="mute">The pattern forecast has not been tested yet. It is tested after each trading day.</p>'; drawGrades(); return; }
   App.setStatus('Tested ' + App.when(v.made));
   const t5 = v.top['5'], all = v.all, lift = v.lift_top5;
   const verdict = {
@@ -73,9 +134,10 @@ fetch('data/accuracy.json').then(r => r.json()).then(A => {
       <li><b>Heavy selling with a falling price:</b> ${said(P.sell)}${P.sell && P.sell.edge_ci && P.sell.edge_ci[0] > 0 ? `, a rebound, but the average result (${sg(P.sell.avg)}) still did not cover the ${v.cost_pct}% cost` : ''}.</li>
       <li><b>Signs of hidden orders during the day</b> (the Big orders panel) are new and have no record yet. Every sign is saved with the day's trades so it can be scored the same way after a few weeks.</li>
     </ul>` : '';
-  document.getElementById('main').innerHTML = `
+  document.getElementById('main').innerHTML = ratingsHtml + `
+    <h2 style="margin-top:46px;font-size:22px">The 5-day pattern forecast</h2>
     <p class="stamp">The verdict <span class="pill ${v.verdict === 'edge' ? 'up' : v.verdict === 'none' ? 'down' : ''}">${{ none:'not good enough to trade on', possible:'not proven', edge:'a measurable edge' }[v.verdict] || ''}</span></p>
-    <h1 class="headline" style="max-width:26ch">${verdict[0]}</h1>
+    <h3 class="headline" style="max-width:30ch;font-size:24px">${verdict[0]}</h3>
     <p class="say">${verdict[1]}</p>
 
     <h2>The test in numbers <span class="mute">${dmy(v.period[0])} to ${dmy(v.period[1])}, ${all.days} trading days never seen in training</span></h2>
@@ -127,6 +189,8 @@ fetch('data/accuracy.json').then(r => r.json()).then(A => {
     </ul>
     <p class="note" style="margin-top:16px">For the accuracy of the company-report figures see <a href="audit.html">Data checks</a>. Each share's page also shows a backtest of the rule-based BUY/SELL signals.
       Nothing on this site is financial advice.</p>`;
+  drawGrades();
+  if (location.hash && document.getElementById(location.hash.slice(1))) document.getElementById(location.hash.slice(1)).scrollIntoView();
 }).catch(() => { document.getElementById('main').innerHTML = '<p class="mute">Could not load the accuracy data.</p>'; });
 </script>
 </body>

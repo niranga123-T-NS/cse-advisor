@@ -90,13 +90,13 @@ def build():
         shutil.rmtree(OUT)
     names, watch = db.security_names(), set(db.watchlist())
     sec, forecast = sectors.load(), _latest_forecast()
-    signals, funds = [], {}
+    signals, funds, payloads = [], {}, {}
     for s in db.symbols_with_data(30):
         df = db.load_bars(s)
         p = stock_payload(s, df, sec.get(s, ""), forecast)
         if not p["advice"]:
             continue
-        _dump(OUT / "stocks" / f"{s}.json", p)
+        payloads[s] = p
         bt = p["backtest"] or {}
         a = {k: v for k, v in p["advice"].items() if k not in ("fundamentals", "fund_reasons", "reasons", "style", "fib", "ind")}
         f = p["advice"].get("fundamentals") or {}
@@ -119,7 +119,36 @@ def build():
                         "fc_rank": (p["forecast"] or {}).get("rank"),
                         "pr": (p["pressure"] or {}).get("label") or None,
                         "fields_n": len(f.get("verified") or {}), **a})
-    signals.sort(key=lambda x: (not x["watch"], -x["score"]))
+    # The rating. ratings.py grades each share on price and volume measures that have been tested since 2010;
+    # the company's checked report figures can move that grade one step. Shares that trade too little are not rated.
+    rstudy = None
+    try:
+        import ratings
+        RT, rstudy = ratings.build(sec)
+        for x in signals:
+            a, r = payloads[x["symbol"]]["advice"], RT.get(x["symbol"]) or {"rated": False, "why": "it has not traded recently"}
+            a["rule_signal"], a["rule_score"] = a["signal"], a["score"]          # the earlier chart rules: kept as notes and for the trading-setup test
+            if r["rated"]:
+                g, step = ratings.headline(r["grade"], a.get("fund_score"))
+                a["signal"], a["score"], a["rating"] = g, r["pct"], {**r, "fund_step": step}
+                x.update(signal=g, score=r["pct"], pg=r["grade"], of=r["of"])
+                st = a["style"]
+                if "SELL" in r["grade"] and (st["trade"] or st.get("trade_watch")):
+                    st["trade"], st["trade_watch"] = False, False
+                    st["trade_missing"].append("price rating is Sell: shares rated Sell have lagged the market on average")
+                    x.update(trade=False, trade_watch=False)
+            else:
+                a["signal"], a["score"], a["rating"] = "NOT RATED", None, r
+                x.update(signal="NOT RATED", score=None, pg=None, why=r["why"])
+        print(f"Ratings: {sum(1 for r in RT.values() if r['rated'])} of {len(signals)} shares rated; "
+              + ", ".join(f"{g.lower()} {sum(1 for x in signals if x['signal'] == g)}" for g in ratings.ORDER[::-1]))
+    except Exception as e:                  # the site must still build: the earlier rule signal stays in place
+        import traceback
+        traceback.print_exc()
+        print("ratings step failed:", repr(e))
+    for s, p in payloads.items():
+        _dump(OUT / "stocks" / f"{s}.json", p)
+    signals.sort(key=lambda x: (not x["watch"], -(x["score"] if x["score"] is not None else -1)))
     _dump(OUT / "signals.json", signals)
 
     # peers: every industry group with its medians and members (most traded first)
@@ -155,6 +184,9 @@ def build():
         top = sorted(forecast.get("forecasts", {}).items(), key=lambda kv: kv[1]["rank"])[:10]
         acc["today"] = {"date": forecast["date"], "n": forecast["n"],
                         "top": [{"symbol": k, "name": names.get(k, ""), **v} for k, v in top]}
+    if rstudy:
+        acc["ratings"] = {**rstudy, "groups": {g: {"title": t, "what": w} for g, (t, w) in ratings.WORDS.items()},
+                          "rated_now": sum(1 for x in signals if x["score"] is not None), "shares_now": len(signals)}
     _dump(OUT / "accuracy.json", acc)
 
     # data-quality audit across all companies (feeds site/audit.html)

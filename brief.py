@@ -58,9 +58,10 @@ def market_brief(signals: list[dict], tsum: dict, mk: dict, aspi) -> list[str]:
         top, bottom = secs[:3], secs[-2:]
         p2.append(f"Over three months {_join([s['sector'] for s in top])} have done best and {_join([s['sector'] for s in bottom])} worst.")
     buys, sells = sum("BUY" in s["signal"] for s in signals), sum("SELL" in s["signal"] for s in signals)
+    rated = sum(1 for s in signals if s.get("score") is not None)
     inv, trd = sum(bool(s.get("invest")) for s in signals), sum(bool(s.get("trade")) for s in signals)
     watch = sum(bool(s.get("trade_watch")) and not s.get("trade") for s in signals)
-    p2.append(f"{buys} shares carry a buy signal and {sells} a sell signal. {inv} pass the investing test; "
+    p2.append(f"Of {rated} shares that trade enough to be rated, {buys} are rated buy and {sells} sell. {inv} pass the investing test; "
               + (f"{trd} pass the trading test" if trd else "none passes the trading test today") + (f", with {watch} one condition short." if watch else "."))
     now = (mk.get("patterns") or {}).get("now") or {}
     m, nx = now.get("month"), now.get("next_month")
@@ -83,11 +84,17 @@ def picks(signals: list[dict], tsum: dict, T: dict) -> tuple[list[dict], list[di
         to.append({"s": sym, "name": by[sym].get("name", ""), "tag": tag, "why": why})
 
     liquid = [s for s in signals if (s.get("tov") or 0) >= 1_000_000]
-    for s in sorted([x for x in liquid if x.get("trade")], key=lambda x: -x["score"]):
+    well = [s for s in signals if (s.get("tov") or 0) >= 5_000_000 and s.get("score") is not None]
+    for s in sorted([x for x in well if x["signal"] == "STRONG BUY"], key=lambda x: -x["score"]):
+        add(look, s["symbol"], "Strong buy", f"Ahead of {s['score']}% of rated shares on price and volume measures"
+            + ("; it also passes the investing test." if s.get("invest") else "."), 3)
+    for s in sorted([x for x in well if x["signal"] == "STRONG SELL"], key=lambda x: x["score"]):
+        add(care, s["symbol"], "Strong sell", f"Behind {100 - s['score']}% of rated shares on price and volume measures.", 3)
+    for s in sorted([x for x in liquid if x.get("trade")], key=lambda x: -(x["score"] or 0)):
         add(look, s["symbol"], "Trading pick", f"Passes every trading condition; reward to risk after costs is {s.get('rr')}.", 3)
-    for s in sorted([x for x in liquid if x.get("trade_watch") and not x.get("trade")], key=lambda x: -x["score"]):
+    for s in sorted([x for x in liquid if x.get("trade_watch") and not x.get("trade")], key=lambda x: -(x["score"] or 0)):
         add(look, s["symbol"], "Trading watch", "One condition short of a trading pick.", 2)
-    for s in sorted([x for x in liquid if x.get("invest") and (x.get("tr") or 0) >= 1], key=lambda x: -x["score"]):
+    for s in sorted([x for x in liquid if x.get("invest") and (x.get("tr") or 0) >= 1], key=lambda x: -(x["score"] or 0)):
         bits = [f"P/E {s['pe']}" if s.get("pe") else "", f"return on equity {s['roe']}%" if s.get("roe") else "", (s.get("trh") or "").lower()]
         why = _join(bits)
         add(look, s["symbol"], "Investment pick", why[:1].upper() + why[1:] + ".", 3)
@@ -123,6 +130,11 @@ def share_summary(s: dict, t: dict | None, lenses: list[dict] | None) -> str:
             where = "at its 52-week high" if r["from_high"] > -0.5 else f"{abs(r['from_high']):.0f}% below its 52-week high"
             tail = f": {_pct(m['chg'])} over the month and {where}"
         out.append(head + tail + ".")
+    if s.get("pg"):
+        moved = "" if s["signal"] == s["pg"] else f" (its price rating is {s['pg'].lower()}; its report figures move it one step)"
+        out.append(f"It is rated {s['signal'].lower()}{moved}: on price and volume measures it is ahead of {s['score']}% of the {s.get('of', '')} rated shares.".replace("  ", " "))
+    elif s.get("why"):
+        out.append(f"It is not rated, because {s['why']}.")
     val = [f"{s['pe']} times earnings" if s.get("pe") else "", f"a {s['roe']}% return on equity" if s.get("roe") else "",
            f"a {s['div_yield']}% dividend yield" if s.get("div_yield") else ""]
     val = [v for v in val if v]
@@ -155,8 +167,6 @@ def share_summary(s: dict, t: dict | None, lenses: list[dict] | None) -> str:
         else:
             out.append("It fits none of the veterans' checklists as things stand.")
     care = []
-    if s.get("rsi") and s["rsi"] >= 75:
-        care.append(f"it looks stretched in the short term (RSI {s['rsi']:.0f})")
     if s.get("pr") == "dist":
         care.append("volume points to quiet selling")
     if (s.get("tov") or 0) < 1_000_000:

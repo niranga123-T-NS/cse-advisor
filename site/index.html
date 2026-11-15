@@ -106,7 +106,7 @@
   .sym { font-weight:650; } .nm { font-size:12px; color:var(--ink-3); overflow:hidden; text-overflow:ellipsis; }
   .l1 { display:flex; align-items:center; gap:6px; overflow:hidden; } .l1 .tag { flex:none; }
   .nm .tag { display:none; }
-  .sig { font-weight:600; font-size:13px; } .sub { font-size:11.5px; font-weight:400; color:var(--ink-3); }
+  .sig { font-weight:600; font-size:13px; } .NONE { color:var(--ink-3); font-weight:400; } .sub { font-size:11.5px; font-weight:400; color:var(--ink-3); }
   .spark { display:block; width:62px; height:22px; } .spark polyline { fill:none; stroke-width:1.5; stroke-linejoin:round; stroke-linecap:round; }
   .m-only, .w-only { display:none; }
   @keyframes fu { from { background:var(--emerald-soft); } to { background:transparent; } }
@@ -159,6 +159,9 @@
   .vp { font-size:12px; font-weight:650; padding:4px 9px; border-radius:14px; white-space:nowrap; text-decoration:none; }
   .vp.F { background:var(--emerald-soft); color:var(--emerald); } .vp.P { background:var(--topaz-soft); color:var(--topaz); }
   .vp.N { background:var(--surface-2); color:var(--ink-3); } .vp.U { background:transparent; color:var(--ink-3); outline:1px dashed var(--line); }
+  .tag.sel { background:var(--ruby-soft); color:var(--ruby); }
+  .gbar { display:grid; grid-template-columns:minmax(0, 220px) minmax(0, 1fr) 30px; gap:10px; align-items:center; padding:4px 0; font-size:13.5px; }
+  .gbar .track { height:8px; border-radius:4px; background:var(--surface-2); overflow:hidden; } .gbar .track i { display:block; height:100%; border-radius:4px; }
   .aibox { background:var(--emerald-soft); border-radius:12px; padding:10px 12px; margin:4px 0 12px; font-size:13.5px; }
   .near { background:var(--sapphire-soft); }
   @media (max-width:899.98px), (max-height:500px) {
@@ -169,7 +172,7 @@
     #detail .card th { vertical-align:bottom; }
     #map { height:400px; border-radius:14px; } .cols { grid-template-columns:minmax(0, 1fr); gap:30px; margin-top:28px; }
     .brief { font-size:18px; } .brief p + p { font-size:16px; } .legend .cap { margin-left:0; flex-basis:100%; }
-    .secrow { grid-template-columns:minmax(0, 42%) minmax(0, 1fr) 58px; }
+    .secrow { grid-template-columns:minmax(0, 42%) minmax(0, 1fr) 58px; } .gbar { grid-template-columns:minmax(0, 46%) minmax(0, 1fr) 26px; }
   }
 </style>
 </head>
@@ -185,7 +188,7 @@
       <div class="stats" id="stats"></div>
     </div>
     <div class="maphead"><h2>The whole market</h2>
-      <div class="chips" id="mapmode"><button class="chip on" data-mm="day">Today</button><button class="chip" data-mm="m1">1 month</button><button class="chip" data-mm="m3">3 months</button><button class="chip" data-mm="sig">Signal</button></div></div>
+      <div class="chips" id="mapmode"><button class="chip on" data-mm="day">Today</button><button class="chip" data-mm="m1">1 month</button><button class="chip" data-mm="m3">3 months</button><button class="chip" data-mm="sig">Rating</button></div></div>
     <div id="map" aria-label="Every share, sized by company value and coloured by its change"></div>
     <div class="legend"><span id="leglo"></span><i id="legbar"></i><span id="leghi"></span><span class="cap">Each block is a company, sized by its market value. Tap one to open it.</span></div>
     <div class="cols">
@@ -198,7 +201,7 @@
       </div>
     </div>
     <h2 style="margin-top:34px" id="sech">Industry groups</h2><div id="hsec"></div>
-    <footer><span id="meta"></span> Signals follow fixed rules on prices and checked report figures; the sentences above are assembled from the same figures, also by fixed rules. Nothing here is financial advice. Data: Colombo Stock Exchange (cse.lk), prices every 15 seconds in market hours.</footer>
+    <footer><span id="meta"></span> Ratings follow fixed rules on prices, volumes and checked report figures, and come with their tested record; the sentences above are assembled from the same figures, also by fixed rules. Nothing here is financial advice. Data: Colombo Stock Exchange (cse.lk), prices every 15 seconds in market hours.</footer>
   </div></section>
 
   <section id="list">
@@ -206,11 +209,11 @@
       <div class="chips" id="filters"></div>
       <div class="listmeta"><span id="count"></span>
         <select id="sort" aria-label="Sort the list" onchange="render()">
-          <option value="score">Sort: signal score</option><option value="chg">Change today</option><option value="tov">Money traded</option><option value="d20">1 month change</option>
+          <option value="score">Sort: rating score</option><option value="chg">Change today</option><option value="tov">Money traded</option><option value="d20">1 month change</option>
           <option value="pe">Price to earnings, low first</option><option value="dy">Dividend yield</option><option value="rs">Strength</option><option value="name">Name</option></select></div>
     </div>
     <table id="listTable"><thead><tr><th class="c-star"></th><th>Share</th><th class="c-spark d-only">30 days</th><th class="num c-close">Price<span class="m-only"> / change</span></th>
-      <th class="num d-only c-chg">Change</th><th class="num w-only c-pe">P/E</th><th class="c-sig">Signal<span class="m-only"> / score</span></th><th class="num w-only c-score">Score</th></tr></thead><tbody id="rows"></tbody></table>
+      <th class="num d-only c-chg">Change</th><th class="num w-only c-pe">P/E</th><th class="c-sig">Rating<span class="m-only"> / score</span></th><th class="num w-only c-score">Score</th></tr></thead><tbody id="rows"></tbody></table>
     <div id="empty" class="empty" hidden></div>
   </section>
 
@@ -227,7 +230,7 @@ const store = { get(){ try { return JSON.parse(localStorage.getItem('stars')||'[
                 set(v){ try { localStorage.setItem('stars', JSON.stringify(v)); } catch(e){} } };
 let stars = new Set(store.get());
 const isStar = s => stars.has(s.symbol);
-const sigClass = s => s.includes('BUY') ? 'BUY' : s.includes('SELL') ? 'SELL' : 'HOLD';
+const sigClass = s => s.includes('BUY') ? 'BUY' : s.includes('SELL') ? 'SELL' : s === 'HOLD' ? 'HOLD' : 'NONE';
 const sigWord = s => s ? s.charAt(0) + s.slice(1).toLowerCase() : '';
 const short = s => esc(s.split('.')[0]) + (s.includes('.X') ? '<span class="mute">.X</span>' : s.includes('.N') ? '' : `<span class="mute">.${esc(s.split('.')[1] || '')}</span>`);
 const p2 = v => (v == null || isNaN(v)) ? '' : (+v).toFixed(2);
@@ -577,9 +580,9 @@ document.addEventListener('visibilitychange', () => { if (!document.hidden) poll
 
 // ---------- Home ----------
 let mapMode = 'day';
-const MAPSCALE = { day: 3, m1: 15, m3: 30, sig: 4 };
+const MAPSCALE = { day: 3, m1: 15, m3: 30, sig: 45 };
 const hex = c => { c = c.replace('#', ''); if (c.length === 3) c = c.split('').map(x => x + x).join(''); return [0, 2, 4].map(i => parseInt(c.slice(i, i + 2), 16)); };
-function mapValue(s) { return mapMode === 'day' ? (s.live ? s.live.c : s.change_pct) : mapMode === 'm1' ? s.d20 : mapMode === 'm3' ? s.d60 : s.score; }
+function mapValue(s) { return mapMode === 'day' ? (s.live ? s.live.c : s.change_pct) : mapMode === 'm1' ? s.d20 : mapMode === 'm3' ? s.d60 : s.score == null ? null : s.score - 50; }
 function tone(v) {      // a value on the map's scale -> background and text colour
   const flat = hex(A.css('--surface-3')), end = hex(v >= 0 ? (A.dark() ? '#0f9d76' : '#19a57c') : (A.dark() ? '#d1435a' : '#de4d66'));
   const k = Math.pow(Math.min(1, Math.abs(v || 0) / MAPSCALE[mapMode]), 0.75);
@@ -612,7 +615,7 @@ function renderMap() {
     const head = g.w > 74 && g.h > 54 ? 15 : 0;
     if (head) html += `<div class="seclab" style="left:${g.x.toFixed(1)}px;top:${g.y.toFixed(1)}px;max-width:${(g.w - 4).toFixed(0)}px">${esc(g.name)}</div>`;
     squarify(g.ms.map(s => ({ s, v: size(s) })).sort((a, b) => b.v - a.v), g.x + 1, g.y + head + 1, g.w - 2, g.h - head - 2).forEach(t => {
-      const v = mapValue(t.s), [bg, fg] = tone(v), val = v == null ? '' : mapMode === 'sig' ? sigWord(t.s.signal) : Math.abs(v) < 0.05 ? '0.0%' : `${v > 0 ? '+' : ''}${(+v).toFixed(1)}%`;
+      const v = mapValue(t.s), [bg, fg] = tone(v), val = mapMode === 'sig' ? sigWord(t.s.signal) : v == null ? '' : Math.abs(v) < 0.05 ? '0.0%' : `${v > 0 ? '+' : ''}${(+v).toFixed(1)}%`;
       const tk = t.s.symbol.split('.')[0] + (t.s.symbol.includes('.X') ? '.X' : ''), fits = t.w > tk.length * 8.4 + 12;
       const lab = fits && t.w > 46 && t.h > 34 ? `<b>${esc(tk)}</b><i>${val}</i>` : fits && t.h > 17 ? `<b>${esc(tk)}</b>` : '';
       html += `<button class="tile" data-sym="${esc(t.s.symbol)}" title="${esc(t.s.symbol)} ${esc(t.s.name || '')}: ${val}" style="left:${t.x.toFixed(1)}px;top:${t.y.toFixed(1)}px;width:${Math.max(0, t.w - 1).toFixed(1)}px;height:${Math.max(0, t.h - 1).toFixed(1)}px;background:${bg};color:${fg}">${lab}</button>`;
@@ -621,7 +624,7 @@ function renderMap() {
   el.innerHTML = html;
   const sc = MAPSCALE[mapMode], lo = tone(-sc)[0], mid = tone(0)[0], hi = tone(sc)[0];
   $('#legbar').style.background = `linear-gradient(90deg, ${lo}, ${mid}, ${hi})`;
-  $('#leglo').textContent = mapMode === 'sig' ? 'Sell' : `−${sc}% or worse`; $('#leghi').textContent = mapMode === 'sig' ? 'Buy' : `+${sc}% or better`;
+  $('#leglo').textContent = mapMode === 'sig' ? 'Strong sell' : `−${sc}% or worse`; $('#leghi').textContent = mapMode === 'sig' ? 'Strong buy (grey: not rated)' : `+${sc}% or better`;
 }
 function renderHome() {
   if (view !== 'home') return;
@@ -630,14 +633,14 @@ function renderHome() {
     : brief && brief.day ? `After the close on ${brief.day}` : '';
   if (brief) $('#brief').innerHTML = brief.paras.map(p => `<p>${esc(p)}</p>`).join('');
   const M = trendsData && trendsData.market, I = M && M.index, a = tick && tick.x && tick.x.aspi;
-  const buys = all.filter(s => s.signal.includes('BUY')).length, sells = all.filter(s => s.signal.includes('SELL')).length;
+  const buys = all.filter(s => s.signal.includes('BUY')).length, sells = all.filter(s => s.signal.includes('SELL')).length, rated = all.filter(s => s.score != null).length;
   $('#stats').innerHTML = [
     a && a[0] ? [Math.round(a[0]).toLocaleString() + ` <small class="${a[1] > 0 ? 'up' : a[1] < 0 ? 'down' : ''}" style="font-weight:600">${a[1] > 0 ? '+' : ''}${p2(a[1])}%</small>`, 'ASPI now'] : I ? [Math.round(I.level).toLocaleString(), 'ASPI at the close'] : null,
     M ? [`<span class="up">${M.advancers}</span> <small>up,</small> <span class="down">${M.decliners}</span> <small>down</small>`, 'shares over the past month'] : null,
     M ? [M.above200 + '%', 'above their 200-day average'] : null,
-    all.length ? [`<span class="up">${buys}</span> <small>buy,</small> <span class="down">${sells}</span> <small>sell</small>`, 'signals today'] : null,
+    all.length ? [`<span class="up">${buys}</span> <small>buy,</small> <span class="down">${sells}</span> <small>sell</small>`, `ratings among ${rated} rated shares`] : null,
   ].filter(Boolean).map(x => `<div class="stat"><b>${x[0]}</b><span>${x[1]}</span></div>`).join('');
-  const pick = x => `<button class="pick" data-sym="${esc(x.s)}"><span class="who"><b>${short(x.s)}</b> <span class="mute">${esc(x.name)}</span></span><span class="tag ${{ 'Investment pick':'inv', 'Trading pick':'trd', 'Trading watch':'trd', 'Just turned down':'wat', 'Quiet selling':'wat' }[x.tag] || ''}">${esc(x.tag)}</span><span class="why">${esc(x.why)}</span></button>`;
+  const pick = x => `<button class="pick" data-sym="${esc(x.s)}"><span class="who"><b>${short(x.s)}</b> <span class="mute">${esc(x.name)}</span></span><span class="tag ${{ 'Strong buy':'inv', 'Investment pick':'inv', 'Trading pick':'trd', 'Trading watch':'trd', 'Just turned down':'wat', 'Quiet selling':'wat', 'Strong sell':'sel' }[x.tag] || ''}">${esc(x.tag)}</span><span class="why">${esc(x.why)}</span></button>`;
   if (brief) { $('#look').innerHTML = brief.look.length ? brief.look.map(pick).join('') : '<div class="bnote">Nothing stands out today.</div>';
                $('#care').innerHTML = brief.care.length ? brief.care.map(pick).join('') : '<div class="bnote">No warnings today.</div>'; }
   // industry groups: today's official index moves when the market is open, otherwise the middle share's month
@@ -653,16 +656,16 @@ let rz = null; addEventListener('resize', () => { clearTimeout(rz); rz = setTime
 addEventListener('themechange', () => { renderMap(); if (current) show(current); });
 
 // ---------- Shares ----------
-const SCREENS = [['', 'All'], ['watch', 'Favourites'], ['invest', 'Investment picks'], ['tradewatch', 'Trading watch'], ['BUY', 'Buy'], ['SELL', 'Sell'], ['up2', 'Rising everywhere'], ['down2', 'Falling everywhere'],
-  ['acc', 'Quiet buying'], ['dist', 'Quiet selling'], ['value', 'P/E under 10'], ['div', 'Dividend 5%+'], ['graham', 'Graham'], ['buffett', 'Buffett'], ['minervini', 'Minervini'], ['issues', 'Data issues']];
+const SCREENS = [['', 'All'], ['watch', 'Favourites'], ['invest', 'Investment picks'], ['tradewatch', 'Trading watch'], ['sb', 'Strong buy'], ['BUY', 'Buy'], ['SELL', 'Sell'], ['up2', 'Rising everywhere'], ['down2', 'Falling everywhere'],
+  ['acc', 'Quiet buying'], ['dist', 'Quiet selling'], ['value', 'P/E under 10'], ['div', 'Dividend 5%+'], ['graham', 'Graham'], ['buffett', 'Buffett'], ['minervini', 'Minervini'], ['unrated', 'Not rated'], ['issues', 'Data issues']];
 const VETI = { graham:0, buffett:1, lynch:2, greenblatt:3, dreman:4, oneil:5, minervini:6, weinstein:7, darvas:8, turtle:9 };
 let flt = '';
 function setFilter(f) { flt = f; render(); const on = document.querySelector('#filters .on'); if (on && on.scrollIntoView) on.scrollIntoView({ block:'nearest', inline:'center' }); }
 const match = (s, f) => !f ? true : f === 'watch' ? isStar(s) : f === 'value' ? (s.pe && s.pe < 10) : f === 'div' ? (s.div_yield >= 5) : f === 'issues' ? (s.data_fail > 0) : f === 'invest' ? s.invest : f === 'trade' ? s.trade
   : f === 'tradewatch' ? (s.trade || s.trade_watch) : f === 'up2' ? s.tr === 2 : f === 'down2' ? s.tr === -2 : (f === 'acc' || f === 'dist') ? s.pr === f : f.startsWith('sector:') ? s.sector === f.slice(7)
-  : f in VETI ? (s.vet || '')[VETI[f]] === 'F' : sigClass(s.signal) === f;
+  : f === 'sb' ? s.signal === 'STRONG BUY' : f === 'unrated' ? s.score == null : f in VETI ? (s.vet || '')[VETI[f]] === 'F' : sigClass(s.signal) === f;
 const chgOf = s => s.live ? s.live.c : s.change_pct;
-const SORT = { score: (a, b) => b.score - a.score, chg: (a, b) => (chgOf(b) || 0) - (chgOf(a) || 0), tov: (a, b) => (b.tov || 0) - (a.tov || 0), d20: (a, b) => (b.d20 ?? -1e9) - (a.d20 ?? -1e9),
+const SORT = { score: (a, b) => (b.score ?? -1) - (a.score ?? -1), chg: (a, b) => (chgOf(b) || 0) - (chgOf(a) || 0), tov: (a, b) => (b.tov || 0) - (a.tov || 0), d20: (a, b) => (b.d20 ?? -1e9) - (a.d20 ?? -1e9),
   pe: (a, b) => (a.pe > 0 ? a.pe : 1e9) - (b.pe > 0 ? b.pe : 1e9), dy: (a, b) => (b.div_yield || 0) - (a.div_yield || 0), rs: (a, b) => (b.rs || 0) - (a.rs || 0), name: (a, b) => a.symbol.localeCompare(b.symbol) };
 function spark(v) {
   if (!v || v.length < 3) return '';
@@ -689,9 +692,37 @@ function render() {
       <td class="num ${changed[s.symbol] || ''}">${(s.live ? s.live.p : s.close).toFixed(2)}<div class="m-only sub ${cc}">${c > 0 ? '+' : ''}${p2(c)}%</div></td>
       <td class="num d-only ${cc}">${c > 0 ? '+' : ''}${p2(c)}%</td>
       <td class="num w-only">${s.pe ?? '<span class="mute">–</span>'}</td>
-      <td class="sig ${sigClass(s.signal)}">${sigWord(s.signal)}<div class="m-only sub">score ${s.score}</div></td>
-      <td class="num w-only">${s.score}</td>
+      <td class="sig ${sigClass(s.signal)}">${sigWord(s.signal)}<div class="m-only sub">${s.score != null ? 'score ' + s.score : ''}</div></td>
+      <td class="num w-only">${s.score ?? '<span class="mute">–</span>'}</td>
     </tr>`; }).join('');
+}
+
+// The rating: where it comes from, and what shares with the same price rating went on to do since 2010.
+const GNAME = { trend:'Trend over the past year', strength:'Strength over the past month', calm:'Steadiness', volume:'Buying on volume', sector:'Its industry group' };
+function ratingCard(a) {
+  const r = a.rating, R = acc && acc.ratings, notes = (a.reasons || []).map(x => x.replace(/^[+\-−]?[\d.]+\s+/, ''));
+  const chart = notes.length ? `<details style="margin-top:12px"><summary>Chart notes (${notes.length})</summary><ul style="margin-top:6px">${notes.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+      <p class="small" style="margin:6px 0 0">Readings of the chart on the latest day. They describe; they do not set the rating.</p></details>` : '';
+  const warn = (a.warnings || []).map(w => `<p class="warn" style="margin:8px 0 0">⚠ ${esc(w)}</p>`).join('');
+  if (!r) return `<div class="card" id="sec-why"><h3>Why this signal</h3><ul>${(a.reasons || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul>${warn}</div>`;
+  if (!r.rated) return `<div class="card" id="sec-why"><h3>Why there is no rating</h3>
+    <p style="margin:0">This share is not rated because ${esc(r.why)}.</p>
+    <p class="small" style="margin:8px 0 0">In the test since 2010 the measures behind the ratings told far less about thinly traded shares (the chance of a gain was the same whatever the grade), so giving them a Buy or Sell would be little better than a guess. Its report figures, trends and checklists are still shown.</p>${warn}${chart}</div>`;
+  const g = r.grade, sg = v => `${v > 0 ? '+' : ''}${v}%`;
+  const bars = Object.entries(r.groups).map(([k, v]) => `<div class="gbar"><span>${GNAME[k] || k}</span><span class="track"><i style="width:${v}%;background:var(--${v >= 60 ? 'emerald' : v < 40 ? 'ruby' : 'ink-3'})"></i></span><span class="num">${v}</span></div>`).join('');
+  const step = r.fund_step > 0 ? `Its checked report figures are strong (${a.fund_score} points), which lifts the rating one step to <b>${sigWord(a.signal)}</b>.`
+             : r.fund_step < 0 ? `Its checked report figures are weak (${a.fund_score} points), which lowers the rating one step to <b>${sigWord(a.signal)}</b>.`
+             : a.fund_score != null ? `Its checked report figures (${a.fund_score > 0 ? '+' : ''}${a.fund_score} points) leave the rating where it is.` : 'It has no checked report figures to add.';
+  const rows = R ? Object.values(R.horizons).map(H => { const x = H.grades[g], all = H.grades.ALL; return x ? `<tr><td>${H.label}</td><td class="num"><b>${x.hit}%</b> <span class="small x">all ${all.hit}%</span></td>
+      <td class="num">${sg(x.median)}</td><td class="num xs">${sg(x.p25)} to ${sg(x.p75)}</td><td class="num">${x.down10}%</td></tr>` : ''; }).join('') : '';
+  return `<div class="card wide" id="sec-why"><h3>Why this rating</h3>
+    <p style="margin:0 0 10px">On price and volume it is ahead of <b>${r.pct}%</b> of the ${r.of} rated shares, which makes its price rating <b class="${sigClass(g)}">${sigWord(g)}</b>. ${step}</p>
+    ${bars}
+    <p class="small" style="margin:6px 0 0">Each bar is this share's place among rated shares, from 1 to 99. The five are added with equal weight. <a href="accuracy.html#ratings">How the rating works and how it was tested</a></p>
+    ${rows ? `<h4>What shares with a ${sigWord(g)} price rating went on to do <span class="mute" style="font-weight:400">every week since 2010, after ${R.cost_pct}% trading costs</span></h4>
+    <div class="tw"><table><tr><th>Held for</th><th class="num">Gained after costs</th><th class="num">Typical result</th><th class="num xs">Middle half of results</th><th class="num">Fell 10% or more</th></tr>${rows}</table></div>
+    <p class="small" style="margin:8px 0 0">A rating tilts the odds; it does not settle them, and the year has mattered more than the grade. The report step is not part of this test.</p>` : ''}
+    ${warn}${chart}</div>`;
 }
 
 function styleCard(a) {
@@ -722,9 +753,9 @@ function peersCard(d, sym) {
   return `<div class="card wide" id="sec-peers"><h3>Peers <span class="mute">${esc(d.sector)}, ${g.n} listed</span></h3>
     <div class="kv">
       ${row('Price to earnings', 'pe', true)}${row('Price to net assets', 'pbv', true)}${row('Return on equity', 'roe', false, '%')}
-      ${row('1 month', 'd20', false, '%', true)}${row('3 months', 'd60', false, '%', true)}${row('Signal score', 'score', false)}
+      ${row('1 month', 'd20', false, '%', true)}${row('3 months', 'd60', false, '%', true)}${row('Rating score', 'score', false)}
     </div>
-    <div class="tw" style="margin-top:12px"><table><tr><th>Most traded peers</th><th class="num">Price</th><th class="num">Today</th><th class="num xs">1 month</th><th class="num x">P/E</th><th>Signal</th></tr>
+    <div class="tw" style="margin-top:12px"><table><tr><th>Most traded peers</th><th class="num">Price</th><th class="num">Today</th><th class="num xs">1 month</th><th class="num x">P/E</th><th>Rating</th></tr>
     ${shown.map(m => `<tr class="peer ${m.s === sym ? 'me' : ''}" data-peer="${esc(m.s)}"><td><b>${short(m.s)}</b>${m.invest ? ' <span class="tag inv">Invest</span>' : ''}</td>
       <td class="num">${((tick && tick.r[m.s]) ? tick.r[m.s][0] : m.close).toFixed(2)}</td><td class="num">${pct(today(m))}</td><td class="num xs">${pct(m.d20)}</td>
       <td class="num x">${m.pe ?? '<span class="mute">–</span>'}</td><td class="sig ${sigClass(m.signal)}">${sigWord(m.signal)}</td></tr>`).join('')}</table></div>
@@ -825,6 +856,7 @@ async function show(sym) {
   $('#backname').textContent = sym;
   if (fresh) { $('#detail').innerHTML = '<div class="empty">Loading…</div>'; if (phone) scrollTo(0, 0); else $('#detail').scrollTop = 0; }
   if (!peers) { try { peers = await (await fetch('data/peers.json')).json(); } catch (e) {} }
+  if (!acc) { try { acc = await (await fetch('data/accuracy.json')).json(); } catch (e) {} }
   let d;
   try { d = await (await fetch('data/stocks/' + encodeURIComponent(sym) + '.json')).json(); }
   catch (e) { $('#detail').innerHTML = `<div class="empty">No data for ${esc(sym)}. It may have been delisted, or its history has not been collected yet.</div>`; return; }
@@ -843,17 +875,16 @@ async function show(sym) {
     <div class="facts">
       ${fact(V.pe && f.pe != null ? f.pe : null, 'price to earnings')}${fact(V.div_yield && f.div_yield != null ? p2(f.div_yield) + '%' : null, 'dividend yield')}${fact(V.roe && f.roe != null ? p2(f.roe) + '%' : null, 'return on equity')}
       ${d.perf ? fact(pct1(d.perf.d5), '1 week') + fact(pct1(d.perf.d20), '1 month') + fact(pct1(d.perf.d60), '3 months') : ''}
-      ${fact(a.score, `score: ${a.tech_score} price${a.fund_score != null ? `, ${a.fund_score} reports` : ''}`)}
+      ${a.rating && a.rating.rated ? fact(a.score, 'rating score of 99') : a.rating ? '' : fact(a.score, 'score')}
     </div>
     ${(d.splits || []).map(x => `<div class="splitnote">Share ${x.factor >= 1 ? 'split' : 'consolidation'} on ${dmy(x.date)}: earlier prices are divided by ${x.factor}, so the chart and signals are on today's share basis (ratio from: ${esc(x.basis)}).</div>`).join('')}
-    <div class="chips secnav">${[['sec-chart', 'Chart'], ['sec-trends', 'Trends'], ['sec-why', 'Signal'], ['sec-peers', 'Peers'], ['sec-history', '10 years'], ['sec-pressure', 'Pressure'], ['sec-fund', 'Fundamentals'], ['sec-more', 'Levels']]
+    <div class="chips secnav">${[['sec-chart', 'Chart'], ['sec-trends', 'Trends'], ['sec-why', 'Rating'], ['sec-peers', 'Peers'], ['sec-history', '10 years'], ['sec-pressure', 'Pressure'], ['sec-fund', 'Fundamentals'], ['sec-more', 'Levels']]
       .map(([id, label]) => `<button class="chip" data-to="${id}">${label}</button>`).join('')}</div>
     <div id="intraday" style="display:none"></div>
     <div id="sec-chart" style="scroll-margin-top:60px"><div id="chart"></div><div id="rsi"></div><div id="macd"></div></div>
     <div class="cards">
       <div class="card wide" id="sec-trends"><h3>Trends</h3><p class="mute">Loading…</p></div>
-      <div class="card" id="sec-why"><h3>Why this signal</h3><ul>${a.reasons.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>
-        ${a.warnings.map(w=>`<p class="warn" style="margin:8px 0 0">⚠ ${esc(w)}</p>`).join('')}</div>
+      ${ratingCard(a)}
       ${styleCard(a)}
       ${peersCard(d, sym)}
       <div class="card wide" id="sec-history"><h3>10-year history</h3><p class="mute">Loading…</p></div>
@@ -866,14 +897,14 @@ async function show(sym) {
         <span class="mute">RSI</span><span>${a.rsi ?? '–'}</span>
         <span class="mute">Suggested stop</span><span class="down">${a.stop ?? '–'}</span>
         <span class="mute">Target</span><span class="up">${a.target ?? '–'}</span></div></div>
-      ${b ? `<div class="card"><h3>These rules tested on ${esc(sym)}</h3><div class="kv">
+      ${b ? `<div class="card"><h3>Chart rules tested on ${esc(sym)} <span class="mute">past year</span></h3><div class="kv">
         <span class="mute">Period</span><span>${b.period}</span>
         <span class="mute">Following the signals</span><span class="${b.strategy_return_pct>=0?'up':'down'}">${p2(b.strategy_return_pct)}%</span>
         <span class="mute">Buying and holding</span><span class="${b.buy_hold_return_pct>=0?'up':'down'}">${p2(b.buy_hold_return_pct)}%</span>
         <span class="mute">Trades</span><span>${b.trades} (won ${b.win_rate_pct ?? '–'}%)</span>
         <span class="mute">Largest fall</span><span class="down">${p2(b.max_drawdown_pct)}%</span></div>
-        <p class="small" style="margin:8px 0 0">Includes about 1.12% cost each way. Past results do not predict future ones.</p></div>`
-        : '<div class="card"><h3>These rules tested</h3><p class="mute">Needs 60 or more days of history.</p></div>'}
+        <p class="small" style="margin:8px 0 0">What trading this one share on the chart notes alone would have done. It is not the test of the rating; that is on the <a href="accuracy.html#ratings">Accuracy page</a>. Includes about 1.12% cost each way.</p></div>`
+        : ''}
     </div>`;
 
   liveChart = null; liveSeries = null;

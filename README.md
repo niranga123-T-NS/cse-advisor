@@ -31,6 +31,20 @@ The site is one app with the same navigation on every page: a bar along the bott
 - **Stars** ☆ on the site are saved in that browser only. `watchlist.txt` sets which stocks get full history.
 - Every stock that trades on a given day gets saved. Stocks outside your watchlist gain a signal once they have 30 days of saved data.
 
+## Buy, Sell and Hold ratings
+
+Every share that trades enough gets one of five ratings: Strong buy, Buy, Hold, Sell, Strong sell. `ratings.py` works them out, and the Accuracy page shows how each rating has done.
+
+- **Who is rated.** Shares traded on 48 of the last 60 days, about LKR 0.5 million a day or more, priced LKR 5 or more, with a year of prices. The rest are marked **Not rated**: in the test the measures told far less about thinly traded shares, so a rating there would be little better than a guess.
+- **Five measures, from prices and volumes only:** trend over the past year, strength over the past month, steadiness, buying on volume, and how the share's industry group is doing. On each, a share is placed against the other rated shares that day; the five places are added with equal weight. Top 10% Strong buy, next 20% Buy, middle 40% Hold, next 20% Sell, bottom 10% Strong sell. The **rating score** (1 to 99) is the share of rated shares it is ahead of.
+- **Company reports** can move the rating one step: clearly strong checked figures (3 points or more) lift it, clearly weak ones (−2 or less) lower it. Reports never create a Strong grade. This step is not tested, because there are too few years of reports to test it.
+- **The test.** Every week since 2010, each grade's result over the next 1, 3, 6 and 12 months was recorded, buying at the next day's close and taking off 2.24% for costs. Buy grades beat Sell grades in 16 of 17 years over three months. The margin is modest: held three months, a Strong buy gained after costs about 50% of the time and a Strong sell about 39%; held twelve months, about 60% against 45%. Over one month no grade gained after costs even half the time, so the ratings are a guide for three months or longer.
+- **Compared with the rules used before** (price against its averages, MACD, RSI, Bollinger bands, Fibonacci levels): on the same shares and days the gap between Strong buy and Strong sell is about twice as wide. One earlier rule was backwards for this market: a high RSI was scored "overbought", but such shares went on to do better than average. Those chart readings are still shown on each share's page as notes; they no longer set the rating.
+- **What did not help:** fitted weights, a tree model, and the state of the market as a whole. The plain sum is used because it has nothing to over-tune.
+- **Limits.** The measures were chosen after looking at this same history, so the future margin is probably smaller (it has narrowed since 2020). Only companies still listed today are in the history, which flatters all the figures. Older prices are from an unofficial source, and dividends are not counted.
+
+The record is re-measured once a month and kept in `data/model/ratings.json`. `python ratings.py` re-runs it; `python ratings.py old` also re-runs the comparison with the earlier rules (a few minutes).
+
 ## Trading vs investment picks
 
 Each stock page has a "Trading or investing?" card, and the list filters by **📈 Investment picks**, **⚡ Trading picks** and **👀 Trade watch**.
@@ -208,6 +222,7 @@ On phones and upright tablets one thing is shown at a time: the list shows chang
 | `build_site.py` | Fetches data and builds `site/data/*.json` |
 | `.github/workflows/fundamentals.yml` | Nightly job that reads company reports (4 parallel parts) |
 | `.github/workflows/live.yml`, `live.py` | Live prices and alerts every 15 seconds during market hours |
+| `ratings.py` | Buy / Sell / Hold ratings and the record of what each rating went on to do since 2010 |
 | `forecast.py` | Pattern forecast, walk-forward accuracy test, live scoring |
 | `pressure.py` | Daily buying/selling pressure reading and the test of what followed it |
 | `longhist.py`, `.github/workflows/history.yml` | Downloads 10–20 years of prices (Yahoo Finance) and the official daily ASPI |

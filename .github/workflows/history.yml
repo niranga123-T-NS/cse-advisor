@@ -1,0 +1,40 @@
+name: Long price history
+
+# CSE serves one year of prices. This downloads 10-20 years of daily prices for every counter from Yahoo Finance
+# (unofficial; cleaned and checked later by longterm.py) and one year of official daily ASPI from CSE.
+# Run by hand: Actions -> Long price history -> Run workflow. Takes about 10 minutes.
+on:
+  workflow_dispatch:
+    inputs:
+      symbols:
+        description: "Only these symbols (blank = all), e.g. JKH.N0000 COMB.N0000"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: history
+  cancel-in-progress: false
+
+jobs:
+  history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q requests pandas numpy
+      - run: python longhist.py fetch ${{ inputs.symbols }}
+      - run: python longhist.py aspi
+      - name: Save
+        run: |
+          git config user.name "cse-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/long data/index
+          git diff --cached --quiet && { echo "nothing new"; exit 0; }
+          git commit -q -m "Long price history $(TZ=Asia/Colombo date +%F)"
+          for i in 1 2 3 4; do git pull -q --rebase origin main && git push -q origin HEAD:main && break || sleep 5; done

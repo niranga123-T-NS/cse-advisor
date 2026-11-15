@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>CSE Advisor · Veterans' checklists</title>
+<style>
+  :root { --bg:#0f1216; --panel:#171b21; --line:#262c35; --text:#e6e8eb; --mute:#8b95a1; --ok:#22c55e; --warn:#f59e0b; --fail:#ef4444; --accent:#3b82f6; }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+  body { margin:0; font:14px/1.5 system-ui, sans-serif; background:var(--bg); color:var(--text); }
+  header { display:flex; gap:12px; align-items:center; padding:10px 16px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  header h1 { font-size:16px; margin:0; } a { color:#93c5fd; }
+  main { max-width:1100px; margin:0 auto; padding:16px; }
+  h2 { font-size:15px; margin:26px 0 10px; }
+  .mute { color:var(--mute); } .ok { color:var(--ok); } .warn { color:var(--warn); } .fail { color:var(--fail); }
+  input { background:var(--panel); color:var(--text); border:1px solid var(--line); border-radius:6px; padding:8px 10px; font:inherit; font-size:16px; width:100%; max-width:420px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:12px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; min-width:0; }
+  .card h3 { margin:0; font-size:14px; } .who { color:var(--mute); font-size:12px; }
+  .v { font-size:11px; font-weight:700; padding:2px 8px; border-radius:10px; white-space:nowrap; }
+  .v.fits { background:#14532d; color:#86efac; } .v.partly { background:#713f12; color:#fde68a; } .v.no { background:#3f3f46; color:#d4d4d8; } .v.unknown { background:#262c35; color:var(--mute); }
+  .c { display:grid; grid-template-columns:16px minmax(0, 1fr); gap:6px; padding:5px 0; border-top:1px solid var(--line); font-size:13px; }
+  .c .val { color:var(--mute); font-size:12px; } .key { font-size:12px; margin-top:6px; }
+  .pills { display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; } .pills a { text-decoration:none; }
+  .li { display:grid; grid-template-columns:minmax(0, 1fr) auto; gap:8px; padding:4px 0; border-top:1px solid var(--line); font-size:13px; text-decoration:none; color:inherit; cursor:pointer; }
+  .li:hover { background:#1d232b; } .li .nm { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .note { font-size:12px; color:var(--mute); margin:8px 0 0; }
+  .big { font-size:22px; font-weight:700; }
+  @media (max-width:600px) { header { padding:10px 12px; gap:4px 12px; } main { padding:12px; } .grid { grid-template-columns:minmax(0, 1fr); } .card { padding:10px; } }
+</style>
+</head>
+<body>
+<header>
+  <a href="./">← CSE Advisor</a>
+  <h1>Veterans' checklists</h1>
+  <span class="mute" id="stamp"></span>
+</header>
+<main>
+  <div class="card" style="margin-bottom:12px">
+    <label for="pick" class="mute" style="font-size:12px">Share to evaluate</label>
+    <div style="margin-top:4px"><input id="pick" list="syms" placeholder="Type a symbol or company name" autocomplete="off"><datalist id="syms"></datalist></div>
+    <p class="note" style="margin-top:8px">Each checklist applies rules that a well-known investor or trader published, read mechanically from this site's figures. They are <b>not these people's opinions</b> of any share.
+      Several of their rules need figures this site does not have (debt, cash flow, who owns the shares); those rules are shown as <span class="mute">? cannot be checked</span> instead of being guessed.</p>
+  </div>
+  <div id="share"></div>
+  <div id="boards"></div>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const SHORT = { graham:'Graham', buffett:'Buffett', lynch:'Lynch', greenblatt:'Greenblatt', dreman:'Dreman', oneil:"O'Neil", minervini:'Minervini', weinstein:'Weinstein', darvas:'Darvas', turtle:'Turtles' };
+const VERD = { fits:'Fits', partly:'Partly fits', no:'Does not fit', unknown:'Cannot be judged' }, CODE = { F:'fits', P:'partly', N:'no', U:'unknown' };
+const ICON = { true:'<span class="ok">✓</span>', false:'<span class="fail">✗</span>', null:'<span class="mute">?</span>' };
+let V = null;
+const hashSym = () => { try { return decodeURIComponent(location.hash.slice(1)); } catch (e) { return ''; } };
+const short = s => esc(s.split('.')[0]) + (s.includes('.X') ? '<span class="mute">.X</span>' : '');
+
+function lensCard(L, meta) {
+  const keys = Object.entries(L.key || {});
+  return `<div class="card" id="lens-${L.id}">
+    <div style="display:flex;justify-content:space-between;gap:8px;align-items:baseline"><div><h3>${esc(meta.who)}</h3><div class="who">${esc(meta.name)}</div></div><span class="v ${L.verdict}">${VERD[L.verdict]}</span></div>
+    <div class="mute" style="font-size:12px;margin:6px 0">${esc(meta.idea)}</div>
+    <div style="font-size:12px;margin-bottom:4px"><b>${L.met} of ${L.can}</b> checkable rules met${L.of > L.can ? ` <span class="mute">· ${L.of - L.can} of the ${L.of} rules cannot be checked here</span>` : ''}</div>
+    ${L.crit.map(c => `<div class="c"><span>${ICON[String(c.r)]}</span><span>${esc(c.t)}${c.m ? ' <span class="mute" style="font-size:11px">· key rule</span>' : ''}${c.v ? `<div class="val">${esc(c.v)}</div>` : ''}</span></div>`).join('')}
+    ${keys.length ? `<div class="key">${keys.map(([k, v]) => `<span class="mute">${esc(k)}:</span> <b>${esc(v)}</b>`).join(' · ')}</div>` : ''}
+    <div class="note">From: ${esc(meta.source)}</div></div>`;
+}
+
+async function show(sym) {
+  const el = $('#share');
+  if (!sym) { el.innerHTML = ''; return; }
+  let d;
+  try { d = await (await fetch('data/view/' + encodeURIComponent(sym) + '.json')).json(); }
+  catch (e) { el.innerHTML = `<div class="card"><span class="mute">No evaluation for ${esc(sym)}. Pick a share from the list.</span></div>`; return; }
+  $('#pick').value = sym;
+  const meta = Object.fromEntries(V.lenses.map(m => [m.id, m]));
+  const group = kind => d.lenses.filter(L => meta[L.id].kind === kind);
+  const pills = kind => group(kind).map(L => `<a href="#lens-${L.id}" onclick="document.getElementById('lens-${L.id}').scrollIntoView({behavior:'smooth'});return false"><span class="v ${L.verdict}">${esc(SHORT[L.id] || L.id)}: ${VERD[L.verdict].toLowerCase()}</span></a>`).join('');
+  const count = kind => group(kind).filter(L => L.verdict === 'fits').length;
+  el.innerHTML = `
+    <div class="card">
+      <div style="display:flex;gap:10px;align-items:baseline;flex-wrap:wrap"><span class="big">${esc(d.symbol)}</span><span class="mute">${esc(d.name)}${d.sector ? ' · ' + esc(d.sector) : ''}</span></div>
+      <div class="mute" style="font-size:12px">Close ${d.close} on ${esc(d.date)} · this site's signal: ${esc(d.signal)} · trend: ${esc(d.trend.headline)} · <a href="./#${encodeURIComponent(d.symbol)}">open the share's page →</a></div>
+      <div style="margin-top:10px"><b>For investing</b> <span class="mute">· fits ${count('invest')} of ${group('invest').length}</span><div class="pills">${pills('invest')}</div></div>
+      <div style="margin-top:10px"><b>For trading</b> <span class="mute">· fits ${count('trade')} of ${group('trade').length}</span><div class="pills">${pills('trade')}</div></div>
+    </div>
+    <h2>Investing: would the long-term investors' rules pass it?</h2>
+    <div class="grid">${group('invest').map(L => lensCard(L, meta[L.id])).join('')}</div>
+    <h2>Trading: would the traders' rules take it now?</h2>
+    <p class="note" style="margin-top:-4px">${V.market_up == null ? '' : `The market itself: ${esc(V.market_note)}. `}Buying and selling on the CSE costs about 2.24% in all, which short-term methods must earn back first.</p>
+    <div class="grid">${group('trade').map(L => lensCard(L, meta[L.id])).join('')}</div>
+    <p class="note">"Fits" means at least 80% of the rules that could be checked are met, including the key rule (every rule for Minervini's template and the Turtle entry, as their authors require).
+      "Cannot be judged" means a key rule, or more than 40% of the rules this site is able to check, had no figure to go on. Report figures are used only when they passed this site's data checks.</p>`;
+  el.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function boards() {
+  const sec = kind => V.lenses.filter(m => m.kind === kind).map(m => { const b = V.board[m.id];
+    return `<div class="card"><div style="display:flex;justify-content:space-between;gap:8px;align-items:baseline"><div><h3>${esc(m.who)}</h3><div class="who">${esc(m.name)}</div></div>
+        <span class="mute" style="font-size:12px;white-space:nowrap"><b class="ok">${b.fits}</b> fit · ${b.partly} partly</span></div>
+      <div class="mute" style="font-size:12px;margin:6px 0">${esc(m.idea)}</div>
+      ${b.top.length ? b.top.slice(0, 10).map(x => `<a class="li" href="#${encodeURIComponent(x.s)}"><span class="nm"><b>${short(x.s)}</b> <span class="mute">${esc(x.name)}</span></span>
+        <span><span class="v ${x.fits ? 'fits' : 'partly'}">${x.met}/${x.can}</span></span></a>`).join('') : '<div class="mute" style="font-size:13px">No share passes today.</div>'}</div>`; }).join('');
+  $('#boards').innerHTML = `
+    <h2>Which shares pass each checklist <span class="mute">· the 10 that pass best, most traded first among equals</span></h2>
+    <p class="note" style="margin-top:-4px">The number is rules met out of rules that could be checked. Tap a share to see its full evaluation.</p>
+    <h2 style="margin-top:16px">Investing</h2><div class="grid">${sec('invest')}</div>
+    <h2>Trading</h2><div class="grid">${sec('trade')}</div>
+    <p class="note" style="margin-top:14px">A share passing a checklist is a reason to study it, not to buy it. None of this is financial advice.</p>`;
+}
+
+fetch('data/veterans.json').then(r => r.json()).then(v => {
+  V = v;
+  $('#stamp').textContent = 'Updated ' + v.made;
+  $('#syms').innerHTML = v.shares.map(x => `<option value="${esc(x.s)}">${esc(x.name)}</option>`).join('');
+  boards();
+  if (hashSym()) show(hashSym());
+}).catch(() => { $('#boards').innerHTML = '<p class="mute">The checklists are not available yet. They are built with the daily update.</p>'; });
+
+function choose() {
+  const q = $('#pick').value.trim().toUpperCase();
+  if (!V || !q) return;
+  const hit = V.shares.find(x => x.s === q) || V.shares.find(x => x.s.split('.')[0] === q) || V.shares.find(x => x.s.startsWith(q)) || V.shares.find(x => (x.name || '').toUpperCase().includes(q));
+  if (hit) location.hash = encodeURIComponent(hit.s);
+}
+$('#pick').addEventListener('change', choose);
+$('#pick').addEventListener('keydown', e => { if (e.key === 'Enter') choose(); });
+addEventListener('hashchange', () => show(hashSym()));
+</script>
+</body>
+</html>

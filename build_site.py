@@ -90,7 +90,7 @@ def build():
         shutil.rmtree(OUT)
     names, watch = db.security_names(), set(db.watchlist())
     sec, forecast = sectors.load(), _latest_forecast()
-    signals = []
+    signals, funds = [], {}
     for s in db.symbols_with_data(30):
         df = db.load_bars(s)
         p = stock_payload(s, df, sec.get(s, ""), forecast)
@@ -100,6 +100,7 @@ def build():
         bt = p["backtest"] or {}
         a = {k: v for k, v in p["advice"].items() if k not in ("fundamentals", "fund_reasons", "reasons", "style", "fib", "ind")}
         f = p["advice"].get("fundamentals") or {}
+        funds[s] = f
         signals.append({"symbol": s, "name": names.get(s, ""), "watch": s in watch, "bars": len(df),
                         "bt_edge": None if not bt else round(bt["strategy_return_pct"] - bt["buy_hold_return_pct"], 1),
                         "pe": f.get("pe") if (f.get("verified") or {}).get("pe") else None,
@@ -192,8 +193,29 @@ def build():
         mk = longterm.build(OUT)
         print(f"Long history: {mk['checks']['joined']} shares joined to older prices; market index from {mk['built_from']['start']}, "
               f"yearly gap to the official ASPI {mk['fit'].get('mean_gap')} points on average")
+        # trends in every aspect, and the veterans' checklists (both read the joined long history)
+        import trends
+        import veterans
+        T, tsum = trends.build(longterm.BARS, funds, sec, names, longterm.LEVEL)
+        V, vsum = veterans.build(longterm.BARS, funds, sec, names, T, tsum["market"], longterm._shares())
+        made = dt.datetime.now(collector.COLOMBO).strftime("%Y-%m-%d %H:%M")
+        by_sym = {x["symbol"]: x for x in signals}
+        for s, t in T.items():
+            x = by_sym.get(s)
+            if not x:
+                continue
+            _dump(OUT / "view" / f"{s}.json", {"symbol": s, "name": names.get(s, ""), "sector": sec.get(s, ""), "close": x["close"], "date": x["date"],
+                                                "signal": x["signal"], "trend": trends.public(t), "lenses": V.get(s, [])})
+            x["tr"], x["trh"], x["rs"] = t["code"], t["headline"], t.get("rs")
+            x["vet"] = "".join({"fits": "F", "partly": "P", "no": "N", "unknown": "U"}[l["verdict"]] for l in V.get(s, []))
+        _dump(OUT / "signals.json", signals)
+        _dump(OUT / "trends.json", {**tsum, "made": made})
+        _dump(OUT / "veterans.json", {**vsum, "made": made})
+        print(f"Trends: {tsum['counts']}; veterans: " + ", ".join(f"{k} {v['fits']}" for k, v in vsum["board"].items()))
     except Exception as e:                  # the site must still build without it
-        print("long history step failed:", repr(e))
+        import traceback
+        traceback.print_exc()
+        print("long history / trends step failed:", repr(e))
 
     meta = {"updated": dt.datetime.now(collector.COLOMBO).strftime("%Y-%m-%d %H:%M"), "stocks": len(signals),
             "tracked": len(db.symbols_with_data(1)), "watchlist": sorted(watch), "rules": analysis.RULES}

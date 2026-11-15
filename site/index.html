@@ -81,13 +81,18 @@
   .yr { font-size:11px; padding:2px 6px; border-radius:4px; background:#1d232b; font-variant-numeric:tabular-nums; white-space:nowrap; }
   .yr.up { background:#12301f; color:#86efac; } .yr.down { background:#3a1717; color:#fca5a5; }
   #longchart { height:220px; margin:8px 0 4px; } .btn .m-only { font-size:inherit; }
+  .tfr { display:grid; grid-template-columns:64px 96px minmax(0, 1fr); gap:6px; padding:3px 0; font-size:13px; align-items:baseline; }
+  .rng { position:relative; height:8px; border-radius:4px; background:linear-gradient(90deg, #3a1717, #262c35 50%, #12301f); margin:6px 0 2px; }
+  .rng i { position:absolute; top:-3px; width:4px; height:14px; border-radius:2px; background:#e6e8eb; transform:translateX(-2px); }
+  .vp { font-size:11px; font-weight:700; padding:2px 7px; border-radius:10px; white-space:nowrap; text-decoration:none; }
+  .vp.F { background:#14532d; color:#86efac; } .vp.P { background:#713f12; color:#fde68a; } .vp.N { background:#3f3f46; color:#d4d4d8; } .vp.U { background:#262c35; color:var(--mute); }
   /* Touch screens: text under 16px in a box makes iPhones zoom the whole page when the box is tapped. */
   @media (pointer:coarse) { input, select { font-size:16px; } }
   /* Phones: one thing at a time. The list is the page; tapping a share opens it full-screen under a Back bar. */
   @media (max-width:700px), (max-height:500px) {
     header { gap:8px; padding:10px; } header h1 { margin:0; }
     #q { flex:1 1 120px; min-width:0; } #f { flex:1 1 50%; min-width:0; } #alertBtn { flex:1 1 auto; }
-    .nav { display:flex; gap:6px; flex:1 1 100%; } .nav .btn { flex:1 1 auto; text-align:center; padding:6px 4px; white-space:nowrap; font-size:13px; }
+    .nav { display:flex; gap:6px; flex:1 1 100%; flex-wrap:wrap; } .nav .btn { flex:1 1 28%; text-align:center; padding:6px 4px; white-space:nowrap; font-size:13px; }
     .btn .m-only { display:inline; }
     #live, #meta { flex:1 1 100%; font-size:12px; } #live:empty, #meta:empty { display:none; }
     #detail { display:none; padding:10px 8px; }
@@ -118,11 +123,13 @@
   <h1>CSE Advisor</h1>
   <input id="q" placeholder="Search symbol/name" size="16" oninput="render()">
   <select id="f" onchange="render()">
-    <option value="">All signals</option><option value="invest">📈 Investment picks</option><option value="trade">⚡ Trading picks</option><option value="tradewatch">👀 Trade watch</option><option value="BUY">Buys</option><option value="SELL">Sells</option><option value="acc">▲ Quiet buying (daily)</option><option value="dist">▼ Quiet selling (daily)</option><option value="watch">★ Favourites</option><option value="value">Value (P/E &lt; 10)</option><option value="div">Dividend ≥ 5%</option><option value="issues">Data issues</option>
+    <option value="">All signals</option><option value="invest">📈 Investment picks</option><option value="trade">⚡ Trading picks</option><option value="tradewatch">👀 Trade watch</option><option value="BUY">Buys</option><option value="SELL">Sells</option><option value="up2">↗ Rising in every time frame</option><option value="down2">↘ Falling in every time frame</option><option value="acc">▲ Quiet buying (daily)</option><option value="dist">▼ Quiet selling (daily)</option><option value="watch">★ Favourites</option><option value="value">Value (P/E &lt; 10)</option><option value="div">Dividend ≥ 5%</option><option value="issues">Data issues</option>
   </select>
   <button class="btn" id="alertBtn" onclick="toggleAlerts()">🔔 Alerts <span id="abadge" class="badge" style="display:none"></span></button>
   <div class="nav">
     <a class="btn" id="addBtn" target="_blank" rel="noopener">+ Add<span class="d-only"> stocks</span></a>
+    <a class="btn" href="trends.html">📊 Trends</a>
+    <a class="btn" href="veterans.html">🎓 Veterans</a>
     <a class="btn" href="market.html">📈 Market</a>
     <a class="btn" href="accuracy.html">🎯 Accuracy</a>
     <a class="btn" href="audit.html">✓ <span class="d-only">Data checks</span><span class="m-only">Checks</span></a>
@@ -310,6 +317,39 @@ function pressureCard(d, sym) {
     <p class="mute" style="font-size:11px;margin:8px 0 0">CSE does not publish who is behind an order. These are readings of price, volume and trades, not facts about any buyer or seller.</p></div>`;
 }
 
+// ---------- trends in every aspect, and the veterans' verdicts (loaded when the share is opened) ----------
+const TDIR = { '1': ['▲ rising', 'up'], '-1': ['▼ falling', 'down'], '0': ['▬ sideways', 'mute'] };
+const TFRAME = { short:['Month', '20-day'], medium:['Quarter', '50-day'], long:['Year', '200-day'], years:['3 years', '750-day'] };
+const VNAME = { graham:'Graham', buffett:'Buffett', lynch:'Lynch', greenblatt:'Greenblatt', dreman:'Dreman', oneil:"O'Neil", minervini:'Minervini', weinstein:'Weinstein', darvas:'Darvas', turtle:'Turtles' };
+const VWORD = { fits:'fits', partly:'partly', no:'no', unknown:'?' }, VCODE = { fits:'F', partly:'P', no:'N', unknown:'U' };
+async function loadView(sym) {
+  const el = document.getElementById('trendcard'); if (!el) return;
+  let d;
+  try { d = await (await fetch('data/view/' + encodeURIComponent(sym) + '.json')).json(); }
+  catch (e) { el.innerHTML = '<h3>Trends</h3><p class="mute">Not available for this share yet.</p>'; return; }
+  if (current !== sym || !document.getElementById('trendcard')) return;
+  const t = d.trend, P = t.price, R = t.range, word = k => k == null ? '<span class="mute">not known</span>' : `<span class="${TDIR[k][1]}">${TDIR[k][0]}</span>`;
+  const rows = Object.keys(TFRAME).map(k => { const f = P[k]; if (!f) return `<div class="tfr"><span class="mute">${TFRAME[k][0]}</span><span class="mute">–</span><span class="mute" style="font-size:12px">not enough price history</span></div>`;
+    return `<div class="tfr"><span class="mute">${TFRAME[k][0]}</span><span>${word(f.dir)}</span><span class="mute" style="font-size:12px">${f.all_data ? 'throughout the data' : `for ${f.days} trading day${f.days === 1 ? '' : 's'}`} · ${pct(f.chg)} · ${f.vs_avg >= 0 ? '+' : ''}${f.vs_avg}% from its ${TFRAME[k][1]} average${f.dir ? (f.steady >= 0.5 ? ' · steady' : ' · choppy') : ''}</span></div>`; }).join('');
+  const seq = a => a.series.map(x => `${x[0]}: ${x[1]}`).join(' → ');
+  const E = t.earnings, V = t.volume, S = t.vs_sector;
+  el.innerHTML = `<h3>Trends <span class="mute">· price, volume, earnings, dividends, strength</span></h3>
+    <p style="margin:0 0 6px"><b class="${t.code > 0 ? 'up' : t.code < 0 ? 'down' : ''}">${esc(t.headline)}</b></p>
+    ${rows}
+    <div class="kv" style="margin-top:8px">
+      <span class="mute">52-week range</span><span><div class="rng"><i style="left:${R.pos ?? 50}%"></i></div><span class="mute" style="font-size:12px">low ${R.low} · high ${R.high} · now ${R.pos ?? '–'}% of the way up, ${Math.abs(R.from_high)}% below the high (set ${R.days_since_high} trading days ago)</span></span>
+      <span class="mute">Trading volume</span><span>${V ? `${word(V.dir).replace('sideways', 'steady')} <span class="mute" style="font-size:12px">${V.ratio}x the three months before · LKR ${(V.turnover / 1e6).toFixed(1)}M a day</span>` : '<span class="mute">not known</span>'}</span>
+      <span class="mute">Profits</span><span>${E ? `${word(E.dir).replace('sideways', 'mixed')} <span class="mute" style="font-size:12px">up in ${E.up} of the last ${E.n} checked reports · latest ${E.latest > 0 ? '+' : ''}${E.latest}% on a year earlier</span>` : '<span class="mute">no checked reports</span>'}</span>
+      ${t.revenue ? `<span class="mute">Revenue</span><span>${word(t.revenue.dir)} <span class="mute" style="font-size:12px">${t.revenue.latest > 0 ? '+' : ''}${t.revenue.latest}% on a year earlier</span></span>` : ''}
+      ${t.eps_years ? `<span class="mute">Earnings per share by year</span><span>${word(t.eps_years.dir).replace('sideways', 'mixed')} <span class="mute" style="font-size:12px">${esc(seq(t.eps_years))}</span></span>` : ''}
+      ${t.dividend ? `<span class="mute">Dividend by year</span><span>${word(t.dividend.dir).replace('sideways', 'flat')} <span class="mute" style="font-size:12px">${esc(seq(t.dividend))}</span></span>` : ''}
+      <span class="mute">Strength</span><span>${t.rs != null ? `<b>${t.rs}</b> of 99 <span class="mute" style="font-size:12px">against all shares over the past year</span>` : '<span class="mute">not known</span>'}${S && S.r60 != null ? ` <span class="mute" style="font-size:12px">· against ${esc(S.sector)} peers: ${S.r20 > 0 ? '+' : ''}${S.r20} points in a month, ${S.r60 > 0 ? '+' : ''}${S.r60} in three</span>` : ''}</span>
+    </div>
+    <div style="margin-top:10px;border-top:1px solid var(--line);padding-top:8px"><span class="mute" style="font-size:12px">How the veterans' published rules read this share</span>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:5px">${d.lenses.map(L => `<a class="vp ${VCODE[L.verdict]}" href="veterans.html#${encodeURIComponent(sym)}" title="${L.met} of ${L.can} checkable rules met">${VNAME[L.id]}: ${VWORD[L.verdict]}</a>`).join('')}</div>
+      <p class="mute" style="font-size:11px;margin:6px 0 0">Mechanical checklists, not these people's opinions. <a href="veterans.html#${encodeURIComponent(sym)}">See every rule →</a> · <a href="trends.html">Market and sector trends →</a></p></div>`;
+}
+
 // ---------- 10-year history of one share (loaded when the share is opened) ----------
 let longData = null, longChart = null, longSeries = null, longRange = 10;
 const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -465,7 +505,7 @@ async function load() {
 function render() {
   const q = $('#q').value.trim().toLowerCase(), f = $('#f').value;
   let rows = all.filter(s => (!q || s.symbol.toLowerCase().includes(q) || (s.name||'').toLowerCase().includes(q)) &&
-    (!f || (f === 'watch' ? isStar(s) : f === 'value' ? (s.pe && s.pe < 10) : f === 'div' ? (s.div_yield >= 5) : f === 'issues' ? (s.data_fail > 0) : f === 'invest' ? s.invest : f === 'trade' ? s.trade : f === 'tradewatch' ? (s.trade || s.trade_watch) : (f === 'acc' || f === 'dist') ? s.pr === f : sigClass(s.signal) === f)));
+    (!f || (f === 'watch' ? isStar(s) : f === 'value' ? (s.pe && s.pe < 10) : f === 'div' ? (s.div_yield >= 5) : f === 'issues' ? (s.data_fail > 0) : f === 'invest' ? s.invest : f === 'trade' ? s.trade : f === 'tradewatch' ? (s.trade || s.trade_watch) : f === 'up2' ? s.tr === 2 : f === 'down2' ? s.tr === -2 : (f === 'acc' || f === 'dist') ? s.pr === f : sigClass(s.signal) === f)));
   rows.sort((a,b) => (isStar(b) - isStar(a)) || (b.score - a.score));
   $('#empty').hidden = rows.length > 0;
   $('#empty').innerHTML = all.length ? 'No stocks match.' :
@@ -653,6 +693,7 @@ async function show(sym, fromHistory) {
     <div id="livebox" class="mute" style="margin-top:6px" data-sector="${esc(d.sector || '')}"></div><div id="intraday" style="display:none"></div>
     <div id="chart"></div><div id="rsi"></div><div id="macd"></div>
     <div class="cards">
+      <div class="card wide" id="trendcard"><h3>Trends</h3><p class="mute">Loading…</p></div>
       <div class="card"><h3>Technical reasons</h3><ul>${a.reasons.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>
         ${a.warnings.map(w=>`<p class="warn">⚠ ${esc(w)}</p>`).join('')}</div>
       ${styleCard(a)}
@@ -704,7 +745,7 @@ async function show(sym, fromHistory) {
   c.timeScale().fitContent();
   // live: today's candle, the minute chart and the peers line update on every tick
   detailCtx = { sym, cs, last: d.candles[d.candles.length - 1] };
-  loadLong(sym);
+  loadView(sym); loadLong(sym);
   if (tick) { updateLiveDetail(sym); pollMinute(); }
   if (!phone && innerWidth < 900) $('#detail').scrollIntoView({ behavior:'smooth' });
 }

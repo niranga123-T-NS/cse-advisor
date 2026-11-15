@@ -41,6 +41,8 @@ BREAK = math.log(1.6)          # a one-day move beyond this, with no split behin
 NEAR = math.log(1.35)          # how closely a price jump must match a split ratio
 LIMIT = 0.5                    # index only: a share's one-day move beyond this is left out of that day (a data fault, not a market move)
 INDEX_FROM = "2006-01-01"      # before this too few of the large companies have older prices for the index to stand for the market
+BARS: dict = {}                # filled by build(): every share's joined daily bars, for the other modules
+LEVEL = None                   # filled by market(): the ASPI line (official where known, estimated in between)
 MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 
@@ -444,6 +446,8 @@ def market(bars: dict[str, pd.DataFrame], joined: set[str]) -> dict:
     out["fit"] = fit
     # put it on the ASPI's own scale: through every official year-end close, official daily values for the last year
     level = tie_to_official(level, a, d)
+    global LEVEL
+    LEVEL = level
     out["official_daily_from"] = _d(d.index[0]) if len(d) else None
     wk = level.resample("W-FRI").last().dropna()
     out["weekly"] = [[_d(min(t, level.index[-1])), _r(v, 1)] for t, v in wk.items()]
@@ -497,6 +501,8 @@ def build(out_dir: Path | None = None, verbose: bool = False) -> dict:
             p = out_dir / "long" / f"{s}.json"
             p.parent.mkdir(parents=True, exist_ok=True)
             p.write_text(json.dumps({"symbol": s, "joined": ok, "checks": checks, "stats": st, "weekly": weekly(b)}, separators=(",", ":")))
+    global BARS
+    BARS = bars
     mk = market(bars, joined)
     mk["checks"] = counts
     mk["shares"] = sorted(summary, key=lambda x: x["s"])

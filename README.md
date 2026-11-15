@@ -174,6 +174,18 @@ Each share's page has a **10-year history** card (chart, change over 1 to 20 yea
 
 The **📈 Market** page shows the ASPI over 20 years and the patterns in it. Old ASPI values are not available daily, so the line is built in three layers: the official daily ASPI for the last year (`data/index/ASPI.csv`, extended every day), the official year-end closes (`data/index/aspi_annual.csv`) which the line passes through exactly, and between those an index built from the cleaned share prices (weighted by company size, chain-linked) that supplies the shape inside each year. The page reports how far the built index strays from the official ASPI before it is tied (a few points in most years; much more in 2021). Patterns measured on it: month of the year (with a test of whether a month's record could be luck), day of the week, falls of 20%+ and their recoveries, results of holding 1 to 10 years, and what followed strong and weak months.
 
+## Trends
+
+`trends.py` reads the trend of every share, industry group and the market, in the same simple way in four time frames (month = 20 trading days, quarter = 50, year = 200, three years = 750): **rising** when the price is above its average for that time frame and the average is itself going up, **falling** when it is below a falling average, otherwise sideways. Around that: how long each trend has lasted and how steady it is, the 52-week range, and the trend in trading volume, profits (year-on-year growth in the latest checked reports), revenue, earnings per share by year, dividends, and strength against all shares (a 1–99 score) and against sector peers.
+
+The **📊 Trends** page shows the market's own trend, how many shares are rising or falling in each time frame, every industry group, and lists such as "just turned up", "rising on growing volume" and "earnings rising, price falling". Each share's page has a Trends card. The list can be filtered by "Rising in every time frame".
+
+## Veterans' checklists
+
+`veterans.py` applies the published rules of ten well-known investors and traders to every share: Graham, Buffett, Lynch, Greenblatt and Dreman for investing; O'Neil (CAN SLIM), Minervini (trend template), Weinstein (stage analysis), Darvas (boxes) and the Turtle traders for trading. The **🎓 Veterans** page shows, for any share, each rule as met, not met or *cannot be checked*, and lists the shares that pass each checklist best.
+
+These are mechanical readings of published rules, **not the opinions of those people**. Rules that need figures this site does not read (debt, cash flow, margins, fund holdings) are shown as "cannot be checked" and never guessed. A share "fits" when the method's key rule is met and at least 80% of the checkable rules are (all of them for Minervini's template and the Turtle entry); it "cannot be judged" when the key rule, or more than 40% of the rules the site is able to check, has no figure to go on. Greenblatt's formula is approximated with earnings yield and return on equity because EBIT and capital employed are not available. Thresholds and wording are in `veterans.py`.
+
 ## Phones and tablets
 
 On a phone the list shows change under the price and score under the signal so every column fits, and tapping a share opens it full-screen with a **‹ All shares** bar (the phone's Back works too). Tablets held upright keep the list above the share; wide screens show them side by side.
@@ -191,6 +203,8 @@ On a phone the list shows change under the price and score under the signal so e
 | `longhist.py`, `.github/workflows/history.yml` | Downloads 10–20 years of prices (Yahoo Finance) and the official daily ASPI |
 | `longterm.py` | Cleans and checks the long history; 10-year figures per share; market index and 20-year patterns |
 | `site/market.html` | Market history page |
+| `trends.py`, `site/trends.html` | Trends for every share, sector and the market |
+| `veterans.py`, `site/veterans.html` | Checklists from the published methods of well-known investors and traders |
 | `sectors.py` | Industry group for each counter |
 | `site/accuracy.html` | Forecast accuracy page |
 | `.github/workflows/publish.yml` | Rebuild and publish the site on demand |

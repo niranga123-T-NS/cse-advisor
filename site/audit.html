@@ -72,6 +72,10 @@
   <p class="mute" style="margin-top:-4px">Companies marked 📖 Claude have their key figures read by Claude from the statement pages (Group/consolidated basis, with notes); those readings are compared with the text-matched figures. ✓ passed · ⚠ warning (figure not used) · ✗ failed (misread caught and excluded)</p>
   <div class="tw"><table id="kinds"></table></div>
 
+  <h2>Share splits found in the prices</h2>
+  <p class="mute" style="margin-top:-4px">CSE's price history is not adjusted for share splits: on the day a 10-for-1 split takes effect the price simply drops by 90%. Each such step is found and the earlier prices are divided by the ratio, so charts, signals, alerts and the forecast are on today's share basis. The ratio is taken from the company's own reports (the change in its share count) or a second price source where possible; otherwise from the price itself, which is approximate.</p>
+  <div class="tw"><table id="splits"></table></div>
+
   <h2>Every company</h2>
   <p style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
     <input id="q" placeholder="Search symbol or name" oninput="renderCos()">
@@ -108,6 +112,10 @@ fetch('data/audit.json').then(r => r.json()).then(a => {
         <td><div class="bar"><i style="width:${p.toFixed(0)}%"></i></div> <span class="mute">${p.toFixed(0)}%</span></td></tr>`; }).join('');
   $('#kinds').innerHTML = '<tr><th></th><th>Check</th><th class="num">Times</th></tr>' +
     a.kinds.map(k => `<tr><td>${ICON[k.level]}</td><td>${esc(k.kind)}</td><td class="num">${k.count.toLocaleString()}</td></tr>`).join('');
+  $('#splits').innerHTML = '<tr><th>Company</th><th>Date</th><th class="num">Prices divided by</th><th class="num d-only">Seen in the price</th><th>Ratio from</th></tr>' +
+    ((a.splits || []).map(x => `<tr><td><b>${esc(x.symbol)}</b> <span class="mute d-only" style="font-size:12px">${esc((x.name || '').slice(0, 28))}</span></td><td style="white-space:nowrap">${esc(x.date)}</td>
+      <td class="num"><b>${x.factor}</b></td><td class="num d-only">${x.seen}</td><td>${/price$/.test(x.basis) ? '<span class="warn">⚠</span> price only (approximate)' : '<span class="ok">✓</span> ' + esc(x.basis)}</td></tr>`).join('')
+     || '<tr><td colspan="5" class="mute">None found.</td></tr>');
   renderCos();
   if (location.hash) toggle(decodeURIComponent(location.hash.slice(1)));
 });

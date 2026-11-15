@@ -157,6 +157,23 @@ The scoring rules, buy/sell thresholds, stop and target multiples, and the ~1.12
 
 A score of 1.5 or more is BUY (3 or more is STRONG BUY). A score of −1.5 or less is SELL.
 
+## Share splits
+
+CSE's price history is **not adjusted for share splits**: on the day a 10-for-1 split takes effect the price simply drops 90%. `db.load_bars()` finds every such step (a one-day change of 1.7x or more, from Rs 2 or more, that stays) and divides the earlier prices by the ratio, so charts, signals, alerts and the forecast are on today's share basis. The ratio comes from, in order: the change in the share count in the company's own reports, a whole ratio in the second price source, a whole ratio in the price itself, or the raw price ratio (approximate). The Data checks page lists every split found and what its ratio rests on. `db.load_raw_bars()` gives the prices exactly as CSE published them.
+
+## 10-year history and 20-year market patterns
+
+CSE serves one year of prices, for shares and for the ASPI. Older years are downloaded once from **Yahoo Finance** (`python longhist.py fetch`, or **Actions → Long price history**), which has most CSE shares back to 2000–2008. It is a free, unofficial source with faults, so `longterm.py` cleans and checks it before use:
+
+1. days without trades are removed (Yahoo repeats the last price on them);
+2. each split Yahoo lists is tested against the prices around it and applied if it was not;
+3. a price that is rebased in one step and stays there is treated as an unlisted split (flagged as unconfirmed); a jump that fits nothing ends the usable history there;
+4. the join with CSE's own prices is tested: on the days both cover they must agree (most shares have about 60 such days), otherwise the older years are not used.
+
+Each share's page has a **10-year history** card (chart, change over 1 to 20 years, each calendar year, largest fall) with the checks made on that share. Prices only; dividends are not included.
+
+The **📈 Market** page shows the ASPI over 20 years and the patterns in it. Old ASPI values are not available daily, so the line is built in three layers: the official daily ASPI for the last year (`data/index/ASPI.csv`, extended every day), the official year-end closes (`data/index/aspi_annual.csv`) which the line passes through exactly, and between those an index built from the cleaned share prices (weighted by company size, chain-linked) that supplies the shape inside each year. The page reports how far the built index strays from the official ASPI before it is tied (a few points in most years; much more in 2021). Patterns measured on it: month of the year (with a test of whether a month's record could be luck), day of the week, falls of 20%+ and their recoveries, results of holding 1 to 10 years, and what followed strong and weak months.
+
 ## Phones and tablets
 
 On a phone the list shows change under the price and score under the signal so every column fits, and tapping a share opens it full-screen with a **‹ All shares** bar (the phone's Back works too). Tablets held upright keep the list above the share; wide screens show them side by side.
@@ -171,6 +188,9 @@ On a phone the list shows change under the price and score under the signal so e
 | `.github/workflows/live.yml`, `live.py` | Live prices and alerts every 15 seconds during market hours |
 | `forecast.py` | Pattern forecast, walk-forward accuracy test, live scoring |
 | `pressure.py` | Daily buying/selling pressure reading and the test of what followed it |
+| `longhist.py`, `.github/workflows/history.yml` | Downloads 10–20 years of prices (Yahoo Finance) and the official daily ASPI |
+| `longterm.py` | Cleans and checks the long history; 10-year figures per share; market index and 20-year patterns |
+| `site/market.html` | Market history page |
 | `sectors.py` | Industry group for each counter |
 | `site/accuracy.html` | Forecast accuracy page |
 | `.github/workflows/publish.yml` | Rebuild and publish the site on demand |

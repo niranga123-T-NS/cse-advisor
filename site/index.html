@@ -77,13 +77,18 @@
   .fbar { display:flex; height:8px; border-radius:4px; overflow:hidden; background:#262c35; margin:4px 0 6px; } .fbar i { display:block; height:100%; }
   #flowbox .bo { padding:4px 0; } #big .chip { padding:3px 8px; } #bsub { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0; }
   #backbar .btn { white-space:nowrap; flex:none; } #live2 { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .yrs { display:flex; flex-wrap:wrap; gap:4px; margin-top:6px; }
+  .yr { font-size:11px; padding:2px 6px; border-radius:4px; background:#1d232b; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .yr.up { background:#12301f; color:#86efac; } .yr.down { background:#3a1717; color:#fca5a5; }
+  #longchart { height:220px; margin:8px 0 4px; } .btn .m-only { font-size:inherit; }
   /* Touch screens: text under 16px in a box makes iPhones zoom the whole page when the box is tapped. */
   @media (pointer:coarse) { input, select { font-size:16px; } }
   /* Phones: one thing at a time. The list is the page; tapping a share opens it full-screen under a Back bar. */
   @media (max-width:700px), (max-height:500px) {
     header { gap:8px; padding:10px; } header h1 { margin:0; }
     #q { flex:1 1 120px; min-width:0; } #f { flex:1 1 50%; min-width:0; } #alertBtn { flex:1 1 auto; }
-    .nav { display:flex; gap:8px; flex:1 1 100%; } .nav .btn { flex:1 1 0; text-align:center; padding:6px 4px; white-space:nowrap; }
+    .nav { display:flex; gap:6px; flex:1 1 100%; } .nav .btn { flex:1 1 auto; text-align:center; padding:6px 4px; white-space:nowrap; font-size:13px; }
+    .btn .m-only { display:inline; }
     #live, #meta { flex:1 1 100%; font-size:12px; } #live:empty, #meta:empty { display:none; }
     #detail { display:none; padding:10px 8px; }
     body.open header, body.open #list { display:none; } body.open #detail { display:block; }
@@ -117,9 +122,10 @@
   </select>
   <button class="btn" id="alertBtn" onclick="toggleAlerts()">🔔 Alerts <span id="abadge" class="badge" style="display:none"></span></button>
   <div class="nav">
-    <a class="btn" id="addBtn" target="_blank" rel="noopener">+ Add stocks</a>
+    <a class="btn" id="addBtn" target="_blank" rel="noopener">+ Add<span class="d-only"> stocks</span></a>
+    <a class="btn" href="market.html">📈 Market</a>
     <a class="btn" href="accuracy.html">🎯 Accuracy</a>
-    <a class="btn" href="audit.html">✓ Data checks</a>
+    <a class="btn" href="audit.html">✓ <span class="d-only">Data checks</span><span class="m-only">Checks</span></a>
   </div>
   <span id="live" class="mute"></span>
   <span id="meta" class="mute"></span>
@@ -303,6 +309,54 @@ function pressureCard(d, sym) {
     <div id="flowbox" style="margin-top:10px;border-top:1px solid var(--line);padding-top:8px">${flowHtml(sym)}</div>
     <p class="mute" style="font-size:11px;margin:8px 0 0">CSE does not publish who is behind an order. These are readings of price, volume and trades, not facts about any buyer or seller.</p></div>`;
 }
+
+// ---------- 10-year history of one share (loaded when the share is opened) ----------
+let longData = null, longChart = null, longSeries = null, longRange = 10;
+const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const dmy = d => { if (!d) return ''; const [y, m, dd] = d.split('-'); return `${+dd} ${MON[m - 1]} ${y}`; };
+function drawLong() {
+  if (!longData || !document.getElementById('longchart')) return;
+  const w = longData.weekly, end = w[w.length - 1][0];
+  const from = longRange ? `${+end.slice(0, 4) - longRange}${end.slice(4)}` : '';
+  if (!longChart) {
+    longChart = mkChart($('#longchart'), 220);
+    longSeries = longChart.addAreaSeries({ lineColor:'#a78bfa', topColor:'rgba(167,139,250,.25)', bottomColor:'rgba(167,139,250,0)', lineWidth:2 });
+  }
+  longSeries.setData(w.filter(p => p[0] >= from).map(p => ({ time: p[0], value: p[1] })));
+  longChart.timeScale().fitContent();
+  document.querySelectorAll('[data-lr]').forEach(b => b.classList.toggle('on', +b.dataset.lr === longRange));
+}
+async function loadLong(sym) {
+  const el = document.getElementById('longcard'); if (!el) return;
+  longData = null; longChart = null; longSeries = null;
+  let L;
+  try { L = await (await fetch('data/long/' + encodeURIComponent(sym) + '.json')).json(); }
+  catch (e) { el.innerHTML = '<h3>10-year history</h3><p class="mute">Not available for this share yet.</p>'; return; }
+  if (current !== sym || !document.getElementById('longcard')) return;
+  const st = L.stats, P = st.periods || {}, NAME = { '1y':'1 year', '3y':'3 years', '5y':'5 years', '10y':'10 years', '15y':'15 years', '20y':'20 years' };
+  const per = Object.keys(NAME).filter(k => P[k]).map(k => `<span class="yr" style="font-size:12px;padding:3px 8px">${NAME[k]} <b>${pct(P[k].total)}</b>${P[k].per_year != null ? ` <span class="mute">${P[k].per_year > 0 ? '+' : ''}${P[k].per_year}% a year</span>` : ''}</span>`).join('');
+  const dd = st.drawdown, icon = { ok:'<span class="up">✓</span>', warn:'<span class="warn">⚠</span>', fail:'<span class="down">✗</span>', info:'<span class="mute">•</span>' };
+  const ranges = [1, 5, 10].filter(y => st.years >= y - 0.2).concat(st.years > 10.5 ? [0] : []);
+  longRange = st.years > 10.5 ? 10 : 0;
+  longData = L;
+  el.innerHTML = `<h3>10-year history <span class="mute">· ${dmy(st.from)} to ${dmy(st.to)} · ${st.years} years of prices</span></h3>
+    ${L.joined ? '' : `<p class="warn" style="font-size:12px;margin:0 0 6px">Only CSE's own year of prices is used for this share: ${st.years < 1.5 ? 'older prices were not available or did not pass the checks below.' : ''}</p>`}
+    <div style="display:flex;gap:6px;flex-wrap:wrap">${ranges.map(y => `<button class="chip" data-lr="${y}">${y ? y + (y === 1 ? ' year' : ' years') : 'All'}</button>`).join('')}</div>
+    <div id="longchart"></div>
+    ${per ? `<div class="mute" style="font-size:12px;margin-top:6px">Price change to today</div><div class="yrs" style="margin-top:3px">${per}</div>` : ''}
+    <div class="kv" style="margin-top:8px">
+      <span class="mute">10-year high and low</span><span>${st.high.v} <span class="mute">(${dmy(st.high.d)})</span> · ${st.low.v} <span class="mute">(${dmy(st.low.d)})</span>${st.from_high != null && st.from_high < -0.05 ? ` · now ${Math.abs(st.from_high)}% below the high` : ' · at the high'}</span>
+      ${dd && dd.pct < -1 ? `<span class="mute">Largest fall</span><span><b class="down">${dd.pct}%</b> <span class="mute">${dmy(dd.from)} to ${dmy(dd.to)} · ${dd.recovered ? 'back at the old high on ' + dmy(dd.recovered) : 'not yet back at the old high'}</span></span>` : ''}
+      ${st.up_years ? `<span class="mute">Calendar years</span><span>up in ${st.up_years[0]} of ${st.up_years[1]} · best ${st.best_year.y} ${pct(st.best_year.ret)} · worst ${st.worst_year.y} ${pct(st.worst_year.ret)}</span>` : ''}
+      ${st.volatility != null ? `<span class="mute">Typical swing in a year</span><span>±${st.volatility}%</span>` : ''}
+    </div>
+    ${(st.by_year || []).length ? `<div class="mute" style="font-size:12px;margin-top:8px">Each calendar year</div><div class="yrs" style="margin-top:3px">${st.by_year.map(x => `<span class="yr ${x.ret > 0 ? 'up' : x.ret < 0 ? 'down' : ''}">${x.y}${x.part ? '*' : ''} ${x.ret > 0 ? '+' : ''}${x.ret}%</span>`).join('')}</div>` : ''}
+    <p class="mute" style="font-size:11px;margin:8px 0 0">Price only, on today's share basis; dividends are not included.${(st.by_year || []).some(x => x.part) ? ' * year so far.' : ''}
+      ${L.joined ? "Prices before CSE's own year come from Yahoo Finance, an unofficial source: checked as listed below, but a bonus issue it missed would understate older returns." : ''}</p>
+    <details style="margin-top:6px"><summary>Checks on this history (${L.checks.length})</summary><ul style="margin-top:6px">${L.checks.map(c => `<li style="list-style:none;margin-left:-18px">${icon[c.level] || ''} ${esc(c.msg)}</li>`).join('')}</ul></details>`;
+  drawLong();
+}
+document.addEventListener('click', e => { const b = e.target.closest('[data-lr]'); if (b) { longRange = +b.dataset.lr; drawLong(); } });
 
 // ---------- alerts ----------
 const KIND = { jump:['▲','up'], drop:['▼','down'], volume:['◉','warn'], high:['★','up'], low:['☆','down'], breakout:['↗','up'], breakdown:['↘','down'],
@@ -595,6 +649,7 @@ async function show(sym, fromHistory) {
       <span class="big sig ${sigClass(a.signal)}">${esc(a.signal)}</span><span class="mute">score ${a.score} (technical ${a.tech_score}${a.fund_score!=null?`, fundamentals ${a.fund_score}`:''}) · ${a.date}</span>
     </div>
     <div class="mute" style="font-size:12px;margin-top:2px">${esc(d.sector || '')}${d.perf ? ` · 1 week ${pct(d.perf.d5)} · 1 month ${pct(d.perf.d20)} · 3 months ${pct(d.perf.d60)}` : ''}</div>
+    ${(d.splits || []).map(x => `<div class="mute" style="font-size:12px;margin-top:2px">✂ Share ${x.factor >= 1 ? 'split' : 'consolidation'} on ${dmy(x.date)}: earlier prices are divided by ${x.factor} so the chart and signals are on today's share basis <span class="mute">(ratio from: ${esc(x.basis)})</span>.</div>`).join('')}
     <div id="livebox" class="mute" style="margin-top:6px" data-sector="${esc(d.sector || '')}"></div><div id="intraday" style="display:none"></div>
     <div id="chart"></div><div id="rsi"></div><div id="macd"></div>
     <div class="cards">
@@ -602,6 +657,7 @@ async function show(sym, fromHistory) {
         ${a.warnings.map(w=>`<p class="warn">⚠ ${esc(w)}</p>`).join('')}</div>
       ${styleCard(a)}
       ${peersCard(d, sym)}
+      <div class="card wide" id="longcard"><h3>10-year history</h3><p class="mute">Loading…</p></div>
       ${pressureCard(d, sym)}
       ${forecastCard(d)}
       ${fibCard(a)}
@@ -648,6 +704,7 @@ async function show(sym, fromHistory) {
   c.timeScale().fitContent();
   // live: today's candle, the minute chart and the peers line update on every tick
   detailCtx = { sym, cs, last: d.candles[d.candles.length - 1] };
+  loadLong(sym);
   if (tick) { updateLiveDetail(sym); pollMinute(); }
   if (!phone && innerWidth < 900) $('#detail').scrollIntoView({ behavior:'smooth' });
 }

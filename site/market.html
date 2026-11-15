@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>CSE Advisor · Market history</title>
+<script src="https://unpkg.com/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
+<style>
+  :root { --bg:#0f1216; --panel:#171b21; --line:#262c35; --text:#e6e8eb; --mute:#8b95a1; --ok:#22c55e; --warn:#f59e0b; --fail:#ef4444; --accent:#3b82f6; }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+  body { margin:0; font:14px/1.5 system-ui, sans-serif; background:var(--bg); color:var(--text); }
+  header { display:flex; gap:12px; align-items:center; padding:10px 16px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
+  header h1 { font-size:16px; margin:0; } a { color:#93c5fd; }
+  main { max-width:1000px; margin:0 auto; padding:16px; }
+  h2 { font-size:15px; margin:28px 0 10px; }
+  .mute { color:var(--mute); } .ok { color:var(--ok); } .warn { color:var(--warn); } .fail { color:var(--fail); }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); gap:12px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; }
+  .big { font-size:26px; font-weight:700; }
+  .tw { overflow-x:auto; -webkit-overflow-scrolling:touch; background:var(--panel); border:1px solid var(--line); border-radius:8px; }
+  table { width:100%; border-collapse:collapse; } tr:last-child td { border-bottom:0; }
+  th, td { padding:7px 10px; text-align:left; border-bottom:1px solid var(--line); }
+  th { color:var(--mute); font-weight:500; font-size:12px; background:#13171c; vertical-align:bottom; }
+  .num { text-align:right; font-variant-numeric:tabular-nums; }
+  li { margin-bottom:6px; } tr.hi td { background:#1b2433; }
+  .chip { background:var(--panel); color:var(--text); border:1px solid var(--line); border-radius:12px; padding:3px 10px; font:inherit; font-size:12px; cursor:pointer; }
+  .chip.on { border-color:var(--accent); color:#93c5fd; }
+  #chart { height:320px; margin-top:8px; }
+  .note { font-size:12px; color:var(--mute); margin:8px 0 0; }
+  @media (max-width:600px) {
+    header { padding:10px 12px; gap:4px 12px; } main { padding:12px; } h2 { margin:24px 0 8px; }
+    .cards { grid-template-columns:repeat(2, minmax(0, 1fr)); gap:8px; } .card { padding:10px; } .big { font-size:21px; }
+    th, td { padding:6px 5px; font-size:12.5px; } th { font-size:11.5px; } .x { display:none; } #chart { height:260px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a href="./">← CSE Advisor</a>
+  <h1>Market history</h1>
+  <span class="mute" id="stamp"></span>
+</header>
+<main id="main"><p class="mute">Loading…</p></main>
+<script>
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const dmy = d => { if (!d) return ''; const [y, m, dd] = d.split('-'); return `${+dd} ${MON[m - 1]} ${y}`; };
+const my = d => { if (!d) return ''; const [y, m] = d.split('-'); return `${MON[m - 1]} ${y}`; };
+const sg = (v, n = 1) => v == null ? '–' : `<span class="${v > 0 ? 'ok' : v < 0 ? 'fail' : ''}">${v > 0 ? '+' : ''}${(+v).toFixed(n)}%</span>`;
+const num = v => v == null ? '–' : (+v).toLocaleString(undefined, { maximumFractionDigits: 0 });
+const FULL = { Jan:'January', Feb:'February', Mar:'March', Apr:'April', May:'May', Jun:'June', Jul:'July', Aug:'August', Sep:'September', Oct:'October', Nov:'November', Dec:'December' };
+const DAY = { Mon:'Monday', Tue:'Tuesday', Wed:'Wednesday', Thu:'Thursday', Fri:'Friday' };
+let M = null, chart = null, line = null, dots = null, range = 10;
+
+function draw() {
+  const w = M.weekly, end = w[w.length - 1][0], from = range ? `${+end.slice(0, 4) - range}${end.slice(4)}` : '';
+  if (!chart) {
+    chart = LightweightCharts.createChart(document.getElementById('chart'), { layout:{ background:{ color:'#0f1216' }, textColor:'#8b95a1' },
+      grid:{ vertLines:{ color:'#1b2028' }, horzLines:{ color:'#1b2028' } }, timeScale:{ borderColor:'#262c35' }, rightPriceScale:{ borderColor:'#262c35' },
+      autoSize:true, handleScroll:{ vertTouchDrag:false } });
+    line = chart.addAreaSeries({ lineColor:'#3b82f6', topColor:'rgba(59,130,246,.25)', bottomColor:'rgba(59,130,246,0)', lineWidth:2, title:'ASPI' });
+    dots = chart.addLineSeries({ color:'#f59e0b', lineVisible:false, pointMarkersVisible:true, pointMarkersRadius:3, lastValueVisible:false, priceLineVisible:false, title:'' });
+  }
+  line.setData(w.filter(p => p[0] >= from).map(p => ({ time: p[0], value: p[1] })));
+  const yearEnds = M.official_years.map(x => ({ time: `${x.y}-12-31`, value: x.close })).filter(p => p.time >= from && p.time <= end);
+  dots.setData(yearEnds);
+  chart.timeScale().fitContent();
+  document.querySelectorAll('[data-r]').forEach(b => b.classList.toggle('on', +b.dataset.r === range));
+}
+document.addEventListener('click', e => { const b = e.target.closest('[data-r]'); if (b && M) { range = +b.dataset.r; draw(); } });
+
+fetch('data/market.json').then(r => r.json()).then(m => {
+  M = m;
+  const P = m.patterns, F = m.fit, S = m.official_summary || {}, B = m.built_from, now = P.now, ytd = m.official_ytd, C = m.checks;
+  document.getElementById('stamp').textContent = 'Updated ' + m.made;
+  const yrs = m.official_years.slice(-20);
+  const fitRow = x => `<tr><td>${x.y}</td><td class="num">${sg(x.official)}</td><td class="num">${sg(x.built)}</td><td class="num ${Math.abs(x.built - x.official) > 10 ? 'warn' : 'mute'}">${(x.built - x.official > 0 ? '+' : '') + (x.built - x.official).toFixed(1)}</td></tr>`;
+  const strong = P.season.filter(s => s.p != null && s.p < 0.05);
+  const after = (k, label) => { const a = P.after[k]; if (!a || !a.n) return ''; const c = h => a[h] ? `<td class="num">${sg(a[h].avg)} <span class="mute x">(${a[h].up} of ${a[h].n} up)</span></td>` : '<td class="num">–</td>';
+    return `<tr><td>${label} <span class="mute">· ${a.n} months</span></td>${c('1')}${c('3')}${c('6')}${c('12')}</tr>`; };
+  const base = P.after.down8, allRow = base && base['1'] ? `<tr><td>Any month <span class="mute">(for comparison)</span></td>${['1','3','6','12'].map(h => `<td class="num">${sg(base[h] ? base[h].all_avg : null)} <span class="mute x">(${base[h] ? base[h].all_up_pct : '–'}% up)</span></td>`).join('')}</tr>` : '';
+  const byY = Object.fromEntries(P.by_year.map(x => [x.y, x]));
+  document.getElementById('main').innerHTML = `
+    <div class="cards">
+      <div class="card"><div class="mute">ASPI${ytd ? ' on ' + dmy(ytd.to) : ''}</div><div class="big">${num(ytd ? ytd.close : now.level)}</div><div class="mute">${ytd ? 'this year ' + sg(ytd.ret) : ''}</div></div>
+      <div class="card"><div class="mute">Growth a year, last 10 years</div><div class="big ${S.growth_10y >= 0 ? 'ok' : 'fail'}">${S.growth_10y != null ? (S.growth_10y > 0 ? '+' : '') + S.growth_10y + '%' : '–'}</div><div class="mute">official ASPI, to end ${S.to}</div></div>
+      <div class="card"><div class="mute">Growth a year, last 20 years</div><div class="big ${S.growth_20y >= 0 ? 'ok' : 'fail'}">${S.growth_20y != null ? (S.growth_20y > 0 ? '+' : '') + S.growth_20y + '%' : '–'}</div><div class="mute">official ASPI, to end ${S.to}</div></div>
+      <div class="card"><div class="mute">Years the ASPI rose</div><div class="big">${S.up_years} of ${S.n_years}</div><div class="mute">best ${S.best ? S.best.y + ' ' + (S.best.ret > 0 ? '+' : '') + S.best.ret + '%' : ''} · worst ${S.worst ? S.worst.y + ' ' + S.worst.ret + '%' : ''}</div></div>
+    </div>
+    <p class="note">Price index only: dividends are not included and nothing is adjusted for inflation.</p>
+
+    <h2>The market over time</h2>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">${[1, 5, 10, 20].map(y => `<button class="chip" data-r="${y}">${y} year${y > 1 ? 's' : ''}</button>`).join('')}</div>
+    <div id="chart"></div>
+    <p class="note"><b>What the line is.</b> CSE's site only gives one year of ASPI values. From ${dmy(m.official_daily_from)} the line is the official ASPI. Before that it passes exactly through
+      every official year-end close (the orange points), and between those points its shape comes from an index built here from the prices of ${B.shares_now} listed shares
+      (${B.shares_at_start} at the start in ${B.start.slice(0, 4)}), each weighted by company size. So year-end levels are official; the path inside each year is an estimate.</p>
+
+    <h2>How close is the built index to the real ASPI, before it is tied to the year-ends?</h2>
+    <div class="cards">
+      <div class="card"><div class="mute">Typical gap in a year</div><div class="big">${F.mean_gap} pts</div><div class="mute">over ${F.n} years; largest ${F.worst_gap}</div></div>
+      <div class="card"><div class="mute">Same direction as the ASPI</div><div class="big">${F.same_direction} of ${F.n}</div><div class="mute">years</div></div>
+      ${F.daily ? `<div class="card"><div class="mute">Day-by-day match, last year</div><div class="big">${Math.round(F.daily.corr * 100)}%</div><div class="mute">ASPI ${F.daily.official > 0 ? '+' : ''}${F.daily.official}% · built ${F.daily.built > 0 ? '+' : ''}${F.daily.built}%</div></div>` : ''}
+    </div>
+    <details style="margin-top:10px"><summary class="mute" style="cursor:pointer">Year by year: official ASPI against the built index</summary>
+      <div class="tw" style="margin-top:8px"><table><tr><th>Year</th><th class="num">Official ASPI</th><th class="num">Built index</th><th class="num">Gap (points)</th></tr>${F.years.map(fitRow).join('')}</table></div></details>
+    <p class="note">The built index only holds companies that are still listed today, and it cannot see new shares a company issued along the way. A year led by companies that have
+      since left the exchange comes out too low, which is the likely reason for the large gap in 2021. Tying the line to the official year-ends removes these yearly gaps;
+      what remains uncertain is the timing inside each year. The patterns below are measured on the tied line: a close estimate, not the official record.</p>
+
+    <h2>Year by year <span class="mute">· official ASPI</span></h2>
+    <div class="tw"><table><tr><th>Year</th><th class="num">Year-end close</th><th class="num">Change</th><th class="num">Largest fall within the year</th><th class="num x">Swing (volatility)</th></tr>
+      ${ytd ? `<tr><td>${ytd.y} <span class="mute">so far</span></td><td class="num">${num(ytd.close)}</td><td class="num">${sg(ytd.ret)}</td><td class="num">${byY[ytd.y] ? sg(byY[ytd.y].worst_fall) : '–'}</td><td class="num x">${byY[ytd.y] ? '±' + byY[ytd.y].vol + '%' : '–'}</td></tr>` : ''}
+      ${yrs.slice().reverse().map(x => `<tr><td>${x.y}</td><td class="num">${num(x.close)}</td><td class="num">${sg(x.ret)}</td><td class="num">${byY[x.y] ? sg(byY[x.y].worst_fall) : '–'}</td><td class="num x">${byY[x.y] ? '±' + byY[x.y].vol + '%' : '–'}</td></tr>`).join('')}</table></div>
+    <p class="note">Close and change are official. The fall within the year and the swing are estimates from the line above.</p>
+
+    <h2>Month of the year <span class="mute">· ${P.from.slice(0, 4)} to ${P.to.slice(0, 4)}</span></h2>
+    <div class="tw"><table><tr><th>Month</th><th class="num">Average</th><th class="num">Typical</th><th class="num">Rose in</th><th class="num x">Best</th><th class="num x">Worst</th></tr>
+      ${P.season.map(s => `<tr class="${s.p != null && s.p < 0.05 ? 'hi' : ''}"><td>${FULL[s.m]}${now.month && now.month.m === s.m ? ' <span class="mute">· now</span>' : ''}</td><td class="num">${sg(s.avg)}</td><td class="num">${sg(s.median)}</td>
+        <td class="num">${s.up} of ${s.n}</td><td class="num x">${sg(s.best)}</td><td class="num x">${sg(s.worst)}</td></tr>`).join('')}</table></div>
+    <div class="card" style="margin-top:10px"><ul style="margin:0;padding-left:18px">
+      ${strong.length ? strong.map(s => `<li><b>${FULL[s.m]}</b> ${s.up > s.n / 2 ? 'rose' : 'fell'} in ${s.up > s.n / 2 ? s.up : s.n - s.up} of ${s.n} years (typical month ${s.median > 0 ? '+' : ''}${s.median}%). That is more one-sided than chance usually gives for a single month.
+        Twelve months were examined, and the chance of one of the twelve looking this lopsided by luck alone is about ${Math.max(1, Math.round((1 - Math.pow(1 - s.p, 12)) * 100))}%${(1 - Math.pow(1 - s.p, 12)) < 0.05
+          ? `, so it is unlikely to be luck. Still, ${s.n} years is a short record: a tendency, not a rule.` : ', so it may well be luck: a tendency at most.'}</li>`).join('')
+        : '<li>No month has been one-sided enough to tell apart from chance.</li>'}
+      <li>For every other month the split between up and down years is what coin-tossing would give. Averages are pulled about by a few extreme months (see Best and Worst), so "Typical" (the middle year) is the better guide.</li>
+      ${now.month ? `<li><b>This month and next:</b> ${FULL[now.month.m]} rose in ${now.month.up} of ${now.month.n} years (typical ${now.month.median > 0 ? '+' : ''}${now.month.median}%)${now.next_month ? `; ${FULL[now.next_month.m]} in ${now.next_month.up} of ${now.next_month.n} (typical ${now.next_month.median > 0 ? '+' : ''}${now.next_month.median}%)` : ''}.</li>` : ''}
+    </ul></div>
+
+    <h2>Day of the week</h2>
+    <div class="tw"><table><tr><th>Day</th><th class="num">Average day</th><th class="num">Days the market rose</th><th class="num x">Days counted</th></tr>
+      ${P.weekday.map(d => `<tr><td>${DAY[d.d]}</td><td class="num">${sg(d.avg, 2)}</td><td class="num">${d.up_pct}%</td><td class="num x">${num(d.n)}</td></tr>`).join('')}</table></div>
+    <p class="note">Differences of a few hundredths of a per cent a day are far smaller than the cost of a trade (about 1.12% each way).</p>
+
+    <h2>Big falls and how long they took to mend <span class="mute">· falls of 20% or more</span></h2>
+    <div class="tw"><table><tr><th>Peak</th><th>Low</th><th class="num">Fall</th><th class="num">Months falling</th><th class="num">Months to get back</th></tr>
+      ${P.falls.map(f => `<tr><td>${my(f.peak)}</td><td>${my(f.low)}</td><td class="num">${sg(f.fall)}</td><td class="num">${f.months_down}</td><td class="num">${f.back ? f.months_back : `<span class="warn">not yet back (${f.now}%)</span>`}</td></tr>`).join('')
+        || '<tr><td colspan="5" class="mute">None in this period.</td></tr>'}</table></div>
+    <p class="note">Estimated from the line above, so peaks and lows inside a year can be a few per cent out and dates are given by month. A fall counts from its peak to its lowest point before the old peak is regained.</p>
+
+    <h2>If you had bought at any month-end and held</h2>
+    <div class="tw"><table><tr><th>Held for</th><th class="num">Ended higher</th><th class="num">Typical growth a year</th><th class="num">Worst</th><th class="num">Best</th><th class="num x">Starting months</th></tr>
+      ${P.holding.map(h => `<tr><td>${h.years} year${h.years > 1 ? 's' : ''}</td><td class="num"><b>${h.up_pct}%</b> of the time</td><td class="num">${sg(h.median)}</td><td class="num">${sg(h.worst)}</td><td class="num">${sg(h.best)}</td><td class="num x">${h.n}</td></tr>`).join('')}</table></div>
+    <p class="note">Growth is per year, price only. Add dividends and take off inflation to judge real returns.</p>
+
+    <h2>What followed strong and weak months</h2>
+    <div class="tw"><table><tr><th>After a month when the market…</th><th class="num">1 month later</th><th class="num">3 months</th><th class="num">6 months</th><th class="num">12 months</th></tr>
+      ${after('down8', 'fell 8% or more')}${after('up8', 'rose 8% or more')}${after('dd20', 'stood 20%+ below its peak')}${after('high', 'closed at a new high')}${allRow}</table></div>
+    <p class="note">Average change afterwards. The months overlap and there are few of them, so these are tendencies with wide margins, not forecasts.</p>
+
+    <h2>Where the market stands now</h2>
+    <div class="card"><ul style="margin:0;padding-left:18px">
+      <li>${now.from_peak < -0.5 ? `<b>${Math.abs(now.from_peak)}% below</b> its peak of ${dmy(now.peak_date)}` : '<b>At its peak</b>'}.</li>
+      ${now.vs_200d != null ? `<li><b>${Math.abs(now.vs_200d)}% ${now.vs_200d >= 0 ? 'above' : 'below'}</b> its average of the last 200 trading days.</li>` : ''}
+      ${now.ret_12m != null ? `<li>Over the last 12 months: <b>${sg(now.ret_12m)}</b>${now.ret_12m_rank != null ? `, better than ${now.ret_12m_rank}% of all 12-month stretches since ${P.from.slice(0, 4)}` : ''}.</li>` : ''}
+    </ul></div>
+
+    <h2>About the older prices</h2>
+    <div class="card"><ul style="margin:0;padding-left:18px">
+      <li><b>Source.</b> CSE's own site gives one year of prices. Older years come from Yahoo Finance, a free and unofficial source, for ${C.with_older} of ${C.shares} counters (${C.no_older} are not there).</li>
+      <li><b>Cleaned.</b> Days without trades are removed. ${C.splits_applied} listed share splits that had not been applied were applied here. ${C.assumed_splits || 0} one-step price rebasings that stayed were treated as splits the source does not list; these could not be confirmed elsewhere.</li>
+      <li><b>Checked against CSE.</b> For ${C.joined} counters the older prices agree with CSE's own on the days both cover, or meet them cleanly${C.rescaled ? ` (${C.rescaled} after rescaling for a recent split)` : ''}. ${C.not_joined} did not, and keep only their CSE year.
+        ${C.breaks} have an unexplained price jump somewhere in the past; their history is used only after it.</li>
+      <li><b>What cannot be checked.</b> A small bonus issue the source missed looks like an ordinary fall and would understate a share's older returns. Each share's page lists the checks made on its own history.</li>
+    </ul></div>
+    <p class="mute" style="margin-top:14px">Past patterns do not predict the future. Nothing on this site is financial advice.</p>`;
+  draw();
+}).catch(() => { document.getElementById('main').innerHTML = '<p class="mute">Market history is not available yet. It is built with the daily update.</p>'; });
+</script>
+</body>
+</html>

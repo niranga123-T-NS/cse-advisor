@@ -188,6 +188,7 @@ class Engine:
         self.alerts: list[dict] = []
         self.seen: dict[str, float] = {}
         self.opened: set[str] = set()
+        self.rebased: set[str] = set()          # shares whose price was rebased today (a split taking effect): no alerts
         self.last_p: dict[str, float] = {}
         self.sec_pct: dict[str, float] = {}      # median % change today of each sector's liquid stocks
         self.sec_n: dict[str, int] = {}
@@ -267,7 +268,7 @@ class Engine:
             prev_p = self.last_p.get(s, f["pc"] if f else p)
             self.hist[s].append((ts, p))
             self.last_p[s] = p
-            if not f or v <= 0:
+            if not f or v <= 0 or s in self.rebased:
                 continue
             liquid = f["tov20"] >= 500_000 or to >= 2_000_000
             small_tick = p < 20                       # a 10-cent step is a big % for cheap shares
@@ -277,6 +278,12 @@ class Engine:
             if s not in self.opened:
                 self.opened.add(s)
                 o = r.get("o") or p
+                if f["pc"] and f["pc"] >= 2 and (f["pc"] / o >= 1.7 or o / f["pc"] >= 2):
+                    self.rebased.add(s)             # yesterday's levels no longer apply; tomorrow's reference is adjusted
+                    times = f"{f['pc'] / o:.1f}x lower" if o < f["pc"] else f"{o / f['pc']:.1f}x higher"
+                    self.emit(ts, s, "gap", f"opened at {o:.2f} against yesterday's {f['pc']:.2f} ({times}): this looks like a share "
+                                            f"split or similar taking effect, not a market move", 2)
+                    continue
                 gap = (o / f["pc"] - 1) * 100 if f["pc"] else 0
                 if liquid and abs(gap) >= max(3.0, atr) and (not small_tick or abs(o - f["pc"]) >= 0.3 - 1e-9):
                     self.emit(ts, s, "gap", f"opened {abs(gap):.1f}% {'above' if gap > 0 else 'below'} yesterday's close "
@@ -615,7 +622,7 @@ class Engine:
 
     # -- persistence
     def state(self) -> dict:
-        return {"date": self.day, "alerts": self.alerts, "seen": self.seen, "opened": sorted(self.opened),
+        return {"date": self.day, "alerts": self.alerts, "seen": self.seen, "opened": sorted(self.opened), "rebased": sorted(self.rebased),
                 "big": self.big, "rest": self.rest, "hidden": self.hidden, "flow": self.flow, "dirn": self.dirn,
                 "lv": None if self.lv is None else {s: [[px, q, n] for px, (q, n) in lv.items()] for s, lv in self.lv.items()}}
 
@@ -624,6 +631,7 @@ class Engine:
             return
         self.alerts, self.seen = st.get("alerts", []), st.get("seen", {})
         self.opened = set(st.get("opened", []))
+        self.rebased = set(st.get("rebased", []))
         self.big, self.rest, self.hidden = st.get("big", []), st.get("rest", []), st.get("hidden", [])
         self.flow, self.dirn = st.get("flow", {}), st.get("dirn", {})
         if st.get("lv") is not None:

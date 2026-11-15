@@ -34,12 +34,132 @@ def upsert_bars(symbol: str, bars: list[dict]) -> int:
     return len(bars)
 
 
-def load_bars(symbol: str) -> pd.DataFrame:
+SPLIT_MIN = 1.8      # a price that changes by this factor in one step, and stays there, was rebased (a share split)
+WHOLE = [1.5, 2, 2.5, 3, 4, 5, 6, 7.5, 8, 10, 12, 15, 20, 25, 30, 40, 50, 60, 75, 80, 100, 125, 150, 200, 250, 300, 400, 500, 1000]
+
+
+def find_splits(df: pd.DataFrame, step_min: float = 1.7, stay_min: float = SPLIT_MIN) -> list[tuple]:
+    """Share splits (and other capital changes that rebase the price) found in unadjusted daily bars.
+
+    CSE's price history is not adjusted for them: on the day a 10-for-1 split takes effect the close simply drops
+    by 90%. A listed share does not otherwise lose or gain this much in one step and stay there, so a split is:
+      * a close that changes by a factor of 1.7 or more (or doubles) from a price of Rs 2 or more, and
+      * stays: the middle close of the next days against the middle close of the days before gives 1.8 or more.
+    That ratio of middles is the factor, set to a whole ratio (2, 5, 10, 200 ...) when within 6% of one.
+    Returns [(date, factor, ratio seen)], factor above 1 for a split and below 1 for a consolidation.
+    """
+    import math
+    c = df["close"].to_numpy(dtype=float)
+    out, i = [], 1
+    while i < len(c):
+        step = c[i - 1] / c[i] if c[i] > 0 else 1.0
+        if c[i - 1] >= 2 and (step >= step_min or step <= 0.5):
+            seen = float(pd.Series(c[max(0, i - 5):i]).median() / pd.Series(c[i:i + 5]).median())
+            if seen >= stay_min or seen <= 1 / 2.0:
+                f = seen if seen > 1 else 1 / seen
+                near = min(WHOLE, key=lambda k: abs(math.log(f / k)))
+                if abs(math.log(f / near)) <= math.log(1.06):
+                    f = float(near)
+                out.append((df.index[i], f if seen > 1 else 1 / f, seen))
+                i += 5                               # the first days after are still settling
+                continue
+        i += 1
+    return out
+
+
+def load_raw_bars(symbol: str) -> pd.DataFrame:
+    """Daily bars exactly as CSE gave them (not adjusted for share splits)."""
     p = _path(symbol)
     if not p.exists():
         return pd.DataFrame(columns=COLS[1:])
     df = pd.read_csv(p, parse_dates=["date"]).set_index("date")
     return df.astype(float)
+
+
+def _share_factor(symbol: str, date, price_factor: float) -> float | None:
+    """The split ratio according to the company's own reports: shares in issue after the date over shares before
+    (each report implies its share count as profit / earnings per share; CSE gives today's count).
+    Used only when it lands within 3% of a whole ratio, agrees roughly with what the price did, and the two
+    ways of counting 'after' do not point to different whole ratios."""
+    import json
+    import math
+    p = ROOT / "data" / "fundamentals" / f"{symbol}.json"
+    if not p.exists():
+        return None
+    try:
+        d = json.loads(p.read_text())
+    except ValueError:
+        return None
+    day = pd.Timestamp(date).strftime("%Y-%m-%d")
+    q = sorted((r for r in (d.get("quarterly") or {}).values() if r.get("ok") and r.get("eps") and r.get("profit")), key=lambda r: r["end"])
+    implied = lambda r: abs(r["profit"] * (r.get("unit") or 1) / r["eps"])
+    before = [implied(r) for r in q if r["end"] < day][-3:]
+    after = [implied(r) for r in q if r["end"] >= day][:2]
+    if not before:
+        return None
+    b = float(pd.Series(before).median())
+    found = set()
+    for a in ([float(pd.Series(after).median())] if after else []) + ([float(d["shares"])] if d.get("shares") else []):
+        ratio = a / b if b else 0
+        if ratio <= 0 or abs(math.log(ratio / price_factor)) > math.log(1.3):
+            continue                                  # nothing like what the price did: another kind of share issue
+        near = min(WHOLE, key=lambda k: abs(math.log(ratio / k)))
+        if abs(math.log(ratio / near)) <= math.log(1.03):
+            found.add(float(near))
+    return found.pop() if len(found) == 1 else None
+
+
+def _second_source(symbol: str, date) -> float | None:
+    """The same split as it appears in the second price source (the long-history download), when that source has
+    daily prices across it and shows a whole ratio. It often has trading days CSE's one-year chart leaves out."""
+    import math
+    p = ROOT / "data" / "long" / "raw" / f"{symbol}.csv.gz"
+    if not p.exists():
+        return None
+    y = pd.read_csv(p, parse_dates=["date"]).set_index("date").astype(float)
+    y = y[(y["volume"].fillna(0) > 0) & (y["close"] > 0)]
+    y = y[(y.index >= pd.Timestamp(date) - pd.Timedelta(days=60)) & (y.index <= pd.Timestamp(date) + pd.Timedelta(days=40))]
+    if len(y) < 8:
+        return None
+    for d, f, _ in find_splits(y, 1.45, 1.5):
+        if abs((d - pd.Timestamp(date)).days) <= 25 and f > 1 and any(abs(math.log(f / k)) < 1e-9 for k in WHOLE):
+            return float(f)
+    return None
+
+
+def splits(symbol: str) -> list[dict]:
+    """The splits found for one counter: date, the factor applied, the ratio seen in the price, and what the factor rests on.
+
+    The ratio seen in CSE's prices can be well off the true one when the price ran up or down around the split (shares
+    are often suspended for a week and reopen elsewhere), so better evidence is used when there is any:
+    the change in the share count in the company's own reports, then a whole ratio in the second price source."""
+    df = load_raw_bars(symbol)
+    out = []
+    for d, f, seen in (find_splits(df) if len(df) > 1 else []):
+        basis = "price, whole ratio" if f in WHOLE or (f < 1 and 1 / f in WHOLE) else "price"
+        if f > 1:
+            by_count, by_second = _share_factor(symbol, d, seen), _second_source(symbol, d)
+            if by_count:
+                f, basis = by_count, "share count in company reports" + (" and second price source" if by_second == by_count else "")
+            elif by_second:
+                f, basis = by_second, "second price source"
+        out.append({"date": d.strftime("%Y-%m-%d"), "factor": round(f, 4), "seen": round(seen, 3), "basis": basis})
+    return out
+
+
+def load_bars(symbol: str) -> pd.DataFrame:
+    """Daily bars on today's share basis: prices before a share split are divided by its factor (volumes multiplied),
+    so a split does not look like a crash to the indicators, alerts and models that read this."""
+    df = load_raw_bars(symbol)
+    if len(df) < 2:
+        return df
+    for sp in splits(symbol):
+        date, factor = pd.Timestamp(sp["date"]), sp["factor"]
+        before = df.index < date
+        df.loc[before, ["open", "high", "low", "close"]] = df.loc[before, ["open", "high", "low", "close"]] / factor
+        df.loc[before, "volume"] = df.loc[before, "volume"] * factor
+    return df
+
 
 
 def bar_count(symbol: str) -> int:

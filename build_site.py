@@ -81,6 +81,7 @@ def stock_payload(symbol: str, df, sector: str = "", forecast: dict | None = Non
         "atr_pct": round(float(d["atr"].iloc[-1] / c.iloc[-1] * 100), 2) if len(d) and d["atr"].iloc[-1] == d["atr"].iloc[-1] else None,
         "forecast": fc,
         "pressure": pressure.read(df),
+        "splits": db.splits(symbol),
     }
 
 
@@ -179,10 +180,20 @@ def build():
              "fields": [{"field": k, "verified": field_ok[k], "total": field_n[k]} for k in sorted(field_n, key=lambda k: -field_n[k])],
              "kinds": [{"level": l, "kind": k, "count": n} for (l, k), n in kinds.most_common(60)],
              "companies": sorted(companies, key=lambda r: r["symbol"])}
+    # share splits found in CSE's (unadjusted) prices and corrected for
+    audit["splits"] = [{"symbol": s, "name": names.get(s, ""), **sp} for s in db.symbols_with_data(2) for sp in db.splits(s)]
     _dump(OUT / "audit.json", audit)
     if with_f:
         print(f"Audit: {audit['figures_verified']}/{audit['figures_total']} figures verified; "
               f"{audit['checks_passed']} checks passed, {audit['warnings']} warnings, {audit['failures']} failures")
+
+    try:                                    # 10-year history per share and the 20-year market patterns
+        import longterm
+        mk = longterm.build(OUT)
+        print(f"Long history: {mk['checks']['joined']} shares joined to older prices; market index from {mk['built_from']['start']}, "
+              f"yearly gap to the official ASPI {mk['fit'].get('mean_gap')} points on average")
+    except Exception as e:                  # the site must still build without it
+        print("long history step failed:", repr(e))
 
     meta = {"updated": dt.datetime.now(collector.COLOMBO).strftime("%Y-%m-%d %H:%M"), "stocks": len(signals),
             "tracked": len(db.symbols_with_data(1)), "watchlist": sorted(watch), "rules": analysis.RULES}
@@ -222,6 +233,11 @@ def main():
                   f"(any stock {v['all']['hit']}%), average net {v['top']['5']['avg_net']}%")
         except Exception as e:              # the site must still build if the model step fails
             print("forecast step failed:", repr(e))
+        try:                                # CSE serves one year of ASPI: keep adding to our own file
+            import longhist
+            longhist.aspi()
+        except Exception as e:
+            print("ASPI history step failed:", repr(e))
         try:                                # what followed quiet buying / selling in the saved history
             pressure.study()
         except Exception as e:

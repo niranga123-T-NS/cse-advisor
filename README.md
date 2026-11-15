@@ -60,12 +60,29 @@ Each tick the job compares every share with its own recent ticks and with what i
 | ⇅ gap | opened 3%+ away from yesterday's close |
 | ≠ peer | moving 3+ points against its own sector |
 | ▦ sector / ▣ market | an industry-group index moved 1.5%+ or the ASPI 1%+ |
+| ■ block | a large trade (LKR 5M+ and 10%+ of the share's normal daily turnover) |
+| ≡ book | a large order appeared among the orders waiting to buy or sell |
+| ◐ hidden | signs of a hidden buyer or seller (an inference, see below) |
 
 Open **🔔 Alerts** on the site to see them (filters: All, Important, ★ Favourites). Alerts describe what just happened; they are not predictions. In thin shares a single trade can trigger one. The job also records order-book totals (shares waiting to buy and to sell) for the most active shares, shown on the share's page.
 
 At the close the job saves the whole day's 15-second tape to `data/intraday/` (the raw material for testing intraday patterns later) and starts **Update CSE data** itself.
 
 **Scheduling.** GitHub's scheduler ran this repo's jobs 5–8 hours late, so the job no longer depends on one start time. It is scheduled every hour through the night and morning; the first run that finds the open within reach waits for it, later runs stand down, and a run that nears GitHub's 6-hour limit hands over to a fresh one. If live prices are ever missing, run **Actions → Live prices → Run workflow**.
+
+## Big orders and hidden buying or selling
+
+CSE does not publish individual orders or who is behind them. It does publish, for every counter, today's shares and number of trades **at each price**, and for one counter at a time the **totals waiting to buy and to sell** plus the best price. The live job reads the first every 15 seconds for the whole market and the second in rotation for the 30 or so most traded shares, and works out the rest:
+
+- **Trades** (the 10 largest today). The change in the per-price totals between two readings is exactly what traded in between. Several trades in the same instant are counted as one, because a large order usually fills against many small ones. Whether it was *buying* or *selling* is an estimate: at or above the best sell price = a buyer took it, at or below the best buy price = a seller hit it, otherwise by whether the price moved up or down. One or two trades worth LKR 20M+ are marked as a **crossing** (a block agreed between two parties; no pressure either way).
+- **Waiting.** A jump in the shares waiting to buy or sell (LKR 5M+ and 20%+ more than a few minutes earlier), or a very large order sitting at the best price.
+- **Hidden?** Inferences only:
+  - *price level*: heavy trading keeps returning to the lowest (or highest) price of the last 30 minutes, in 5+ separate bursts, and the price does not break it;
+  - *refill*: more shares have traded at the best price than were ever shown there, and it is still showing;
+  - *absorbed*: twice as much was sold at falling prices as bought at rising ones (or the reverse), yet the price has not moved that way;
+  - *slices*: the same trade size repeated 5+ times in an hour.
+
+Each share's page has a **Buying and selling pressure** card: a 20-day reading from daily prices and volumes (money flow and up-day versus down-day volume, compared with what the price did), and during market hours today's buying and selling, large trades and hidden-order signs for that share. The list can be filtered by **Quiet buying** and **Quiet selling**. What followed those daily readings in the past year is measured on the Accuracy page (`python pressure.py`); the intraday signs are saved with each day's tape (`data/intraday/`) so they can be scored once there are a few weeks of them. The thresholds are in `live.py` (`BIG_MIN`, `CROSS_MIN`, `Engine._hidden`, `Engine._book`) and `pressure.py`.
 
 ## Peers
 
@@ -140,6 +157,10 @@ The scoring rules, buy/sell thresholds, stop and target multiples, and the ~1.12
 
 A score of 1.5 or more is BUY (3 or more is STRONG BUY). A score of −1.5 or less is SELL.
 
+## Phones and tablets
+
+On a phone the list shows change under the price and score under the signal so every column fits, and tapping a share opens it full-screen with a **‹ All shares** bar (the phone's Back works too). Tablets held upright keep the list above the share; wide screens show them side by side.
+
 ## Files
 
 | File | Purpose |
@@ -149,6 +170,7 @@ A score of 1.5 or more is BUY (3 or more is STRONG BUY). A score of −1.5 or le
 | `.github/workflows/fundamentals.yml` | Nightly job that reads company reports (4 parallel parts) |
 | `.github/workflows/live.yml`, `live.py` | Live prices and alerts every 15 seconds during market hours |
 | `forecast.py` | Pattern forecast, walk-forward accuracy test, live scoring |
+| `pressure.py` | Daily buying/selling pressure reading and the test of what followed it |
 | `sectors.py` | Industry group for each counter |
 | `site/accuracy.html` | Forecast accuracy page |
 | `.github/workflows/publish.yml` | Rebuild and publish the site on demand |

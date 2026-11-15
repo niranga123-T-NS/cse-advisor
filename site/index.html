@@ -65,6 +65,18 @@
   td.fu { animation:fu 2.5s ease-out; } td.fd { animation:fd 2.5s ease-out; }
   tr.peer { cursor:pointer; } tr.peer:hover { background:#1d232b; } tr.me { background:#1b2433; }
   footer { font-size:11px; color:var(--mute); padding:10px 14px; }
+  /* Big orders: a small panel above the list */
+  #big { border-bottom:1px solid var(--line); background:#12161c; }
+  .bhead { display:flex; gap:6px; align-items:center; padding:6px 10px; flex-wrap:wrap; font-size:13px; }
+  #bbody { max-height:178px; overflow:auto; -webkit-overflow-scrolling:touch; }
+  .bo { display:grid; grid-template-columns:38px 14px minmax(0, 1fr) auto; gap:6px; padding:5px 10px; font-size:12px; border-top:1px solid var(--line); align-items:baseline; }
+  .bo[data-sym] { cursor:pointer; } .bo[data-sym]:hover { background:#1d232b; }
+  .bo .tx { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; } .bo.wrap .tx { white-space:normal; }
+  .bo .v { font-variant-numeric:tabular-nums; text-align:right; font-weight:600; white-space:nowrap; }
+  .bnote { padding:6px 10px; font-size:11px; color:var(--mute); border-top:1px solid var(--line); }
+  .fbar { display:flex; height:8px; border-radius:4px; overflow:hidden; background:#262c35; margin:4px 0 6px; } .fbar i { display:block; height:100%; }
+  #flowbox .bo { padding:4px 0; } #big .chip { padding:3px 8px; } #bsub { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0; }
+  #backbar .btn { white-space:nowrap; flex:none; } #live2 { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   /* Touch screens: text under 16px in a box makes iPhones zoom the whole page when the box is tapped. */
   @media (pointer:coarse) { input, select { font-size:16px; } }
   /* Phones: one thing at a time. The list is the page; tapping a share opens it full-screen under a Back bar. */
@@ -87,6 +99,7 @@
   @media (max-width:700px) {
     .d-only { display:none; } .m-only { display:block; font-size:11px; font-weight:400; } th .m-only { display:inline; font-size:inherit; }
     #listTable th, #listTable td { padding:7px 6px; } .c-star { width:32px; } .c-close { width:92px; } .c-sig { width:98px; }
+    .bo .tx { white-space:normal; } .bhead { gap:5px; padding:6px 8px; } .bo { padding:5px 8px; }
   }
   @media (max-width:350px) {
     #listTable { font-size:13px; } #listTable .sig { font-size:11px; } th .m-only { display:none; }
@@ -100,7 +113,7 @@
   <h1>CSE Advisor</h1>
   <input id="q" placeholder="Search symbol/name" size="16" oninput="render()">
   <select id="f" onchange="render()">
-    <option value="">All signals</option><option value="invest">📈 Investment picks</option><option value="trade">⚡ Trading picks</option><option value="tradewatch">👀 Trade watch</option><option value="BUY">Buys</option><option value="SELL">Sells</option><option value="watch">★ Favourites</option><option value="value">Value (P/E &lt; 10)</option><option value="div">Dividend ≥ 5%</option><option value="issues">Data issues</option>
+    <option value="">All signals</option><option value="invest">📈 Investment picks</option><option value="trade">⚡ Trading picks</option><option value="tradewatch">👀 Trade watch</option><option value="BUY">Buys</option><option value="SELL">Sells</option><option value="acc">▲ Quiet buying (daily)</option><option value="dist">▼ Quiet selling (daily)</option><option value="watch">★ Favourites</option><option value="value">Value (P/E &lt; 10)</option><option value="div">Dividend ≥ 5%</option><option value="issues">Data issues</option>
   </select>
   <button class="btn" id="alertBtn" onclick="toggleAlerts()">🔔 Alerts <span id="abadge" class="badge" style="display:none"></span></button>
   <div class="nav">
@@ -114,6 +127,12 @@
 <div id="backbar"><button class="btn" onclick="backToList()">‹ All shares</button><span id="live2" class="mute"></span></div>
 <main>
   <section id="list">
+    <div id="big">
+      <div class="bhead"><b>Big orders</b><span id="bsub" class="mute"></span><span style="flex:1"></span>
+        <button class="chip" data-bt="big">Trades</button><button class="chip" data-bt="rest">Waiting</button><button class="chip" data-bt="hid">Hidden?</button>
+        <button class="chip" data-bt="fold" id="bfold" aria-label="Show or hide big orders">▾</button></div>
+      <div id="bbody"></div>
+    </div>
     <div id="alerts" hidden></div>
     <table id="listTable"><thead><tr><th class="c-star"></th><th>Symbol</th><th class="num c-close">Close<span class="m-only"> / Chg%</span></th><th class="num d-only c-chg">Chg%</th><th class="num d-only c-pe">P/E</th><th class="c-sig">Signal<span class="m-only"> / Score</span></th><th class="num d-only c-score">Score</th></tr></thead><tbody id="rows"></tbody></table>
     <div id="empty" class="note" hidden></div>
@@ -145,7 +164,7 @@ const isStar = s => stars.has(s.symbol);  // personal favourites, saved in this 
 // ---------- live: prices, alerts and sector moves every 15 seconds while the market is open ----------
 // The "Live prices" job publishes t/HHMMSS.json (every 15 s) and m/HHMM.json (every minute) on the `live` branch.
 // Every file has its own name because GitHub caches a file for 5 minutes; a name nobody asked for yet is fresh.
-let tick = null, minute = null, peers = null, acc = null, detailCtx = null, liveChart = null, liveSeries = null, changed = {}, dayAlerts = null;
+let tick = null, minute = null, peers = null, acc = null, detailCtx = null, liveChart = null, liveSeries = null, changed = {}, dayAlerts = null, dayOrders = null;
 const QS = new URLSearchParams(location.search);          // testing: ?live=<folder>/&now=2026-11-12T12:30:40
 const RAW = QS.get('live') || (() => {
   const m = location.hostname.match(/^([^.]+)\.github\.io$/);
@@ -180,7 +199,7 @@ async function pollTick() {
     if (s.live && s.live.p !== r[0]) changed[s.symbol] = r[0] > s.live.p ? 'fu' : 'fd';
     s.live = { p: r[0], c: r[1], v: r[2] }; } });
   tick = t;
-  showLiveStatus(); render(); renderAlerts();
+  showLiveStatus(); render(); renderAlerts(); renderBig();
   if (current) { updateLiveDetail(current); if (!minute || Date.now() - minute._at > 55000) pollMinute(); }
 }
 async function pollMinute() {
@@ -195,6 +214,7 @@ async function pollMinute() {
   if (!m || m.date !== ymd(now)) return;
   m._at = Date.now(); m.by = Object.fromEntries(m.rows.map(r => [r.s, r]));
   minute = m;
+  const fb = document.getElementById('flowbox'); if (fb && current) fb.innerHTML = flowHtml(current);
   if (current) updateLiveDetail(current);
 }
 function showLiveStatus() {
@@ -208,9 +228,86 @@ function showLiveStatus() {
 }
 setInterval(showLiveStatus, 5000);
 
+// ---------- big orders: largest trades, large orders waiting, signs of hidden buying or selling ----------
+// CSE publishes trades and order totals, not who placed them. "Buying" / "selling" is worked out from how the price
+// moved when the trade happened, and "hidden" rows are inferences.
+let bigTab = 'big', bigFold = false;
+try { bigFold = localStorage.getItem('bigFold') === '1'; } catch (e) {}
+const lkr = v => 'LKR ' + (v >= 1e9 ? (v / 1e9).toFixed(2) + 'B' : (v / 1e6).toFixed(1) + 'M');
+const shr = v => Math.round(v).toLocaleString();
+const sideIcon = e => e.x ? ['⇄', 'mute', 'crossing'] : e.d > 0 ? ['▲', 'up', 'buying'] : e.d < 0 ? ['▼', 'down', 'selling'] : ['•', 'mute', 'side unclear'];
+function ordersNow() { return (tick && tick.bg) ? { ...tick.bg, date: tick.t.slice(0, 10), live: true } : dayOrders; }
+function bigRow(e, kind, withSym = true) {
+  const ic = sideIcon(e), sym = withSym ? `<b>${esc(e.s.split('.')[0])}</b>${e.s.includes('.X') ? '<span class="mute">.X</span>' : ''} ` : '';
+  const txt = kind === 'big' ? `${shr(e.q)} @ ${e.p.toFixed(2)} · ${ic[2]}${e.n > 1 ? ` · ${e.n} trades` : ''}${e.r >= 20 ? ` · ${e.r}% of a normal day` : ''}`
+            : kind === 'rest' ? (e.k === 'best' ? `${shr(e.q)} @ ${e.p.toFixed(2)} waiting to ${e.d > 0 ? 'buy' : 'sell'}${e.n ? ` · ${e.n} order${e.n === 1 ? '' : 's'}` : ''}`
+                                                : `${shr(e.q)} more shares waiting to ${e.d > 0 ? 'buy' : 'sell'}`)
+            : esc(e.m);
+  return `<div class="bo ${kind === 'hid' ? 'wrap' : ''}" data-sym="${esc(e.s)}"><span class="mute at">${esc((e.t || '').slice(0, 5)) || 'early'}</span>
+    <span class="${ic[1]}">${ic[0]}</span><span class="tx">${sym}<span class="mute">${txt}</span></span><span class="v">${lkr(e.v)}</span></div>`;
+}
+function renderBig() {
+  const o = ordersNow(), body = $('#bbody');
+  document.querySelectorAll('[data-bt]').forEach(b => { if (b.dataset.bt !== 'fold') b.classList.toggle('on', !bigFold && b.dataset.bt === bigTab); });
+  $('#bfold').textContent = bigFold ? '▸' : '▾';
+  const top = o && o.big && o.big[0];
+  $('#bsub').innerHTML = !o ? '' : bigFold ? (top ? ` · largest ${esc(top.s.split('.')[0])} ${lkr(top.v)}` : '') : (o.live ? '' : ` · ${esc(o.date || '')}`);
+  const hb = document.querySelector('[data-bt=hid]'); hb.innerHTML = 'Hidden?' + (o && o.nh ? ` <span class="badge" style="background:#b45309">${o.nh}</span>` : '');
+  body.hidden = bigFold;
+  if (bigFold) return;
+  const rows = o ? (o[bigTab] || []).slice(0, 10) : [];
+  const empty = { big: 'No large trades yet.', rest: 'No large orders seen waiting yet. Order books are checked in turn for the 30 or so most traded shares.',
+                  hid: 'No signs of hidden buying or selling yet.' }[bigTab];
+  const note = { big: 'The 10 largest trades. Trades in the same instant count as one order. Buying or selling is estimated from how the price moved.',
+                 rest: 'Large orders seen waiting. Only the most traded shares are checked, each every minute or two.',
+                 hid: 'Inferred from trading patterns. These are possibilities, not facts.' }[bigTab];
+  body.innerHTML = !o ? `<div class="bnote" style="border-top:0">Fills in during market hours (Mon–Fri 9:30am–2:30pm): the 10 largest trades, large orders waiting to buy or sell, and signs of hidden buying or selling.</div>`
+    : (rows.length ? rows.map(e => bigRow(e, bigTab)).join('') : `<div class="bnote">${empty}</div>`) + `<div class="bnote">${note}</div>`;
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-bt]');
+  if (b) { if (b.dataset.bt === 'fold') bigFold = !bigFold; else { bigFold = false; bigTab = b.dataset.bt; }
+    try { localStorage.setItem('bigFold', bigFold ? '1' : '0'); } catch (err) {} renderBig(); return; }
+  const r = e.target.closest('.bo[data-sym]'); if (r && r.closest('#big')) show(r.dataset.sym);
+});
+// today's flow, large trades and hidden-order signs for one share (inside its "pressure" card)
+function flowHtml(sym) {
+  const m = minute && minute.orders && tick && minute.orders.date === tick.t.slice(0, 10) ? minute.orders : null;
+  const o = m || ordersNow();
+  if (!o) return `<span class="mute" style="font-size:12px">During market hours this shows today's buying and selling in this share, its large trades and any signs of hidden orders.</span>`;
+  const fl = o.fl && o.fl[sym], pick = k => (o[k] || []).filter(e => e.s === sym).slice(0, 5);
+  const big = pick('big'), rest = pick('rest'), hid = pick('hid');
+  let h = `<h3 style="margin-bottom:4px">${o.live || m ? 'Today' : esc(o.date || '')}</h3>`;
+  if (fl) { const t = fl[0] + fl[1] || 1; h += `<div style="font-size:12px"><span class="up">Bought at rising prices LKR ${fl[0].toFixed(1)}M</span> · <span class="down">sold at falling prices LKR ${fl[1].toFixed(1)}M</span></div>
+    <div class="fbar"><i style="width:${(fl[0] / t * 100).toFixed(0)}%;background:var(--buy)"></i><i style="width:${(fl[1] / t * 100).toFixed(0)}%;background:var(--sell)"></i></div>`; }
+  if (hid.length) h += hid.map(e => bigRow(e, 'hid', false)).join('');
+  if (big.length) h += `<div class="mute" style="font-size:11px;margin-top:6px">Largest trades</div>` + big.map(e => bigRow(e, 'big', false)).join('');
+  if (rest.length) h += `<div class="mute" style="font-size:11px;margin-top:6px">Large orders seen waiting</div>` + rest.map(e => bigRow(e, 'rest', false)).join('');
+  if (!fl && !hid.length && !big.length && !rest.length) h += `<span class="mute" style="font-size:12px">No large trades, large waiting orders or hidden-order signs in this share.</span>`;
+  return h;
+}
+function pressureCard(d, sym) {
+  const p = d.pressure, v = acc && acc.pressure && acc.pressure.horizons && acc.pressure.horizons['20'];
+  const lab = p ? p.label : '', cls = { acc:'up', buy:'up', dist:'down', sell:'down' }[lab] || '';
+  const sg = x => `${x > 0 ? '+' : ''}${p2(x)}%`;
+  const rel = lab && v && v[lab] ? `How reliable is this? Over the past year, tradeable shares with this reading went on to average ${sg(v[lab].avg)} in the next 20 trading days (all shares: ${sg(v.all.avg)}), and ${v[lab].gain}% of them gained after costs (all shares: ${v.all.gain}%).` : '';
+  return `<div class="card"><h3>Buying and selling pressure <span class="mute">· last 20 trading days</span></h3>
+    ${p ? `<p style="margin:0 0 6px" class="${cls}"><b>${esc(p.text)}</b>${p.days > 1 ? ` <span class="mute">· ${p.days}${p.days >= 15 ? '+' : ''} days running</span>` : ''}</p>
+    <div class="kv">
+      <span class="mute">Money flow</span><span><b class="${p.cmf > 0 ? 'up' : p.cmf < 0 ? 'down' : ''}">${p.cmf > 0 ? '+' : ''}${p.cmf}</b> <span class="mute">−1 all selling … +1 all buying</span></span>
+      <span class="mute">Up-day less down-day volume</span><span>${p.obv > 0 ? '+' : ''}${p.obv} <span class="mute">days of normal volume</span></span>
+      ${p.upvol != null ? `<span class="mute">Volume on up-days</span><span>${p.upvol}%</span>` : ''}
+      <span class="mute">Price change</span><span>${pct(p.chg)}</span>
+    </div>${rel ? `<p class="warn" style="font-size:12px;margin:8px 0 0">${rel} <a href="accuracy.html#pressure">See the test →</a></p>` : ''}`
+    : '<p class="mute">Not enough price history yet.</p>'}
+    <div id="flowbox" style="margin-top:10px;border-top:1px solid var(--line);padding-top:8px">${flowHtml(sym)}</div>
+    <p class="mute" style="font-size:11px;margin:8px 0 0">CSE does not publish who is behind an order. These are readings of price, volume and trades, not facts about any buyer or seller.</p></div>`;
+}
+
 // ---------- alerts ----------
 const KIND = { jump:['▲','up'], drop:['▼','down'], volume:['◉','warn'], high:['★','up'], low:['☆','down'], breakout:['↗','up'], breakdown:['↘','down'],
-               sma50:['~',''], gap:['⇅','warn'], peer:['≠','warn'], sector:['▦',''], market:['▣',''] };
+               sma50:['~',''], gap:['⇅','warn'], peer:['≠','warn'], sector:['▦',''], market:['▣',''],
+               block:['■',''], book:['≡',''], hidden:['◐','warn'] };
 let alertFilter = 'all', alertsOpen = false;
 const seenKey = () => 'alertsSeen-' + ymd(colomboNow());
 function alertList() { return (tick && tick.a) || (dayAlerts && dayAlerts.alerts.slice().reverse()) || []; }
@@ -264,7 +361,8 @@ function updateLiveDetail(sym) {
   el.innerHTML = `<b>Live ${esc(tick.t.slice(11))}</b> &nbsp; ${r[0].toFixed(2)} <span class="${r[1]>0?'up':r[1]<0?'down':''}">${r[1]>0?'+':''}${p2(r[1])}%</span>
     <span class="mute">&nbsp; ${full ? `H ${full.h ?? '–'} · L ${full.l ?? '–'} · ` : ''}Vol ${r[2] != null ? Math.round(r[2]).toLocaleString() : '–'}</span>
     ${sp != null ? `<span class="mute"> · ${esc(sec)} peers today <span class="${sp>0?'up':sp<0?'down':''}">${sp>0?'+':''}${p2(sp)}%</span></span>` : ''}
-    ${ob ? `<div class="mute" style="font-size:12px;margin-top:2px">Orders waiting (${esc(ob[3])}): buy ${big(ob[0])} · sell ${big(ob[1])} shares${ob[2] ? ` · best bid ${ob[2]}` : ''}</div>` : ''}`;
+    ${ob ? `<div class="mute" style="font-size:12px;margin-top:2px">Orders waiting (${esc(ob[3])}): buy ${big(ob[0])} · sell ${big(ob[1])} shares${ob[2] ? ` · best buy price ${ob[2]}` : ''}${ob[4] ? ` · best sell price ${ob[4]}` : ''}</div>` : ''}`;
+  const fb = document.getElementById('flowbox'); if (fb) fb.innerHTML = flowHtml(sym);
   if (detailCtx && detailCtx.sym === sym) {
     const p = r[0], day = tick.t.slice(0, 10), lc = detailCtx.last;
     try { detailCtx.cs.update({ time: day, open: (full && full.o) ?? (lc && lc.time === day ? lc.open : p),
@@ -301,7 +399,8 @@ async function load() {
   fetch('data/peers.json').then(r => r.json()).then(p => { peers = p; }).catch(() => {});
   fetch('data/accuracy.json').then(r => r.json()).then(a => { acc = a; }).catch(() => {});
   if (marketWindow()) { pollTick(); }
-  else if (RAW) { getJSON('alerts.json').then(a => { dayAlerts = a; renderAlerts(); }); }
+  else if (RAW) { getJSON('alerts.json').then(a => { dayAlerts = a; renderAlerts(); }); getJSON('orders.json').then(o => { dayOrders = o; renderBig(); }); }
+  renderBig();
   const s0 = hashSym();
   if (s0) {   // opened by a link to one share: on a phone put the list underneath it, so Back lands on the list
     if (PHONE.matches && !(history.state && history.state.cse)) history.replaceState(null, '', location.pathname + location.search);
@@ -312,7 +411,7 @@ async function load() {
 function render() {
   const q = $('#q').value.trim().toLowerCase(), f = $('#f').value;
   let rows = all.filter(s => (!q || s.symbol.toLowerCase().includes(q) || (s.name||'').toLowerCase().includes(q)) &&
-    (!f || (f === 'watch' ? isStar(s) : f === 'value' ? (s.pe && s.pe < 10) : f === 'div' ? (s.div_yield >= 5) : f === 'issues' ? (s.data_fail > 0) : f === 'invest' ? s.invest : f === 'trade' ? s.trade : f === 'tradewatch' ? (s.trade || s.trade_watch) : sigClass(s.signal) === f)));
+    (!f || (f === 'watch' ? isStar(s) : f === 'value' ? (s.pe && s.pe < 10) : f === 'div' ? (s.div_yield >= 5) : f === 'issues' ? (s.data_fail > 0) : f === 'invest' ? s.invest : f === 'trade' ? s.trade : f === 'tradewatch' ? (s.trade || s.trade_watch) : (f === 'acc' || f === 'dist') ? s.pr === f : sigClass(s.signal) === f)));
   rows.sort((a,b) => (isStar(b) - isStar(a)) || (b.score - a.score));
   $('#empty').hidden = rows.length > 0;
   $('#empty').innerHTML = all.length ? 'No stocks match.' :
@@ -503,6 +602,7 @@ async function show(sym, fromHistory) {
         ${a.warnings.map(w=>`<p class="warn">⚠ ${esc(w)}</p>`).join('')}</div>
       ${styleCard(a)}
       ${peersCard(d, sym)}
+      ${pressureCard(d, sym)}
       ${forecastCard(d)}
       ${fibCard(a)}
       ${fundCard(a)}

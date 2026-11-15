@@ -68,6 +68,25 @@ fetch('data/accuracy.json').then(r => r.json()).then(A => {
         ${tr.recent.slice().reverse().map(r => `<tr><td>${esc(r.date)}</td><td><a href="./#${encodeURIComponent(r.symbol)}">${esc(r.symbol)}</a></td><td class="num">${r.rank}</td><td class="num">${sg(r.net)}</td></tr>`).join('')}</table></div>` : ''}`
     : `<div class="card"><p style="margin:0">No published forecast has finished its ${v.holding_days} trading days yet. From now on every day's forecast is saved, and once its ${v.holding_days} days are up
        it is scored here against what the price actually did. This record cannot be adjusted after the fact, so it is the fairest measure of accuracy.</p></div>`;
+  // quiet buying / selling: what followed the daily pressure readings
+  const P = A.pressure && A.pressure.horizons && A.pressure.horizons['20'];
+  const PN = { acc: 'Quiet buying <span class="mute">(possible hidden accumulation)</span>', dist: 'Quiet selling <span class="mute">(possible hidden distribution)</span>',
+               buy: 'Buying pressure, price rising', sell: 'Selling pressure, price falling' };
+  const said = r => !r || !r.edge_ci ? 'too few cases to say' : r.edge_ci[0] > 0 ? `better than average by ${p2(r.edge)} points` : r.edge_ci[1] < 0 ? `worse than average by ${p2(-r.edge)} points` : 'no measurable difference from average';
+  const pressure = P ? `
+    <h2 id="pressure">Quiet buying and selling <span class="mute">· what followed the daily pressure readings</span></h2>
+    <p class="mute" style="margin-top:-4px">Each share's page reads 20 days of prices and volumes for signs of quiet buying or selling. This is what happened in the 20 trading days after each reading,
+      ${esc(P.period[0])} to ${esc(P.period[1])}, for tradeable shares, with the same trade and costs as above.</p>
+    <div class="tw"><table><tr><th>Reading</th><th class="num x">Cases</th><th class="num">Average result</th><th class="num">Against all shares</th><th class="num">Gained after costs</th></tr>
+      ${['acc', 'dist', 'buy', 'sell'].filter(k => P[k]).map(k => `<tr><td>${PN[k]}</td><td class="num x">${P[k].n.toLocaleString()}</td><td class="num">${sg(P[k].avg)}</td>
+        <td class="num">${sg(P[k].edge)} ${ci(P[k].edge_ci)}</td><td class="num">${P[k].gain}%</td></tr>`).join('')}
+      <tr><td>All tradeable shares</td><td class="num x">${P.all.n.toLocaleString()}</td><td class="num">${sg(P.all.avg)}</td><td class="num">–</td><td class="num">${P.all.gain}%</td></tr></table></div>
+    <div class="card" style="margin-top:10px"><ul style="margin:0;padding-left:18px">
+      <li><b>Quiet buying:</b> ${said(P.acc)}. On this market it has not been a reason to buy.</li>
+      <li><b>Quiet selling:</b> ${said(P.dist)}.${P.dist && P.dist.edge_ci && P.dist.edge_ci[1] < 0 ? ' It has worked as a caution sign.' : ''}</li>
+      <li><b>Heavy selling with a falling price:</b> ${said(P.sell)}${P.sell && P.sell.edge_ci && P.sell.edge_ci[0] > 0 ? `, a rebound, but the average result (${sg(P.sell.avg)}) still did not cover the ${v.cost_pct}% cost` : ''}.</li>
+      <li><b>Signs of hidden orders during the day</b> (the Big orders panel) are new and have no record yet. Every sign is saved with the day's trades so it can be scored the same way after a few weeks.</li>
+    </ul></div>` : '';
   document.getElementById('main').innerHTML = `
     <div class="card verdict ${esc(v.verdict)}">${verdict}</div>
 
@@ -107,6 +126,8 @@ fetch('data/accuracy.json').then(r => r.json()).then(A => {
     ${td ? `<h2>Highest pattern ranks from ${esc(td.date)} <span class="mute">· shown for transparency, not as picks</span></h2>
     <div class="tw"><table><tr><th>Rank</th><th>Share</th><th class="num">Chance of a gain after costs</th><th class="num">Model's expected result</th></tr>
       ${td.top.map(r => `<tr><td>${r.rank}</td><td><a href="./#${encodeURIComponent(r.symbol)}">${esc(r.symbol)}</a> <span class="mute">${esc((r.name || '').slice(0, 32))}</span></td><td class="num">${r.hit != null ? '~' + r.hit + '%' : '–'}</td><td class="num">${sg(r.exp)}</td></tr>`).join('')}</table></div>` : ''}
+
+    ${pressure}
 
     <h2>Why the accuracy is not higher, and what could raise it</h2>
     <div class="card"><ul style="margin:0;padding-left:18px">

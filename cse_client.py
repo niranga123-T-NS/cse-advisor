@@ -132,16 +132,40 @@ def sector_indices() -> dict[str, dict]:
 
 
 def order_book(symbol: str) -> dict | None:
-    """Total shares waiting to buy and to sell, and the best bid."""
+    """Total shares waiting to buy and to sell, plus whatever price levels CSE shows (normally only the best one).
+
+    Each level: {"side": CSE's buySell code, "p": price, "q": shares, "n": number of orders at that price}.
+    """
     j = post("orderBook", {"symbol": symbol}, retries=1)
     if not isinstance(j, dict):
         return None
     tot = j.get("reqOrderBookTotal") or {}
-    best = (j.get("reqOrderBook") or [{}])[0] or {}
     b, a = _num(tot.get("totalBids")), _num(tot.get("totalAsks"))
-    if b is None and a is None:
+    levels = []
+    for e in j.get("reqOrderBook") or []:
+        px, q = _num((e or {}).get("price")), _num((e or {}).get("quantity"))
+        if px and q:
+            levels.append({"side": e.get("buySell"), "p": px, "q": q, "n": int(_num(e.get("splits")) or 0)})
+    if b is None and a is None and not levels:
         return None
-    return {"bids": b or 0.0, "asks": a or 0.0, "best": _num(best.get("price"))}
+    return {"bids": b or 0.0, "asks": a or 0.0, "best": levels[0]["p"] if levels else None, "levels": levels}
+
+
+def detailed_trades() -> dict[str, dict[float, list]]:
+    """Today's trades of every counter added up by price, in one request: {symbol: {price: [shares, trades]}}.
+
+    Comparing two readings a few seconds apart shows exactly what traded in between and at which price.
+    """
+    j = post("detailedTrades", {}, retries=1)
+    out: dict[str, dict[float, list]] = {}
+    for r in (j.get("reqDetailTrades") if isinstance(j, dict) else None) or []:
+        sym, px, q = r.get("symbol"), _num(r.get("price")), _num(r.get("qty"))
+        if not sym or not px or not q:
+            continue
+        lv = out.setdefault(sym, {}).setdefault(round(px, 4), [0.0, 0])
+        lv[0] += q
+        lv[1] += int(_num(r.get("trades")) or 0)
+    return out
 
 
 # ---------------------------------------------------------------- per-company

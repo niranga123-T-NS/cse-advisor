@@ -19,6 +19,7 @@ import collector
 import cse_client as cse
 import db
 import fundamentals
+import pressure
 import sectors
 
 SITE = Path(__file__).parent / "site"
@@ -79,6 +80,7 @@ def stock_payload(symbol: str, df, sector: str = "", forecast: dict | None = Non
         "perf": {"d1": _perf(c, 1), "d5": _perf(c, 5), "d20": _perf(c, 20), "d60": _perf(c, 60)},
         "atr_pct": round(float(d["atr"].iloc[-1] / c.iloc[-1] * 100), 2) if len(d) and d["atr"].iloc[-1] == d["atr"].iloc[-1] else None,
         "forecast": fc,
+        "pressure": pressure.read(df),
     }
 
 
@@ -113,6 +115,7 @@ def build():
                         "pbv_ok": bool((f.get("verified") or {}).get("pbv")),
                         "tov": (p["advice"].get("ind") or {}).get("turnover_avg20"),
                         "fc_rank": (p["forecast"] or {}).get("rank"),
+                        "pr": (p["pressure"] or {}).get("label") or None,
                         "fields_n": len(f.get("verified") or {}), **a})
     signals.sort(key=lambda x: (not x["watch"], -x["score"]))
     _dump(OUT / "signals.json", signals)
@@ -140,7 +143,7 @@ def build():
     # forecast accuracy (walk-forward test + live track record) for site/accuracy.html
     mdir = Path(__file__).parent / "data" / "model"
     acc = {}
-    for key, fname in (("validation", "validation.json"), ("track", "track.json")):
+    for key, fname in (("validation", "validation.json"), ("track", "track.json"), ("pressure", "pressure.json")):
         if (mdir / fname).exists():
             try:
                 acc[key] = json.loads((mdir / fname).read_text())
@@ -219,6 +222,10 @@ def main():
                   f"(any stock {v['all']['hit']}%), average net {v['top']['5']['avg_net']}%")
         except Exception as e:              # the site must still build if the model step fails
             print("forecast step failed:", repr(e))
+        try:                                # what followed quiet buying / selling in the saved history
+            pressure.study()
+        except Exception as e:
+            print("pressure study failed:", repr(e))
     build()
 
 

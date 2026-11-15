@@ -12,6 +12,9 @@ Each 15-second tick
        gap              opened far from yesterday's close
        peer             moving against its own sector
        sector / market  an industry-group index or the ASPI moved a lot
+       block            a large trade (from CSE's per-price trade totals, compared tick to tick)
+       book             a large order appeared among the orders waiting to buy or sell
+       hidden           signs of a hidden buyer or seller (see Engine._hidden); an inference, never a fact
   3. publish to the `live` branch (one commit, replaced each tick, so the repository does not grow):
        t/HHMMSS.json   every 15 s : prices, alerts, sector moves, order-book totals   (small)
        m/HHMM.json     every minute: full rows + today's minute-by-minute prices
@@ -48,6 +51,9 @@ BUDGET_MIN = float(os.environ.get("LIVE_BUDGET_MIN", "325"))   # hand over befor
 REACH_MIN = 320                            # only wait for an open that is at most this far away
 ROOT = Path(__file__).parent
 cse.MIN_INTERVAL_SEC = 0.5
+BIG_MIN = 2_000_000                        # LKR: smallest trade kept for the "big orders" list
+CROSS_MIN = 20_000_000                     # CSE's minimum value for a crossing (a block agreed between two parties)
+EPS = 1e-6
 
 
 def now() -> dt.datetime:
@@ -188,6 +194,20 @@ class Engine:
         self.sectors: dict[str, dict] = {}       # official indices
         self.aspi: dict | None = None
         self.ob: dict[str, list] = {}
+        # large trades, orders waiting, and signs of hidden buying / selling
+        self.lv: dict | None = None                # last per-price totals {symbol: {price: [shares, trades]}}
+        self.dirn: dict[str, int] = {}             # which side moved the price last: +1 buyers, -1 sellers
+        self.flow: dict[str, list] = {}            # symbol -> LKR [bought at rising prices, sold at falling prices, unclear]
+        self.prints = collections.defaultdict(lambda: collections.deque(maxlen=800))   # (ts, price, shares, trades, side)
+        self.big: list[dict] = []
+        self.rest: list[dict] = []
+        self.hidden: list[dict] = []
+        self.book: dict[str, dict] = {}
+        self.polled: dict[str, float] = {}
+        self.side_code = {"bid": 1, "ask": 2}      # CSE's buySell codes ...
+        self.side_votes = [0, 0]                   # ... checked against the data: [books that agree, books that say the opposite]
+        self.refill: dict[tuple, dict] = {}        # (symbol, side) -> the best price being watched for refilling
+        self.print_log = collections.defaultdict(list)
         # for the archive
         self.ticks: list[str] = []
         self.tape = collections.defaultdict(list)     # symbol -> [[tick index, price, cumulative volume], ...]
@@ -200,10 +220,14 @@ class Engine:
         k = key or f"{sym}|{kind}"
         last = self.seen.get(k)
         if last is not None and (cooldown is None or ts - last < cooldown):
-            return
+            return False
         self.seen[k] = ts
-        t = dt.datetime.fromtimestamp(ts, COLOMBO).strftime("%H:%M:%S")
-        self.alerts.append({"t": t, "s": sym, "k": kind, "m": msg, "v": sev})
+        self.alerts.append({"t": self._clock(ts), "s": sym, "k": kind, "m": msg, "v": sev})
+        return True
+
+    @staticmethod
+    def _clock(ts: float) -> str:
+        return dt.datetime.fromtimestamp(ts, COLOMBO).strftime("%H:%M:%S")
 
     @staticmethod
     def _session_fraction(ts: float) -> float:
@@ -348,36 +372,271 @@ class Engine:
                                 self.seen.setdefault(f"ASPI|{sign}|{lower}", ts)
                     break
 
-    def order_books(self, ts: float, budget: int = 3):
-        """Refresh a few order books each tick: shares that just alerted and the most traded ones."""
+    # -- large trades and hidden buying / selling
+    def trades(self, ts: float, levels: dict, rows: dict):
+        """What traded since the last reading, price by price.  Call before tick() (it needs the previous prices).
+
+        CSE publishes, for every counter, today's shares and number of trades at each price.  The difference
+        between two readings is exactly what traded in between.  The SIDE is not published; it is estimated:
+          * at or above the best sell price -> a buyer took it;  at or below the best buy price -> a seller hit it
+          * otherwise the tick rule: above the previous price = buying, below = selling, same = as the last move.
+        """
+        first, prev_all = self.lv is None, self.lv or {}
+        t, i = self._clock(ts), len(self.ticks)
+        keep = {}
+        for s, lv in levels.items():
+            if s not in rows:                       # not traded today: these totals are from an earlier session
+                continue
+            keep[s] = lv
+            old = prev_all.get(s)
+            if old is not None and any(lv.get(px, (0.0, 0))[0] < q0[0] - EPS for px, q0 in old.items()):
+                continue                            # totals went down (a correction by CSE): start again from here
+            old = old or {}
+            new = []
+            for px, (q, n) in lv.items():
+                q0, n0 = old.get(px, (0.0, 0))
+                if q > q0 + EPS:
+                    new.append((px, q - q0, max(1, n - n0)))
+            if not new:
+                continue
+            f = self.ref.get(s)
+            tov = f["tov20"] if f else 0.0
+            if first:                               # started mid-session: only single trades are known exactly
+                for px, dq, dn in new:
+                    if dn == 1 and px * dq >= BIG_MIN:
+                        self._big("", s, 0, dq, px * dq, 1, tov)
+                continue
+            last = self.last_p.get(s) or (f["pc"] if f else None) or new[0][0]
+            bk = self.book.get(s)
+            bid, ask = (bk.get("bid"), bk.get("ask")) if bk and ts - bk["ts"] <= 90 else (None, None)
+            groups: dict[int, list] = {1: [], -1: [], 0: []}
+            for px, dq, dn in sorted(new):
+                if dn <= 2 and px * dq >= CROSS_MIN:          # a crossing: agreed between two parties, no pressure either way
+                    side = 0
+                elif ask and px >= ask[0] - EPS:
+                    side = 1
+                elif bid and px <= bid[0] + EPS:
+                    side = -1
+                elif px > last + EPS:
+                    side = 1
+                elif px < last - EPS:
+                    side = -1
+                else:
+                    side = self.dirn.get(s, 0)
+                groups[side].append((px, dq, dn))
+                self.prints[s].append((ts, px, dq, dn, side))
+                self.print_log[s].append([i, px, dq, dn, side])
+            r = rows.get(s) or {}
+            cur = r.get("p") or max(new, key=lambda x: x[1])[0]
+            if cur > last + EPS:
+                self.dirn[s] = 1
+            elif cur < last - EPS:
+                self.dirn[s] = -1
+            fl = self.flow.setdefault(s, [0.0, 0.0, 0.0])
+            for side, g in groups.items():
+                if not g:
+                    continue
+                q, val, n = sum(x[1] for x in g), sum(x[0] * x[1] for x in g), sum(x[2] for x in g)
+                fl[0 if side > 0 else 1 if side < 0 else 2] += val
+                if val >= BIG_MIN:                  # several trades in one instant are usually one large order filling
+                    self._big(t, s, side, q, val, n, tov, ts)
+            if f:
+                self._hidden(ts, s, f, cur)
+        self.lv = keep
+
+    def _big(self, t: str, s: str, side: int, q: float, val: float, n: int, tov: float, ts: float | None = None):
+        cross = n <= 2 and val >= CROSS_MIN         # one or two huge trades: almost certainly a negotiated crossing
+        e = {"t": t, "s": s, "d": 0 if cross else side, "q": round(q), "p": round(val / q, 2), "v": round(val), "n": n}
+        if cross:
+            e["x"] = 1
+        if tov > 0:
+            e["r"] = round(val / tov * 100)          # % of a normal day's turnover in this share
+        self.big.append(e)
+        if len(self.big) > 500:                      # keep the largest and the latest
+            ids = {id(x) for x in sorted(self.big, key=lambda x: -x["v"])[:300]} | {id(x) for x in self.big[-150:]}
+            self.big = [x for x in self.big if id(x) in ids]
+        if ts is not None and val >= max(5_000_000, 0.1 * tov):
+            word = "crossing (a block agreed between two parties)" if cross else \
+                {1: "large buying", -1: "large selling", 0: "large trade"}[side]
+            self.emit(ts, s, "block", f"{word}: {q:,.0f} shares at {val / q:.2f} (LKR {val / 1e6:.1f}M"
+                                      + (f" in {n} trades" if n > 1 else "") + ")",
+                      2 if val >= max(CROSS_MIN, 0.5 * tov) else 1, key=f"{s}|block|{side}", cooldown=180)
+
+    def _flag(self, ts: float, s: str, side: int, kind: str, price: float | None, val: float, msg: str, big: bool = False):
+        group = {"level": "lvl", "refill": "lvl", "absorb": "abs"}.get(kind, kind)
+        if group == "abs" and ts - self.seen.get(f"{s}|hid|lvl|{side}", -1e18) < 1800:
+            return                                   # already flagged more precisely, at a price
+        if self.emit(ts, s, "hidden", msg, 2 if big else 1, key=f"{s}|hid|{group}|{side}", cooldown=1800):
+            self.hidden.append({"t": self._clock(ts), "s": s, "d": side, "k": kind, "p": price, "v": round(val), "m": msg})
+
+    def _hidden(self, ts: float, s: str, f: dict, cur: float):
+        """Signs that someone is buying or selling more than the screen shows.  All of these are inferences.
+
+        level    heavy trading keeps coming back to the lowest (highest) price of the last 30 minutes and it
+                 does not break: somebody keeps buying (selling) there - what a hidden / reloading order looks like
+        absorb   far more was sold at falling prices than bought at rising ones, yet the price is not lower
+                 (or the mirror image): the pressure is being absorbed by the other side
+        slices   one trade size repeated again and again: a large order being worked in equal pieces
+        (refill, from the order book, is in _book)
+        """
+        P = self.prints[s]
+        thr = max(3_000_000, 0.1 * f["tov20"])
+        W = [x for x in P if x[0] >= ts - 1800]
+        if len(W) >= 5:
+            tot = sum(x[1] * x[2] for x in W)
+            prices = {round(x[1], 4) for x in W}
+            lo, hi = min(prices), max(prices)
+            need = 0.6 if len(prices) <= 2 else 0.4       # between just two prices, half the volume at each is normal
+            if hi > lo + EPS:
+                for level, side in ((lo, 1), (hi, -1)):
+                    hits = [x for x in W if abs(x[1] - level) < EPS]
+                    val, bursts = sum(x[1] * x[2] for x in hits), len({x[0] for x in hits})
+                    mins = (hits[-1][0] - hits[0][0]) / 60
+                    if bursts >= 5 and mins >= 5 and ts - hits[-1][0] <= 300 and val >= thr and val >= need * tot:
+                        sh = sum(x[2] for x in hits)
+                        self._flag(ts, s, side, "level", level, val,
+                                   f"possible hidden {'buyer' if side > 0 else 'seller'} at {level:.2f}: {sh:,.0f} shares "
+                                   f"traded there in {bursts} bursts over {mins:.0f} min without the price going "
+                                   f"{'lower' if side > 0 else 'higher'}", val >= 3 * thr)
+            buy = sum(x[1] * x[2] for x in W if x[4] > 0)
+            sell = sum(x[1] * x[2] for x in W if x[4] < 0)
+            start = W[0][1]
+            if sell >= thr and sell >= 2 * buy and cur >= start - EPS:
+                self._flag(ts, s, 1, "absorb", None, sell,
+                           f"possible hidden buying: LKR {sell / 1e6:.1f}M was sold at falling prices in 30 min, yet the "
+                           f"price is not lower ({start:.2f} → {cur:.2f})", sell >= 3 * thr)
+            elif buy >= thr and buy >= 2 * sell and cur <= start + EPS:
+                self._flag(ts, s, -1, "absorb", None, buy,
+                           f"possible hidden selling: LKR {buy / 1e6:.1f}M was bought at rising prices in 30 min, yet the "
+                           f"price is not higher ({start:.2f} → {cur:.2f})", buy >= 3 * thr)
+        H = [x for x in P if x[0] >= ts - 3600 and x[3] == 1]
+        if len(H) >= 5:
+            q, k = collections.Counter(round(x[2]) for x in H).most_common(1)[0]
+            val = q * cur * k
+            if k >= 5 and q * cur >= 250_000 and val >= thr / 2:
+                votes = sum(x[4] for x in H if round(x[2]) == q)
+                side = 1 if votes >= 0.6 * k else -1 if votes <= -0.6 * k else 0
+                self._flag(ts, s, side, "slices", None, val,
+                           f"possible large {'buy ' if side > 0 else 'sell ' if side < 0 else ''}order worked in slices: "
+                           f"{q:,} shares traded {k} times in the last hour")
+
+    # -- orders waiting in the book
+    def order_books(self, ts: float, rows: dict, deadline: float, most: int = 6):
+        """Refresh a few order books each tick, least recently checked first: shares that just alerted, today's
+        most traded, and the usual most traded.  CSE gives one share per request, so this is a rotation."""
         recent = [a["s"] for a in reversed(self.alerts[-30:]) if a["s"]]
-        top = sorted(self.ref, key=lambda s: -self.ref[s]["tov20"])[:12]          # the most traded shares
-        want = list(dict.fromkeys(recent[:12] + top))
-        want.sort(key=lambda s: self.ob.get(s, [0, 0, 0, ""])[3])       # least recently refreshed first
-        t = dt.datetime.fromtimestamp(ts, COLOMBO).strftime("%H:%M:%S")
-        for s in want[:budget]:
+        active = sorted((x for x in rows if rows[x].get("to")), key=lambda x: -rows[x]["to"])[:30]
+        top = sorted(self.ref, key=lambda x: -self.ref[x]["tov20"])[:12]
+        want = list(dict.fromkeys(recent[:10] + active + top))
+        want.sort(key=lambda x: self.polled.get(x, 0.0))
+        t = self._clock(ts)
+        for k, s in enumerate(want[:most]):
+            if k and time.time() > deadline:
+                break
+            self.polled[s] = ts
             ob = cse.order_book(s)
             if ob:
-                self.ob[s] = [ob["bids"], ob["asks"], ob["best"], t]
-                self.ob_log.append([len(self.ticks) - 1, s, ob["bids"], ob["asks"], ob["best"]])
+                self._book(ts, t, s, ob, rows.get(s) or {})
+
+    def _book(self, ts: float, t: str, s: str, ob: dict, r: dict):
+        f = self.ref.get(s) or {}
+        tov = f.get("tov20", 0.0)
+        px = r.get("p") or self.last_p.get(s) or f.get("pc") or ob.get("best") or 0.0
+        by: dict = {}
+        for lv in ob.get("levels") or []:
+            by.setdefault(lv["side"], lv)                 # the first (best) level of each side
+        c = self.side_code
+        b, a = by.get(c["bid"]), by.get(c["ask"])
+        if b and a and abs(b["p"] - a["p"]) > EPS:        # a buy price is never above a sell price
+            self.side_votes[0 if b["p"] < a["p"] else 1] += 1
+            agree, against = self.side_votes
+            if against > agree:                           # most books say the codes are the other way round
+                c["bid"], c["ask"] = c["ask"], c["bid"]
+                self.side_votes = [against, agree]
+                b, a = a, b
+                print("order book: buySell codes are the other way round ->", c)
+            elif b["p"] > a["p"]:                         # a one-off crossed book: do not trust its sides
+                b = a = None
+        cur = {"ts": ts, "t": t, "bids": ob["bids"], "asks": ob["asks"],
+               "bid": [b["p"], b["q"], b["n"]] if b else None, "ask": [a["p"], a["q"], a["n"]] if a else None}
+        prev = self.book.get(s)
+        thr = max(5_000_000, 0.1 * tov)
+        if prev and ts - prev["ts"] <= 600 and px:
+            for key, side in (("bids", 1), ("asks", -1)):       # many more shares waiting than a few minutes ago
+                d = cur[key] - prev[key]
+                if d * px >= thr and d >= 0.2 * max(prev[key], 1.0):
+                    self._rest(ts, t, s, side, d, px, "new")
+        for key, side in (("bid", 1), ("ask", -1)):             # a best price that keeps refilling as shares trade into it
+            lv, rf = cur.get(key), self.refill.get((s, key))
+            if not lv:
+                self.refill.pop((s, key), None)
+            elif not rf or abs(rf["p"] - lv[0]) > EPS:
+                self.refill[(s, key)] = {"p": lv[0], "max": lv[1], "since": ts}
+            else:
+                rf["max"] = max(rf["max"], lv[1])
+                hit = sum(x[2] for x in self.prints[s] if x[0] > rf["since"] and abs(x[1] - rf["p"]) < EPS)
+                if hit >= 3 * rf["max"] and hit * rf["p"] >= thr / 2:
+                    self._flag(ts, s, side, "refill", rf["p"], hit * rf["p"],
+                               f"possible hidden {'buy' if side > 0 else 'sell'} order at {rf['p']:.2f}: at most "
+                               f"{rf['max']:,.0f} shares were showing, yet {hit:,.0f} traded there in "
+                               f"{(ts - rf['since']) / 60:.0f} min and {lv[1]:,.0f} still show", hit * rf["p"] >= 2 * thr)
+        for key, side in (("bid", 1), ("ask", -1)):             # a very large order at the best price
+            lv = cur.get(key)
+            if lv and lv[0] * lv[1] >= max(10_000_000, 0.2 * tov):
+                self._rest(ts, t, s, side, lv[1], lv[0], "best", lv[2])
+        self.book[s] = cur
+        self.ob[s] = [ob["bids"], ob["asks"], cur["bid"][0] if cur["bid"] else None, t,
+                      cur["ask"][0] if cur["ask"] else None]
+        self.ob_log.append([len(self.ticks) - 1, s, ob["bids"], ob["asks"], cur["bid"], cur["ask"]])
+
+    def _rest(self, ts: float, t: str, s: str, side: int, q: float, px: float, kind: str, n: int = 0):
+        val, what = q * px, "buy" if side > 0 else "sell"
+        if kind == "best":
+            key, cool = f"{s}|rest|best|{side}|{px:.2f}", 1800
+            msg = (f"large {what} order waiting at the best price: {q:,.0f} shares at {px:.2f} (LKR {val / 1e6:.1f}M"
+                   + (f", {n} order{'' if n == 1 else 's'}" if n else "") + ")")
+        else:
+            key, cool = f"{s}|rest|new|{side}", 600
+            msg = f"new {what} orders placed: about {q:,.0f} more shares waiting to {what} (≈ LKR {val / 1e6:.1f}M)"
+        if self.emit(ts, s, "book", msg, 2 if val >= CROSS_MIN else 1, key=key, cooldown=cool):
+            e = {"t": t, "s": s, "d": side, "q": round(q), "p": round(px, 2), "v": round(val), "k": kind}
+            if n:
+                e["n"] = n
+            self.rest.append(e)
+            del self.rest[:-300]
+
+    def orders_view(self, n: int = 10) -> dict:
+        """The 'big orders' panel: largest trades, largest orders seen waiting, latest hidden-pattern flags, and
+        today's money flow for the shares with the most of it."""
+        fl = sorted(self.flow.items(), key=lambda kv: -(kv[1][0] + kv[1][1]))[:40 if n <= 10 else 300]
+        return {"big": sorted(self.big, key=lambda x: -x["v"])[:n], "rest": sorted(self.rest, key=lambda x: -x["v"])[:n],
+                "hid": self.hidden[-n:][::-1], "nb": len(self.big), "nr": len(self.rest), "nh": len(self.hidden),
+                "fl": {s: [round(v[0] / 1e6, 2), round(v[1] / 1e6, 2)] for s, v in fl if v[0] + v[1] >= 1e6}}
 
     # -- persistence
     def state(self) -> dict:
-        return {"date": self.day, "alerts": self.alerts, "seen": self.seen, "opened": sorted(self.opened)}
+        return {"date": self.day, "alerts": self.alerts, "seen": self.seen, "opened": sorted(self.opened),
+                "big": self.big, "rest": self.rest, "hidden": self.hidden, "flow": self.flow, "dirn": self.dirn,
+                "lv": None if self.lv is None else {s: [[px, q, n] for px, (q, n) in lv.items()] for s, lv in self.lv.items()}}
 
     def restore(self, st: dict):
         if st.get("date") != self.day:
             return
         self.alerts, self.seen = st.get("alerts", []), st.get("seen", {})
         self.opened = set(st.get("opened", []))
-        print(f"Resumed {len(self.alerts)} alerts from earlier today")
+        self.big, self.rest, self.hidden = st.get("big", []), st.get("rest", []), st.get("hidden", [])
+        self.flow, self.dirn = st.get("flow", {}), st.get("dirn", {})
+        if st.get("lv") is not None:
+            self.lv = {s: {px: [q, n] for px, q, n in lv} for s, lv in st["lv"].items()}
+        print(f"Resumed {len(self.alerts)} alerts and {len(self.big)} large trades from earlier today")
 
     def archive(self) -> Path | None:
         """Save this run's 15-second tape to data/intraday/ on main (raw material for intraday pattern models)."""
         if len(self.ticks) < 8:
             return None
         out = {"date": self.day, "tick_seconds": TICK, "ticks": self.ticks, "tape": self.tape, "alerts": self.alerts,
-               "order_books": self.ob_log, "indices": self.idx_log}
+               "order_books": self.ob_log, "indices": self.idx_log,
+               "big": self.big, "resting": self.rest, "hidden": self.hidden, "flow": self.flow, "prints": self.print_log}
         d = ROOT / "data" / "intraday"
         d.mkdir(parents=True, exist_ok=True)
         p = d / f"{self.day}-{self.ticks[0][:5].replace(':', '')}.json.gz"
@@ -499,6 +758,12 @@ def main(test: bool = False):
         on_minute = t.second < TICK
         if rows and (session == day or test):
             traded_today = True
+            try:                                    # before tick(): it compares with the previous prices
+                levels = cse.detailed_trades()
+                if levels:
+                    eng.trades(ts, levels, rows)
+            except Exception as e:
+                print("trades error:", repr(e))
             eng.tick(ts, rows)
             if on_minute or tick_no == 0:
                 try:
@@ -507,16 +772,16 @@ def main(test: bool = False):
                 except Exception as e:
                     print("index error:", e)
             try:
-                eng.order_books(ts)
+                eng.order_books(ts, rows, deadline=ts + 9.0)
             except Exception as e:
-                print("order book error:", e)
+                print("order book error:", repr(e))
             stamp = t.strftime("%Y-%m-%d %H:%M:%S")
             tick = {"t": stamp, "m": status, "n": len(eng.alerts), "a": eng.alerts[-40:][::-1],
                     "r": {s: [r["p"], r["c"], r["v"]] for s, r in rows.items()},
                     "x": {"aspi": [eng.aspi.get("value"), round(eng.aspi.get("percentage") or 0, 2)] if eng.aspi else None,
                           "sec": {k: round(v["pct"], 2) for k, v in eng.sectors.items() if v.get("pct") is not None},
                           "peers": {k: round(v, 2) for k, v in eng.sec_pct.items()}},
-                    "ob": eng.ob}
+                    "ob": eng.ob, "bg": eng.orders_view(10)}
             recent_ticks[t.strftime("%H%M") + f"{(t.second // TICK) * TICK:02d}"] = json.dumps(tick, separators=(",", ":"))
             for k in sorted(recent_ticks)[:-12]:
                 del recent_ticks[k]
@@ -532,13 +797,15 @@ def main(test: bool = False):
                 full = [{"s": s, **r} for s, r in rows.items()]
                 live = {"updated": stamp, "date": day, "market": status, "rows": full}
                 intraday = {"date": day, "t": times, "p": series}
-                recent_mins[t.strftime("%H%M")] = json.dumps({**live, "intraday": intraday}, separators=(",", ":"))
+                orders = {"date": day, "updated": stamp, **eng.orders_view(60)}
+                recent_mins[t.strftime("%H%M")] = json.dumps({**live, "intraday": intraday, "orders": orders}, separators=(",", ":"))
                 for k in sorted(recent_mins)[:-6]:
                     del recent_mins[k]
                 base_files = {"live.json": json.dumps(live, separators=(",", ":")),
                               "intraday.json": json.dumps(intraday, separators=(",", ":")),
                               "state.json": json.dumps(eng.state(), separators=(",", ":")),
-                              "alerts.json": json.dumps({"date": day, "alerts": eng.alerts}, separators=(",", ":"))}
+                              "alerts.json": json.dumps({"date": day, "alerts": eng.alerts}, separators=(",", ":")),
+                              "orders.json": json.dumps(orders, separators=(",", ":"))}
             # when pushes keep failing, fall back to once a minute
             if fails < 3 or on_minute:
                 files = dict(base_files)
@@ -559,6 +826,11 @@ def main(test: bool = False):
         time.sleep(max(1.0, TICK - (time.time() % TICK)))      # wake on the next :00/:15/:30/:45
 
     if test:    # self-check of the pieces the real run relies on: seeing other runs, and starting a workflow
+        v = eng.orders_view(5)
+        print("per-price totals:", 0 if eng.lv is None else len(eng.lv), "counters,",
+              0 if eng.lv is None else sum(len(x) for x in eng.lv.values()), "price levels")
+        print("largest single trades of the last session:", json.dumps(v["big"]))
+        print("order books read:", json.dumps({k: {x: b[x] for x in ("bids", "asks", "bid", "ask")} for k, b in list(eng.book.items())[:8]}))
         print("self-check: older run active =", older_run_active(), "| can start workflows =", dispatch("publish.yml"))
         return
     if traded_today:

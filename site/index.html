@@ -10,14 +10,27 @@
   :root { --bg:#0f1216; --panel:#171b21; --line:#262c35; --text:#e6e8eb; --mute:#8b95a1;
           --buy:#22c55e; --sell:#ef4444; --hold:#a1a1aa; --accent:#3b82f6; }
   * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
   body { margin:0; font:14px/1.4 system-ui, sans-serif; background:var(--bg); color:var(--text); }
   header { display:flex; gap:10px; align-items:center; padding:10px 14px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
   header h1 { font-size:16px; margin:0 8px 0 0; }
   input, select, button, .btn { background:var(--panel); color:var(--text); border:1px solid var(--line); border-radius:6px; padding:6px 10px; font:inherit; text-decoration:none; }
   .btn:hover, button:hover { border-color:var(--accent); }
-  main { display:grid; grid-template-columns: 560px 1fr; height:calc(100vh - 54px); }
-  @media (max-width: 900px) { main { grid-template-columns:1fr; height:auto; } #list { max-height:55vh; } }
-  #list { overflow:auto; border-right:1px solid var(--line); }
+  main { display:grid; grid-template-columns:minmax(0, 1fr); }
+  #list, #detail { min-width:0; } #detail { padding:14px; }
+  .nav { display:contents; } #backbar { display:none; } .m-only { display:none; }
+  #listTable { table-layout:fixed; } #listTable th, #listTable td { overflow:hidden; text-overflow:ellipsis; }
+  .c-star { width:36px; } .c-close { width:88px; } .c-chg { width:62px; } .c-pe { width:64px; } .c-sig { width:98px; } .c-score { width:54px; }
+  #listTable td.star { padding-left:0; padding-right:0; text-align:center; text-overflow:clip; }
+  .tw { overflow-x:auto; -webkit-overflow-scrolling:touch; } .nm { font-size:11px; overflow:hidden; text-overflow:ellipsis; }
+  /* Wide screens: list and share side by side, each scrolling on its own, together filling the window exactly. */
+  @media (min-width:900px) and (min-height:501px) {
+    body { display:flex; flex-direction:column; height:100vh; height:100dvh; }
+    main { flex:1; min-height:0; grid-template-columns:clamp(560px, 42vw, 680px) minmax(0, 1fr); grid-template-rows:minmax(0, 1fr); }
+    #list { overflow:auto; border-right:1px solid var(--line); } #detail { overflow:auto; }
+  }
+  /* Tablets held upright: the list on top in its own scrolling box, the share below it. */
+  @media (min-width:701px) and (max-width:899.98px) and (min-height:501px) { #list { max-height:55vh; overflow:auto; } }
   table { width:100%; border-collapse:collapse; }
   th, td { padding:7px 8px; text-align:left; border-bottom:1px solid var(--line); white-space:nowrap; }
   th { position:sticky; top:0; background:var(--panel); color:var(--mute); font-weight:500; font-size:12px; }
@@ -26,10 +39,9 @@
   .sig { font-weight:600; font-size:12px; }
   .BUY { color:var(--buy); } .SELL { color:var(--sell); } .HOLD { color:var(--hold); }
   .up { color:var(--buy); } .down { color:var(--sell); }
-  #detail { overflow:auto; padding:14px; }
   #chart { height:360px; } #rsi, #macd { height:100px; margin-top:6px; }
-  .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px; margin-top:14px; }
-  .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap:12px; margin-top:14px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; min-width:0; }
   .card.wide { grid-column:1 / -1; }
   .card h3 { margin:0 0 8px; font-size:13px; color:var(--mute); font-weight:500; }
   .card ul { margin:0; padding-left:18px; } .tag { font-size:10px; font-weight:700; padding:1px 5px; border-radius:4px; vertical-align:middle; } .tag.inv { background:#14532d; color:#86efac; } .tag.trd { background:#1e3a8a; color:#93c5fd; } .tag.wat { background:#3f3f46; color:#d4d4d8; }
@@ -53,6 +65,34 @@
   td.fu { animation:fu 2.5s ease-out; } td.fd { animation:fd 2.5s ease-out; }
   tr.peer { cursor:pointer; } tr.peer:hover { background:#1d232b; } tr.me { background:#1b2433; }
   footer { font-size:11px; color:var(--mute); padding:10px 14px; }
+  /* Touch screens: text under 16px in a box makes iPhones zoom the whole page when the box is tapped. */
+  @media (pointer:coarse) { input, select { font-size:16px; } }
+  /* Phones: one thing at a time. The list is the page; tapping a share opens it full-screen under a Back bar. */
+  @media (max-width:700px), (max-height:500px) {
+    header { gap:8px; padding:10px; } header h1 { margin:0; }
+    #q { flex:1 1 120px; min-width:0; } #f { flex:1 1 50%; min-width:0; } #alertBtn { flex:1 1 auto; }
+    .nav { display:flex; gap:8px; flex:1 1 100%; } .nav .btn { flex:1 1 0; text-align:center; padding:6px 4px; white-space:nowrap; }
+    #live, #meta { flex:1 1 100%; font-size:12px; } #live:empty, #meta:empty { display:none; }
+    #detail { display:none; padding:10px 8px; }
+    body.open header, body.open #list { display:none; } body.open #detail { display:block; }
+    body.open #backbar { display:flex; gap:10px; align-items:center; position:sticky; top:0; z-index:5; padding:8px 10px;
+                         background:var(--bg); border-bottom:1px solid var(--line); font-size:12px; }
+    #chart { height:280px; } #rsi, #macd { height:90px; }
+    .cards { gap:10px; margin-top:10px; } .card { padding:10px; } .big { font-size:20px; }
+    .kv { grid-template-columns:fit-content(42%) minmax(0, 1fr); gap:4px 10px; }
+    .card table { font-size:12px; } .card table td, .card table th { padding:4px 3px; white-space:normal; }
+    .card table th { vertical-align:bottom; } .card table td:first-child { white-space:nowrap; }
+  }
+  /* Narrow screens: change sits under the price and score under the signal, so every column fits the width. */
+  @media (max-width:700px) {
+    .d-only { display:none; } .m-only { display:block; font-size:11px; font-weight:400; } th .m-only { display:inline; font-size:inherit; }
+    #listTable th, #listTable td { padding:7px 6px; } .c-star { width:32px; } .c-close { width:92px; } .c-sig { width:98px; }
+  }
+  @media (max-width:350px) {
+    #listTable { font-size:13px; } #listTable .sig { font-size:11px; } th .m-only { display:none; }
+    .c-star { width:26px; } .c-close { width:80px; } .c-sig { width:88px; }
+    .nav { gap:6px; } .nav .btn { font-size:12px; padding:6px 2px; } .card table { font-size:11px; }
+  }
 </style>
 </head>
 <body>
@@ -62,17 +102,20 @@
   <select id="f" onchange="render()">
     <option value="">All signals</option><option value="invest">📈 Investment picks</option><option value="trade">⚡ Trading picks</option><option value="tradewatch">👀 Trade watch</option><option value="BUY">Buys</option><option value="SELL">Sells</option><option value="watch">★ Favourites</option><option value="value">Value (P/E &lt; 10)</option><option value="div">Dividend ≥ 5%</option><option value="issues">Data issues</option>
   </select>
-  <a class="btn" id="addBtn" target="_blank" rel="noopener">+ Add stocks</a>
-  <button class="btn" onclick="toggleAlerts()">🔔 Alerts <span id="abadge" class="badge" style="display:none"></span></button>
-  <a class="btn" href="accuracy.html">🎯 Accuracy</a>
-  <a class="btn" href="audit.html">✓ Data checks</a>
+  <button class="btn" id="alertBtn" onclick="toggleAlerts()">🔔 Alerts <span id="abadge" class="badge" style="display:none"></span></button>
+  <div class="nav">
+    <a class="btn" id="addBtn" target="_blank" rel="noopener">+ Add stocks</a>
+    <a class="btn" href="accuracy.html">🎯 Accuracy</a>
+    <a class="btn" href="audit.html">✓ Data checks</a>
+  </div>
   <span id="live" class="mute"></span>
   <span id="meta" class="mute"></span>
 </header>
+<div id="backbar"><button class="btn" onclick="backToList()">‹ All shares</button><span id="live2" class="mute"></span></div>
 <main>
   <section id="list">
     <div id="alerts" hidden></div>
-    <table id="listTable"><thead><tr><th></th><th>Symbol</th><th class="num">Close</th><th class="num">Chg%</th><th class="num">P/E</th><th>Signal</th><th class="num">Score</th></tr></thead><tbody id="rows"></tbody></table>
+    <table id="listTable"><thead><tr><th class="c-star"></th><th>Symbol</th><th class="num c-close">Close<span class="m-only"> / Chg%</span></th><th class="num d-only c-chg">Chg%</th><th class="num d-only c-pe">P/E</th><th class="c-sig">Signal<span class="m-only"> / Score</span></th><th class="num d-only c-score">Score</th></tr></thead><tbody id="rows"></tbody></table>
     <div id="empty" class="note" hidden></div>
     <footer>Rule-based indicator signals, not financial advice. Data: Colombo Stock Exchange (cse.lk): prices every 15 seconds in market hours, signals after each close.</footer>
   </section>
@@ -156,11 +199,12 @@ async function pollMinute() {
 }
 function showLiveStatus() {
   const el = $('#live');
-  if (!tick) { el.textContent = marketWindow() ? 'Waiting for live prices…' : ''; return; }
+  if (!tick) { el.textContent = marketWindow() ? 'Waiting for live prices…' : ''; $('#live2').textContent = el.textContent; return; }
   const age = Math.max(0, Math.round((colomboNow().getTime() - new Date(tick.t.replace(' ', 'T')).getTime()) / 1000));
   const a = tick.x && tick.x.aspi;
   el.innerHTML = `${marketWindow() ? '<span class="livedot"></span>' : ''}Live ${esc(tick.t.slice(11))} <span class="mute">(${age < 120 ? age + ' s' : Math.round(age/60) + ' min'} ago)</span>` +
     `${tick.m ? ' · ' + esc(tick.m) : ''}${a && a[0] ? ` · ASPI ${Math.round(a[0]).toLocaleString()} <span class="${a[1]>0?'up':a[1]<0?'down':''}">${a[1]>0?'+':''}${p2(a[1])}%</span>` : ''}`;
+  $('#live2').innerHTML = el.innerHTML;
 }
 setInterval(showLiveStatus, 5000);
 
@@ -258,7 +302,11 @@ async function load() {
   fetch('data/accuracy.json').then(r => r.json()).then(a => { acc = a; }).catch(() => {});
   if (marketWindow()) { pollTick(); }
   else if (RAW) { getJSON('alerts.json').then(a => { dayAlerts = a; renderAlerts(); }); }
-  if (location.hash) show(decodeURIComponent(location.hash.slice(1)));
+  const s0 = hashSym();
+  if (s0) {   // opened by a link to one share: on a phone put the list underneath it, so Back lands on the list
+    if (PHONE.matches && !(history.state && history.state.cse)) history.replaceState(null, '', location.pathname + location.search);
+    show(s0);
+  }
 }
 
 function render() {
@@ -269,16 +317,17 @@ function render() {
   $('#empty').hidden = rows.length > 0;
   $('#empty').innerHTML = all.length ? 'No stocks match.' :
     'No data yet. On GitHub open <b>Actions → Update CSE data → Run workflow</b> and enter symbols like <code>JKH.N0000 COMB.N0000</code>.';
-  $('#rows').innerHTML = rows.map(s => `
-    <tr class="row ${s.symbol===current?'sel':''}" data-sym="${esc(s.symbol)}">
+  const sel = current || lastSeen;
+  $('#rows').innerHTML = rows.map(s => { const c = s.live ? s.live.c : s.change_pct, cc = c > 0 ? 'up' : c < 0 ? 'down' : ''; return `
+    <tr class="row ${s.symbol===sel?'sel':''}" data-sym="${esc(s.symbol)}">
       <td class="star" data-star="${esc(s.symbol)}">${isStar(s)?'★':'☆'}</td>
-      <td><b>${esc(s.symbol)}</b><div class="mute" style="font-size:11px">${s.invest?'<span class="tag inv">INVEST</span> ':''}${s.trade?'<span class="tag trd">TRADE</span> ':s.trade_watch?'<span class="tag wat">WATCH</span> ':''}${esc((s.name||'').slice(0, (s.invest||s.trade||s.trade_watch) ? 18 : 26))}</div></td>
-      <td class="num ${changed[s.symbol] || ''}">${(s.live ? s.live.p : s.close).toFixed(2)}${s.live ? ' <span class="livedot" title="live"></span>' : ''}</td>
-      ${(() => { const c = s.live ? s.live.c : s.change_pct; return `<td class="num ${c>0?'up':c<0?'down':''}">${p2(c)}</td>`; })()}
-      <td class="num">${s.pe ?? '<span class="mute">–</span>'}</td>
-      <td class="sig ${sigClass(s.signal)}">${esc(s.signal)}</td>
-      <td class="num">${s.score}</td>
-    </tr>`).join('');
+      <td><b>${esc(s.symbol)}</b><div class="mute nm">${s.invest?'<span class="tag inv">INVEST</span> ':''}${s.trade?'<span class="tag trd">TRADE</span> ':s.trade_watch?'<span class="tag wat">WATCH</span> ':''}${esc((s.name||'').slice(0, (s.invest||s.trade||s.trade_watch) ? 18 : 26))}</div></td>
+      <td class="num ${changed[s.symbol] || ''}">${(s.live ? s.live.p : s.close).toFixed(2)}${s.live ? ' <span class="livedot" title="live"></span>' : ''}<div class="m-only ${cc}">${c > 0 ? '+' : ''}${p2(c)}%</div></td>
+      <td class="num d-only ${cc}">${p2(c)}</td>
+      <td class="num d-only">${s.pe ?? '<span class="mute">–</span>'}</td>
+      <td class="sig ${sigClass(s.signal)}">${esc(s.signal)}<div class="m-only mute">score ${s.score}</div></td>
+      <td class="num d-only">${s.score}</td>
+    </tr>`; }).join('');
 }
 
 $('#rows').addEventListener('click', e => {
@@ -319,10 +368,10 @@ function peersCard(d, sym) {
       ${row('P/E', 'pe', true)}${row('Price / book', 'pbv', true)}${row('ROE', 'roe', false, '%')}
       ${row('1 month', 'd20', false, '%', true)}${row('3 months', 'd60', false, '%', true)}${row('Score', 'score', false)}
     </div>
-    <table style="margin-top:8px"><tr><th>Most traded peers</th><th class="num">Price</th><th class="num">Today</th><th class="num">1M</th><th class="num">P/E</th><th>Signal</th></tr>
+    <div class="tw"><table style="margin-top:8px"><tr><th>Most traded peers</th><th class="num">Price</th><th class="num">Today</th><th class="num">1M</th><th class="num">P/E</th><th>Signal</th></tr>
     ${shown.map(m => `<tr class="peer ${m.s === sym ? 'me' : ''}" data-peer="${esc(m.s)}"><td><b>${esc(m.s.split('.')[0])}</b>${m.s.includes('.X') ? '<span class="mute">.X</span>' : ''}${m.invest ? ' <span class="tag inv">INV</span>' : ''}</td>
       <td class="num">${((tick && tick.r[m.s]) ? tick.r[m.s][0] : m.close).toFixed(2)}</td><td class="num">${pct(today(m))}</td><td class="num">${pct(m.d20)}</td>
-      <td class="num">${m.pe ?? '<span class="mute">–</span>'}</td><td class="sig ${sigClass(m.signal)}" style="font-size:11px">${esc(m.signal)}</td></tr>`).join('')}</table>
+      <td class="num">${m.pe ?? '<span class="mute">–</span>'}</td><td class="sig ${sigClass(m.signal)}" style="font-size:11px">${esc(m.signal)}</td></tr>`).join('')}</table></div>
     <p class="mute" style="font-size:11px;margin:8px 0 0">Peer medians use verified report figures only. Tap a peer to open it.</p></div>`;
 }
 
@@ -371,7 +420,7 @@ function fundCard(a) {
       <td class="num">${fmt(y.dps)}${y.dps!=null?(y.dps_ok?' <span class="up">✓</span>':' <span class="warn">⚠</span>'):''}</td></tr>`).join('');
   const qs = (f.quarters||[]).map(q => `<tr><td><a href="${esc(q.url)}" target="_blank" rel="noopener">${esc(q.end)}</a></td>
       <td class="num">${fmt(q.eps_q)}</td>
-      <td class="num">${fmt(q.eps_cum)}${q.eps_cum!=null?` <span class="mute">${q.cum_months}m</span>`+(q.period_ok&&q.eps_ok?' <span class="up">✓</span>':' <span class="warn">⚠</span>'):''}</td>
+      <td class="num">${fmt(q.eps_cum)}${q.eps_cum!=null?` <span style="white-space:nowrap"><span class="mute">${q.cum_months}m</span>`+(q.period_ok&&q.eps_ok?' <span class="up">✓</span>':' <span class="warn">⚠</span>')+'</span>':''}</td>
       <td class="num">${pct(q.profit_growth)}${q.profit_growth!=null?(q.growth_ok?' <span class="up">✓</span>':' <span class="warn">⚠</span>'):''}</td>
       <td class="num">${pct(q.revenue_growth)}</td></tr>`).join('');
   const srcs = (f.quarters||[]).filter(q => q.src && Object.keys(q.src).length).map(q =>
@@ -381,7 +430,7 @@ function fundCard(a) {
   const cs = f.check_summary || {ok:0,warn:0,fail:0};
   const icon = {ok:'<span class="up">✓</span>', warn:'<span class="warn">⚠</span>', fail:'<span class="down">✗</span>'};
   const checks = (f.checks||[]).map(c => `<li style="list-style:none;margin-left:-18px">${icon[c.level]} <span class="mute">${esc(c.end)}</span> ${esc(c.msg)}</li>`).join('');
-  return `<div class="card"><h3>Fundamentals <span class="mute">· ${f.quarters_read} quarterly + ${f.annuals_read} annual reports · ${esc(f.confidence)} data</span></h3>
+  return `<div class="card wide"><h3>Fundamentals <span class="mute">· ${f.quarters_read} quarterly + ${f.annuals_read} annual reports · ${esc(f.confidence)} data</span></h3>
     ${f.ai_read ? `<div style="background:#132a1f;border:1px solid #1f5136;border-radius:6px;padding:8px 10px;margin:4px 0 10px;font-size:13px">
       📖 <b>Key figures read by Claude</b> from the reports on ${esc(f.ai_read.at)} (${esc((f.ai_read.latest||{}).end||'')} interim${(f.ai_read.fy||{}).end?` and year to ${esc(f.ai_read.fy.end)}`:''}).
       ${f.ai_read.notes ? `<div class="mute" style="margin-top:4px">${esc(f.ai_read.notes)}</div>` : ''}</div>` : ''}
@@ -398,8 +447,8 @@ function fundCard(a) {
       <span class="mute">EPS growth/yr</span><span>${f.eps_cagr!=null?pct(f.eps_cagr)+tick('eps_cagr')+` <span class="mute">over ${f.eps_cagr_years}y</span>`:fmt(null)}</span>
     </div>
     <p class="mute" style="font-size:12px;margin:8px 0 0">✓ verified by a cross-check · ⚠ not verified — shown, but <b>not used in the score</b>.</p>
-    ${yrs?`<h3 style="margin-top:12px">Annual reports</h3><table><tr><th>Year end</th><th class="num">EPS</th><th class="num">DPS</th></tr>${yrs}</table>`:''}
-    ${qs?`<h3 style="margin-top:12px">Quarterly reports</h3><table><tr><th>Period end</th><th class="num">EPS quarter</th><th class="num">EPS year-to-date</th><th class="num">Profit YoY</th><th class="num">Revenue YoY</th></tr>${qs}</table>`:''}
+    ${yrs?`<h3 style="margin-top:12px">Annual reports</h3><div class="tw"><table><tr><th>Year end</th><th class="num">EPS</th><th class="num">DPS</th></tr>${yrs}</table></div>`:''}
+    ${qs?`<h3 style="margin-top:12px">Quarterly reports</h3><div class="tw"><table><tr><th>Period end</th><th class="num">EPS quarter</th><th class="num">EPS year-to-date</th><th class="num">Profit YoY</th><th class="num">Revenue YoY</th></tr>${qs}</table></div>`:''}
     <details style="margin-top:10px"><summary>Data checks: ${cs.ok} passed · ${cs.warn} warnings · ${cs.fail} failed · <a href="audit.html#${encodeURIComponent(a.symbol||current)}">all checks page</a></summary><ul style="margin-top:6px">${checks}</ul></details>
     <details style="margin-top:6px"><summary>Exact lines read from the PDFs</summary>${srcs || '<p class="mute">none</p>'}</details>
   </div>`;
@@ -408,12 +457,34 @@ function fundCard(a) {
 function mkChart(el, h) {
   return LightweightCharts.createChart(el, { height:h, layout:{ background:{color:'#0f1216'}, textColor:'#8b95a1' },
     grid:{ vertLines:{color:'#1b2028'}, horzLines:{color:'#1b2028'} }, timeScale:{ borderColor:'#262c35' },
-    rightPriceScale:{ borderColor:'#262c35' }, autoSize:true });
+    rightPriceScale:{ borderColor:'#262c35' }, autoSize:true, handleScroll:{ vertTouchDrag:false } });
 }
 
-async function show(sym) {
-  current = sym; render(); detailCtx = null;
-  if (alertsOpen && innerWidth < 900) toggleAlerts(false);
+// Phones show one thing at a time: the list, or one share under a Back bar. Each opened share is a step in the
+// browser's history, so the phone's own Back button or swipe returns to the list as well.
+const PHONE = matchMedia('(max-width:700px), (max-height:500px)');
+let listY = 0, lastSeen = null;
+const hashSym = () => { try { return decodeURIComponent(location.hash.slice(1)); } catch (e) { return ''; } };
+function backToList() {
+  const n = history.state && history.state.cse;      // how many shares deep we are
+  if (n) history.go(-n);                              // 'popstate' below then closes the share
+  else { history.replaceState(null, '', location.pathname + location.search); closeDetail(); }
+}
+function closeDetail() {
+  if (!document.body.classList.contains('open')) return;
+  document.body.classList.remove('open');
+  lastSeen = current; current = null; detailCtx = null; render(); scrollTo(0, listY);
+}
+addEventListener('popstate', () => { const s = hashSym(); if (s) show(s, true); else closeDetail(); });
+
+async function show(sym, fromHistory) {
+  current = sym; lastSeen = null; render(); detailCtx = null;
+  const phone = PHONE.matches;
+  if (phone) {
+    if (!document.body.classList.contains('open')) { listY = scrollY; document.body.classList.add('open'); }
+    if (!fromHistory && hashSym() !== sym) history.pushState({ cse: ((history.state && history.state.cse) || 0) + 1 }, '', '#' + encodeURIComponent(sym));
+    $('#detail').innerHTML = '<div class="mute">Loading…</div>'; scrollTo(0, 0);
+  } else if (alertsOpen && innerWidth < 900) toggleAlerts(false);
   if (!peers) { try { peers = await (await fetch('data/peers.json')).json(); } catch (e) {} }
   let d;
   try { d = await (await fetch('data/stocks/' + encodeURIComponent(sym) + '.json')).json(); }
@@ -478,7 +549,7 @@ async function show(sym) {
   // live: today's candle, the minute chart and the peers line update on every tick
   detailCtx = { sym, cs, last: d.candles[d.candles.length - 1] };
   if (tick) { updateLiveDetail(sym); pollMinute(); }
-  if (innerWidth < 900) $('#detail').scrollIntoView({ behavior:'smooth' });
+  if (!phone && innerWidth < 900) $('#detail').scrollIntoView({ behavior:'smooth' });
 }
 
 load();

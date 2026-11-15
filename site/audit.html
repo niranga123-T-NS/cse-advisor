@@ -8,6 +8,7 @@
 <style>
   :root { --bg:#0f1216; --panel:#171b21; --line:#262c35; --text:#e6e8eb; --mute:#8b95a1; --ok:#22c55e; --warn:#f59e0b; --fail:#ef4444; --accent:#3b82f6; }
   * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; text-size-adjust:100%; }
   body { margin:0; font:14px/1.45 system-ui, sans-serif; background:var(--bg); color:var(--text); }
   header { display:flex; gap:12px; align-items:center; padding:10px 16px; border-bottom:1px solid var(--line); flex-wrap:wrap; }
   header h1 { font-size:16px; margin:0; } a { color:#93c5fd; }
@@ -17,7 +18,8 @@
   .cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:12px; }
   .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; }
   .big { font-size:26px; font-weight:700; }
-  table { width:100%; border-collapse:collapse; background:var(--panel); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+  .tw { overflow-x:auto; -webkit-overflow-scrolling:touch; background:var(--panel); border:1px solid var(--line); border-radius:8px; }
+  table { width:100%; border-collapse:collapse; } .m-only { display:none; }
   th, td { padding:7px 10px; text-align:left; border-bottom:1px solid var(--line); }
   th { color:var(--mute); font-weight:500; font-size:12px; cursor:pointer; user-select:none; background:#13171c; position:sticky; top:0; }
   .num { text-align:right; font-variant-numeric:tabular-nums; }
@@ -28,7 +30,16 @@
   .detail td { background:#12161b; }
   .src { font:11px/1.35 ui-monospace,monospace; color:#cbd5e1; white-space:pre-wrap; word-break:break-word; }
   ol.how li { margin-bottom:6px; }
-  .pill { font-size:11px; padding:1px 6px; border-radius:4px; background:#262c35; }
+  .pill { font-size:11px; padding:1px 6px; border-radius:4px; background:#262c35; white-space:nowrap; }
+  @media (pointer:coarse) { input, select { font-size:16px; } }   /* smaller text makes iPhones zoom the page when a box is tapped */
+  /* Phones: everything fits the width. The company table keeps its key columns; the data labels move under the name. */
+  @media (max-width:600px) {
+    header { padding:10px 12px; gap:4px 12px; } main { padding:12px; } h2 { margin:22px 0 8px; }
+    .cards { grid-template-columns:repeat(2, minmax(0, 1fr)); gap:8px; } .card { padding:10px; } .big { font-size:22px; }
+    th, td { padding:6px 5px; font-size:12.5px; } th { font-size:11.5px; vertical-align:bottom; }
+    .bar { min-width:48px; } .d-only { display:none; } .m-only { display:block; margin-top:2px; } span.m-only { display:inline; margin:0; }
+    #q { flex:1 1 100%; } #lvl { flex:1 1 100%; } ol.how { padding-left:20px; } .detail td { padding:8px 6px; }
+  }
 </style>
 </head>
 <body>
@@ -55,11 +66,11 @@
   </div>
 
   <h2>Verified figures by type</h2>
-  <table id="fields"></table>
+  <div class="tw"><table id="fields"></table></div>
 
   <h2>Check results by type</h2>
   <p class="mute" style="margin-top:-4px">Companies marked 📖 Claude have their key figures read by Claude from the statement pages (Group/consolidated basis, with notes); those readings are compared with the text-matched figures. ✓ passed · ⚠ warning (figure not used) · ✗ failed (misread caught and excluded)</p>
-  <table id="kinds"></table>
+  <div class="tw"><table id="kinds"></table></div>
 
   <h2>Every company</h2>
   <p style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
@@ -70,7 +81,7 @@
     </select>
     <span class="mute">Tap a company to see its checks and the exact PDF lines.</span>
   </p>
-  <table id="cos"></table>
+  <div class="tw"><table id="cos"></table></div>
 </main>
 <script>
 const $ = s => document.querySelector(s);
@@ -111,13 +122,14 @@ function renderCos() {
   const val = c => sortKey === 'share' ? (c.fields ? c.verified / c.fields : 0) : c[sortKey];
   rows.sort((x, y) => (val(x) > val(y) ? 1 : val(x) < val(y) ? -1 : 0) * sortDir);
   const th = (k, t, cls = '') => `<th class="${cls}" onclick="sortBy('${k}')">${t}${sortKey === k ? (sortDir > 0 ? ' ▲' : ' ▼') : ''}</th>`;
-  $('#cos').innerHTML = '<tr>' + th('symbol', 'Company') + th('share', 'Figures verified', 'num') + th('ok', '✓ Passed', 'num') +
-    th('warn', '⚠ Warnings', 'num') + th('fail', '✗ Failed', 'num') + th('confidence', 'Data') + '</tr>' +
-    rows.map(c => `<tr class="co" data-s="${esc(c.symbol)}" onclick="toggle('${esc(c.symbol)}')">
-      <td><b>${esc(c.symbol)}</b> <span class="mute" style="font-size:12px">${esc((c.name || '').slice(0, 30))}</span></td>
-      <td class="num">${c.verified}/${c.fields}</td><td class="num ok">${c.ok}</td><td class="num warn">${c.warn}</td>
-      <td class="num fail">${c.fail}</td><td>${c.ai ? '<span class="pill" style="background:#14532d;color:#86efac">📖 Claude</span> ' : ''}<span class="pill">${esc(c.confidence || '')}</span> <span class="mute" style="font-size:11px">${c.q}q · ${c.a}a</span></td></tr>
-      ${open === c.symbol ? '<tr class="detail"><td colspan="6" id="det">Loading…</td></tr>' : ''}`).join('');
+  const W = '<span class="d-only"> Warnings</span>', F = '<span class="d-only"> Failed</span>';
+  $('#cos').innerHTML = '<tr>' + th('symbol', 'Company') + th('share', 'Figures verified', 'num') + th('ok', '✓ Passed', 'num d-only') +
+    th('warn', '⚠' + W, 'num') + th('fail', '✗' + F, 'num') + th('confidence', 'Data', 'd-only') + '</tr>' +
+    rows.map(c => { const pills = `${c.ai ? '<span class="pill" style="background:#14532d;color:#86efac">📖 Claude</span> ' : ''}<span class="pill">${esc(c.confidence || '')}</span> <span class="mute" style="font-size:11px">${c.q}q · ${c.a}a</span>`; return `<tr class="co" data-s="${esc(c.symbol)}" onclick="toggle('${esc(c.symbol)}')">
+      <td><b>${esc(c.symbol)}</b> <span class="mute" style="font-size:12px">${esc((c.name || '').slice(0, 30))}</span><div class="m-only">${pills}</div></td>
+      <td class="num">${c.verified}/${c.fields}</td><td class="num ok d-only">${c.ok}</td><td class="num warn">${c.warn}</td>
+      <td class="num fail">${c.fail}</td><td class="d-only">${pills}</td></tr>
+      ${open === c.symbol ? '<tr class="detail"><td colspan="6" id="det">Loading…</td></tr>' : ''}`; }).join('');
   if (open) loadDetail(open);
 }
 

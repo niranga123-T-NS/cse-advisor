@@ -40,8 +40,8 @@ const LISTS = [['all_up', 'Rising in every time frame', 'strongest first'], ['tu
   ['earnings_up_price_down', 'Earnings rising, price falling', 'profits up in recent reports while the one-year price trend is down'],
   ['turned_down', 'Just turned down', 'quarter trend turned down in the last 10 days'], ['all_down', 'Falling in every time frame', 'weakest first'],
   ['new_lows', 'New 52-week lows', 'in the last 5 days']];
-const PICTURE = [['2', 'Rising in every time frame', 'var(--emerald)', 'up2'], ['1', 'Mostly rising', 'color-mix(in srgb, var(--emerald) 50%, var(--surface-3))', ''], ['0', 'Mixed or sideways', 'var(--surface-3)', ''],
-  ['-1', 'Mostly falling', 'color-mix(in srgb, var(--ruby) 50%, var(--surface-3))', ''], ['-2', 'Falling in every time frame', 'var(--ruby)', 'down2']];
+const PICTURE = [['2', 'Rising in every time frame', 'var(--emerald)', 'up2'], ['1', 'Mostly rising', 'var(--emerald-mid)', ''], ['0', 'Mixed or sideways', 'var(--surface-3)', ''],
+  ['-1', 'Mostly falling', 'var(--ruby-mid)', ''], ['-2', 'Falling in every time frame', 'var(--ruby)', 'down2']];
 
 fetch('data/trends.json').then(r => r.json()).then(T => {
   const M = T.market, I = M.index, B = M.breadth, C = T.counts;

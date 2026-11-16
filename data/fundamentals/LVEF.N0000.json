@@ -1,5 +1,148 @@
 {
  "annual": {
+  "34010": {
+   "dps": 0.65,
+   "dps_prior": 0.64,
+   "end": "2019-03-31",
+   "eps": 0.89,
+   "eps_prior": 0.81,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 6.83,
+   "navps_prior": 5.93,
+   "ok": true,
+   "pages": 94,
+   "src_dps": "Dividend per Share (LKR)  0.65  0.64",
+   "src_eps": "Earnings per Share (LKR)  0.89  0.81",
+   "src_navps": "Net Assets per Share (LKR)  6.83  5.93",
+   "title": "Annual Report 2018/2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1707_1566988390303.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.65,
+    0.64
+   ],
+   "vals_eps": [
+    0.89,
+    0.81
+   ],
+   "vals_navps": [
+    6.83,
+    5.93
+   ],
+   "year_only": false
+  },
+  "36460": {
+   "dps": 0.35,
+   "dps_prior": 0.65,
+   "end": "2020-03-31",
+   "eps": 0.64,
+   "eps_prior": 0.89,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 7.53,
+   "navps_prior": 6.87,
+   "ok": true,
+   "pages": 94,
+   "src_dps": "Dividend per Share (LKR)  0.35  0.65",
+   "src_eps": "Earnings per Share (LKR)  0.64  0.89",
+   "src_navps": "Net Assets per Share (LKR)  7.53  6.87",
+   "title": "Annual Report 2019/20",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1707_1603702801107.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.35,
+    0.65
+   ],
+   "vals_eps": [
+    0.64,
+    0.89
+   ],
+   "vals_navps": [
+    7.53,
+    6.87
+   ],
+   "year_only": false
+  },
+  "38995": {
+   "dps": 0.35,
+   "dps_prior": 0.35,
+   "end": "2021-03-31",
+   "eps": 1.09,
+   "eps_prior": 0.64,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 8.7,
+   "navps_prior": 7.53,
+   "ok": true,
+   "pages": 92,
+   "src_dps": "Dividend per Share (LKR)  0.35  0.35",
+   "src_eps": "Earnings per Share (LKR)  Mr. J.D.N. Kekulawala  1.09  0.64",
+   "src_navps": "Net assets per share (LKR)  8.70  7.53  6.87  5.97  4.91  4.48  4.29  21.59  17.84  14.71",
+   "title": "Annual Report 2020/21",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1707_1630490068673.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.35,
+    0.35
+   ],
+   "vals_eps": [
+    1.09,
+    0.64
+   ],
+   "vals_navps": [
+    8.7,
+    7.53,
+    6.87,
+    5.97,
+    4.91,
+    4.48,
+    4.29,
+    21.59,
+    17.84,
+    14.71
+   ],
+   "year_only": false
+  },
   "41548": {
    "dps": 0.35,
    "dps_prior": 0.35,
@@ -255,7 +398,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -302,6 +445,42 @@
     "uploaded": 1661942064106,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/1707_1661942064106.pdf",
     "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38995",
+    "title": "Annual Report 2020/21",
+    "uploaded": 1630490068673,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1707_1630490068673.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36460",
+    "title": "Annual Report 2019/20",
+    "uploaded": 1603702801107,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1707_1603702801107.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "34010",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1566988390303,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1707_1566988390303.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "24364",
+    "title": "Annual Report 2017/2018",
+    "uploaded": 1534703400000,
+    "url": "https://cdn.cse.lk/upload_report_file/1707_1534763440984.pdf",
+    "year_only": false
    }
   ],
   "quarterly": [

@@ -1,5 +1,106 @@
 {
  "annual": {
+  "35145": {
+   "dps": 5.0,
+   "dps_prior": 6.5,
+   "end": "2019-12-31",
+   "eps": 17.0,
+   "eps_prior": 17.0,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 129.6,
+   "navps_prior": 117.15,
+   "ok": true,
+   "pages": 388,
+   "src_dps": "Dividend per share (DPS) (Rs.)  Over Rs. 5.00  6.50  6.50  6.50  6.50  6.50",
+   "src_eps": "Earnings per share (Rs.)  17  17",
+   "src_navps": "Net assets value per share (Rs.)  129.60  117.15",
+   "title": "Annual Report- 2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/369_1583404269645.pdf",
+   "v": 6,
+   "vals_dps": [
+    5.0,
+    6.5,
+    6.5,
+    6.5,
+    6.5,
+    6.5
+   ],
+   "vals_eps": [
+    17.0,
+    17.0
+   ],
+   "vals_navps": [
+    129.6,
+    117.15
+   ],
+   "year_only": true
+  },
+  "37514": {
+   "dps": 5.0,
+   "dps_prior": 6.5,
+   "end": "2020-12-31",
+   "eps": 15.0,
+   "eps_prior": 17.0,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 131.75,
+   "navps_prior": 117.04,
+   "ok": true,
+   "pages": 388,
+   "src_dps": "Dividend per share (DPS) (Rs.)  Over Rs.5.00  6.50  6.50  6.50  6.50  6.50",
+   "src_eps": "Earnings per share (Rs.)  15  17  17",
+   "src_navps": "Net assets value per ordinary share (Rs.)  131.75  117.04  135.83  121.82",
+   "title": "Commercial Bank of Ceylon PLC - Annual Report 2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/369_1614941592096.pdf",
+   "v": 6,
+   "vals_dps": [
+    5.0,
+    6.5,
+    6.5,
+    6.5,
+    6.5,
+    6.5
+   ],
+   "vals_eps": [
+    15.0,
+    17.0,
+    17.0
+   ],
+   "vals_navps": [
+    131.75,
+    117.04,
+    135.83,
+    121.82
+   ],
+   "year_only": false
+  },
   "40218": {
    "dps": 5.0,
    "dps_prior": 7.5,
@@ -190,7 +291,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -236,6 +337,51 @@
     "title": "Amended Commercial Bank of Ceylon PLC - Annual Report 2021",
     "uploaded": 1648812033946,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/369_1648812033946.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-12-31",
+    "id": "37514",
+    "title": "Commercial Bank of Ceylon PLC - Annual Report 2020",
+    "uploaded": 1614941592096,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/369_1614941592096.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-12-31",
+    "id": "35145",
+    "title": "Annual Report- 2019",
+    "uploaded": 1583404269645,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/369_1583404269645.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2018-12-31",
+    "id": "32532",
+    "title": "Annual Report 2018",
+    "uploaded": 1551724200000,
+    "url": "https://cdn.cse.lk/upload_report_file/369_1551785067190.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-12-31",
+    "id": "22984",
+    "title": "Annual Report 2017",
+    "uploaded": 1520274600000,
+    "url": "https://cdn.cse.lk/upload_report_file/369_1520335626246.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2016-12-31",
+    "id": "30193",
+    "title": "Annual Report 2016",
+    "uploaded": 1488911400000,
+    "url": "https://cdn.cse.lk/upload_report_file/369_1488973763.pdf",
     "year_only": false
    }
   ],

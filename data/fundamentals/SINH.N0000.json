@@ -1,5 +1,130 @@
 {
  "annual": {
+  "34020": {
+   "end": "2019-03-31",
+   "eps": -0.03,
+   "eps_prior": -0.12,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 6.44,
+   "navps_prior": 1.74,
+   "ok": true,
+   "pages": 114,
+   "src_eps": "Basic Earnings/(Loss) Per Share  (9)  (0.03)  (0.12)",
+   "src_navps": "Net Asset Per Share (Rs.)  6.44  1.74  1.31  1.22  1.07  1.11",
+   "title": "Annual Report 2018/2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1444_1567046873398.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.03,
+    -0.12
+   ],
+   "vals_navps": [
+    6.44,
+    1.74,
+    1.31,
+    1.22,
+    1.07,
+    1.11
+   ],
+   "year_only": false
+  },
+  "36241": {
+   "end": "2020-03-31",
+   "eps": -3.02,
+   "eps_prior": -0.23,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 6.44,
+   "navps_prior": 1.74,
+   "ok": true,
+   "pages": 119,
+   "src_eps": "Earnings per Share(Rs.)  (3.02)  (0.23)  (0.25)  (0.20)  (0.12)  (0.03)  (0.01)",
+   "src_navps": "Net Asset Per Share (Rs.)  6.44  1.74  1.31  1.22  1.07  1.19  1.17",
+   "title": "Annual Report for the year ended 31 March 2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1444_1599102013546.pdf",
+   "v": 6,
+   "vals_eps": [
+    -3.02,
+    -0.23,
+    -0.25,
+    -0.2,
+    -0.12,
+    -0.03,
+    -0.01
+   ],
+   "vals_navps": [
+    6.44,
+    1.74,
+    1.31,
+    1.22,
+    1.07,
+    1.19,
+    1.17
+   ],
+   "year_only": false
+  },
+  "38302": {
+   "end": "2021-03-31",
+   "eps": -3.02,
+   "eps_prior": -0.23,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 6.44,
+   "navps_prior": 1.74,
+   "ok": true,
+   "pages": 114,
+   "src_eps": "Earnings Per Share(Rs.)  (3.02)  (0.23)  (0.25)  (0.20)  (0.12)  (0.03)  (0.01)  0.01",
+   "src_navps": "Net Asset Per Share (Rs.)  6.44  1.74  1.31  1.22  1.07  1.19  1.10  1.10",
+   "title": "Annual Report for the year ended 31 March 2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1444_1624617249085.pdf",
+   "v": 6,
+   "vals_eps": [
+    -3.02,
+    -0.23,
+    -0.25,
+    -0.2,
+    -0.12,
+    -0.03,
+    -0.01,
+    0.01
+   ],
+   "vals_navps": [
+    6.44,
+    1.74,
+    1.31,
+    1.22,
+    1.07,
+    1.19,
+    1.1,
+    1.1
+   ],
+   "year_only": false
+  },
   "40996": {
    "end": "2022-03-31",
    "ok": true,
@@ -108,7 +233,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -154,6 +279,51 @@
     "title": "Annual Report 2021/22",
     "uploaded": 1657164148268,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/1444_1657164148268.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38302",
+    "title": "Annual Report for the year ended 31 March 2021",
+    "uploaded": 1624617249085,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1444_1624617249085.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36241",
+    "title": "Annual Report for the year ended 31 March 2020",
+    "uploaded": 1599102013546,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1444_1599102013546.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "34020",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1567046873398,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1444_1567046873398.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "24522",
+    "title": "Annual Report for 2017/2018",
+    "uploaded": 1537381800000,
+    "url": "https://cdn.cse.lk/upload_report_file/1444_1537435601025.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "30723",
+    "title": "Annual Report 2016/2017",
+    "uploaded": 1502994600000,
+    "url": "https://cdn.cse.lk/upload_report_file/1444_1503055931.pdf",
     "year_only": false
    }
   ],

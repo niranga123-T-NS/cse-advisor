@@ -1,5 +1,123 @@
 {
  "annual": {
+  "36274": {
+   "dps": 1.0,
+   "dps_prior": 2.0,
+   "end": "2020-03-31",
+   "eps": 19.31,
+   "eps_prior": 9.05,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 106.52,
+   "navps_prior": 113.32,
+   "ok": true,
+   "pages": 108,
+   "src_dps": "Dividend per share (Rs.)  1.00  2.00  2.00  3.00  2.00  1.00  1.00  1.00  1.50  2.00",
+   "src_eps": "Earnings per share  Rs.  19.31  9.05  113.37  14.58  7.58  92.22",
+   "src_navps": "Net assets per share  Rs.  106.52  113.32  (6.00)  112.68  124.31  (9.35)",
+   "title": "Annual Report 2019/20",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/492_1599210682703.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.0,
+    2.0,
+    2.0,
+    3.0,
+    2.0,
+    1.0,
+    1.0,
+    1.0,
+    1.5,
+    2.0
+   ],
+   "vals_eps": [
+    19.31,
+    9.05,
+    113.37,
+    14.58,
+    7.58,
+    92.22
+   ],
+   "vals_navps": [
+    106.52,
+    113.32,
+    -6.0,
+    112.68,
+    124.31,
+    -9.35
+   ],
+   "year_only": false
+  },
+  "38130": {
+   "dps": 2.0,
+   "dps_prior": 1.0,
+   "end": "2021-03-31",
+   "eps": 2.87,
+   "eps_prior": 19.31,
+   "layout_dps": [
+    0,
+    1,
+    true
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 151.57,
+   "navps_prior": 106.52,
+   "ok": true,
+   "pages": 100,
+   "src_dps": "Dividend per Share  Rs.  2.00  1.00  100.00  2.00  1.00  100.00",
+   "src_eps": "Earnings per Share  Rs.  2.87  19.31  (85.14)  1.50  14.58  (89.71)",
+   "src_navps": "Net Assets per Share  Rs.  151.57  106.52  42.30  156.40  112.68  38.80",
+   "title": "Annual Report 2020/2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/492_1622692330885.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.0,
+    1.0,
+    100.0,
+    2.0,
+    1.0,
+    100.0
+   ],
+   "vals_eps": [
+    2.87,
+    19.31,
+    -85.14,
+    1.5,
+    14.58,
+    -89.71
+   ],
+   "vals_navps": [
+    151.57,
+    106.52,
+    42.3,
+    156.4,
+    112.68,
+    38.8
+   ],
+   "year_only": false
+  },
   "40782": {
    "dps": 1.0,
    "dps_prior": 2.0,
@@ -222,7 +340,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -268,6 +386,51 @@
     "title": "Annual Report of Chemanex PLC - 2021/22",
     "uploaded": 1654256006915,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/492_1654256006915.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38130",
+    "title": "Annual Report 2020/2021",
+    "uploaded": 1622692330885,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/492_1622692330885.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36274",
+    "title": "Annual Report 2019/20",
+    "uploaded": 1599210682703,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/492_1599210682703.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "33250",
+    "title": "Annual Report 2018/19",
+    "uploaded": 1559500200000,
+    "url": "https://cdn.cse.lk/upload_report_file/492_1559561659092.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "23613",
+    "title": "Annual Report 2017/18",
+    "uploaded": 1527791400000,
+    "url": "https://cdn.cse.lk/upload_report_file/492_1527852704846.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "30542",
+    "title": "Annual Report 2016/2017",
+    "uploaded": 1499106600000,
+    "url": "https://cdn.cse.lk/upload_report_file/492_1499168223.pdf",
     "year_only": false
    }
   ],

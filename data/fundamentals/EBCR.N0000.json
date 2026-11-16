@@ -1,5 +1,144 @@
 {
  "annual": {
+  "34085": {
+   "dps": 14.2,
+   "dps_prior": 36.0,
+   "end": "2019-03-31",
+   "eps": -284.87,
+   "eps_prior": -152.37,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 1549.33,
+   "navps_prior": 931.46,
+   "ok": true,
+   "pages": 116,
+   "src_dps": "Dividend Per Share (Rs.)  14.2  36.00  -  36.00  -",
+   "src_eps": "Earnings/(Loss) per Share (Rs.)  (284.87)  (152.37)",
+   "src_navps": "Net Assets per Share (Rs.)  1,549.33  931.46",
+   "title": "Annual Report 2018/2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1567166467838.pdf",
+   "v": 6,
+   "vals_dps": [
+    14.2,
+    36.0,
+    36.0
+   ],
+   "vals_eps": [
+    -284.87,
+    -152.37
+   ],
+   "vals_navps": [
+    1549.33,
+    931.46
+   ],
+   "year_only": false
+  },
+  "36959": {
+   "dps": 12.0,
+   "dps_prior": 36.0,
+   "end": "2020-03-31",
+   "eps": -155.35,
+   "eps_prior": -282.17,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 1377.0,
+   "navps_prior": 1563.71,
+   "ok": true,
+   "pages": 120,
+   "src_dps": "Dividend per Share (Rs.)  12.00  36.00",
+   "src_eps": "Earnings/(Loss) per Share (Rs.)  (155.35)  (282.17)",
+   "src_navps": "Net Assets per Share (Rs.)  1,377.00  1,563.71",
+   "title": "Annual Report 2019/2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1607334269292. B. Creasy & Company PLC AR 2019-20.pdf",
+   "v": 6,
+   "vals_dps": [
+    12.0,
+    36.0
+   ],
+   "vals_eps": [
+    -155.35,
+    -282.17
+   ],
+   "vals_navps": [
+    1377.0,
+    1563.71
+   ],
+   "year_only": false
+  },
+  "39101": {
+   "dps": 0.18,
+   "dps_prior": 0.12,
+   "end": "2021-03-31",
+   "eps": 2.01,
+   "eps_prior": -1.55,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 16.39,
+   "navps_prior": 13.77,
+   "ok": true,
+   "pages": 136,
+   "src_dps": "Dividend per Share*  Rs  0.18  0.12  0.36",
+   "src_eps": "Basic Earnings/(Loss) per Share*  Rs  2.01  (1.55)  (2.82)",
+   "src_navps": "Net Assets per Share*  Rs  16.39  13.77  15.64",
+   "title": "Annual Report 2020/2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1633492799603.B.Creasy Annual Report 2021.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.18,
+    0.12,
+    0.36
+   ],
+   "vals_eps": [
+    2.01,
+    -1.55,
+    -2.82
+   ],
+   "vals_navps": [
+    16.39,
+    13.77,
+    15.64
+   ],
+   "year_only": false
+  },
   "41522": {
    "dps": 1.5,
    "dps_prior": 0.18,
@@ -241,7 +380,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -287,6 +426,51 @@
     "title": "Annual Report 2021/2022",
     "uploaded": 1661917657938,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1661917657938.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "39101",
+    "title": "Annual Report 2020/2021",
+    "uploaded": 1633492799603,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1633492799603.B.Creasy Annual Report 2021.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36959",
+    "title": "Annual Report 2019/2020",
+    "uploaded": 1607334269292,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1607334269292. B. Creasy & Company PLC AR 2019-20.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "34085",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1567166467838,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1567166467838.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "23840",
+    "title": "Annual Report 2017/2018",
+    "uploaded": 1531420200000,
+    "url": "https://cdn.cse.lk/upload_report_file/745_1531480323307.B._Creasy_&_Company_PLC_2017-18.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "21847",
+    "title": "Annual Report 2016/2017",
+    "uploaded": 1502130600000,
+    "url": "https://cdn.cse.lk/upload_report_file/745_1502183260558.pdf",
     "year_only": false
    }
   ],

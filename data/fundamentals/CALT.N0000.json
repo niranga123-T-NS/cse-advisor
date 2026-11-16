@@ -1,5 +1,38 @@
 {
  "annual": {
+  "40989": {
+   "end": "2022-03-31",
+   "eps": -0.57,
+   "eps_prior": 3.35,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 8.1,
+   "navps_prior": 9.45,
+   "ok": true,
+   "pages": 144,
+   "src_eps": "Basic Earnings/(Loss) per share (Rs.)  (0.57)  3.35",
+   "src_navps": "Net Asset Value Per Share (Rs.)  8.10  9.45",
+   "title": "Annual Report - 2021/2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2647_1656929207171.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.57,
+    3.35
+   ],
+   "vals_navps": [
+    8.1,
+    9.45
+   ],
+   "year_only": false
+  },
   "43672": {
    "end": "2023-12-31",
    "ok": true,
@@ -166,7 +199,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -212,6 +245,15 @@
     "title": "Annual Report 2022/2023",
     "uploaded": 1693216218370,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/2647_1693216218370.pdf.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2022-03-31",
+    "id": "40989",
+    "title": "Annual Report - 2021/2022",
+    "uploaded": 1656929207171,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2647_1656929207171.pdf",
     "year_only": false
    }
   ],

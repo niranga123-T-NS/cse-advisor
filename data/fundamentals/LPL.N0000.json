@@ -1,5 +1,65 @@
 {
  "annual": {
+  "36425": {
+   "end": "2020-03-31",
+   "eps": 0.33,
+   "eps_prior": 0.44,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 100,
+   "src_eps": "Basic/Diluted Earnings Per Share:  6  0.33  0.44  0.81  0.22",
+   "title": "Annual Report for the financial year ended 31st March 2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1930_1602132968758.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.33,
+    0.44,
+    0.81,
+    0.22
+   ],
+   "year_only": false
+  },
+  "38987": {
+   "end": "2021-03-31",
+   "eps": 0.61,
+   "eps_prior": 0.33,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 7.61,
+   "navps_prior": 7.0,
+   "ok": true,
+   "pages": 112,
+   "src_eps": "Earnings Per Share (EPS)  0.61  0.33  86%  0.08  0.81  -91%",
+   "src_navps": "Net Assets Value per Share (Rs.)  7.61  7.00  9%  8.20  7.84  5%",
+   "title": "Annual Report for the financial year ended 31st March 2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1930_1630466874504.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.61,
+    0.33,
+    0.08,
+    0.81
+   ],
+   "vals_navps": [
+    7.61,
+    7.0,
+    8.2,
+    7.84
+   ],
+   "year_only": false
+  },
   "41651": {
    "end": "2022-03-31",
    "eps": -2.33,
@@ -186,7 +246,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -232,6 +292,24 @@
     "title": "Annual Report 2021/22",
     "uploaded": 1662364350307,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/1930_1662364350307.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38987",
+    "title": "Annual Report for the financial year ended 31st March 2021",
+    "uploaded": 1630466874504,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1930_1630466874504.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36425",
+    "title": "Annual Report for the financial year ended 31st March 2020",
+    "uploaded": 1602132968758,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1930_1602132968758.pdf",
     "year_only": false
    }
   ],

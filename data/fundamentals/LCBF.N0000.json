@@ -1,5 +1,113 @@
 {
  "annual": {
+  "40954": {
+   "end": "2022-12-31",
+   "ok": true,
+   "pages": 74,
+   "title": "Audited financial Statements for the Year ended 31.03.2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2512_1656386939257.pdf",
+   "v": 6,
+   "year_only": false
+  },
+  "41009": {
+   "end": "2022-03-31",
+   "eps": 0.12,
+   "eps_prior": 0.04,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 3.39,
+   "navps_prior": 3.17,
+   "ok": true,
+   "pages": 164,
+   "src_eps": "Basic earnings per share (Rs.)  18  0.12  0.04",
+   "src_navps": "Net Asset Value per share  3.39  3.17  7%",
+   "title": "Annual Report 2021/22",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2512_1657513694226.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.12,
+    0.04
+   ],
+   "vals_navps": [
+    3.39,
+    3.17
+   ],
+   "year_only": false
+  },
+  "43557": {
+   "end": "2023-12-31",
+   "eps": 0.21,
+   "eps_prior": 0.12,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 3.54,
+   "navps_prior": 3.39,
+   "ok": true,
+   "pages": 78,
+   "src_eps": "Basic earnings per share (Rs.)  18  0.21  0.12",
+   "src_navps": "Net Asset Value per ordinary share  3.54  3.39",
+   "title": "Audited Financial Statements for the year ended 31.3.2023",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2512_1687862181703.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.21,
+    0.12
+   ],
+   "vals_navps": [
+    3.54,
+    3.39
+   ],
+   "year_only": false
+  },
+  "43698": {
+   "end": "2023-03-31",
+   "eps": 0.21,
+   "eps_prior": 0.12,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 3.54,
+   "navps_prior": 3.39,
+   "ok": true,
+   "pages": 196,
+   "src_eps": "Basic earnings per share (Rs.)  18  0.21  0.12",
+   "src_navps": "Net Asset Value per share  3.54  3.39  4%",
+   "title": "Annual Report 2022/2023",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2512_1691140876753.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.21,
+    0.12
+   ],
+   "vals_navps": [
+    3.54,
+    3.39
+   ],
+   "year_only": false
+  },
   "46043": {
    "end": "2024-12-31",
    "eps": 8.0,
@@ -145,7 +253,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -191,6 +299,42 @@
     "title": "Annual Report 2023/2024",
     "uploaded": 1724844716832,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/2512_1724844716832.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2023-12-31",
+    "id": "43557",
+    "title": "Audited Financial Statements for the year ended 31.3.2023",
+    "uploaded": 1687862181703,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2512_1687862181703.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2023-03-31",
+    "id": "43698",
+    "title": "Annual Report 2022/2023",
+    "uploaded": 1691140876753,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2512_1691140876753.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2022-12-31",
+    "id": "40954",
+    "title": "Audited financial Statements for the Year ended 31.03.2022",
+    "uploaded": 1656386939257,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2512_1656386939257.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2022-03-31",
+    "id": "41009",
+    "title": "Annual Report 2021/22",
+    "uploaded": 1657513694226,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2512_1657513694226.pdf",
     "year_only": false
    }
   ],

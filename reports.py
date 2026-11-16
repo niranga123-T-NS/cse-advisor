@@ -42,15 +42,20 @@ def list_reports(symbol: str) -> dict:
                 continue
             title = (it.get("fileText") or "").strip()
             end = period_end(title) or _ms_date(it.get("manualDate"))
-            items.append({"id": str(it.get("id")), "url": CDN + path.lstrip("/"), "title": title, "end": end,
+            path = path.lstrip("/")
+            if path.startswith("upload_report_file/"):          # older uploads are only served under cmt/
+                path = "cmt/" + path
+            items.append({"id": str(it.get("id")), "url": CDN + path, "title": title, "end": end,
                           "year_only": bool(end) and not re.search(r"[a-z]{3,9}\.?\s+\d|\d\s*[a-z]{3,9}|\d{4}\s*[/-]\s*\d{2}", title.lower()),
                           "amended": "amend" in title.lower(), "uploaded": it.get("uploadedDate") or 0})
-        # one report per period end; prefer amended / later upload
+        # one report per period end; for annual filings prefer the full annual report over a separate set of
+        # audited statements for the same year, then an amended or later upload
+        full = lambda x: kind == "annual" and "annual report" in x["title"].lower()
         best = {}
         for x in items:
             k = x["end"] or x["id"]
             cur = best.get(k)
-            if cur is None or (x["amended"], str(x["uploaded"])) > (cur["amended"], str(cur["uploaded"])):
+            if cur is None or (full(x), x["amended"], str(x["uploaded"])) > (full(cur), cur["amended"], str(cur["uploaded"])):
                 best[k] = x
         out[kind] = sorted(best.values(), key=lambda x: x["end"] or "", reverse=True)
     return out
@@ -66,6 +71,12 @@ def _ms_date(ms) -> str | None:
 def period_end(title: str) -> str | None:
     """'Quarter ended 30th September 2026' / 'six months ended June 30,2025' / 'Annual Report 2024/25' -> date."""
     t = title.lower().replace(",", " ")
+    m = re.search(r"\b(\d{1,2})[./-](\d{1,2})[./-](20\d\d|19\d\d)\b", t)      # 31.3.2023, 31/03/2023
+    if m and 1 <= int(m.group(2)) <= 12 and int(m.group(1)) >= 28:
+        return _date(int(m.group(3)), int(m.group(2)), int(m.group(1)))
+    m = re.search(r"\b(\d{1,2})[./-](\d{1,2})[./-](20\d\d|19\d\d)\b", t)      # 12/31/2021 (month first)
+    if m and 1 <= int(m.group(1)) <= 12 and int(m.group(2)) >= 28:
+        return _date(int(m.group(3)), int(m.group(1)), int(m.group(2)))
     m = re.search(r"(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]{3,9})\.?\s+(\d{4})", t)
     if m and m.group(2)[:3] in MONTHS:
         return _date(int(m.group(3)), MONTHS[m.group(2)[:3]], int(m.group(1)))
@@ -93,6 +104,7 @@ def _date(y, mo, d):
 # ------------------------------------------------------------------ PDF text
 
 def fetch_pdf(url: str) -> bytes | None:
+    url = url.replace("cdn.cse.lk/upload_report_file/", "cdn.cse.lk/cmt/upload_report_file/")
     try:
         r = requests.get(url, timeout=120, headers={"User-Agent": "Mozilla/5.0 (personal CSE research tool)"})
         r.raise_for_status()

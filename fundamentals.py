@@ -95,6 +95,9 @@ def collect(symbols: list[str], budget_min: float):
                 d["shares"], d["shares_other_class"] = share_counts(s)
             wanted = d["listing"].get(kind, [])[:n_keep]
             store = d.setdefault(kind, {})
+            for it in wanted:                       # keep stored figures in step with the listing (dates read better now)
+                if it["id"] in store:
+                    store[it["id"]].update(end=it["end"], title=it["title"], url=it["url"], year_only=it.get("year_only", False))
             todo = [it for it in wanted if store.get(it["id"], {}).get("v") != reports.PARSER_VERSION]
             for it in todo:
                 if out_of_time():

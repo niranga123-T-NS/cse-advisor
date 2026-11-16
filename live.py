@@ -18,6 +18,7 @@ Each 15-second tick
   3. publish to the `live` branch (one commit, replaced each tick, so the repository does not grow):
        t/HHMMSS.json   every 15 s : prices, alerts, sector moves, order-book totals   (small)
        m/HHMM.json     every minute: full rows + today's minute-by-minute prices
+       b/HHMM.json     every minute: each share's latest buy and sell orders (also books.json, for after the close)
      Each file has its own name because GitHub caches a file for 5 minutes; a new name is always fresh.
 
 Reliability (GitHub's scheduler can be hours late)
@@ -54,6 +55,14 @@ cse.MIN_INTERVAL_SEC = 0.5
 BIG_MIN = 2_000_000                        # LKR: smallest trade kept for the "big orders" list
 CROSS_MIN = 20_000_000                     # CSE's minimum value for a crossing (a block agreed between two parties)
 EPS = 1e-6
+
+
+def focus_list() -> set[str]:
+    """Shares whose order book is read every 30 seconds: one CSE symbol per line in focus.txt."""
+    f = ROOT / "focus.txt"
+    if not f.exists():
+        return set()
+    return {l.strip().upper() for l in f.read_text().splitlines() if l.strip() and not l.startswith("#")}
 
 
 def now() -> dt.datetime:
@@ -205,6 +214,9 @@ class Engine:
         self.hidden: list[dict] = []
         self.book: dict[str, dict] = {}
         self.polled: dict[str, float] = {}
+        self.depth: dict[str, dict] = {}           # latest full book per share: totals and every price level CSE shows
+        self.depth_hist = collections.defaultdict(list)   # symbol -> [[hh:mm:ss, shares to buy, shares to sell], ...] today
+        self.focus = focus_list()                  # shares whose book is read every 30 s (focus.txt)
         self.side_code = {"bid": 1, "ask": 2}      # CSE's buySell codes ...
         self.side_votes = [0, 0]                   # ... checked against the data: [books that agree, books that say the opposite]
         self.refill: dict[tuple, dict] = {}        # (symbol, side) -> the best price being watched for refilling
@@ -528,22 +540,31 @@ class Engine:
                            f"{q:,} shares traded {k} times in the last hour")
 
     # -- orders waiting in the book
-    def order_books(self, ts: float, rows: dict, deadline: float, most: int = 6):
-        """Refresh a few order books each tick, least recently checked first: shares that just alerted, today's
-        most traded, and the usual most traded.  CSE gives one share per request, so this is a rotation."""
-        recent = [a["s"] for a in reversed(self.alerts[-30:]) if a["s"]]
-        active = sorted((x for x in rows if rows[x].get("to")), key=lambda x: -rows[x]["to"])[:30]
-        top = sorted(self.ref, key=lambda x: -self.ref[x]["tov20"])[:12]
-        want = list(dict.fromkeys(recent[:10] + active + top))
-        want.sort(key=lambda x: self.polled.get(x, 0.0))
+    def order_books(self, ts: float, rows: dict, deadline: float, most: int = 10):
+        """Refresh order books each tick, most overdue first. CSE gives one share per request, so this is a rotation:
+        focus.txt shares and shares that just alerted every 30 s, the 40 most traded today every 2 min, every other
+        share that traded today every 5 min, and the rest of the market every 15 min."""
+        recent = {a["s"] for a in self.alerts[-30:] if a["s"]}
+        active = {x for x in sorted((x for x in rows if rows[x].get("to")), key=lambda x: -rows[x]["to"])[:40]}
+        def every(x):
+            return 30 if x in self.focus or x in recent else 120 if x in active else 300 if x in rows else 900
+        cand = set(self.ref) | set(rows) | set(self.focus) | recent
+        late = sorted(((self.polled.get(x, 0.0) + every(x) - ts, x) for x in cand), key=lambda z: z[0])
         t = self._clock(ts)
-        for k, s in enumerate(want[:most]):
-            if k and time.time() > deadline:
+        for k, (over, s) in enumerate(late[:most]):
+            if over > 0 or (k and time.time() > deadline):
                 break
             self.polled[s] = ts
             ob = cse.order_book(s)
             if ob:
                 self._book(ts, t, s, ob, rows.get(s) or {})
+
+    def books_view(self) -> dict:
+        """Every share's latest buy and sell orders, for the share page."""
+        out = {}
+        for s, d in self.depth.items():
+            out[s] = {**d, "h": self.depth_hist[s][-90:]}
+        return out
 
     def _book(self, ts: float, t: str, s: str, ob: dict, r: dict):
         f = self.ref.get(s) or {}
@@ -592,6 +613,15 @@ class Engine:
             if lv and lv[0] * lv[1] >= max(10_000_000, 0.2 * tov):
                 self._rest(ts, t, s, side, lv[1], lv[0], "best", lv[2])
         self.book[s] = cur
+        lv = ob.get("levels") or []
+        buy = sorted(([x["p"], x["q"], x["n"]] for x in lv if x["side"] == c["bid"]), key=lambda z: -z[0])
+        sell = sorted(([x["p"], x["q"], x["n"]] for x in lv if x["side"] == c["ask"]), key=lambda z: z[0])
+        if buy and sell and buy[0][0] > sell[0][0] + EPS:     # crossed: sides not trustworthy in this reading
+            buy = sell = []
+        self.depth[s] = {"t": t, "b": round(ob["bids"]), "a": round(ob["asks"]), "buy": buy[:10], "sell": sell[:10]}
+        hist = self.depth_hist[s]
+        if not hist or hist[-1][1:] != [round(ob["bids"]), round(ob["asks"])]:
+            hist.append([t, round(ob["bids"]), round(ob["asks"])])
         self.ob[s] = [ob["bids"], ob["asks"], cur["bid"][0] if cur["bid"] else None, t,
                       cur["ask"][0] if cur["ask"] else None]
         self.ob_log.append([len(self.ticks) - 1, s, ob["bids"], ob["asks"], cur["bid"], cur["ask"]])
@@ -624,6 +654,7 @@ class Engine:
     def state(self) -> dict:
         return {"date": self.day, "alerts": self.alerts, "seen": self.seen, "opened": sorted(self.opened), "rebased": sorted(self.rebased),
                 "big": self.big, "rest": self.rest, "hidden": self.hidden, "flow": self.flow, "dirn": self.dirn,
+                "depth": self.depth, "depth_hist": {k: v[-90:] for k, v in self.depth_hist.items()},
                 "lv": None if self.lv is None else {s: [[px, q, n] for px, (q, n) in lv.items()] for s, lv in self.lv.items()}}
 
     def restore(self, st: dict):
@@ -634,6 +665,9 @@ class Engine:
         self.rebased = set(st.get("rebased", []))
         self.big, self.rest, self.hidden = st.get("big", []), st.get("rest", []), st.get("hidden", [])
         self.flow, self.dirn = st.get("flow", {}), st.get("dirn", {})
+        self.depth = st.get("depth", {})
+        for k, v in (st.get("depth_hist") or {}).items():
+            self.depth_hist[k] = v
         if st.get("lv") is not None:
             self.lv = {s: {px: [q, n] for px, q, n in lv} for s, lv in st["lv"].items()}
         print(f"Resumed {len(self.alerts)} alerts and {len(self.big)} large trades from earlier today")
@@ -742,6 +776,7 @@ def main(test: bool = False):
     eng.restore(state)
     recent_ticks: dict[str, str] = {}
     recent_mins: dict[str, str] = {}
+    recent_books: dict[str, str] = {}
     base_files: dict[str, str] = {}
     fails, tick_no, traded_today, status = 0, 0, False, ""
     max_ticks = int(os.environ.get("LIVE_TEST_TICKS", "8")) if test else 10 ** 9
@@ -806,6 +841,11 @@ def main(test: bool = False):
                 live = {"updated": stamp, "date": day, "market": status, "rows": full}
                 intraday = {"date": day, "t": times, "p": series}
                 orders = {"date": day, "updated": stamp, **eng.orders_view(60)}
+                books = json.dumps({"date": day, "updated": stamp, "focus": sorted(eng.focus), "s": eng.books_view()},
+                                   separators=(",", ":"))
+                recent_books[t.strftime("%H%M")] = books
+                for k in sorted(recent_books)[:-6]:
+                    del recent_books[k]
                 recent_mins[t.strftime("%H%M")] = json.dumps({**live, "intraday": intraday, "orders": orders}, separators=(",", ":"))
                 for k in sorted(recent_mins)[:-6]:
                     del recent_mins[k]
@@ -813,12 +853,14 @@ def main(test: bool = False):
                               "intraday.json": json.dumps(intraday, separators=(",", ":")),
                               "state.json": json.dumps(eng.state(), separators=(",", ":")),
                               "alerts.json": json.dumps({"date": day, "alerts": eng.alerts}, separators=(",", ":")),
-                              "orders.json": json.dumps(orders, separators=(",", ":"))}
+                              "orders.json": json.dumps(orders, separators=(",", ":")),
+                              "books.json": books}
             # when pushes keep failing, fall back to once a minute
             if fails < 3 or on_minute:
                 files = dict(base_files)
                 files.update({f"t/{k}.json": v for k, v in recent_ticks.items()})
                 files.update({f"m/{k}.json": v for k, v in recent_mins.items()})
+                files.update({f"b/{k}.json": v for k, v in recent_books.items()})
                 ok = publish_to(files, branch, f"live {stamp[11:]}")
                 fails = 0 if ok else fails + 1
                 if on_minute or not ok or test:

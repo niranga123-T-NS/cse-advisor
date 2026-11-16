@@ -262,3 +262,12 @@ On phones and upright tablets one thing is shown at a time: the list shows chang
 | `analysis.py` | Indicators, scoring, backtest |
 | `app.py`, `templates/` | Optional local dashboard |
 | `probe.py` | Shows raw CSE API responses for debugging |
+
+### Buyers and sellers (order book)
+
+Each share page has a **Buyers and sellers** card (chip "Orders"): the total shares waiting to buy and to sell, each
+price level CSE shows with its shares and number of orders, the gap between the best buy and sell prices, and how
+the two totals moved through the day. The live job reads the books in rotation: shares in `focus.txt` and shares that
+just alerted every 30 s, the 40 most traded every 2 min, other traded shares every 5 min, the rest every 15 min.
+Published as `b/HHMM.json` each minute and `books.json` (kept after the close) on the `live` branch.
+CSE shows totals and usually only the best few price levels; orders can be cancelled at any time.

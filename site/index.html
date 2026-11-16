@@ -124,6 +124,12 @@
   .bnote { padding:8px 0 0; font-size:12.5px; color:var(--ink-3); border-top:1px solid var(--line-soft); }
   .fbar { display:flex; height:8px; border-radius:4px; overflow:hidden; background:var(--surface-3); margin:5px 0 8px; } .fbar i { display:block; height:100%; }
   #flowbox .bo { padding:6px 0; }
+  table.depth { width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums; font-size:13px; }
+  table.depth th { font-weight:500; color:var(--muted, #888); font-size:11px; padding:2px 4px; }
+  table.depth td { padding:3px 4px; border-top:1px solid var(--line-soft); position:relative; }
+  table.depth td.num, table.depth th.num { text-align:right; }
+  .dbar { height:3px; border-radius:2px; margin-top:2px; margin-left:auto; } .dbar.b { background:var(--emerald); } .dbar.s { background:var(--ruby); margin-left:0; margin-right:auto; }
+  .dspark { width:100%; height:60px; display:block; background:var(--surface-2, transparent); border-radius:6px; }
 
   /* ---------- Shares ---------- */
   .listbar { position:sticky; top:0; z-index:5; background:var(--ground); padding:10px 14px 8px; border-bottom:1px solid var(--line-soft); }
@@ -323,7 +329,7 @@ async function pollTick() {
     s.live = { p: r[0], c: r[1], v: r[2] }; } });
   tick = t;
   showLiveStatus(); render(); renderAlerts(); renderBig(); renderHome();
-  if (current) { updateLiveDetail(current); if (!minute || Date.now() - minute._at > 55000) pollMinute(); }
+  if (current) { updateLiveDetail(current); if (!minute || Date.now() - minute._at > 55000) pollMinute(); pollBooks(); }
 }
 async function pollMinute() {
   if (!RAW) return;
@@ -444,6 +450,55 @@ function flowHtml(sym) {
   if (rest.length) h += `<div class="small" style="margin-top:6px">Large orders seen waiting</div>` + rest.map(e => bigRow(e, 'rest', false)).join('');
   if (!fl && !hid.length && !big.length && !rest.length) h += `<span class="small">No large trades, large waiting orders or hidden-order signs in this share.</span>`;
   return h;
+}
+// ---------- buyers and sellers: the orders waiting in one share (live engine, b/HHMM.json and books.json) ----------
+let books = null;
+async function pollBooks(force) {
+  if (!RAW) return;
+  if (books && !force && Date.now() - books._at < 55000) return;
+  let b = null;
+  if (marketWindow()) {
+    const now = colomboNow();
+    for (const back of [1, 2, 3]) { const d = new Date(now.getTime() - back * 60000); b = await getJSON(`b/${two(d.getHours())}${two(d.getMinutes())}.json`); if (b) break; }
+  }
+  if (!b) b = await getJSON('books.json');
+  if (b) { b._at = Date.now(); books = b; }
+  const el = document.getElementById('sec-book'); if (el && current) el.outerHTML = bookCard(current);
+}
+function bookCard(sym) {
+  const today = ymd(colomboNow()), x = books && books.s && books.s[sym];
+  const head = '<div class="card wide" id="sec-book"><h3>Buyers and sellers';
+  const foot = `<p class="small" style="margin:10px 0 0">From CSE's order book: the total shares waiting on each side and the price levels CSE shows (usually the best few). Orders can be changed or cancelled at any time, and CSE does not say who placed them. During the session each share is read every 2 to 15 minutes, busiest first${books && books.focus && books.focus.includes(sym) ? '; this one every 30 seconds' : ''}.</p></div>`;
+  if (!x) return `${head}</h3><p class="mute">${!RAW ? 'Live data is not available here.' : books ? (books.date === today ? 'Not read yet today. It will appear within a few minutes during the session.' : `No orders read for this share on ${dmy(books.date)}.`) : marketWindow() ? 'Loading…' : 'Shown during market hours, and at the close after the session.'}</p>${foot}`;
+  const live = books.date === today && marketWindow();
+  const when = live ? `waiting at ${esc(x.t)}` : `at ${esc(x.t)} on ${dmy(books.date)}`;
+  const tot = (x.b + x.a) || 1, bb = x.buy[0], ba = x.sell[0];
+  const ref = (bb && ba) ? (bb[0] + ba[0]) / 2 : bb ? bb[0] : ba ? ba[0] : null;
+  const val = q => ref ? ` <span class="mute">≈ ${lkr(q * ref)}</span>` : '';
+  const ratio = x.b && x.a ? (x.b >= x.a ? `${(x.b / x.a).toFixed(1)}× as many shares waiting to buy as to sell` : `${(x.a / x.b).toFixed(1)}× as many shares waiting to sell as to buy`) : x.b ? 'Only buyers waiting' : x.a ? 'Only sellers waiting' : 'No orders waiting';
+  let h = `${head} <span class="mute">${when}</span></h3>
+    <div class="small"><span class="up">To buy: ${shr(x.b)} shares</span>${val(x.b)} · <span class="down">To sell: ${shr(x.a)} shares</span>${val(x.a)}</div>
+    <div class="fbar"><i style="width:${(x.b / tot * 100).toFixed(1)}%;background:var(--emerald)"></i><i style="width:${(x.a / tot * 100).toFixed(1)}%;background:var(--ruby)"></i></div>
+    <p style="margin:0 0 8px"><b>${ratio}</b></p>`;
+  const n = Math.max(x.buy.length, x.sell.length);
+  if (n) {
+    const mx = Math.max(...x.buy.map(r => r[1]), ...x.sell.map(r => r[1]), 1);
+    const cell = (r, side) => r ? `<td class="num">${r[2] || ''}</td><td class="num">${shr(r[1])}<div class="dbar ${side}" style="width:${(r[1] / mx * 100).toFixed(0)}%"></div></td><td class="num ${side === 'b' ? 'up' : 'down'}"><b>${r[0].toFixed(2)}</b></td>` : '<td></td><td></td><td></td>';
+    h += `<table class="depth"><thead><tr><th class="num">Orders</th><th class="num">Shares</th><th class="num up">Buy at</th><th class="num down">Sell at</th><th class="num">Shares</th><th class="num">Orders</th></tr></thead><tbody>` +
+      Array.from({ length: n }, (_, i) => { const b = x.buy[i], a = x.sell[i];
+        return `<tr>${cell(b, 'b')}${a ? `<td class="num down"><b>${a[0].toFixed(2)}</b></td><td class="num">${shr(a[1])}<div class="dbar s" style="width:${(a[1] / mx * 100).toFixed(0)}%"></div></td><td class="num">${a[2] || ''}</td>` : '<td></td><td></td><td></td>'}</tr>`; }).join('') + '</tbody></table>';
+  } else h += '<p class="small">CSE showed no price levels in this reading, only the totals.</p>';
+  if (bb && ba) { const gap = ba[0] - bb[0]; h += `<p class="small" style="margin:6px 0 0">Gap between the best buy and sell prices: ${gap.toFixed(2)} (${(gap / ref * 100).toFixed(2)}% of the price)${gap / ref > 0.01 ? '. A wide gap makes buying and quickly selling again costly.' : '.'}</p>`; }
+  const hs = x.h || [];
+  if (hs.length >= 2) {
+    const W = 300, H = 60, mxv = Math.max(...hs.map(r => Math.max(r[1], r[2])), 1);
+    const sec = t => { const [a, b, c] = t.split(':').map(Number); return a * 3600 + b * 60 + (c || 0); };
+    const t0 = sec(hs[0][0]), t1 = Math.max(sec(hs[hs.length - 1][0]), t0 + 1);
+    const line = k => hs.map(r => `${((sec(r[0]) - t0) / (t1 - t0) * W).toFixed(1)},${(H - r[k] / mxv * (H - 4) - 2).toFixed(1)}`).join(' ');
+    h += `<div class="small" style="margin-top:10px">Shares waiting today, ${esc(hs[0][0].slice(0, 5))} to ${esc(hs[hs.length - 1][0].slice(0, 5))}: <span class="up">to buy</span>, <span class="down">to sell</span></div>
+      <svg viewBox="0 0 ${W} ${H}" class="dspark" preserveAspectRatio="none" role="img" aria-label="Shares waiting to buy and to sell through the day"><polyline points="${line(1)}" fill="none" stroke="var(--emerald)" stroke-width="2" vector-effect="non-scaling-stroke"/><polyline points="${line(2)}" fill="none" stroke="var(--ruby)" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>`;
+  }
+  return h + foot;
 }
 function pressureCard(d, sym) {
   const p = d.pressure, v = acc && acc.pressure && acc.pressure.horizons && acc.pressure.horizons['20'];
@@ -973,13 +1028,14 @@ async function show(sym) {
       ${a.rating && a.rating.rated ? fact(a.score, 'rating score of 99') : a.rating ? '' : fact(a.score, 'score')}
     </div>
     ${(d.splits || []).map(x => `<div class="splitnote">Share ${x.factor >= 1 ? 'split' : 'consolidation'} on ${dmy(x.date)}: earlier prices are divided by ${x.factor}, so the chart and signals are on today's share basis (ratio from: ${esc(x.basis)}).</div>`).join('')}
-    <div class="chips secnav">${[['sec-chart', 'Chart'], ['sec-trends', 'Trends'], ['sec-why', 'Rating'], ['sec-plan', 'Plan'], ['sec-peers', 'Peers'], ['sec-history', '10 years'], ['sec-pressure', 'Pressure'], ['sec-fund', 'Fundamentals'], ['sec-more', 'Levels']]
+    <div class="chips secnav">${[['sec-chart', 'Chart'], ['sec-trends', 'Trends'], ['sec-why', 'Rating'], ['sec-book', 'Orders'], ['sec-plan', 'Plan'], ['sec-peers', 'Peers'], ['sec-history', '10 years'], ['sec-pressure', 'Pressure'], ['sec-fund', 'Fundamentals'], ['sec-more', 'Levels']]
       .map(([id, label]) => `<button class="chip" data-to="${id}">${label}</button>`).join('')}</div>
     <div id="intraday" style="display:none"></div>
     <div id="sec-chart" style="scroll-margin-top:60px"><div id="chart"></div><div id="rsi"></div><div id="macd"></div></div>
     <div class="cards">
       <div class="card wide" id="sec-trends"><h3>Trends</h3><p class="mute">Loading…</p></div>
       ${ratingCard(a)}
+      ${bookCard(sym)}
       ${planCard(a)}
       ${styleCard(a)}
       ${peersCard(d, sym)}
@@ -1032,6 +1088,7 @@ async function show(sym) {
   window.__adv = a; plan();
   loadView(sym); loadLong(sym);
   if (tick) { updateLiveDetail(sym); pollMinute(); }
+  if (books) { const el = document.getElementById('sec-book'); if (el) el.outerHTML = bookCard(sym); } pollBooks();
 }
 
 async function load() {

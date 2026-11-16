@@ -1,0 +1,2 @@
+# Shares whose buy and sell orders are read every 30 seconds during the session (one CSE symbol per line).
+# Every other share is read every 2-15 minutes, busiest first.

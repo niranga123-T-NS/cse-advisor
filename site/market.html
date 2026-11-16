@@ -19,7 +19,10 @@
 <style>
   .points { margin:12px 0 0; padding-left:20px; max-width:86ch; } .points li { margin-bottom:8px; }
   tr.hi td { background:var(--sapphire-soft); }
-  #chart { height:340px; margin:10px 0 0; }
+  #chart { height:340px; margin:10px 0 0; } .rc { height:220px; }
+  .cleg { display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:6px; font-size:13px; } .cleg span { display:inline-flex; align-items:center; gap:6px; }
+  .cleg i { display:inline-block; width:12px; height:3px; border-radius:2px; } .cleg i.dash { height:0; border-top:2px dashed var(--ink-3); }
+  #rates h3 { margin:20px 0 6px; }
   @media (max-width:640px) { #chart { height:260px; } }
 </style>
 </head>
@@ -82,6 +85,7 @@ fetch('data/market.json').then(r => r.json()).then(m => {
     <p class="note"><b>What the line is.</b> CSE's site only gives one year of ASPI values. From ${dmy(m.official_daily_from)} the line is the official ASPI. Before that it passes exactly through
       every official year-end close (the amber points), and between those points its shape comes from an index built here from the prices of ${B.shares_now} listed shares
       (${B.shares_at_start} at the start in ${B.start.slice(0, 4)}), each weighted by company size. So year-end levels are official; the path inside each year is an estimate.</p>
+    <section id="rates"></section>
 
     <h2>How close is the built index to the real ASPI, before it is tied to the year-ends?</h2>
     <div class="stats" style="margin-top:0">
@@ -151,8 +155,68 @@ fetch('data/market.json').then(r => r.json()).then(m => {
       <li><b>What cannot be checked.</b> A small bonus issue the source missed looks like an ordinary fall and would understate a share's older returns. Each share's page lists the checks made on its own history.</li>
     </ul>
     <p class="note" style="margin-top:16px">Past patterns do not predict the future. Nothing on this site is financial advice.</p>`;
-  draw();
+  draw(); rates();
+  if (location.hash === '#rates') document.getElementById('rates').scrollIntoView();
 }).catch(() => { document.getElementById('main').innerHTML = '<p class="mute">Market history is not available yet. It is built with the daily update.</p>'; });
+
+// ---------- interest rates and the rupee ----------
+let RX = null, rc = [];
+function small(el, h) {
+  const C = A.chart();
+  return LightweightCharts.createChart(el, { height:h, layout:{ background:{ color:'transparent' }, textColor:C.text, fontFamily:getComputedStyle(document.body).fontFamily },
+    grid:{ vertLines:{ color:C.grid }, horzLines:{ color:C.grid } }, timeScale:{ borderColor:C.border }, rightPriceScale:{ borderColor:C.border }, autoSize:true, handleScroll:{ vertTouchDrag:false } });
+}
+async function rates() {
+  const el = document.getElementById('rates'); if (!el) return;
+  if (!RX) { try { RX = await (await fetch('data/macro.json')).json(); } catch (e) { return; } }
+  const X = RX, L = X.latest || {}, mk = X.market || {}, f2 = v => v == null ? '–' : (+v).toFixed(2);
+  const say = [];
+  if (L.tb364 != null) say.push(`A 12-month Treasury bill paid ${f2(L.tb364)}% at the auction of ${dmy(L.tb_date)}` + (L.tb364_year_ago ? `, against ${f2(L.tb364_year_ago)}% a year earlier.` : '.'));
+  if (L.opr != null) say.push(`The Central Bank's policy rate is ${f2(L.opr)}%, set on ${dmy(L.opr_since)}.`);
+  if (mk.div_yield != null && L.tb364 != null) say.push(`Among rated shares with a checked dividend, the middle yield is ${f2(mk.div_yield)}%; ${mk.above_tbill ? `${mk.above_tbill} of the ${mk.div_n} pay` : `none of the ${mk.div_n} pays`} more than a 12-month bill.` +
+     (mk.earn_yield ? ` The middle price to earnings of ${mk.pe} means shares earn about ${f2(mk.earn_yield)}% of their price a year, ${mk.earn_yield > L.tb364 ? `${(mk.earn_yield - L.tb364).toFixed(1)} points more than the bill pays` : `${(L.tb364 - mk.earn_yield).toFixed(1)} points less than the bill pays`}.` : ''));
+  const u = X.usd_chg || {};
+  if (L.usd != null) say.push(`One US dollar costs LKR ${f2(L.usd)} (${dmy(L.usd_date)}). Over a year the rupee has ${u['1 year'] > 0 ? 'weakened' : 'strengthened'} by ${Math.abs(u['1 year'] ?? 0).toFixed(1)}%` + (u['5 years'] != null ? `, and over five years by ${Math.abs(u['5 years']).toFixed(1)}% ${u['5 years'] > 0 ? 'weaker' : 'stronger'}.` : '.'));
+  el.innerHTML = `<h2>Interest rates and the rupee</h2>
+    <p class="say">${say.join(' ')}</p>
+    <div class="stats">
+      ${L.tb91 != null ? `<div class="stat"><b>${f2(L.tb91)}% <small>/</small> ${f2(L.tb182)}% <small>/</small> ${f2(L.tb364)}%</b><span>T-bill yields, 3 / 6 / 12 months</span></div>` : ''}
+      ${L.opr != null ? `<div class="stat"><b>${f2(L.opr)}%</b><span>policy rate</span></div>` : ''}
+      ${mk.div_yield != null ? `<div class="stat"><b>${f2(mk.div_yield)}%</b><span>middle checked dividend yield</span></div>` : ''}
+      ${L.usd != null ? `<div class="stat"><b>${f2(L.usd)}</b><span>rupees to the US dollar</span></div>` : ''}
+    </div>
+    ${X.tbill && X.tbill.length > 2 ? `<h3>T-bill yields and the policy rate</h3><div id="rchart1" class="rc"></div>
+      <div class="cleg"><span><i style="background:var(--sapphire)"></i>12 months</span><span><i style="background:var(--topaz)"></i>3 months</span><span><i class="dash"></i>policy rate</span></div>` : ''}
+    ${X.usd && X.usd.length > 10 ? `<h3>Rupees to the US dollar</h3><div class="chips" style="margin-bottom:6px">${[[1, '1 year'], [5, '5 years'], [0, 'All']].map(([y, t]) => `<button class="chip ${y === 5 ? 'on' : ''}" data-ur="${y}">${t}</button>`).join('')}</div><div id="rchart2" class="rc"></div>
+      <p class="note">A rising line means a weaker rupee. A weaker rupee raises costs for companies that import and lifts the rupee earnings of exporters and of firms paid in dollars.</p>` : ''}
+    <p class="note">Sources: T-bill yields are the weighted averages at each weekly auction, read from the results the Public Debt Management Office publishes on treasury.gov.lk, collected since that office took over in December 2025.
+      The policy rate is kept by hand from the Central Bank's announcements (<a href="${esc(X.policy_checked_src)}" target="_blank" rel="noopener">last confirmed unchanged on ${dmy(X.policy_checked)}</a>).
+      USD/LKR is the daily close from Yahoo Finance, an unofficial feed, with one-day spikes that reverse the next day removed. Dividend and earnings yields use only report figures that passed this site's checks.</p>`;
+  rc.forEach(c => { try { c.remove(); } catch (e) {} }); rc = [];
+  const C = A.chart();
+  if (document.getElementById('rchart1')) {
+    const c = small(document.getElementById('rchart1'), 220); rc.push(c);
+    const pts = k => X.tbill.filter(r => r[k] != null).map(r => ({ time: r[0], value: r[k] }));
+    c.addLineSeries({ color: C.accent, lineWidth: 2, priceLineVisible: false, title: '12m' }).setData(pts(3));
+    c.addLineSeries({ color: C.topaz, lineWidth: 2, priceLineVisible: false, title: '3m' }).setData(pts(1));
+    const first = X.tbill[0][0], last = X.tbill[X.tbill.length - 1][0], pol = [];
+    X.policy.forEach((p, i) => { const from = p[0] < first ? first : p[0], to = X.policy[i + 1] ? X.policy[i + 1][0] : last; if (to >= first) { pol.push({ time: from, value: p[1] }); } });
+    if (pol.length) { pol.push({ time: last, value: X.policy[X.policy.length - 1][1] }); c.addLineSeries({ color: C.text, lineWidth: 1, lineStyle: 2, lineType: 1, priceLineVisible: false, lastValueVisible: false }).setData(pol.filter((p, i, a) => i === 0 || p.time > a[i - 1].time)); }
+    c.timeScale().fitContent();
+  }
+  if (document.getElementById('rchart2')) drawUsd(5);
+}
+function drawUsd(years) {
+  const el = document.getElementById('rchart2'); if (!el || !RX) return;
+  if (rc[1]) { try { rc[1].remove(); } catch (e) {} }
+  const C = A.chart(), c = small(el, 200); rc[1] = c;
+  const end = RX.usd[RX.usd.length - 1][0], from = years ? `${+end.slice(0, 4) - years}${end.slice(4)}` : '';
+  c.addAreaSeries({ lineColor: C.accent, topColor: A.css('--sapphire-soft'), bottomColor: 'transparent', lineWidth: 2 }).setData(RX.usd.filter(r => r[0] >= from).map(r => ({ time: r[0], value: r[1] })));
+  c.timeScale().fitContent();
+  document.querySelectorAll('[data-ur]').forEach(b => b.classList.toggle('on', +b.dataset.ur === years));
+}
+document.addEventListener('click', e => { const b = e.target.closest('[data-ur]'); if (b) drawUsd(+b.dataset.ur); });
+addEventListener('themechange', () => { if (RX) rates(); });
 </script>
 </body>
 </html>

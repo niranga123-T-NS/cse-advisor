@@ -6,6 +6,8 @@ How it works, in short:
      whether volume comes in on rising days, and how its industry group is doing.
   2. On each measure a share is ranked against the other rated shares that day. The five ranks are simply added:
      no weights are fitted, so there is nothing to over-tune.
+  2b. Since interim reports are on record (2024), the share's place on its latest published report (earnings and net
+     assets against the price, return on equity, profit growth) is added with the same weight as the five together.
   3. The top 10% of shares are STRONG BUY, the next 20% BUY, the middle 40% HOLD, the next 20% SELL and the
      bottom 10% STRONG SELL.
   4. study() replays this over every week since 2010 and records what each grade went on to do over 1, 3, 6 and
@@ -53,7 +55,11 @@ WORDS = {
     "calm": ("Steadiness", "smaller daily swings and no one-day spikes. Jumpy shares have done worse on average"),
     "volume": ("Buying on volume", "more of the volume on rising days, and closes near the top of the day's range"),
     "sector": ("Its industry group", "how the rest of its industry group has done over three months"),
+    "reports": ("Company figures", "from its latest interim report as published: earnings and net assets against the price, return on equity, and profit growth on a year earlier"),
 }
+REPORT_FROM = "2024-01-01"          # interim reports are on record from about here; the combined test starts then
+REPORT_AGE = 200                    # a report older than this many days no longer counts
+REPORT_WEIGHT = 1.0                 # company figures count as much as the five price measures together (tested, see study())
 
 
 # ---------------------------------------------------------------- the measures
@@ -121,6 +127,62 @@ def scores(F: dict, elig: pd.DataFrame, rows) -> tuple[pd.DataFrame, dict[str, p
     return total, G
 
 
+# ---------------------------------------------------------------- company figures, as they stood when each report came out
+
+def reports(columns, bad: dict[str, set] | None = None) -> pd.DataFrame:
+    """Every interim report on record, dated by the day it was published on cse.lk. Per-share figures are put onto
+    today's share basis when a split came later. Reports whose figures failed this site's checks are left out."""
+    import glob
+    import db
+    rows, bad = [], bad or {}
+    for f in glob.glob(str(ROOT / "data" / "fundamentals" / "*.json")):
+        d = json.loads(Path(f).read_text())
+        s = d.get("symbol")
+        if s not in columns:
+            continue
+        L = {x["id"]: x for x in d.get("listing", {}).get("quarterly", [])}
+        sp = db.splits(s)
+        for k, q in (d.get("quarterly") or {}).items():
+            u = (L.get(k) or {}).get("uploaded")
+            if not u or not q.get("ok") or q.get("end") in bad.get(s, ()):
+                continue
+            up = pd.Timestamp(dt.datetime.fromtimestamp(u / 1000, dt.timezone.utc).date())
+            fac = float(np.prod([x["factor"] for x in sp if pd.Timestamp(x["date"]) > up])) if sp else 1.0
+            m, eps, nav = q.get("months"), q.get("eps"), q.get("navps")
+            rows.append({"s": s, "up": up, "end": q.get("end"),
+                         "ann": eps / fac * 12 / m if eps is not None and m in (3, 6, 9, 12) else None,      # earnings per share for a year at this pace
+                         "nav": nav / fac if nav and nav > 0 else None, "pg": q.get("profit_growth")})
+    return pd.DataFrame(rows, columns=["s", "up", "end", "ann", "nav", "pg"]).sort_values("up")
+
+
+def report_ranks(R: pd.DataFrame, rows, c: pd.DataFrame, E: pd.DataFrame):
+    """For the given days: each rated share's place on its latest published report (if no older than REPORT_AGE days).
+    Returns the average place over the figures it has (only where it has at least two) and the count."""
+    rows = pd.DatetimeIndex(rows)
+
+    def asof(col):
+        out = pd.DataFrame(np.nan, index=rows, columns=c.columns)
+        for s, g in R.dropna(subset=[col]).groupby("s"):
+            g = g.drop_duplicates("up", keep="last").set_index("up")[col]
+            i = g.index.searchsorted(rows, side="left") - 1          # a report counts from the day after it was published
+            j = np.clip(i, 0, None)
+            age = (rows - g.index[j]).days
+            out[s] = np.where((i >= 0) & (age <= REPORT_AGE), g.values[j], np.nan)
+        return out
+    px, ann, nav = c.loc[rows], asof("ann"), asof("nav")
+    raw = [(ann / px).clip(-1, 1), (nav / px).where(nav > 0), (ann / nav).where(nav > 0).clip(-1, 1.5), asof("pg").clip(-300, 300)]
+    ranks = [x.where(E).rank(axis=1, pct=True) - 0.5 for x in raw]
+    n = sum(r.notna().astype(int) for r in ranks)
+    comp = (sum(r.fillna(0) for r in ranks) / n.replace(0, np.nan)).where(n >= 2)
+    return comp, n
+
+
+def combined(total: pd.DataFrame, comp: pd.DataFrame | None, E: pd.DataFrame) -> pd.DataFrame:
+    """Price place plus company-figure place. A share without two usable report figures is treated as average on them."""
+    base = total.where(E).rank(axis=1, pct=True) - 0.5
+    return base if comp is None else (base + REPORT_WEIGHT * comp.fillna(0)).where(E)
+
+
 def grade(pct: float) -> str:
     return next(g for g, top in GRADES if pct <= top)
 
@@ -160,7 +222,7 @@ def _long(c, rows, E, hz, **cols) -> pd.DataFrame:
     return df
 
 
-def study(F: dict, elig: pd.DataFrame, c: pd.DataFrame, old: pd.DataFrame | None = None) -> dict:
+def study(F: dict, elig: pd.DataFrame, c: pd.DataFrame, old: pd.DataFrame | None = None, R: pd.DataFrame | None = None) -> dict:
     rows = elig.index[(elig.index >= FROM)][::5]                # one day a week
     E = elig.loc[rows]
     total, _ = scores(F, elig, rows)
@@ -189,6 +251,34 @@ def study(F: dict, elig: pd.DataFrame, c: pd.DataFrame, old: pd.DataFrame | None
             H["old"] = {g: _stats(d["fw"], d["ex"]) for g, d in df.assign(lab=lab).groupby("lab", observed=True)}
         out["horizons"][str(hz)] = H
     out["cases"] = out["horizons"]["60"]["grades"]["ALL"]["n"]
+    if R is not None and len(R):
+        out["combined"] = study_combined(F, elig, c, R)
+    return out
+
+
+def study_combined(F, elig, c, R) -> dict:
+    """The rating as shown (price and company figures together), from the start of the report record.
+    Short: about two and a half years, so it is checked against the price-only rating over the same weeks."""
+    rows = elig.index[elig.index >= REPORT_FROM][::5]
+    E = elig.loc[rows]
+    total, _ = scores(F, elig, rows)
+    comp, n = report_ranks(R, rows, c, E)
+    both, price = combined(total, comp, E).rank(axis=1, pct=True), total.rank(axis=1, pct=True)
+    out = {"from": REPORT_FROM, "weight": REPORT_WEIGHT, "with_figures": int((n >= 2).where(E).sum(axis=1)[E.sum(axis=1) > 0].mean()), "horizons": {}}
+    for hz, label in HORIZONS[1:3]:
+        df = _long(c, rows, E, hz, both=both, price=price).dropna(subset=["both"])
+        H = {"label": label, "to": str(df.index.get_level_values(0).max().date())}
+        for key in ("both", "price"):
+            g = pd.cut(df[key], [0] + [t for _, t in GRADES], labels=ORDER)
+            H[key] = {k: _stats(d["fw"], d["ex"]) for k, d in df.assign(g=g).groupby("g", observed=True)}
+            b, s_ = df[g.isin(["BUY", "STRONG BUY"])], df[g.isin(["SELL", "STRONG SELL"])]
+            H[key + "_gap"] = round(float((b["ex"].mean() - s_["ex"].mean()) * 100), 2)
+            half = df.assign(h=[f"{d.year} {'H1' if d.month <= 6 else 'H2'}" for d in df.index.get_level_values(0)], g=g)
+            H[key + "_halves"] = {h: round(float((d.loc[d.g.isin(["BUY", "STRONG BUY"]), "ex"].mean() - d.loc[d.g.isin(["SELL", "STRONG SELL"]), "ex"].mean()) * 100), 1)
+                                  for h, d in half.groupby("h") if len(d) >= 300}
+        H["grades"] = H["both"]
+        H["grades"]["ALL"] = _stats(df["fw"], df["ex"])
+        out["horizons"][str(hz)] = H
     return out
 
 
@@ -208,10 +298,15 @@ def _level(p: int) -> str:
     return "very strong" if p >= 80 else "strong" if p >= 60 else "middling" if p >= 40 else "weak" if p >= 20 else "very weak"
 
 
-def today(F: dict, elig: pd.DataFrame, c: pd.DataFrame, info: dict) -> dict[str, dict]:
+def today(F: dict, elig: pd.DataFrame, c: pd.DataFrame, info: dict, R: pd.DataFrame | None = None) -> dict[str, dict]:
     day = elig.index[-1]
     total, G = scores(F, elig, [day])
-    pct = total.rank(axis=1, pct=True).iloc[0]
+    E = elig.loc[[day]]
+    comp = report_ranks(R, [day], c, E)[0] if R is not None and len(R) else None
+    pct = combined(total, comp, E).rank(axis=1, pct=True).iloc[0]
+    ppct = total.rank(axis=1, pct=True).iloc[0]
+    if comp is not None:
+        G = {**G, "reports": comp}
     gp = {g: (x.rank(axis=1, pct=True).iloc[0] * 100) for g, x in G.items()}
     n = int(elig.loc[day].sum())
     out = {}
@@ -227,16 +322,17 @@ def today(F: dict, elig: pd.DataFrame, c: pd.DataFrame, info: dict) -> dict[str,
             continue
         p = float(pct[s])
         groups = {}
-        for g in GROUPS:
-            v = gp[g].get(s)
+        for g in list(GROUPS) + ["reports"]:
+            v = gp[g].get(s) if g in gp else None
             if v == v:
                 groups[g] = int(min(99, max(1, round(v))))
         out[s] = {"rated": True, "grade": grade(p), "pct": int(min(99, max(1, round(p * 100)))), "of": n, "groups": groups,
+                  "price_grade": grade(float(ppct[s])), "price_pct": int(min(99, max(1, round(float(ppct[s]) * 100)))),
                   "words": [f"{WORDS[g][0]}: {_level(v)} (ahead of {v}% of rated shares)" for g, v in groups.items()]}
     return out
 
 
-def build(sectors: dict[str, str], bars: dict[str, pd.DataFrame] | None = None, refit: bool = False, with_old: bool = False) -> tuple[dict, dict]:
+def build(sectors: dict[str, str], bars: dict[str, pd.DataFrame] | None = None, refit: bool = False, with_old: bool = False, bad: dict | None = None) -> tuple[dict, dict]:
     """Today's rating for every share, and the record of what each grade went on to do (re-measured monthly)."""
     if bars is None:
         import db
@@ -248,10 +344,11 @@ def build(sectors: dict[str, str], bars: dict[str, pd.DataFrame] | None = None, 
             except Exception:
                 pass
     F, elig, c, info = measures(panel(bars), sectors)
+    R = reports(set(c.columns), bad)
     S = json.loads(MODEL.read_text()) if MODEL.exists() else None
-    stale = not S or (dt.date.today() - dt.date.fromisoformat(S["made"])).days >= 30
+    stale = not S or "combined" not in S or (dt.date.today() - dt.date.fromisoformat(S["made"])).days >= 30
     if refit or stale or with_old:
-        new = study(F, elig, c, old_scores(bars) if with_old else None)
+        new = study(F, elig, c, old_scores(bars) if with_old else None, R)
         if S and not with_old:                                  # keep the comparison with the earlier rules; it is slow to redo
             for hz, H in new["horizons"].items():
                 if "old" in S["horizons"].get(hz, {}):
@@ -262,7 +359,7 @@ def build(sectors: dict[str, str], bars: dict[str, pd.DataFrame] | None = None, 
         S = new
         MODEL.parent.mkdir(parents=True, exist_ok=True)
         MODEL.write_text(json.dumps(S, indent=1))
-    return today(F, elig, c, info), S
+    return today(F, elig, c, info, R), S
 
 
 if __name__ == "__main__":
@@ -279,3 +376,11 @@ if __name__ == "__main__":
                 print(f"  {g:12} n {x['n']:6}  gained after costs {x['hit']:5.1f}%  typical {x['median']:6.2f}%  middle half {x['p25']:6.1f} to {x['p75']:5.1f}%  against market {x['excess']:6.2f}  fell 10%+ {x['down10']:5.1f}%")
         if "old" in H:
             print("  earlier rules:", {g: (x["hit"], x["excess"]) for g, x in H["old"].items()})
+    C = S.get("combined")
+    if C:
+        print(f"\nWITH COMPANY FIGURES from {C['from']} ({C['with_figures']} rated shares a week have them):")
+        for hz, H in C["horizons"].items():
+            print(f" {H['label']}: buy-sell gap {H['both_gap']} pts (price only {H['price_gap']}); halves {H['both_halves']} vs {H['price_halves']}")
+            for g in ORDER[::-1]:
+                a, b = H["both"].get(g), H["price"].get(g)
+                if a and b: print(f"  {g:12} with figures: gained {a['hit']:5.1f}% vs avg {a['excess']:6.2f} | price only: {b['hit']:5.1f}% {b['excess']:6.2f}")

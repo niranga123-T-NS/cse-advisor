@@ -86,10 +86,10 @@ def picks(signals: list[dict], tsum: dict, T: dict) -> tuple[list[dict], list[di
     liquid = [s for s in signals if (s.get("tov") or 0) >= 1_000_000]
     well = [s for s in signals if (s.get("tov") or 0) >= 5_000_000 and s.get("score") is not None]
     for s in sorted([x for x in well if x["signal"] == "STRONG BUY"], key=lambda x: -x["score"]):
-        add(look, s["symbol"], "Strong buy", f"Ahead of {s['score']}% of rated shares on price and volume measures"
+        add(look, s["symbol"], "Strong buy", f"Ahead of {s['score']}% of rated shares on price, volume and company figures"
             + ("; it also passes the investing test." if s.get("invest") else "."), 3)
     for s in sorted([x for x in well if x["signal"] == "STRONG SELL"], key=lambda x: x["score"]):
-        add(care, s["symbol"], "Strong sell", f"Behind {100 - s['score']}% of rated shares on price and volume measures.", 3)
+        add(care, s["symbol"], "Strong sell", f"Behind {100 - s['score']}% of rated shares on price, volume and company figures.", 3)
     for s in sorted([x for x in liquid if x.get("trade")], key=lambda x: -(x["score"] or 0)):
         add(look, s["symbol"], "Trading pick", f"Passes every trading condition; reward to risk after costs is {s.get('rr')}.", 3)
     for s in sorted([x for x in liquid if x.get("trade_watch") and not x.get("trade")], key=lambda x: -(x["score"] or 0)):
@@ -131,8 +131,8 @@ def share_summary(s: dict, t: dict | None, lenses: list[dict] | None) -> str:
             tail = f": {_pct(m['chg'])} over the month and {where}"
         out.append(head + tail + ".")
     if s.get("pg"):
-        moved = "" if s["signal"] == s["pg"] else f" (its price rating is {s['pg'].lower()}; its report figures move it one step)"
-        out.append(f"It is rated {s['signal'].lower()}{moved}: on price and volume measures it is ahead of {s['score']}% of the {s.get('of', '')} rated shares.".replace("  ", " "))
+        moved = "" if s["signal"] == s["pg"] else f" (on price and volume alone it would be {s['pg'].lower()}; its company figures make the difference)"
+        out.append(f"It is rated {s['signal'].lower()}{moved}: taking price, volume and company figures together it is ahead of {s['score']}% of the {s.get('of', '')} rated shares.".replace("  ", " "))
     elif s.get("why"):
         out.append(f"It is not rated, because {s['why']}.")
     val = [f"{s['pe']} times earnings" if s.get("pe") else "", f"a {s['roe']}% return on equity" if s.get("roe") else "",

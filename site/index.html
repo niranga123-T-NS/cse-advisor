@@ -195,6 +195,9 @@
   .vp.F { background:var(--emerald-soft); color:var(--emerald); } .vp.P { background:var(--topaz-soft); color:var(--topaz); }
   .vp.N { background:var(--surface-2); color:var(--ink-3); } .vp.U { background:transparent; color:var(--ink-3); outline:1px dashed var(--line); }
   .tag.sel { background:var(--ruby-soft); color:var(--ruby); }
+  .pgrid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:10px; } .pgrid label { display:flex; flex-direction:column; gap:4px; font-size:12.5px; color:var(--ink-3); min-width:0; }
+  .pgrid input { width:100%; min-width:0; font-variant-numeric:tabular-nums; }
+  @media (max-width:640px) { .pgrid { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
   .gbar { display:grid; grid-template-columns:minmax(0, 220px) minmax(0, 1fr) 30px; gap:10px; align-items:center; padding:4px 0; font-size:13.5px; }
   .gbar .track { height:8px; border-radius:4px; background:var(--surface-2); overflow:hidden; } .gbar .track i { display:block; height:100%; border-radius:4px; }
   .aibox { background:var(--emerald-soft); border-radius:12px; padding:10px 12px; margin:4px 0 12px; font-size:13.5px; }
@@ -741,7 +744,7 @@ function render() {
 }
 
 // The rating: where it comes from, and what shares with the same price rating went on to do since 2010.
-const GNAME = { trend:'Trend over the past year', strength:'Strength over the past month', calm:'Steadiness', volume:'Buying on volume', sector:'Its industry group' };
+const GNAME = { trend:'Trend over the past year', strength:'Strength over the past month', calm:'Steadiness', volume:'Buying on volume', sector:'Its industry group', reports:'Company figures' };
 function ratingCard(a) {
   const r = a.rating, R = acc && acc.ratings, notes = (a.reasons || []).map(x => x.replace(/^[+\-−]?[\d.]+\s+/, ''));
   const chart = notes.length ? `<details style="margin-top:12px"><summary>Chart notes (${notes.length})</summary><ul style="margin-top:6px">${notes.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
@@ -752,21 +755,67 @@ function ratingCard(a) {
     <p style="margin:0">This share is not rated because ${esc(r.why)}.</p>
     <p class="small" style="margin:8px 0 0">In the test since 2010 the measures behind the ratings told far less about thinly traded shares (the chance of a gain was the same whatever the grade), so giving them a Buy or Sell would be little better than a guess. Its report figures, trends and checklists are still shown.</p>${warn}${chart}</div>`;
   const g = r.grade, sg = v => `${v > 0 ? '+' : ''}${v}%`;
+  const C = R && R.combined;
   const bars = Object.entries(r.groups).map(([k, v]) => `<div class="gbar"><span>${GNAME[k] || k}</span><span class="track"><i style="width:${v}%;background:var(--${v >= 60 ? 'emerald' : v < 40 ? 'ruby' : 'ink-3'})"></i></span><span class="num">${v}</span></div>`).join('');
-  const step = r.fund_step > 0 ? `Its checked report figures are strong (${a.fund_score} points), which lifts the rating one step to <b>${sigWord(a.signal)}</b>.`
-             : r.fund_step < 0 ? `Its checked report figures are weak (${a.fund_score} points), which lowers the rating one step to <b>${sigWord(a.signal)}</b>.`
-             : a.fund_score != null ? `Its checked report figures (${a.fund_score > 0 ? '+' : ''}${a.fund_score} points) leave the rating where it is.` : 'It has no checked report figures to add.';
-  const rows = R ? Object.values(R.horizons).map(H => { const x = H.grades[g], all = H.grades.ALL; return x ? `<tr><td>${H.label}</td><td class="num"><b>${x.hit}%</b> <span class="small x">all ${all.hit}%</span></td>
+  const step = r.groups.reports == null ? 'It has no recent checked report figures, so it counts as average on them.'
+             : r.price_grade !== g ? `On price and volume alone it would be ${sigWord(r.price_grade).toLowerCase()}; its company figures make the difference.`
+             : `Its company figures ${r.groups.reports >= 60 ? 'support' : r.groups.reports < 40 ? 'weigh against' : 'neither help nor hurt'} the rating.`;
+  const rows = C ? Object.values(C.horizons).map(H => { const x = H.both[g], all = H.grades.ALL; return x ? `<tr><td>${H.label}</td><td class="num"><b>${x.hit}%</b> <span class="small x">all ${all.hit}%</span></td>
       <td class="num">${sg(x.median)}</td><td class="num xs">${sg(x.p25)} to ${sg(x.p75)}</td><td class="num">${x.down10}%</td></tr>` : ''; }).join('') : '';
   return `<div class="card wide" id="sec-why"><h3>Why this rating</h3>
-    <p style="margin:0 0 10px">On price and volume it is ahead of <b>${r.pct}%</b> of the ${r.of} rated shares, which makes its price rating <b class="${sigClass(g)}">${sigWord(g)}</b>. ${step}</p>
+    <p style="margin:0 0 10px">Taking price, volume and company figures together it is ahead of <b>${r.pct}%</b> of the ${r.of} rated shares, which makes it <b class="${sigClass(g)}">${sigWord(g)}</b>. ${step}</p>
     ${bars}
-    <p class="small" style="margin:6px 0 0">Each bar is this share's place among rated shares, from 1 to 99. The five are added with equal weight. <a href="accuracy.html#ratings">How the rating works and how it was tested</a></p>
-    ${rows ? `<h4>What shares with a ${sigWord(g)} price rating went on to do <span class="mute" style="font-weight:400">every week since 2010, after ${R.cost_pct}% trading costs</span></h4>
+    <p class="small" style="margin:6px 0 0">Each bar is this share's place among rated shares, from 1 to 99. The five price measures are added equally, and company figures count as much as the five together. <a href="accuracy.html#ratings">How the rating works and how it was tested</a></p>
+    ${rows ? `<h4>What shares rated ${sigWord(g)} went on to do <span class="mute" style="font-weight:400">every week since ${C.from.slice(0, 4)}, after ${R.cost_pct}% trading costs</span></h4>
     <div class="tw"><table><tr><th>Held for</th><th class="num">Gained after costs</th><th class="num">Typical result</th><th class="num xs">Middle half of results</th><th class="num">Fell 10% or more</th></tr>${rows}</table></div>
-    <p class="small" style="margin:8px 0 0">A rating tilts the odds; it does not settle them, and the year has mattered more than the grade. The report step is not part of this test.</p>` : ''}
+    <p class="small" style="margin:8px 0 0">A rating tilts the odds; it does not settle them. This record covers under three years, mostly a rising market; the price measures alone go back to 2010 (see the Accuracy page).</p>` : ''}
     ${warn}${chart}</div>`;
 }
+
+// ---------- trade planner: how many shares, and what is at stake, after CSE's costs ----------
+const COSTP = 0.0112;               // brokerage, fees and levies on each side, about 1.12%
+const fmtL = v => 'LKR ' + Math.round(v).toLocaleString();
+function planCard(a) {
+  let m = 'risk', amt = 50000;
+  try { m = localStorage.getItem('planMode') || 'risk'; amt = +(localStorage.getItem('planAmt_' + m) || (m === 'risk' ? 10000 : 200000)); } catch (e) {}
+  const px = (current && tick && tick.r[current]) ? tick.r[current][0] : a.close;
+  const tgt = a.target, stop = a.stop;
+  return `<div class="card wide" id="sec-plan"><h3>Plan a trade</h3>
+    <div class="chips" style="margin-bottom:10px"><button class="chip ${m === 'risk' ? 'on' : ''}" data-pm="risk">I can afford to lose</button><button class="chip ${m === 'invest' ? 'on' : ''}" data-pm="invest">I want to invest</button></div>
+    <div class="pgrid">
+      <label><span>${m === 'risk' ? 'Most I will lose, LKR' : 'Amount to invest, LKR'}</span><input id="pAmt" type="number" inputmode="decimal" min="0" step="1000" value="${amt}"></label>
+      <label><span>Buy at</span><input id="pBuy" type="number" inputmode="decimal" step="0.1" value="${px}"></label>
+      <label><span>Sell if it falls to</span><input id="pStop" type="number" inputmode="decimal" step="0.1" value="${stop ?? ''}"></label>
+      <label><span>Take profit at</span><input id="pTgt" type="number" inputmode="decimal" step="0.1" value="${tgt ?? ''}"></label>
+    </div>
+    <div id="pOut" style="margin-top:12px"></div>
+    <p class="small" style="margin:10px 0 0">Suggested levels: sell if it falls two typical daily ranges below the close, take profit three above${(a.fib && a.fib.next_resistance) ? `; the next Fibonacci resistance is ${a.fib.next_resistance.toFixed(2)}` : ''}. Change them freely.
+      Costs are about ${(COSTP * 100).toFixed(2)}% each way. A stop is a plan, not a guarantee: a price can open below it.</p></div>`;
+}
+function plan() {
+  const v = id => parseFloat((document.getElementById(id) || {}).value), out = document.getElementById('pOut'); if (!out) return;
+  const amt = v('pAmt'), buy = v('pBuy'), stop = v('pStop'), tgt = v('pTgt');
+  let m = 'risk'; try { m = localStorage.getItem('planMode') || 'risk'; localStorage.setItem('planAmt_' + m, amt); } catch (e) {}
+  if (!(amt > 0 && buy > 0)) { out.innerHTML = '<p class="mute">Enter an amount and a buy price.</p>'; return; }
+  const inCost = buy * (1 + COSTP), lossPer = stop > 0 && stop < buy ? inCost - stop * (1 - COSTP) : null;
+  if (m === 'risk' && !lossPer) { out.innerHTML = '<p class="warn">To size by what you can lose, set a "sell if it falls to" price below the buy price.</p>'; return; }
+  const n = Math.floor(m === 'risk' ? amt / lossPer : amt / inCost);
+  if (n < 1) { out.innerHTML = '<p class="warn">That amount does not buy a single share at this price.</p>'; return; }
+  const spend = n * inCost, loss = lossPer ? n * lossPer : null, gain = tgt > buy ? n * (tgt * (1 - COSTP) - inCost) : null, be = inCost / (1 - COSTP);
+  const row = all.find(x => x.symbol === current) || {}, share = row.tov ? n * buy / row.tov * 100 : null;
+  out.innerHTML = `<div class="kv">
+      <span class="mute">Shares to buy</span><span><b style="font-size:18px">${n.toLocaleString()}</b></span>
+      <span class="mute">Cost, with charges</span><span>${fmtL(spend)}</span>
+      ${loss != null ? `<span class="mute">If it falls to ${stop}</span><span class="down">−${fmtL(loss)} <span class="small">(${(loss / spend * 100).toFixed(1)}% of the cost)</span></span>` : ''}
+      ${gain != null ? `<span class="mute">If it reaches ${tgt}</span><span class="${gain >= 0 ? 'up' : 'down'}">${gain >= 0 ? '+' : '−'}${fmtL(Math.abs(gain))} <span class="small">(${(gain / spend * 100).toFixed(1)}%)</span></span>` : ''}
+      ${gain != null && loss ? `<span class="mute">Reward to risk</span><span><b>${(gain / loss).toFixed(1)}</b> <span class="small">${gain / loss >= 2 ? 'worth considering' : gain / loss >= 1.5 ? 'acceptable' : 'thin: the possible loss is large next to the gain'}</span></span>` : ''}
+      <span class="mute">Break-even price</span><span>${be.toFixed(2)} <span class="small">after buying and selling costs</span></span>
+      ${share != null ? `<span class="mute">Size against trading</span><span class="${share > 10 ? 'warn' : ''}">${share.toFixed(share < 1 ? 2 : 1)}% of a normal day's trading${share > 10 ? ' — hard to buy or sell without moving the price' : ''}</span>` : ''}
+    </div>`;
+}
+document.addEventListener('input', e => { if (e.target.closest && e.target.closest('#sec-plan')) plan(); });
+document.addEventListener('click', e => { const b = e.target.closest('[data-pm]'); if (b && current) { try { localStorage.setItem('planMode', b.dataset.pm); } catch (x) {}
+  const el = document.getElementById('sec-plan'), a = window.__adv; if (el && a) { el.outerHTML = planCard(a); plan(); } } });
 
 function styleCard(a) {
   const st = a.style; if (!st) return '';
@@ -922,13 +971,14 @@ async function show(sym) {
       ${a.rating && a.rating.rated ? fact(a.score, 'rating score of 99') : a.rating ? '' : fact(a.score, 'score')}
     </div>
     ${(d.splits || []).map(x => `<div class="splitnote">Share ${x.factor >= 1 ? 'split' : 'consolidation'} on ${dmy(x.date)}: earlier prices are divided by ${x.factor}, so the chart and signals are on today's share basis (ratio from: ${esc(x.basis)}).</div>`).join('')}
-    <div class="chips secnav">${[['sec-chart', 'Chart'], ['sec-trends', 'Trends'], ['sec-why', 'Rating'], ['sec-peers', 'Peers'], ['sec-history', '10 years'], ['sec-pressure', 'Pressure'], ['sec-fund', 'Fundamentals'], ['sec-more', 'Levels']]
+    <div class="chips secnav">${[['sec-chart', 'Chart'], ['sec-trends', 'Trends'], ['sec-why', 'Rating'], ['sec-plan', 'Plan'], ['sec-peers', 'Peers'], ['sec-history', '10 years'], ['sec-pressure', 'Pressure'], ['sec-fund', 'Fundamentals'], ['sec-more', 'Levels']]
       .map(([id, label]) => `<button class="chip" data-to="${id}">${label}</button>`).join('')}</div>
     <div id="intraday" style="display:none"></div>
     <div id="sec-chart" style="scroll-margin-top:60px"><div id="chart"></div><div id="rsi"></div><div id="macd"></div></div>
     <div class="cards">
       <div class="card wide" id="sec-trends"><h3>Trends</h3><p class="mute">Loading…</p></div>
       ${ratingCard(a)}
+      ${planCard(a)}
       ${styleCard(a)}
       ${peersCard(d, sym)}
       <div class="card wide" id="sec-history"><h3>10-year history</h3><p class="mute">Loading…</p></div>
@@ -977,6 +1027,7 @@ async function show(sym) {
   c.timeScale().fitContent();
   // live: today's candle, the minute chart and the peers line update on every tick
   detailCtx = { sym, cs, last: d.candles[d.candles.length - 1] };
+  window.__adv = a; plan();
   loadView(sym); loadLong(sym);
   if (tick) { updateLiveDetail(sym); pollMinute(); }
 }

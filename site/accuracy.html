@@ -42,7 +42,7 @@ function drawGrades() {
   const el = document.getElementById('gradeTable'); if (!el || !RT) return;
   const H = RT.horizons[gradeHz];
   document.querySelectorAll('[data-hz]').forEach(b => b.classList.toggle('on', b.dataset.hz === gradeHz));
-  el.innerHTML = `<div class="tw"><table><tr><th>Price rating</th><th class="num x">Cases</th><th class="num">Gained after costs</th><th class="num">Typical result</th><th class="num xs">Middle half of results</th>
+  el.innerHTML = `<div class="tw"><table><tr><th>Price-only rating</th><th class="num x">Cases</th><th class="num">Gained after costs</th><th class="num">Typical result</th><th class="num xs">Middle half of results</th>
       <th class="num">Against the average share</th><th class="num x">Fell 10% or more</th></tr>
     ${GRADE.filter(g => H.grades[g[0]]).map(([k, name, cls]) => { const x = H.grades[k]; return `<tr><td class="${cls}">${k === 'ALL' ? name : '<b>' + name + '</b>'}</td><td class="num x">${x.n.toLocaleString()}</td><td class="num"><b>${x.hit}%</b></td>
       <td class="num">${sgn(x.median)}</td><td class="num xs">${sgn(x.p25)} to ${sgn(x.p75)}</td><td class="num">${k === 'ALL' ? '–' : sgn(x.excess, 2).replace('%', ' pts')}</td><td class="num x">${x.down10}%</td></tr>`; }).join('')}</table></div>
@@ -53,6 +53,19 @@ function drawGrades() {
       ${H.years.map(y => `<tr><td>${y.y}</td><td class="num">${sgn(y.buy).replace('%', ' pts')}</td><td class="num">${sgn(y.sell).replace('%', ' pts')}</td><td class="num">${y.buy_hit}%</td><td class="num x">${y.all_hit}%</td><td class="num">${y.sell_hit}%</td></tr>`).join('')}</table></div></details>`;
 }
 document.addEventListener('click', e => { const b = e.target.closest('[data-hz]'); if (b) { gradeHz = b.dataset.hz; drawGrades(); } });
+function combinedHtml(R) {
+  const C = R.combined; if (!C) return '';
+  const rows = Object.values(C.horizons).map(H => `<tr><td>${H.label}</td><td class="num"><b>${H.both_gap} pts</b></td><td class="num">${H.price_gap} pts</td>
+      <td class="num">${H.both['STRONG BUY'].hit}% <span class="small x">vs ${H.price['STRONG BUY'].hit}%</span></td><td class="num">${H.both['STRONG SELL'].hit}% <span class="small x">vs ${H.price['STRONG SELL'].hit}%</span></td></tr>`).join('');
+  const h = C.horizons['60'], better = Object.keys(h.both_halves).filter(k => h.both_halves[k] > h.price_halves[k] + 0.05).length, n = Object.keys(h.both_halves).length;
+  return `<h2 id="figures">Adding company figures <span class="mute">tested from ${C.from.slice(0, 4)}</span></h2>
+    <p class="say">Interim reports are on record, dated by the day each appeared on cse.lk, from about the start of ${C.from.slice(0, 4)}. Using only figures that were public at the time, cheaper shares (on earnings and on net assets) and more profitable ones went on to do better than average.
+      Adding them to the price measures widened the gap between Buy and Sell grades, and the rating shown on this site now includes them.</p>
+    <div class="tw"><table><tr><th>Held for</th><th class="num">Buy grades less Sell grades, with figures</th><th class="num">Price only</th><th class="num">Strong buy gained after costs</th><th class="num">Strong sell gained</th></tr>${rows}</table></div>
+    <p class="note">Gap: the average result of shares rated Buy or Strong buy less that of Sell or Strong sell, each against the average rated share. "vs" is the price-only figure over the same weeks.
+      Over three months the version with figures did better in ${better} of ${n} half-years and no worse in the rest. About ${C.with_figures} rated shares a week had usable figures.
+      <b>This is under three years, most of it a rising market that favoured cheap shares,</b> so treat it as encouraging, not proven.</p>`;
+}
 function ratingsSection() {
   const R = RT; if (!R) return '';
   const h3 = R.horizons['60'], h12 = R.horizons['250'], sb = k => h3.grades[k] || {}, old = h3.old;
@@ -65,18 +78,19 @@ function ratingsSection() {
   return `<section id="ratings">
     <p class="stamp">Buy, Sell and Hold ratings: ${R.cases.toLocaleString()} weekly readings from 2010 to ${h3.to.slice(0, 4)}; ${R.rated_now} of ${R.shares_now} shares rated today</p>
     <h1 class="headline" style="max-width:30ch">A rating tilts the odds. It does not settle them.</h1>
-    <p class="say">Shares rated Buy or Strong buy went on to beat shares rated Sell or Strong sell in ${h3.buy_beat_sell[0]} of ${h3.buy_beat_sell[1]} years over three months, and in ${h12.buy_beat_sell[0]} of ${h12.buy_beat_sell[1]} over twelve.
+    <p class="say">On the five price measures alone, which can be tested back to 2010, shares rated Buy or Strong buy went on to beat shares rated Sell or Strong sell in ${h3.buy_beat_sell[0]} of ${h3.buy_beat_sell[1]} years over three months, and in ${h12.buy_beat_sell[0]} of ${h12.buy_beat_sell[1]} over twelve.
       But the margin is modest: held for three months, a Strong buy gained after costs ${sb('STRONG BUY').hit}% of the time and a Strong sell ${sb('STRONG SELL').hit}%.
       Held for twelve months it was ${h12.grades['STRONG BUY'].hit}% against ${h12.grades['STRONG SELL'].hit}%. Which year you bought in has mattered more than the grade.</p>
     <div class="chips" style="margin-top:14px">${Object.entries(R.horizons).map(([k, H]) => `<button class="chip" data-hz="${k}">${H.label}</button>`).join('')}</div>
     <div id="gradeTable" style="margin-top:10px"></div>
     ${cmp}
+    ${combinedHtml(R)}
     <h2>How a share is rated</h2>
     <ul class="points">
       <li><b>Who is rated.</b> Shares that have ${esc(R.rule)}. In the test the measures told far less about thinly traded shares (their chance of a gain was the same whatever the grade), so those are marked "Not rated" instead of being guessed at.</li>
       ${Object.values(R.groups).map(g => `<li><b>${esc(g.title)}:</b> ${esc(g.what)}.</li>`).join('')}
       <li><b>Adding up.</b> On each of the five, a share is placed against the other rated shares that day, and the five places are added with equal weight. The top 10% are Strong buy, the next 20% Buy, the middle 40% Hold, the next 20% Sell and the bottom 10% Strong sell.</li>
-      <li><b>Company reports.</b> Clearly strong checked figures (3 points or more) lift the rating one step and clearly weak ones (−2 or less) lower it one step; reports never create a Strong grade. This step is <b>not tested</b>: there are too few years of reports to test it, so the tables above are for the price rating alone.</li>
+      <li><b>Company figures.</b> From the latest interim report as published on cse.lk (no older than about six months): earnings for a year at the reported pace against the price, net assets against the price, return on equity, and profit growth on a year earlier. Reports whose figures failed this site's checks are left out, and per-share figures are put onto today's share basis after a split. On each figure a share is placed against the other rated shares; the average of those places is added with the same weight as the five price measures together. A share with fewer than two usable figures counts as average.</li>
     </ul>
     <h2>What was tried and did not help</h2>
     <ul class="points">

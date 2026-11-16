@@ -25,6 +25,8 @@ The site is one app with the same navigation on every page: a bar along the bott
 - **A share's page** starts with the price, the signal, a plain-English summary and the key figures, then a row of chips that jump to each section: chart, trends, signal, peers, 10 years, pressure, fundamentals, levels.
 - **Search** (the magnifier, or press `/` or Ctrl/⌘ K on a keyboard) finds shares by symbol or name, industry groups, screens and pages from anywhere.
 - **Compare** (the button on the Shares list and on every share's page, or under More) opens a pop-up for up to four shares: their prices charted against the ASPI from a common start of 100, their ratings and checked figures side by side with the best in each row marked, how closely their weekly price changes have moved together and with the ASPI (correlation over 1, 3 or 5 years), and a short reading of what that suggests, such as which two overlap and which adds variety. The reading is put together by fixed rules in `site/compare.js`; a correlation from weekly figures is a rough guide, good to about ±0.15 on three years and ±0.25 on one.
+- **Plan a trade** on every share's page: enter what you can afford to lose (or what you want to invest), the buy price, and where you would sell if it falls or take profit. It works out how many shares, the cost with charges, the result at either price after the 1.12% each way, reward to risk, the break-even price, and how large the order is against a normal day's trading. Amounts are remembered in the browser only.
+- **Interest rates and the rupee** on the Market page: T-bill yields from each weekly auction (collected from the Public Debt Management Office's results on treasury.gov.lk, available since December 2025), the policy rate (kept by hand in `data/macro/policy.csv`, because the Central Bank's site refuses GitHub's servers), USD/LKR daily from Yahoo Finance with faulty points removed, and a comparison of the 12-month T-bill with the market's checked dividend and earnings yields.
 - **Alerts** shows the day's alerts; the red number on its tab is how many you have not seen.
 - **More** leads to Veterans' checklists, Market history, Forecast accuracy, Data checks, adding shares, and the light or dark theme. The theme follows your device until you choose one.
 - **Add to your home screen:** in Safari tap Share, then *Add to Home Screen*. The site then opens full-screen with its own icon, like an app. It still needs an internet connection.
@@ -32,13 +34,24 @@ The site is one app with the same navigation on every page: a bar along the bott
 - **Stars** ☆ on the site are saved in that browser only. `watchlist.txt` sets which stocks get full history.
 - Every stock that trades on a given day gets saved. Stocks outside your watchlist gain a signal once they have 30 days of saved data.
 
+## Telegram summaries
+
+A summary before the open (about 8:43 Colombo time, Monday to Friday) and another straight after the daily build at the close: the day in sentences, what is worth a look, what to take care with, the biggest moves, rating changes, important alerts, the largest trades, and rates.
+
+1. In Telegram, open **@BotFather**, send `/newbot`, choose any name, and copy the token it gives you.
+2. On GitHub open the repo's **Settings → Secrets and variables → Actions → New repository secret**. Name it `TELEGRAM_TOKEN` and paste the token.
+3. In Telegram, open your new bot and send it `/start`.
+4. On GitHub open **Actions → Telegram summary → Run workflow** (leave "test"). You should get a test message. The run's log shows your chat number; adding it as a second secret `TELEGRAM_CHAT` pins the messages to you.
+
+Without the secret nothing is sent and the jobs still succeed.
+
 ## Buy, Sell and Hold ratings
 
 Every share that trades enough gets one of five ratings: Strong buy, Buy, Hold, Sell, Strong sell. `ratings.py` works them out, and the Accuracy page shows how each rating has done.
 
 - **Who is rated.** Shares traded on 48 of the last 60 days, about LKR 0.5 million a day or more, priced LKR 5 or more, with a year of prices. The rest are marked **Not rated**: in the test the measures told far less about thinly traded shares, so a rating there would be little better than a guess.
 - **Five measures, from prices and volumes only:** trend over the past year, strength over the past month, steadiness, buying on volume, and how the share's industry group is doing. On each, a share is placed against the other rated shares that day; the five places are added with equal weight. Top 10% Strong buy, next 20% Buy, middle 40% Hold, next 20% Sell, bottom 10% Strong sell. The **rating score** (1 to 99) is the share of rated shares it is ahead of.
-- **Company reports** can move the rating one step: clearly strong checked figures (3 points or more) lift it, clearly weak ones (−2 or less) lower it. Reports never create a Strong grade. This step is not tested, because there are too few years of reports to test it.
+- **Company figures** from the latest interim report, as published on cse.lk (earnings and net assets against the price, return on equity, profit growth), are ranked the same way and added with the same weight as the five price measures together. Reports that failed this site's checks are left out. Tested from 2024, using only figures public at the time: over three months the Buy-less-Sell gap widened from 2.6 to 3.1 points, and over six months from 4.3 to 5.3. That is under three years in a mostly rising market, so it is encouraging rather than proven.
 - **The test.** Every week since 2010, each grade's result over the next 1, 3, 6 and 12 months was recorded, buying at the next day's close and taking off 2.24% for costs. Buy grades beat Sell grades in 16 of 17 years over three months. The margin is modest: held three months, a Strong buy gained after costs about 50% of the time and a Strong sell about 39%; held twelve months, about 60% against 45%. Over one month no grade gained after costs even half the time, so the ratings are a guide for three months or longer.
 - **Compared with the rules used before** (price against its averages, MACD, RSI, Bollinger bands, Fibonacci levels): on the same shares and days the gap between Strong buy and Strong sell is about twice as wide. One earlier rule was backwards for this market: a high RSI was scored "overbought", but such shares went on to do better than average. Those chart readings are still shown on each share's page as notes; they no longer set the rating.
 - **What did not help:** fitted weights, a tree model, and the state of the market as a whole. The plain sum is used because it has nothing to over-tune.
@@ -223,6 +236,8 @@ On phones and upright tablets one thing is shown at a time: the list shows chang
 | `build_site.py` | Fetches data and builds `site/data/*.json` |
 | `.github/workflows/fundamentals.yml` | Nightly job that reads company reports (4 parallel parts) |
 | `.github/workflows/live.yml`, `live.py` | Live prices and alerts every 15 seconds during market hours |
+| `macro.py` | Collects T-bill auction results and USD/LKR, and writes the rates file for the Market page |
+| `telegram.py` | Morning and closing summaries sent to Telegram |
 | `ratings.py` | Buy / Sell / Hold ratings and the record of what each rating went on to do since 2010 |
 | `forecast.py` | Pattern forecast, walk-forward accuracy test, live scoring |
 | `pressure.py` | Daily buying/selling pressure reading and the test of what followed it |

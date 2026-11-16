@@ -173,18 +173,22 @@ def fetch():
 # ---------------------------------------------------------------- for the site
 
 def _usd() -> list[list]:
-    """Daily USD/LKR, with one-day spikes that reverse the next day removed (a known fault of this feed)."""
+    """Daily USD/LKR. This feed has faults: weekend readings, and one-day jumps that reverse the next day.
+    Weekend dates are dropped, as is any day more than 1% away from both neighbours while they agree with each other,
+    and a latest reading more than 1.5% away from the one before (it cannot be confirmed yet)."""
     f = DIR / "usdlkr.json"
     if not f.exists():
         return []
-    rows = [r for r in json.loads(f.read_text()) if r[1] and r[1] > 20]
+    rows = [r for r in json.loads(f.read_text()) if r[1] and r[1] > 20 and dt.date.fromisoformat(r[0]).weekday() < 5]
     keep = []
     for i, r in enumerate(rows):
         if 0 < i < len(rows) - 1:
             a, b, c = rows[i - 1][1], r[1], rows[i + 1][1]
-            if abs(b / a - 1) > 0.05 and abs(c / a - 1) < 0.02:
+            if abs(b / a - 1) > 0.01 and abs(b / c - 1) > 0.01 and abs(c / a - 1) < 0.006:
                 continue
         keep.append(r)
+    if len(keep) > 2 and abs(keep[-1][1] / keep[-2][1] - 1) > 0.015:
+        keep.pop()
     return keep
 
 

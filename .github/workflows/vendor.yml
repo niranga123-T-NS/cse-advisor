@@ -1,0 +1,43 @@
+name: Vendor chart library
+
+# One-off (re-run when upgrading): downloads lightweight-charts from the npm registry, checks it against the
+# registry's published sha512 integrity hash, and commits it to site/vendor/ so the site loads no third-party script.
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "lightweight-charts version"
+        required: false
+        default: "4.2.3"
+
+permissions:
+  contents: write
+
+jobs:
+  vendor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Download and verify
+        env:
+          VERSION: ${{ inputs.version || '4.2.3' }}
+        run: |
+          set -euo pipefail
+          [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "bad version"; exit 1; }
+          meta=$(curl -fsSL "https://registry.npmjs.org/lightweight-charts/$VERSION")
+          url=$(echo "$meta" | python3 -c "import json,sys; print(json.load(sys.stdin)['dist']['tarball'])")
+          want=$(echo "$meta" | python3 -c "import json,sys; print(json.load(sys.stdin)['dist']['integrity'])")
+          curl -fsSL "$url" -o lw.tgz
+          got="sha512-$(openssl dgst -sha512 -binary lw.tgz | base64 -w0)"
+          [ "$got" = "$want" ] || { echo "integrity mismatch: $got vs $want"; exit 1; }
+          mkdir -p x site/vendor && tar -xzf lw.tgz -C x
+          cp x/package/dist/lightweight-charts.standalone.production.js site/vendor/lightweight-charts.js
+          cp x/package/LICENSE site/vendor/lightweight-charts.LICENSE 2>/dev/null || true
+          echo "lightweight-charts $VERSION, npm integrity $want" > site/vendor/README.txt
+      - run: |
+          git config user.name "cse-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/vendor
+          git diff --cached --quiet || git commit -m "Vendor lightweight-charts ${VERSION:-4.2.3} (npm integrity checked)"
+          git pull -q --rebase --autostash origin main && git push -q origin HEAD:main

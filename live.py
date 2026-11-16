@@ -589,7 +589,7 @@ class Engine:
                "bid": [b["p"], b["q"], b["n"]] if b else None, "ask": [a["p"], a["q"], a["n"]] if a else None}
         prev = self.book.get(s)
         thr = max(5_000_000, 0.1 * tov)
-        if prev and ts - prev["ts"] <= 600 and px:
+        if prev and ts - prev["ts"] <= 600 and px and prev["t"] >= "09:35:00":   # not the pre-open book filling up
             for key, side in (("bids", 1), ("asks", -1)):       # many more shares waiting than a few minutes ago
                 d = cur[key] - prev[key]
                 if d * px >= thr and d >= 0.2 * max(prev[key], 1.0):

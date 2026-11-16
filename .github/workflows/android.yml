@@ -1,0 +1,82 @@
+name: Android app
+
+# Builds the signed Android app (a Trusted Web Activity around the signed-in site).
+# Needs ONE secret you choose yourself: ANDROID_KEY_PASSWORD (long and random, 24+ characters; keep a copy).
+# First run: creates the signing key, stores it in the repository ENCRYPTED with that password
+# (android/keystore.enc, AES-256 with 600,000 PBKDF2 rounds) and writes site/.well-known/assetlinks.json.
+# Every later run signs with the same key, so installed apps can be updated.
+on:
+  workflow_dispatch:
+    inputs:
+      host:
+        description: "Site address the app opens (no https://)"
+        required: false
+        default: "cse-advisor.pages.dev"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      TWA_HOST: ${{ inputs.host || 'cse-advisor.pages.dev' }}
+      KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+      VERSION_CODE: ${{ github.run_number }}
+    steps:
+      - name: Check inputs
+        run: |
+          [ ${#KEYSTORE_PASSWORD} -ge 16 ] || { echo "Set the repository secret ANDROID_KEY_PASSWORD (24+ random characters) first."; exit 1; }
+          [[ "$TWA_HOST" =~ ^[A-Za-z0-9.-]+\.[A-Za-z]{2,}$ ]] || { echo "bad host"; exit 1; }
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407 # v3
+      - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a # v4
+        with:
+          gradle-version: "8.9"
+      - name: Signing key
+        run: |
+          set -euo pipefail
+          KS="$RUNNER_TEMP/release.jks"; echo "KEYSTORE_PATH=$KS" >> "$GITHUB_ENV"
+          if [ -f android/keystore.enc ]; then
+            openssl enc -d -aes-256-cbc -pbkdf2 -iter 600000 -md sha256 -in android/keystore.enc -out "$KS" -pass env:KEYSTORE_PASSWORD
+          else
+            keytool -genkeypair -keystore "$KS" -storetype PKCS12 -alias cseadvisor -keyalg RSA -keysize 4096 -validity 10000 \
+              -storepass:env KEYSTORE_PASSWORD -keypass:env KEYSTORE_PASSWORD -dname "CN=CSE Advisor" -noprompt
+            openssl enc -aes-256-cbc -pbkdf2 -iter 600000 -md sha256 -salt -in "$KS" -out android/keystore.enc -pass env:KEYSTORE_PASSWORD
+          fi
+          FP=$(keytool -list -v -keystore "$KS" -alias cseadvisor -storepass:env KEYSTORE_PASSWORD | awk '/SHA256:/{print $2; exit}')
+          mkdir -p site/.well-known
+          printf '[{"relation":["delegate_permission/common.handle_all_urls"],"target":{"namespace":"android_app","package_name":"lk.cseadvisor.app","sha256_cert_fingerprints":["%s"]}}]\n' "$FP" > site/.well-known/assetlinks.json
+          echo "Signing certificate SHA-256: $FP"
+      - name: Build
+        working-directory: android
+        run: gradle --no-daemon assembleRelease
+      - name: Verify signature
+        run: |
+          BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          "$BT/apksigner" verify --verbose android/app/build/outputs/apk/release/app-release.apk
+          cp android/app/build/outputs/apk/release/app-release.apk "CSE-Advisor-1.${VERSION_CODE}.apk"
+      - name: Remove the key from the runner
+        if: always()
+        run: shred -u "$RUNNER_TEMP/release.jks" 2>/dev/null || rm -f "$RUNNER_TEMP/release.jks"
+      - name: Save the encrypted key and the app link file
+        run: |
+          git config user.name "cse-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add android/keystore.enc site/.well-known/assetlinks.json
+          git diff --cached --quiet || git commit -m "Android: signing key (encrypted) and assetlinks.json"
+          git pull -q --rebase --autostash origin main && git push -q origin HEAD:main
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: CSE-Advisor-android
+          path: CSE-Advisor-*.apk
+          retention-days: 30

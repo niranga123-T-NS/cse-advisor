@@ -3,3 +3,8 @@ __pycache__/
 *.db
 site/data/
 data/model/oos.csv
+android/app/build/
+android/.gradle/
+android/build/
+*.jks
+site/_headers

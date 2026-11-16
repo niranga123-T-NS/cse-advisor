@@ -14,7 +14,7 @@
 <link rel="icon" href="icon-192.png">
 <title>CSE Advisor</title>
 <script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
-<script src="https://unpkg.com/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
+<script src="vendor/lightweight-charts.js"></script>
 <link rel="stylesheet" href="app.css">
 <style>
   /* ---------- the compare pop-up ---------- */
@@ -298,7 +298,9 @@ const QS = new URLSearchParams(location.search);          // testing: ?live=<fol
 const RAW = QS.get('live') || (() => {
   const m = location.hostname.match(/^([^.]+)\.github\.io$/);
   const repo = location.pathname.split('/').filter(Boolean)[0];
-  return m && repo ? `https://raw.githubusercontent.com/${m[1]}/${repo}/live/` : null;
+  if (m) return repo ? `https://raw.githubusercontent.com/${m[1]}/${repo}/live/` : null;
+  if (location.protocol === 'https:') return 'live/';     // private hosting: the site's own signed-in proxy (functions/live)
+  return null;
 })();
 const T0 = QS.get('now') ? new Date(QS.get('now')).getTime() - Date.now() : null;
 function colomboNow() { return T0 != null ? new Date(Date.now() + T0) : new Date(Date.now() + (330 + new Date().getTimezoneOffset()) * 60000); }

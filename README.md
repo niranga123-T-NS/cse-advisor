@@ -274,8 +274,11 @@ CSE shows totals and usually only the best few price levels; orders can be cance
 
 ### Day trade
 
-The **Day trade** tab lists shares where a same-day trade is physically possible: 20-day average turnover LKR 20M+,
-a typical day range of 3%+ and a price of LKR 10+ (`daytrade.py`). Shares with yesterday's momentum or heavy-volume-dip
-setup come first; during the session each row shows the live price and whether volume is running above normal.
-The tab opens with the honest test: over the past year no simple same-day rule made money after CSE's ~2.24%
-round-trip costs.
+The **Day trade** tab (`daytrade.py`) lists each day's universe: the 40 most traded shares that move 3%+ a day and
+cost LKR 10+. Once a share opens, it shows the opening gap and a **buy signal** from a gradient-boosting model of
+the chance that a share bought at the open closes more than the ~2.24% round-trip costs higher. The model is trained
+on Yahoo's daily history with real opening prices since 2012 and tested walk-forward (each year predicted by a model
+trained only on earlier years, with the cut-off from those years): about +1.1% a trade after costs, positive in 9 of
+10 years, but only around a dozen signals a year lately. Buying any share at the open and selling at the close lost
+about 2.6% a trade after costs; chasing 2%+ gap-ups lost about 4%. 3%+ gap-downs held 3 to 5 days tested at +2.0% to +2.6%.
+The site receives the model's chance on a grid of opening gaps and market gaps for each share, so the signal lights up live.

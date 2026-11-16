@@ -271,3 +271,11 @@ the two totals moved through the day. The live job reads the books in rotation: 
 just alerted every 30 s, the 40 most traded every 2 min, other traded shares every 5 min, the rest every 15 min.
 Published as `b/HHMM.json` each minute and `books.json` (kept after the close) on the `live` branch.
 CSE shows totals and usually only the best few price levels; orders can be cancelled at any time.
+
+### Day trade
+
+The **Day trade** tab lists shares where a same-day trade is physically possible: 20-day average turnover LKR 20M+,
+a typical day range of 3%+ and a price of LKR 10+ (`daytrade.py`). Shares with yesterday's momentum or heavy-volume-dip
+setup come first; during the session each row shows the live price and whether volume is running above normal.
+The tab opens with the honest test: over the past year no simple same-day rule made money after CSE's ~2.24%
+round-trip costs.

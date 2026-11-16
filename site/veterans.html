@@ -74,7 +74,7 @@ async function show(sym) {
   $('#pick').value = sym; A.recent.add(sym);
   const meta = Object.fromEntries(V.lenses.map(m => [m.id, m]));
   const group = kind => d.lenses.filter(L => meta[L.id].kind === kind);
-  const pills = kind => group(kind).map(L => `<a href="#lens-${L.id}" onclick="document.getElementById('lens-${L.id}').scrollIntoView({behavior:'smooth'});return false"><span class="v ${L.verdict}">${esc(SHORT[L.id] || L.id)}: ${VERD[L.verdict].toLowerCase()}</span></a>`).join('');
+  const pills = kind => group(kind).map(L => `<a href="#lens-${L.id}" data-lens="${L.id}"><span class="v ${L.verdict}">${esc(SHORT[L.id] || L.id)}: ${VERD[L.verdict].toLowerCase()}</span></a>`).join('');
   const count = kind => group(kind).filter(L => L.verdict === 'fits').length;
   el.innerHTML = `
     <p class="stamp" style="margin-bottom:6px">${esc(d.name)}${d.sector ? ', ' + esc(d.sector) : ''}</p>
@@ -127,6 +127,8 @@ function choose() {
 $('#pick').addEventListener('change', choose);
 $('#pick').addEventListener('keydown', e => { if (e.key === 'Enter') choose(); });
 addEventListener('hashchange', () => show(hashSym()));
+document.addEventListener('click', e => { const a = e.target.closest('a[data-lens]'); if (!a) return;
+  e.preventDefault(); const t = document.getElementById('lens-' + a.dataset.lens); if (t) t.scrollIntoView({ behavior: 'smooth' }); });
 </script>
 </body>
 </html>

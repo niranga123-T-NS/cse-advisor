@@ -9,6 +9,7 @@
     home: svg('<path d="M4 11.5 12 5l8 6.5"/><path d="M6.5 10v9h11v-9"/>'),
     shares: svg('<path d="M5 7h14M5 12h14M5 17h9"/>'),
     alerts: svg('<path d="M6.5 16.5v-5a5.5 5.5 0 0 1 11 0v5l1.5 2h-14z"/><path d="M10.2 20.5a2 2 0 0 0 3.6 0"/>'),
+    day: svg('<path d="M13 3 5 13.5h6L10 21l8-10.5h-6z"/>'),
     trends: svg('<path d="M4 16.5l5-5 3.5 3.5L20 7.5"/><path d="M15 7.5h5v5"/>'),
     veterans: svg('<path d="M12 6.5c-2-1.3-4.5-1.6-7-1v12.5c2.5-.6 5-.3 7 1 2-1.3 4.5-1.6 7-1V5.5c-2.5-.6-5-.3-7 1z"/><path d="M12 6.5V19"/>'),
     market: svg('<path d="M5 19v-8M10 19V5M15 19v-6M20 19V8"/>'),
@@ -28,7 +29,7 @@
     chev: svg('<path d="M9.5 5.5 16 12l-6.5 6.5"/>'),
   };
   const body = document.body, page = body.dataset.page || '', onIndex = page === 'index';
-  const NAV = [['home', 'Home', './#/home'], ['shares', 'Shares', './#/shares'], ['alerts', 'Alerts', './#/alerts'], ['trends', 'Trends', 'trends.html'],
+  const NAV = [['home', 'Home', './#/home'], ['shares', 'Shares', './#/shares'], ['day', 'Day trade', './#/day'], ['alerts', 'Alerts', './#/alerts'], ['trends', 'Trends', 'trends.html'],
                ['veterans', 'Veterans', 'veterans.html'], ['market', 'Market', 'market.html'], ['accuracy', 'Accuracy', 'accuracy.html'], ['checks', 'Checks', 'audit.html']];
   const link = ([k, label, href]) => `<a href="${href}" data-nav="${k}">${ICON[k]}<span>${label}</span></a>`;
 
@@ -73,7 +74,7 @@
   }
   const repo = (() => { const m = location.hostname.match(/^([^.]+)\.github\.io$/), r = location.pathname.split('/').filter(Boolean)[0]; return m && r ? `https://github.com/${m[1]}/${r}` : null; })();
   function openMore() {
-    const rows = NAV.slice(4).map(([k, label, href]) => `<a class="pi" href="${href}">${ICON[k]}<span class="t">${{ veterans:"Veterans' checklists", market:'Market history', accuracy:'Accuracy of ratings and forecasts', checks:'Data checks' }[k]}</span>${ICON.chev}</a>`).join('');
+    const rows = NAV.slice(4).map(([k, label, href]) => `<a class="pi" href="${href}">${ICON[k]}<span class="t">${{ trends:'Trends in every share', veterans:"Veterans' checklists", market:'Market history', accuracy:'Accuracy of ratings and forecasts', checks:'Data checks' }[k]}</span>${ICON.chev}</a>`).join('');
     const sh = sheet(`<div class="list" style="padding:10px"><a class="pi" href="./#/compare">${ICON.compare}<span class="t">Compare shares</span><span class="s">up to four</span></a>${rows}
       ${repo ? `<a class="pi" href="${repo}/actions/workflows/update.yml" target="_blank" rel="noopener">${ICON.plus}<span class="t">Add shares or refresh the data</span><span class="s">on GitHub</span></a>` : ''}
       <button class="pi" data-theme-row>${dark() ? ICON.sun : ICON.moon}<span class="t">${dark() ? 'Use the light theme' : 'Use the dark theme'}</span></button></div>

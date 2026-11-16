@@ -178,6 +178,17 @@ def build():
             _dump(OUT / "macro.json", mx)
     except Exception as e:
         print("rates step failed:", repr(e))
+    try:                                    # day trading watch and its test
+        import daytrade
+        dt_ = daytrade.build(names)
+        rated = {x["symbol"]: x for x in signals}
+        for x in dt_["list"]:
+            r = rated.get(x["s"]) or {}
+            x["signal"], x["sector"] = r.get("signal"), r.get("sector")
+        _dump(OUT / "daytrade.json", dt_)
+        print(f"Day trading watch: {dt_['n']} shares qualify")
+    except Exception as e:
+        print("day trading step failed:", repr(e))
 
     # peers: every industry group with its medians and members (most traded first)
     def med(vals):

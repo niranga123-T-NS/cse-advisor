@@ -63,8 +63,8 @@
 
   <h2>Every company</h2>
   <p style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-    <input id="q" placeholder="Symbol or company name" aria-label="Find a company" oninput="renderCos()">
-    <select id="lvl" onchange="renderCos()">
+    <input id="q" placeholder="Symbol or company name" aria-label="Find a company">
+    <select id="lvl">
       <option value="">All companies</option><option value="fail">With failed checks</option>
       <option value="low">Low data</option><option value="good">Good data</option><option value="ai">Read by Claude</option>
     </select>
@@ -116,11 +116,11 @@ function renderCos() {
     (!lvl || (lvl === 'fail' ? c.fail > 0 : lvl === 'ai' ? c.ai : c.confidence === lvl)));
   const val = c => sortKey === 'share' ? (c.fields ? c.verified / c.fields : 0) : c[sortKey];
   rows.sort((x, y) => (val(x) > val(y) ? 1 : val(x) < val(y) ? -1 : 0) * sortDir);
-  const th = (k, t, cls = '') => `<th class="${cls}" onclick="sortBy('${k}')">${t}${sortKey === k ? (sortDir > 0 ? ' ▲' : ' ▼') : ''}</th>`;
+  const th = (k, t, cls = '') => `<th class="${cls}" data-sort="${k}">${t}${sortKey === k ? (sortDir > 0 ? ' ▲' : ' ▼') : ''}</th>`;
   const W = '<span class="d-only"> Warnings</span>', F = '<span class="d-only"> Failed</span>';
   $('#cos').innerHTML = '<tr>' + th('symbol', 'Company') + th('share', 'Figures verified', 'num') + th('ok', 'Passed', 'num d-only') +
     th('warn', '⚠' + W, 'num') + th('fail', '✗' + F, 'num') + th('confidence', 'Data', 'd-only') + '</tr>' +
-    rows.map(c => { const pills = `${c.ai ? '<span class="tag inv">Read by Claude</span> ' : ''}<span class="tag">${esc(c.confidence || '')}</span> <span class="sub" title="Quarterly and annual reports read">${c.q} + ${c.a} reports</span>`; return `<tr class="co" data-s="${esc(c.symbol)}" onclick="toggle('${esc(c.symbol)}')">
+    rows.map(c => { const pills = `${c.ai ? '<span class="tag inv">Read by Claude</span> ' : ''}<span class="tag">${esc(c.confidence || '')}</span> <span class="sub" title="Quarterly and annual reports read">${c.q} + ${c.a} reports</span>`; return `<tr class="co" data-s="${esc(c.symbol)}">
       <td><b>${esc(c.symbol)}</b> <span class="sub">${esc((c.name || '').slice(0, 30))}</span><div class="m-only">${pills}</div></td>
       <td class="num">${c.verified} of ${c.fields}</td><td class="num ok d-only">${c.ok}</td><td class="num warn">${c.warn}</td>
       <td class="num fail">${c.fail}</td><td class="d-only">${pills}</td></tr>
@@ -128,6 +128,13 @@ function renderCos() {
   if (open) loadDetail(open);
 }
 
+// listeners, not inline handlers: the Content-Security-Policy blocks inline event code
+document.getElementById('q').addEventListener('input', () => renderCos());
+document.getElementById('lvl').addEventListener('change', () => renderCos());
+document.getElementById('cos').addEventListener('click', e => {
+  const th = e.target.closest('th[data-sort]'); if (th) { sortBy(th.dataset.sort); return; }
+  const tr = e.target.closest('tr.co[data-s]'); if (tr && !e.target.closest('a')) toggle(tr.dataset.s);
+});
 function toggle(sym) { open = open === sym ? null : sym; history.replaceState(null, '', open ? '#' + encodeURIComponent(open) : location.pathname); renderCos(); }
 
 async function loadDetail(sym) {

@@ -55,6 +55,16 @@
   #home, #list, #alertsPane, #detail { min-width:0; }
   body[data-view=home] #list, body[data-view=home] #alertsPane, body[data-view=shares] #home, body[data-view=shares] #alertsPane,
   body[data-view=alerts] #home, body[data-view=alerts] #list { display:none; }
+  #dayPane { display:none; min-width:0; } body[data-view=day] #dayPane { display:block; }
+  body[data-view=day] #home, body[data-view=day] #list, body[data-view=day] #alertsPane { display:none; }
+  .dtwarn { border:1px solid var(--line); border-radius:12px; padding:12px 14px; margin:0 0 16px; background:var(--surface-2); font-size:14px; line-height:1.5; }
+  .dtwarn b.down { font-weight:650; }
+  table.dt { width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums; }
+  table.dt th { text-align:left; font-weight:500; color:var(--ink-3); font-size:12px; padding:6px 6px; border-bottom:1px solid var(--line-soft); }
+  table.dt td { padding:9px 6px; border-bottom:1px solid var(--line-soft); font-size:14px; vertical-align:top; }
+  table.dt tr[data-sym] { cursor:pointer; } table.dt tr[data-sym]:hover { background:var(--surface-2); }
+  table.dt .num { text-align:right; } .dtst { font-size:12.5px; }
+  @media (max-width:520px) { table.dt th:nth-child(4), table.dt td:nth-child(4) { display:none; } table.dt td, table.dt th { padding-left:4px; padding-right:4px; } }
   #backbar { display:none; }
   h2 { font-size:18px; font-weight:650; margin:0 0 10px; }
   footer { font-size:12px; color:var(--ink-3); padding:22px 0 10px; line-height:1.5; }
@@ -65,7 +75,8 @@
   @media (min-width:900px) and (min-height:501px) {
     body { display:flex; flex-direction:column; height:100vh; height:100dvh; }
     #app { flex:1; min-height:0; display:grid; grid-template-columns:clamp(450px, 42vw, 680px) minmax(0, 1fr); grid-template-rows:minmax(0, 1fr); }
-    #home { grid-column:1 / -1; overflow:auto; }
+    #home, #dayPane { grid-column:1 / -1; overflow:auto; }
+    body[data-view=day] #detail { display:none; }
     #list, #alertsPane { overflow:auto; border-right:1px solid var(--line-soft); }
     #detail { overflow:auto; }
     body[data-view=home] #detail { display:none; }
@@ -223,13 +234,13 @@
 </head>
 <body class="app" data-page="index" data-title="Today" data-view="home">
 <script src="app.js"></script>
-<div id="backbar"><button class="iconbtn" onclick="goBack()" aria-label="Back" id="backbtn"></button><span id="backname"></span><span id="live2"></span></div>
+<div id="backbar"><button class="iconbtn" aria-label="Back" id="backbtn"></button><span id="backname"></span><span id="live2"></span></div>
 <main id="app">
   <section id="home"><div class="wrap">
     <div class="intro">
       <div><p class="when" id="when"></p>
         <div class="brief" id="brief"><p class="mute">Loading the day's figures…</p></div>
-        <button class="btn" id="briefMore" onclick="document.getElementById('brief').classList.add('all')">Read the rest</button></div>
+        <button class="btn" id="briefMore">Read the rest</button></div>
       <div class="stats" id="stats"></div>
     </div>
     <div class="maphead"><h2>The whole market</h2>
@@ -253,7 +264,7 @@
     <div class="listbar">
       <div class="chips" id="filters"></div>
       <div class="listmeta"><span id="count"></span><button class="btn" id="cmpBtn" data-cmp="">Compare</button>
-        <select id="sort" aria-label="Sort the list" onchange="render()">
+        <select id="sort" aria-label="Sort the list">
           <option value="score">Sort: rating score</option><option value="chg">Change today</option><option value="tov">Money traded</option><option value="d20">1 month change</option>
           <option value="pe">Price to earnings, low first</option><option value="dy">Dividend yield</option><option value="rs">Strength</option><option value="name">Name</option></select></div>
     </div>
@@ -262,11 +273,12 @@
     <div id="empty" class="empty" hidden></div>
   </section>
 
+  <section id="dayPane"><div class="wrap" id="day"><p class="mute">Loading…</p></div></section>
   <section id="alertsPane"><div id="alerts"></div></section>
   <section id="detail"><div class="empty">Pick a share from the list, or press / to search.</div></section>
 </main>
 <div id="cmp" class="cmp" hidden><div class="cmpbox" role="dialog" aria-modal="true" aria-label="Compare shares">
-  <div class="cmphead"><h2>Compare shares</h2><button class="iconbtn" id="cmpClose" onclick="closeCompare()" aria-label="Close"></button></div>
+  <div class="cmphead"><h2>Compare shares</h2><button class="iconbtn" id="cmpClose" aria-label="Close"></button></div>
   <div class="cmpbody" id="cmpbody"></div></div></div>
 <script src="compare.js"></script>
 <script>
@@ -331,7 +343,7 @@ async function pollTick() {
     if (s.live && s.live.p !== r[0]) changed[s.symbol] = r[0] > s.live.p ? 'fu' : 'fd';
     s.live = { p: r[0], c: r[1], v: r[2] }; } });
   tick = t;
-  showLiveStatus(); render(); renderAlerts(); renderBig(); renderHome();
+  showLiveStatus(); render(); renderAlerts(); renderBig(); renderHome(); if (view === 'day') renderDay();
   if (current) { updateLiveDetail(current); if (!minute || Date.now() - minute._at > 55000) pollMinute(); pollBooks(); }
 }
 async function pollMinute() {
@@ -365,7 +377,7 @@ setInterval(showLiveStatus, 5000);
 // ---------- getting about: three views and the open share, all in the address after # so Back works everywhere ----------
 // #/home  #/shares  #/shares/<screen>  #/alerts  #<SYMBOL>
 const PHONE = matchMedia('(max-width:899.98px), (max-height:500px)');
-const TITLE = { home:'Today', shares:'Shares', alerts:'Alerts' };
+const TITLE = { home:'Today', shares:'Shares', day:'Day trade', alerts:'Alerts' };
 let steps = 0, lastSeen = null; const scrollAt = {};
 try { history.scrollRestoration = 'manual'; } catch (e) {}      // this page puts you back where you were itself
 function parseHash() {
@@ -378,18 +390,18 @@ function setView(v) {
   if (v !== view && !document.body.classList.contains('open')) scrollAt[view] = scrollY;
   view = v; document.body.dataset.view = v; A.setActive(v);
   const t = document.querySelector('.top .title'); if (t) t.textContent = TITLE[v];
-  renderAlerts(); if (v === 'home') renderHome(); if (v === 'shares') render();
+  renderAlerts(); if (v === 'home') renderHome(); if (v === 'shares') render(); if (v === 'day') renderDay();
 }
 let routed = false;
 function route() {
   const r = parseHash();
   if (r.view === 'compare') { if (!routed) setView(view); routed = true; showCompare(r.arg); return; }      // the pop-up opens over whatever is showing
   routed = true; hideCompare();
-  if (r.sym) { if (view === 'home') setView('shares'); show(r.sym); return; }
+  if (r.sym) { if (view === 'home' || view === 'day') setView('shares'); show(r.sym); return; }
   closeDetail(); setView(r.view);
   if (r.view === 'shares' && r.arg) setFilter(r.arg);
   if (PHONE.matches) scrollTo(0, scrollAt[r.view] || 0);
-  else if (r.view !== 'home') {      // wide screens: the pane beside the list is never left empty
+  else if (r.view !== 'home' && r.view !== 'day') {      // wide screens: the pane beside the list is never left empty
     const first = lastSeen || ((document.querySelector('#rows tr') || {}).dataset || {}).sym;
     if (first) show(first);
   }
@@ -406,6 +418,10 @@ function closeDetail() {
   if (was) scrollTo(0, scrollAt[view] || 0);
 }
 $('#backbtn').innerHTML = A.icon.back; $('#cmpClose').innerHTML = A.icon.close || '×';
+// listeners, not inline handlers: the Content-Security-Policy blocks inline event code
+$('#backbtn').addEventListener('click', goBack); $('#cmpClose').addEventListener('click', () => closeCompare());
+$('#sort').addEventListener('change', () => render());
+document.addEventListener('click', e => { if (e.target.closest('#briefMore')) document.getElementById('brief').classList.add('all'); });
 
 // ---------- big orders: largest trades, large orders waiting, signs of hidden buying or selling ----------
 // CSE publishes trades and order totals, not who placed them. "Buying" / "selling" is worked out from how the price
@@ -454,6 +470,41 @@ function flowHtml(sym) {
   if (!fl && !hid.length && !big.length && !rest.length) h += `<span class="small">No large trades, large waiting orders or hidden-order signs in this share.</span>`;
   return h;
 }
+// ---------- day trade: shares where a same-day trade is physically possible, with the honest test (data/daytrade.json) ----------
+let dayData = null;
+async function renderDay() {
+  const el = document.getElementById('day'); if (!el) return;
+  if (!dayData) { try { dayData = await (await fetch('data/daytrade.json')).json(); } catch (e) { el.innerHTML = '<p class="mute">Day trading data is not available yet.</p>'; return; } }
+  const d = dayData, T = d.test || {}, c = T.close || {}, g = T.target || {};
+  const t = colomboNow(), mins = (t.getHours() - 9) * 60 + t.getMinutes() - 30, frac = Math.min(1, Math.max(0.03, mins / 300));
+  const live = tick && tick.t.slice(0, 10) === ymd(t);
+  const sg = v => v == null ? '–' : `${v > 0 ? '+' : ''}${(+v).toFixed(2)}%`;
+  const row = x => {
+    const r = live && tick.r[x.s], pace = r && x.vol20 ? r[2] / (x.vol20 * frac) : null;
+    const st = !r ? (x.setup === 'momentum' ? ['Momentum setup from yesterday', 'up'] : x.setup === 'dip' ? ['Heavy-volume dip yesterday', 'up'] : ['No setup', 'mute'])
+      : r[1] >= 1 && pace >= 1.5 ? ['Moving up on heavy volume', 'up'] : r[1] <= -1 ? ['Falling today', 'down'] : pace != null && pace < 0.5 ? ['Quiet today', 'mute'] : r[1] > 0 ? ['Up a little', 'up'] : ['Flat or down', 'mute'];
+    return `<tr data-sym="${esc(x.s)}"><td><b>${short(x.s)}</b><div class="small mute">${esc((x.name || '').slice(0, 28))}</div></td>
+      <td class="num">${r ? r[0].toFixed(2) : x.px.toFixed(2)}<div class="small">${r ? pct(r[1]) : '<span class="mute">yesterday</span>'}</div></td>
+      <td class="num">${x.adr.toFixed(1)}%<div class="small mute">${x.big != null ? x.big + '% of days ≥3%' : ''}</div></td>
+      <td class="num">${lkr(x.tov)}<div class="small mute">${pace != null ? pace.toFixed(1) + '× normal so far' : 'a day'}</div></td>
+      <td class="dtst ${st[1]}">${st[0]}${x.signal ? `<div class="small mute">Rating: ${esc(sigWord(x.signal))}</div>` : ''}</td></tr>`;
+  };
+  el.innerHTML = `<h2>Day trading watch</h2>
+    <div class="dtwarn"><b>Read this first.</b> Buying and selling costs about <b>${T.cost ?? 2.24}%</b> together. In our test of the past year, no simple same-day rule made money after costs: the best, the momentum setup, averaged <b class="down">${sg(c.momentum && c.momentum.net)}</b> a trade. Use this list to find shares that can move and that you can get out of the same day, and keep size small.
+      <details style="margin-top:6px"><summary class="small">The test in full</summary>
+      <ul style="margin:6px 0 0 18px;padding:0">
+        <li>Any qualifying share, bought near the open and sold at the close, ${dmy(T.from)} to ${dmy(T.to)}: <b class="down">${sg(c.all && c.all.net)}</b> after costs; ${c.all ? c.all.win : '–'}% of days made money (${c.all ? c.all.n.toLocaleString() : 0} share-days).</li>
+        <li>Momentum setup (closed near its high on heavy volume the day before): ${sg(c.momentum && c.momentum.gross)} before costs, <b class="down">${sg(c.momentum && c.momentum.net)}</b> after; ${c.momentum ? c.momentum.win : '–'}% winning days.</li>
+        <li>Heavy-volume dip: ${sg(c.dip && c.dip.gross)} before costs, <b class="down">${sg(c.dip && c.dip.net)}</b> after. With a +4% target and −2% stop: <b class="down">${sg(g.dip && g.dip.net)}</b>.</li>
+      </ul>
+      <p class="small" style="margin:6px 0 0">The setups beat picking at random, but not by enough to pay the costs. A lower broker rate changes these numbers. Holding for days or weeks (the <a href="#/shares/tradewatch">Trading watch</a>) pays the costs only once against a bigger move.</p></details></div>
+    <p class="small">Shares that qualify today (${d.n}): money traded at least ${lkr(d.rules.tov)} a day on average, a typical day range of ${d.rules.adr}% or more, and a price of LKR ${d.rules.px}+. Setups first, then the widest ranges with the most money traded. ${live ? 'Prices are live.' : 'Prices from the last close; live during market hours.'}</p>
+    <table class="dt"><thead><tr><th>Share</th><th class="num">Price</th><th class="num">Day range</th><th class="num">Traded</th><th>Today</th></tr></thead>
+      <tbody>${d.list.map(row).join('') || '<tr><td colspan="5" class="mute">No share qualifies today.</td></tr>'}</tbody></table>
+    <p class="small" style="margin-top:10px">Test method: daily bars; entry at the previous close (where the CSE opens most days), exit at the close, or at the target or stop judged from the day's high and low (stop first when both were touched). Not financial advice.</p>`;
+}
+document.addEventListener('click', e => { const tr = e.target.closest('#day tr[data-sym]'); if (tr) openShare(tr.dataset.sym); });
+
 // ---------- buyers and sellers: the orders waiting in one share (live engine, b/HHMM.json and books.json) ----------
 let books = null;
 async function pollBooks(force) {

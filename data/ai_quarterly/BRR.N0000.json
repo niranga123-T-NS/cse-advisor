@@ -59,6 +59,33 @@
    "eps_q": 0.18,
    "eps_q_prior": 0.4,
    "page": 5
+  },
+  "47808": {
+   "months": 12,
+   "eps_ytd": 0.39,
+   "eps_ytd_prior": 0.41,
+   "eps_q": 0.17,
+   "eps_q_prior": 0.18,
+   "page": 5,
+   "note": "scanned report, read from OCR text"
+  },
+  "47312": {
+   "months": 9,
+   "eps_ytd": 0.21,
+   "eps_ytd_prior": 0.17,
+   "eps_q": 0.11,
+   "eps_q_prior": 0.17,
+   "page": 5,
+   "note": "scanned report, read from OCR text"
+  },
+  "46950": {
+   "months": 6,
+   "eps_ytd": 0.1,
+   "eps_ytd_prior": 0.0,
+   "eps_q": -0.02,
+   "eps_q_prior": -0.03,
+   "page": 5,
+   "note": "scanned report, read from OCR text"
   }
  }
 }

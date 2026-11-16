@@ -1,0 +1,35 @@
+{
+ "symbol": "TAFL.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "50592": {
+   "months": 12,
+   "eps_ytd": 65.4,
+   "eps_ytd_prior": 72.26,
+   "eps_q": 25.8,
+   "eps_q_prior": 18.93,
+   "page": 3,
+   "note": "scanned report, read from OCR text"
+  },
+  "48677": {
+   "months": 6,
+   "eps_ytd": 19.48,
+   "eps_ytd_prior": 44.64,
+   "eps_q": 4.61,
+   "eps_q_prior": 18.42,
+   "page": 3,
+   "note": "scanned report, read from OCR text"
+  },
+  "47535": {
+   "months": 12,
+   "eps_ytd": 72.26,
+   "eps_ytd_prior": 106.34,
+   "eps_q": 18.93,
+   "eps_q_prior": 34.09,
+   "page": 3,
+   "note": "scanned report, read from OCR text"
+  }
+ }
+}

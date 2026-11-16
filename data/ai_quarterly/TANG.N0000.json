@@ -1,0 +1,44 @@
+{
+ "symbol": "TANG.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "48603": {
+   "months": 3,
+   "eps_ytd": 0.18,
+   "eps_ytd_prior": -4.19,
+   "eps_q": 0.18,
+   "eps_q_prior": -4.19,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  },
+  "47906": {
+   "months": 12,
+   "eps_ytd": 10.34,
+   "eps_ytd_prior": 6.85,
+   "eps_q": 3.3,
+   "eps_q_prior": 3.87,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  },
+  "46920": {
+   "months": 6,
+   "eps_ytd": -7.6,
+   "eps_ytd_prior": -5.26,
+   "eps_q": -3.4,
+   "eps_q_prior": -1.92,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  },
+  "46276": {
+   "months": 3,
+   "eps_ytd": -4.19,
+   "eps_ytd_prior": -3.34,
+   "eps_q": -4.19,
+   "eps_q_prior": -3.34,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  }
+ }
+}

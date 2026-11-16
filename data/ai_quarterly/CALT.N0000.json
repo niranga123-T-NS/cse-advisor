@@ -1,0 +1,26 @@
+{
+ "symbol": "CALT.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "47750": {
+   "months": 12,
+   "eps_ytd": 13.43,
+   "eps_ytd_prior": 42.17,
+   "eps_q": 1.92,
+   "eps_q_prior": 2.9,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  },
+  "46132": {
+   "months": 3,
+   "eps_ytd": 3.33,
+   "eps_ytd_prior": 8.94,
+   "eps_q": 3.33,
+   "eps_q_prior": 8.94,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  }
+ }
+}

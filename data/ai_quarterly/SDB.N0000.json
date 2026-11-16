@@ -1,0 +1,17 @@
+{
+ "symbol": "SDB.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "50795": {
+   "months": 12,
+   "eps_ytd": 2.47,
+   "eps_ytd_prior": null,
+   "eps_q": 0.92,
+   "eps_q_prior": 0.03,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  }
+ }
+}

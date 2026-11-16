@@ -1,0 +1,26 @@
+{
+ "symbol": "GEST.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "48444": {
+   "months": 3,
+   "eps_ytd": 4.11,
+   "eps_ytd_prior": 1.72,
+   "eps_q": 4.11,
+   "eps_q_prior": 1.72,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  },
+  "46118": {
+   "months": 3,
+   "eps_ytd": 1.72,
+   "eps_ytd_prior": 9.31,
+   "eps_q": 1.72,
+   "eps_q_prior": 9.31,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  }
+ }
+}

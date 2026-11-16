@@ -1,0 +1,17 @@
+{
+ "symbol": "HDFC.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "46953": {
+   "months": 9,
+   "eps_ytd": 2.27,
+   "eps_ytd_prior": 19.81,
+   "eps_q": 0.63,
+   "eps_q_prior": 21.68,
+   "page": 3,
+   "note": "scanned report, read from OCR text"
+  }
+ }
+}

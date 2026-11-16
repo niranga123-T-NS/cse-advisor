@@ -1,0 +1,44 @@
+{
+ "symbol": "UCAR.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "53331": {
+   "months": 9,
+   "eps_ytd": 124.33,
+   "eps_ytd_prior": 123.17,
+   "eps_q": 30.38,
+   "eps_q_prior": 44.7,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  },
+  "49923": {
+   "months": 12,
+   "eps_ytd": 173.33,
+   "eps_ytd_prior": 159.55,
+   "eps_q": 50.16,
+   "eps_q_prior": 34.78,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  },
+  "47207": {
+   "months": 12,
+   "eps_ytd": 152.19,
+   "eps_ytd_prior": 164.59,
+   "eps_q": 36.2,
+   "eps_q_prior": 40.05,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  },
+  "45474": {
+   "months": 3,
+   "eps_ytd": 54.26,
+   "eps_ytd_prior": 59.89,
+   "eps_q": 54.26,
+   "eps_q_prior": 59.89,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  }
+ }
+}

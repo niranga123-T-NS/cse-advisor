@@ -51,6 +51,42 @@
    "eps_q": 0.66,
    "eps_q_prior": -0.25,
    "page": 2
+  },
+  "50277": {
+   "months": 9,
+   "eps_ytd": -0.11,
+   "eps_ytd_prior": -0.31,
+   "eps_q": -0.04,
+   "eps_q_prior": -0.02,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  },
+  "47432": {
+   "months": 9,
+   "eps_ytd": -0.33,
+   "eps_ytd_prior": -0.43,
+   "eps_q": -0.02,
+   "eps_q_prior": -0.21,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  },
+  "46966": {
+   "months": 6,
+   "eps_ytd": -0.26,
+   "eps_ytd_prior": -0.21,
+   "eps_q": -0.06,
+   "eps_q_prior": -0.12,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  },
+  "46294": {
+   "months": 3,
+   "eps_ytd": -0.2,
+   "eps_ytd_prior": -0.13,
+   "eps_q": -0.2,
+   "eps_q_prior": -0.13,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
   }
  }
 }

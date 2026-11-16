@@ -1,0 +1,26 @@
+{
+ "symbol": "GRAN.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "50593": {
+   "months": 12,
+   "eps_ytd": 57.68,
+   "eps_ytd_prior": 40.28,
+   "eps_q": 17.63,
+   "eps_q_prior": 12.49,
+   "page": 3,
+   "note": "scanned report, read from OCR text"
+  },
+  "47536": {
+   "months": 12,
+   "eps_ytd": 40.28,
+   "eps_ytd_prior": 49.61,
+   "eps_q": 12.49,
+   "eps_q_prior": 13.48,
+   "page": 3,
+   "note": "scanned report, read from OCR text"
+  }
+ }
+}

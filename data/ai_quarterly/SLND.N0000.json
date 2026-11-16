@@ -1,0 +1,26 @@
+{
+ "symbol": "SLND.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "52736": {
+   "months": 3,
+   "eps_ytd": -4.64,
+   "eps_ytd_prior": 12.44,
+   "eps_q": -4.64,
+   "eps_q_prior": 12.44,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  },
+  "45611": {
+   "months": 12,
+   "eps_ytd": 50.2,
+   "eps_ytd_prior": 72.44,
+   "eps_q": 11.88,
+   "eps_q_prior": 16.42,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  }
+ }
+}

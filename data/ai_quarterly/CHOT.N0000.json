@@ -1,0 +1,17 @@
+{
+ "symbol": "CHOT.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "48666": {
+   "months": 3,
+   "eps_ytd": -0.29,
+   "eps_ytd_prior": -0.28,
+   "eps_q": -0.29,
+   "eps_q_prior": -0.28,
+   "page": 4,
+   "note": "scanned report, read from OCR text"
+  }
+ }
+}

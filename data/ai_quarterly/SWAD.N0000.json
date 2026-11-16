@@ -1,0 +1,44 @@
+{
+ "symbol": "SWAD.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "48124": {
+   "months": 12,
+   "eps_ytd": 9.13,
+   "eps_ytd_prior": 877.71,
+   "eps_q": -89.37,
+   "eps_q_prior": 118.61,
+   "page": 3,
+   "note": "scanned report, read from OCR text"
+  },
+  "47460": {
+   "months": 9,
+   "eps_ytd": 98.5,
+   "eps_ytd_prior": 1022.48,
+   "eps_q": 32.26,
+   "eps_q_prior": 404.88,
+   "page": 3,
+   "note": "scanned report, read from OCR text"
+  },
+  "46884": {
+   "months": 6,
+   "eps_ytd": 66.24,
+   "eps_ytd_prior": 617.61,
+   "eps_q": 48.2,
+   "eps_q_prior": 427.71,
+   "page": 3,
+   "note": "scanned report, read from OCR text"
+  },
+  "46273": {
+   "months": 3,
+   "eps_ytd": 18.04,
+   "eps_ytd_prior": 189.9,
+   "eps_q": 18.04,
+   "eps_q_prior": 189.9,
+   "page": 3,
+   "note": "scanned report, read from OCR text"
+  }
+ }
+}

@@ -59,6 +59,15 @@
    "eps_q": -1.81,
    "eps_q_prior": 0.41,
    "page": 2
+  },
+  "52655": {
+   "months": 3,
+   "eps_ytd": -0.97,
+   "eps_ytd_prior": -1.18,
+   "eps_q": -0.97,
+   "eps_q_prior": -1.18,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
   }
  }
 }

@@ -1,0 +1,17 @@
+{
+ "symbol": "PLR.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "51490": {
+   "months": 12,
+   "eps_ytd": 2.2,
+   "eps_ytd_prior": 1.31,
+   "eps_q": 0.59,
+   "eps_q_prior": 0.36,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  }
+ }
+}

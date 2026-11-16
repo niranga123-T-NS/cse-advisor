@@ -1,0 +1,62 @@
+{
+ "symbol": "LLUB.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "53272": {
+   "months": 9,
+   "eps_ytd": 16.76,
+   "eps_ytd_prior": 14.14,
+   "eps_q": 4.28,
+   "eps_q_prior": 4.53,
+   "page": 3,
+   "note": "scanned report, read from OCR text"
+  },
+  "51093": {
+   "months": 3,
+   "eps_ytd": 6.23,
+   "eps_ytd_prior": 5.49,
+   "eps_q": 6.23,
+   "eps_q_prior": 5.49,
+   "page": 3,
+   "note": "scanned report, read from OCR text"
+  },
+  "50610": {
+   "months": 12,
+   "eps_ytd": 16.86,
+   "eps_ytd_prior": 16.06,
+   "eps_q": 2.72,
+   "eps_q_prior": 2.81,
+   "page": 3,
+   "note": "scanned report, read from OCR text"
+  },
+  "49117": {
+   "months": 9,
+   "eps_ytd": 14.14,
+   "eps_ytd_prior": 13.25,
+   "eps_q": 4.53,
+   "eps_q_prior": 4.3,
+   "page": 3,
+   "note": "scanned report, read from OCR text"
+  },
+  "47824": {
+   "months": 3,
+   "eps_ytd": 5.49,
+   "eps_ytd_prior": 5.84,
+   "eps_q": 5.49,
+   "eps_q_prior": 5.84,
+   "page": 3,
+   "note": "scanned report, read from OCR text"
+  },
+  "46767": {
+   "months": 9,
+   "eps_ytd": 13.25,
+   "eps_ytd_prior": 11.93,
+   "eps_q": 4.3,
+   "eps_q_prior": 3.76,
+   "page": 3,
+   "note": "scanned report, read from OCR text"
+  }
+ }
+}

@@ -1,0 +1,35 @@
+{
+ "symbol": "CHL.X0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "48177": {
+   "months": 12,
+   "eps_ytd": 15.84,
+   "eps_ytd_prior": 11.59,
+   "eps_q": 4.33,
+   "eps_q_prior": 5.73,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  },
+  "46931": {
+   "months": 6,
+   "eps_ytd": 2.35,
+   "eps_ytd_prior": 3.28,
+   "eps_q": 2.07,
+   "eps_q_prior": 2.74,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  },
+  "46303": {
+   "months": 3,
+   "eps_ytd": 0.62,
+   "eps_ytd_prior": 0.54,
+   "eps_q": 0.62,
+   "eps_q_prior": 0.54,
+   "page": 2,
+   "note": "scanned report, read from OCR text"
+  }
+ }
+}

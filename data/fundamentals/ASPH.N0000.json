@@ -1,5 +1,71 @@
 {
  "annual": {
+  "24389": {
+   "end": "2018-03-31",
+   "eps": 710.59,
+   "eps_prior": -16.3,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 801.87,
+   "navps_prior": 91.23,
+   "ok": true,
+   "pages": 58,
+   "src_eps": "Basic earnings/ (loss) per share (Rupees)  10  710.59  (16.30)",
+   "src_navps": "Net asset value per share (Rupees)  801.87  91.23",
+   "title": "Annual Report 2017/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/495_1535450692687.pdf",
+   "v": 6,
+   "vals_eps": [
+    710.59,
+    -16.3
+   ],
+   "vals_navps": [
+    801.87,
+    91.23
+   ],
+   "year_only": false
+  },
+  "30779": {
+   "end": "2017-03-31",
+   "eps": -16.3,
+   "eps_prior": -16.59,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 91.22,
+   "navps_prior": 107.34,
+   "ok": true,
+   "pages": 54,
+   "src_eps": "Basic earnings per share (Rupees)  9  (16.30)  (16.59)",
+   "src_navps": "Net asset value per share (Rupees)  91.22  107.34",
+   "title": "Annual Report 2016/2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/495_1504784219.pdf",
+   "v": 6,
+   "vals_eps": [
+    -16.3,
+    -16.59
+   ],
+   "vals_navps": [
+    91.22,
+    107.34
+   ],
+   "year_only": false
+  },
   "33892": {
    "end": "2019-03-31",
    "eps": 23.67,
@@ -398,7 +464,7 @@
     "id": "24389",
     "title": "Annual Report 2017/2018",
     "uploaded": 1535394600000,
-    "url": "https://cdn.cse.lk/upload_report_file/495_1535450692687.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/495_1535450692687.pdf",
     "year_only": false
    },
    {
@@ -407,7 +473,7 @@
     "id": "30779",
     "title": "Annual Report 2016/2017",
     "uploaded": 1504722600000,
-    "url": "https://cdn.cse.lk/upload_report_file/495_1504784219.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/495_1504784219.pdf",
     "year_only": false
    }
   ],

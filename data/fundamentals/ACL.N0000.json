@@ -1,5 +1,163 @@
 {
  "annual": {
+  "21778": {
+   "dps": 1.5,
+   "dps_prior": 2.0,
+   "end": "2017-03-31",
+   "eps": 9.33,
+   "eps_prior": 9.13,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 80.0,
+   "navps_prior": 77.91,
+   "ok": true,
+   "pages": 132,
+   "src_dps": "Dividend per share  11  1.50  2.00  1.50  2.00",
+   "src_eps": "Earnings per share - basic  10  9.33  9.13  8.36  4.54",
+   "src_navps": "Net Assets per Share \u23ce  Rs.  80  77.91",
+   "title": "Annual Report 2016/2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/644_1500434024071.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.5,
+    2.0,
+    1.5,
+    2.0
+   ],
+   "vals_eps": [
+    9.33,
+    9.13,
+    8.36,
+    4.54
+   ],
+   "vals_navps": [
+    80.0,
+    77.91
+   ],
+   "year_only": false
+  },
+  "23826": {
+   "dps": 1.5,
+   "dps_prior": 1.5,
+   "end": "2018-03-31",
+   "eps": 5.82,
+   "eps_prior": 9.33,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 96.63,
+   "navps_prior": 87.39,
+   "ok": true,
+   "pages": 136,
+   "src_dps": "Dividend per share  11  1.50  1.50  1.50  1.50",
+   "src_eps": "Earnings per share - basic  10  5.82  9.33  3.99  8.36",
+   "src_navps": "Net asset per share  96.63  87.39  79.08  61.69  50.92",
+   "title": "Annual Report as at 31st March 2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/644_1531300808572.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.5,
+    1.5,
+    1.5,
+    1.5
+   ],
+   "vals_eps": [
+    5.82,
+    9.33,
+    3.99,
+    8.36
+   ],
+   "vals_navps": [
+    96.63,
+    87.39,
+    79.08,
+    61.69,
+    50.92
+   ],
+   "year_only": false
+  },
+  "33593": {
+   "dps": 1.5,
+   "dps_prior": 1.5,
+   "end": "2019-03-31",
+   "eps": 4.67,
+   "eps_prior": 5.82,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 98.73,
+   "navps_prior": 96.63,
+   "ok": true,
+   "pages": 144,
+   "src_dps": "Dividend per share  11  1.50  1.50  1.50  1.50",
+   "src_eps": "Basic earnings per share (Rs.)  4.67  5.82  2.90  3.99",
+   "src_navps": "Net asset per share  98.73  96.63  87.39  79.08  123.39  101.84  95.48  87.54  70.45  62.00",
+   "title": "Annual Report 31st March 2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/644_1564739378501.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.5,
+    1.5,
+    1.5,
+    1.5
+   ],
+   "vals_eps": [
+    4.67,
+    5.82,
+    2.9,
+    3.99
+   ],
+   "vals_navps": [
+    98.73,
+    96.63,
+    87.39,
+    79.08,
+    123.39,
+    101.84,
+    95.48,
+    87.54,
+    70.45,
+    62.0
+   ],
+   "year_only": false
+  },
   "36188": {
    "dps": 1.5,
    "dps_prior": 1.5,
@@ -472,7 +630,7 @@
     "id": "33593",
     "title": "Annual Report 31st March 2019",
     "uploaded": 1564739378501,
-    "url": "https://cdn.cse.lk/upload_report_file/644_1564739378501.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/644_1564739378501.pdf",
     "year_only": false
    },
    {
@@ -481,7 +639,7 @@
     "id": "23826",
     "title": "Annual Report as at 31st March 2018",
     "uploaded": 1531247400000,
-    "url": "https://cdn.cse.lk/upload_report_file/644_1531300808572.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/644_1531300808572.pdf",
     "year_only": false
    },
    {
@@ -490,7 +648,7 @@
     "id": "21778",
     "title": "Annual Report 2016/2017",
     "uploaded": 1500402600000,
-    "url": "https://cdn.cse.lk/upload_report_file/644_1500434024071.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/644_1500434024071.pdf",
     "year_only": false
    }
   ],
@@ -551,6 +709,15 @@
    },
    {
     "amended": false,
+    "end": "2025-03-31",
+    "id": "48089",
+    "title": "Quarterly Financial Statement as at 31.03.2025",
+    "uploaded": 1748598759009,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/644_1748598759009.03.2025.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
     "end": "2024-12-31",
     "id": "47328",
     "title": "Quarterly Financial Statements for the period ended 31st December 2024",
@@ -575,88 +742,10 @@
     "uploaded": 1723714212869,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/644_1723714212869.06.2024 - ACL Cables PLC.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2024-03-31",
-    "id": "45747",
-    "title": "Quarterly accounts for the year ended 31st March 2024",
-    "uploaded": 1717061949816,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/644_1717061949816.03.2024.pdf",
-    "year_only": false
    }
   ]
  },
  "quarterly": {
-  "45747": {
-   "end": "2024-03-31",
-   "eps": 2.69,
-   "eps_prior": 3.27,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 12,
-   "navps": 111.85,
-   "navps_prior": 98.09,
-   "ok": true,
-   "pages": 11,
-   "profit": 645351.0,
-   "profit_growth": -17.5,
-   "profit_prior": 782698.0,
-   "revenue": 7720195.0,
-   "revenue_growth": 13.5,
-   "revenue_prior": 6799146.0,
-   "src_eps": "Earnings per share (Rs.)  2.69  3.27  12.13  24.84",
-   "src_navps": "Net asset value per share  111.85  98.09  47.23  41.90",
-   "src_profit": "- Owners of the parent  645,351  782,698  2,906,350  5,951,700",
-   "src_revenue": "Revenue from contracts with customers  7,720,195  6,799,146  29,422,604  30,146,826",
-   "title": "Quarterly accounts for the year ended 31st March 2024",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/644_1717061949816.03.2024.pdf",
-   "v": 6,
-   "vals_eps": [
-    2.69,
-    3.27,
-    12.13,
-    24.84
-   ],
-   "vals_navps": [
-    111.85,
-    98.09,
-    47.23,
-    41.9
-   ],
-   "vals_profit": [
-    645351.0,
-    782698.0,
-    2906350.0,
-    5951700.0
-   ],
-   "vals_revenue": [
-    7720195.0,
-    6799146.0,
-    29422604.0,
-    30146826.0
-   ],
-   "year_only": false
-  },
   "46416": {
    "end": "2024-06-30",
    "eps": 5.22,
@@ -863,6 +952,75 @@
     21702409.0
    ],
    "year_only": false
+  },
+  "48089": {
+   "end": "2025-03-31",
+   "eps": 5.53,
+   "eps_prior": 2.69,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 12,
+   "navps": 129.79,
+   "navps_prior": 111.13,
+   "ok": true,
+   "pages": 11,
+   "profit": 1325149.0,
+   "profit_growth": 105.3,
+   "profit_prior": 645351.0,
+   "revenue": 9899489.0,
+   "revenue_growth": 28.2,
+   "revenue_prior": 7720195.0,
+   "src_eps": "Earnings per share (Rs.)  5.53  2.69  19.81  11.93",
+   "src_navps": "Net asset value per share  129.79  111.13  56.71  47.72",
+   "src_profit": "- Owners of the parent  1,325,149  645,351  4,744,794  2,858,432",
+   "src_revenue": "Revenue from contracts with customers  9,899,489  7,720,195  37,506,238  29,196,329",
+   "title": "Quarterly Financial Statement as at 31.03.2025",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/644_1748598759009.03.2025.pdf",
+   "v": 6,
+   "vals_eps": [
+    5.53,
+    2.69,
+    19.81,
+    11.93
+   ],
+   "vals_navps": [
+    129.79,
+    111.13,
+    56.71,
+    47.72
+   ],
+   "vals_profit": [
+    1325149.0,
+    645351.0,
+    4744794.0,
+    2858432.0
+   ],
+   "vals_revenue": [
+    9899489.0,
+    7720195.0,
+    37506238.0,
+    29196329.0
+   ],
+   "year_only": true
   },
   "48742": {
    "end": "2025-06-30",

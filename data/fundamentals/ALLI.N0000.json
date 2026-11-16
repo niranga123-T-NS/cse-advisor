@@ -1,11 +1,59 @@
 {
  "annual": {
-  "35574": {
-   "dps": 1.0,
-   "dps_prior": 1.0,
-   "end": "2020-12-31",
-   "eps": 6.19,
-   "eps_prior": 9.09,
+  "23682": {
+   "dps": 6.4,
+   "dps_prior": 5.9,
+   "end": "2018-03-31",
+   "eps": 21.05,
+   "eps_prior": 19.85,
+   "layout_dps": [
+    0,
+    1,
+    true
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 125.53,
+   "navps_prior": 120.63,
+   "ok": true,
+   "pages": 290,
+   "src_dps": "Dividend per share  Rs.  6.40  5.90  8",
+   "src_eps": "Earnings per share  Rs.  21.05  19.85  6",
+   "src_navps": "Net asset value per share  Rs.  125.53  120.63  4",
+   "title": "Annual Report 2017/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1528284569401.pdf",
+   "v": 6,
+   "vals_dps": [
+    6.4,
+    5.9,
+    8.0
+   ],
+   "vals_eps": [
+    21.05,
+    19.85,
+    6.0
+   ],
+   "vals_navps": [
+    125.53,
+    120.63,
+    4.0
+   ],
+   "year_only": false
+  },
+  "30490": {
+   "dps": 5.9,
+   "dps_prior": 53.0,
+   "end": "2017-03-31",
+   "eps": 20.0,
+   "eps_prior": 13.0,
    "layout_dps": [
     0,
     1,
@@ -21,34 +69,83 @@
     1,
     false
    ],
-   "navps": 19.0,
-   "navps_prior": 137.0,
+   "navps": 121.0,
+   "navps_prior": 1120.0,
    "ok": true,
-   "pages": 96,
-   "src_dps": "Dividend Per Share  18  -  1.00  -  1.00",
-   "src_eps": "Basic Earnings Per Share  17  6.19  9.09  6.79  9.61",
-   "src_navps": "Net assets value per share (Rs.)  19  137  134  139  135",
-   "title": "Alliance Finance Company PLC Audited Financials as at 31/3/2020",
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1593484801269.pdf",
+   "pages": 272,
+   "src_dps": "Dividend Per Share (Rs.)  5.90  53.00  5.90  53.00",
+   "src_eps": "Basic earnings per ordinary share (Rs.)  20  13  20  13",
+   "src_navps": "Net assets value per ordinary share  121  1,120  122  1,137",
+   "title": "Annual Report 2016/2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1496834600.pdf",
+   "v": 6,
+   "vals_dps": [
+    5.9,
+    53.0,
+    5.9,
+    53.0
+   ],
+   "vals_eps": [
+    20.0,
+    13.0,
+    20.0,
+    13.0
+   ],
+   "vals_navps": [
+    121.0,
+    1120.0,
+    122.0,
+    1137.0
+   ],
+   "year_only": false
+  },
+  "33463": {
+   "dps": 1.0,
+   "dps_prior": 6.4,
+   "end": "2019-03-31",
+   "eps": 9.09,
+   "eps_prior": 21.62,
+   "layout_dps": [
+    0,
+    1,
+    true
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 133.85,
+   "navps_prior": 127.58,
+   "ok": true,
+   "pages": 304,
+   "src_dps": "Dividend per share  Rs.  1.00  6.40  (84)",
+   "src_eps": "Earnings per share  Rs.  9.09  21.62  (58)",
+   "src_navps": "Net asset value per share  Rs.  133.85  127.58  5",
+   "title": "Annual Report 2018/2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1562758093027.pdf",
    "v": 6,
    "vals_dps": [
     1.0,
-    1.0
+    6.4,
+    -84.0
    ],
    "vals_eps": [
-    6.19,
     9.09,
-    6.79,
-    9.61
+    21.62,
+    -58.0
    ],
    "vals_navps": [
-    19.0,
-    137.0,
-    134.0,
-    139.0,
-    135.0
+    133.85,
+    127.58,
+    5.0
    ],
-   "year_only": true
+   "year_only": false
   },
   "35807": {
    "dps": 1.0,
@@ -151,15 +248,6 @@
    ],
    "year_only": false
   },
-  "40965": {
-   "end": "2022-12-31",
-   "ok": true,
-   "pages": 99,
-   "title": "Audited Financial Statements as at 31.03.2022",
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1656498247517.pdf",
-   "v": 6,
-   "year_only": true
-  },
   "41489": {
    "dps": 14.5,
    "dps_prior": 5.5,
@@ -203,15 +291,6 @@
     198.28,
     172.61
    ],
-   "year_only": false
-  },
-  "43577": {
-   "end": "2023-12-31",
-   "ok": true,
-   "pages": 102,
-   "title": "Audited Accounts 31/3/2023 Alliance Finance Company PLC",
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1688040452312.pdf",
-   "v": 6,
    "year_only": false
   },
   "44112": {
@@ -440,30 +519,12 @@
    },
    {
     "amended": false,
-    "end": "2023-12-31",
-    "id": "43577",
-    "title": "Audited Accounts 31/3/2023 Alliance Finance Company PLC",
-    "uploaded": 1688040452312,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1688040452312.pdf",
-    "year_only": false
-   },
-   {
-    "amended": false,
     "end": "2023-03-31",
     "id": "44112",
     "title": "Annual Report 2022/23",
     "uploaded": 1693540187585,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1693540187585.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2022-12-31",
-    "id": "40965",
-    "title": "Audited Financial Statements as at 31.03.2022",
-    "uploaded": 1656498247517,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1656498247517.pdf",
-    "year_only": true
    },
    {
     "amended": false,
@@ -485,20 +546,38 @@
    },
    {
     "amended": false,
-    "end": "2020-12-31",
-    "id": "35574",
-    "title": "Alliance Finance Company PLC Audited Financials as at 31/3/2020",
-    "uploaded": 1593484801269,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1593484801269.pdf",
-    "year_only": true
-   },
-   {
-    "amended": false,
     "end": "2020-03-31",
     "id": "35807",
     "title": "Annual Report 2019/20",
     "uploaded": 1596108332852,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1596108332852.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "33463",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1562758093027,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1562758093027.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "23682",
+    "title": "Annual Report 2017/2018",
+    "uploaded": 1528223400000,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1528284569401.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "30490",
+    "title": "Annual Report 2016/2017",
+    "uploaded": 1496773800000,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1496834600.pdf",
     "year_only": false
    }
   ],
@@ -550,6 +629,24 @@
    },
    {
     "amended": false,
+    "end": "2025-06-30",
+    "id": "48754",
+    "title": "INTERIM FINANCIAL STATEMENTS AS AT 30/06/2025",
+    "uploaded": 1755251301045,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1755251301045.Interim FS Q1 2025-Published Format _ 30_06_2025 (14.08.2025)-With Signature.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2025-03-31",
+    "id": "48136",
+    "title": "INTERIM FINANCIAL STATEMENTS AS AT 31/03/2025",
+    "uploaded": 1748605049573,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1748605049573..Interim FS Q4 2024-2025_Final_Final.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
     "end": "2024-12-31",
     "id": "47463",
     "title": "INTERIM FINANCIAL STATEMENTS AS AT 31/12/2024",
@@ -559,47 +656,29 @@
    },
    {
     "amended": false,
-    "end": "2023-12-31",
-    "id": "45159",
-    "title": "Interim Financial Statements as at 31-12-2023",
-    "uploaded": 1708000677104,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1708000677104.pdf",
-    "year_only": true
-   },
-   {
-    "amended": false,
-    "end": "2023-06-30",
-    "id": "43894",
-    "title": "INTERIM FINANCIALS FOR THE QUARTER ENDED 30TH JUNE 2023",
-    "uploaded": 1692066215347,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1692066215347.06.2023.pdf",
+    "end": "2024-09-30",
+    "id": "46883",
+    "title": "INTERIM FINANCIAL STATEMENT 30/09/2024",
+    "uploaded": 1731322788327,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1731322788327.Interim FS Q2 2024-2025-Published Format - With Signature.pdf",
     "year_only": false
    },
    {
     "amended": false,
-    "end": "2022-12-31",
-    "id": "42717",
-    "title": "ALLIANCE FINANCE COMPANY PLC QUARTERLY FINANCIAL 31/12/2022",
-    "uploaded": 1676453017457,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1676453017457.12.2022.pdf",
+    "end": "2024-06-30",
+    "id": "46443",
+    "title": "INTERIM FINANCIAL STATEMENT 30/06/2024",
+    "uploaded": 1723718827359,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1723718827359.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2021-12-31",
-    "id": "39950",
-    "title": "Interim Financial Statements as of 31-12-2021",
-    "uploaded": 1644897905333,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1644897905333.pdf",
-    "year_only": true
    }
   ]
  },
  "quarterly": {
-  "39950": {
-   "end": "2021-12-31",
-   "eps": 57.45,
-   "eps_prior": 18.56,
+  "46443": {
+   "end": "2024-06-30",
+   "eps": 29.33,
+   "eps_prior": 7.73,
    "layout_eps": [
     0,
     1,
@@ -621,204 +700,58 @@
     true
    ],
    "months": 3,
-   "navps": 191.0,
-   "navps_prior": 173.0,
+   "navps": 240.0,
+   "navps_prior": 241.0,
    "ok": true,
-   "pages": 18,
-   "profit": 491806062.0,
-   "profit_growth": 204.1,
-   "profit_prior": 161746726.0,
-   "revenue": 2242700073.0,
-   "revenue_growth": 31.7,
-   "revenue_prior": 1703273340.0,
-   "src_eps": "Basic/ Diluted earnings per share (Annualised)  57.45  18.56  33.03  12.94",
-   "src_navps": "Net assets value per share (Rs.)  191  173  193  175",
-   "src_profit": "Equity holders of the Company  491,806,062  161,746,726  204  856,157,192  344,458,663  149",
-   "src_revenue": "Gross Income  2,242,700,073  1,703,273,340  32  5,957,857,559  5,397,288,775  10",
-   "title": "Interim Financial Statements as of 31-12-2021",
+   "pages": 14,
+   "profit": 247057379.0,
+   "profit_growth": 279.4,
+   "profit_prior": 65115583.0,
+   "revenue": 3657699811.0,
+   "revenue_growth": 15.0,
+   "revenue_prior": 3181412074.0,
+   "src_eps": "Basic/ Diluted earnings per share (Annualised)  29.33  7.73  30.67  9.10",
+   "src_navps": "Net assets value per share (Rs.)  240  241  245  246",
+   "src_profit": "Equity holders of the Company  247,057,379  65,115,583  279  258,371,507  76,682,581  237",
+   "src_revenue": "Gross Income  3,657,699,811  3,181,412,074  15  3,698,669,755  3,208,128,270  15",
+   "title": "INTERIM FINANCIAL STATEMENT 30/06/2024",
    "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1644897905333.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1723718827359.pdf",
    "v": 6,
    "vals_eps": [
-    57.45,
-    18.56,
-    33.03,
-    12.94
-   ],
-   "vals_navps": [
-    191.0,
-    173.0,
-    193.0,
-    175.0
-   ],
-   "vals_profit": [
-    491806062.0,
-    161746726.0,
-    204.0,
-    856157192.0,
-    344458663.0,
-    149.0
-   ],
-   "vals_revenue": [
-    2242700073.0,
-    1703273340.0,
-    32.0,
-    5957857559.0,
-    5397288775.0,
-    10.0
-   ],
-   "year_only": true
-  },
-  "42717": {
-   "end": "2022-12-31",
-   "eps": 5.64,
-   "eps_prior": 57.45,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    true
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    true
-   ],
-   "months": 3,
-   "navps": 197.0,
-   "navps_prior": 198.0,
-   "ok": true,
-   "pages": 18,
-   "profit": 42396736.0,
-   "profit_growth": -91.4,
-   "profit_prior": 491806062.0,
-   "revenue": 3251173097.0,
-   "revenue_growth": 45.0,
-   "revenue_prior": 2242700073.0,
-   "src_eps": "Basic/ Diluted earnings per share (Annualised)  5.64  57.45  9.98  33.03",
-   "src_navps": "Net assets value per share (Rs.)  197  198  200  201",
-   "src_profit": "Equity holders of the Company  42,396,736  491,806,062  (91)  268,936,680  856,157,192  (69)",
-   "src_revenue": "Gross Income  3,251,173,097  2,242,700,073  45  9,153,397,685  5,957,857,559  54",
-   "title": "ALLIANCE FINANCE COMPANY PLC QUARTERLY FINANCIAL 31/12/2022",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1676453017457.12.2022.pdf",
-   "v": 6,
-   "vals_eps": [
-    5.64,
-    57.45,
-    9.98,
-    33.03
-   ],
-   "vals_navps": [
-    197.0,
-    198.0,
-    200.0,
-    201.0
-   ],
-   "vals_profit": [
-    42396736.0,
-    491806062.0,
-    -91.0,
-    268936680.0,
-    856157192.0,
-    -69.0
-   ],
-   "vals_revenue": [
-    3251173097.0,
-    2242700073.0,
-    45.0,
-    9153397685.0,
-    5957857559.0,
-    54.0
-   ],
-   "year_only": false
-  },
-  "43894": {
-   "end": "2023-06-30",
-   "eps": 7.73,
-   "eps_prior": 6.74,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    true
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    true
-   ],
-   "months": 3,
-   "navps": 209.0,
-   "navps_prior": 206.0,
-   "ok": true,
-   "pages": 16,
-   "profit": 65115583.0,
-   "profit_growth": 14.7,
-   "profit_prior": 56775557.0,
-   "revenue": 3181412074.0,
-   "revenue_growth": 16.9,
-   "revenue_prior": 2721490515.0,
-   "src_eps": "Basic/ Diluted earnings per share (Annualised)  7.73  6.74  9.88  7.79",
-   "src_navps": "Net assets value per share (Rs.)  209  206  212  210",
-   "src_profit": "Equity holders of the Company  65,115,583  56,775,557  15  76,682,581  65,642,172  17",
-   "src_revenue": "Gross Income  3,181,412,074  2,721,490,515  17  3,208,128,270  2,752,066,072  17",
-   "title": "INTERIM FINANCIALS FOR THE QUARTER ENDED 30TH JUNE 2023",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1692066215347.06.2023.pdf",
-   "v": 6,
-   "vals_eps": [
+    29.33,
     7.73,
-    6.74,
-    9.88,
-    7.79
+    30.67,
+    9.1
    ],
    "vals_navps": [
-    209.0,
-    206.0,
-    212.0,
-    210.0
+    240.0,
+    241.0,
+    245.0,
+    246.0
    ],
    "vals_profit": [
+    247057379.0,
     65115583.0,
-    56775557.0,
-    15.0,
+    279.0,
+    258371507.0,
     76682581.0,
-    65642172.0,
-    17.0
+    237.0
    ],
    "vals_revenue": [
+    3657699811.0,
     3181412074.0,
-    2721490515.0,
-    17.0,
+    15.0,
+    3698669755.0,
     3208128270.0,
-    2752066072.0,
-    17.0
+    15.0
    ],
    "year_only": false
   },
-  "45159": {
-   "end": "2023-12-31",
-   "eps": 33.71,
-   "eps_prior": 5.64,
+  "46883": {
+   "end": "2024-09-30",
+   "eps": 38.3,
+   "eps_prior": 17.03,
    "layout_eps": [
     0,
     1,
@@ -840,53 +773,53 @@
     true
    ],
    "months": 3,
-   "navps": 217.0,
-   "navps_prior": 206.0,
+   "navps": 249.0,
+   "navps_prior": 241.0,
    "ok": true,
-   "pages": 18,
-   "profit": 298797742.0,
-   "profit_growth": 604.8,
-   "profit_prior": 42396736.0,
-   "revenue": 3545467348.0,
-   "revenue_growth": 9.1,
-   "revenue_prior": 3251173097.0,
-   "src_eps": "Basic/ Diluted earnings per share (Annualised)  33.71  5.64  19.49  9.98",
-   "src_navps": "Net assets value per share (Rs.)  217  206  221  210",
-   "src_profit": "Equity holders of the Company  298,797,742  42,396,736  605  531,049,654  268,936,680  97",
-   "src_revenue": "Gross Income  3,545,467,348  3,251,173,097  9  10,141,160,719  9,153,397,685  11",
-   "title": "Interim Financial Statements as at 31-12-2023",
+   "pages": 15,
+   "profit": 338841898.0,
+   "profit_growth": 117.8,
+   "profit_prior": 155569331.0,
+   "revenue": 3836986343.0,
+   "revenue_growth": 12.4,
+   "revenue_prior": 3414281297.0,
+   "src_eps": "Basic/ Diluted earnings per share \u23ce  38.30  17.03  33.81  12.38",
+   "src_navps": "Net assets value per share (Rs.)  249  241  255  246",
+   "src_profit": "Equity holders of the Company  338,841,898  155,569,331  118  597,213,406  232,251,912  157",
+   "src_revenue": "Gross Income  3,836,986,343  3,414,281,297  12  7,494,686,154  6,595,693,371  14",
+   "title": "INTERIM FINANCIAL STATEMENT 30/09/2024",
    "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1708000677104.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1731322788327.Interim FS Q2 2024-2025-Published Format - With Signature.pdf",
    "v": 6,
    "vals_eps": [
-    33.71,
-    5.64,
-    19.49,
-    9.98
+    38.3,
+    17.03,
+    33.81,
+    12.38
    ],
    "vals_navps": [
-    217.0,
-    206.0,
-    221.0,
-    210.0
+    249.0,
+    241.0,
+    255.0,
+    246.0
    ],
    "vals_profit": [
-    298797742.0,
-    42396736.0,
-    605.0,
-    531049654.0,
-    268936680.0,
-    97.0
+    338841898.0,
+    155569331.0,
+    118.0,
+    597213406.0,
+    232251912.0,
+    157.0
    ],
    "vals_revenue": [
-    3545467348.0,
-    3251173097.0,
-    9.0,
-    10141160719.0,
-    9153397685.0,
-    11.0
+    3836986343.0,
+    3414281297.0,
+    12.0,
+    7494686154.0,
+    6595693371.0,
+    14.0
    ],
-   "year_only": true
+   "year_only": false
   },
   "47463": {
    "end": "2024-12-31",
@@ -957,6 +890,138 @@
     11504037020.0,
     10141160719.0,
     13.0
+   ],
+   "year_only": true
+  },
+  "48136": {
+   "end": "2025-03-31",
+   "eps": 87.96,
+   "eps_prior": 52.76,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 3,
+   "navps": 277.0,
+   "navps_prior": 241.0,
+   "ok": true,
+   "pages": 17,
+   "profit": 740943010.0,
+   "profit_growth": 66.7,
+   "profit_prior": 444451272.0,
+   "revenue": 3887270420.0,
+   "revenue_growth": 2.7,
+   "revenue_prior": 3784933531.0,
+   "src_eps": "Basic/ Diluted earnings per share \u23ce  87.96  52.76  52.82  28.95",
+   "src_navps": "Net assets value per share (Rs.)  277  241  283  246",
+   "src_profit": "Equity holders of the Company  740,943,010  444,451,272  67  1,779,739,681  975,500,926  82",
+   "src_revenue": "Gross Income  3,887,270,420  3,784,933,531  3  15,673,118,875  13,926,094,250  13",
+   "title": "INTERIM FINANCIAL STATEMENTS AS AT 31/03/2025",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1748605049573..Interim FS Q4 2024-2025_Final_Final.pdf",
+   "v": 6,
+   "vals_eps": [
+    87.96,
+    52.76,
+    52.82,
+    28.95
+   ],
+   "vals_navps": [
+    277.0,
+    241.0,
+    283.0,
+    246.0
+   ],
+   "vals_profit": [
+    740943010.0,
+    444451272.0,
+    67.0,
+    1779739681.0,
+    975500926.0,
+    82.0
+   ],
+   "vals_revenue": [
+    3887270420.0,
+    3784933531.0,
+    3.0,
+    15673118875.0,
+    13926094250.0,
+    13.0
+   ],
+   "year_only": true
+  },
+  "48754": {
+   "end": "2025-06-30",
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 3,
+   "navps": 281.0,
+   "navps_prior": 277.0,
+   "ok": true,
+   "pages": 14,
+   "profit": 407130483.0,
+   "profit_growth": 64.8,
+   "profit_prior": 247057379.0,
+   "revenue": 4377684548.0,
+   "revenue_growth": 19.7,
+   "revenue_prior": 3657699811.0,
+   "src_navps": "Net assets value per share (Rs.)  281  277  287  283",
+   "src_profit": "Equity holders of the Company  407,130,483  247,057,379  65  424,460,567  258,371,506  64",
+   "src_revenue": "Gross Income  4,377,684,548  3,657,699,811  20  4,425,147,134  3,698,669,755  20",
+   "title": "INTERIM FINANCIAL STATEMENTS AS AT 30/06/2025",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1755251301045.Interim FS Q1 2025-Published Format _ 30_06_2025 (14.08.2025)-With Signature.pdf",
+   "v": 6,
+   "vals_navps": [
+    281.0,
+    277.0,
+    287.0,
+    283.0
+   ],
+   "vals_profit": [
+    407130483.0,
+    247057379.0,
+    65.0,
+    424460567.0,
+    258371506.0,
+    64.0
+   ],
+   "vals_revenue": [
+    4377684548.0,
+    3657699811.0,
+    20.0,
+    4425147134.0,
+    3698669755.0,
+    20.0
    ],
    "year_only": true
   },

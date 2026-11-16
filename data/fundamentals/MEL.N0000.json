@@ -1,5 +1,71 @@
 {
  "annual": {
+  "23029": {
+   "end": "2017-03-31",
+   "eps": -0.03,
+   "eps_prior": -0.75,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 7.4,
+   "navps_prior": 7.16,
+   "ok": true,
+   "pages": 58,
+   "src_eps": "Earnings Per Share (Rs)  (0.03)  (0.75)",
+   "src_navps": "Net Assets Per Share (Rs)  7.40  7.16",
+   "title": "Annual Report 2016/17",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1521194351309.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.03,
+    -0.75
+   ],
+   "vals_navps": [
+    7.4,
+    7.16
+   ],
+   "year_only": false
+  },
+  "32584": {
+   "end": "2018-03-31",
+   "eps": -0.18,
+   "eps_prior": -0.03,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 7.22,
+   "navps_prior": 7.4,
+   "ok": true,
+   "pages": 56,
+   "src_eps": "Earnings Per Share (Rs)  (0.18)  (0.03)",
+   "src_navps": "Net Assets Per Share (Rs)  7.22  7.40",
+   "title": "Annual Report 2017/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1552907226.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.18,
+    -0.03
+   ],
+   "vals_navps": [
+    7.22,
+    7.4
+   ],
+   "year_only": false
+  },
   "34666": {
    "end": "2019-03-31",
    "eps": -1.59,
@@ -346,7 +412,7 @@
     "id": "32584",
     "title": "Annual Report 2017/2018",
     "uploaded": 1552847400000,
-    "url": "https://cdn.cse.lk/upload_report_file/1161_1552907226.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1552907226.pdf",
     "year_only": false
    },
    {
@@ -355,7 +421,7 @@
     "id": "23029",
     "title": "Annual Report 2016/17",
     "uploaded": 1521138600000,
-    "url": "https://cdn.cse.lk/upload_report_file/1161_1521194351309.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1521194351309.pdf",
     "year_only": false
    }
   ],
@@ -398,6 +464,24 @@
    },
    {
     "amended": false,
+    "end": "2025-06-30",
+    "id": "48823",
+    "title": "Interim Financial Statements as at 30.06.2025",
+    "uploaded": 1755657755721,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1755657755721.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2025-03-31",
+    "id": "48045",
+    "title": "Interim Financial Statements as at 31.03.2025",
+    "uploaded": 1748571148745,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1748571148745.03.2025.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
     "end": "2024-12-31",
     "id": "47520",
     "title": "Interim Financial Statements as at 31.12.2024",
@@ -407,184 +491,38 @@
    },
    {
     "amended": false,
-    "end": "2023-12-31",
-    "id": "45181",
-    "title": "Interim Accounts 31.12.2023",
-    "uploaded": 1708053257332,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1708053257332.12.2023.pdf",
-    "year_only": false
+    "end": "2024-09-30",
+    "id": "47108",
+    "title": "Interim Financial Statements as at 30.09.2024",
+    "uploaded": 1732245888027,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1732245888027.09.2024.pdf",
+    "year_only": true
    },
    {
     "amended": false,
-    "end": "2022-12-31",
-    "id": "42584",
-    "title": "Mackwoods Energy Plc - Interim Accounts December 2022",
-    "uploaded": 1676023123398,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1676023123398.pdf",
-    "year_only": false
+    "end": "2024-06-30",
+    "id": "46481",
+    "title": "Interim Financial Statements as at 30.06.2024",
+    "uploaded": 1723777469676,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1723777469676.06.2024.pdf",
+    "year_only": true
    },
    {
     "amended": false,
-    "end": "2022-03-31",
-    "id": "40555",
-    "title": "Financial statements as at 31st March 2022",
-    "uploaded": 1653640491505,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1653640491505.31.pdf",
-    "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2021-12-31",
-    "id": "39976",
-    "title": "Financial statements as at 31st December 2021",
-    "uploaded": 1644917080279,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1644917080279.pdf",
-    "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2021-06-30",
-    "id": "38874",
-    "title": "Mackwoods Energy Plc Interim Accounts Quarter Ended 30th June 2021",
-    "uploaded": 1629191386387,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1629191386387.pdf",
-    "year_only": false
+    "end": "2024-03-31",
+    "id": "45708",
+    "title": "Interim Financial Statements as at 31-03-2024",
+    "uploaded": 1716980706463,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1716980706463.03.2024.pdf",
+    "year_only": true
    }
   ]
  },
  "quarterly": {
-  "38874": {
-   "end": "2021-06-30",
+  "45708": {
+   "end": "2024-03-31",
    "eps": 0.0,
    "eps_prior": 0.0,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "navps": 2.85,
-   "navps_prior": 2.85,
-   "ok": true,
-   "pages": 7,
-   "profit": 143860.0,
-   "profit_growth": 184.1,
-   "profit_prior": 50636.0,
-   "revenue": 3354385.0,
-   "revenue_growth": 798.2,
-   "revenue_prior": 373450.0,
-   "src_eps": "Earnings per Share - Basic - (Rs)  0.00  0.00",
-   "src_navps": "Net Assets Per Share (Rs)  2.85  2.85",
-   "src_profit": "Owners of the Company  143,860  50,636",
-   "src_revenue": "Turnover  3,354,385  373,450",
-   "title": "Mackwoods Energy Plc Interim Accounts Quarter Ended 30th June 2021",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1629191386387.pdf",
-   "v": 6,
-   "vals_eps": [
-    0.0,
-    0.0
-   ],
-   "vals_navps": [
-    2.85,
-    2.85
-   ],
-   "vals_profit": [
-    143860.0,
-    50636.0
-   ],
-   "vals_revenue": [
-    3354385.0,
-    373450.0
-   ],
-   "year_only": false
-  },
-  "39976": {
-   "end": "2021-12-31",
-   "eps": 0.01,
-   "eps_prior": 0.0,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 9,
-   "navps": 2.85,
-   "navps_prior": 2.83,
-   "ok": true,
-   "pages": 7,
-   "profit": 729497.0,
-   "profit_growth": 380.2,
-   "profit_prior": 151905.0,
-   "revenue": 6270000.0,
-   "revenue_growth": 209.2,
-   "revenue_prior": 2027700.0,
-   "src_eps": "Earnings per Share - Basic - (Rs)  0.01  0.00  0.02  0.01",
-   "src_navps": "Net Assets Per Share (Rs)  2.85  2.83",
-   "src_profit": "Owners of the Company  729,497  151,905  1,562,261  760,316",
-   "src_revenue": "Turnover  6,270,000  2,027,700  13,120,585  5,673,890",
-   "title": "Financial statements as at 31st December 2021",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1644917080279.pdf",
-   "v": 6,
-   "vals_eps": [
-    0.01,
-    0.0,
-    0.02,
-    0.01
-   ],
-   "vals_navps": [
-    2.85,
-    2.83
-   ],
-   "vals_profit": [
-    729497.0,
-    151905.0,
-    1562261.0,
-    760316.0
-   ],
-   "vals_revenue": [
-    6270000.0,
-    2027700.0,
-    13120585.0,
-    5673890.0
-   ],
-   "year_only": false
-  },
-  "40555": {
-   "end": "2022-03-31",
-   "eps": 0.01,
-   "eps_prior": 0.01,
    "layout_eps": [
     0,
     1,
@@ -606,117 +544,62 @@
     false
    ],
    "months": 12,
-   "navps": 2.85,
-   "navps_prior": 2.83,
+   "navps": 2.87,
+   "navps_prior": 2.86,
    "ok": true,
    "pages": 7,
-   "profit": 779217.0,
-   "profit_growth": 36.9,
-   "profit_prior": 569165.0,
-   "revenue": 6945000.0,
-   "revenue_growth": 947.4,
-   "revenue_prior": 663071.0,
-   "src_eps": "Earnings per Share - Basic - (Rs)  0.01  0.01  0.02  0.01",
-   "src_navps": "Net Assets Per Share (Rs)  2.85  2.83",
-   "src_profit": "Owners of the Company  779,217  569,165  2,341,477  1,329,481",
-   "src_revenue": "Turnover  6,945,000  663,071  20,065,585  6,336,961",
-   "title": "Financial statements as at 31st March 2022",
+   "profit": 257330.0,
+   "profit_growth": -34.1,
+   "profit_prior": 390698.0,
+   "revenue": 4150000.0,
+   "revenue_growth": -14.9,
+   "revenue_prior": 4875000.0,
+   "src_eps": "Earnings per Share - Basic - (Rs)  0.00  0.00  0.01  0.01",
+   "src_navps": "Net Assets Per Share (Rs)  2.87  2.86",
+   "src_profit": "Owners of the Company  257,330  390,698  968,087  903,122",
+   "src_revenue": "Turnover  4,150,000  4,875,000  20,656,000  16,070,000",
+   "title": "Interim Financial Statements as at 31-03-2024",
    "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1653640491505.31.pdf",
-   "v": 6,
-   "vals_eps": [
-    0.01,
-    0.01,
-    0.02,
-    0.01
-   ],
-   "vals_navps": [
-    2.85,
-    2.83
-   ],
-   "vals_profit": [
-    779217.0,
-    569165.0,
-    2341477.0,
-    1329481.0
-   ],
-   "vals_revenue": [
-    6945000.0,
-    663071.0,
-    20065585.0,
-    6336961.0
-   ],
-   "year_only": false
-  },
-  "42584": {
-   "end": "2022-12-31",
-   "eps": 0.0,
-   "eps_prior": 0.01,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 9,
-   "navps": 2.86,
-   "navps_prior": 2.85,
-   "ok": true,
-   "pages": 7,
-   "profit": 56947.0,
-   "profit_growth": -92.2,
-   "profit_prior": 729496.0,
-   "revenue": 3575000.0,
-   "revenue_growth": -43.0,
-   "revenue_prior": 6270000.0,
-   "src_eps": "Earnings per Share - Basic - (Rs)  0.00  0.01  0.01  0.02",
-   "src_navps": "Net Assets Per Share (Rs)  2.86  2.85",
-   "src_profit": "Owners of the Company  56,947  729,496  512,424  1,562,260",
-   "src_revenue": "Turnover  3,575,000  6,270,000  11,195,000  13,120,585",
-   "title": "Mackwoods Energy Plc - Interim Accounts December 2022",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1676023123398.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1716980706463.03.2024.pdf",
    "v": 6,
    "vals_eps": [
     0.0,
+    0.0,
     0.01,
-    0.01,
-    0.02
+    0.01
    ],
    "vals_navps": [
-    2.86,
-    2.85
+    2.87,
+    2.86
    ],
    "vals_profit": [
-    56947.0,
-    729496.0,
-    512424.0,
-    1562260.0
+    257330.0,
+    390698.0,
+    968087.0,
+    903122.0
    ],
    "vals_revenue": [
-    3575000.0,
-    6270000.0,
-    11195000.0,
-    13120585.0
+    4150000.0,
+    4875000.0,
+    20656000.0,
+    16070000.0
    ],
-   "year_only": false
+   "year_only": true
   },
-  "45181": {
-   "end": "2023-12-31",
+  "46481": {
+   "end": "2024-06-30",
+   "months": null,
+   "ok": true,
+   "pages": 7,
+   "profit_growth": null,
+   "revenue_growth": null,
+   "title": "Interim Financial Statements as at 30.06.2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1723777469676.06.2024.pdf",
+   "v": 6,
+   "year_only": true
+  },
+  "47108": {
+   "end": "2024-09-30",
    "eps": 0.0,
    "eps_prior": 0.0,
    "layout_eps": [
@@ -739,48 +622,48 @@
     1,
     false
    ],
-   "months": 9,
-   "navps": 2.87,
-   "navps_prior": 2.86,
+   "months": 6,
+   "navps": 2.89,
+   "navps_prior": 2.89,
    "ok": true,
    "pages": 7,
-   "profit": 214084.0,
-   "profit_growth": 275.9,
-   "profit_prior": 56947.0,
-   "revenue": 5305000.0,
-   "revenue_growth": 48.4,
-   "revenue_prior": 3575000.0,
-   "src_eps": "Earnings per Share - Basic - (Rs)  0.00  0.00  0.01  0.00",
-   "src_navps": "Net Assets Per Share (Rs)  2.87  2.86",
-   "src_profit": "Owners of the Company  214,084  56,947  710,757  512,424",
-   "src_revenue": "Turnover  5,305,000  3,575,000  16,506,000  11,195,000",
-   "title": "Interim Accounts 31.12.2023",
+   "profit": 889138.0,
+   "profit_growth": 395.2,
+   "profit_prior": 179564.0,
+   "revenue": 4575000.0,
+   "revenue_growth": -12.9,
+   "revenue_prior": 5250000.0,
+   "src_eps": "Earnings per Share - Basic - (Rs)  0.00  0.00  0.00  0.00",
+   "src_navps": "Net Assets Per Share (Rs)  2.89  2.89",
+   "src_profit": "Owners of the Company  889,138  179,564  1,107,584  496,673",
+   "src_revenue": "Turnover  4,575,000  5,250,000  8,735,000  11,201,000",
+   "title": "Interim Financial Statements as at 30.09.2024",
    "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1708053257332.12.2023.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1732245888027.09.2024.pdf",
    "v": 6,
    "vals_eps": [
     0.0,
     0.0,
-    0.01,
+    0.0,
     0.0
    ],
    "vals_navps": [
-    2.87,
-    2.86
+    2.89,
+    2.89
    ],
    "vals_profit": [
-    214084.0,
-    56947.0,
-    710757.0,
-    512424.0
+    889138.0,
+    179564.0,
+    1107584.0,
+    496673.0
    ],
    "vals_revenue": [
-    5305000.0,
-    3575000.0,
-    16506000.0,
-    11195000.0
+    4575000.0,
+    5250000.0,
+    8735000.0,
+    11201000.0
    ],
-   "year_only": false
+   "year_only": true
   },
   "47520": {
    "end": "2024-12-31",
@@ -846,6 +729,134 @@
     5305000.0,
     13235000.0,
     16506000.0
+   ],
+   "year_only": true
+  },
+  "48045": {
+   "end": "2025-03-31",
+   "eps": 0.0,
+   "eps_prior": 0.0,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 12,
+   "navps": 2.9,
+   "navps_prior": 2.89,
+   "ok": true,
+   "pages": 7,
+   "profit": 1078086.0,
+   "profit_growth": -47.4,
+   "profit_prior": 2049830.0,
+   "revenue": 4625000.0,
+   "revenue_growth": 11.4,
+   "revenue_prior": 4150000.0,
+   "src_eps": "Earnings per Share - Basic - (Rs)  0.00  0.00  0.01  (0.08)",
+   "src_navps": "Net Assets Per Share (Rs)  2.90  2.89",
+   "src_profit": "Owners of the Company  1,078,086  2,049,830  3,093,598  2,760,587",
+   "src_revenue": "Turnover  4,625,000  4,150,000  17,860,000  20,656,000",
+   "title": "Interim Financial Statements as at 31.03.2025",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1748571148745.03.2025.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.0,
+    0.0,
+    0.01,
+    -0.08
+   ],
+   "vals_navps": [
+    2.9,
+    2.89
+   ],
+   "vals_profit": [
+    1078086.0,
+    2049830.0,
+    3093598.0,
+    2760587.0
+   ],
+   "vals_revenue": [
+    4625000.0,
+    4150000.0,
+    17860000.0,
+    20656000.0
+   ],
+   "year_only": true
+  },
+  "48823": {
+   "end": "2025-06-30",
+   "eps": 0.0,
+   "eps_prior": 0.0,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 2.9,
+   "navps_prior": 2.9,
+   "ok": true,
+   "pages": 7,
+   "profit": 1014103.0,
+   "profit_growth": 364.2,
+   "profit_prior": 218446.0,
+   "revenue": 4725000.0,
+   "revenue_growth": 13.6,
+   "revenue_prior": 4160000.0,
+   "src_eps": "Earnings per Share - Basic - (Rs)  0.00  0.00",
+   "src_navps": "Net Assets Per Share (Rs)  2.90  2.90",
+   "src_profit": "Owners of the Company  1,014,103  218,446",
+   "src_revenue": "Turnover  4,725,000  4,160,000",
+   "title": "Interim Financial Statements as at 30.06.2025",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1161_1755657755721.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.0,
+    0.0
+   ],
+   "vals_navps": [
+    2.9,
+    2.9
+   ],
+   "vals_profit": [
+    1014103.0,
+    218446.0
+   ],
+   "vals_revenue": [
+    4725000.0,
+    4160000.0
    ],
    "year_only": true
   },

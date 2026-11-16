@@ -1,5 +1,81 @@
 {
  "annual": {
+  "24483": {
+   "end": "2018-03-31",
+   "eps": 0.66,
+   "eps_prior": -0.31,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    1,
+    1,
+    true
+   ],
+   "navps": 8.02,
+   "navps_prior": 7.45,
+   "ok": true,
+   "pages": 72,
+   "src_eps": "Basic earnings / (loss) per share  11  0.66  (0.31)  0.66  (0.31)",
+   "src_navps": "Net Asset Value per share  8.30  8.02  7.45  7.67  7.69",
+   "title": "Annual Report 2017/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1046_1536232584494.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.66,
+    -0.31,
+    0.66,
+    -0.31
+   ],
+   "vals_navps": [
+    8.3,
+    8.02,
+    7.45,
+    7.67,
+    7.69
+   ],
+   "year_only": false
+  },
+  "30778": {
+   "end": "2017-03-31",
+   "eps": -0.3,
+   "eps_prior": -0.31,
+   "layout_eps": [
+    1,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 8.02,
+   "navps_prior": 7.51,
+   "ok": true,
+   "pages": 64,
+   "src_eps": "Basic earnings / (loss) per share  11  (0.31)  (0.30)  (0.31)  (0.30)",
+   "src_navps": "Net Asset Value per share  8.02  7.51  7.67  7.69  7.52",
+   "title": "Annual Report 2016/2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1046_1504784104.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.31,
+    -0.3,
+    -0.31,
+    -0.3
+   ],
+   "vals_navps": [
+    8.02,
+    7.51,
+    7.67,
+    7.69,
+    7.52
+   ],
+   "year_only": false
+  },
   "34624": {
    "end": "2019-03-31",
    "eps": -5.52,
@@ -384,7 +460,7 @@
     "id": "24483",
     "title": "Annual Report 2017/2018",
     "uploaded": 1536172200000,
-    "url": "https://cdn.cse.lk/upload_report_file/1046_1536232584494.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1046_1536232584494.pdf",
     "year_only": false
    },
    {
@@ -393,7 +469,7 @@
     "id": "30778",
     "title": "Annual Report 2016/2017",
     "uploaded": 1504722600000,
-    "url": "https://cdn.cse.lk/upload_report_file/1046_1504784104.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1046_1504784104.pdf",
     "year_only": false
    }
   ],

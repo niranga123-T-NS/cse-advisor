@@ -396,6 +396,24 @@
    },
    {
     "amended": false,
+    "end": "2025-06-30",
+    "id": "48687",
+    "title": "INTERIM CONDENSED FINANCIAL STATEMENTS - THREE MONTHS ENDED 30/06/2025",
+    "uploaded": 1755173456575,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2173_1755173456575.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-03-31",
+    "id": "47990",
+    "title": "INTERIM CONDENSED FINANCIAL STATEMENTS - TWELVE MONTHS ENDED 31/03/2025",
+    "uploaded": 1748429431385,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2173_1748429431385.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
     "end": "2024-12-31",
     "id": "47389",
     "title": "INTERIM CONDENSED FINANCIAL STATEMENTS - NINE MONTHS ENDED 31/12/2024",
@@ -405,184 +423,32 @@
    },
    {
     "amended": false,
-    "end": "2023-12-31",
-    "id": "44987",
-    "title": "INTERIM CONDENSED FINANCIAL STATEMENTS - NINE MONTHS ENDED 31/12/2023",
-    "uploaded": 1707389512992,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/2173_1707389512992.pdf",
+    "end": "2024-09-30",
+    "id": "46997",
+    "title": "INTERIM CONDENSED FINANCIAL STATEMENTS - SIX MONTHS ENDED 30/09/2024",
+    "uploaded": 1731494237191,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2173_1731494237191.pdf",
     "year_only": false
    },
    {
     "amended": false,
-    "end": "2022-12-31",
-    "id": "42589",
-    "title": "Quarterly Financial Statements as of 31 December 2022",
-    "uploaded": 1676026398811,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/2173_1676026398811.pdf",
-    "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2022-09-30",
-    "id": "41968",
-    "title": "INTERIM CONDENSED FINANCIAL STATEMENTS - SIX MONTHS ENDED 30TH SEPTEMBER 2022",
-    "uploaded": 1668160884774,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/2173_1668160884774.pdf",
-    "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2021-12-31",
-    "id": "39869",
-    "title": "Quarterly Financial Statements as of 31 December 2021",
-    "uploaded": 1644490857752,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/2173_1644490857752.pdf",
+    "end": "2024-06-30",
+    "id": "46406",
+    "title": "INTERIM CONDENSED FINANCIAL STATEMENTS - THREE MONTHS ENDED 30/06/2024",
+    "uploaded": 1723713596318,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2173_1723713596318.pdf",
     "year_only": false
    }
   ]
  },
  "quarterly": {
-  "39869": {
-   "end": "2021-12-31",
-   "eps": 0.24,
-   "eps_prior": 0.23,
-   "layout_eps": [
-    0,
-    1,
-    true
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "navps": 15.49,
-   "navps_prior": 18.25,
-   "ok": true,
-   "pages": 20,
-   "profit": 329974773.0,
-   "profit_growth": 23.3,
-   "profit_prior": 267560503.0,
-   "revenue": 964039275.0,
-   "revenue_growth": -1.5,
-   "revenue_prior": 978886935.0,
-   "src_eps": "Earnings per Share (LKR)  0.24  0.23  0.74  0.45",
-   "src_navps": "Net assets per share  15.49  18.25",
-   "src_profit": "Equity holders of the parent  329,974,773  267,560,503  23%  1,724,476,337  1,621,147,031  6%",
-   "src_revenue": "Revenue  964,039,275  978,886,935  -2%  3,625,296,758  3,641,360,147  0%",
-   "title": "Quarterly Financial Statements as of 31 December 2021",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/2173_1644490857752.pdf",
-   "v": 6,
-   "vals_eps": [
-    0.24,
-    0.23,
-    0.74,
-    0.45
-   ],
-   "vals_navps": [
-    15.49,
-    18.25
-   ],
-   "vals_profit": [
-    329974773.0,
-    267560503.0,
-    1724476337.0,
-    1621147031.0
-   ],
-   "vals_revenue": [
-    964039275.0,
-    978886935.0,
-    3625296758.0,
-    3641360147.0
-   ],
-   "year_only": false
-  },
-  "41968": {
-   "end": "2022-09-30",
-   "eps": 0.51,
-   "eps_prior": 0.63,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "navps": 17.15,
-   "navps_prior": 15.46,
-   "ok": true,
-   "pages": 17,
-   "profit": 691457168.0,
-   "profit_growth": -18.5,
-   "profit_prior": 848392256.0,
-   "revenue": 1564153975.0,
-   "revenue_growth": 3.3,
-   "revenue_prior": 1514563435.0,
-   "src_eps": "Earnings per Share (LKR)  0.51  0.63  (0.00)  0.06",
-   "src_navps": "Net assets per share  17.15  15.46",
-   "src_profit": "Equity holders of the parent  691,457,168  848,392,256  -18%  1,267,771,520  1,394,501,565  -9%",
-   "src_revenue": "Revenue  1,564,153,975  1,514,563,435  3%  3,020,029,236  2,661,257,483  13%",
-   "title": "INTERIM CONDENSED FINANCIAL STATEMENTS - SIX MONTHS ENDED 30TH SEPTEMBER 2022",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/2173_1668160884774.pdf",
-   "v": 6,
-   "vals_eps": [
-    0.51,
-    0.63,
-    -0.0,
-    0.06
-   ],
-   "vals_navps": [
-    17.15,
-    15.46
-   ],
-   "vals_profit": [
-    691457168.0,
-    848392256.0,
-    1267771520.0,
-    1394501565.0
-   ],
-   "vals_revenue": [
-    1564153975.0,
-    1514563435.0,
-    3020029236.0,
-    2661257483.0
-   ],
-   "year_only": false
-  },
-  "42589": {
-   "end": "2022-12-31",
+  "46406": {
+   "end": "2024-06-30",
    "eps": 0.35,
    "eps_prior": 0.34,
    "layout_eps": [
     0,
-    2,
+    1,
     true
    ],
    "layout_navps": [
@@ -601,56 +467,52 @@
     false
    ],
    "months": 3,
-   "navps": 17.09,
-   "navps_prior": 15.46,
+   "navps": 17.38,
+   "navps_prior": 17.02,
    "ok": true,
    "pages": 16,
-   "profit": 474406662.0,
-   "profit_growth": 43.8,
-   "profit_prior": 329974773.0,
-   "revenue": 1011436756.0,
-   "revenue_growth": 4.9,
-   "revenue_prior": 964039275.0,
-   "src_eps": "Earnings per Share (LKR)  0.35  0.24  0.34  0.74",
-   "src_navps": "Net assets per share  17.09  15.46",
-   "src_profit": "Equity holders of the parent  474,406,662  329,974,773  44%  1,742,230,690  1,724,476,337  1%",
-   "src_revenue": "Revenue  1,011,436,756  964,039,275  5%  4,000,685,906  3,625,296,758  10%",
-   "title": "Quarterly Financial Statements as of 31 December 2022",
+   "profit": 471012788.0,
+   "profit_growth": 4.0,
+   "profit_prior": 452839899.0,
+   "revenue": 1567338299.0,
+   "revenue_growth": 27.8,
+   "revenue_prior": 1226496918.0,
+   "src_eps": "Earnings per Share (LKR)  0.35  0.34  0.58  (0.01)",
+   "src_navps": "Net assets per share  17.38  17.02",
+   "src_profit": "Equity holders of the parent  471,012,788  452,839,899  4%",
+   "src_revenue": "Revenue  1,567,338,299  1,226,496,918  28%",
+   "title": "INTERIM CONDENSED FINANCIAL STATEMENTS - THREE MONTHS ENDED 30/06/2024",
    "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/2173_1676026398811.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2173_1723713596318.pdf",
    "v": 6,
    "vals_eps": [
     0.35,
-    0.24,
     0.34,
-    0.74
+    0.58,
+    -0.01
    ],
    "vals_navps": [
-    17.09,
-    15.46
+    17.38,
+    17.02
    ],
    "vals_profit": [
-    474406662.0,
-    329974773.0,
-    1742230690.0,
-    1724476337.0
+    471012788.0,
+    452839899.0
    ],
    "vals_revenue": [
-    1011436756.0,
-    964039275.0,
-    4000685906.0,
-    3625296758.0
+    1567338299.0,
+    1226496918.0
    ],
    "year_only": false
   },
-  "44987": {
-   "end": "2023-12-31",
-   "eps": 0.35,
-   "eps_prior": 0.34,
+  "46997": {
+   "end": "2024-09-30",
+   "eps": 0.8,
+   "eps_prior": 0.72,
    "layout_eps": [
+    0,
     1,
-    2,
-    true
+    false
    ],
    "layout_navps": [
     0,
@@ -668,45 +530,45 @@
     false
    ],
    "months": 3,
-   "navps": 17.34,
-   "navps_prior": 16.89,
+   "navps": 18.13,
+   "navps_prior": 17.02,
    "ok": true,
    "pages": 16,
-   "profit": 106509820.0,
-   "profit_growth": -77.5,
-   "profit_prior": 474406662.0,
-   "revenue": 1270044065.0,
-   "revenue_growth": 25.6,
-   "revenue_prior": 1011436756.0,
-   "src_eps": "Earnings per Share (LKR)  0.08  0.35  0.31  0.34",
-   "src_navps": "Net assets per share  17.34  16.89",
-   "src_profit": "Equity holders of the parent  106,509,820  474,406,662  -78%  1,538,463,574  1,742,230,690  -12%",
-   "src_revenue": "Revenue  1,270,044,065  1,011,436,756  26%  4,621,082,661  4,000,685,906  16%",
-   "title": "INTERIM CONDENSED FINANCIAL STATEMENTS - NINE MONTHS ENDED 31/12/2023",
+   "profit": 1084614889.0,
+   "profit_growth": 10.8,
+   "profit_prior": 979113856.0,
+   "revenue": 2385380090.0,
+   "revenue_growth": 12.3,
+   "revenue_prior": 2124541678.0,
+   "src_eps": "Earnings per Share (LKR)  0.80  0.72  0.06  0.49",
+   "src_navps": "Net assets per share  18.13  17.02",
+   "src_profit": "Equity holders of the parent  1,084,614,889  979,113,856  11%  1,555,627,676  1,431,953,754  9%",
+   "src_revenue": "Revenue  2,385,380,090  2,124,541,678  12%  3,952,718,389  3,351,038,597  18%",
+   "title": "INTERIM CONDENSED FINANCIAL STATEMENTS - SIX MONTHS ENDED 30/09/2024",
    "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/2173_1707389512992.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2173_1731494237191.pdf",
    "v": 6,
    "vals_eps": [
-    0.08,
-    0.35,
-    0.31,
-    0.34
+    0.8,
+    0.72,
+    0.06,
+    0.49
    ],
    "vals_navps": [
-    17.34,
-    16.89
+    18.13,
+    17.02
    ],
    "vals_profit": [
-    106509820.0,
-    474406662.0,
-    1538463574.0,
-    1742230690.0
+    1084614889.0,
+    979113856.0,
+    1555627676.0,
+    1431953754.0
    ],
    "vals_revenue": [
-    1270044065.0,
-    1011436756.0,
-    4621082661.0,
-    4000685906.0
+    2385380090.0,
+    2124541678.0,
+    3952718389.0,
+    3351038597.0
    ],
    "year_only": false
   },
@@ -774,6 +636,134 @@
     1270044065.0,
     5372650059.0,
     4621082661.0
+   ],
+   "year_only": false
+  },
+  "47990": {
+   "end": "2025-03-31",
+   "eps": 0.11,
+   "eps_prior": 0.01,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 17.22,
+   "navps_prior": 17.02,
+   "ok": true,
+   "pages": 16,
+   "profit": 151174357.0,
+   "profit_growth": null,
+   "profit_prior": 11082529.0,
+   "revenue": 1530040175.0,
+   "revenue_growth": 24.3,
+   "revenue_prior": 1230717013.0,
+   "src_eps": "Earnings per Share (LKR)  0.11  0.01  1.05  1.04",
+   "src_navps": "Net assets per share (LKR)  17.22  17.02",
+   "src_profit": "Equity holders of the parent  151,174,357  11,082,529  1264%  1,787,077,960  1,549,546,103  15%",
+   "src_revenue": "Revenue  1,530,040,175  1,230,717,013  24%  6,902,690,234  5,851,799,675  18%",
+   "title": "INTERIM CONDENSED FINANCIAL STATEMENTS - TWELVE MONTHS ENDED 31/03/2025",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2173_1748429431385.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.11,
+    0.01,
+    1.05,
+    1.04
+   ],
+   "vals_navps": [
+    17.22,
+    17.02
+   ],
+   "vals_profit": [
+    151174357.0,
+    11082529.0,
+    1787077960.0,
+    1549546103.0
+   ],
+   "vals_revenue": [
+    1530040175.0,
+    1230717013.0,
+    6902690234.0,
+    5851799675.0
+   ],
+   "year_only": false
+  },
+  "48687": {
+   "end": "2025-06-30",
+   "eps": 0.55,
+   "eps_prior": 0.35,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 17.93,
+   "navps_prior": 17.22,
+   "ok": true,
+   "pages": 18,
+   "profit": 739533566.0,
+   "profit_growth": 57.0,
+   "profit_prior": 471012788.0,
+   "revenue": 2124.0,
+   "revenue_growth": 35.5,
+   "revenue_prior": 1567.0,
+   "src_eps": "Earnings per share (LKR)  0.55  0.35  highlighted in point 1 above.",
+   "src_navps": "Net assets per share  17.93  17.22",
+   "src_profit": "Equity holders of the parent  739,533,566  471,012,788  57%",
+   "src_revenue": "Revenue  2,124  1,567  By nature, is a delayed settlement by the CEB which was",
+   "title": "INTERIM CONDENSED FINANCIAL STATEMENTS - THREE MONTHS ENDED 30/06/2025",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2173_1755173456575.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.55,
+    0.35
+   ],
+   "vals_navps": [
+    17.93,
+    17.22
+   ],
+   "vals_profit": [
+    739533566.0,
+    471012788.0
+   ],
+   "vals_revenue": [
+    2124.0,
+    1567.0
    ],
    "year_only": false
   },

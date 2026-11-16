@@ -1,14 +1,14 @@
 name: Interest rates and the rupee
 
-# Policy rate, T-bill yields and the prime lending rate from the Central Bank's Weekly Economic Indicators,
-# and USD/LKR from Yahoo Finance. Runs every Saturday morning; can also be run by hand.
+# T-bill auction results from the Public Debt Management Office (treasury.gov.lk) and USD/LKR from Yahoo Finance.
+# The daily "Update CSE data" job also does this; this one is for running it by hand or on a Saturday.
 on:
   schedule:
     - cron: "17 2 * * 6"          # Saturday 07:47 Colombo
   workflow_dispatch:
     inputs:
       mode:
-        description: "fetch (recent weeks), probe (save raw text), or a start date YYYY-MM-DD to backfill"
+        description: "fetch, or probe (save what the site serves)"
         required: false
         default: "fetch"
 
@@ -32,9 +32,7 @@ jobs:
       - name: Collect
         run: |
           M="${{ inputs.mode }}"
-          if [ -z "$M" ] || [ "$M" = "fetch" ]; then python macro.py fetch
-          elif [ "$M" = "probe" ]; then python macro.py probe
-          else python macro.py fetch "$M"; fi
+          if [ "$M" = "probe" ]; then python macro.py probe; else python macro.py fetch; fi
       - name: Save
         run: |
           git config user.name "cse-bot"

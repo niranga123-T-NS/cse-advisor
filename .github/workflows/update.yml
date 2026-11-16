@@ -41,6 +41,10 @@ jobs:
 
       - run: pip install -r requirements.txt
 
+      - name: Interest rates and the rupee
+        continue-on-error: true
+        run: python macro.py fetch
+
       - name: Fetch CSE data and build site
         env:
           SYMBOLS: ${{ github.event.inputs.symbols }}

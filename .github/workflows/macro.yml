@@ -1,0 +1,45 @@
+name: Interest rates and the rupee
+
+# Policy rate, T-bill yields and the prime lending rate from the Central Bank's Weekly Economic Indicators,
+# and USD/LKR from Yahoo Finance. Runs every Saturday morning; can also be run by hand.
+on:
+  schedule:
+    - cron: "17 2 * * 6"          # Saturday 07:47 Colombo
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "fetch (recent weeks), probe (save raw text), or a start date YYYY-MM-DD to backfill"
+        required: false
+        default: "fetch"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: macro
+  cancel-in-progress: false
+
+jobs:
+  macro:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q requests pypdf
+      - name: Collect
+        run: |
+          M="${{ inputs.mode }}"
+          if [ -z "$M" ] || [ "$M" = "fetch" ]; then python macro.py fetch
+          elif [ "$M" = "probe" ]; then python macro.py probe
+          else python macro.py fetch "$M"; fi
+      - name: Save
+        run: |
+          git config user.name "cse-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/macro
+          git diff --cached --quiet && { echo "nothing new"; exit 0; }
+          git commit -q -m "Rates and rupee $(TZ=Asia/Colombo date +%F)"
+          for i in 1 2 3 4; do git pull -q --rebase origin main && git push -q origin HEAD:main && break || sleep 5; done

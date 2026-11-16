@@ -1,0 +1,28 @@
+name: Telegram summary
+
+# Sends the morning summary to Telegram before the open (Monday to Friday). The closing summary is sent by
+# "Update CSE data" straight after the daily build. Needs the secret TELEGRAM_TOKEN (see telegram.py).
+on:
+  schedule:
+    - cron: "13 3 * * 1-5"         # 08:43 Colombo
+  workflow_dispatch:
+    inputs:
+      message:
+        description: "test, morning or close"
+        required: false
+        default: "test"
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q requests
+      - env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT: ${{ secrets.TELEGRAM_CHAT }}
+        run: python telegram.py ${{ inputs.message || 'morning' }}

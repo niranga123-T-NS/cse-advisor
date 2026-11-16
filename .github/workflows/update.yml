@@ -66,3 +66,11 @@ jobs:
           path: site
       - id: deploy
         uses: actions/deploy-pages@v4
+
+      - name: Closing summary to Telegram
+        if: github.event_name != 'workflow_dispatch' || github.event.inputs.symbols == ''
+        continue-on-error: true
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT: ${{ secrets.TELEGRAM_CHAT }}
+        run: python telegram.py close

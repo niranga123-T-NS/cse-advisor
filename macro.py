@@ -42,6 +42,13 @@ def get_wei(day: dt.date, s: requests.Session) -> bytes | None:
 
 
 def probe():
+    s0 = requests.Session()
+    for u in (WEI.format(d="20250328"), "https://www.cbsl.gov.lk/en/statistics/economic-indicators/weekly-indicators", "https://www.cbsl.gov.lk/"):
+        try:
+            r = s0.get(u, headers=UA, timeout=60)
+            print("PROBE", u, r.status_code, r.headers.get("content-type"), len(r.content), r.content[:120])
+        except requests.RequestException as ex:
+            print("PROBE", u, "error", repr(ex)[:200])
     out = DIR / "raw"
     out.mkdir(parents=True, exist_ok=True)
     s, got, day = requests.Session(), 0, dt.date.today()

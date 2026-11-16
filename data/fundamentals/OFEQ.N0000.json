@@ -1,5 +1,130 @@
 {
  "annual": {
+  "36486": {
+   "dps": 1.5,
+   "dps_prior": 1.0,
+   "end": "2019-12-31",
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 39.66,
+   "navps_prior": 65.0,
+   "ok": true,
+   "pages": 64,
+   "src_dps": "Dividend per share (Rs. cts.)  11  1.50  1.00  1.50  1.00",
+   "src_navps": "Net asset value per share  39.66  65.00  56.52  51.39  501.09",
+   "title": "Annual Report 31.03.2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/769_1603882277469.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.5,
+    1.0,
+    1.5,
+    1.0
+   ],
+   "vals_navps": [
+    39.66,
+    65.0,
+    56.52,
+    51.39,
+    501.09
+   ],
+   "year_only": false
+  },
+  "40235": {
+   "dps": 1.5,
+   "dps_prior": 1.5,
+   "end": "2020-03-31",
+   "eps": 0.03,
+   "eps_prior": -14.99,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 40.45,
+   "navps_prior": 39.66,
+   "ok": true,
+   "pages": 65,
+   "src_dps": "Dividend per share (Rs. cts.)  11  -  1.50  -  1.50",
+   "src_eps": "Earnings/(Loss) per share (R. Cts.)  0.03  (14.99)  (0.43)  (15.08)",
+   "src_navps": "Net asset value per share  40.45  39.66  65.00  56.52  51.39",
+   "title": "Annual Report 2019/20",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/769_1649383558682.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.5,
+    1.5
+   ],
+   "vals_eps": [
+    0.03,
+    -14.99,
+    -0.43,
+    -15.08
+   ],
+   "vals_navps": [
+    40.45,
+    39.66,
+    65.0,
+    56.52,
+    51.39
+   ],
+   "year_only": false
+  },
+  "41710": {
+   "dps": 1.5,
+   "dps_prior": 1.0,
+   "end": "2021-03-31",
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 47.46,
+   "navps_prior": 40.45,
+   "ok": true,
+   "pages": 64,
+   "src_dps": "Dividend per share (Rs.)  -  -  1.50  1.00  1.12",
+   "src_navps": "Net asset value per share  47.46  40.45  39.66  65.00  56.52",
+   "title": "ANNUAL REPORT 2020/2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/769_1662955223755.09.2022) Final.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.5,
+    1.0,
+    1.12
+   ],
+   "vals_navps": [
+    47.46,
+    40.45,
+    39.66,
+    65.0,
+    56.52
+   ],
+   "year_only": false
+  },
   "44769": {
    "dps": 1.5,
    "dps_prior": 1.0,
@@ -241,7 +366,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -287,6 +412,51 @@
     "title": "Annual Report 2021/2022",
     "uploaded": 1703758753484,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/769_1703758753484.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "41710",
+    "title": "ANNUAL REPORT 2020/2021",
+    "uploaded": 1662955223755,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/769_1662955223755.09.2022) Final.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "40235",
+    "title": "Annual Report 2019/20",
+    "uploaded": 1649383558682,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/769_1649383558682.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-12-31",
+    "id": "36486",
+    "title": "Annual Report 31.03.2019",
+    "uploaded": 1603882277469,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/769_1603882277469.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "31908",
+    "title": "Annual Report 2017/2018",
+    "uploaded": 1542738600000,
+    "url": "https://cdn.cse.lk/upload_report_file/769_1542772187925.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "30969",
+    "title": "Annual Report 2016/2017",
+    "uploaded": 1510857000000,
+    "url": "https://cdn.cse.lk/upload_report_file/769_1510917994.pdf",
     "year_only": false
    }
   ],

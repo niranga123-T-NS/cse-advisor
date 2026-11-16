@@ -1,5 +1,137 @@
 {
  "annual": {
+  "33867": {
+   "end": "2019-12-31",
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 349.0,
+   "navps_prior": 404.0,
+   "ok": true,
+   "pages": 77,
+   "src_navps": "Net Assets Per Share *  349  404  t83  tl4",
+   "title": "Audited Financial Statements as of 31-03-2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1565864396547.pdf",
+   "v": 6,
+   "vals_navps": [
+    349.0,
+    404.0,
+    83.0,
+    4.0
+   ],
+   "year_only": true
+  },
+  "34030": {
+   "end": "2019-03-31",
+   "eps": 0.05,
+   "eps_prior": 0.15,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 3.49,
+   "navps_prior": 4.04,
+   "ok": true,
+   "pages": 164,
+   "src_eps": "EPS  0.05  0.15",
+   "src_navps": "Net Assets Per Share (Rs.)  11  3.49  4.04  1.83  2.34",
+   "title": "Annual Report 2018/2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1567076498646.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.05,
+    0.15
+   ],
+   "vals_navps": [
+    3.49,
+    4.04,
+    1.83,
+    2.34
+   ],
+   "year_only": false
+  },
+  "36554": {
+   "end": "2020-03-31",
+   "eps": -0.04,
+   "eps_prior": 0.05,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 3.67,
+   "navps_prior": 3.49,
+   "ok": true,
+   "pages": 176,
+   "src_eps": "EPS  (0.04)  0.05  0.23  1.93",
+   "src_navps": "NAV per share  3.67  3.49  5.83  5.60",
+   "title": "Annual Report 2019/20",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1604550469505.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.04,
+    0.05,
+    0.23,
+    1.93
+   ],
+   "vals_navps": [
+    3.67,
+    3.49,
+    5.83,
+    5.6
+   ],
+   "year_only": false
+  },
+  "38958": {
+   "end": "2021-03-31",
+   "eps": -1.92,
+   "eps_prior": -0.04,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 1.98,
+   "navps_prior": 3.67,
+   "ok": true,
+   "pages": 148,
+   "src_eps": "EPS  (1.92)  (0.04)  (1.75)  0.23",
+   "src_navps": "NAV per share  1.98  3.67  4.08  5.83",
+   "title": "Annual Report 2020/2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1630411564754.pdf",
+   "v": 6,
+   "vals_eps": [
+    -1.92,
+    -0.04,
+    -1.75,
+    0.23
+   ],
+   "vals_navps": [
+    1.98,
+    3.67,
+    4.08,
+    5.83
+   ],
+   "year_only": false
+  },
   "41514": {
    "end": "2022-03-31",
    "eps": 1.62,
@@ -186,7 +318,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -233,6 +365,51 @@
     "uploaded": 1661851356971,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1661851356971.pdf",
     "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38958",
+    "title": "Annual Report 2020/2021",
+    "uploaded": 1630411564754,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1630411564754.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36554",
+    "title": "Annual Report 2019/20",
+    "uploaded": 1604550469505,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1604550469505.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-12-31",
+    "id": "33867",
+    "title": "Audited Financial Statements as of 31-03-2019",
+    "uploaded": 1565864396547,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1565864396547.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "34030",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1567076498646,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1181_1567076498646.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-12-31",
+    "id": "23956",
+    "title": "Audited Financial Statements as of 31-03-2018",
+    "uploaded": 1533234600000,
+    "url": "https://cdn.cse.lk/upload_report_file/1181_1533276832296.pdf",
+    "year_only": true
    }
   ],
   "quarterly": [

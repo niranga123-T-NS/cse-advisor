@@ -1,5 +1,56 @@
 {
  "annual": {
+  "39076": {
+   "dps": 0.35,
+   "dps_prior": 1.24,
+   "end": "2021-03-31",
+   "eps": 1.52,
+   "eps_prior": 1.87,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 18.25,
+   "navps_prior": 19.83,
+   "ok": true,
+   "pages": 228,
+   "src_dps": "Dividend Per Share  (30)  0.35  1.24  0.35  1.24",
+   "src_eps": "Earnings Per Share  (29)  1.52  1.87  0.78  1.41",
+   "src_navps": "Net Asset Value per Share (NAV)  18.25  19.83  16.37  18.24",
+   "title": "Annual Report for the year ended 31 March 2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2173_1633000798214.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.35,
+    1.24,
+    0.35,
+    1.24
+   ],
+   "vals_eps": [
+    1.52,
+    1.87,
+    0.78,
+    1.41
+   ],
+   "vals_navps": [
+    18.25,
+    19.83,
+    16.37,
+    18.24
+   ],
+   "year_only": false
+  },
   "40953": {
    "dps": 1.3,
    "dps_prior": 0.35,
@@ -239,7 +290,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -285,6 +336,15 @@
     "title": "Annual Report for the year ended 31 March 2022",
     "uploaded": 1656328980000,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/2173_1656397092153.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "39076",
+    "title": "Annual Report for the year ended 31 March 2021",
+    "uploaded": 1633000798214,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2173_1633000798214.pdf",
     "year_only": false
    }
   ],

@@ -1,5 +1,210 @@
 {
  "annual": {
+  "35574": {
+   "dps": 1.0,
+   "dps_prior": 1.0,
+   "end": "2020-12-31",
+   "eps": 6.19,
+   "eps_prior": 9.09,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 19.0,
+   "navps_prior": 137.0,
+   "ok": true,
+   "pages": 96,
+   "src_dps": "Dividend Per Share  18  -  1.00  -  1.00",
+   "src_eps": "Basic Earnings Per Share  17  6.19  9.09  6.79  9.61",
+   "src_navps": "Net assets value per share (Rs.)  19  137  134  139  135",
+   "title": "Alliance Finance Company PLC Audited Financials as at 31/3/2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1593484801269.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.0,
+    1.0
+   ],
+   "vals_eps": [
+    6.19,
+    9.09,
+    6.79,
+    9.61
+   ],
+   "vals_navps": [
+    19.0,
+    137.0,
+    134.0,
+    139.0,
+    135.0
+   ],
+   "year_only": true
+  },
+  "35807": {
+   "dps": 1.0,
+   "dps_prior": -100.0,
+   "end": "2020-03-31",
+   "eps": 6.19,
+   "eps_prior": 9.09,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 136.9,
+   "navps_prior": 133.85,
+   "ok": true,
+   "pages": 288,
+   "src_dps": "Dividend per share  Rs.  -  1.00  (100)",
+   "src_eps": "Earnings per share  Rs.  6.19  9.09  (32)",
+   "src_navps": "Net asset value per share  Rs.  136.90  133.85  2",
+   "title": "Annual Report 2019/20",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1596108332852.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.0,
+    -100.0
+   ],
+   "vals_eps": [
+    6.19,
+    9.09,
+    -32.0
+   ],
+   "vals_navps": [
+    136.9,
+    133.85,
+    2.0
+   ],
+   "year_only": false
+  },
+  "38208": {
+   "dps": 45.0,
+   "dps_prior": 40.0,
+   "end": "2021-03-31",
+   "eps": 16.6,
+   "eps_prior": 6.2,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 172.6,
+   "navps_prior": 136.9,
+   "ok": true,
+   "pages": 272,
+   "src_dps": "Dividend per Share (Rs.)*  45.00  40.00  20.00  23.00  53.00  5.90  6.40  1.00  -  5.50",
+   "src_eps": "EPS  Rs.  16.6  6.2  168",
+   "src_navps": "Net Asset Value per Share  Rs.  172.6  136.9  26",
+   "title": "Annual Report 2020/21",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1623237166290.pdf",
+   "v": 6,
+   "vals_dps": [
+    45.0,
+    40.0,
+    20.0,
+    23.0,
+    53.0,
+    5.9,
+    6.4,
+    1.0,
+    5.5
+   ],
+   "vals_eps": [
+    16.6,
+    6.2,
+    168.0
+   ],
+   "vals_navps": [
+    172.6,
+    136.9,
+    26.0
+   ],
+   "year_only": false
+  },
+  "40965": {
+   "end": "2022-12-31",
+   "ok": true,
+   "pages": 99,
+   "title": "Audited Financial Statements as at 31.03.2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1656498247517.pdf",
+   "v": 6,
+   "year_only": true
+  },
+  "41489": {
+   "dps": 14.5,
+   "dps_prior": 5.5,
+   "end": "2022-03-31",
+   "eps": 43.42,
+   "eps_prior": 16.65,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 198.28,
+   "navps_prior": 172.61,
+   "ok": true,
+   "pages": 288,
+   "src_dps": "Dividend per share  LKR  14.50  5.50  163%",
+   "src_eps": "EPS  LKR  43.42  16.65  161%",
+   "src_navps": "Net Asset Value Per Share  LKR  198.28  172.61  15%",
+   "title": "Annual Report - 2021/2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1661744283483.22.pdf",
+   "v": 6,
+   "vals_dps": [
+    14.5,
+    5.5
+   ],
+   "vals_eps": [
+    43.42,
+    16.65
+   ],
+   "vals_navps": [
+    198.28,
+    172.61
+   ],
+   "year_only": false
+  },
   "43577": {
    "end": "2023-12-31",
    "ok": true,
@@ -203,7 +408,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -249,6 +454,51 @@
     "title": "Annual Report 2022/23",
     "uploaded": 1693540187585,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1693540187585.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2022-12-31",
+    "id": "40965",
+    "title": "Audited Financial Statements as at 31.03.2022",
+    "uploaded": 1656498247517,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1656498247517.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2022-03-31",
+    "id": "41489",
+    "title": "Annual Report - 2021/2022",
+    "uploaded": 1661744283483,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1661744283483.22.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38208",
+    "title": "Annual Report 2020/21",
+    "uploaded": 1623237166290,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1623237166290.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-12-31",
+    "id": "35574",
+    "title": "Alliance Finance Company PLC Audited Financials as at 31/3/2020",
+    "uploaded": 1593484801269,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1593484801269.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "35807",
+    "title": "Annual Report 2019/20",
+    "uploaded": 1596108332852,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/341_1596108332852.pdf",
     "year_only": false
    }
   ],

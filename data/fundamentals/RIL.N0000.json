@@ -1,5 +1,80 @@
 {
  "annual": {
+  "36316": {
+   "end": "2020-03-31",
+   "eps": 0.74,
+   "eps_prior": 1.15,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 21.99,
+   "navps_prior": 21.8,
+   "ok": true,
+   "pages": 200,
+   "src_eps": "Earnings per share (EPS)  LKR  29  0.74  1.15  1.25  1.02",
+   "src_navps": "Net asset per share  LKR  21.99  21.80  1%  19.40  18.64  4%",
+   "title": "Annual Report 2019/20",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1544_1599561703484.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.74,
+    1.15,
+    1.25,
+    1.02
+   ],
+   "vals_navps": [
+    21.99,
+    21.8,
+    19.4,
+    18.64
+   ],
+   "year_only": false
+  },
+  "38342": {
+   "end": "2021-03-31",
+   "eps": 29.1,
+   "eps_prior": 1.08,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 23.18,
+   "navps_prior": 21.99,
+   "ok": true,
+   "pages": 240,
+   "src_eps": "Earnings per share (EPS) from continuing operations LKR  29.1  1.08  0.78  0.62  1.25  STATEMENTS",
+   "src_navps": "Net asset per share  LKR  23.18  21.99  5%  19.95  19.40  3%",
+   "title": "Annual Report for FY 2020/21",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1544_1625107857348.pdf",
+   "v": 6,
+   "vals_eps": [
+    29.1,
+    1.08,
+    0.78,
+    0.62,
+    1.25
+   ],
+   "vals_navps": [
+    23.18,
+    21.99,
+    19.95,
+    19.4
+   ],
+   "year_only": false
+  },
   "40849": {
    "dps": 0.15,
    "dps_prior": 0.1,
@@ -243,7 +318,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -289,6 +364,51 @@
     "title": "Annual Report for FY 2021/22",
     "uploaded": 1654685820762,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/1544_1654685820762.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38342",
+    "title": "Annual Report for FY 2020/21",
+    "uploaded": 1625107857348,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1544_1625107857348.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36316",
+    "title": "Annual Report 2019/20",
+    "uploaded": 1599561703484,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1544_1599561703484.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "33428",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1562152897475,
+    "url": "https://cdn.cse.lk/upload_report_file/1544_1562152897475.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "24376",
+    "title": "Annual Report 2017/2018",
+    "uploaded": 1535049000000,
+    "url": "https://cdn.cse.lk/upload_report_file/1544_1535106885936.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "30500",
+    "title": "Annual Report 2016/2017",
+    "uploaded": 1497378600000,
+    "url": "https://cdn.cse.lk/upload_report_file/1544_1497438628.pdf",
     "year_only": false
    }
   ],

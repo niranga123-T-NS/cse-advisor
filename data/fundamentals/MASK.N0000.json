@@ -1,5 +1,71 @@
 {
  "annual": {
+  "37001": {
+   "end": "2020-03-31",
+   "eps": -10.68,
+   "eps_prior": 0.1,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 6.92,
+   "navps_prior": 19.01,
+   "ok": true,
+   "pages": 92,
+   "src_eps": "Earnings/Loss per share  Rs.  (10.68)  0.10  (11,044%)",
+   "src_navps": "Net Asset Value per share  Rs.  6.92  19.01  (64%)",
+   "title": "Annual Report 2019/2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/723_1608289378189.pdf",
+   "v": 6,
+   "vals_eps": [
+    -10.68,
+    0.1
+   ],
+   "vals_navps": [
+    6.92,
+    19.01
+   ],
+   "year_only": false
+  },
+  "38937": {
+   "end": "2021-03-31",
+   "eps": 1.92,
+   "eps_prior": 10.68,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 13.23,
+   "navps_prior": 6.92,
+   "ok": true,
+   "pages": 91,
+   "src_eps": "Earnings/Loss per share  Rs.  1.92  (10.68 )  118%",
+   "src_navps": "Net Asset Value per share  Rs.  13.23  6.92  91%",
+   "title": "ANNUAL REPORT FOR - 2020/2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/723_1630405919404.pdf",
+   "v": 6,
+   "vals_eps": [
+    1.92,
+    10.68
+   ],
+   "vals_navps": [
+    13.23,
+    6.92
+   ],
+   "year_only": false
+  },
   "41561": {
    "end": "2022-03-31",
    "eps": 3.01,
@@ -192,7 +258,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -238,6 +304,51 @@
     "title": "Annual Report For 2021-2022 Maskeliya Plantations PLC",
     "uploaded": 1661944157277,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/723_1661944157277.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38937",
+    "title": "ANNUAL REPORT FOR - 2020/2021",
+    "uploaded": 1630405919404,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/723_1630405919404.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "37001",
+    "title": "Annual Report 2019/2020",
+    "uploaded": 1608289378189,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/723_1608289378189.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-12-31",
+    "id": "33423",
+    "title": "Annual Report as of 31/03/2019",
+    "uploaded": 1562149232604,
+    "url": "https://cdn.cse.lk/upload_report_file/723_1562149232604.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2018-12-31",
+    "id": "23654",
+    "title": "Annual Report as of 31/03/2018",
+    "uploaded": 1528137000000,
+    "url": "https://cdn.cse.lk/upload_report_file/723_1528194832087.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "21701",
+    "title": "Annual Report 2016/2017",
+    "uploaded": 1496687400000,
+    "url": "https://cdn.cse.lk/upload_report_file/723_1496742530609.pdf",
     "year_only": false
    }
   ],

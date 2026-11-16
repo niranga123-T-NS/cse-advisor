@@ -1,5 +1,97 @@
 {
  "annual": {
+  "36229": {
+   "dps": 3.5,
+   "dps_prior": 3.5,
+   "end": "2020-03-31",
+   "eps": -2.1,
+   "eps_prior": 5.65,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 65.91,
+   "navps_prior": 72.18,
+   "ok": true,
+   "pages": 106,
+   "src_dps": "Dividend per share*  Rs.  3.50  3.50  0%",
+   "src_eps": "Earnings/(loss) per share  Rs.  (2.10)  5.65  -137%",
+   "src_navps": "Net asset value per share  Rs.  65.91  72.18  -9%",
+   "title": "Annual Report 2019/20",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1598872862168.W Mackie Annual Report 2020 Final.pdf",
+   "v": 6,
+   "vals_dps": [
+    3.5,
+    3.5
+   ],
+   "vals_eps": [
+    -2.1,
+    5.65
+   ],
+   "vals_navps": [
+    65.91,
+    72.18
+   ],
+   "year_only": false
+  },
+  "38449": {
+   "dps": 3.5,
+   "dps_prior": 3.5,
+   "end": "2021-03-31",
+   "eps": 7.35,
+   "eps_prior": -2.1,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 72.24,
+   "navps_prior": 65.91,
+   "ok": true,
+   "pages": 176,
+   "src_dps": "Dividends per share (Rs.)  3.5  3.5  3.5  3.5  *",
+   "src_eps": "Earnings/(loss) per share  Rs.  7.35  (2.10)  450%",
+   "src_navps": "Net assets value per share  Rs.  72.24  65.91  10%",
+   "title": "Annual Report 2020/21",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1627376584169.pdf",
+   "v": 6,
+   "vals_dps": [
+    3.5,
+    3.5,
+    3.5,
+    3.5
+   ],
+   "vals_eps": [
+    7.35,
+    -2.1
+   ],
+   "vals_navps": [
+    72.24,
+    65.91
+   ],
+   "year_only": false
+  },
   "40976": {
    "dps": 400.0,
    "dps_prior": 7.0,
@@ -240,7 +332,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -287,6 +379,51 @@
     "uploaded": 1656668601551,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1656668601551.22.pdf",
     "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38449",
+    "title": "Annual Report 2020/21",
+    "uploaded": 1627376584169,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1627376584169.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36229",
+    "title": "Annual Report 2019/20",
+    "uploaded": 1598872862168,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/765_1598872862168.W Mackie Annual Report 2020 Final.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-12-31",
+    "id": "33277",
+    "title": "Annual Financial Report as of 31.03.2019",
+    "uploaded": 1559759400000,
+    "url": "https://cdn.cse.lk/upload_report_file/765_1559817473411.03.2019.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "23645",
+    "title": "Annual Report 2017/18",
+    "uploaded": 1528137000000,
+    "url": "https://cdn.cse.lk/upload_report_file/765_1528167532434.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-12-31",
+    "id": "21664",
+    "title": "Annual Financial Report as of 31.03.2017",
+    "uploaded": 1496341800000,
+    "url": "https://cdn.cse.lk/upload_report_file/765_1496401386580.03.2017.pdf",
+    "year_only": true
    }
   ],
   "quarterly": [

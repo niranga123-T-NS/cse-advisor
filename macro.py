@@ -26,7 +26,7 @@ import requests
 
 ROOT = Path(__file__).parent
 DIR = ROOT / "data" / "macro"
-LIST = "https://www.treasury.gov.lk/web/government-securities/section/auction%20result"
+LIST = "https://www.treasury.gov.lk/web/result-treasury-bills"
 LAST_CONFIRMED = ("2026-09-30", "https://www.themorning.lk/articles/Z6l8pwZbnUf6sNQ7Twsw")    # policy rate last checked as unchanged
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"}
 
@@ -85,27 +85,42 @@ def fx(s: requests.Session) -> list[list]:
 
 # ---------------------------------------------------------------- T-bill auctions
 
-def listing(s: requests.Session) -> list[tuple[str, str]]:
-    """(file url, title) for every auction result on the debt office's list, following its pages."""
-    out, seen = [], set()
-    for page in range(1, 30):
-        url = LIST + (f"?page={page}" if page > 1 else "")
-        try:
-            r = s.get(url, headers=UA, timeout=60)
-        except requests.RequestException:
-            break
+def _page(s: requests.Session, url: str) -> dict | None:
+    try:
+        r = s.get(url, headers=UA, timeout=60)
         m = re.search(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', r.text, re.S)
-        blob = m.group(1) if m else r.text
-        blob = blob.encode().decode("unicode_escape", errors="ignore")
-        found = 0
-        for href, title in re.findall(r'<a href="(https?://www\.treasury\.gov\.lk/api/file/[0-9a-f-]{36})"[^>]*>(.*?)</a>', blob, re.S):
-            t = re.sub(r"<[^>]+>|&nbsp;", " ", title)
-            if href not in seen:
-                seen.add(href); found += 1
-                out.append((href, " ".join(t.split())))
-        print(f"list page {page}: {found} new links")
-        if not found:
-            break
+        return json.loads(m.group(1))["props"]["pageProps"] if m else None
+    except (requests.RequestException, ValueError, KeyError):
+        return None
+
+
+def listing(s: requests.Session) -> list[tuple[str, str]]:
+    """(file url, title) for every T-bill auction result the debt office lists, across its yearly sections and pages."""
+    out, seen = [], set()
+    first = _page(s, LIST)
+    if not first:
+        print("list page not readable")
+        return out
+    urls = [LIST] + [f"{LIST}/section/{x['anchor']}" for x in first.get("sections") or [] if x.get("anchor")]
+    for base in urls:
+        pages = None
+        for page in range(1, 40):
+            pp = first if (base == LIST and page == 1) else _page(s, base + (f"?page={page}" if page > 1 else ""))
+            if not pp:
+                break
+            pages = pages or int(pp.get("pagination") or 1)
+            found = 0
+            for x in (pp.get("pageData") or {}).get("links") or []:
+                if x.get("urlType") == "file" and x.get("link") and x["link"] not in seen:
+                    seen.add(x["link"]); found += 1
+                    out.append(("https://www.treasury.gov.lk/api/file/" + x["link"], x.get("title") or x.get("linkText") or ""))
+            for href in re.findall(r'/api/file/([0-9a-f-]{36})', json.dumps(pp)):
+                if href not in seen:
+                    seen.add(href); found += 1
+                    out.append(("https://www.treasury.gov.lk/api/file/" + href, ""))
+            print(f"{base[len(LIST):] or '/'} page {page}: {found} new")
+            if page >= pages or not found:
+                break
     return out
 
 
@@ -134,7 +149,7 @@ def fetch():
     links = listing(s)
     new = 0
     for href, title in links:
-        if href in have["seen"] or not re.search(r"bill", title, re.I) or re.search(r"bond", title, re.I):
+        if href in have["seen"] or (title and re.search(r"bond", title, re.I)):
             continue
         try:
             r = s.get(href, headers=UA, timeout=60)

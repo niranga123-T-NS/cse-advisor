@@ -1,5 +1,123 @@
 {
  "annual": {
+  "21305": {
+   "end": "2016-12-31",
+   "eps": 2.65,
+   "eps_prior": 2.06,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 38.05,
+   "navps_prior": 36.15,
+   "ok": true,
+   "pages": 196,
+   "src_eps": "Earnings per share (Rs.)  2.65  2.06  28.64",
+   "src_navps": "Net assets per share (Rs.)  38.05  36.15",
+   "title": "Annual Report 2016",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/390_1493290089696.pdf",
+   "v": 6,
+   "vals_eps": [
+    2.65,
+    2.06,
+    28.64
+   ],
+   "vals_navps": [
+    38.05,
+    36.15
+   ],
+   "year_only": false
+  },
+  "23115": {
+   "end": "2017-12-31",
+   "eps": 2.18,
+   "eps_prior": 2.65,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "ok": true,
+   "pages": 196,
+   "src_eps": "Earnings per share (Rs.)  2.18  2.65  -17.75",
+   "title": "Annual Report 2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/390_1523438714303.pdf",
+   "v": 6,
+   "vals_eps": [
+    2.18,
+    2.65,
+    -17.75
+   ],
+   "year_only": false
+  },
+  "32531": {
+   "dps": 1.06,
+   "dps_prior": 0.89,
+   "end": "2018-12-31",
+   "eps": 2.74,
+   "eps_prior": 2.18,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 40.82,
+   "navps_prior": 39.56,
+   "ok": true,
+   "pages": 192,
+   "src_dps": "Dividend per share  1.06  0.89  0.89  0.89  0.85  0.85  0.85  0.85  0.60  0.25",
+   "src_eps": "Earnings per share (LKR)  2.74  2.18  25.6",
+   "src_navps": "Net Assets per Share  40.82  39.56  38.05  36.14  35.40  33.13  31.02  29.73  27.62  25.66",
+   "title": "Annual Report 2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/390_1551847551615.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.06,
+    0.89,
+    0.89,
+    0.89,
+    0.85,
+    0.85,
+    0.85,
+    0.85,
+    0.6,
+    0.25
+   ],
+   "vals_eps": [
+    2.74,
+    2.18,
+    25.6
+   ],
+   "vals_navps": [
+    40.82,
+    39.56,
+    38.05,
+    36.14,
+    35.4,
+    33.13,
+    31.02,
+    29.73,
+    27.62,
+    25.66
+   ],
+   "year_only": false
+  },
   "35547": {
    "dps": 1.06,
    "dps_prior": 1.06,
@@ -470,7 +588,7 @@
     "id": "32531",
     "title": "Annual Report 2018",
     "uploaded": 1551724200000,
-    "url": "https://cdn.cse.lk/upload_report_file/390_1551847551615.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/390_1551847551615.pdf",
     "year_only": false
    },
    {
@@ -479,7 +597,7 @@
     "id": "23115",
     "title": "Annual Report 2017",
     "uploaded": 1523385000000,
-    "url": "https://cdn.cse.lk/upload_report_file/390_1523438714303.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/390_1523438714303.pdf",
     "year_only": false
    },
    {
@@ -488,7 +606,7 @@
     "id": "21305",
     "title": "Annual Report 2016",
     "uploaded": 1493231400000,
-    "url": "https://cdn.cse.lk/upload_report_file/390_1493290089696.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/390_1493290089696.pdf",
     "year_only": false
    }
   ],

@@ -1,5 +1,96 @@
 {
  "annual": {
+  "21847": {
+   "dps": 66.0,
+   "dps_prior": 20.0,
+   "end": "2017-03-31",
+   "eps": -74.42,
+   "eps_prior": 44.6,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 1037.6,
+   "navps_prior": 1208.35,
+   "ok": true,
+   "pages": 112,
+   "src_dps": "Dividend per Share (Rs.)  66.00  20.00",
+   "src_eps": "Earnings / (Loss) per Share (Rs.)  (74.42)  44.60",
+   "src_navps": "Net Assets per Share (Rs.)  1,037.60  1,208.35",
+   "title": "Annual Report 2016/2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1502183260558.pdf",
+   "v": 6,
+   "vals_dps": [
+    66.0,
+    20.0
+   ],
+   "vals_eps": [
+    -74.42,
+    44.6
+   ],
+   "vals_navps": [
+    1037.6,
+    1208.35
+   ],
+   "year_only": false
+  },
+  "23840": {
+   "dps": 7.2,
+   "dps_prior": 66.0,
+   "end": "2018-03-31",
+   "eps": -298.29,
+   "eps_prior": -74.42,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 931.46,
+   "navps_prior": 1037.6,
+   "ok": true,
+   "pages": 110,
+   "src_dps": "Dividend per Share (Rs.)  7.2  -  66.00  -  66.00",
+   "src_eps": "Earnings/(Loss) per Share (Rs.)  (298.29)  (74.42)",
+   "src_navps": "Net Assets per Share (Rs.)  931.46  1,037.60",
+   "title": "Annual Report 2017/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1531480323307.B._Creasy_&_Company_PLC_2017-18.pdf",
+   "v": 6,
+   "vals_dps": [
+    7.2,
+    66.0,
+    66.0
+   ],
+   "vals_eps": [
+    -298.29,
+    -74.42
+   ],
+   "vals_navps": [
+    931.46,
+    1037.6
+   ],
+   "year_only": false
+  },
   "34085": {
    "dps": 14.2,
    "dps_prior": 36.0,
@@ -461,7 +552,7 @@
     "id": "23840",
     "title": "Annual Report 2017/2018",
     "uploaded": 1531420200000,
-    "url": "https://cdn.cse.lk/upload_report_file/745_1531480323307.B._Creasy_&_Company_PLC_2017-18.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1531480323307.B._Creasy_&_Company_PLC_2017-18.pdf",
     "year_only": false
    },
    {
@@ -470,7 +561,7 @@
     "id": "21847",
     "title": "Annual Report 2016/2017",
     "uploaded": 1502130600000,
-    "url": "https://cdn.cse.lk/upload_report_file/745_1502183260558.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1502183260558.pdf",
     "year_only": false
    }
   ],
@@ -522,6 +613,24 @@
    },
    {
     "amended": false,
+    "end": "2025-06-30",
+    "id": "48665",
+    "title": "Interim Financial Statements for the period ended 30.06.2025",
+    "uploaded": 1755163138150,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1755163138150.B. Creasy & Co. PLC - Interim Financial Statements 30.06.2025 - CSE..pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-03-31",
+    "id": "47979",
+    "title": "Interim Financial Statements for the  Year Ended 31.03.2025",
+    "uploaded": 1748423035136,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1748423035136.03.2025 Interim Financial Statements- -CSE.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
     "end": "2024-12-31",
     "id": "47385",
     "title": "Interim Financial Statements for the  Period  Ended 31.12.2024",
@@ -531,47 +640,92 @@
    },
    {
     "amended": false,
-    "end": "2023-12-31",
-    "id": "45060",
-    "title": "Interim Financial Statements for the period ended 31.12.2023",
-    "uploaded": 1707822666354,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1707822666354.12.2023.pdf",
+    "end": "2024-09-30",
+    "id": "46855",
+    "title": "Interim Financial Statements for the  Period  Ended 30.09.2024",
+    "uploaded": 1730977545117,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1730977545117.09.2024.pdf",
     "year_only": false
    },
    {
     "amended": false,
-    "end": "2022-12-31",
-    "id": "42708",
-    "title": "Quarterly Financial Report as at 31.12.2022",
-    "uploaded": 1676452449596,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1676452449596.12.2022 F.pdf",
-    "year_only": true
-   },
-   {
-    "amended": false,
-    "end": "2021-12-31",
-    "id": "39980",
-    "title": "Quarterly Financial Report as of 31.12.2021",
-    "uploaded": 1644916213746,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1644916213746.12.2021 CONSOL FINAL - EBC GROUP.pdf",
-    "year_only": true
-   },
-   {
-    "amended": false,
-    "end": "2020-12-31",
-    "id": "37360",
-    "title": "Quarterly Financial Report as of 31.12.2020",
-    "uploaded": 1613384651776,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1613384651776.pdf",
-    "year_only": true
+    "end": "2024-06-30",
+    "id": "46456",
+    "title": "Interim Financial Statements for the period ended 30.06.2024",
+    "uploaded": 1723719454164,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1723719454164.B Creasy & Co. PLC- Interim Financial Statements-30.06.2024.pdf",
+    "year_only": false
    }
   ]
  },
  "quarterly": {
-  "37360": {
-   "end": "2020-12-31",
-   "eps": 55.89,
-   "eps_prior": 8.38,
+  "46456": {
+   "end": "2024-06-30",
+   "eps": 0.36,
+   "eps_prior": 0.98,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": null,
+   "navps": 25.53,
+   "navps_prior": 24.86,
+   "ok": true,
+   "pages": 10,
+   "profit": 91311.0,
+   "profit_growth": -63.2,
+   "profit_prior": 247860.0,
+   "revenue": 6744831.0,
+   "revenue_growth": 19.0,
+   "revenue_prior": 5669887.0,
+   "src_eps": "Basic Earnings per Share (Rs.)  0.36  0.98",
+   "src_navps": "Net Asset Value Per Share Rs.  25.53  24.86  21.80  21.03",
+   "src_profit": "Equity Holders of the Parent  91,311  247,860",
+   "src_revenue": "Revenue  6,744,831  5,669,887  19%",
+   "title": "Interim Financial Statements for the period ended 30.06.2024",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1723719454164.B Creasy & Co. PLC- Interim Financial Statements-30.06.2024.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.36,
+    0.98
+   ],
+   "vals_navps": [
+    25.53,
+    24.86,
+    21.8,
+    21.03
+   ],
+   "vals_profit": [
+    91311.0,
+    247860.0
+   ],
+   "vals_revenue": [
+    6744831.0,
+    5669887.0
+   ],
+   "year_only": false
+  },
+  "46855": {
+   "end": "2024-09-30",
+   "eps": 1.05,
+   "eps_prior": -0.12,
    "layout_eps": [
     0,
     1,
@@ -593,254 +747,47 @@
     false
    ],
    "months": 3,
-   "navps": 1559.86,
-   "navps_prior": 1377.0,
+   "navps": 26.29,
+   "navps_prior": 24.86,
    "ok": true,
    "pages": 10,
-   "profit": 311709.0,
+   "profit": 266122.0,
    "profit_growth": null,
-   "profit_prior": -74406.0,
-   "revenue": 1348012.0,
-   "revenue_growth": 24.3,
-   "revenue_prior": 1084880.0,
-   "src_eps": "Basic Earnings per Share (Rs.)  55.89  8.38  134.07  30.53",
-   "src_navps": "Net Assets Value Per Share Rs.  1,559.86  1,377.00  1,553.47  1,440.34",
-   "src_profit": "Equity Holders of the parent  311,709  (74,406)  556,118  (283,999)",
-   "src_revenue": "Revenue  1,348,012  1,084,880  24%  3,775,880  3,112,732  21%",
-   "title": "Quarterly Financial Report as of 31.12.2020",
+   "profit_prior": -30876.0,
+   "revenue": 7956378.0,
+   "revenue_growth": 27.8,
+   "revenue_prior": 6223483.0,
+   "src_eps": "Basic Earnings / (Loss) per Share (Rs.)  1.05  (0.12)  1.41  0.86",
+   "src_navps": "Net Asset Value Per Share Rs.  26.29  24.86  21.99  21.03",
+   "src_profit": "Equity Holders of the Parent  266,122  (30,876)  357,433  216,984",
+   "src_revenue": "Revenue  7,956,378  6,223,483  28%  14,701,209  11,893,370  24%",
+   "title": "Interim Financial Statements for the  Period  Ended 30.09.2024",
    "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1613384651776.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1730977545117.09.2024.pdf",
    "v": 6,
    "vals_eps": [
-    55.89,
-    8.38,
-    134.07,
-    30.53
+    1.05,
+    -0.12,
+    1.41,
+    0.86
    ],
    "vals_navps": [
-    1559.86,
-    1377.0,
-    1553.47,
-    1440.34
+    26.29,
+    24.86,
+    21.99,
+    21.03
    ],
    "vals_profit": [
-    311709.0,
-    -74406.0,
-    556118.0,
-    -283999.0
+    266122.0,
+    -30876.0,
+    357433.0,
+    216984.0
    ],
    "vals_revenue": [
-    1348012.0,
-    1084880.0,
-    3775880.0,
-    3112732.0
-   ],
-   "year_only": true
-  },
-  "39980": {
-   "end": "2021-12-31",
-   "eps": 0.6,
-   "eps_prior": 0.56,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "navps": 19.43,
-   "navps_prior": 16.39,
-   "ok": true,
-   "pages": 11,
-   "profit": 364227.0,
-   "profit_growth": 16.8,
-   "profit_prior": 311709.0,
-   "revenue": 1685758.0,
-   "revenue_growth": 25.1,
-   "revenue_prior": 1348012.0,
-   "src_eps": "Basic Earnings per Share (Rs.)  0.60  0.56  1.14  1.34",
-   "src_navps": "Net Assets Value Per Share Rs.  19.43  16.39  18.02  16.83",
-   "src_profit": "Equity Holders of the parent  364,227  311,709  693,829  556,118",
-   "src_revenue": "Revenue  1,685,758  1,348,012  25%  4,056,823  3,775,880  7%",
-   "title": "Quarterly Financial Report as of 31.12.2021",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1644916213746.12.2021 CONSOL FINAL - EBC GROUP.pdf",
-   "v": 6,
-   "vals_eps": [
-    0.6,
-    0.56,
-    1.14,
-    1.34
-   ],
-   "vals_navps": [
-    19.43,
-    16.39,
-    18.02,
-    16.83
-   ],
-   "vals_profit": [
-    364227.0,
-    311709.0,
-    693829.0,
-    556118.0
-   ],
-   "vals_revenue": [
-    1685758.0,
-    1348012.0,
-    4056823.0,
-    3775880.0
-   ],
-   "year_only": true
-  },
-  "42708": {
-   "end": "2022-12-31",
-   "eps": -0.16,
-   "eps_prior": 0.6,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "navps": 26.95,
-   "navps_prior": 19.6,
-   "ok": true,
-   "pages": 11,
-   "profit": 260546.0,
-   "profit_growth": -28.5,
-   "profit_prior": 364227.0,
-   "revenue": 2085044.0,
-   "revenue_growth": 23.7,
-   "revenue_prior": 1685758.0,
-   "src_eps": "Basic Earnings/(Loss) per Share (Rs.)  (0.16)  0.60  2.24  1.14",
-   "src_navps": "Net Asset Value Per Share Rs.  26.95  19.60  22.42  18.58",
-   "src_profit": "Equity Holders of the Parent  260,546  364,227  1,358,805  693,829",
-   "src_revenue": "Revenue  2,085,044  1,685,758  24%  5,986,914  4,056,823  48%",
-   "title": "Quarterly Financial Report as at 31.12.2022",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1676452449596.12.2022 F.pdf",
-   "v": 6,
-   "vals_eps": [
-    -0.16,
-    0.6,
-    2.24,
-    1.14
-   ],
-   "vals_navps": [
-    26.95,
-    19.6,
-    22.42,
-    18.58
-   ],
-   "vals_profit": [
-    260546.0,
-    364227.0,
-    1358805.0,
-    693829.0
-   ],
-   "vals_revenue": [
-    2085044.0,
-    1685758.0,
-    5986914.0,
-    4056823.0
-   ],
-   "year_only": true
-  },
-  "45060": {
-   "end": "2023-12-31",
-   "eps": 1.08,
-   "eps_prior": -0.16,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "navps": 27.32,
-   "navps_prior": 25.74,
-   "ok": true,
-   "pages": 10,
-   "profit": 391706.0,
-   "profit_growth": 50.3,
-   "profit_prior": 260546.0,
-   "revenue": 2699614.0,
-   "revenue_growth": 32.2,
-   "revenue_prior": 2042036.0,
-   "src_eps": "Basic Earnings/(Loss) per Share (Rs.)  1.08  (0.16)  0.63  2.24",
-   "src_navps": "Net Asset Value Per Share Rs.  27.32  25.74  21.05  21.11",
-   "src_profit": "Equity Holders of the Parent  391,706  260,546  608,690  1,358,805",
-   "src_revenue": "Revenue  2,699,614  2,042,036  32%  6,957,251  5,943,906  17%",
-   "title": "Interim Financial Statements for the period ended 31.12.2023",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1707822666354.12.2023.pdf",
-   "v": 6,
-   "vals_eps": [
-    1.08,
-    -0.16,
-    0.63,
-    2.24
-   ],
-   "vals_navps": [
-    27.32,
-    25.74,
-    21.05,
-    21.11
-   ],
-   "vals_profit": [
-    391706.0,
-    260546.0,
-    608690.0,
-    1358805.0
-   ],
-   "vals_revenue": [
-    2699614.0,
-    2042036.0,
-    6957251.0,
-    5943906.0
+    7956378.0,
+    6223483.0,
+    14701209.0,
+    11893370.0
    ],
    "year_only": false
   },
@@ -910,6 +857,138 @@
     6832564.0,
     22168718.0,
     18725934.0
+   ],
+   "year_only": false
+  },
+  "47979": {
+   "end": "2025-03-31",
+   "eps": 2.03,
+   "eps_prior": -1.63,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 12,
+   "navps": 29.9,
+   "navps_prior": 24.86,
+   "ok": true,
+   "pages": 12,
+   "profit": 513726.0,
+   "profit_growth": null,
+   "profit_prior": -413477.0,
+   "revenue": 9896825.0,
+   "revenue_growth": 39.5,
+   "revenue_prior": 7096160.0,
+   "src_eps": "Basic Earnings per Share (Rs.)  2.03  (1.63)  4.71  0.77",
+   "src_navps": "Net Asset Value Per Share Rs.  29.90  24.86  24.82  21.03",
+   "src_profit": "Equity Holders of the Parent  513,726  (413,477)  1,195,322  195,213",
+   "src_revenue": "Revenue  9,896,825  7,096,160  39%  32,065,543  25,822,094  24%",
+   "title": "Interim Financial Statements for the  Year Ended 31.03.2025",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1748423035136.03.2025 Interim Financial Statements- -CSE.pdf",
+   "v": 6,
+   "vals_eps": [
+    2.03,
+    -1.63,
+    4.71,
+    0.77
+   ],
+   "vals_navps": [
+    29.9,
+    24.86,
+    24.82,
+    21.03
+   ],
+   "vals_profit": [
+    513726.0,
+    -413477.0,
+    1195322.0,
+    195213.0
+   ],
+   "vals_revenue": [
+    9896825.0,
+    7096160.0,
+    32065543.0,
+    25822094.0
+   ],
+   "year_only": false
+  },
+  "48665": {
+   "end": "2025-06-30",
+   "eps": 1.15,
+   "eps_prior": 0.36,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 31.12,
+   "navps_prior": 29.9,
+   "ok": true,
+   "pages": 16,
+   "profit": 291976.0,
+   "profit_growth": 219.8,
+   "profit_prior": 91311.0,
+   "revenue": 8623293.0,
+   "revenue_growth": 27.9,
+   "revenue_prior": 6744831.0,
+   "src_eps": "Basic Earnings Per Share (Rs.)  1.15  0.36",
+   "src_navps": "Net Asset Value Per Share Rs.  31.12  29.90  25.36  24.82",
+   "src_profit": "Equity Holders of the Parent  291,976  91,311",
+   "src_revenue": "Revenue  8,623,293  6,744,831  28%",
+   "title": "Interim Financial Statements for the period ended 30.06.2025",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/745_1755163138150.B. Creasy & Co. PLC - Interim Financial Statements 30.06.2025 - CSE..pdf",
+   "v": 6,
+   "vals_eps": [
+    1.15,
+    0.36
+   ],
+   "vals_navps": [
+    31.12,
+    29.9,
+    25.36,
+    24.82
+   ],
+   "vals_profit": [
+    291976.0,
+    91311.0
+   ],
+   "vals_revenue": [
+    8623293.0,
+    6744831.0
    ],
    "year_only": false
   },

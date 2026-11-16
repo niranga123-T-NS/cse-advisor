@@ -1,5 +1,104 @@
 {
  "annual": {
+  "21426": {
+   "dps": 0.5,
+   "dps_prior": 0.5,
+   "end": "2017-03-31",
+   "eps": 1.37,
+   "eps_prior": 3.97,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 72.4,
+   "navps_prior": 51.6,
+   "ok": true,
+   "pages": 92,
+   "src_dps": "Dividend per share (Rs.)  0.50  0.50",
+   "src_eps": "Earnings per share (Rs.)  1.37  3.97",
+   "src_navps": "Net assets per share (Rs.)  72.40  51.60",
+   "title": "Annual Report 2016/2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/567_1495534232717.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.5,
+    0.5
+   ],
+   "vals_eps": [
+    1.37,
+    3.97
+   ],
+   "vals_navps": [
+    72.4,
+    51.6
+   ],
+   "year_only": false
+  },
+  "23357": {
+   "dps": 0.55,
+   "dps_prior": 0.5,
+   "end": "2018-03-31",
+   "eps": 2.77,
+   "eps_prior": 1.37,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 66.93,
+   "navps_prior": 72.4,
+   "ok": true,
+   "pages": 100,
+   "src_dps": "Dividend per share (Rs.)  0.55  0.50",
+   "src_eps": "Earnings per share (Rs.)  2.77  1.37",
+   "src_navps": "Net assets per share (Rs.)  66.93  72.40",
+   "title": "Annual Report for the year ended 31/03/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/567_1526984617638.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.55,
+    0.5
+   ],
+   "vals_eps": [
+    2.77,
+    1.37
+   ],
+   "vals_navps": [
+    66.93,
+    72.4
+   ],
+   "year_only": false
+  },
+  "32906": {
+   "end": "2019-03-31",
+   "ok": true,
+   "pages": 108,
+   "title": "Annual Report for the year ended 31/03/2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/567_1558429805795.pdf",
+   "v": 6,
+   "year_only": false
+  },
   "35938": {
    "dps": 0.55,
    "dps_prior": 0.55,
@@ -365,20 +464,20 @@
    },
    {
     "amended": false,
-    "end": "2019-12-31",
+    "end": "2019-03-31",
     "id": "32906",
     "title": "Annual Report for the year ended 31/03/2019",
     "uploaded": 1558377000000,
-    "url": "https://cdn.cse.lk/upload_report_file/567_1558429805795.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/567_1558429805795.pdf",
     "year_only": false
    },
    {
     "amended": false,
-    "end": "2018-12-31",
+    "end": "2018-03-31",
     "id": "23357",
     "title": "Annual Report for the year ended 31/03/2018",
     "uploaded": 1526927400000,
-    "url": "https://cdn.cse.lk/upload_report_file/567_1526984617638.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/567_1526984617638.pdf",
     "year_only": false
    },
    {
@@ -387,7 +486,7 @@
     "id": "21426",
     "title": "Annual Report 2016/2017",
     "uploaded": 1495477800000,
-    "url": "https://cdn.cse.lk/upload_report_file/567_1495534232717.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/567_1495534232717.pdf",
     "year_only": false
    }
   ],
@@ -466,85 +565,29 @@
    },
    {
     "amended": false,
-    "end": "2023-12-31",
-    "id": "45104",
-    "title": "Interim Financials 31 December 2023",
-    "uploaded": 1707909254808,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/567_1707909254808.pdf",
-    "year_only": false
+    "end": "2024-09-30",
+    "id": "47000",
+    "title": "Quarterly Financial Report as of 30-09-2024",
+    "uploaded": 1731493429885,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/567_1731493429885.pdf",
+    "year_only": true
    },
    {
     "amended": false,
-    "end": "2023-09-30",
-    "id": "44501",
-    "title": "Quarterly Report as of 30th September 2023",
-    "uploaded": 1699956724640,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/567_1699956724640..pdf",
-    "year_only": false
+    "end": "2024-06-30",
+    "id": "46342",
+    "title": "Quarterly Financial Report as of 30-06-2024",
+    "uploaded": 1723628254979,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/567_1723628254979.pdf",
+    "year_only": true
    }
   ]
  },
  "quarterly": {
-  "44501": {
-   "end": "2023-09-30",
-   "eps": -0.67,
-   "eps_prior": -1.1,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    true
-   ],
-   "months": 3,
-   "navps": 45.85,
-   "navps_prior": 54.72,
-   "ok": true,
-   "pages": 11,
-   "profit_growth": null,
-   "revenue": 220408.0,
-   "revenue_growth": 16.9,
-   "revenue_prior": 188508.0,
-   "src_eps": "Earnings / (loss) per share (Rs.)  (0.67)  (1.10)  (2.04)  (1.64)",
-   "src_navps": "Net assets per share (Rs.)  45.85  54.72  45.77  54.06",
-   "src_revenue": "Revenue  220,408  188,508  17  388,888  357,692  9",
-   "title": "Quarterly Report as of 30th September 2023",
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/567_1699956724640..pdf",
-   "v": 6,
-   "vals_eps": [
-    -0.67,
-    -1.1,
-    -2.04,
-    -1.64
-   ],
-   "vals_navps": [
-    45.85,
-    54.72,
-    45.77,
-    54.06
-   ],
-   "vals_revenue": [
-    220408.0,
-    188508.0,
-    17.0,
-    388888.0,
-    357692.0,
-    9.0
-   ],
-   "year_only": false
-  },
-  "45104": {
-   "end": "2023-12-31",
-   "eps": -0.04,
-   "eps_prior": 0.49,
+  "46342": {
+   "end": "2024-06-30",
+   "eps": -0.35,
+   "eps_prior": -1.39,
    "layout_eps": [
     0,
     1,
@@ -566,53 +609,116 @@
     true
    ],
    "months": 3,
-   "navps": 45.79,
-   "navps_prior": 54.72,
+   "navps": 52.29,
+   "navps_prior": 52.64,
    "ok": true,
    "pages": 10,
-   "profit": -1782.0,
+   "profit": -14862.0,
    "profit_growth": null,
-   "profit_prior": 16613.0,
-   "revenue": 262798.0,
-   "revenue_growth": 29.8,
-   "revenue_prior": 202529.0,
-   "src_eps": "Earnings / (loss) per share (Rs.)  (0.04)  0.49  (1.95)  (1.06)",
-   "src_navps": "Net assets per share (Rs.)  45.79  54.72  45.86  54.06",
-   "src_profit": "Profit / (loss) for the period  (1,782)  16,613  (111)  (72,774)  (33,794)  115",
-   "src_revenue": "Revenue  262,798  202,529  30  651,686  560,221  16",
-   "title": "Interim Financials 31 December 2023",
+   "profit_prior": -47000.0,
+   "revenue": 245716.0,
+   "revenue_growth": 45.8,
+   "revenue_prior": 168480.0,
+   "src_eps": "Earnings/ (loss) per share (Rs.)  (0.35)  (1.39)",
+   "src_navps": "Net assets per share (Rs.)  52.29  52.64  52.62  52.80",
+   "src_profit": "Profit/ (loss) for the period  (14,862)  (47,000)  (68)",
+   "src_revenue": "Revenue  245,716  168,480  46",
+   "title": "Quarterly Financial Report as of 30-06-2024",
    "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/567_1707909254808.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/567_1723628254979.pdf",
    "v": 6,
    "vals_eps": [
-    -0.04,
-    0.49,
-    -1.95,
-    -1.06
+    -0.35,
+    -1.39
    ],
    "vals_navps": [
-    45.79,
-    54.72,
-    45.86,
-    54.06
+    52.29,
+    52.64,
+    52.62,
+    52.8
    ],
    "vals_profit": [
-    -1782.0,
-    16613.0,
-    -111.0,
-    -72774.0,
-    -33794.0,
-    115.0
+    -14862.0,
+    -47000.0,
+    -68.0
    ],
    "vals_revenue": [
-    262798.0,
-    202529.0,
-    30.0,
-    651686.0,
-    560221.0,
-    16.0
+    245716.0,
+    168480.0,
+    46.0
    ],
-   "year_only": false
+   "year_only": true
+  },
+  "47000": {
+   "end": "2024-09-30",
+   "eps": -0.3,
+   "eps_prior": -0.67,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 6,
+   "navps": 51.99,
+   "navps_prior": 52.64,
+   "ok": true,
+   "pages": 11,
+   "profit": -12849.0,
+   "profit_growth": null,
+   "profit_prior": -23992.0,
+   "revenue": 534.0,
+   "revenue_growth": 37.3,
+   "revenue_prior": 389.0,
+   "src_eps": "Earnings / (loss) per share (Rs.)  (0.30)  (0.67)  (0.66)  (2.04)",
+   "src_navps": "Net assets per share (Rs.)  51.99  52.64  52.43  52.80",
+   "src_profit": "Profit/ (loss) for the period  (12,849)  (23,992)  (46)  (27,711)  (70,992)  (61)",
+   "src_revenue": "revenue of Rs. 534 Mn (Rs. 389 Mn 1H FY24) for the period ending 30th September 2024.",
+   "title": "Quarterly Financial Report as of 30-09-2024",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/567_1731493429885.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.3,
+    -0.67,
+    -0.66,
+    -2.04
+   ],
+   "vals_navps": [
+    51.99,
+    52.64,
+    52.43,
+    52.8
+   ],
+   "vals_profit": [
+    -12849.0,
+    -23992.0,
+    -46.0,
+    -27711.0,
+    -70992.0,
+    -61.0
+   ],
+   "vals_revenue": [
+    534.0,
+    389.0,
+    1.0,
+    24.0
+   ],
+   "year_only": true
   },
   "47455": {
    "end": "2024-12-31",

@@ -1,5 +1,146 @@
 {
  "annual": {
+  "21257": {
+   "dps": 2.5,
+   "dps_prior": 1.1,
+   "end": "2016-12-31",
+   "eps": 13.63,
+   "eps_prior": 10.25,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 55.62,
+   "navps_prior": 43.02,
+   "ok": true,
+   "pages": 144,
+   "src_dps": "Dividend per share (Proposed)  2.50  1.10",
+   "src_eps": "Earnings Per Share (EPS) - (Rs.)  13.63  10.25  33",
+   "src_navps": "Net Assets Per Share (Rs.)  55.62  43.02  29",
+   "title": "Annual Report 2016",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/671_1491470267754.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.5,
+    1.1
+   ],
+   "vals_eps": [
+    13.63,
+    10.25,
+    33.0
+   ],
+   "vals_navps": [
+    55.62,
+    43.02,
+    29.0
+   ],
+   "year_only": false
+  },
+  "23111": {
+   "dps": 2.0,
+   "dps_prior": 2.5,
+   "end": "2017-12-31",
+   "eps": 13.17,
+   "eps_prior": 22.23,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 95.21,
+   "navps_prior": 84.44,
+   "ok": true,
+   "pages": 164,
+   "src_dps": "Dividend per share (proposed)  2.00  2.50  Lanka Padanama Mawatha, Independence Square, Colombo 7",
+   "src_eps": "Earnings Per Share (EPS)  Rs.  13.17  22.23  (41)",
+   "src_navps": "Net Assets Per Share  Rs.  95.21  84.44  13",
+   "title": "Annual Report 2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/671_1523006281744.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.0,
+    2.5
+   ],
+   "vals_eps": [
+    13.17,
+    22.23,
+    -41.0
+   ],
+   "vals_navps": [
+    95.21,
+    84.44,
+    13.0
+   ],
+   "year_only": false
+  },
+  "32672": {
+   "dps": 3.0,
+   "dps_prior": 2.0,
+   "end": "2018-12-31",
+   "eps": 14.84,
+   "eps_prior": 13.17,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 107.99,
+   "navps_prior": 95.21,
+   "ok": true,
+   "pages": 182,
+   "src_dps": "Dividend per share (proposed)  3.00  2.00",
+   "src_eps": "Earnings per share (EPS)  Rs.  14.84  13.17  13",
+   "src_navps": "Net assets per share  Rs.  107.99  95.21  13",
+   "title": "Annual Report 2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/671_1554889401478.pdf",
+   "v": 6,
+   "vals_dps": [
+    3.0,
+    2.0
+   ],
+   "vals_eps": [
+    14.84,
+    13.17,
+    13.0
+   ],
+   "vals_navps": [
+    107.99,
+    95.21,
+    13.0
+   ],
+   "year_only": false
+  },
   "35420": {
    "dps": 4.5,
    "dps_prior": 3.0,
@@ -390,7 +531,7 @@
     "id": "32672",
     "title": "Annual Report 2018",
     "uploaded": 1554834600000,
-    "url": "https://cdn.cse.lk/upload_report_file/671_1554889401478.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/671_1554889401478.pdf",
     "year_only": false
    },
    {
@@ -399,7 +540,7 @@
     "id": "23111",
     "title": "Annual Report 2017",
     "uploaded": 1522953000000,
-    "url": "https://cdn.cse.lk/upload_report_file/671_1523006281744.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/671_1523006281744.pdf",
     "year_only": false
    },
    {
@@ -408,7 +549,7 @@
     "id": "21257",
     "title": "Annual Report 2016",
     "uploaded": 1491417000000,
-    "url": "https://cdn.cse.lk/upload_report_file/671_1491470267754.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/671_1491470267754.pdf",
     "year_only": false
    }
   ],

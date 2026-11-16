@@ -230,11 +230,29 @@
    },
    {
     "amended": false,
+    "end": "2025-03-31",
+    "id": "48088",
+    "title": "UBF Interim Financial Statements 31.03.2025",
+    "uploaded": 1748598757259,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2998_1748598757259.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
     "end": "2024-12-31",
     "id": "47323",
     "title": "Interim Financial Statement for the quarter ended 31/12/2024",
     "uploaded": 1739268751205,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/2998_1739268751205.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2024-09-30",
+    "id": "46830",
+    "title": "Interim Financial Statement for the quarter ended 30/09/2024",
+    "uploaded": 1730885493427,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2998_1730885493427.pdf",
     "year_only": false
    },
    {
@@ -245,138 +263,10 @@
     "uploaded": 1723627001748,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/2998_1723627001748.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2024-03-31",
-    "id": "45794",
-    "title": "Interim Financial Statements 31st March 2024",
-    "uploaded": 1717125598528,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/2998_1717125598528.pdf",
-    "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2023-12-31",
-    "id": "44998",
-    "title": "Interim Financial Statement for the quarter ended 31/12/2023",
-    "uploaded": 1707476850323,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/2998_1707476850323.pdf",
-    "year_only": false
    }
   ]
  },
  "quarterly": {
-  "44998": {
-   "end": "2023-12-31",
-   "eps": 0.0,
-   "eps_prior": -0.01,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "ok": true,
-   "pages": 11,
-   "profit": 1639277.0,
-   "profit_growth": null,
-   "profit_prior": -23995475.0,
-   "revenue": 184901772.0,
-   "revenue_growth": 8.2,
-   "revenue_prior": 170944253.0,
-   "src_eps": "Earnings per Share: Basic  0.00  (0.01)  0.00  (0.06)",
-   "src_profit": "Profit/(Loss) for the Year  1,639,277  (23,995,475)  107%  5,650,946  (169,457,296)  103%",
-   "src_revenue": "Net Interest Income  184,901,772  170,944,253  8%  566,289,161  519,241,202  9%",
-   "title": "Interim Financial Statement for the quarter ended 31/12/2023",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/2998_1707476850323.pdf",
-   "v": 6,
-   "vals_eps": [
-    0.0,
-    -0.01,
-    0.0,
-    -0.06
-   ],
-   "vals_profit": [
-    1639277.0,
-    -23995475.0,
-    5650946.0,
-    -169457296.0
-   ],
-   "vals_revenue": [
-    184901772.0,
-    170944253.0,
-    566289161.0,
-    519241202.0
-   ],
-   "year_only": false
-  },
-  "45794": {
-   "end": "2024-03-31",
-   "eps": -0.0,
-   "eps_prior": 0.02,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "ok": true,
-   "pages": 11,
-   "profit": -4601625.0,
-   "profit_growth": null,
-   "profit_prior": 56004076.0,
-   "revenue": 175656854.0,
-   "revenue_growth": -20.1,
-   "revenue_prior": 219710883.0,
-   "src_eps": "Earnings per Share: Basic  (0.00)  0.02  0.00  (0.04)",
-   "src_profit": "Profit/(Loss) for the Year  (4,601,625)  56,004,076  -108%  1,049,321  (113,453,220)  101%",
-   "src_revenue": "Net Interest Income  175,656,854  219,710,883  -20%  741,946,015  738,952,085  0%",
-   "title": "Interim Financial Statements 31st March 2024",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/2998_1717125598528.pdf",
-   "v": 6,
-   "vals_eps": [
-    -0.0,
-    0.02,
-    0.0,
-    -0.04
-   ],
-   "vals_profit": [
-    -4601625.0,
-    56004076.0,
-    1049321.0,
-    -113453220.0
-   ],
-   "vals_revenue": [
-    175656854.0,
-    219710883.0,
-    741946015.0,
-    738952085.0
-   ],
-   "year_only": false
-  },
   "46335": {
    "end": "2024-06-30",
    "eps": -0.01,
@@ -423,6 +313,61 @@
    "vals_revenue": [
     161381667.0,
     173602643.0
+   ],
+   "year_only": false
+  },
+  "46830": {
+   "end": "2024-09-30",
+   "eps": 0.0,
+   "eps_prior": 0.0,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "ok": true,
+   "pages": 12,
+   "profit": 11847201.0,
+   "profit_growth": 325.4,
+   "profit_prior": 2784866.0,
+   "revenue": 207131904.0,
+   "revenue_growth": -0.3,
+   "revenue_prior": 207784746.0,
+   "src_eps": "Earnings per Share: Basic  0.00  0.00  (0.00)  0.00",
+   "src_profit": "Profit/(Loss) for the Year  11,847,201  2,784,866  325%  (9,383,217)  4,011,669  -334%",
+   "src_revenue": "Net Interest Income  207,131,904  207,784,746  0%  368,513,571  381,387,389  -3%",
+   "title": "Interim Financial Statement for the quarter ended 30/09/2024",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2998_1730885493427.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.0,
+    0.0,
+    -0.0,
+    0.0
+   ],
+   "vals_profit": [
+    11847201.0,
+    2784866.0,
+    -9383217.0,
+    4011669.0
+   ],
+   "vals_revenue": [
+    207131904.0,
+    207784746.0,
+    368513571.0,
+    381387389.0
    ],
    "year_only": false
   },
@@ -478,6 +423,61 @@
     184901772.0,
     608366446.0,
     566289161.0
+   ],
+   "year_only": false
+  },
+  "48088": {
+   "end": "2025-03-31",
+   "eps": 0.01,
+   "eps_prior": -0.002,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "ok": true,
+   "pages": 11,
+   "profit": 29927511.0,
+   "profit_growth": null,
+   "profit_prior": -4178728.0,
+   "revenue": 246793436.0,
+   "revenue_growth": 39.3,
+   "revenue_prior": 177170248.0,
+   "src_eps": "Earnings per Share: Basic  0.010  (0.002)  0.010  0.002",
+   "src_profit": "Profit/(Loss) for the Year  29,927,511  (4,178,728)  816%  30,520,081  1,472,218  1973%",
+   "src_revenue": "Net Interest Income  246,793,436  177,170,248  39%  855,159,882  743,459,409  15%",
+   "title": "UBF Interim Financial Statements 31.03.2025",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2998_1748598757259.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.01,
+    -0.002,
+    0.01,
+    0.002
+   ],
+   "vals_profit": [
+    29927511.0,
+    -4178728.0,
+    30520081.0,
+    1472218.0
+   ],
+   "vals_revenue": [
+    246793436.0,
+    177170248.0,
+    855159882.0,
+    743459409.0
    ],
    "year_only": false
   },

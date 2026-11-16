@@ -1,5 +1,130 @@
 {
  "annual": {
+  "21427": {
+   "dps": 0.75,
+   "dps_prior": 1.0,
+   "end": "2016-12-31",
+   "eps": 3.02,
+   "eps_prior": 2.42,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 16.61,
+   "navps_prior": 15.12,
+   "ok": true,
+   "pages": 216,
+   "src_dps": "Dividends Per Share (DPS)  LKR  0.75  1.00",
+   "src_eps": "Basic earnings per share (LKR)  41  3.02  2.42  1.75  0.80",
+   "src_navps": "Net Assets per Share  LKR  16.61  15.12",
+   "title": "Annual Report 2016",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/841_1495537117727.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.75,
+    1.0
+   ],
+   "vals_eps": [
+    3.02,
+    2.42,
+    1.75,
+    0.8
+   ],
+   "vals_navps": [
+    16.61,
+    15.12
+   ],
+   "year_only": false
+  },
+  "23426": {
+   "dps": 1.0,
+   "dps_prior": 0.75,
+   "end": "2017-12-31",
+   "eps": 4.66,
+   "eps_prior": 3.02,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 20.78,
+   "navps_prior": 16.61,
+   "ok": true,
+   "pages": 184,
+   "src_dps": "Dividend Per Share (LKR)  1.00  0.75",
+   "src_eps": "Earnings Per Share (LKR)  4.66  3.02",
+   "src_navps": "Net Assets per Share  LKR  20.78  16.61",
+   "title": "Annual Report 2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/841_1527505424980.05.18.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.0,
+    0.75
+   ],
+   "vals_eps": [
+    4.66,
+    3.02
+   ],
+   "vals_navps": [
+    20.78,
+    16.61
+   ],
+   "year_only": false
+  },
+  "32987": {
+   "end": "2018-12-31",
+   "eps": 38.2,
+   "eps_prior": 3.11,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 41.15,
+   "navps_prior": 17.38,
+   "ok": true,
+   "pages": 224,
+   "src_eps": "Basic Earnings per Share  LKR  38.20  3.11  1128%",
+   "src_navps": "Net Assets per Share  LKR  41.15  17.38  137%",
+   "title": "Annual Report 2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/841_1558952765283.pdf",
+   "v": 6,
+   "vals_eps": [
+    38.2,
+    3.11
+   ],
+   "vals_navps": [
+    41.15,
+    17.38
+   ],
+   "year_only": false
+  },
   "35589": {
    "end": "2019-12-31",
    "eps": 8.0,
@@ -369,7 +494,7 @@
     "id": "32987",
     "title": "Annual Report 2018",
     "uploaded": 1558895400000,
-    "url": "https://cdn.cse.lk/upload_report_file/841_1558952765283.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/841_1558952765283.pdf",
     "year_only": false
    },
    {
@@ -378,7 +503,7 @@
     "id": "23426",
     "title": "Annual Report 2017",
     "uploaded": 1527445800000,
-    "url": "https://cdn.cse.lk/upload_report_file/841_1527505424980.05.18.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/841_1527505424980.05.18.pdf",
     "year_only": false
    },
    {
@@ -387,7 +512,7 @@
     "id": "21427",
     "title": "Annual Report 2016",
     "uploaded": 1495477800000,
-    "url": "https://cdn.cse.lk/upload_report_file/841_1495537117727.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/841_1495537117727.pdf",
     "year_only": false
    }
   ],

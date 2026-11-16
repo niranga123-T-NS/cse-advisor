@@ -1,5 +1,161 @@
 {
  "annual": {
+  "21155": {
+   "dps": 4.5,
+   "dps_prior": 2.5,
+   "end": "2016-12-31",
+   "eps": 12.88,
+   "eps_prior": 6.01,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 176.73,
+   "navps_prior": 164.9,
+   "ok": true,
+   "pages": 232,
+   "src_dps": "Dividend per share (LKR)  4.50  2.50  4.50  2.50",
+   "src_eps": "Earnings per share, LKR  12.88  6.01  16.46  11.89  13.18",
+   "src_navps": "Net asset value per share, LKR  176.73  164.90  180.72  151.34  138.87",
+   "title": "Annual Report 2016",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1488791292275.pdf",
+   "v": 6,
+   "vals_dps": [
+    4.5,
+    2.5,
+    4.5,
+    2.5
+   ],
+   "vals_eps": [
+    12.88,
+    6.01,
+    16.46,
+    11.89,
+    13.18
+   ],
+   "vals_navps": [
+    176.73,
+    164.9,
+    180.72,
+    151.34,
+    138.87
+   ],
+   "year_only": false
+  },
+  "22941": {
+   "dps": 1.07,
+   "dps_prior": 7.0,
+   "end": "2017-12-31",
+   "eps": 16.45,
+   "eps_prior": 12.88,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 185.31,
+   "navps_prior": 176.73,
+   "ok": true,
+   "pages": 272,
+   "src_dps": "Dividend per Share  N/A  1.07  7.00  6.00",
+   "src_eps": "Earnings per share, LKR  16.45  12.88  6.01  16.46  11.89",
+   "src_navps": "Net asset value per share, LKR  185.31  176.73  164.90  180.72  151.34",
+   "title": "Annual Report 2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1519811530224.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.07,
+    7.0,
+    6.0
+   ],
+   "vals_eps": [
+    16.45,
+    12.88,
+    6.01,
+    16.46,
+    11.89
+   ],
+   "vals_navps": [
+    185.31,
+    176.73,
+    164.9,
+    180.72,
+    151.34
+   ],
+   "year_only": false
+  },
+  "32503": {
+   "dps": 3.5,
+   "dps_prior": 3.5,
+   "end": "2018-12-31",
+   "eps": 11.36,
+   "eps_prior": 16.45,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 171.25,
+   "navps_prior": 185.31,
+   "ok": true,
+   "pages": 272,
+   "src_dps": "Dividend per share  3.5  3.50  NIL  NIL",
+   "src_eps": "Earnings per share, LKR  11.36  16.45  12.88  6.01  16.46",
+   "src_navps": "Net asset value per share, LKR  171.25  185.31  176.73  164.90  180.72",
+   "title": "Annual Report 2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1551408995818.pdf",
+   "v": 6,
+   "vals_dps": [
+    3.5,
+    3.5
+   ],
+   "vals_eps": [
+    11.36,
+    16.45,
+    12.88,
+    6.01,
+    16.46
+   ],
+   "vals_navps": [
+    171.25,
+    185.31,
+    176.73,
+    164.9,
+    180.72
+   ],
+   "year_only": false
+  },
   "35132": {
    "dps": 7.0,
    "dps_prior": 3.5,
@@ -430,7 +586,7 @@
     "id": "32503",
     "title": "Annual Report 2018",
     "uploaded": 1551378600000,
-    "url": "https://cdn.cse.lk/upload_report_file/371_1551408995818.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1551408995818.pdf",
     "year_only": false
    },
    {
@@ -439,7 +595,7 @@
     "id": "22941",
     "title": "Annual Report 2017",
     "uploaded": 1519756200000,
-    "url": "https://cdn.cse.lk/upload_report_file/371_1519811530224.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1519811530224.pdf",
     "year_only": false
    },
    {
@@ -448,7 +604,7 @@
     "id": "21155",
     "title": "Annual Report 2016",
     "uploaded": 1488738600000,
-    "url": "https://cdn.cse.lk/upload_report_file/371_1488791292275.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1488791292275.pdf",
     "year_only": false
    }
   ],
@@ -500,6 +656,24 @@
    },
    {
     "amended": false,
+    "end": "2025-06-30",
+    "id": "48559",
+    "title": "Interim Financial Statements as at 30.06.2025",
+    "uploaded": 1754558127193,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1754558127193.06.2025.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2025-03-31",
+    "id": "47806",
+    "title": "Interim Financial Statements as at 31.03.2025",
+    "uploaded": 1746783864877,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1746783864877.03.2025.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
     "end": "2024-12-31",
     "id": "47518",
     "title": "Interim Financial Statements as at 31.12.2024",
@@ -509,47 +683,29 @@
    },
    {
     "amended": false,
-    "end": "2023-12-31",
-    "id": "45206",
-    "title": "Interim Financial Statements as at 31.12.2023",
-    "uploaded": 1708357097487,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1708357097487.12.2023.pdf",
+    "end": "2024-09-30",
+    "id": "47021",
+    "title": "Interim Financial Statements as at 30.09.2024",
+    "uploaded": 1731496840541,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1731496840541.pdf",
     "year_only": true
    },
    {
     "amended": false,
-    "end": "2022-12-31",
-    "id": "42801",
-    "title": "(Revised) Interim Financial Statements as at 31.12.2022",
-    "uploaded": 1676952726418,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1676952726418.pdf",
+    "end": "2024-06-30",
+    "id": "46263",
+    "title": "Interim Financial Statements as at 30.06.2024",
+    "uploaded": 1723200115194,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1723200115194.06.2024.pdf",
     "year_only": true
-   },
-   {
-    "amended": false,
-    "end": "2021-12-31",
-    "id": "40037",
-    "title": "Interim Financial Statements as of 31-12-2021",
-    "uploaded": 1645152546539,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1645152546539.pdf",
-    "year_only": true
-   },
-   {
-    "amended": false,
-    "end": "2021-09-30",
-    "id": "39200",
-    "title": "Interim Financial Statements as at 30 September 2021",
-    "uploaded": 1635500255007,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1635500255007.pdf",
-    "year_only": false
    }
   ]
  },
  "quarterly": {
-  "39200": {
-   "end": "2021-09-30",
-   "eps": 9.74,
-   "eps_prior": 5.74,
+  "46263": {
+   "end": "2024-06-30",
+   "eps": 10.87,
+   "eps_prior": 7.74,
    "layout_eps": [
     0,
     1,
@@ -570,335 +726,157 @@
     1,
     true
    ],
-   "months": 3,
-   "navps": 157.33,
-   "navps_prior": 161.3,
-   "ok": true,
-   "pages": 23,
-   "profit": 3069941.0,
-   "profit_growth": 75.3,
-   "profit_prior": 1751050.0,
-   "revenue": 31971553.0,
-   "revenue_growth": -3.2,
-   "revenue_prior": 33016591.0,
-   "src_eps": "Basic/Diluted earnings per ordinary share (LKR)  9.74  5.74  70  3.30  1.71  93  10.53  6.92  52  3.64  2.59  41",
-   "src_navps": "Net assets value per share, LKR  157.33  161.30  (2)  164.74  168.06  (2)",
-   "src_profit": "Equity holders of the Bank  3,069,941  1,751,050  75  1,038,536  306,767  239  3,318,894  2,028,485  64  1,147,333  278,396  312",
-   "src_revenue": "Gross Income  31,971,553  33,016,591  (3)  10,553,516  10,844,995  (3)  32,336,542  33,284,495  (3)  10,672,212  10,873,099  (2)",
-   "title": "Interim Financial Statements as at 30 September 2021",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1635500255007.pdf",
-   "v": 6,
-   "vals_eps": [
-    9.74,
-    5.74,
-    70.0,
-    3.3,
-    1.71,
-    93.0,
-    10.53,
-    6.92,
-    52.0,
-    3.64
-   ],
-   "vals_navps": [
-    157.33,
-    161.3,
-    -2.0,
-    164.74,
-    168.06,
-    -2.0
-   ],
-   "vals_profit": [
-    3069941.0,
-    1751050.0,
-    75.0,
-    1038536.0,
-    306767.0,
-    239.0,
-    3318894.0,
-    2028485.0,
-    64.0,
-    1147333.0
-   ],
-   "vals_revenue": [
-    31971553.0,
-    33016591.0,
-    -3.0,
-    10553516.0,
-    10844995.0,
-    -3.0,
-    32336542.0,
-    33284495.0,
-    -3.0,
-    10672212.0
-   ],
-   "year_only": false
-  },
-  "40037": {
-   "end": "2021-12-31",
-   "eps": 10.14,
-   "eps_prior": 7.83,
-   "layout_eps": [
-    0,
-    1,
-    true
-   ],
-   "layout_navps": [
-    0,
-    1,
-    true
-   ],
-   "layout_profit": [
-    0,
-    1,
-    true
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    true
-   ],
-   "months": 12,
-   "navps": 152.83,
-   "navps_prior": 161.3,
-   "ok": true,
-   "pages": 23,
-   "profit": 3221863.0,
-   "profit_growth": 34.9,
-   "profit_prior": 2388035.0,
-   "revenue": 42648762.0,
-   "revenue_growth": -1.5,
-   "revenue_prior": 43299800.0,
-   "src_eps": "Basic/Diluted earnings per ordinary share (LKR)  10.14  7.83  29  0.48  1.71  (72)  11.17  9.00  24  0.72  2.59  (72)",
-   "src_navps": "Net assets value per share, LKR  152.83  161.30  (5)  160.51  168.06  (4)",
-   "src_profit": "Equity holders of the Bank  3,221,863  2,388,035  35  151,920  636,985  (76)  3,548,938  2,744,961  29  230,046  716,476  (68)",
-   "src_revenue": "Gross Income  42,648,762  43,299,800  (2)  10,677,209  10,283,209  4  43,029,280  43,604,447  (1)  10,692,738  10,319,952  4",
-   "title": "Interim Financial Statements as of 31-12-2021",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1645152546539.pdf",
-   "v": 6,
-   "vals_eps": [
-    10.14,
-    7.83,
-    29.0,
-    0.48,
-    1.71,
-    -72.0,
-    11.17,
-    9.0,
-    24.0,
-    0.72
-   ],
-   "vals_navps": [
-    152.83,
-    161.3,
-    -5.0,
-    160.51,
-    168.06,
-    -4.0
-   ],
-   "vals_profit": [
-    3221863.0,
-    2388035.0,
-    35.0,
-    151920.0,
-    636985.0,
-    -76.0,
-    3548938.0,
-    2744961.0,
-    29.0,
-    230046.0
-   ],
-   "vals_revenue": [
-    42648762.0,
-    43299800.0,
-    -2.0,
-    10677209.0,
-    10283209.0,
-    4.0,
-    43029280.0,
-    43604447.0,
-    -1.0,
-    10692738.0
-   ],
-   "year_only": true
-  },
-  "42801": {
-   "end": "2022-12-31",
-   "eps": 6.75,
-   "eps_prior": 10.14,
-   "layout_eps": [
-    0,
-    1,
-    true
-   ],
-   "layout_navps": [
-    0,
-    1,
-    true
-   ],
-   "layout_profit": [
-    0,
-    1,
-    true
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    true
-   ],
-   "months": 12,
-   "navps": 125.96,
-   "navps_prior": 152.83,
-   "ok": true,
-   "pages": 26,
-   "profit": 2513352.0,
-   "profit_growth": -22.0,
-   "profit_prior": 3221863.0,
-   "revenue": 73008272.0,
-   "revenue_growth": 71.2,
-   "revenue_prior": 42648762.0,
-   "src_eps": "Basic/Diluted earnings per ordinary share (LKR)  6.75  10.14  (33)  3.95  3.30  20  7.88  11.17  (29)  4.64  3.64  27",
-   "src_navps": "Net assets value per share, LKR  125.96  152.83  (18)  134.14  160.51  (16)",
-   "src_profit": "Equity holders of the Bank  2,513,352  3,221,863  (22)  1,470,086  151,922  868  2,932,475  3,548,938  (17)  1,726,113  230,044  650",
-   "src_revenue": "Gross Income  73,008,272  42,648,762  71  24,679,725  10,677,209  131  73,520,140  43,029,280  71  24,741,554  10,692,738  131",
-   "title": "(Revised) Interim Financial Statements as at 31.12.2022",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1676952726418.pdf",
-   "v": 6,
-   "vals_eps": [
-    6.75,
-    10.14,
-    -33.0,
-    3.95,
-    3.3,
-    20.0,
-    7.88,
-    11.17,
-    -29.0,
-    4.64
-   ],
-   "vals_navps": [
-    125.96,
-    152.83,
-    -18.0,
-    134.14,
-    160.51,
-    -16.0
-   ],
-   "vals_profit": [
-    2513352.0,
-    3221863.0,
-    -22.0,
-    1470086.0,
-    151922.0,
-    868.0,
-    2932475.0,
-    3548938.0,
-    -17.0,
-    1726113.0
-   ],
-   "vals_revenue": [
-    73008272.0,
-    42648762.0,
-    71.0,
-    24679725.0,
-    10677209.0,
-    131.0,
-    73520140.0,
-    43029280.0,
-    71.0,
-    24741554.0
-   ],
-   "year_only": true
-  },
-  "45206": {
-   "end": "2023-12-31",
-   "eps": 17.27,
-   "eps_prior": 6.75,
-   "layout_eps": [
-    0,
-    1,
-    true
-   ],
-   "layout_navps": [
-    0,
-    1,
-    true
-   ],
-   "layout_profit": [
-    0,
-    1,
-    true
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    true
-   ],
-   "months": 12,
-   "navps": 160.54,
-   "navps_prior": 125.96,
+   "months": 6,
+   "navps": 164.33,
+   "navps_prior": 160.54,
    "ok": true,
    "pages": 25,
-   "profit": 7219702.0,
-   "profit_growth": 187.3,
-   "profit_prior": 2513352.0,
-   "revenue": 106883450.0,
-   "revenue_growth": 42.6,
-   "revenue_prior": 74959516.0,
-   "src_eps": "Basic/Diluted earnings per ordinary share (LKR)  17.27  6.75  156  4.12  3.95  4  20.30  7.88  158  3.71  4.64  (20)",
-   "src_navps": "Net assets value per share, LKR  160.54  125.96  27  170.60  134.14  27",
-   "src_profit": "Equity holders of the Bank  7,219,702  2,513,352  187  1,721,495  1,470,086  17  8,485,146  2,932,475  189  1,551,505  1,726,113  (10)",
-   "src_revenue": "Gross Income  106,883,450  74,959,516  43  23,700,698  25,455,115  (7)  107,441,538  75,471,383  42  23,788,177  25,516,942  (7)",
-   "title": "Interim Financial Statements as at 31.12.2023",
+   "profit": 4654394.0,
+   "profit_growth": 45.2,
+   "profit_prior": 3205277.0,
+   "revenue": 45628063.0,
+   "revenue_growth": -18.6,
+   "revenue_prior": 56057501.0,
+   "src_eps": "Basic/Diluted earnings per ordinary share (LKR)  10.87  7.74  40  3.55  3.52  1  13.17  9.27  42  4.31  4.41  (2)",
+   "src_navps": "Net assets value per share, LKR  164.33  160.54  2  175.87  170.60  3",
+   "src_profit": "Equity holders of the Bank  4,654,394  3,205,277  45  1,520,503  1,456,538  4  5,639,047  3,838,049  47  1,847,826  1,823,733  1",
+   "src_revenue": "Gross Income  45,628,063 56,057,501  (19)  20,580,230  27,176,625  (24)  45,987,728 56,356,799  (18)  20,792,219  27,328,286  (24)",
+   "title": "Interim Financial Statements as at 30.06.2024",
    "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1708357097487.12.2023.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1723200115194.06.2024.pdf",
    "v": 6,
    "vals_eps": [
-    17.27,
-    6.75,
-    156.0,
-    4.12,
-    3.95,
-    4.0,
-    20.3,
-    7.88,
-    158.0,
-    3.71
+    10.87,
+    7.74,
+    40.0,
+    3.55,
+    3.52,
+    1.0,
+    13.17,
+    9.27,
+    42.0,
+    4.31
    ],
    "vals_navps": [
+    164.33,
     160.54,
-    125.96,
-    27.0,
+    2.0,
+    175.87,
     170.6,
-    134.14,
-    27.0
+    3.0
    ],
    "vals_profit": [
-    7219702.0,
-    2513352.0,
-    187.0,
-    1721495.0,
-    1470086.0,
-    17.0,
-    8485146.0,
-    2932475.0,
-    189.0,
-    1551505.0
+    4654394.0,
+    3205277.0,
+    45.0,
+    1520503.0,
+    1456538.0,
+    4.0,
+    5639047.0,
+    3838049.0,
+    47.0,
+    1847826.0
    ],
    "vals_revenue": [
-    106883450.0,
-    74959516.0,
-    43.0,
-    23700698.0,
-    25455115.0,
-    -7.0,
-    107441538.0,
-    75471383.0,
-    42.0,
-    23788177.0
+    45628063.0,
+    56057501.0,
+    -19.0,
+    20580230.0,
+    27176625.0,
+    -24.0,
+    45987728.0,
+    56356799.0,
+    -18.0,
+    20792219.0
+   ],
+   "year_only": true
+  },
+  "47021": {
+   "end": "2024-09-30",
+   "eps": 13.99,
+   "eps_prior": 13.2,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 9,
+   "navps": 169.52,
+   "navps_prior": 160.54,
+   "ok": true,
+   "pages": 27,
+   "profit": 6012858.0,
+   "profit_growth": 9.4,
+   "profit_prior": 5498207.0,
+   "revenue": 66160893.0,
+   "revenue_growth": -20.5,
+   "revenue_prior": 83182752.0,
+   "src_eps": "Basic/Diluted earnings per ordinary share (LKR)  13.99  13.20  6  3.16  5.50  (43)  16.27  16.64  (2)  3.14  7.43  (58)",
+   "src_navps": "Net assets value per share, LKR  169.52  160.54  6  180.72  170.60  6",
+   "src_profit": "Equity holders of the Bank  6,012,858  5,498,207  9  1,358,464  2,292,930  (41)  6,990,152  6,933,641  1  1,351,105  3,095,592  (56)",
+   "src_revenue": "Gross Income  66,160,893  83,182,752  (20)  20,532,830  27,125,251  (24)  66,697,160  83,653,361  (20)  20,709,432  27,296,562  (24)",
+   "title": "Interim Financial Statements as at 30.09.2024",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1731496840541.pdf",
+   "v": 6,
+   "vals_eps": [
+    13.99,
+    13.2,
+    6.0,
+    3.16,
+    5.5,
+    -43.0,
+    16.27,
+    16.64,
+    -2.0,
+    3.14
+   ],
+   "vals_navps": [
+    169.52,
+    160.54,
+    6.0,
+    180.72,
+    170.6,
+    6.0
+   ],
+   "vals_profit": [
+    6012858.0,
+    5498207.0,
+    9.0,
+    1358464.0,
+    2292930.0,
+    -41.0,
+    6990152.0,
+    6933641.0,
+    1.0,
+    1351105.0
+   ],
+   "vals_revenue": [
+    66160893.0,
+    83182752.0,
+    -20.0,
+    20532830.0,
+    27125251.0,
+    -24.0,
+    66697160.0,
+    83653361.0,
+    -20.0,
+    20709432.0
    ],
    "year_only": true
   },
@@ -988,6 +966,172 @@
     107441538.0,
     -16.0,
     23237165.0
+   ],
+   "year_only": true
+  },
+  "47806": {
+   "end": "2025-03-31",
+   "eps": 17.95,
+   "eps_prior": 7.39,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": null,
+   "navps": 206.43,
+   "navps_prior": 194.22,
+   "ok": true,
+   "pages": 25,
+   "profit": 7785457.0,
+   "profit_growth": 148.4,
+   "profit_prior": 3133891.0,
+   "revenue": 23074290.0,
+   "revenue_growth": -7.9,
+   "revenue_prior": 25047833.0,
+   "src_eps": "Basic/Diluted earnings per ordinary share (LKR)  17.95  7.39  143  6.90  8.94  (23)",
+   "src_navps": "Net assets value per share, LKR  206.43  194.22  6  207.74  206.63  1",
+   "src_profit": "Equity holders of the Bank  7,785,457  3,133,891  148  2,992,348  3,791,221  (21)",
+   "src_revenue": "Gross Income  23,074,290  25,047,833  (8)  23,275,215  25,195,509  (8)",
+   "title": "Interim Financial Statements as at 31.03.2025",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1746783864877.03.2025.pdf",
+   "v": 6,
+   "vals_eps": [
+    17.95,
+    7.39,
+    143.0,
+    6.9,
+    8.94,
+    -23.0
+   ],
+   "vals_navps": [
+    206.43,
+    194.22,
+    6.0,
+    207.74,
+    206.63,
+    1.0
+   ],
+   "vals_profit": [
+    7785457.0,
+    3133891.0,
+    148.0,
+    2992348.0,
+    3791221.0,
+    -21.0
+   ],
+   "vals_revenue": [
+    23074290.0,
+    25047833.0,
+    -8.0,
+    23275215.0,
+    25195509.0,
+    -8.0
+   ],
+   "year_only": true
+  },
+  "48559": {
+   "end": "2025-06-30",
+   "eps": 24.13,
+   "eps_prior": 10.87,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": null,
+   "navps": 218.99,
+   "navps_prior": 194.22,
+   "ok": true,
+   "pages": 25,
+   "profit": 10523199.0,
+   "profit_growth": 126.1,
+   "profit_prior": 4654394.0,
+   "revenue": 47216657.0,
+   "revenue_growth": 3.0,
+   "revenue_prior": 45849997.0,
+   "src_eps": "Basic/Diluted earnings per ordinary share (LKR)  24.13  10.87  122  6.28  3.55  77  13.26  13.17  1  6.40  4.31  48",
+   "src_navps": "Net assets value per share, LKR  218.99  194.22  13  220.42  206.63  7",
+   "src_profit": "Equity holders of the Bank  10,523,199  4,654,394  126  2,737,742  1,520,503  80  5,781,830  5,639,047  3  2,789,482  1,847,826  51",
+   "src_revenue": "Gross Income  47,216,657  45,849,997  3  24,142,367  20,802,164  16  47,571,540  46,209,662  3  24,296,325  21,014,153  16",
+   "title": "Interim Financial Statements as at 30.06.2025",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/371_1754558127193.06.2025.pdf",
+   "v": 6,
+   "vals_eps": [
+    24.13,
+    10.87,
+    122.0,
+    6.28,
+    3.55,
+    77.0,
+    13.26,
+    13.17,
+    1.0,
+    6.4
+   ],
+   "vals_navps": [
+    218.99,
+    194.22,
+    13.0,
+    220.42,
+    206.63,
+    7.0
+   ],
+   "vals_profit": [
+    10523199.0,
+    4654394.0,
+    126.0,
+    2737742.0,
+    1520503.0,
+    80.0,
+    5781830.0,
+    5639047.0,
+    3.0,
+    2789482.0
+   ],
+   "vals_revenue": [
+    47216657.0,
+    45849997.0,
+    3.0,
+    24142367.0,
+    20802164.0,
+    16.0,
+    47571540.0,
+    46209662.0,
+    3.0,
+    24296325.0
    ],
    "year_only": true
   },

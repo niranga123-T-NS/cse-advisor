@@ -208,10 +208,170 @@
     "uploaded": 1739243968026,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/3198_1739243968026.pdf",
     "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2024-09-30",
+    "id": "47055",
+    "title": "Interim Financial Statements as at 30.09.2024",
+    "uploaded": 1731569176271,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/3198_1731569176271.09.2024 Q2.pdf 12-11-2024.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2024-06-30",
+    "id": "46366",
+    "title": "Interim Financial Statements as at 30.06.2024",
+    "uploaded": 1723634861679,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/3198_1723634861679.06.2024 [PUBLIC].pdf",
+    "year_only": true
    }
   ]
  },
  "quarterly": {
+  "46366": {
+   "end": "2024-06-30",
+   "eps": 0.259,
+   "eps_prior": 48.64,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 3.47,
+   "navps_prior": 1363.0,
+   "ok": true,
+   "pages": 17,
+   "profit": 117956005.0,
+   "profit_growth": 112.7,
+   "profit_prior": 55450144.0,
+   "revenue": 768880103.0,
+   "revenue_growth": 23.0,
+   "revenue_prior": 625127533.0,
+   "src_eps": "Earnings per Share (EPS) - LKR  0.259  48.64  0.257  48.64",
+   "src_navps": "Net Asset Value per Share - LKR  3.47  1,363  3.58  1,363",
+   "src_profit": "Equity holders of the parent  117,956,005  55,450,144  113%  117,956,005  55,450,144  113%  133,711,290",
+   "src_revenue": "Revenue  768,880,103  625,127,533  23%  768,880,103  625,127,533  23%  2,559,137,211",
+   "title": "Interim Financial Statements as at 30.06.2024",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/3198_1723634861679.06.2024 [PUBLIC].pdf",
+   "v": 6,
+   "vals_eps": [
+    0.259,
+    48.64,
+    0.257,
+    48.64
+   ],
+   "vals_navps": [
+    3.47,
+    1363.0,
+    3.58,
+    1363.0
+   ],
+   "vals_profit": [
+    117956005.0,
+    55450144.0,
+    117956005.0,
+    55450144.0,
+    133711290.0
+   ],
+   "vals_revenue": [
+    768880103.0,
+    625127533.0,
+    768880103.0,
+    625127533.0,
+    2559137211.0
+   ],
+   "year_only": true
+  },
+  "47055": {
+   "end": "2024-09-30",
+   "eps": 0.4592,
+   "eps_prior": 96.72,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 3.72,
+   "navps_prior": 1464.0,
+   "ok": true,
+   "pages": 19,
+   "profit": 326729.0,
+   "profit_growth": 93.8,
+   "profit_prior": 168572.0,
+   "revenue": 830975464.0,
+   "revenue_growth": 26.6,
+   "revenue_prior": 656578556.0,
+   "src_eps": "Earnings per Share (EPS) - LKR  0.4592  96.72  0.4689  96.72",
+   "src_navps": "Net Asset Value per Share - LKR  3.72  1,464  3.84  1,464",
+   "src_profit": "Equity holders of the parent  326,729  168,572  94%  717,964  350,254  105%  421,735",
+   "src_revenue": "Revenue  830,975,464  656,578,556  27%  1,599,855,567  1,281,706,089  25%  2,559,137,211",
+   "title": "Interim Financial Statements as at 30.09.2024",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/3198_1731569176271.09.2024 Q2.pdf 12-11-2024.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.4592,
+    96.72,
+    0.4689,
+    96.72
+   ],
+   "vals_navps": [
+    3.72,
+    1464.0,
+    3.84,
+    1464.0
+   ],
+   "vals_profit": [
+    326729.0,
+    168572.0,
+    717964.0,
+    350254.0,
+    421735.0
+   ],
+   "vals_revenue": [
+    830975464.0,
+    656578556.0,
+    1599855567.0,
+    1281706089.0,
+    2559137211.0
+   ],
+   "year_only": true
+  },
   "47305": {
    "end": "2024-12-31",
    "eps": 0.77,

@@ -1,5 +1,173 @@
 {
  "annual": {
+  "23988": {
+   "dps": 5.5,
+   "dps_prior": 5.2,
+   "end": "2018-03-31",
+   "eps": 12.9,
+   "eps_prior": 8.68,
+   "layout_dps": [
+    0,
+    1,
+    true
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 123.62,
+   "navps_prior": 110.22,
+   "ok": true,
+   "pages": 136,
+   "src_dps": "Dividends Per Share (Rs.)  5.50  5.20  5.77  5.50  5.20  5.77",
+   "src_eps": "Earnings Per Share (Rs.)  12.90  8.68  48.60  5.56  6.45  (13.78)",
+   "src_navps": "Net asset value per share  123.62  110.22  116.79  106.98  103.14",
+   "title": "Annual Report 2017/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/503_1533556049260.pdf",
+   "v": 6,
+   "vals_dps": [
+    5.5,
+    5.2,
+    5.77,
+    5.5,
+    5.2,
+    5.77
+   ],
+   "vals_eps": [
+    12.9,
+    8.68,
+    48.6,
+    5.56,
+    6.45,
+    -13.78
+   ],
+   "vals_navps": [
+    123.62,
+    110.22,
+    116.79,
+    106.98,
+    103.14
+   ],
+   "year_only": false
+  },
+  "30480": {
+   "dps": 5.2,
+   "dps_prior": 3.8,
+   "end": "2017-03-31",
+   "eps": 9.55,
+   "eps_prior": 8.88,
+   "layout_dps": [
+    0,
+    1,
+    true
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 121.24,
+   "navps_prior": 128.47,
+   "ok": true,
+   "pages": 124,
+   "src_dps": "Dividends Per Share (Rs.)  5.20  3.80  36.84  5.20  3.80  36.84",
+   "src_eps": "Earnings Per Share (Rs.)  9.55  8.88  7.50  7.09  3.11  128.04",
+   "src_navps": "Net asset value per share  121.24  128.47  117.67  113.45  146.36",
+   "title": "Annual Report 2016/2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/503_1496747290.pdf",
+   "v": 6,
+   "vals_dps": [
+    5.2,
+    3.8,
+    36.84,
+    5.2,
+    3.8,
+    36.84
+   ],
+   "vals_eps": [
+    9.55,
+    8.88,
+    7.5,
+    7.09,
+    3.11,
+    128.04
+   ],
+   "vals_navps": [
+    121.24,
+    128.47,
+    117.67,
+    113.45,
+    146.36
+   ],
+   "year_only": false
+  },
+  "33453": {
+   "dps": 5.5,
+   "dps_prior": 5.5,
+   "end": "2019-03-31",
+   "eps": 8.16,
+   "eps_prior": 12.9,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 130.15,
+   "navps_prior": 123.62,
+   "ok": true,
+   "pages": 140,
+   "src_dps": "Dividends Per Share (Rs.)  5.50  5.50  (67.27)  5.50  5.50  (67.27)",
+   "src_eps": "Earnings Per Share (Rs.)  8.16  12.90  (36.78)  1.76  5.56  (68.31)",
+   "src_navps": "Net asset value per share  130.15  123.62  110.22  116.79  106.98",
+   "title": "Annual Report 2018/2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/503_1562582642569.pdf",
+   "v": 6,
+   "vals_dps": [
+    5.5,
+    5.5,
+    -67.27,
+    5.5,
+    5.5,
+    -67.27
+   ],
+   "vals_eps": [
+    8.16,
+    12.9,
+    -36.78,
+    1.76,
+    5.56,
+    -68.31
+   ],
+   "vals_navps": [
+    130.15,
+    123.62,
+    110.22,
+    116.79,
+    106.98
+   ],
+   "year_only": false
+  },
   "36429": {
    "dps": 4.6,
    "dps_prior": 5.5,
@@ -466,7 +634,7 @@
     "id": "33453",
     "title": "Annual Report 2018/2019",
     "uploaded": 1562582642569,
-    "url": "https://cdn.cse.lk/upload_report_file/503_1562582642569.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/503_1562582642569.pdf",
     "year_only": false
    },
    {
@@ -475,7 +643,7 @@
     "id": "23988",
     "title": "Annual Report 2017/2018",
     "uploaded": 1533493800000,
-    "url": "https://cdn.cse.lk/upload_report_file/503_1533556049260.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/503_1533556049260.pdf",
     "year_only": false
    },
    {
@@ -484,7 +652,7 @@
     "id": "30480",
     "title": "Annual Report 2016/2017",
     "uploaded": 1496687400000,
-    "url": "https://cdn.cse.lk/upload_report_file/503_1496747290.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/503_1496747290.pdf",
     "year_only": false
    }
   ],

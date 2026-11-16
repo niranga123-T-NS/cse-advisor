@@ -1,5 +1,48 @@
 {
  "annual": {
+  "21893": {
+   "end": "2017-03-31",
+   "eps": 18.2,
+   "eps_prior": 0.04,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 58,
+   "src_eps": "Basic Earnings per share  18.2  0.04  0.13",
+   "title": "Annual Report 2016/2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1322_1502364826547.pdf",
+   "v": 6,
+   "vals_eps": [
+    18.2,
+    0.04,
+    0.13
+   ],
+   "year_only": false
+  },
+  "24070": {
+   "end": "2018-03-31",
+   "eps": 0.08,
+   "eps_prior": 0.04,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 58,
+   "src_eps": "Basic Earnings per share  0.08  0.04",
+   "title": "Annual Report 2017/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1322_1533896180308.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.08,
+    0.04
+   ],
+   "year_only": false
+  },
   "33990": {
    "end": "2019-03-31",
    "eps": 0.28,
@@ -250,7 +293,7 @@
     "id": "24070",
     "title": "Annual Report 2017/2018",
     "uploaded": 1533839400000,
-    "url": "https://cdn.cse.lk/upload_report_file/1322_1533896180308.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1322_1533896180308.pdf",
     "year_only": false
    },
    {
@@ -259,7 +302,7 @@
     "id": "21893",
     "title": "Annual Report 2016/2017",
     "uploaded": 1502303400000,
-    "url": "https://cdn.cse.lk/upload_report_file/1322_1502364826547.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1322_1502364826547.pdf",
     "year_only": false
    }
   ],
@@ -338,37 +381,25 @@
    },
    {
     "amended": false,
+    "end": "2024-09-30",
+    "id": "46950",
+    "title": "Interim Financial Statements as at 30.09.2024",
+    "uploaded": 1731469180616,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1322_1731469180616.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
     "end": "2024-03-31",
     "id": "45475",
     "title": "Interim Financial Statements as at 31.03.24",
     "uploaded": 1714646044545,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/1322_1714646044545.pdf",
     "year_only": true
-   },
-   {
-    "amended": false,
-    "end": "2023-12-31",
-    "id": "45035",
-    "title": "Interim Financial Statements as at 31.12.23",
-    "uploaded": 1707817403809,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/1322_1707817403809.pdf",
-    "year_only": true
    }
   ]
  },
  "quarterly": {
-  "45035": {
-   "end": "2023-12-31",
-   "months": null,
-   "ok": true,
-   "pages": 8,
-   "profit_growth": null,
-   "revenue_growth": null,
-   "title": "Interim Financial Statements as at 31.12.23",
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/1322_1707817403809.pdf",
-   "v": 6,
-   "year_only": true
-  },
   "45475": {
    "end": "2024-03-31",
    "layout_navps": [
@@ -404,6 +435,18 @@
     16642.0,
     16642.0
    ],
+   "year_only": true
+  },
+  "46950": {
+   "end": "2024-09-30",
+   "months": null,
+   "ok": true,
+   "pages": 8,
+   "profit_growth": null,
+   "revenue_growth": null,
+   "title": "Interim Financial Statements as at 30.09.2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1322_1731469180616.pdf",
+   "v": 6,
    "year_only": true
   },
   "47312": {

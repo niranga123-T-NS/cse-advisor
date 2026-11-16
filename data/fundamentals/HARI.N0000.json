@@ -1,5 +1,119 @@
 {
  "annual": {
+  "24394": {
+   "dps": 42.0,
+   "dps_prior": 42.5,
+   "end": "2018-03-31",
+   "eps": 63.99,
+   "eps_prior": 130.38,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 397.59,
+   "navps_prior": 445.37,
+   "ok": true,
+   "pages": 72,
+   "src_dps": "Dividend per share (Rs.)  42.00  42.50  42.00  42.50",
+   "src_eps": "Basic earnings per share - (Rs.)  9  63.99  130.38  99.00  194.44",
+   "src_navps": "Net assets per share  397.59  445.37  499.78  535.23  928.65  990.99  1,072.59  1,160.42  1,225.92  1,280.17  660.17",
+   "title": "Annual Report 2017/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1535537919176.pdf",
+   "v": 6,
+   "vals_dps": [
+    42.0,
+    42.5,
+    42.0,
+    42.5
+   ],
+   "vals_eps": [
+    63.99,
+    130.38,
+    99.0,
+    194.44
+   ],
+   "vals_navps": [
+    397.59,
+    445.37,
+    499.78,
+    535.23,
+    928.65,
+    990.99,
+    1072.59,
+    1160.42,
+    1225.92,
+    1280.17
+   ],
+   "year_only": false
+  },
+  "30758": {
+   "dps": 85.0,
+   "dps_prior": 80.0,
+   "end": "2017-03-31",
+   "eps": 130.39,
+   "eps_prior": 147.31,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 339.59,
+   "navps_prior": 397.59,
+   "ok": true,
+   "pages": 67,
+   "src_dps": "Dividend per share (Rs.)  85.00  80.00  85.00  80.00",
+   "src_eps": "Basic earnings per share (Rs.)  130.39  147.31  194.44  128.50",
+   "src_navps": "Net assets per share  339.59  397.59  445.37  499.78  535.23  928.65  990.99  1,072.59  1,160.42 1,225.92 1,280.17",
+   "title": "Annual Report 2016/2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1504089011.pdf",
+   "v": 6,
+   "vals_dps": [
+    85.0,
+    80.0,
+    85.0,
+    80.0
+   ],
+   "vals_eps": [
+    130.39,
+    147.31,
+    194.44,
+    128.5
+   ],
+   "vals_navps": [
+    339.59,
+    397.59,
+    445.37,
+    499.78,
+    535.23,
+    928.65,
+    990.99,
+    1072.59,
+    1160.42,
+    1225.92
+   ],
+   "year_only": false
+  },
   "34008": {
    "dps": 45.0,
    "dps_prior": 42.0,
@@ -532,7 +646,7 @@
     "id": "24394",
     "title": "Annual Report 2017/2018",
     "uploaded": 1535481000000,
-    "url": "https://cdn.cse.lk/upload_report_file/482_1535537919176.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1535537919176.pdf",
     "year_only": false
    },
    {
@@ -541,7 +655,7 @@
     "id": "30758",
     "title": "Annual Report 2016/2017",
     "uploaded": 1504031400000,
-    "url": "https://cdn.cse.lk/upload_report_file/482_1504089011.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1504089011.pdf",
     "year_only": false
    }
   ],
@@ -593,6 +707,24 @@
    },
    {
     "amended": false,
+    "end": "2025-06-30",
+    "id": "48644",
+    "title": "Interim Financial Statements as at 30.06.2025",
+    "uploaded": 1755083247654,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1755083247654.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2025-03-31",
+    "id": "47989",
+    "title": "Interim Financial Statements as at 31.03.2025",
+    "uploaded": 1748428321727,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1748428321727.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
     "end": "2024-12-31",
     "id": "47365",
     "title": "Interim Financial Statements as at 31.12.2024",
@@ -602,47 +734,29 @@
    },
    {
     "amended": false,
-    "end": "2024-03-31",
-    "id": "45513",
-    "title": "Quarterly Financial Report As at 31st March 2024",
-    "uploaded": 1715657805863,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1715657805863.pdf",
-    "year_only": false
+    "end": "2024-09-30",
+    "id": "46882",
+    "title": "Interim Financial Statements as at 30.09.2024",
+    "uploaded": 1731321640467,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1731321640467.pdf",
+    "year_only": true
    },
    {
     "amended": false,
-    "end": "2023-12-31",
-    "id": "44997",
-    "title": "Quarterly Report As at 31st December 2023",
-    "uploaded": 1707474877055,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1707474877055.pdf",
-    "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2023-06-30",
-    "id": "43874",
-    "title": "Quarterly Financial Report 30th June 2023",
-    "uploaded": 1692010821438,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1692010821438.pdf",
-    "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2023-03-31",
-    "id": "43240",
-    "title": "Quarterly Financials for 31st March 2023",
-    "uploaded": 1685414246272,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1685414246272.05.23.pdf",
-    "year_only": false
+    "end": "2024-06-30",
+    "id": "46285",
+    "title": "Interim Financial Statements as at 30.06.2024",
+    "uploaded": 1723460279207,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1723460279207.pdf",
+    "year_only": true
    }
   ]
  },
  "quarterly": {
-  "43240": {
-   "end": "2023-03-31",
-   "eps": 28.93,
-   "eps_prior": 19.63,
+  "46285": {
+   "end": "2024-06-30",
+   "eps": 15.38,
+   "eps_prior": 35.88,
    "layout_eps": [
     0,
     1,
@@ -664,131 +778,62 @@
     true
    ],
    "months": 3,
-   "navps": 829.81,
-   "navps_prior": 837.44,
-   "ok": true,
-   "pages": 13,
-   "profit": 31.03,
-   "profit_growth": null,
-   "profit_prior": 2023.0,
-   "revenue": 1740710.0,
-   "revenue_growth": 33.5,
-   "revenue_prior": 1303918.0,
-   "src_eps": "Basic Earnings per Share  28.93  19.63  48.24  109.09",
-   "src_navps": "Net Assets Value Per Share  829.81  837.44",
-   "src_profit": "10 Twenty largest shareholders of the company \u23ce  As at  31.03.2023  31.12.2022",
-   "src_revenue": "Revenue  1,740,710  1,303,918  33  6,464,393  4,581,110  41",
-   "title": "Quarterly Financials for 31st March 2023",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1685414246272.05.23.pdf",
-   "v": 6,
-   "vals_eps": [
-    28.93,
-    19.63,
-    48.24,
-    109.09
-   ],
-   "vals_navps": [
-    829.81,
-    837.44
-   ],
-   "vals_profit": [
-    31.03,
-    2023.0,
-    31.12,
-    2022.0
-   ],
-   "vals_revenue": [
-    1740710.0,
-    1303918.0,
-    33.0,
-    6464393.0,
-    4581110.0,
-    41.0
-   ],
-   "year_only": false
-  },
-  "43874": {
-   "end": "2023-06-30",
-   "eps": 35.88,
-   "eps_prior": 18.01,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "navps": 844.73,
-   "navps_prior": 830.46,
+   "navps": 881.54,
+   "navps_prior": 844.73,
    "ok": true,
    "pages": 9,
    "profit": 30.06,
    "profit_growth": null,
-   "profit_prior": 2023.0,
-   "revenue": 1506347.0,
-   "revenue_growth": -0.2,
-   "revenue_prior": 1509211.0,
-   "src_eps": "Basic Earnings per Share  35.88  18.01  46.99  35.88  18.02  47.20",
-   "src_navps": "Net Assets Value Per Share  844.73  830.46  828.84  843.49  829.01  827.60",
-   "src_profit": "10 Twenty largest shareholders of the company \u23ce  As at  30.06.2023  31.03.2023",
-   "src_revenue": "Revenue  1,506,347  1,509,211  (0)  6,464,393  1,506,347  1,509,211  (0)  6,464,393",
-   "title": "Quarterly Financial Report 30th June 2023",
+   "profit_prior": 2024.0,
+   "revenue": 1478824.0,
+   "revenue_growth": -1.8,
+   "revenue_prior": 1506347.0,
+   "src_eps": "Basic Earnings per Share  15.38  35.88  117.04  15.38  35.88  117.07",
+   "src_navps": "Net Assets Value Per Share  881.54  844.73  906.16  880.33  843.49  904.96",
+   "src_profit": "10 Twenty largest shareholders of the company \u23ce  As at  30.06.2024  31.03.2024",
+   "src_revenue": "Revenue  1,478,824  1,506,347  (2)  6,301,494  1,478,824  1,506,347  (2)  6,301,494",
+   "title": "Interim Financial Statements as at 30.06.2024",
    "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1692010821438.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1723460279207.pdf",
    "v": 6,
    "vals_eps": [
+    15.38,
     35.88,
-    18.01,
-    46.99,
+    117.04,
+    15.38,
     35.88,
-    18.02,
-    47.2
+    117.07
    ],
    "vals_navps": [
+    881.54,
     844.73,
-    830.46,
-    828.84,
+    906.16,
+    880.33,
     843.49,
-    829.01,
-    827.6
+    904.96
    ],
    "vals_profit": [
     30.06,
-    2023.0,
+    2024.0,
     31.03,
-    2023.0
+    2024.0
    ],
    "vals_revenue": [
+    1478824.0,
     1506347.0,
-    1509211.0,
-    -0.0,
-    6464393.0,
+    -2.0,
+    6301494.0,
+    1478824.0,
     1506347.0,
-    1509211.0,
-    -0.0,
-    6464393.0
+    -2.0,
+    6301494.0
    ],
-   "year_only": false
+   "year_only": true
   },
-  "44997": {
-   "end": "2023-12-31",
-   "eps": 45.13,
-   "eps_prior": -7.09,
+  "46882": {
+   "end": "2024-09-30",
+   "eps": 31.97,
+   "eps_prior": 38.6,
    "layout_eps": [
     0,
     1,
@@ -810,121 +855,52 @@
     true
    ],
    "months": 3,
-   "navps": 908.45,
-   "navps_prior": 806.88,
+   "navps": 873.51,
+   "navps_prior": 863.32,
    "ok": true,
    "pages": 13,
-   "profit": 31.12,
-   "profit_growth": null,
-   "profit_prior": 2023.0,
-   "revenue": 1662035.0,
-   "revenue_growth": -6.0,
-   "revenue_prior": 1768441.0,
-   "src_eps": "Basic/Diluted Earnings per Share  45.13  (7.09)  119.61  24.43  46.99",
-   "src_navps": "Net Assets Value Per Share  908.45  806.88  828.84",
-   "src_profit": "10 Twenty largest shareholders of the company \u23ce  As at  31.12.2023  30.09.2023",
-   "src_revenue": "Revenue  1,662,035  1,768,441  (6)  4,753,373  4,723,683  1  6,464,393",
-   "title": "Quarterly Report As at 31st December 2023",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1707474877055.pdf",
-   "v": 6,
-   "vals_eps": [
-    45.13,
-    -7.09,
-    119.61,
-    24.43,
-    46.99
-   ],
-   "vals_navps": [
-    908.45,
-    806.88,
-    828.84
-   ],
-   "vals_profit": [
-    31.12,
-    2023.0,
-    30.09,
-    2023.0
-   ],
-   "vals_revenue": [
-    1662035.0,
-    1768441.0,
-    -6.0,
-    4753373.0,
-    4723683.0,
-    1.0,
-    6464393.0
-   ],
-   "year_only": false
-  },
-  "45513": {
-   "end": "2024-03-31",
-   "eps": 13.67,
-   "eps_prior": 28.93,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    true
-   ],
-   "months": 3,
-   "navps": 907.22,
-   "navps_prior": 828.84,
-   "ok": true,
-   "pages": 13,
-   "profit": 31.03,
+   "profit": 30.09,
    "profit_growth": null,
    "profit_prior": 2024.0,
-   "revenue": 1548121.0,
-   "revenue_growth": -11.1,
-   "revenue_prior": 1740710.0,
-   "src_eps": "Basic Earnings per Share  13.67  28.93  118.10  46.99",
-   "src_navps": "Net Assets Value Per Share  907.22  828.84",
-   "src_profit": "10 Twenty largest shareholders of the company \u23ce  As at  31.03.2024  31.12.2023",
-   "src_revenue": "Revenue  1,548,121  1,740,710  (11)  6,301,494  6,464,393  (3)",
-   "title": "Quarterly Financial Report As at 31st March 2024",
+   "revenue": 1611626.0,
+   "revenue_growth": 1.7,
+   "revenue_prior": 1584991.0,
+   "src_eps": "Basic/Diluted Earnings per Share  31.97  38.60  47.35  74.48  117.04",
+   "src_navps": "Net Assets Value Per Share  873.51  863.32  906.16",
+   "src_profit": "10 Twenty largest shareholders of the company \u23ce  As at  30.09.2024  30.06.2024",
+   "src_revenue": "Revenue  1,611,626  1,584,991  2  3,090,450  3,091,338  (0)  6,301,494",
+   "title": "Interim Financial Statements as at 30.09.2024",
    "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1715657805863.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1731321640467.pdf",
    "v": 6,
    "vals_eps": [
-    13.67,
-    28.93,
-    118.1,
-    46.99
+    31.97,
+    38.6,
+    47.35,
+    74.48,
+    117.04
    ],
    "vals_navps": [
-    907.22,
-    828.84
+    873.51,
+    863.32,
+    906.16
    ],
    "vals_profit": [
-    31.03,
+    30.09,
     2024.0,
-    31.12,
-    2023.0
+    30.06,
+    2024.0
    ],
    "vals_revenue": [
-    1548121.0,
-    1740710.0,
-    -11.0,
-    6301494.0,
-    6464393.0,
-    -3.0
+    1611626.0,
+    1584991.0,
+    2.0,
+    3090450.0,
+    3091338.0,
+    -0.0,
+    6301494.0
    ],
-   "year_only": false
+   "year_only": true
   },
   "47365": {
    "end": "2024-12-31",
@@ -995,6 +971,152 @@
     4753373.0,
     -1.0,
     6301494.0
+   ],
+   "year_only": true
+  },
+  "47989": {
+   "end": "2025-03-31",
+   "eps": 59.25,
+   "eps_prior": 13.67,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 3,
+   "navps": 954.56,
+   "navps_prior": 906.16,
+   "ok": true,
+   "pages": 13,
+   "profit": 31.03,
+   "profit_growth": null,
+   "profit_prior": 2025.0,
+   "revenue": 1600367.0,
+   "revenue_growth": 3.4,
+   "revenue_prior": 1548121.0,
+   "src_eps": "Basic Earnings per Share  59.25  13.67  134.40  117.04",
+   "src_navps": "Net Assets Value Per Share  954.56  906.16",
+   "src_profit": "10 Twenty largest shareholders of the company \u23ce  As at  31.03.2025  31.12.2024",
+   "src_revenue": "Revenue  1,600,367  1,548,121  3  6,321,658  6,301,494  0",
+   "title": "Interim Financial Statements as at 31.03.2025",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1748428321727.pdf",
+   "v": 6,
+   "vals_eps": [
+    59.25,
+    13.67,
+    134.4,
+    117.04
+   ],
+   "vals_navps": [
+    954.56,
+    906.16
+   ],
+   "vals_profit": [
+    31.03,
+    2025.0,
+    31.12,
+    2024.0
+   ],
+   "vals_revenue": [
+    1600367.0,
+    1548121.0,
+    3.0,
+    6321658.0,
+    6301494.0,
+    0.0
+   ],
+   "year_only": true
+  },
+  "48644": {
+   "end": "2025-06-30",
+   "eps": 19.41,
+   "eps_prior": 15.38,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    true
+   ],
+   "months": 3,
+   "navps": 931.4,
+   "navps_prior": 881.54,
+   "ok": true,
+   "pages": 9,
+   "profit": 30.06,
+   "profit_growth": null,
+   "profit_prior": 2025.0,
+   "revenue": 1466635.0,
+   "revenue_growth": -0.8,
+   "revenue_prior": 1478824.0,
+   "src_eps": "Basic Earnings per Share  19.41  15.38  131.83  19.41  15.38  133.17",
+   "src_navps": "Net Assets Value Per Share  931.40  881.54  951.99  931.54  880.33  952.12",
+   "src_profit": "10 Twenty largest shareholders of the company \u23ce  As at  30.06.2025  31.03.2025",
+   "src_revenue": "Revenue  1,466,635  1,478,824  (1)  6,321,658  1,466,635  1,478,824  (1)  6,321,658",
+   "title": "Interim Financial Statements as at 30.06.2025",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/482_1755083247654.pdf",
+   "v": 6,
+   "vals_eps": [
+    19.41,
+    15.38,
+    131.83,
+    19.41,
+    15.38,
+    133.17
+   ],
+   "vals_navps": [
+    931.4,
+    881.54,
+    951.99,
+    931.54,
+    880.33,
+    952.12
+   ],
+   "vals_profit": [
+    30.06,
+    2025.0,
+    31.03,
+    2025.0
+   ],
+   "vals_revenue": [
+    1466635.0,
+    1478824.0,
+    -1.0,
+    6321658.0,
+    1466635.0,
+    1478824.0,
+    -1.0,
+    6321658.0
    ],
    "year_only": true
   },

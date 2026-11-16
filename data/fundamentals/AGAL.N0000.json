@@ -1,5 +1,23 @@
 {
  "annual": {
+  "22529": {
+   "end": "2016-12-31",
+   "ok": true,
+   "pages": 84,
+   "title": "Annual Report for 2016",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/704_1516183779653.pdf",
+   "v": 6,
+   "year_only": false
+  },
+  "23584": {
+   "end": "2017-12-31",
+   "ok": true,
+   "pages": 108,
+   "title": "Annual Report 2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/704_1527765482655.pdf",
+   "v": 6,
+   "year_only": false
+  },
   "34644": {
    "end": "2018-12-31",
    "eps": -9.53,
@@ -266,7 +284,7 @@
     "id": "23584",
     "title": "Annual Report 2017",
     "uploaded": 1527705000000,
-    "url": "https://cdn.cse.lk/upload_report_file/704_1527765482655.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/704_1527765482655.pdf",
     "year_only": false
    },
    {
@@ -275,7 +293,7 @@
     "id": "22529",
     "title": "Annual Report for 2016",
     "uploaded": 1516127400000,
-    "url": "https://cdn.cse.lk/upload_report_file/704_1516183779653.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/704_1516183779653.pdf",
     "year_only": false
    }
   ],

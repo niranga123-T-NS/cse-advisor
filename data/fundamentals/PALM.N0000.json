@@ -1,5 +1,79 @@
 {
  "annual": {
+  "24412": {
+   "end": "2018-03-31",
+   "eps": 2.72,
+   "eps_prior": 2.6,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 77.28,
+   "navps_prior": 74.55,
+   "ok": true,
+   "pages": 70,
+   "src_eps": "Earnings/(loss) per share  Rs. 2.72  (Rs. 2.60)",
+   "src_navps": "Net asset per share  Rs. 77.28  Rs. 74.55",
+   "title": "Annual Report as of 03/31/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/529_1535706289285.pdf",
+   "v": 6,
+   "vals_eps": [
+    2.72,
+    2.6
+   ],
+   "vals_navps": [
+    77.28,
+    74.55
+   ],
+   "year_only": true
+  },
+  "30741": {
+   "end": "2017-03-31",
+   "eps": 4.42,
+   "eps_prior": -4.5,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 74.55,
+   "navps_prior": 77.15,
+   "ok": true,
+   "pages": 64,
+   "src_eps": "Earnings/(Loss) per share  4.42  (4.50)  (2.89)  2.40  (39.82)  (57.85)  (16.10)  (8.68)  (0.76)  (2.60)",
+   "src_navps": "Net asset per share  Rs. 74.55  Rs. 77.15",
+   "title": "Annual Report 2016/2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/529_1503569703.pdf",
+   "v": 6,
+   "vals_eps": [
+    4.42,
+    -4.5,
+    -2.89,
+    2.4,
+    -39.82,
+    -57.85,
+    -16.1,
+    -8.68,
+    -0.76,
+    -2.6
+   ],
+   "vals_navps": [
+    74.55,
+    77.15
+   ],
+   "year_only": false
+  },
   "34001": {
    "end": "2019-03-31",
    "eps": 6.26,
@@ -350,11 +424,11 @@
    },
    {
     "amended": false,
-    "end": "2018-12-31",
+    "end": "2018-03-31",
     "id": "24412",
     "title": "Annual Report as of 03/31/2018",
     "uploaded": 1535653800000,
-    "url": "https://cdn.cse.lk/upload_report_file/529_1535706289285.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/529_1535706289285.pdf",
     "year_only": true
    },
    {
@@ -363,7 +437,7 @@
     "id": "30741",
     "title": "Annual Report 2016/2017",
     "uploaded": 1503513000000,
-    "url": "https://cdn.cse.lk/upload_report_file/529_1503569703.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/529_1503569703.pdf",
     "year_only": false
    }
   ],

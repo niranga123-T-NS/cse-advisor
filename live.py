@@ -217,6 +217,7 @@ class Engine:
         self.depth: dict[str, dict] = {}           # latest full book per share: totals and every price level CSE shows
         self.depth_hist = collections.defaultdict(list)   # symbol -> [[hh:mm:ss, shares to buy, shares to sell], ...] today
         self.focus = focus_list()                  # shares whose book is read every 30 s (focus.txt)
+        self.trade_hist: dict[str, list] = {}      # latest trades carried over from an earlier run today
         self.side_code = {"bid": 1, "ask": 2}      # CSE's buySell codes ...
         self.side_votes = [0, 0]                   # ... checked against the data: [books that agree, books that say the opposite]
         self.refill: dict[tuple, dict] = {}        # (symbol, side) -> the best price being watched for refilling
@@ -559,11 +560,19 @@ class Engine:
             if ob:
                 self._book(ts, t, s, ob, rows.get(s) or {})
 
+    def recent_trades(self, s: str, n: int = 40) -> list:
+        """The latest trades in one share, newest first: [time, price, shares, trades, side]. Side is read from the
+        price move (+1 buyers pushed it up, -1 sellers pushed it down, 0 unclear); trades within one 15-second
+        reading at the same price are added together."""
+        rows = [[self._clock(ts), round(px, 2), round(q), n_, side] for ts, px, q, n_, side in list(self.prints[s])[-n:]]
+        return (self.trade_hist.get(s, []) + rows)[-n:][::-1]
+
     def books_view(self) -> dict:
-        """Every share's latest buy and sell orders, for the share page."""
+        """Every share's latest buy and sell orders and latest trades, for the share page."""
         out = {}
-        for s, d in self.depth.items():
-            out[s] = {**d, "h": self.depth_hist[s][-90:]}
+        for s in set(self.depth) | {x for x, p in self.prints.items() if p} | set(self.trade_hist):
+            d = self.depth.get(s) or {"t": None, "b": 0, "a": 0, "buy": [], "sell": [], "none": 1}
+            out[s] = {**d, "h": self.depth_hist[s][-90:], "tr": self.recent_trades(s)}
         return out
 
     def _book(self, ts: float, t: str, s: str, ob: dict, r: dict):
@@ -655,6 +664,7 @@ class Engine:
         return {"date": self.day, "alerts": self.alerts, "seen": self.seen, "opened": sorted(self.opened), "rebased": sorted(self.rebased),
                 "big": self.big, "rest": self.rest, "hidden": self.hidden, "flow": self.flow, "dirn": self.dirn,
                 "depth": self.depth, "depth_hist": {k: v[-90:] for k, v in self.depth_hist.items()},
+                "trade_hist": {k: self.recent_trades(k)[::-1] for k, v in self.prints.items() if v or k in self.trade_hist},
                 "lv": None if self.lv is None else {s: [[px, q, n] for px, (q, n) in lv.items()] for s, lv in self.lv.items()}}
 
     def restore(self, st: dict):
@@ -666,6 +676,7 @@ class Engine:
         self.big, self.rest, self.hidden = st.get("big", []), st.get("rest", []), st.get("hidden", [])
         self.flow, self.dirn = st.get("flow", {}), st.get("dirn", {})
         self.depth = st.get("depth", {})
+        self.trade_hist = st.get("trade_hist", {})
         for k, v in (st.get("depth_hist") or {}).items():
             self.depth_hist[k] = v
         if st.get("lv") is not None:

@@ -129,6 +129,7 @@
   table.depth td { padding:3px 4px; border-top:1px solid var(--line-soft); position:relative; }
   table.depth td.num, table.depth th.num { text-align:right; }
   .dbar { height:3px; border-radius:2px; margin-top:2px; margin-left:auto; } .dbar.b { background:var(--emerald); } .dbar.s { background:var(--ruby); margin-left:0; margin-right:auto; }
+  .tcols { display:grid; grid-template-columns:1fr 1fr; gap:14px; } .tcol { min-width:0; }
   .dspark { width:100%; height:60px; display:block; background:var(--surface-2, transparent); border-radius:6px; }
 
   /* ---------- Shares ---------- */
@@ -468,6 +469,17 @@ async function pollBooks(force) {
   else if (!books) books = { none: true, _at: Date.now(), s: {} };       // nothing published yet: stop showing "Loading
   const el = document.getElementById('sec-book'); if (el && current) el.outerHTML = bookCard(current);
 }
+function tradeLists(tr) {
+  if (!tr || !tr.length) return '';
+  const up = tr.filter(r => r[4] > 0), dn = tr.filter(r => r[4] < 0), unc = tr.length - up.length - dn.length;
+  const sum = l => l.reduce((a, r) => a + r[2], 0);
+  const col = (l, cls, title) => `<div class="tcol"><div class="small ${cls}"><b>${title}</b> · ${shr(sum(l))} shares</div>` +
+    (l.length ? `<table class="depth"><thead><tr><th>Time</th><th class="num">Price</th><th class="num">Shares</th></tr></thead><tbody>` +
+      l.slice(0, 15).map(r => `<tr><td class="mute">${esc(r[0].slice(0, 5))}</td><td class="num ${cls}">${r[1].toFixed(2)}</td><td class="num">${shr(r[2])}${r[3] > 1 ? `<span class="mute"> ×${r[3]}</span>` : ''}</td></tr>`).join('') + '</tbody></table>'
+      : '<p class="small mute">None in the latest trades.</p>') + '</div>';
+  return `<h4 style="margin:14px 0 4px">Latest trades</h4><div class="tcols">${col(up, 'up', 'Buyer-driven')}${col(dn, 'down', 'Seller-driven')}</div>
+    <p class="small" style="margin:4px 0 0">Buyer-driven: the trade lifted the price or happened at a higher price than the one before; seller-driven: the opposite. This is read from the price move, not from who placed the order${unc ? `; ${unc} trade${unc === 1 ? '' : 's'} could not be classed` : ''}. ×n = number of trades at that price in one 15-second reading.</p>`;
+}
 function bookCard(sym) {
   const today = ymd(colomboNow());
   let x = books && books.s && books.s[sym];
@@ -477,8 +489,9 @@ function bookCard(sym) {
     books = books || { _at: 0, s: {} }; if (!books.date) books = { ...books, date: tick.t.slice(0, 10) };
   }
   const head = '<div class="card wide" id="sec-book"><h3>Buyers and sellers';
-  const foot = `<p class="small" style="margin:10px 0 0">From CSE's order book: the total shares waiting on each side and the price levels CSE shows (usually the best few). Orders can be changed or cancelled at any time, and CSE does not say who placed them. During the session each share is read every 2 to 15 minutes, busiest first${books && books.focus && books.focus.includes(sym) ? '; this one every 30 seconds' : ''}.</p></div>`;
+  const foot = `<p class="small" style="margin:10px 0 0">From CSE's order book: the total shares waiting on each side and the best buy price (CSE's free data shows no other price levels and no individual orders). Orders can be changed or cancelled at any time, and CSE does not say who placed them. During the session each share is read every 2 to 15 minutes, busiest first${books && books.focus && books.focus.includes(sym) ? '; this one every 30 seconds' : ''}.</p></div>`;
   if (!x) return `${head}</h3><p class="mute">${!RAW ? 'Live data is not available here.' : books && books.none ? (marketWindow() ? 'Not read yet today. Each share’s orders are read every 2 to 15 minutes during the session, so this fills in shortly.' : 'Shown during market hours, and at the close after the session.') : books ? (books.date === today ? 'Not read yet today. It will appear within a few minutes during the session.' : `No orders read for this share on ${dmy(books.date)}.`) : marketWindow() ? 'Loading…' : 'Shown during market hours, and at the close after the session.'}</p>${foot}`;
+  if (x.none) return `${head}</h3><p class="mute">The orders waiting in this share have not been read yet today; they will be within a few minutes.</p>${tradeLists(x.tr)}${foot}`;
   const live = books.date === today && marketWindow();
   const when = live ? `waiting at ${esc(x.t)}` : `at ${esc(x.t)} on ${dmy(books.date)}`;
   const tot = (x.b + x.a) || 1, bb = x.buy[0], ba = x.sell[0];
@@ -507,7 +520,7 @@ function bookCard(sym) {
     h += `<div class="small" style="margin-top:10px">Shares waiting today, ${esc(hs[0][0].slice(0, 5))} to ${esc(hs[hs.length - 1][0].slice(0, 5))}: <span class="up">to buy</span>, <span class="down">to sell</span></div>
       <svg viewBox="0 0 ${W} ${H}" class="dspark" preserveAspectRatio="none" role="img" aria-label="Shares waiting to buy and to sell through the day"><polyline points="${line(1)}" fill="none" stroke="var(--emerald)" stroke-width="2" vector-effect="non-scaling-stroke"/><polyline points="${line(2)}" fill="none" stroke="var(--ruby)" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>`;
   }
-  return h + foot;
+  return h + tradeLists(x.tr) + foot;
 }
 function pressureCard(d, sym) {
   const p = d.pressure, v = acc && acc.pressure && acc.pressure.horizons && acc.pressure.horizons['20'];

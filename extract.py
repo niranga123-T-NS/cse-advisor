@@ -100,7 +100,7 @@ def main(symbols: list[str]):
     print("published:", live.publish_to(files, "extracts", f"extracts: {' '.join(symbols)[:200]}"))
 
 
-EPS_LINE = re.compile(r"earnings\s*(/\s*\(?loss\)?\s*)?per|\(loss\)\s*per|loss\)?\s*per\s*(ordinary\s*)?share|\beps\b|basic|diluted", re.I)
+EPS_LINE = re.compile(r"earnings?\s*(/\s*\(?loss\)?\s*)?per|profit\s*(/\s*\(?loss\)?\s*)?per\s*share|per\s*share\s*[-–(]?\s*(basic|rs)|\(loss\)\s*per|loss\)?\s*per\s*(ordinary\s*)?share|\beps\b|basic|diluted", re.I)
 HEAD_LINE = re.compile(r"months|quarter|period|year ended|ended|unaudited|audited|group|company|bank|consolidated|\b20\d\d\b|note", re.I)
 
 

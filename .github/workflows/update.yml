@@ -27,7 +27,7 @@ concurrency:
 
 jobs:
   update:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.RUNNER || 'ubuntu-latest' }}   # set the repository variable RUNNER=self-hosted to use your own free machine
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}

@@ -24,7 +24,7 @@ permissions:
 
 jobs:
   live:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.RUNNER || 'ubuntu-latest' }}   # set the repository variable RUNNER=self-hosted to use your own free machine
     timeout-minutes: 350
     steps:
       - name: Is a trading session within reach?

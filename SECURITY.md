@@ -40,7 +40,21 @@
 Zero Trust > Access > Applications > cse-advisor > Policies > edit the email list. To throw someone out at once:
 remove them and use *Revoke existing sessions* (Zero Trust > My Team > Users).
 
-## Cost note
+## Keeping it free with a private repository
+
+GitHub bills Actions minutes on private repositories (2,000 free a month; the live job needs about 7,000), but jobs on
+**your own runner cost nothing**. Use any always-on Linux machine: Oracle Cloud "Always Free" (an ARM VM free for good;
+sign-up asks for a card for identity, nothing is charged on the Always Free shapes), an old laptop, or a Raspberry Pi.
+
+1. Create the machine (Ubuntu 22.04 or 24.04).
+2. GitHub > Settings > Actions > Runners > New self-hosted runner: copy the token.
+3. On the machine: `bash tools/setup_runner.sh <token>` (copy the file over, or `curl` it while the repo is still public).
+4. GitHub > Settings > Secrets and variables > Actions > Variables: `RUNNER` = `self-hosted`.
+   Every workflow switches to your machine; delete the variable to go back to GitHub's machines.
+5. Only then make the repository private. The Android build stays on GitHub's machines (about 10 minutes per build,
+   well inside the free 2,000).
+
+## Cost note (without your own runner)
 
 Public repositories get unlimited GitHub Actions minutes; private ones get 2,000 a month free. The live 15-second job
 alone runs about 5.5 hours each trading day (about 7,000 minutes a month), so a private repository needs paid minutes

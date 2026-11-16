@@ -21,7 +21,7 @@ concurrency:
 
 jobs:
   reports:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.RUNNER || 'ubuntu-latest' }}   # set the repository variable RUNNER=self-hosted to use your own free machine
     timeout-minutes: 350
     strategy:
       fail-fast: false
@@ -33,7 +33,7 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
-      - run: sudo apt-get install -y -qq poppler-utils > /dev/null
+      - run: command -v pdftoppm >/dev/null || sudo apt-get install -y -qq poppler-utils > /dev/null
       - run: pip install -r requirements.txt
       - name: Read quarterly and annual reports
         env:
@@ -54,7 +54,7 @@ jobs:
   publish:
     needs: reports
     if: always()
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.RUNNER || 'ubuntu-latest' }}   # set the repository variable RUNNER=self-hosted to use your own free machine
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}

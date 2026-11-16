@@ -1,0 +1,40 @@
+{
+ "symbol": "MSL.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "53482": {
+   "months": 6,
+   "eps_ytd": 0.52,
+   "eps_ytd_prior": 0.11,
+   "eps_q": 0.32,
+   "eps_q_prior": 0.01,
+   "page": 3
+  },
+  "52681": {
+   "months": 3,
+   "eps_ytd": 0.19,
+   "eps_ytd_prior": 0.1,
+   "eps_q": 0.19,
+   "eps_q_prior": 0.1,
+   "page": 3
+  },
+  "51309": {
+   "months": 12,
+   "eps_ytd": -0.14,
+   "eps_ytd_prior": -0.37,
+   "eps_q": -0.08,
+   "eps_q_prior": 0.26,
+   "page": 3
+  },
+  "50325": {
+   "months": 9,
+   "eps_ytd": -0.06,
+   "eps_ytd_prior": -0.44,
+   "eps_q": -0.17,
+   "eps_q_prior": 0.29,
+   "page": 3
+  }
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "symbol": "TKYO.X0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "46844": {
+   "months": 6,
+   "eps_ytd": 4.04,
+   "eps_ytd_prior": 3.41,
+   "eps_q": 2.43,
+   "eps_q_prior": 1.45,
+   "page": 4
+  }
+ }
+}

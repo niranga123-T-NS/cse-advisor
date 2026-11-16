@@ -1,0 +1,24 @@
+{
+ "symbol": "AHUN.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "52596": {
+   "months": 3,
+   "eps_ytd": -2.89,
+   "eps_ytd_prior": -1.04,
+   "eps_q": -2.89,
+   "eps_q_prior": -1.04,
+   "page": 2
+  },
+  "47314": {
+   "months": 9,
+   "eps_ytd": -1.13,
+   "eps_ytd_prior": -4.76,
+   "eps_q": 3.15,
+   "eps_q_prior": 2.47,
+   "page": 2
+  }
+ }
+}

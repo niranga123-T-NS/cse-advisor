@@ -1,0 +1,80 @@
+{
+ "symbol": "CITH.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "52721": {
+   "months": 3,
+   "eps_ytd": -0.28,
+   "eps_ytd_prior": -0.13,
+   "eps_q": -0.28,
+   "eps_q_prior": -0.13,
+   "page": 2
+  },
+  "51707": {
+   "months": 12,
+   "eps_ytd": 0.15,
+   "eps_ytd_prior": -0.22,
+   "eps_q": 0.08,
+   "eps_q_prior": 0.17,
+   "page": 2
+  },
+  "50507": {
+   "months": 9,
+   "eps_ytd": 0.08,
+   "eps_ytd_prior": -0.75,
+   "eps_q": 0.03,
+   "eps_q_prior": 0.08,
+   "page": 2
+  },
+  "49516": {
+   "months": 6,
+   "eps_ytd": 0.08,
+   "eps_ytd_prior": -0.83,
+   "eps_q": 0.33,
+   "eps_q_prior": -0.45,
+   "page": 2
+  },
+  "48797": {
+   "months": 3,
+   "eps_ytd": -0.13,
+   "eps_ytd_prior": -0.23,
+   "eps_q": -0.13,
+   "eps_q_prior": -0.23,
+   "page": 2
+  },
+  "47495": {
+   "months": 9,
+   "eps_ytd": -0.75,
+   "eps_ytd_prior": -1.99,
+   "eps_q": 0.08,
+   "eps_q_prior": -0.45,
+   "page": 2
+  },
+  "47043": {
+   "months": 6,
+   "eps_ytd": -0.83,
+   "eps_ytd_prior": -1.54,
+   "eps_q": -0.45,
+   "eps_q_prior": -0.77,
+   "page": 2
+  },
+  "46445": {
+   "months": 3,
+   "eps_ytd": -0.38,
+   "eps_ytd_prior": -0.76,
+   "eps_q": -0.38,
+   "eps_q_prior": -0.76,
+   "page": 2
+  },
+  "45849": {
+   "months": 12,
+   "eps_ytd": -1.68,
+   "eps_ytd_prior": -4.03,
+   "eps_q": 0.31,
+   "eps_q_prior": -1.28,
+   "page": 2
+  }
+ }
+}

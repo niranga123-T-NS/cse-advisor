@@ -1,0 +1,56 @@
+{
+ "symbol": "ACME.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "52502": {
+   "months": 3,
+   "eps_ytd": -0.01,
+   "eps_ytd_prior": -0.42,
+   "eps_q": -0.01,
+   "eps_q_prior": -0.42,
+   "page": 2
+  },
+  "51692": {
+   "months": 12,
+   "eps_ytd": -2.09,
+   "eps_ytd_prior": -1.85,
+   "eps_q": -1.39,
+   "eps_q_prior": -0.87,
+   "page": 2
+  },
+  "50423": {
+   "months": 9,
+   "eps_ytd": -1.57,
+   "eps_ytd_prior": -2.25,
+   "eps_q": 0.17,
+   "eps_q_prior": -0.23,
+   "page": 2
+  },
+  "49415": {
+   "months": 6,
+   "eps_ytd": -1.74,
+   "eps_ytd_prior": -2.02,
+   "eps_q": -0.77,
+   "eps_q_prior": -0.91,
+   "page": 2
+  },
+  "48604": {
+   "months": 3,
+   "eps_ytd": -0.97,
+   "eps_ytd_prior": -1.11,
+   "eps_q": -0.97,
+   "eps_q_prior": -1.11,
+   "page": 2
+  },
+  "47991": {
+   "months": 12,
+   "eps_ytd": -4.27,
+   "eps_ytd_prior": -6.43,
+   "eps_q": -2.02,
+   "eps_q_prior": -3.95,
+   "page": 2
+  }
+ }
+}

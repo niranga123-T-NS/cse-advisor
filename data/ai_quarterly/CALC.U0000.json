@@ -1,0 +1,48 @@
+{
+ "symbol": "CALC.U0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "53782": {
+   "months": 6,
+   "eps_ytd": 0.52,
+   "eps_ytd_prior": 0.6,
+   "eps_q": 0.29,
+   "eps_q_prior": 0.22,
+   "page": 2
+  },
+  "52744": {
+   "months": 3,
+   "eps_ytd": 0.3,
+   "eps_ytd_prior": 0.5,
+   "eps_q": 0.3,
+   "eps_q_prior": 0.5,
+   "page": 2
+  },
+  "51604": {
+   "months": 12,
+   "eps_ytd": 0.88,
+   "eps_ytd_prior": null,
+   "eps_q": 0.06,
+   "eps_q_prior": 0.54,
+   "page": 2
+  },
+  "50429": {
+   "months": 9,
+   "eps_ytd": 0.82,
+   "eps_ytd_prior": 1.96,
+   "eps_q": 0.24,
+   "eps_q_prior": 1.91,
+   "page": 2
+  },
+  "49530": {
+   "months": 6,
+   "eps_ytd": 0.6,
+   "eps_ytd_prior": 0.75,
+   "eps_q": 0.22,
+   "eps_q_prior": 0.75,
+   "page": 2
+  }
+ }
+}

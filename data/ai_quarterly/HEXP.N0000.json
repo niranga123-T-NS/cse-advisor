@@ -1,0 +1,72 @@
+{
+ "symbol": "HEXP.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "53431": {
+   "months": 6,
+   "eps_ytd": 4.86,
+   "eps_ytd_prior": 1.68,
+   "eps_q": 0.74,
+   "eps_q_prior": -1.03,
+   "page": 2
+  },
+  "52205": {
+   "months": 3,
+   "eps_ytd": 4.12,
+   "eps_ytd_prior": 2.71,
+   "eps_q": 4.12,
+   "eps_q_prior": 2.71,
+   "page": 2
+  },
+  "49941": {
+   "months": 9,
+   "eps_ytd": 3.65,
+   "eps_ytd_prior": -1.79,
+   "eps_q": 1.97,
+   "eps_q_prior": -0.43,
+   "page": 2
+  },
+  "49242": {
+   "months": 6,
+   "eps_ytd": 1.68,
+   "eps_ytd_prior": -1.36,
+   "eps_q": -1.03,
+   "eps_q_prior": -1.81,
+   "page": 2
+  },
+  "48547": {
+   "months": 3,
+   "eps_ytd": 2.71,
+   "eps_ytd_prior": 0.46,
+   "eps_q": 2.71,
+   "eps_q_prior": 0.46,
+   "page": 2
+  },
+  "47307": {
+   "months": 9,
+   "eps_ytd": -1.79,
+   "eps_ytd_prior": -0.09,
+   "eps_q": -0.43,
+   "eps_q_prior": 0.67,
+   "page": 2
+  },
+  "46842": {
+   "months": 6,
+   "eps_ytd": -1.36,
+   "eps_ytd_prior": -0.76,
+   "eps_q": -1.81,
+   "eps_q_prior": -0.68,
+   "page": 2
+  },
+  "46229": {
+   "months": 3,
+   "eps_ytd": 0.46,
+   "eps_ytd_prior": -0.08,
+   "eps_q": 0.46,
+   "eps_q_prior": -0.08,
+   "page": 2
+  }
+ }
+}

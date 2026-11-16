@@ -1,0 +1,16 @@
+{
+ "symbol": "EAST.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "53349": {
+   "months": 6,
+   "eps_ytd": -0.81,
+   "eps_ytd_prior": 0.37,
+   "eps_q": -1.1,
+   "eps_q_prior": 0.21,
+   "page": 2
+  }
+ }
+}

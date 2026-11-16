@@ -1,0 +1,24 @@
+{
+ "symbol": "PALM.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "53580": {
+   "months": 6,
+   "eps_ytd": -4.69,
+   "eps_ytd_prior": -3.03,
+   "eps_q": -2.68,
+   "eps_q_prior": -1.13,
+   "page": 4
+  },
+  "52711": {
+   "months": 3,
+   "eps_ytd": -2.01,
+   "eps_ytd_prior": -1.91,
+   "eps_q": -2.01,
+   "eps_q_prior": -1.91,
+   "page": 4
+  }
+ }
+}

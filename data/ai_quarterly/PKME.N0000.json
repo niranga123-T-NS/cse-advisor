@@ -1,0 +1,32 @@
+{
+ "symbol": "PKME.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "48449": {
+   "months": 3,
+   "eps_ytd": 1.31,
+   "eps_ytd_prior": 0.67,
+   "eps_q": 1.31,
+   "eps_q_prior": 0.67,
+   "page": 3
+  },
+  "48065": {
+   "months": 12,
+   "eps_ytd": 3.51,
+   "eps_ytd_prior": null,
+   "eps_q": 1.12,
+   "eps_q_prior": null,
+   "page": 3
+  },
+  "47272": {
+   "months": 9,
+   "eps_ytd": 2.39,
+   "eps_ytd_prior": null,
+   "eps_q": 0.88,
+   "eps_q_prior": null,
+   "page": 3
+  }
+ }
+}

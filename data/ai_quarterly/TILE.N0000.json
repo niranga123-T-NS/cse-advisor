@@ -1,0 +1,24 @@
+{
+ "symbol": "TILE.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "52252": {
+   "months": 3,
+   "eps_ytd": 0.94,
+   "eps_ytd_prior": 0.57,
+   "eps_q": 0.94,
+   "eps_q_prior": 0.57,
+   "page": 3
+  },
+  "51464": {
+   "months": 12,
+   "eps_ytd": 4.35,
+   "eps_ytd_prior": 4.08,
+   "eps_q": 1.3,
+   "eps_q_prior": 0.76,
+   "page": 3
+  }
+ }
+}

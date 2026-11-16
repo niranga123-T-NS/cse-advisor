@@ -1,0 +1,48 @@
+{
+ "symbol": "JETS.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "50012": {
+   "months": 9,
+   "eps_ytd": 0.59,
+   "eps_ytd_prior": 0.39,
+   "eps_q": 0.23,
+   "eps_q_prior": 0.24,
+   "page": 4
+  },
+  "49240": {
+   "months": 6,
+   "eps_ytd": 0.36,
+   "eps_ytd_prior": 0.15,
+   "eps_q": 0.39,
+   "eps_q_prior": 0.34,
+   "page": 4
+  },
+  "48598": {
+   "months": 3,
+   "eps_ytd": -0.03,
+   "eps_ytd_prior": -0.19,
+   "eps_q": -0.03,
+   "eps_q_prior": -0.19,
+   "page": 4
+  },
+  "47893": {
+   "months": 12,
+   "eps_ytd": 0.72,
+   "eps_ytd_prior": 0.17,
+   "eps_q": null,
+   "eps_q_prior": null,
+   "page": 4
+  },
+  "46255": {
+   "months": 3,
+   "eps_ytd": -0.19,
+   "eps_ytd_prior": -0.24,
+   "eps_q": -0.19,
+   "eps_q_prior": -0.24,
+   "page": 4
+  }
+ }
+}

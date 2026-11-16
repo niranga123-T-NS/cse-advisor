@@ -543,6 +543,8 @@ def rebase(d: dict, symbol: str) -> tuple[dict, list[dict]]:
                 for fld in ("vals_eps", "vals_dps", "vals_navps"):
                     if x.get(fld):
                         x[fld] = [v / f if v is not None else v for v in x[fld]]
+                if x.get("ai_q"):
+                    x["ai_q"] = {k: (v / f if k in AIQ_FIELDS and v is not None else v) for k, v in x["ai_q"].items()}
                 x["rebased"] = round(f, 4)
                 notes.append({"level": "ok", "end": x["end"], "msg": f"per-share figures divided by {f:g} for later share splits or bonus issues ({', '.join(e[0] for e in ev if e[0] > pub)})"})
             new[k] = x
@@ -550,12 +552,83 @@ def rebase(d: dict, symbol: str) -> tuple[dict, list[dict]]:
     return out, notes
 
 
+AIQ_DIR = Path(__file__).parent / "data" / "ai_quarterly"
+AIQ_FIELDS = ("eps_q", "eps_q_prior", "eps_ytd", "eps_ytd_prior")
+
+
+def with_ai_quarterly(d: dict, symbol: str) -> dict:
+    """Attach the earnings per share Claude read by hand from interim reports where text matching found none
+    (data/ai_quarterly/<SYM>.json, keyed by report id). Applied after the automatic checks, see apply_ai_quarterly."""
+    f = AIQ_DIR / f"{symbol}.json"
+    if not f.exists():
+        return d
+    ai = json.loads(f.read_text()).get("reports") or {}
+    if not ai:
+        return d
+    out = {**d, "quarterly": {}}
+    for k, x in (d.get("quarterly") or {}).items():
+        r = ai.get(k)
+        out["quarterly"][k] = {**x, "ai_q": dict(r)} if r and x.get("eps") is None else x
+    return out
+
+
+def apply_ai_quarterly(q: list[dict], cum, checks: list[dict]):
+    """Use Claude's reading where the text matching found no EPS. Each reading is checked against the reports around
+    it: its 'same period last year' column must match last year's report and its months must fit the financial year.
+    A reading that fails either check is shown but not used."""
+    by_end = {x["end"]: x for x in q}
+    filled = []
+    for x in q:
+        r = x.get("ai_q")
+        if not r or x.get("eps") is not None:
+            continue
+        months, ytd, q3 = r.get("months"), r.get("eps_ytd"), r.get("eps_q")
+        if ytd is None and q3 is None:
+            continue
+        x.update(eps=q3 if q3 is not None else ytd, eps_q=q3 if q3 is not None else (ytd if months == 3 else None),
+                 eps_cum=ytd if ytd is not None else (q3 if months == 3 else None), eps_cum_prior=r.get("eps_ytd_prior"),
+                 eps_prior=r.get("eps_q_prior") if r.get("eps_q_prior") is not None else r.get("eps_ytd_prior"),
+                 months=months, src_eps=f"read by Claude, page {r.get('page', '?')}: {r.get('note', '')}".strip(), ai=True)
+        filled.append(x)
+    near = lambda u, v: _close(u, v, 0.03) or abs(u - v) < 0.011
+    for x in filled:
+        months = x["months"]
+        ok, why, support = True, [], 0
+        if months and cum(x["end"]) and months != cum(x["end"]):
+            ok = False; why.append(f"covers {months} months where the financial year implies {cum(x['end'])}")
+        # 1. its last-year column against last year's report
+        y = by_end.get(f"{int(x['end'][:4]) - 1}{x['end'][4:]}")
+        if y and x.get("eps_cum_prior") is not None and y.get("eps_cum") is not None and "eps_cum" not in y["_bad"]:
+            if near(x["eps_cum_prior"], y["eps_cum"]):
+                support += 1; why.append(f"last-year column {x['eps_cum_prior']} = {y['end']} report")
+            elif not _close(x["eps_cum_prior"], y["eps_cum"], 0.10):
+                ok = False; why.append(f"last-year column {x['eps_cum_prior']} ≠ {y['end']} report {y['eps_cum']}")
+        # 2. year-to-date = previous quarter's year-to-date + this quarter
+        if months and months > 3 and x.get("eps_q") is not None and x.get("eps_cum") is not None:
+            pv = [z for z in q if z.get("months") == months - 3 and z.get("eps_cum") is not None and "eps_cum" not in z["_bad"]
+                  and 2 <= (int(x["end"][:4]) * 12 + int(x["end"][5:7])) - (int(z["end"][:4]) * 12 + int(z["end"][5:7])) <= 4]
+            if pv:
+                tot = round(pv[0]["eps_cum"] + x["eps_q"], 4)
+                if near(tot, x["eps_cum"]) or abs(tot - x["eps_cum"]) <= 0.02 * max(1, abs(x["eps_cum"])):
+                    support += 1; why.append(f"{pv[0]['end']} year-to-date + this quarter = {tot}")
+                else:
+                    why.append(f"{pv[0]['end']} year-to-date + this quarter = {tot}, report says {x['eps_cum']}")
+        if ok:
+            x["_ok"].update({"eps", "eps_cum", "period"}); x["_bad"].difference_update({"eps", "eps_cum", "eps_q"})
+        else:
+            x["_bad"].update({"eps", "eps_cum"})
+        checks.append({"level": "ok" if ok else "warn", "end": x["end"],
+                       "msg": f"EPS read by Claude: {x['eps_q'] if x.get('eps_q') is not None else '-'} for the quarter, {x['eps_cum'] if x.get('eps_cum') is not None else '-'} for {months} months"
+                              + (f" ({'; '.join(why)})" if why else "") + ("" if ok else " - not used")})
+
+
 def metrics(symbol: str, price: float | None) -> dict | None:
     d = load(symbol)
     if not d.get("quarterly") and not d.get("annual"):
         return None
-    d, base_notes = rebase(d, symbol)
+    d, base_notes = rebase(with_ai_quarterly(d, symbol), symbol)
     q, a, checks, fy_month, cum = audit(d, price)
+    apply_ai_quarterly(q, cum, checks)
     checks = base_notes + checks
     m = {"quarters_read": len(q), "annuals_read": len(a), "fy_month": fy_month}
     ver = {}

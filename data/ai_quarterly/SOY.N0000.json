@@ -1,0 +1,16 @@
+{
+ "symbol": "SOY.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "52124": {
+   "months": 3,
+   "eps_ytd": 51.95,
+   "eps_ytd_prior": 63.63,
+   "eps_q": 51.95,
+   "eps_q_prior": 63.63,
+   "page": 3
+  }
+ }
+}

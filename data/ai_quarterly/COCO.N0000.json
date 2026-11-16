@@ -1,0 +1,16 @@
+{
+ "symbol": "COCO.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "47498": {
+   "months": 9,
+   "eps_ytd": null,
+   "eps_ytd_prior": null,
+   "eps_q": -1.05,
+   "eps_q_prior": -1.81,
+   "page": 2
+  }
+ }
+}

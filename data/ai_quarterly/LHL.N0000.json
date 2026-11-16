@@ -1,0 +1,32 @@
+{
+ "symbol": "LHL.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "52204": {
+   "months": 3,
+   "eps_ytd": -0.56,
+   "eps_ytd_prior": 0.16,
+   "eps_q": -0.56,
+   "eps_q_prior": 0.16,
+   "page": 4
+  },
+  "50030": {
+   "months": 9,
+   "eps_ytd": 1.98,
+   "eps_ytd_prior": 2.46,
+   "eps_q": 1.18,
+   "eps_q_prior": null,
+   "page": 4
+  },
+  "49279": {
+   "months": 6,
+   "eps_ytd": 0.8,
+   "eps_ytd_prior": 1.19,
+   "eps_q": 0.65,
+   "eps_q_prior": 0.81,
+   "page": 4
+  }
+ }
+}

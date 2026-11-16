@@ -1,0 +1,72 @@
+{
+ "symbol": "WATA.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "52264": {
+   "months": 3,
+   "eps_ytd": 0.88,
+   "eps_ytd_prior": 0.82,
+   "eps_q": 0.88,
+   "eps_q_prior": 0.82,
+   "page": 3
+  },
+  "51373": {
+   "months": 12,
+   "eps_ytd": 2.34,
+   "eps_ytd_prior": 1.89,
+   "eps_q": 0.18,
+   "eps_q_prior": 0.41,
+   "page": 3
+  },
+  "50147": {
+   "months": 9,
+   "eps_ytd": 2.17,
+   "eps_ytd_prior": 1.47,
+   "eps_q": 0.46,
+   "eps_q_prior": 0.48,
+   "page": 3
+  },
+  "49205": {
+   "months": 6,
+   "eps_ytd": 1.71,
+   "eps_ytd_prior": 0.99,
+   "eps_q": 0.89,
+   "eps_q_prior": 0.42,
+   "page": 3
+  },
+  "48467": {
+   "months": 3,
+   "eps_ytd": 0.81,
+   "eps_ytd_prior": 0.57,
+   "eps_q": 0.81,
+   "eps_q_prior": 0.57,
+   "page": 3
+  },
+  "47256": {
+   "months": 9,
+   "eps_ytd": 7.37,
+   "eps_ytd_prior": 10.84,
+   "eps_q": 2.41,
+   "eps_q_prior": 2.79,
+   "page": 3
+  },
+  "46896": {
+   "months": 6,
+   "eps_ytd": 4.96,
+   "eps_ytd_prior": 8.04,
+   "eps_q": 2.11,
+   "eps_q_prior": 4.33,
+   "page": 3
+  },
+  "46196": {
+   "months": 3,
+   "eps_ytd": 2.85,
+   "eps_ytd_prior": 3.71,
+   "eps_q": 2.85,
+   "eps_q_prior": 3.71,
+   "page": 3
+  }
+ }
+}

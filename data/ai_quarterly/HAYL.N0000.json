@@ -1,0 +1,24 @@
+{
+ "symbol": "HAYL.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "48651": {
+   "months": 3,
+   "eps_ytd": 2.01,
+   "eps_ytd_prior": 1.87,
+   "eps_q": 2.01,
+   "eps_q_prior": 1.87,
+   "page": 2
+  },
+  "46319": {
+   "months": 3,
+   "eps_ytd": 1.87,
+   "eps_ytd_prior": 0.04,
+   "eps_q": 1.87,
+   "eps_q_prior": 0.04,
+   "page": 2
+  }
+ }
+}

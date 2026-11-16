@@ -1,0 +1,72 @@
+{
+ "symbol": "DIMO.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "53799": {
+   "months": 6,
+   "eps_ytd": 2.88,
+   "eps_ytd_prior": 81.12,
+   "eps_q": -62.09,
+   "eps_q_prior": 50.33,
+   "page": 2
+  },
+  "52510": {
+   "months": 3,
+   "eps_ytd": 64.97,
+   "eps_ytd_prior": 30.79,
+   "eps_q": 64.97,
+   "eps_q_prior": 30.79,
+   "page": 2
+  },
+  "50510": {
+   "months": 9,
+   "eps_ytd": 115.93,
+   "eps_ytd_prior": -46.31,
+   "eps_q": 34.81,
+   "eps_q_prior": -7.85,
+   "page": 2
+  },
+  "49493": {
+   "months": 6,
+   "eps_ytd": 81.12,
+   "eps_ytd_prior": -38.47,
+   "eps_q": 50.33,
+   "eps_q_prior": 10.95,
+   "page": 2
+  },
+  "48577": {
+   "months": 3,
+   "eps_ytd": 30.79,
+   "eps_ytd_prior": -49.42,
+   "eps_q": 30.79,
+   "eps_q_prior": -49.42,
+   "page": 2
+  },
+  "47478": {
+   "months": 9,
+   "eps_ytd": -46.31,
+   "eps_ytd_prior": 32.79,
+   "eps_q": -7.85,
+   "eps_q_prior": 60.28,
+   "page": 2
+  },
+  "47065": {
+   "months": 6,
+   "eps_ytd": -38.47,
+   "eps_ytd_prior": -27.49,
+   "eps_q": 10.95,
+   "eps_q_prior": -19.67,
+   "page": 2
+  },
+  "46415": {
+   "months": 3,
+   "eps_ytd": -49.42,
+   "eps_ytd_prior": -7.82,
+   "eps_q": -49.42,
+   "eps_q_prior": -7.82,
+   "page": 2
+  }
+ }
+}

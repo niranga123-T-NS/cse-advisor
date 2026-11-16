@@ -1,0 +1,24 @@
+{
+ "symbol": "ASCO.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "47295": {
+   "months": 9,
+   "eps_ytd": null,
+   "eps_ytd_prior": null,
+   "eps_q": -1.14,
+   "eps_q_prior": -0.72,
+   "page": 3
+  },
+  "46752": {
+   "months": 6,
+   "eps_ytd": -0.93,
+   "eps_ytd_prior": -1.53,
+   "eps_q": -0.49,
+   "eps_q_prior": -0.67,
+   "page": 4
+  }
+ }
+}

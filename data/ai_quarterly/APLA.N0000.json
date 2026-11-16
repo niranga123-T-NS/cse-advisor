@@ -1,0 +1,24 @@
+{
+ "symbol": "APLA.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "51590": {
+   "months": 12,
+   "eps_ytd": 19.27,
+   "eps_ytd_prior": 11.03,
+   "eps_q": 6.08,
+   "eps_q_prior": 3.27,
+   "page": 2
+  },
+  "50375": {
+   "months": 9,
+   "eps_ytd": 13.29,
+   "eps_ytd_prior": 8.37,
+   "eps_q": 4.92,
+   "eps_q_prior": 2.39,
+   "page": 2
+  }
+ }
+}

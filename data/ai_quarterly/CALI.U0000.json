@@ -1,0 +1,80 @@
+{
+ "symbol": "CALI.U0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "53787": {
+   "months": 6,
+   "eps_ytd": 0.53,
+   "eps_ytd_prior": 0.64,
+   "eps_q": 0.3,
+   "eps_q_prior": 0.28,
+   "page": 2
+  },
+  "52692": {
+   "months": 3,
+   "eps_ytd": 0.23,
+   "eps_ytd_prior": 0.36,
+   "eps_q": 0.23,
+   "eps_q_prior": 0.36,
+   "page": 2
+  },
+  "51601": {
+   "months": 12,
+   "eps_ytd": 0.98,
+   "eps_ytd_prior": 1.89,
+   "eps_q": 0.04,
+   "eps_q_prior": 0.17,
+   "page": 2
+  },
+  "50336": {
+   "months": 9,
+   "eps_ytd": 0.94,
+   "eps_ytd_prior": 1.73,
+   "eps_q": 0.3,
+   "eps_q_prior": 1.13,
+   "page": 2
+  },
+  "49529": {
+   "months": 6,
+   "eps_ytd": 0.64,
+   "eps_ytd_prior": 0.6,
+   "eps_q": 0.28,
+   "eps_q_prior": 0.22,
+   "page": 2
+  },
+  "48623": {
+   "months": 3,
+   "eps_ytd": 0.36,
+   "eps_ytd_prior": 0.38,
+   "eps_q": 0.36,
+   "eps_q_prior": 0.38,
+   "page": 2
+  },
+  "48086": {
+   "months": 12,
+   "eps_ytd": 1.89,
+   "eps_ytd_prior": 1.96,
+   "eps_q": 0.17,
+   "eps_q_prior": 0.75,
+   "page": 2
+  },
+  "47451": {
+   "months": 9,
+   "eps_ytd": 1.73,
+   "eps_ytd_prior": 1.21,
+   "eps_q": 1.13,
+   "eps_q_prior": 0.31,
+   "page": 2
+  },
+  "46892": {
+   "months": 6,
+   "eps_ytd": 0.6,
+   "eps_ytd_prior": 0.91,
+   "eps_q": 0.22,
+   "eps_q_prior": 0.91,
+   "page": 2
+  }
+ }
+}

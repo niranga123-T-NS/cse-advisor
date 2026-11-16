@@ -1,0 +1,40 @@
+{
+ "symbol": "AUTO.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "49952": {
+   "months": 9,
+   "eps_ytd": -1.71,
+   "eps_ytd_prior": 2.17,
+   "eps_q": -0.08,
+   "eps_q_prior": 0.63,
+   "page": 4
+  },
+  "49093": {
+   "months": 6,
+   "eps_ytd": -1.51,
+   "eps_ytd_prior": 1.54,
+   "eps_q": -1.06,
+   "eps_q_prior": 1.02,
+   "page": 4
+  },
+  "47204": {
+   "months": 9,
+   "eps_ytd": 2.17,
+   "eps_ytd_prior": 1.88,
+   "eps_q": 0.63,
+   "eps_q_prior": 0.47,
+   "page": 4
+  },
+  "46763": {
+   "months": 6,
+   "eps_ytd": 1.54,
+   "eps_ytd_prior": 1.41,
+   "eps_q": 1.02,
+   "eps_q_prior": 0.61,
+   "page": 4
+  }
+ }
+}

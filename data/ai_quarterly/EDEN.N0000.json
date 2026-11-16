@@ -1,0 +1,32 @@
+{
+ "symbol": "EDEN.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "53576": {
+   "months": 6,
+   "eps_ytd": -1.15,
+   "eps_ytd_prior": -0.74,
+   "eps_q": -0.62,
+   "eps_q_prior": -0.3,
+   "page": 4
+  },
+  "52706": {
+   "months": 3,
+   "eps_ytd": -0.53,
+   "eps_ytd_prior": -0.45,
+   "eps_q": -0.53,
+   "eps_q_prior": -0.45,
+   "page": 4
+  },
+  "49677": {
+   "months": 6,
+   "eps_ytd": -0.74,
+   "eps_ytd_prior": -1.13,
+   "eps_q": -0.3,
+   "eps_q_prior": -0.49,
+   "page": 4
+  }
+ }
+}

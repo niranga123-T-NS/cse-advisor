@@ -1,0 +1,16 @@
+{
+ "symbol": "CALU.U0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "53785": {
+   "months": 6,
+   "eps_ytd": 0.5,
+   "eps_ytd_prior": null,
+   "eps_q": 0.27,
+   "eps_q_prior": null,
+   "page": 2
+  }
+ }
+}

@@ -104,7 +104,33 @@ EPS_LINE = re.compile(r"earnings\s*(/\s*\(?loss\)?\s*)?per|\(loss\)\s*per|loss\)
 HEAD_LINE = re.compile(r"months|quarter|period|year ended|ended|unaudited|audited|group|company|bank|consolidated|\b20\d\d\b|note", re.I)
 
 
-def extract_eps(item: dict) -> str:
+def ocr_eps(data: bytes, n: int) -> str:
+    """Scanned reports: render the first pages as images, read them with Tesseract, keep the EPS rows."""
+    import tempfile
+    out = []
+    with tempfile.TemporaryDirectory() as tmp:
+        pdf = Path(tmp) / "r.pdf"
+        pdf.write_bytes(data)
+        subprocess.run(["pdftoppm", "-r", "200", "-gray", "-f", "1", "-l", str(min(n, 8)), "-png", str(pdf), f"{tmp}/p"], check=False)
+        for img in sorted(Path(tmp).glob("p-*.png")):
+            t = subprocess.run(["tesseract", str(img), "-", "--psm", "6"], capture_output=True, text=True).stdout
+            lines = [re.sub(r"\s{2,}", "  ", l.strip()) for l in t.splitlines() if l.strip() and len(l) < 260]
+            idx = [i for i, l in enumerate(lines) if EPS_LINE.search(l)]
+            if not idx:
+                continue
+            heads = [l for l in lines[:45] if HEAD_LINE.search(l) and len(NUMS.findall(l)) <= 8][:10]
+            keep = []
+            for i in idx:
+                keep.extend(lines[max(0, i - 1): i + 3])
+            pno = int(re.search(r"p-0*(\d+)", img.name).group(1))
+            out.append(f"  --- page {pno} (OCR) ---")
+            out.extend("  " + l for l in list(dict.fromkeys(heads + ["..."] + keep))[:45])
+            if len(out) > 120:
+                break
+    return "\n".join(out) + "\n" if out else ""
+
+
+def extract_eps(item: dict, ocr: bool = False) -> str:
     """Only what is needed to read earnings per share: the column headers near each EPS row and the rows themselves."""
     data = reports.fetch_pdf(item["url"])
     if not data:
@@ -132,13 +158,17 @@ def extract_eps(item: dict) -> str:
         used += 1
         if used >= 3:
             break
+    if not out and ocr:
+        o = ocr_eps(data, n)
+        if o:
+            return o
     if not out:
         txt = reports.pdf_text(data, 1, min(n, 3))
         return f"  (no EPS row found; {n} pages; text on first pages: {len(txt.strip())} characters{' - probably scanned images' if len(txt.strip()) < 200 else ''})\n"
     return "\n".join(out) + "\n"
 
 
-def gaps(symbols: list[str]):
+def gaps(symbols: list[str], ocr: bool = False):
     """Quarterly reports read without an EPS figure: extract their EPS rows to extracts/q/<SYM>.txt."""
     files = {}
     for s in symbols:
@@ -150,8 +180,8 @@ def gaps(symbols: list[str]):
         for k, x in sorted(miss, key=lambda t: t[1].get("end") or "", reverse=True):
             print(s, x.get("end"), flush=True)
             parts.append(f"=== id {k}  period end {x.get('end')}  {x.get('title', '')[:90]}\n  {x.get('url')}\n")
-            parts.append(extract_eps({"url": x.get("url")}))
-        files[f"extracts/q/{s}.txt"] = "".join(parts)
+            parts.append(extract_eps({"url": x.get("url")}, ocr))
+        files[f"extracts/{'qocr' if ocr else 'q'}/{s}.txt"] = "".join(parts)
     import live
     try:
         subprocess.run(["git", "fetch", "-q", "origin", "+refs/heads/extracts:refs/remotes/origin/extracts"], check=True)
@@ -168,5 +198,7 @@ if __name__ == "__main__":
     args = [a.upper() for a in sys.argv[1:]]
     if args and args[0] == "--GAPS":
         gaps(args[1:])
+    elif args and args[0] == "--OCR":
+        gaps(args[1:], ocr=True)
     else:
         main(args)

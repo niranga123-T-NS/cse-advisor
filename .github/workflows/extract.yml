@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
-      - run: sudo apt-get install -y -qq poppler-utils > /dev/null
+      - run: sudo apt-get install -y -qq poppler-utils tesseract-ocr > /dev/null
       - run: pip install -r requirements.txt
       - env:
           SYMBOLS: ${{ github.event.inputs.symbols }}

@@ -894,7 +894,7 @@ function fundCard(a) {
   if (!f) return '<div class="card wide" id="sec-fund"><h3>Fundamentals</h3><p class="mute">Reports not read yet. The nightly job works through all companies.</p></div>';
   const V = f.verified || {};
   const tick = k => k in V ? (V[k] ? ' <span class="up" title="checked">✓</span>' : ' <span class="warn" title="not checked, so not scored">⚠</span>') : '';
-  const yrs = (f.annual||[]).map(y => `<tr><td><a href="${esc(y.url)}" target="_blank" rel="noopener">${my(y.end)}</a></td>
+  const yrs = (f.annual||[]).map(y => `<tr><td>${y.url ? `<a href="${esc(y.url)}" target="_blank" rel="noopener">${my(y.end)}</a>` : `${my(y.end)} <span class="small" title="Not read from its own report: two or more later reports print the same figure">*</span>`}</td>
       <td class="num">${fmt(y.eps)}${y.eps!=null?(y.eps_ok?' <span class="up">✓</span>':' <span class="warn">⚠</span>'):''}</td>
       <td class="num">${fmt(y.dps)}${y.dps!=null?(y.dps_ok?' <span class="up">✓</span>':' <span class="warn">⚠</span>'):''}</td></tr>`).join('');
   const qs = (f.quarters||[]).map(q => `<tr><td><a href="${esc(q.url)}" target="_blank" rel="noopener">${my(q.end)}</a></td>
@@ -925,7 +925,9 @@ function fundCard(a) {
       <span class="mute">Earnings growth a year</span><span>${f.eps_cagr!=null?pct(f.eps_cagr)+tick('eps_cagr')+` <span class="small">over ${f.eps_cagr_years} years</span>`:fmt(null)}</span>
     </div>
     <p class="small" style="margin:10px 0 0">✓ confirmed by a cross-check. ⚠ not confirmed: shown, but <b>not used</b> in any score or checklist.</p>
-    ${yrs?`<h4>Annual reports</h4><div class="tw"><table><tr><th>Year end</th><th class="num">Earnings per share</th><th class="num">Dividend per share</th></tr>${yrs}</table></div>`:''}
+    ${yrs?`<h4>Annual reports <span class="mute" style="font-weight:400">${f.annuals_read} read, on today's share basis</span></h4><div class="tw"><table><tr><th>Year end</th><th class="num">Earnings per share</th><th class="num">Dividend per share</th></tr>${yrs}</table></div>
+      <p class="small" style="margin:6px 0 0">A year's figure is confirmed (✓) when another report agrees with it: the next year's "last year" column or a multi-year summary. * marks a year taken only from later reports that agree.
+        A dash means no figure could be read or confirmed. Figures from before a share split or bonus issue are divided by it, so years compare like for like.</p>`:''}
     ${qs?`<h4>Quarterly reports</h4><div class="tw"><table><tr><th>Period end</th><th class="num">EPS, quarter</th><th class="num">EPS, year to date</th><th class="num">Profit on a year earlier</th><th class="num xs">Revenue on a year earlier</th></tr>${qs}</table></div>`:''}
     <details style="margin-top:12px"><summary>Data checks: ${cs.ok} passed, ${cs.warn} warnings, ${cs.fail} failed (<a href="audit.html#${encodeURIComponent(a.symbol||current)}">all checks</a>)</summary><ul style="margin-top:6px">${checks}</ul></details>
     <details style="margin-top:6px"><summary>Exact lines read from the reports</summary>${srcs || '<p class="mute">none</p>'}</details>

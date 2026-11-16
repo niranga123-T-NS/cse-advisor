@@ -443,36 +443,54 @@ def _v(x, f):
 
 
 def _history(a: list[dict], f: str) -> dict:
-    """{year end: (value, number of different reports agreeing, [report years])} from each annual report's own
-    figure, its last-year column, and its multi-year summary. A summary table is used only when its first two
-    figures match the report's own current and last-year figures AND its figure for two years back matches what
-    another report printed for that year, so stray numbers (such as year labels) are not mistaken for a table."""
+    """{year end: (value, number of different reports agreeing, [report years])}.
+
+    Sources: each annual report's own figure, its last-year column, and its multi-year summary. A summary table is
+    used only when its first two figures match the report's own current and last-year figures and its figure for two
+    years back matches what another report printed for that year (so stray numbers, such as year labels, are not
+    taken for a table). A report whose own figure or last-year figure is contradicted by two other reports is
+    dropped as a source altogether: it is misread, or it is not the year its title says."""
     back = lambda end, k: f"{int(end[:4]) - k}{end[4:]}"
     near = lambda u, v: u is not None and v is not None and (_close(u, v, 0.02) or abs(u - v) < 0.011)
-    simple = {}                                          # own and last-year figures, by report
-    for x in a:
-        if x.get(f) is not None:
-            simple.setdefault(x["end"], []).append((float(x[f]), x["end"][:4]))
-        if x.get(f + "_prior") is not None:
-            simple.setdefault(back(x["end"], 1), []).append((float(x[f + "_prior"]), x["end"][:4]))
-    cand = {k: list(v) for k, v in simple.items()}
-    for x in a:
-        own, prior, vals = x.get(f), x.get(f + "_prior"), x.get("vals_" + f) or []
-        if len(vals) < 3 or not (near(vals[0], own) and near(vals[1], prior)):
-            continue
-        two = back(x["end"], 2)
-        if not any(near(vals[2], v) for v, r in simple.get(two, []) if r != x["end"][:4]):
-            continue
-        for k, v in enumerate(vals[2:11], start=2):
-            if v is not None and v == v:
-                cand.setdefault(back(x["end"], k), []).append((float(v), x["end"][:4]))
+
+    def gather(reps):
+        simple = {}
+        for x in reps:
+            if x.get(f) is not None:
+                simple.setdefault(x["end"], []).append((float(x[f]), x["end"][:4]))
+            if x.get(f + "_prior") is not None:
+                simple.setdefault(back(x["end"], 1), []).append((float(x[f + "_prior"]), x["end"][:4]))
+        cand = {k: list(v) for k, v in simple.items()}
+        for x in reps:
+            own, prior, vals = x.get(f), x.get(f + "_prior"), x.get("vals_" + f) or []
+            if len(vals) < 3 or not (near(vals[0], own) and near(vals[1], prior)):
+                continue
+            if not any(near(vals[2], v) for v, r in simple.get(back(x["end"], 2), []) if r != x["end"][:4]):
+                continue
+            for k, v in enumerate(vals[2:11], start=2):
+                if v is not None and v == v:
+                    cand.setdefault(back(x["end"], k), []).append((float(v), x["end"][:4]))
+        return cand
+
+    def contradicted(x, cand):
+        me = x["end"][:4]
+        for end, v in ((x["end"], x.get(f)), (back(x["end"], 1), x.get(f + "_prior"))):
+            if v is None:
+                continue
+            others = [(w, r) for w, r in cand.get(end, []) if r != me]
+            for w, _ in others:
+                backers = {r for u, r in others if near(u, w)}
+                if len(backers) >= 2 and not near(v, w):
+                    return True
+        return False
+
+    cand = gather(a)
+    keep = [x for x in a if not contradicted(x, cand)]
+    if len(keep) < len(a):
+        cand = gather(keep)
     out = {}
     for end, lst in cand.items():
-        groups = []
-        for v, _ in lst:
-            srcs = sorted({r for w, r in lst if near(w, v)})
-            groups.append((len(srcs), v, srcs))
-        groups.sort(key=lambda g: -g[0])
+        groups = sorted(((len({r for w, r in lst if near(w, v)}), v, sorted({r for w, r in lst if near(w, v)})) for v, _ in lst), key=lambda g: -g[0])
         n, v, srcs = groups[0]
         rival = next((g for g in groups[1:] if not near(g[1], v)), None)
         if rival and rival[0] == n:                         # two figures with equal backing: neither is confirmed

@@ -1,5 +1,146 @@
 {
  "annual": {
+  "36226": {
+   "dps": 2.5,
+   "dps_prior": 2.5,
+   "end": "2020-12-31",
+   "eps": 5.51,
+   "eps_prior": 6.02,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 44,
+   "src_dps": "Dividends per share - (Rs)  2.50  2.50  2.50  2.50",
+   "src_eps": "Earnings per share - basic (Rs)  11  5.51  6.02  6.82  1.85",
+   "title": "Audited Financial Statements as at 03.31.2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/673_1598871567393.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.5,
+    2.5,
+    2.5,
+    2.5
+   ],
+   "vals_eps": [
+    5.51,
+    6.02,
+    6.82,
+    1.85
+   ],
+   "year_only": true
+  },
+  "36309": {
+   "dps": 2.5,
+   "dps_prior": 2.5,
+   "end": "2020-03-31",
+   "eps": 5.51,
+   "eps_prior": 6.02,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 63.31,
+   "navps_prior": 60.34,
+   "ok": true,
+   "pages": 86,
+   "src_dps": "Dividends per share - (Rs)  2.50  2.50  2.50  2.50",
+   "src_eps": "Earnings per share - basic (Rs)  11  5.51  6.02  6.82  1.85",
+   "src_navps": "Net Assets per Share(Rs)  63.31  60.34  59.30  51.49  45.70",
+   "title": "Annual Report 2019/20",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/673_1599477094472.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.5,
+    2.5,
+    2.5,
+    2.5
+   ],
+   "vals_eps": [
+    5.51,
+    6.02,
+    6.82,
+    1.85
+   ],
+   "vals_navps": [
+    63.31,
+    60.34,
+    59.3,
+    51.49,
+    45.7
+   ],
+   "year_only": false
+  },
+  "38900": {
+   "dps": 5.0,
+   "dps_prior": 2.5,
+   "end": "2021-03-31",
+   "eps": 12.0,
+   "eps_prior": 5.51,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 74.5,
+   "navps_prior": 63.31,
+   "ok": true,
+   "pages": 86,
+   "src_dps": "Dividends per share (Rs)  5.00  2.50  5.00  2.50",
+   "src_eps": "Earnings per share - (Rs)  12.00  5.51  1.76  6.82",
+   "src_navps": "Net Assets per Share(Rs)  74.50  63.31  60.34  59.30  51.49",
+   "title": "Annual Report 2020/21",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/673_1629711572099.pdf",
+   "v": 6,
+   "vals_dps": [
+    5.0,
+    2.5,
+    5.0,
+    2.5
+   ],
+   "vals_eps": [
+    12.0,
+    5.51,
+    1.76,
+    6.82
+   ],
+   "vals_navps": [
+    74.5,
+    63.31,
+    60.34,
+    59.3,
+    51.49
+   ],
+   "year_only": false
+  },
   "41517": {
    "dps": 5.0,
    "dps_prior": 5.0,
@@ -262,7 +403,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -309,6 +450,51 @@
     "uploaded": 1661852893112,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/673_1661852893112.pdf",
     "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38900",
+    "title": "Annual Report 2020/21",
+    "uploaded": 1629711572099,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/673_1629711572099.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-12-31",
+    "id": "36226",
+    "title": "Audited Financial Statements as at 03.31.2020",
+    "uploaded": 1598871567393,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/673_1598871567393.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36309",
+    "title": "Annual Report 2019/20",
+    "uploaded": 1599477094472,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/673_1599477094472.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-12-31",
+    "id": "33596",
+    "title": "Annual Report as at 31.03.2019",
+    "uploaded": 1564742754602,
+    "url": "https://cdn.cse.lk/upload_report_file/673_1564742754602.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2018-12-31",
+    "id": "23866",
+    "title": "Audited Financial Statements as of 31-03-2018",
+    "uploaded": 1532284200000,
+    "url": "https://cdn.cse.lk/upload_report_file/673_1532343339234.pdf",
+    "year_only": true
    }
   ],
   "quarterly": [

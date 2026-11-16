@@ -1,5 +1,105 @@
 {
  "annual": {
+  "35141": {
+   "dps": 8.0,
+   "dps_prior": -12.0,
+   "end": "2019-12-31",
+   "eps": 4957.0,
+   "eps_prior": 409.0,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 50.0,
+   "navps_prior": 29.0,
+   "ok": true,
+   "pages": 450,
+   "src_dps": "Dividend per share  7  8.00  (12)  N/A  N/A  \u2013",
+   "src_eps": "Earnings per share (-23%)  LKR 4,957 Mn (+12%)  LKR 409 Bn (+16%)",
+   "src_navps": "Net Asset Value per share +7%  LKR 50 Mn (+45%)  LKR 29 Bn (+21%)",
+   "title": "Annual Report 2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/386_1583233950899.pdf",
+   "v": 6,
+   "vals_dps": [
+    8.0,
+    -12.0
+   ],
+   "vals_eps": [
+    4957.0,
+    409.0
+   ],
+   "vals_navps": [
+    50.0,
+    29.0
+   ],
+   "year_only": false
+  },
+  "37540": {
+   "dps": 1.5,
+   "dps_prior": 7.0,
+   "end": "2020-12-31",
+   "eps": 21.99,
+   "eps_prior": 20.53,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 192.49,
+   "navps_prior": 178.02,
+   "ok": true,
+   "pages": 426,
+   "src_dps": "Dividend per share (DPS) (Interim - 2020) (LKR)*  1.50  7.00  8.00  9.00  8.00",
+   "src_eps": "Earnings per share (EPS) (LKR)  21.99  20.53  26.33  19.66  15.69",
+   "src_navps": "Net asset value per share  192.49  178.02  8  206.23  195.60  5",
+   "title": "National Development Bank PLC - Annual Report 2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/386_1615778524285.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.5,
+    7.0,
+    8.0,
+    9.0,
+    8.0
+   ],
+   "vals_eps": [
+    21.99,
+    20.53,
+    26.33,
+    19.66,
+    15.69
+   ],
+   "vals_navps": [
+    192.49,
+    178.02,
+    8.0,
+    206.23,
+    195.6,
+    5.0
+   ],
+   "year_only": false
+  },
   "40129": {
    "dps": 1.5,
    "dps_prior": 7.0,
@@ -262,7 +362,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -308,6 +408,51 @@
     "title": "Annual Report 2021",
     "uploaded": 1646622634453,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/386_1646622634453.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-12-31",
+    "id": "37540",
+    "title": "National Development Bank PLC - Annual Report 2020",
+    "uploaded": 1615778524285,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/386_1615778524285.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-12-31",
+    "id": "35141",
+    "title": "Annual Report 2019",
+    "uploaded": 1583233950899,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/386_1583233950899.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-12-31",
+    "id": "32528",
+    "title": "Annual Report 2018",
+    "uploaded": 1551724200000,
+    "url": "https://cdn.cse.lk/upload_report_file/386_1551777747233.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-12-31",
+    "id": "22977",
+    "title": "Annual Report 2017",
+    "uploaded": 1520188200000,
+    "url": "https://cdn.cse.lk/upload_report_file/386_1520244258867.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2016-12-31",
+    "id": "21157",
+    "title": "Annual Report 2016",
+    "uploaded": 1488738600000,
+    "url": "https://cdn.cse.lk/upload_report_file/386_1488795480186.pdf",
     "year_only": false
    }
   ],

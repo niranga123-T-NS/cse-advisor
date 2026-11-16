@@ -1,5 +1,159 @@
 {
  "annual": {
+  "34095": {
+   "dps": 12.0,
+   "dps_prior": 0.09,
+   "end": "2019-03-31",
+   "eps": -0.96,
+   "eps_prior": -2.57,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 22.52,
+   "navps_prior": 23.45,
+   "ok": true,
+   "pages": 164,
+   "src_dps": "Dividend per share  12  -  0.09",
+   "src_eps": "Earnings/(loss) per Share - Basic (Rs.)  (0.96)  (2.57)  1.36  1.01  1.16",
+   "src_navps": "Net assets value per share (Rs.)  22.52  23.45  21.82  20.54  19.66",
+   "title": "Annual Report 2018/2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1567418875800.pdf",
+   "v": 6,
+   "vals_dps": [
+    12.0,
+    0.09
+   ],
+   "vals_eps": [
+    -0.96,
+    -2.57,
+    1.36,
+    1.01,
+    1.16
+   ],
+   "vals_navps": [
+    22.52,
+    23.45,
+    21.82,
+    20.54,
+    19.66
+   ],
+   "year_only": false
+  },
+  "36971": {
+   "dps": 0.09,
+   "dps_prior": 0.1,
+   "end": "2020-03-31",
+   "eps": -1.11,
+   "eps_prior": -0.96,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 16.37,
+   "navps_prior": 22.52,
+   "ok": true,
+   "pages": 168,
+   "src_dps": "Dividend per share (Rs.)  -  -  0.09  0.10  0.12",
+   "src_eps": "Earnings/(loss) per Share - Basic (Rs.)  (1.11)  (0.96)  (2.57)  1.36  1.01",
+   "src_navps": "Net assets value per share (Rs.)  16.37  22.52  23.45  21.82  20.54",
+   "title": "Annual Report for the year ended 31st March 2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1607678144153.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.09,
+    0.1,
+    0.12
+   ],
+   "vals_eps": [
+    -1.11,
+    -0.96,
+    -2.57,
+    1.36,
+    1.01
+   ],
+   "vals_navps": [
+    16.37,
+    22.52,
+    23.45,
+    21.82,
+    20.54
+   ],
+   "year_only": false
+  },
+  "39003": {
+   "dps": 0.09,
+   "dps_prior": 0.1,
+   "end": "2021-03-31",
+   "eps": -1.72,
+   "eps_prior": -1.11,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 15.93,
+   "navps_prior": 16.37,
+   "ok": true,
+   "pages": 172,
+   "src_dps": "Dividend per share (Rs.)  -  -  -  0.09  0.10",
+   "src_eps": "Earnings/(loss) per Share - Basic (Rs.)  (1.72)  (1.11)  (0.96)  (2.57)  1.36",
+   "src_navps": "Net assets value per share (Rs.)  15.93  16.37  22.52  23.45  21.82",
+   "title": "Annual Report for the year ended 31st March 2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1630575421015.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.09,
+    0.1
+   ],
+   "vals_eps": [
+    -1.72,
+    -1.11,
+    -0.96,
+    -2.57,
+    1.36
+   ],
+   "vals_navps": [
+    15.93,
+    16.37,
+    22.52,
+    23.45,
+    21.82
+   ],
+   "year_only": false
+  },
   "41633": {
    "end": "2022-03-31",
    "eps": -1.16,
@@ -187,7 +341,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -233,6 +387,51 @@
     "title": "Annual Report for the Financial Year ended 31st March 2022",
     "uploaded": 1662113834750,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1662113834750.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "39003",
+    "title": "Annual Report for the year ended 31st March 2021",
+    "uploaded": 1630575421015,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1630575421015.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36971",
+    "title": "Annual Report for the year ended 31st March 2020",
+    "uploaded": 1607678144153,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1607678144153.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "34095",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1567418875800,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1567418875800.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "24482",
+    "title": "Annual Report 2017/2018",
+    "uploaded": 1536172200000,
+    "url": "https://cdn.cse.lk/upload_report_file/1222_1536232395071.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "22097",
+    "title": "Hikkaduwa Beach Resort PLC Annual report -2016/2017",
+    "uploaded": 1504117800000,
+    "url": "https://cdn.cse.lk/upload_report_file/1222_1504178069744.pdf",
     "year_only": false
    }
   ],

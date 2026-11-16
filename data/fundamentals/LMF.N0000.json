@@ -1,5 +1,174 @@
 {
  "annual": {
+  "33765": {
+   "dps": 1.25,
+   "dps_prior": 2.5,
+   "end": "2019-03-31",
+   "eps": 10.1,
+   "eps_prior": -3.16,
+   "layout_dps": [
+    0,
+    1,
+    true
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 221.16,
+   "navps_prior": 311.49,
+   "ok": true,
+   "pages": 136,
+   "src_dps": "Dividend per Share  Rs.  1.25  2.50  (50.00)  1.25  2.50  (50.00)",
+   "src_eps": "Earnings / (Loss) per Share  10 \u23ce Basic Earnings / (Loss) per Share  10.1  (3.16)  14.52  2.54  6.91",
+   "src_navps": "Net Assets per Share  Rs.  221.16  311.49  (29.00)  207.99  292.55  (28.90)",
+   "title": "Annual Report 2018/2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/486_1565690279492.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.25,
+    2.5,
+    -50.0,
+    1.25,
+    2.5,
+    -50.0
+   ],
+   "vals_eps": [
+    10.1,
+    -3.16,
+    14.52,
+    2.54,
+    6.91
+   ],
+   "vals_navps": [
+    221.16,
+    311.49,
+    -29.0,
+    207.99,
+    292.55,
+    -28.9
+   ],
+   "year_only": false
+  },
+  "36327": {
+   "dps": 2.5,
+   "dps_prior": 1.25,
+   "end": "2020-03-31",
+   "eps": 10.1,
+   "eps_prior": 7.53,
+   "layout_dps": [
+    0,
+    1,
+    true
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 260.33,
+   "navps_prior": 221.16,
+   "ok": true,
+   "pages": 140,
+   "src_dps": "Dividend per Share  Rs.  2.50  1.25  100.00  2.50  1.25  100.00",
+   "src_eps": "Earnings / (Loss) Per Share  10 \u23ce Basic Earnings / (Loss) Per Share  10.1  7.53  (3.16)  3.25  2.54",
+   "src_navps": "Net Assets per Share  Rs.  260.33  221.16  17.71  242.92  207.99  16.79",
+   "title": "Annual Report 2019/20",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/486_1599647884629.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.5,
+    1.25,
+    100.0,
+    2.5,
+    1.25,
+    100.0
+   ],
+   "vals_eps": [
+    10.1,
+    7.53,
+    -3.16,
+    3.25,
+    2.54
+   ],
+   "vals_navps": [
+    260.33,
+    221.16,
+    17.71,
+    242.92,
+    207.99,
+    16.79
+   ],
+   "year_only": false
+  },
+  "39043": {
+   "dps": 5.0,
+   "dps_prior": 2.5,
+   "end": "2021-03-31",
+   "eps": 21.05,
+   "eps_prior": 7.53,
+   "layout_dps": [
+    0,
+    1,
+    true
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 281.66,
+   "navps_prior": 260.33,
+   "ok": true,
+   "pages": 152,
+   "src_dps": "Dividend per Share  Rs.  5.00  2.50  100.00  5.00  2.50  100.00",
+   "src_eps": "Earnings per Share  Rs.  21.05  7.53  179.55  7.33  3.25  125.54",
+   "src_navps": "Net Assets per Share  Rs.  281.66  260.33  8.19  250.88  242.92  3.28",
+   "title": "Annual Report 2020/2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/486_1631184832695.pdf",
+   "v": 6,
+   "vals_dps": [
+    5.0,
+    2.5,
+    100.0,
+    5.0,
+    2.5,
+    100.0
+   ],
+   "vals_eps": [
+    21.05,
+    7.53,
+    179.55,
+    7.33,
+    3.25,
+    125.54
+   ],
+   "vals_navps": [
+    281.66,
+    260.33,
+    8.19,
+    250.88,
+    242.92,
+    3.28
+   ],
+   "year_only": false
+  },
   "41599": {
    "dps": 7.5,
    "dps_prior": 5.0,
@@ -279,7 +448,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -325,6 +494,51 @@
     "title": "ANNUAL REPORT FOR THE YEAR 2021/2022",
     "uploaded": 1661943300000,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/486_1662004155565.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "39043",
+    "title": "Annual Report 2020/2021",
+    "uploaded": 1631184832695,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/486_1631184832695.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36327",
+    "title": "Annual Report 2019/20",
+    "uploaded": 1599647884629,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/486_1599647884629.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "33765",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1565690279492,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/486_1565690279492.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "24382",
+    "title": "ANNUAL REPORT 2017/18",
+    "uploaded": 1535308200000,
+    "url": "https://cdn.cse.lk/upload_report_file/486_1535363664430.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "30597",
+    "title": "Annual Report 2016/2017",
+    "uploaded": 1501612200000,
+    "url": "https://cdn.cse.lk/upload_report_file/486_1501672946.pdf",
     "year_only": false
    }
   ],

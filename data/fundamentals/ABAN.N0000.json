@@ -1,5 +1,128 @@
 {
  "annual": {
+  "33987": {
+   "dps": 2.0,
+   "dps_prior": 3.0,
+   "end": "2019-03-31",
+   "eps": 14.55,
+   "eps_prior": 8.55,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 264.09,
+   "navps_prior": 230.75,
+   "ok": true,
+   "pages": 75,
+   "src_dps": "Dividend per Share  LKR  2.00  3.00  -33.33%",
+   "src_eps": "Earnings per Share  LKR  14.55  8.55  70.18%",
+   "src_navps": "Net Assets per Share  LKR  264.09  230.75  14.45%",
+   "title": "Annual Report 2018/2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/642_1566810811231.R. 2018-19.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.0,
+    3.0
+   ],
+   "vals_eps": [
+    14.55,
+    8.55
+   ],
+   "vals_navps": [
+    264.09,
+    230.75
+   ],
+   "year_only": false
+  },
+  "36211": {
+   "dps": 3.0,
+   "dps_prior": 2.0,
+   "end": "2020-03-31",
+   "eps": 16.94,
+   "eps_prior": 14.55,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 280.1,
+   "navps_prior": 264.09,
+   "ok": true,
+   "pages": 80,
+   "src_dps": "Dividend per Share  LKR  3.00  2.00  50.00%",
+   "src_eps": "Earnings per Share  LKR  16.94  14.55  16.45%",
+   "src_navps": "Net Assets per Share  LKR  280.10  264.09  6.06%",
+   "title": "Annual Report 2019/2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/642_1598611245789.pdf",
+   "v": 6,
+   "vals_dps": [
+    3.0,
+    2.0
+   ],
+   "vals_eps": [
+    16.94,
+    14.55
+   ],
+   "vals_navps": [
+    280.1,
+    264.09
+   ],
+   "year_only": false
+  },
+  "38922": {
+   "end": "2021-03-31",
+   "eps": 32.34,
+   "eps_prior": 16.94,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 324.19,
+   "navps_prior": 280.1,
+   "ok": true,
+   "pages": 92,
+   "src_eps": "Earnings per Share  LKR  32.34  16.94  90.92%",
+   "src_navps": "Net Assets per Share  LKR  324.19  280.10  15.74%",
+   "title": "Annual Report 2020/2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/642_1630324841413.pdf",
+   "v": 6,
+   "vals_eps": [
+    32.34,
+    16.94
+   ],
+   "vals_navps": [
+    324.19,
+    280.1
+   ],
+   "year_only": false
+  },
   "41530": {
    "dps": 3.0,
    "dps_prior": 1.5,
@@ -203,7 +326,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -249,6 +372,51 @@
     "title": "ANNUAL REPORT 2021/2022",
     "uploaded": 1661936913660,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/642_1661936913660.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38922",
+    "title": "Annual Report 2020/2021",
+    "uploaded": 1630324841413,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/642_1630324841413.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36211",
+    "title": "Annual Report 2019/2020",
+    "uploaded": 1598611245789,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/642_1598611245789.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "33987",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1566810811231,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/642_1566810811231.R. 2018-19.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "24372",
+    "title": "Annual Report 2017/2018",
+    "uploaded": 1534962600000,
+    "url": "https://cdn.cse.lk/upload_report_file/642_1535023338016.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "30685",
+    "title": "Annual Report 2016/2017",
+    "uploaded": 1502735400000,
+    "url": "https://cdn.cse.lk/upload_report_file/642_1502793422.pdf",
     "year_only": false
    }
   ],

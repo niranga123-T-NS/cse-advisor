@@ -1,5 +1,74 @@
 {
  "annual": {
+  "35469": {
+   "dps": 0.75,
+   "dps_prior": 1.25,
+   "end": "2020-03-31",
+   "eps": 7.67,
+   "eps_prior": 2.14,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 172,
+   "src_dps": "Dividend per share (Rs.)  0.75  1.25",
+   "src_eps": "Basic earnings per share (Rs.)  7.67  2.14",
+   "title": "Sunshine Holdings PLC - Annual report 2019/2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/510_1591176292260.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.75,
+    1.25
+   ],
+   "vals_eps": [
+    7.67,
+    2.14
+   ],
+   "year_only": false
+  },
+  "38124": {
+   "dps": 0.83,
+   "dps_prior": 0.75,
+   "end": "2021-03-31",
+   "eps": 3.39,
+   "eps_prior": 2.56,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 200,
+   "src_dps": "Dividend per share (Rs.)  0.83  0.75",
+   "src_eps": "Basic earnings per share (Rs.)  3.39  2.56  6.47  4.40  0.71",
+   "title": "Annual Report for the financial year ended 31st March 2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/510_1622631907158.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.83,
+    0.75
+   ],
+   "vals_eps": [
+    3.39,
+    2.56,
+    6.47,
+    4.4,
+    0.71
+   ],
+   "year_only": false
+  },
   "40771": {
    "dps": 0.96,
    "dps_prior": 0.83,
@@ -250,7 +319,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -296,6 +365,51 @@
     "title": "Annual Report 2021/2022",
     "uploaded": 1654108200000,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/510_1654181307778.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38124",
+    "title": "Annual Report for the financial year ended 31st March 2021",
+    "uploaded": 1622631907158,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/510_1622631907158.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "35469",
+    "title": "Sunshine Holdings PLC - Annual report 2019/2020",
+    "uploaded": 1591176292260,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/510_1591176292260.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "33260",
+    "title": "Annual Report 2018/19",
+    "uploaded": 1559586600000,
+    "url": "https://cdn.cse.lk/upload_report_file/510_1559642952609.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "31301",
+    "title": "Annual Report 2017/18",
+    "uploaded": 1528050600000,
+    "url": "https://cdn.cse.lk/upload_report_file/510_1528113217.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "30475",
+    "title": "Annual Report 2016/2017",
+    "uploaded": 1496687400000,
+    "url": "https://cdn.cse.lk/upload_report_file/510_1496742979.pdf",
     "year_only": false
    }
   ],

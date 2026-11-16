@@ -1,5 +1,65 @@
 {
  "annual": {
+  "35475": {
+   "end": "2020-03-31",
+   "ok": true,
+   "pages": 268,
+   "title": "Aitken Spence Hotel Holdings PLC - Annual Report 2019/20",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/521_1591607121405.pdf",
+   "v": 6,
+   "year_only": false
+  },
+  "38164": {
+   "dps": 1.0,
+   "dps_prior": 1.25,
+   "end": "2021-03-31",
+   "eps": -13.93,
+   "eps_prior": -1.9,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 46.96,
+   "navps_prior": 60.66,
+   "ok": true,
+   "pages": 278,
+   "src_dps": "Dividend per share (Rs.)  -  -  1.00  1.25  0.75  1.25  1.50  1.50  1.00  0.70",
+   "src_eps": "Earnings Per Share (EPS)  Rs  (13.93)  (1.90)  -632%",
+   "src_navps": "Net Assets Per Share  Rs.  46.96  60.66  -23%",
+   "title": "Aitken Spence Hotel Holdings PLC - Annual Report 2020/21",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/521_1623056688970.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.0,
+    1.25,
+    0.75,
+    1.25,
+    1.5,
+    1.5,
+    1.0,
+    0.7
+   ],
+   "vals_eps": [
+    -13.93,
+    -1.9
+   ],
+   "vals_navps": [
+    46.96,
+    60.66
+   ],
+   "year_only": false
+  },
   "40830": {
    "dps": 1.0,
    "dps_prior": 1.25,
@@ -249,7 +309,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -295,6 +355,51 @@
     "title": "Annual Report 2021/22",
     "uploaded": 1654595513955,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/521_1654595513955.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38164",
+    "title": "Aitken Spence Hotel Holdings PLC - Annual Report 2020/21",
+    "uploaded": 1623056688970,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/521_1623056688970.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "35475",
+    "title": "Aitken Spence Hotel Holdings PLC - Annual Report 2019/20",
+    "uploaded": 1591607121405,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/521_1591607121405.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "33271",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1559759400000,
+    "url": "https://cdn.cse.lk/upload_report_file/521_1559814081.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "23623",
+    "title": "Annual Financial Report for the year ended 31st March 2018",
+    "uploaded": 1528050600000,
+    "url": "https://cdn.cse.lk/upload_report_file/521_1528106734618.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "21686",
+    "title": "Annual report -2016/2017",
+    "uploaded": 1496601000000,
+    "url": "https://cdn.cse.lk/upload_report_file/521_1496661727577.pdf",
     "year_only": false
    }
   ],

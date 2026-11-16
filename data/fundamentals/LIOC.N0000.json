@@ -1,5 +1,118 @@
 {
  "annual": {
+  "36422": {
+   "dps": 0.75,
+   "dps_prior": 0.65,
+   "end": "2020-03-31",
+   "eps": 0.79,
+   "eps_prior": 0.76,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 36.52,
+   "navps_prior": 36.49,
+   "ok": true,
+   "pages": 168,
+   "src_dps": "Dividend per share  Rs  0.75  0.65  1.25  1.25  1.00",
+   "src_eps": "Earnings per share  Rs  0.79  0.76  (1.40)",
+   "src_navps": "Net Assets Per Share  Rs  36.52  36.49  36.38  39.05  34.53",
+   "title": "Annual Report 2019/20",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1602062126839.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.75,
+    0.65,
+    1.25,
+    1.25,
+    1.0
+   ],
+   "vals_eps": [
+    0.79,
+    0.76,
+    -1.4
+   ],
+   "vals_navps": [
+    36.52,
+    36.49,
+    36.38,
+    39.05,
+    34.53
+   ],
+   "year_only": false
+  },
+  "37819": {
+   "end": "2021-12-31",
+   "ok": true,
+   "pages": 43,
+   "title": "Audited Financial Statement for the period ended 31/03/2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1621307973423.Statements 31.03.2021.pdf",
+   "v": 6,
+   "year_only": false
+  },
+  "38950": {
+   "dps": 0.75,
+   "dps_prior": 0.75,
+   "end": "2021-03-31",
+   "eps": 1.66,
+   "eps_prior": 0.79,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 37.42,
+   "navps_prior": 36.52,
+   "ok": true,
+   "pages": 152,
+   "src_dps": "Dividend per share  Rs.  0.75  0.75  0.65  1.25  1.25",
+   "src_eps": "Earnings per share  Rs.  1.66  0.79  0.76",
+   "src_navps": "Net Assets per Share  Rs.  37.42  36.52  36.49  36.38  39.05",
+   "title": "Annual Report 2020/2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1630410360062.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.75,
+    0.75,
+    0.65,
+    1.25,
+    1.25
+   ],
+   "vals_eps": [
+    1.66,
+    0.79,
+    0.76
+   ],
+   "vals_navps": [
+    37.42,
+    36.52,
+    36.49,
+    36.38,
+    39.05
+   ],
+   "year_only": false
+  },
   "41197": {
    "dps": 0.85,
    "dps_prior": 0.75,
@@ -263,7 +376,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -309,6 +422,51 @@
     "title": "Lanka IOC PLC - Annual Report 2021-2022",
     "uploaded": 1660103592454,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1660103592454.08.2022.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-12-31",
+    "id": "37819",
+    "title": "Audited Financial Statement for the period ended 31/03/2021",
+    "uploaded": 1621307973423,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1621307973423.Statements 31.03.2021.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38950",
+    "title": "Annual Report 2020/2021",
+    "uploaded": 1630410360062,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1630410360062.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36422",
+    "title": "Annual Report 2019/20",
+    "uploaded": 1602062126839,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/729_1602062126839.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-12-31",
+    "id": "32767",
+    "title": "Audited Financial Statements 31.03.2019",
+    "uploaded": 1557167400000,
+    "url": "https://cdn.cse.lk/upload_report_file/729_1557198739193.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "33011",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1558981800000,
+    "url": "https://cdn.cse.lk/upload_report_file/729_1559039009053.pdf",
     "year_only": false
    }
   ],

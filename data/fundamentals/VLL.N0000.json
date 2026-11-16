@@ -1,5 +1,104 @@
 {
  "annual": {
+  "35673": {
+   "dps": 0.23,
+   "dps_prior": 0.15,
+   "end": "2020-03-31",
+   "eps": 0.41,
+   "eps_prior": 0.62,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 3.51,
+   "navps_prior": 3.24,
+   "ok": true,
+   "pages": 144,
+   "src_dps": "DPS  0.23  0.15  0.20",
+   "src_eps": "EPS  0.41  0.62  0.60",
+   "src_navps": "Net Assets Value per share  3.51  3.24  2.66",
+   "title": "Annual Report for the year 2019/2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/455_1594722921278.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.23,
+    0.15,
+    0.2
+   ],
+   "vals_eps": [
+    0.41,
+    0.62,
+    0.6
+   ],
+   "vals_navps": [
+    3.51,
+    3.24,
+    2.66
+   ],
+   "year_only": false
+  },
+  "39001": {
+   "dps": 0.1,
+   "dps_prior": 37.0,
+   "end": "2021-03-31",
+   "eps": 0.68,
+   "eps_prior": 0.41,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 4.21,
+   "navps_prior": 3.51,
+   "ok": true,
+   "pages": 136,
+   "src_dps": "\u2022 DPS - Rs 0.10  37MW  Facilities - Rs.  140hrs  new trees",
+   "src_eps": "Earnings Per Share (Rs.)  0.68  0.41  0.62  0.60  0.05",
+   "src_navps": "Net Asset Value Per Share (Rs.)  4.21  3.51  3.24  2.66  2.41",
+   "title": "Annual Report 2020/21",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/455_1630556882912.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.1,
+    37.0
+   ],
+   "vals_eps": [
+    0.68,
+    0.41,
+    0.62,
+    0.6,
+    0.05
+   ],
+   "vals_navps": [
+    4.21,
+    3.51,
+    3.24,
+    2.66,
+    2.41
+   ],
+   "year_only": false
+  },
   "41669": {
    "dps": 0.3,
    "dps_prior": 0.1,
@@ -268,7 +367,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -314,6 +413,51 @@
     "title": "ANNUAL REPORT 2021/2022",
     "uploaded": 1662456519851,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/455_1662456519851.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "39001",
+    "title": "Annual Report 2020/21",
+    "uploaded": 1630556882912,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/455_1630556882912.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "35673",
+    "title": "Annual Report for the year 2019/2020",
+    "uploaded": 1594722921278,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/455_1594722921278.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "33411",
+    "title": "Annual Report for the year 2018/2019",
+    "uploaded": 1562061511812,
+    "url": "https://cdn.cse.lk/upload_report_file/455_1562061511812.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "23822",
+    "title": "Annual Report 2017/2018",
+    "uploaded": 1531161000000,
+    "url": "https://cdn.cse.lk/upload_report_file/455_1531195541586.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "21763",
+    "title": "Annual Report 2016/2017",
+    "uploaded": 1499020200000,
+    "url": "https://cdn.cse.lk/upload_report_file/455_1499074420264.pdf",
     "year_only": false
    }
   ],

@@ -1,5 +1,128 @@
 {
  "annual": {
+  "33961": {
+   "end": "2019-03-31",
+   "eps": 7.76,
+   "eps_prior": 2.41,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 187.34,
+   "navps_prior": 183.92,
+   "ok": true,
+   "pages": 84,
+   "src_eps": "Earnings per Share  13  7.76  2.41",
+   "src_navps": "Net Asset Per Share (Rs.)  187.34  183.92  17.29  14.92  14.03  13.54  13.42  13.70  13.32  7.82",
+   "title": "Annual Report  2018/2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/641_1566212699974.pdf",
+   "v": 6,
+   "vals_eps": [
+    7.76,
+    2.41
+   ],
+   "vals_navps": [
+    187.34,
+    183.92,
+    17.29,
+    14.92,
+    14.03,
+    13.54,
+    13.42,
+    13.7,
+    13.32,
+    7.82
+   ],
+   "year_only": false
+  },
+  "36343": {
+   "end": "2020-03-31",
+   "eps": 2.77,
+   "eps_prior": 7.76,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 190.65,
+   "navps_prior": 187.34,
+   "ok": true,
+   "pages": 76,
+   "src_eps": "Earnings per Share  11  2.77  7.76",
+   "src_navps": "Net Asset Per Share (Rs.)  190.65  187.34  183.92  17.29  14.92  14.03  13.54  13.42  13.70  13.32",
+   "title": "Annual Report 2019/2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/641_1600075087488.09.2020) Colour.pdf",
+   "v": 6,
+   "vals_eps": [
+    2.77,
+    7.76
+   ],
+   "vals_navps": [
+    190.65,
+    187.34,
+    183.92,
+    17.29,
+    14.92,
+    14.03,
+    13.54,
+    13.42,
+    13.7,
+    13.32
+   ],
+   "year_only": false
+  },
+  "38912": {
+   "end": "2021-03-31",
+   "eps": 9.71,
+   "eps_prior": 2.77,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 204.49,
+   "navps_prior": 190.65,
+   "ok": true,
+   "pages": 70,
+   "src_eps": "Earnings per Share  12  9.71  2.77",
+   "src_navps": "Net Asset Per Share (Rs.)  204.49  190.65  187.34  183.92  17.29  14.92  14.03  13.54  13.42  13.70",
+   "title": "Annual Report 2020/21",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/641_1630297272504.pdf",
+   "v": 6,
+   "vals_eps": [
+    9.71,
+    2.77
+   ],
+   "vals_navps": [
+    204.49,
+    190.65,
+    187.34,
+    183.92,
+    17.29,
+    14.92,
+    14.03,
+    13.54,
+    13.42,
+    13.7
+   ],
+   "year_only": false
+  },
   "41119": {
    "end": "2022-03-31",
    "eps": 3.42,
@@ -206,7 +329,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -252,6 +375,51 @@
     "title": "ANNUAL REPORT 2021/2022",
     "uploaded": 1659352707378,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/641_1659352707378.07.2022) Final 4.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38912",
+    "title": "Annual Report 2020/21",
+    "uploaded": 1630297272504,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/641_1630297272504.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36343",
+    "title": "Annual Report 2019/2020",
+    "uploaded": 1600075087488,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/641_1600075087488.09.2020) Colour.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "33961",
+    "title": "Annual Report  2018/2019",
+    "uploaded": 1566212699974,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/641_1566212699974.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "23934",
+    "title": "Annual Report 2017/2018",
+    "uploaded": 1532975400000,
+    "url": "https://cdn.cse.lk/upload_report_file/641_1533036328843.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "22063",
+    "title": "Annual Report 2016/2017",
+    "uploaded": 1503858600000,
+    "url": "https://cdn.cse.lk/upload_report_file/641_1503918527534.pdf",
     "year_only": false
    }
   ],

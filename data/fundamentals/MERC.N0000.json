@@ -1,5 +1,125 @@
 {
  "annual": {
+  "35580": {
+   "end": "2020-12-31",
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 2960.0,
+   "navps_prior": 2885.0,
+   "ok": true,
+   "pages": 1,
+   "src_navps": "Net assets per share (Rs.)  2,960  2,885",
+   "title": "Audited Financial Statements as of 31-03-2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1064_1593493170604.pdf",
+   "v": 6,
+   "vals_navps": [
+    2960.0,
+    2885.0
+   ],
+   "year_only": true
+  },
+  "35703": {
+   "dps": 20.0,
+   "dps_prior": 100.0,
+   "end": "2020-03-31",
+   "eps": 123.66,
+   "eps_prior": 152.39,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 2960.0,
+   "navps_prior": 2885.0,
+   "ok": true,
+   "pages": 304,
+   "src_dps": "Dividends per Share (Rs.)  20.00  -  100.00  15.00",
+   "src_eps": "Earnings per Share (Rs.)  123.66  152.39  (18.85)  171.01",
+   "src_navps": "Net Assets per Share (Rs.)  2,960  2,885  2.60  2,889",
+   "title": "Annual Report 2019/20",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1064_1595243025671.pdf",
+   "v": 6,
+   "vals_dps": [
+    20.0,
+    100.0,
+    15.0
+   ],
+   "vals_eps": [
+    123.66,
+    152.39,
+    -18.85,
+    171.01
+   ],
+   "vals_navps": [
+    2960.0,
+    2885.0,
+    2.6,
+    2889.0
+   ],
+   "year_only": false
+  },
+  "38283": {
+   "dps": 20.0,
+   "dps_prior": -100.0,
+   "end": "2021-03-31",
+   "eps": 204.31,
+   "eps_prior": 123.66,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 3430.0,
+   "navps_prior": 2960.0,
+   "ok": true,
+   "pages": 324,
+   "src_dps": "Dividends per Share (Rs.)  -  20  -100.00  -",
+   "src_eps": "Earnings per Share (Rs.)  204.31  123.66  65.22  152.39",
+   "src_navps": "Net Assets per Share (Rs.)  3,430  2,960  15.86  2,885",
+   "title": "Annual Report for the year ended 31st March 2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1064_1624360267914.pdf",
+   "v": 6,
+   "vals_dps": [
+    20.0,
+    -100.0
+   ],
+   "vals_eps": [
+    204.31,
+    123.66,
+    65.22,
+    152.39
+   ],
+   "vals_navps": [
+    3430.0,
+    2960.0,
+    15.86,
+    2885.0
+   ],
+   "year_only": false
+  },
   "40792": {
    "dps": 115.0,
    "dps_prior": 100.0,
@@ -251,7 +371,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -297,6 +417,51 @@
     "title": "Annual Report 2021/22",
     "uploaded": 1654506910741,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/1064_1654506910741.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38283",
+    "title": "Annual Report for the year ended 31st March 2021",
+    "uploaded": 1624360267914,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1064_1624360267914.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-12-31",
+    "id": "35580",
+    "title": "Audited Financial Statements as of 31-03-2020",
+    "uploaded": 1593493170604,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1064_1593493170604.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "35703",
+    "title": "Annual Report 2019/20",
+    "uploaded": 1595183400000,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1064_1595243025671.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "33443",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1562237745332,
+    "url": "https://cdn.cse.lk/upload_report_file/1064_1562237745332.pdf",
+    "year_only": false
+   },
+   {
+    "amended": true,
+    "end": "2018-03-31",
+    "id": "23647",
+    "title": "Amended Annual Report 2017/18",
+    "uploaded": 1528137000000,
+    "url": "https://cdn.cse.lk/upload_report_file/1064_1528428340465.pdf",
     "year_only": false
    }
   ],

@@ -45,6 +45,24 @@
    "eps_q_prior": 0.39,
    "page": 4,
    "note": "scanned report, read from OCR text"
+  },
+  "47270": {
+   "months": 9,
+   "eps_ytd": 2.16,
+   "eps_ytd_prior": 1.31,
+   "eps_q": 1.27,
+   "eps_q_prior": 1.16,
+   "page": 4,
+   "note": "read from OCR text"
+  },
+  "46793": {
+   "months": 6,
+   "eps_ytd": 1.19,
+   "eps_ytd_prior": 0.15,
+   "eps_q": 0.81,
+   "eps_q_prior": 0.69,
+   "page": 4,
+   "note": "read from OCR text"
   }
  }
 }

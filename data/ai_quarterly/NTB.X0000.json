@@ -1,0 +1,17 @@
+{
+ "symbol": "NTB.X0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "52434": {
+   "months": 6,
+   "eps_ytd": 46.67,
+   "eps_ytd_prior": null,
+   "eps_q": 32.95,
+   "eps_q_prior": null,
+   "page": 3,
+   "note": "read from OCR text"
+  }
+ }
+}

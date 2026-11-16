@@ -1,0 +1,44 @@
+{
+ "symbol": "RENU.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "52449": {
+   "months": 3,
+   "eps_ytd": 124.1,
+   "eps_ytd_prior": 40.68,
+   "eps_q": 124.1,
+   "eps_q_prior": 40.68,
+   "page": 1,
+   "note": "read from OCR text"
+  },
+  "51397": {
+   "months": 12,
+   "eps_ytd": 193.98,
+   "eps_ytd_prior": 99.0,
+   "eps_q": 58.15,
+   "eps_q_prior": 36.92,
+   "page": 1,
+   "note": "read from OCR text"
+  },
+  "48640": {
+   "months": 3,
+   "eps_ytd": 40.68,
+   "eps_ytd_prior": 52.09,
+   "eps_q": 40.68,
+   "eps_q_prior": 52.09,
+   "page": 1,
+   "note": "read from OCR text"
+  },
+  "46349": {
+   "months": 3,
+   "eps_ytd": 52.09,
+   "eps_ytd_prior": -30.32,
+   "eps_q": 52.09,
+   "eps_q_prior": -30.32,
+   "page": 1,
+   "note": "read from OCR text"
+  }
+ }
+}

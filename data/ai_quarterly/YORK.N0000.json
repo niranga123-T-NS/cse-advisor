@@ -27,6 +27,69 @@
    "eps_q": -0.02,
    "eps_q_prior": -0.01,
    "page": 3
+  },
+  "50151": {
+   "months": 9,
+   "eps_ytd": 1.15,
+   "eps_ytd_prior": 5.24,
+   "eps_q": -0.25,
+   "eps_q_prior": 2.95,
+   "page": 3,
+   "note": "read from OCR text"
+  },
+  "49101": {
+   "months": 6,
+   "eps_ytd": 1.4,
+   "eps_ytd_prior": 3.35,
+   "eps_q": 1.29,
+   "eps_q_prior": 1.76,
+   "page": 3,
+   "note": "read from OCR text"
+  },
+  "48528": {
+   "months": 3,
+   "eps_ytd": 0.11,
+   "eps_ytd_prior": 1.6,
+   "eps_q": 0.11,
+   "eps_q_prior": 1.6,
+   "page": 3,
+   "note": "read from OCR text"
+  },
+  "47870": {
+   "months": 12,
+   "eps_ytd": 2.38,
+   "eps_ytd_prior": 21.32,
+   "eps_q": -2.86,
+   "eps_q_prior": 8.94,
+   "page": 3,
+   "note": "read from OCR text"
+  },
+  "47458": {
+   "months": 9,
+   "eps_ytd": 5.24,
+   "eps_ytd_prior": 12.38,
+   "eps_q": 1.88,
+   "eps_q_prior": 2.95,
+   "page": 3,
+   "note": "read from OCR text"
+  },
+  "46932": {
+   "months": 6,
+   "eps_ytd": 3.35,
+   "eps_ytd_prior": 9.43,
+   "eps_q": 1.76,
+   "eps_q_prior": 5.08,
+   "page": 3,
+   "note": "read from OCR text"
+  },
+  "46462": {
+   "months": 3,
+   "eps_ytd": 1.6,
+   "eps_ytd_prior": 4.35,
+   "eps_q": 1.6,
+   "eps_q_prior": 4.35,
+   "page": 3,
+   "note": "read from OCR text"
   }
  }
 }

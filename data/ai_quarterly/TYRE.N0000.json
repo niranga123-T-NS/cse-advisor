@@ -1,0 +1,98 @@
+{
+ "symbol": "TYRE.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "53698": {
+   "months": 6,
+   "eps_ytd": 0.04,
+   "eps_ytd_prior": 2.42,
+   "eps_q": -1.94,
+   "eps_q_prior": 3.12,
+   "page": 2,
+   "note": "read from OCR text"
+  },
+  "52393": {
+   "months": 3,
+   "eps_ytd": 1.98,
+   "eps_ytd_prior": -0.69,
+   "eps_q": 1.98,
+   "eps_q_prior": -0.69,
+   "page": 2,
+   "note": "read from OCR text"
+  },
+  "51132": {
+   "months": 12,
+   "eps_ytd": 5.85,
+   "eps_ytd_prior": 8.74,
+   "eps_q": 2.12,
+   "eps_q_prior": 2.25,
+   "page": 2,
+   "note": "read from OCR text"
+  },
+  "50184": {
+   "months": 9,
+   "eps_ytd": 3.73,
+   "eps_ytd_prior": 6.49,
+   "eps_q": 1.31,
+   "eps_q_prior": 2.07,
+   "page": 2,
+   "note": "read from OCR text"
+  },
+  "49355": {
+   "months": 6,
+   "eps_ytd": 2.42,
+   "eps_ytd_prior": 4.42,
+   "eps_q": 1.47,
+   "eps_q_prior": 2.05,
+   "page": 2,
+   "note": "read from OCR text"
+  },
+  "48629": {
+   "months": 3,
+   "eps_ytd": 0.95,
+   "eps_ytd_prior": 2.37,
+   "eps_q": 0.95,
+   "eps_q_prior": 2.37,
+   "page": 2,
+   "note": "read from OCR text"
+  },
+  "48001": {
+   "months": 12,
+   "eps_ytd": 9.03,
+   "eps_ytd_prior": 11.78,
+   "eps_q": 2.54,
+   "eps_q_prior": 4.61,
+   "page": 2,
+   "note": "read from OCR text"
+  },
+  "47282": {
+   "months": 9,
+   "eps_ytd": 6.49,
+   "eps_ytd_prior": 7.17,
+   "eps_q": 2.07,
+   "eps_q_prior": 3.8,
+   "page": 2,
+   "note": "read from OCR text"
+  },
+  "46784": {
+   "months": 6,
+   "eps_ytd": 4.42,
+   "eps_ytd_prior": 3.37,
+   "eps_q": 2.05,
+   "eps_q_prior": 3.32,
+   "page": 2,
+   "note": "read from OCR text"
+  },
+  "46268": {
+   "months": 3,
+   "eps_ytd": 2.37,
+   "eps_ytd_prior": 0.05,
+   "eps_q": 2.37,
+   "eps_q_prior": 0.05,
+   "page": 2,
+   "note": "read from OCR text"
+  }
+ }
+}

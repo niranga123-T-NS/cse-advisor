@@ -1,0 +1,17 @@
+{
+ "symbol": "LWL.N0000",
+ "read_by": "Claude",
+ "read_at": "2026-11-16",
+ "note": "Read by hand from the interim report PDFs (group figures where both are shown). Checked against neighbouring reports before use.",
+ "reports": {
+  "52253": {
+   "months": 3,
+   "eps_ytd": 1.82,
+   "eps_ytd_prior": 0.41,
+   "eps_q": 1.82,
+   "eps_q_prior": 0.41,
+   "page": 3,
+   "note": "read from OCR text"
+  }
+ }
+}

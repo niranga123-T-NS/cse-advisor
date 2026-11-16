@@ -457,7 +457,7 @@ function flowHtml(sym) {
 let books = null;
 async function pollBooks(force) {
   if (!RAW) return;
-  if (books && !force && Date.now() - books._at < 55000) return;
+  if (books && !force && Date.now() - books._at < 55000) { const el = document.getElementById('sec-book'); if (el && current) el.outerHTML = bookCard(current); return; }
   let b = null;
   if (marketWindow()) {
     const now = colomboNow();
@@ -465,13 +465,20 @@ async function pollBooks(force) {
   }
   if (!b) b = await getJSON('books.json');
   if (b) { b._at = Date.now(); books = b; }
+  else if (!books) books = { none: true, _at: Date.now(), s: {} };       // nothing published yet: stop showing "Loading
   const el = document.getElementById('sec-book'); if (el && current) el.outerHTML = bookCard(current);
 }
 function bookCard(sym) {
-  const today = ymd(colomboNow()), x = books && books.s && books.s[sym];
+  const today = ymd(colomboNow());
+  let x = books && books.s && books.s[sym];
+  const ob = !x && tick && tick.ob && tick.ob[sym];     // fallback: the totals and best buy price carried in every 15-second tick
+  if (ob) {
+    x = { t: ob[3], b: ob[0], a: ob[1], buy: ob[2] ? [[ob[2], null, 0]] : [], sell: ob[4] ? [[ob[4], null, 0]] : [], h: [] };
+    books = books || { _at: 0, s: {} }; if (!books.date) books = { ...books, date: tick.t.slice(0, 10) };
+  }
   const head = '<div class="card wide" id="sec-book"><h3>Buyers and sellers';
   const foot = `<p class="small" style="margin:10px 0 0">From CSE's order book: the total shares waiting on each side and the price levels CSE shows (usually the best few). Orders can be changed or cancelled at any time, and CSE does not say who placed them. During the session each share is read every 2 to 15 minutes, busiest first${books && books.focus && books.focus.includes(sym) ? '; this one every 30 seconds' : ''}.</p></div>`;
-  if (!x) return `${head}</h3><p class="mute">${!RAW ? 'Live data is not available here.' : books ? (books.date === today ? 'Not read yet today. It will appear within a few minutes during the session.' : `No orders read for this share on ${dmy(books.date)}.`) : marketWindow() ? 'Loading…' : 'Shown during market hours, and at the close after the session.'}</p>${foot}`;
+  if (!x) return `${head}</h3><p class="mute">${!RAW ? 'Live data is not available here.' : books && books.none ? (marketWindow() ? 'Not read yet today. Each share’s orders are read every 2 to 15 minutes during the session, so this fills in shortly.' : 'Shown during market hours, and at the close after the session.') : books ? (books.date === today ? 'Not read yet today. It will appear within a few minutes during the session.' : `No orders read for this share on ${dmy(books.date)}.`) : marketWindow() ? 'Loading…' : 'Shown during market hours, and at the close after the session.'}</p>${foot}`;
   const live = books.date === today && marketWindow();
   const when = live ? `waiting at ${esc(x.t)}` : `at ${esc(x.t)} on ${dmy(books.date)}`;
   const tot = (x.b + x.a) || 1, bb = x.buy[0], ba = x.sell[0];
@@ -484,11 +491,11 @@ function bookCard(sym) {
     <p style="margin:0 0 8px"><b>${ratio}</b></p>`;
   const n = Math.max(x.buy.length, x.sell.length);
   if (n) {
-    const mx = Math.max(...x.buy.map(r => r[1]), ...x.sell.map(r => r[1]), 1);
-    const cell = (r, side) => r ? `<td class="num">${r[2] || ''}</td><td class="num">${shr(r[1])}<div class="dbar ${side}" style="width:${(r[1] / mx * 100).toFixed(0)}%"></div></td><td class="num ${side === 'b' ? 'up' : 'down'}"><b>${r[0].toFixed(2)}</b></td>` : '<td></td><td></td><td></td>';
+    const mx = Math.max(...x.buy.map(r => r[1] || 0), ...x.sell.map(r => r[1] || 0), 1);
+    const cell = (r, side) => r ? `<td class="num">${r[2] || ''}</td><td class="num">${r[1] == null ? '–' : shr(r[1])}<div class="dbar ${side}" style="width:${((r[1] || 0) / mx * 100).toFixed(0)}%"></div></td><td class="num ${side === 'b' ? 'up' : 'down'}"><b>${r[0].toFixed(2)}</b></td>` : '<td></td><td></td><td></td>';
     h += `<table class="depth"><thead><tr><th class="num">Orders</th><th class="num">Shares</th><th class="num up">Buy at</th><th class="num down">Sell at</th><th class="num">Shares</th><th class="num">Orders</th></tr></thead><tbody>` +
       Array.from({ length: n }, (_, i) => { const b = x.buy[i], a = x.sell[i];
-        return `<tr>${cell(b, 'b')}${a ? `<td class="num down"><b>${a[0].toFixed(2)}</b></td><td class="num">${shr(a[1])}<div class="dbar s" style="width:${(a[1] / mx * 100).toFixed(0)}%"></div></td><td class="num">${a[2] || ''}</td>` : '<td></td><td></td><td></td>'}</tr>`; }).join('') + '</tbody></table>';
+        return `<tr>${cell(b, 'b')}${a ? `<td class="num down"><b>${a[0].toFixed(2)}</b></td><td class="num">${a[1] == null ? '–' : shr(a[1])}<div class="dbar s" style="width:${((a[1] || 0) / mx * 100).toFixed(0)}%"></div></td><td class="num">${a[2] || ''}</td>` : '<td></td><td></td><td></td>'}</tr>`; }).join('') + '</tbody></table>';
   } else h += '<p class="small">CSE showed no price levels in this reading, only the totals.</p>';
   if (bb && ba) { const gap = ba[0] - bb[0]; h += `<p class="small" style="margin:6px 0 0">Gap between the best buy and sell prices: ${gap.toFixed(2)} (${(gap / ref * 100).toFixed(2)}% of the price)${gap / ref > 0.01 ? '. A wide gap makes buying and quickly selling again costly.' : '.'}</p>`; }
   const hs = x.h || [];

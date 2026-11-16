@@ -1,5 +1,74 @@
 {
  "annual": {
+  "23821": {
+   "dps": 4.0,
+   "dps_prior": 8.0,
+   "end": "2018-03-31",
+   "eps": 6.16,
+   "eps_prior": 0.98,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 57.41,
+   "navps_prior": 57.05,
+   "ok": true,
+   "pages": 54,
+   "src_dps": "Dividend per share  (10)  4.00  8.00",
+   "src_eps": "Earnings per Share  (9)  6.16  0.98",
+   "src_navps": "Net Assets Per Share ( Rs.)  57.41  57.05  66.08  67.01  69.44",
+   "title": "Annual Report 2017/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/602_1531135025994.pdf",
+   "v": 6,
+   "vals_dps": [
+    4.0,
+    8.0
+   ],
+   "vals_eps": [
+    6.16,
+    0.98
+   ],
+   "vals_navps": [
+    57.41,
+    57.05,
+    66.08,
+    67.01,
+    69.44
+   ],
+   "year_only": false
+  },
+  "30495": {
+   "end": "2017-03-31",
+   "eps": 0.98,
+   "eps_prior": 6.24,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 27,
+   "src_eps": "Earnings per Share  (10)  0.98  6.24",
+   "title": "Annual Report 2016/2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/602_1497007494.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.98,
+    6.24
+   ],
+   "year_only": false
+  },
   "34043": {
    "dps": 0.0,
    "dps_prior": 4.0,
@@ -424,7 +493,7 @@
     "id": "23821",
     "title": "Annual Report 2017/2018",
     "uploaded": 1531074600000,
-    "url": "https://cdn.cse.lk/upload_report_file/602_1531135025994.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/602_1531135025994.pdf",
     "year_only": false
    },
    {
@@ -433,7 +502,7 @@
     "id": "30495",
     "title": "Annual Report 2016/2017",
     "uploaded": 1496946600000,
-    "url": "https://cdn.cse.lk/upload_report_file/602_1497007494.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/602_1497007494.pdf",
     "year_only": false
    }
   ],
@@ -521,18 +590,18 @@
    },
    {
     "amended": false,
-    "end": "2024-03-31",
-    "id": "45535",
-    "title": "Interim Financial Statements as at 31st March 2024",
-    "uploaded": 1715741105916,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/602_1715741105916.03.2024 on 14 5 24.pdf",
+    "end": "2024-06-30",
+    "id": "46236",
+    "title": "Interim Financial Statements for the period ended 30.06.2024",
+    "uploaded": 1723026664648,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/602_1723026664648.06.2024 .pdf",
     "year_only": false
    }
   ]
  },
  "quarterly": {
-  "45535": {
-   "end": "2024-03-31",
+  "46236": {
+   "end": "2024-06-30",
    "layout_profit": [
     0,
     1,
@@ -541,18 +610,19 @@
    "months": null,
    "ok": true,
    "pages": 7,
-   "profit": -91387.0,
+   "profit": 44392.0,
    "profit_growth": null,
-   "profit_prior": -91387.0,
+   "profit_prior": -36034.0,
    "revenue_growth": null,
-   "src_profit": "Profit for the Period  -  -  (91,387)  (91,387)",
-   "title": "Interim Financial Statements as at 31st March 2024",
+   "src_profit": "Profit for the Period  -  44,392  -  (36,034)  8,358",
+   "title": "Interim Financial Statements for the period ended 30.06.2024",
    "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/602_1715741105916.03.2024 on 14 5 24.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/602_1723026664648.06.2024 .pdf",
    "v": 6,
    "vals_profit": [
-    -91387.0,
-    -91387.0
+    44392.0,
+    -36034.0,
+    8358.0
    ],
    "year_only": false
   },

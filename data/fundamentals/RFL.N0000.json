@@ -1,5 +1,75 @@
 {
  "annual": {
+  "22082": {
+   "end": "2017-03-31",
+   "eps": 0.69,
+   "eps_prior": 1.18,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 11.67,
+   "navps_prior": 12.93,
+   "ok": true,
+   "pages": 72,
+   "src_eps": "Earnings Per Share  11  0.69  1.18",
+   "src_navps": "Net Assets Value per share Rs.  11.67  12.93  12.98  13.72  14.47  20.58",
+   "title": "Annual Report 2016/17",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1185_1504170902063.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.69,
+    1.18
+   ],
+   "vals_navps": [
+    11.67,
+    12.93,
+    12.98,
+    13.72,
+    14.47,
+    20.58
+   ],
+   "year_only": false
+  },
+  "24418": {
+   "end": "2018-03-31",
+   "eps": 0.91,
+   "eps_prior": 0.69,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 20.03,
+   "navps_prior": 20.88,
+   "ok": true,
+   "pages": 82,
+   "src_eps": "Earnings per share  11  0.91  0.69",
+   "src_navps": "Net assets per share  20.03  20.88",
+   "title": "Annual Report 2017/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1185_1535707640495.compressed.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.91,
+    0.69
+   ],
+   "vals_navps": [
+    20.03,
+    20.88
+   ],
+   "year_only": false
+  },
   "34051": {
    "end": "2019-03-31",
    "eps": 1.26,
@@ -359,7 +429,7 @@
     "id": "24418",
     "title": "Annual Report 2017/2018",
     "uploaded": 1535653800000,
-    "url": "https://cdn.cse.lk/upload_report_file/1185_1535707640495.compressed.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1185_1535707640495.compressed.pdf",
     "year_only": false
    },
    {
@@ -368,7 +438,7 @@
     "id": "22082",
     "title": "Annual Report 2016/17",
     "uploaded": 1504117800000,
-    "url": "https://cdn.cse.lk/upload_report_file/1185_1504170902063.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1185_1504170902063.pdf",
     "year_only": false
    }
   ],

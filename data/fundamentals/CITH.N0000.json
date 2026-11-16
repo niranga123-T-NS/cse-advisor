@@ -1,5 +1,104 @@
 {
  "annual": {
+  "22097": {
+   "dps": 0.1,
+   "dps_prior": 0.12,
+   "end": "2017-03-31",
+   "eps": 1.36,
+   "eps_prior": 1.01,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 14.98,
+   "navps_prior": 16.47,
+   "ok": true,
+   "pages": 100,
+   "src_dps": "Dividend Per Share  0.10  0.12",
+   "src_eps": "Earnings Per Share - Basic  10  1.36  1.01",
+   "src_navps": "Net Asset Per Share  Rs.  14.98  16.47  19.66  20.54  21.82",
+   "title": "Hikkaduwa Beach Resort PLC Annual report -2016/2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1504178069744.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.1,
+    0.12
+   ],
+   "vals_eps": [
+    1.36,
+    1.01
+   ],
+   "vals_navps": [
+    14.98,
+    16.47,
+    19.66,
+    20.54,
+    21.82
+   ],
+   "year_only": false
+  },
+  "24482": {
+   "dps": 0.09,
+   "dps_prior": 0.1,
+   "end": "2018-03-31",
+   "eps": 1.53,
+   "eps_prior": 1.16,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 16.47,
+   "navps_prior": 19.66,
+   "ok": true,
+   "pages": 136,
+   "src_dps": "Dividend Per Share  0.09  0.10",
+   "src_eps": "Earnings per Share - Basic  Rs.  1.53  1.16  1.01  1.36  (2.59)",
+   "src_navps": "Net Asset per Share  Rs.  16.47  19.66  20.54  21.82  64.93",
+   "title": "Annual Report 2017/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1536232395071.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.09,
+    0.1
+   ],
+   "vals_eps": [
+    1.53,
+    1.16,
+    1.01,
+    1.36,
+    -2.59
+   ],
+   "vals_navps": [
+    16.47,
+    19.66,
+    20.54,
+    21.82,
+    64.93
+   ],
+   "year_only": false
+  },
   "34095": {
    "dps": 12.0,
    "dps_prior": 0.09,
@@ -194,7 +293,7 @@
    "year_only": false
   },
   "44142": {
-   "end": "2023-12-31",
+   "end": "2023-03-31",
    "eps": -4.03,
    "eps_prior": -1.16,
    "layout_eps": [
@@ -373,7 +472,7 @@
    },
    {
     "amended": false,
-    "end": "2023-12-31",
+    "end": "2023-03-31",
     "id": "44142",
     "title": "Annual Report as at 31.03.2023",
     "uploaded": 1693568836823,
@@ -422,7 +521,7 @@
     "id": "24482",
     "title": "Annual Report 2017/2018",
     "uploaded": 1536172200000,
-    "url": "https://cdn.cse.lk/upload_report_file/1222_1536232395071.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1536232395071.pdf",
     "year_only": false
    },
    {
@@ -431,7 +530,7 @@
     "id": "22097",
     "title": "Hikkaduwa Beach Resort PLC Annual report -2016/2017",
     "uploaded": 1504117800000,
-    "url": "https://cdn.cse.lk/upload_report_file/1222_1504178069744.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1222_1504178069744.pdf",
     "year_only": false
    }
   ],

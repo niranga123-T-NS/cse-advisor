@@ -1,5 +1,110 @@
 {
  "annual": {
+  "24420": {
+   "dps": 0.5,
+   "dps_prior": 0.3,
+   "end": "2018-03-31",
+   "eps": 11.48,
+   "eps_prior": 26.78,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 273.16,
+   "navps_prior": 256.93,
+   "ok": true,
+   "pages": 244,
+   "src_dps": "Dividend per Share  (Rs.)  -  0.50  0.30  2.65  -",
+   "src_eps": "Earnings/(loss) per Share  (Rs.)  11.48  26.78  (2.89)  18.79  23.63",
+   "src_navps": "Net Assets per Share (year-end)  (Rs.)  273.16  256.93  225.94  218.54  195.95",
+   "title": "Annual Report 2017/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1535709128473.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.5,
+    0.3,
+    2.65
+   ],
+   "vals_eps": [
+    11.48,
+    26.78,
+    -2.89,
+    18.79,
+    23.63
+   ],
+   "vals_navps": [
+    273.16,
+    256.93,
+    225.94,
+    218.54,
+    195.95
+   ],
+   "year_only": false
+  },
+  "30546": {
+   "dps": 0.5,
+   "dps_prior": 0.3,
+   "end": "2017-03-31",
+   "eps": 26.78,
+   "eps_prior": -2.89,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 256.93,
+   "navps_prior": 225.94,
+   "ok": true,
+   "pages": 284,
+   "src_dps": "Dividend per Share  (Rs.)  0.50  0.30  2.65  -  0.50",
+   "src_eps": "Earnings/ (Loss) per Share  (Rs.)  26.78  (2.89)  18.79  23.63  5.08",
+   "src_navps": "Net Assets per Share (year-end)  (Rs.)  256.93  225.94  218.54  195.95  213.06",
+   "title": "Annual Report 2016/2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1499419942.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.5,
+    0.3,
+    2.65,
+    0.5
+   ],
+   "vals_eps": [
+    26.78,
+    -2.89,
+    18.79,
+    23.63,
+    5.08
+   ],
+   "vals_navps": [
+    256.93,
+    225.94,
+    218.54,
+    195.95,
+    213.06
+   ],
+   "year_only": false
+  },
   "33988": {
    "dps": 0.5,
    "dps_prior": 0.3,
@@ -419,7 +524,7 @@
     "id": "24420",
     "title": "Annual Report 2017/2018",
     "uploaded": 1535653800000,
-    "url": "https://cdn.cse.lk/upload_report_file/764_1535709128473.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1535709128473.pdf",
     "year_only": false
    },
    {
@@ -428,7 +533,7 @@
     "id": "30546",
     "title": "Annual Report 2016/2017",
     "uploaded": 1499365800000,
-    "url": "https://cdn.cse.lk/upload_report_file/764_1499419942.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1499419942.pdf",
     "year_only": false
    }
   ],
@@ -480,6 +585,24 @@
    },
    {
     "amended": false,
+    "end": "2025-06-30",
+    "id": "48793",
+    "title": "Interim Financial Statements as of 30/06/2025",
+    "uploaded": 1755485166509,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1755485166509.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2025-03-31",
+    "id": "48158",
+    "title": "Interim Financial Statements as of 31/03/2025",
+    "uploaded": 1748835824812,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1748835824812.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
     "end": "2024-12-31",
     "id": "47483",
     "title": "Interim Financial Statements as of 31/12/2024",
@@ -489,47 +612,29 @@
    },
    {
     "amended": false,
-    "end": "2023-12-31",
-    "id": "45172",
-    "title": "Interim Financial Statements as of 12/31/2023",
-    "uploaded": 1708001835659,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1708001835659.pdf",
+    "end": "2024-09-30",
+    "id": "47034",
+    "title": "Interim Financial Statements as of 30/09/2024",
+    "uploaded": 1731553105802,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1731553105802.Brown and Company PLC- Quarter ended 30th September 2024 - To Publish V3.pdf",
     "year_only": true
    },
    {
     "amended": false,
-    "end": "2022-12-31",
-    "id": "42755",
-    "title": "INTERIM FINANCIAL STATEMENTS AS OF 12/31/2022",
-    "uploaded": 1676458931334,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1676458931334.Brown and Company PLC- Quarter ended 31st December 2022 -to Publish 1.pdf",
+    "end": "2024-06-30",
+    "id": "46465",
+    "title": "Interim Financial Statements as of 30/06/2024",
+    "uploaded": 1723726673489,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1723726673489.Brown and Company PLC- Quarter ended 30th June 2024 V3 - To Publish.pdf",
     "year_only": true
-   },
-   {
-    "amended": false,
-    "end": "2021-12-31",
-    "id": "40024",
-    "title": "Interim Financial Statements as at 31/12/2021",
-    "uploaded": 1645066120028,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1645066120028. Brown and Company PLC- Quarter ended 31st December 2021 1 to publish.pdf",
-    "year_only": true
-   },
-   {
-    "amended": false,
-    "end": "2020-12-31",
-    "id": "37392",
-    "title": "Interim Financial Statements 31/12/2020",
-    "uploaded": 1613448178336,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1613448178336.pdf",
-    "year_only": false
    }
   ]
  },
  "quarterly": {
-  "37392": {
-   "end": "2020-12-31",
-   "eps": 0.84,
-   "eps_prior": -2.43,
+  "46465": {
+   "end": "2024-06-30",
+   "eps": -19.36,
+   "eps_prior": -28.84,
    "layout_eps": [
     0,
     1,
@@ -543,7 +648,7 @@
    "layout_profit": [
     0,
     1,
-    false
+    true
    ],
    "layout_revenue": [
     0,
@@ -551,254 +656,113 @@
     false
    ],
    "months": null,
-   "navps": 211.04,
-   "navps_prior": 142.3,
-   "ok": true,
-   "pages": 14,
-   "profit": 179623.0,
-   "profit_growth": null,
-   "profit_prior": -516601.0,
-   "revenue": 25291842.0,
-   "revenue_growth": 53.1,
-   "revenue_prior": 16520105.0,
-   "src_eps": "Basic Earnings/ (loss) per share - Rs.  0.84  (2.43)  0.07  11.42",
-   "src_navps": "Net Assets per Share (Rs.)  211.04  142.30",
-   "src_profit": "Equity holders of the Company  179,623  (516,601)  134.77  14,885  2,428,191  (99.39)",
-   "src_revenue": "Revenue Reserve  25,291,842  16,520,105  17,399,409  16,241,239",
-   "title": "Interim Financial Statements 31/12/2020",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1613448178336.pdf",
-   "v": 6,
-   "vals_eps": [
-    0.84,
-    -2.43,
-    0.07,
-    11.42
-   ],
-   "vals_navps": [
-    211.04,
-    142.3
-   ],
-   "vals_profit": [
-    179623.0,
-    -516601.0,
-    134.77,
-    14885.0,
-    2428191.0,
-    -99.39
-   ],
-   "vals_revenue": [
-    25291842.0,
-    16520105.0,
-    17399409.0,
-    16241239.0
-   ],
-   "year_only": false
-  },
-  "40024": {
-   "end": "2021-12-31",
-   "eps": -0.74,
-   "eps_prior": 0.84,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": null,
-   "navps": 217.71,
-   "navps_prior": 220.52,
-   "ok": true,
-   "pages": 14,
-   "profit": -157611.0,
-   "profit_growth": null,
-   "profit_prior": 179623.0,
-   "revenue": 20001767.0,
-   "revenue_growth": 0.1,
-   "revenue_prior": 19985456.0,
-   "src_eps": "Basic Earnings/ (loss) per share - Rs.  (0.74)  0.84  (4.75)  0.07",
-   "src_navps": "Net Assets per Share (Rs.)  217.71  220.52",
-   "src_profit": "Equity holders of the Company  (157,611)  179,623  (>100)  (1,010,896)  14,885  (>100)",
-   "src_revenue": "Revenue Reserve  20,001,767  19,985,456  19,011,908  18,011,324",
-   "title": "Interim Financial Statements as at 31/12/2021",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1645066120028. Brown and Company PLC- Quarter ended 31st December 2021 1 to publish.pdf",
-   "v": 6,
-   "vals_eps": [
-    -0.74,
-    0.84,
-    -4.75,
-    0.07
-   ],
-   "vals_navps": [
-    217.71,
-    220.52
-   ],
-   "vals_profit": [
-    -157611.0,
-    179623.0,
-    100.0,
-    -1010896.0,
-    14885.0,
-    100.0
-   ],
-   "vals_revenue": [
-    20001767.0,
-    19985456.0,
-    19011908.0,
-    18011324.0
-   ],
-   "year_only": true
-  },
-  "42755": {
-   "end": "2022-12-31",
-   "eps": -25.91,
-   "eps_prior": -4.75,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": null,
-   "navps": 406.48,
-   "navps_prior": 400.74,
-   "ok": true,
-   "pages": 14,
-   "profit": -5564310.0,
-   "profit_growth": null,
-   "profit_prior": -157612.0,
-   "revenue": 37436531.0,
-   "revenue_growth": -13.2,
-   "revenue_prior": 43154141.0,
-   "src_eps": "Basic/diluted earnings/ (loss) per ordinary share (Rs.)  (25.91)  (4.75)  (11.36)  4.71",
-   "src_navps": "Net Assets per Share (Rs.)  406.48  400.74",
-   "src_profit": "Equity holders of the Company  (5,564,310)  (157,612)  (>100)  (5,509,739)  (1,010,896)  (>100)",
-   "src_revenue": "Revenue Reserve  37,436,531  43,154,141  17,317,818  19,815,139",
-   "title": "INTERIM FINANCIAL STATEMENTS AS OF 12/31/2022",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1676458931334.Brown and Company PLC- Quarter ended 31st December 2022 -to Publish 1.pdf",
-   "v": 6,
-   "vals_eps": [
-    -25.91,
-    -4.75,
-    -11.36,
-    4.71
-   ],
-   "vals_navps": [
-    406.48,
-    400.74
-   ],
-   "vals_profit": [
-    -5564310.0,
-    -157612.0,
-    100.0,
-    -5509739.0,
-    -1010896.0,
-    100.0
-   ],
-   "vals_revenue": [
-    37436531.0,
-    43154141.0,
-    17317818.0,
-    19815139.0
-   ],
-   "year_only": true
-  },
-  "45172": {
-   "end": "2023-12-31",
-   "eps": 27.54,
-   "eps_prior": -25.91,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": null,
-   "navps": 415.37,
-   "navps_prior": 372.03,
+   "navps": 315.87,
+   "navps_prior": 328.77,
    "ok": true,
    "pages": 15,
-   "profit": 9362960.0,
+   "profit": -4116050.0,
    "profit_growth": null,
-   "profit_prior": -5564310.0,
-   "revenue": 45219464.0,
-   "revenue_growth": 23.6,
-   "revenue_prior": 36572208.0,
-   "src_eps": "Basic/diluted earnings/ (loss) per ordinary share (Rs.)  27.54  (25.91)  (23.85)  (11.36)",
-   "src_navps": "Net Assets per Share (Rs.)  415.37  372.03",
-   "src_profit": "Equity holders of the Company  9,362,960  (5,564,310)  >100  5,854,864  (5,509,739)  >100",
-   "src_revenue": "Revenue Reserve  45,219,464  36,572,208  13,230,993  18,302,322",
-   "title": "Interim Financial Statements as of 12/31/2023",
+   "profit_prior": -6131599.0,
+   "revenue": 29850659.0,
+   "revenue_growth": -12.1,
+   "revenue_prior": 33961540.0,
+   "src_eps": "Basic/diluted earnings/ (loss) per ordinary share (Rs.)  (19.36)  (28.84)  (5.31)  (9.70)",
+   "src_navps": "Net Assets per Share (Rs.)  315.87  328.77",
+   "src_profit": "Equity holders of the Company  (4,116,050)  (6,131,599)  (32.87)",
+   "src_revenue": "Revenue Reserve  29,850,659  33,961,540  12,926,370  14,055,323",
+   "title": "Interim Financial Statements as of 30/06/2024",
    "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1708001835659.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1723726673489.Brown and Company PLC- Quarter ended 30th June 2024 V3 - To Publish.pdf",
    "v": 6,
    "vals_eps": [
-    27.54,
-    -25.91,
-    -23.85,
-    -11.36
+    -19.36,
+    -28.84,
+    -5.31,
+    -9.7
    ],
    "vals_navps": [
-    415.37,
-    372.03
+    315.87,
+    328.77
    ],
    "vals_profit": [
-    9362960.0,
-    -5564310.0,
+    -4116050.0,
+    -6131599.0,
+    -32.87
+   ],
+   "vals_revenue": [
+    29850659.0,
+    33961540.0,
+    12926370.0,
+    14055323.0
+   ],
+   "year_only": true
+  },
+  "47034": {
+   "end": "2024-09-30",
+   "eps": 118.9,
+   "eps_prior": -16.5,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": null,
+   "navps": 453.12,
+   "navps_prior": 330.12,
+   "ok": true,
+   "pages": 16,
+   "profit": 29397482.0,
+   "profit_growth": null,
+   "profit_prior": 2623503.0,
+   "revenue": 59130296.0,
+   "revenue_growth": 74.7,
+   "revenue_prior": 33838400.0,
+   "src_eps": "Basic/diluted earnings/ (loss) per ordinary share (Rs.)  118.90  (16.50)  (12.33)  (17.48)",
+   "src_navps": "Net Assets per Share (Rs.)  453.12  330.12",
+   "src_profit": "Equity holders of the Company  29,397,482  2,623,503  >100  25,281,432  (3,508,096)  >100",
+   "src_revenue": "Revenue Reserve  59,130,296  33,838,400  11,434,565  14,055,323",
+   "title": "Interim Financial Statements as of 30/09/2024",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1731553105802.Brown and Company PLC- Quarter ended 30th September 2024 - To Publish V3.pdf",
+   "v": 6,
+   "vals_eps": [
+    118.9,
+    -16.5,
+    -12.33,
+    -17.48
+   ],
+   "vals_navps": [
+    453.12,
+    330.12
+   ],
+   "vals_profit": [
+    29397482.0,
+    2623503.0,
     100.0,
-    5854864.0,
-    -5509739.0,
+    25281432.0,
+    -3508096.0,
     100.0
    ],
    "vals_revenue": [
-    45219464.0,
-    36572208.0,
-    13230993.0,
-    18302322.0
+    59130296.0,
+    33838400.0,
+    11434565.0,
+    14055323.0
    ],
    "year_only": true
   },
@@ -870,6 +834,147 @@
     33838400.0,
     10774132.0,
     14055323.0
+   ],
+   "year_only": true
+  },
+  "48158": {
+   "end": "2025-03-31",
+   "eps": 152.49,
+   "eps_prior": 11.2,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": null,
+   "navps": 471.02,
+   "navps_prior": 330.12,
+   "ok": true,
+   "pages": 18,
+   "profit": 12692942.0,
+   "profit_growth": null,
+   "profit_prior": -4769625.0,
+   "revenue": 76846816.0,
+   "revenue_growth": 127.1,
+   "revenue_prior": 33838400.0,
+   "src_eps": "Basic/diluted earnings/ (loss) per ordinary share (Rs.)  152.49  11.20  152.49  11.20",
+   "src_navps": "Net Assets per Share (Rs.)  471.02  330.12  471.02  330.12  372.03",
+   "src_profit": "Equity holders of the company  12,692,942  (4,769,625)  >100  38,478,958  (165,969)  >100",
+   "src_revenue": "Revenue Reserve  76,846,816  33,838,400  76,846,816  33,838,400  36,572,208",
+   "title": "Interim Financial Statements as of 31/03/2025",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1748835824812.pdf",
+   "v": 6,
+   "vals_eps": [
+    152.49,
+    11.2,
+    152.49,
+    11.2
+   ],
+   "vals_navps": [
+    471.02,
+    330.12,
+    471.02,
+    330.12,
+    372.03
+   ],
+   "vals_profit": [
+    12692942.0,
+    -4769625.0,
+    100.0,
+    38478958.0,
+    -165969.0,
+    100.0
+   ],
+   "vals_revenue": [
+    76846816.0,
+    33838400.0,
+    76846816.0,
+    33838400.0,
+    36572208.0
+   ],
+   "year_only": true
+  },
+  "48793": {
+   "end": "2025-06-30",
+   "eps": -25.04,
+   "eps_prior": -19.36,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    true
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": null,
+   "navps": 425.61,
+   "navps_prior": 470.77,
+   "ok": true,
+   "pages": 14,
+   "profit": -5323460.0,
+   "profit_growth": null,
+   "profit_prior": -4116050.0,
+   "revenue": 65531355.0,
+   "revenue_growth": -14.7,
+   "revenue_prior": 76851802.0,
+   "src_eps": "Basic/diluted earnings/ (loss) per ordinary share (Rs.)  (25.04)  (19.36)  (25.04)  (19.36)",
+   "src_navps": "Net Assets per Share (Rs.)  425.61  470.77  425.61  470.77",
+   "src_profit": "Equity holders of the Company  (5,323,460)  (4,116,050)  29.33",
+   "src_revenue": "Revenue Reserve  65,531,355  76,851,802  65,531,355  76,851,802",
+   "title": "Interim Financial Statements as of 30/06/2025",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/764_1755485166509.pdf",
+   "v": 6,
+   "vals_eps": [
+    -25.04,
+    -19.36,
+    -25.04,
+    -19.36
+   ],
+   "vals_navps": [
+    425.61,
+    470.77,
+    425.61,
+    470.77
+   ],
+   "vals_profit": [
+    -5323460.0,
+    -4116050.0,
+    29.33
+   ],
+   "vals_revenue": [
+    65531355.0,
+    76851802.0,
+    65531355.0,
+    76851802.0
    ],
    "year_only": true
   },

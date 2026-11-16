@@ -1,5 +1,100 @@
 {
  "annual": {
+  "22046": {
+   "dps": 0.95,
+   "dps_prior": 1.94,
+   "end": "2017-03-31",
+   "eps": 0.9,
+   "eps_prior": 1.06,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 5.64,
+   "navps_prior": 5.21,
+   "ok": true,
+   "pages": 140,
+   "src_dps": "Dividend per share  0.95  1.94  Asiri Hospital  30%",
+   "src_eps": "Earnings per share  0.90  1.06",
+   "src_navps": "Net Asset Value per share  5.64  5.21  Asiri Surgical  27%",
+   "title": "Annual Report 2016/17",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/512_1503485556439.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.95,
+    1.94
+   ],
+   "vals_eps": [
+    0.9,
+    1.06
+   ],
+   "vals_navps": [
+    5.64,
+    5.21
+   ],
+   "year_only": false
+  },
+  "24368": {
+   "dps": 14.0,
+   "dps_prior": 15.0,
+   "end": "2018-03-31",
+   "eps": 1.53,
+   "eps_prior": 0.9,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 6.59,
+   "navps_prior": 5.64,
+   "ok": true,
+   "pages": 156,
+   "src_dps": "DPS \u23ce  14  15  16  17  18  Year  Asiri Matara  4%",
+   "src_eps": "Earnings Per Share - Basic  7  1.53  0.90  1.11  1.04",
+   "src_navps": "Net Asset Value per Share  6.59  5.64",
+   "title": "Annual Report 2017/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/512_1535020025059.pdf",
+   "v": 6,
+   "vals_dps": [
+    14.0,
+    15.0,
+    16.0,
+    17.0,
+    18.0
+   ],
+   "vals_eps": [
+    1.53,
+    0.9,
+    1.11,
+    1.04
+   ],
+   "vals_navps": [
+    6.59,
+    5.64
+   ],
+   "year_only": false
+  },
   "33994": {
    "dps": 0.8,
    "dps_prior": 0.6,
@@ -459,7 +554,7 @@
     "id": "24368",
     "title": "Annual Report 2017/2018",
     "uploaded": 1534962600000,
-    "url": "https://cdn.cse.lk/upload_report_file/512_1535020025059.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/512_1535020025059.pdf",
     "year_only": false
    },
    {
@@ -468,7 +563,7 @@
     "id": "22046",
     "title": "Annual Report 2016/17",
     "uploaded": 1503426600000,
-    "url": "https://cdn.cse.lk/upload_report_file/512_1503485556439.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/512_1503485556439.pdf",
     "year_only": false
    }
   ],

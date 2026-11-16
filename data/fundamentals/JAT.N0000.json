@@ -323,6 +323,24 @@
    },
    {
     "amended": false,
+    "end": "2025-06-30",
+    "id": "48468",
+    "title": "Quarterly Financial Statements as at 30-06-2025",
+    "uploaded": 1753874969838,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2353_1753874969838.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2025-03-31",
+    "id": "47884",
+    "title": "Quarterly Financial Statements as at 31-03-2025",
+    "uploaded": 1747653458004,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2353_1747653458004.25_SIGNED.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
     "end": "2024-12-31",
     "id": "47273",
     "title": "Quarterly Financial Statements as at 31-12-2024",
@@ -332,47 +350,29 @@
    },
    {
     "amended": false,
-    "end": "2023-12-31",
-    "id": "45006",
-    "title": "Quarterly Financial Statements as at 31-12-2023",
-    "uploaded": 1707733334070,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/2353_1707733334070.pdf",
+    "end": "2024-09-30",
+    "id": "46811",
+    "title": "Quarterly Financial Statements as at 30-09-2024",
+    "uploaded": 1730714918603,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2353_1730714918603.pdf",
     "year_only": true
    },
    {
     "amended": false,
-    "end": "2023-06-30",
-    "id": "43699",
-    "title": "Quarterly Financial Report for the 1st Quarter ending 30th June 2023",
-    "uploaded": 1691143398536,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/2353_1691143398536.pdf",
-    "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2022-12-31",
-    "id": "42511",
-    "title": "Quarterly Financial Statements for the Third quarter ending 31st December 2022",
-    "uploaded": 1675660531474,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/2353_1675655731474.pdf",
-    "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2022-09-30",
-    "id": "42008",
-    "title": "Interim Financial Statements 30th September 2022",
-    "uploaded": 1668418157875,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/2353_1668418157875.pdf",
-    "year_only": false
+    "end": "2024-06-30",
+    "id": "46343",
+    "title": "Quarterly Financial Statements as at 30-06-2024",
+    "uploaded": 1723628910389,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2353_1723628910389.pdf",
+    "year_only": true
    }
   ]
  },
  "quarterly": {
-  "42008": {
-   "end": "2022-09-30",
-   "eps": 0.85,
-   "eps_prior": 0.49,
+  "46343": {
+   "end": "2024-06-30",
+   "eps": 0.24,
+   "eps_prior": 0.14,
    "layout_eps": [
     0,
     1,
@@ -394,192 +394,54 @@
     false
    ],
    "months": 3,
-   "navps": 15.89,
-   "navps_prior": 15.19,
+   "navps": 18.09,
+   "navps_prior": 17.88,
    "ok": true,
-   "pages": 12,
-   "profit": 434931381.0,
-   "profit_growth": 81.0,
-   "profit_prior": 240245212.0,
-   "revenue": 2456773843.0,
-   "revenue_growth": 41.7,
-   "revenue_prior": 1733293171.0,
-   "src_eps": "Basic earnings/(loss) per share (Rs.)  0.85  0.49  1.18  0.85",
-   "src_navps": "Net asset value per share (Rs.)  15.89  15.19  15.42  14.42",
-   "src_profit": "Equity holders of the parent company  434,931,381  240,245,212  81%  603,898,795  401,447,565  50%",
-   "src_revenue": "Revenue from contracts with customers  5  2,456,773,843  1,733,293,171  42%  4,391,811,217  3,129,039,054  40%",
-   "title": "Interim Financial Statements 30th September 2022",
+   "pages": 11,
+   "profit": 124907993.0,
+   "profit_growth": 78.0,
+   "profit_prior": 70170048.0,
+   "revenue": 2197078889.0,
+   "revenue_growth": 2.8,
+   "revenue_prior": 2137381534.0,
+   "src_eps": "Basic earnings/(loss) per share (Rs.)  0.24  0.14  0.30  (0.03)",
+   "src_navps": "Net asset value per share (Rs.)  18.09  17.88  16.85  16.55",
+   "src_profit": "Equity holders of the parent company  124,907,993  70,170,048  78%  153,760,873  (16,583,225) -1027%",
+   "src_revenue": "Revenue from contracts with customers  4  2,197,078,889  2,137,381,534  3%  1,438,445,686  1,340,038,802  7%",
+   "title": "Quarterly Financial Statements as at 30-06-2024",
    "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/2353_1668418157875.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2353_1723628910389.pdf",
    "v": 6,
    "vals_eps": [
-    0.85,
-    0.49,
-    1.18,
-    0.85
-   ],
-   "vals_navps": [
-    15.89,
-    15.19,
-    15.42,
-    14.42
-   ],
-   "vals_profit": [
-    434931381.0,
-    240245212.0,
-    603898795.0,
-    401447565.0
-   ],
-   "vals_revenue": [
-    2456773843.0,
-    1733293171.0,
-    4391811217.0,
-    3129039054.0
-   ],
-   "year_only": false
-  },
-  "42511": {
-   "end": "2022-12-31",
-   "eps": 0.76,
-   "eps_prior": 0.63,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "navps": 16.37,
-   "navps_prior": 15.19,
-   "ok": true,
-   "pages": 12,
-   "profit": 386381209.0,
-   "profit_growth": 21.1,
-   "profit_prior": 319045643.0,
-   "revenue": 2552879396.0,
-   "revenue_growth": 10.9,
-   "revenue_prior": 2302721945.0,
-   "src_eps": "Basic earnings/(loss) per share (Rs.)  0.76  0.63  1.94  1.48",
-   "src_navps": "Net asset value per share (Rs.)  16.37  15.19  15.48  14.42",
-   "src_profit": "Equity holders of the parent company  386,381,209  319,045,643  21%  990,280,004  720,493,209  37%",
-   "src_revenue": "Revenue from contracts with customers  5  2,552,879,396  2,302,721,945  11%  6,944,690,613  5,431,761,000  28%",
-   "title": "Quarterly Financial Statements for the Third quarter ending 31st December 2022",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/2353_1675655731474.pdf",
-   "v": 6,
-   "vals_eps": [
-    0.76,
-    0.63,
-    1.94,
-    1.48
-   ],
-   "vals_navps": [
-    16.37,
-    15.19,
-    15.48,
-    14.42
-   ],
-   "vals_profit": [
-    386381209.0,
-    319045643.0,
-    990280004.0,
-    720493209.0
-   ],
-   "vals_revenue": [
-    2552879396.0,
-    2302721945.0,
-    6944690613.0,
-    5431761000.0
-   ],
-   "year_only": false
-  },
-  "43699": {
-   "end": "2023-06-30",
-   "eps": 0.14,
-   "eps_prior": 0.33,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "navps": 16.52,
-   "navps_prior": 16.93,
-   "ok": true,
-   "pages": 10,
-   "profit": 70170048.0,
-   "profit_growth": -58.5,
-   "profit_prior": 168967414.0,
-   "revenue": 2137381534.0,
-   "revenue_growth": 10.5,
-   "revenue_prior": 1935037374.0,
-   "src_eps": "Basic earnings/(loss) per share (Rs.)  0.14  0.33  (0.03)  0.18",
-   "src_navps": "Net asset value per share (Rs.)  16.52  16.93  15.59  16.11",
-   "src_profit": "Equity holders of the parent company  70,170,048  168,967,414  -58%  (16,583,225)  92,703,543  -118%",
-   "src_revenue": "Revenue from contracts with customers  4  2,137,381,534  1,935,037,374  10%  1,340,038,802  1,185,871,952  13%",
-   "title": "Quarterly Financial Report for the 1st Quarter ending 30th June 2023",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/2353_1691143398536.pdf",
-   "v": 6,
-   "vals_eps": [
+    0.24,
     0.14,
-    0.33,
-    -0.03,
-    0.18
+    0.3,
+    -0.03
    ],
    "vals_navps": [
-    16.52,
-    16.93,
-    15.59,
-    16.11
+    18.09,
+    17.88,
+    16.85,
+    16.55
    ],
    "vals_profit": [
+    124907993.0,
     70170048.0,
-    168967414.0,
-    -16583225.0,
-    92703543.0
+    153760873.0,
+    -16583225.0
    ],
    "vals_revenue": [
+    2197078889.0,
     2137381534.0,
-    1935037374.0,
-    1340038802.0,
-    1185871952.0
+    1438445686.0,
+    1340038802.0
    ],
-   "year_only": false
+   "year_only": true
   },
-  "45006": {
-   "end": "2023-12-31",
-   "eps": 0.53,
-   "eps_prior": 0.76,
+  "46811": {
+   "end": "2024-09-30",
+   "eps": 0.76,
+   "eps_prior": 0.46,
    "layout_eps": [
     0,
     1,
@@ -600,48 +462,48 @@
     1,
     false
    ],
-   "months": 3,
-   "navps": 17.53,
-   "navps_prior": 16.93,
+   "months": 6,
+   "navps": 18.54,
+   "navps_prior": 17.88,
    "ok": true,
    "pages": 12,
-   "profit": 269904367.0,
-   "profit_growth": -30.1,
-   "profit_prior": 386381209.0,
-   "revenue": 3009495384.0,
-   "revenue_growth": 17.9,
-   "revenue_prior": 2552879396.0,
-   "src_eps": "Basic earnings/(loss) per share (Rs.)  0.53  0.76  1.13  1.94",
-   "src_navps": "Net asset value per share (Rs.)  17.53  16.93  16.18  16.11",
-   "src_profit": "Equity holders of the parent company  269,904,367  386,381,209  -30%  575,763,211  990,280,004  -42%",
-   "src_revenue": "Revenue from contracts with customers  5  3,009,495,384  2,552,879,396  18%  7,887,423,238  6,944,690,613  14%",
-   "title": "Quarterly Financial Statements as at 31-12-2023",
+   "profit": 385371188.0,
+   "profit_growth": 63.5,
+   "profit_prior": 235688796.0,
+   "revenue": 2339069598.0,
+   "revenue_growth": -14.6,
+   "revenue_prior": 2740546320.0,
+   "src_eps": "Basic earnings/(loss) per share (Rs.)  0.76  0.46  1.00  0.60",
+   "src_navps": "Net asset value per share (Rs.)  18.54  17.88  17.48  16.55",
+   "src_profit": "Equity holders of the parent company  385,371,188  235,688,796  64%  510,279,181  305,858,844  67%",
+   "src_revenue": "Revenue from contracts with customers  4  2,339,069,598  2,740,546,320  -15%  4,536,148,487  4,877,927,853  -7%",
+   "title": "Quarterly Financial Statements as at 30-09-2024",
    "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/2353_1707733334070.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2353_1730714918603.pdf",
    "v": 6,
    "vals_eps": [
-    0.53,
     0.76,
-    1.13,
-    1.94
+    0.46,
+    1.0,
+    0.6
    ],
    "vals_navps": [
-    17.53,
-    16.93,
-    16.18,
-    16.11
+    18.54,
+    17.88,
+    17.48,
+    16.55
    ],
    "vals_profit": [
-    269904367.0,
-    386381209.0,
-    575763211.0,
-    990280004.0
+    385371188.0,
+    235688796.0,
+    510279181.0,
+    305858844.0
    ],
    "vals_revenue": [
-    3009495384.0,
-    2552879396.0,
-    7887423238.0,
-    6944690613.0
+    2339069598.0,
+    2740546320.0,
+    4536148487.0,
+    4877927853.0
    ],
    "year_only": true
   },
@@ -711,6 +573,144 @@
     3009495384.0,
     7570826139.0,
     7887423238.0
+   ],
+   "year_only": true
+  },
+  "47884": {
+   "end": "2025-03-31",
+   "eps": 1.55,
+   "eps_prior": 0.87,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 12,
+   "navps": 20.39,
+   "navps_prior": 17.88,
+   "ok": true,
+   "pages": 13,
+   "profit": 788958010.0,
+   "profit_growth": 77.1,
+   "profit_prior": 445438456.0,
+   "revenue": 4053675868.0,
+   "revenue_growth": 10.4,
+   "revenue_prior": 3673053096.0,
+   "src_eps": "Basic earnings/(loss) per share (Rs.)  1.55  0.87  3.50  2.00",
+   "src_navps": "Net asset value per share (Rs.)  20.39  17.88  18.99  16.55",
+   "src_profit": "Equity holders of the parent company  788,958,010  445,438,456  1,788,765,501  1,021,189,781",
+   "src_revenue": "Revenue from contracts with customers  4  4,053,675,868  3,673,053,096  10%  11,624,502,007  11,560,476,334  1%",
+   "title": "Quarterly Financial Statements as at 31-03-2025",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2353_1747653458004.25_SIGNED.pdf",
+   "v": 6,
+   "vals_eps": [
+    1.55,
+    0.87,
+    3.5,
+    2.0
+   ],
+   "vals_navps": [
+    20.39,
+    17.88,
+    18.99,
+    16.55
+   ],
+   "vals_profit": [
+    788958010.0,
+    445438456.0,
+    1788765501.0,
+    1021189781.0
+   ],
+   "vals_revenue": [
+    4053675868.0,
+    3673053096.0,
+    11624502007.0,
+    11560476334.0
+   ],
+   "year_only": true
+  },
+  "48468": {
+   "end": "2025-06-30",
+   "eps": 0.3,
+   "eps_prior": 0.24,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 21.0,
+   "navps_prior": 20.0,
+   "ok": true,
+   "pages": 12,
+   "profit": 151961248.0,
+   "profit_growth": 21.7,
+   "profit_prior": 124907993.0,
+   "revenue": 2265924415.0,
+   "revenue_growth": 3.1,
+   "revenue_prior": 2197078889.0,
+   "src_eps": "Basic earnings/(loss) per share (Rs.)  0.30  0.24  0.32  0.30",
+   "src_navps": "Net asset value per share (Rs.)  21  20  19  19",
+   "src_profit": "Equity holders of the parent company  151,961,248  124,907,993  22%  165,084,378  153,760,873  7%",
+   "src_revenue": "Revenue from contracts with customers  4  2,265,924,415  2,197,078,889  3%  1,665,216,028  1,438,445,686  16%",
+   "title": "Quarterly Financial Statements as at 30-06-2025",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2353_1753874969838.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.3,
+    0.24,
+    0.32,
+    0.3
+   ],
+   "vals_navps": [
+    21.0,
+    20.0,
+    19.0,
+    19.0
+   ],
+   "vals_profit": [
+    151961248.0,
+    124907993.0,
+    165084378.0,
+    153760873.0
+   ],
+   "vals_revenue": [
+    2265924415.0,
+    2197078889.0,
+    1665216028.0,
+    1438445686.0
    ],
    "year_only": true
   },

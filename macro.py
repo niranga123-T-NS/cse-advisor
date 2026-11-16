@@ -42,35 +42,30 @@ def get_wei(day: dt.date, s: requests.Session) -> bytes | None:
 
 
 def probe():
-    s0 = requests.Session()
-    for u in (WEI.format(d="20250328"), "https://www.cbsl.gov.lk/en/statistics/economic-indicators/weekly-indicators", "https://www.cbsl.gov.lk/"):
-        try:
-            r = s0.get(u, headers=UA, timeout=60)
-            print("PROBE", u, r.status_code, r.headers.get("content-type"), len(r.content), r.content[:120])
-        except requests.RequestException as ex:
-            print("PROBE", u, "error", repr(ex)[:200])
+    """Save what treasury.gov.lk serves, to find how its list of auction results is published."""
     out = DIR / "raw"
     out.mkdir(parents=True, exist_ok=True)
-    s, got, day = requests.Session(), 0, dt.date.today()
-    for back in range(0, 120):
-        d = day - dt.timedelta(days=back)
-        if d.weekday() not in (3, 4, 5):          # WEIs carry Friday's date; sometimes Thursday before a holiday
-            continue
-        raw = get_wei(d, s)
-        print(d, "found" if raw else "-")
-        if raw:
-            (out / f"WEI_{d:%Y%m%d}.txt").write_text(pdf_text(raw))
-            got += 1
-            if got >= 3:
-                break
-    for d in ("2018-03-02", "2021-06-04", "2024-03-01"):               # older layouts too
-        dd = dt.date.fromisoformat(d)
-        for k in range(0, 7):
-            raw = get_wei(dd + dt.timedelta(days=k), s)
-            if raw:
-                (out / f"WEI_{dd + dt.timedelta(days=k):%Y%m%d}.txt").write_text(pdf_text(raw)); print("old", dd + dt.timedelta(days=k)); break
-    rows = fx(s)
-    print("fx rows", len(rows), rows[:1], rows[-1:])
+    s0 = requests.Session()
+    for name, u in (("page", "https://www.treasury.gov.lk/web/public-debt-management-office"),
+                    ("file", "https://www.treasury.gov.lk/api/file/4a4e9baf-a75c-4d58-893f-d25dc7e3e43c"),
+                    ("home", "https://www.treasury.gov.lk/")):
+        try:
+            r = s0.get(u, headers=UA, timeout=60)
+            print("PROBE", name, r.status_code, r.headers.get("content-type"), len(r.content))
+            if r.content[:4] == b"%PDF":
+                (out / f"{name}.txt").write_text(pdf_text(r.content))
+            else:
+                (out / f"{name}.html").write_bytes(r.content[:400000])
+                for js in re.findall(r'src="([^"]+\.js)"', r.text)[:12]:
+                    jsu = js if js.startswith("http") else "https://www.treasury.gov.lk/" + js.lstrip("/")
+                    try:
+                        jr = s0.get(jsu, headers=UA, timeout=60)
+                        apis = sorted(set(re.findall(r'["\'`](/?api/[A-Za-z0-9_/\-${}.?=&]+)', jr.text)))
+                        print("JS", jsu, jr.status_code, len(jr.text), apis[:60])
+                    except requests.RequestException as ex:
+                        print("JS", jsu, repr(ex)[:100])
+        except requests.RequestException as ex:
+            print("PROBE", name, "error", repr(ex)[:200])
 
 
 def fx(s: requests.Session) -> list[list]:

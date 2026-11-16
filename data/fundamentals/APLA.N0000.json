@@ -1,5 +1,112 @@
 {
  "annual": {
+  "21777": {
+   "dps": 6.0,
+   "dps_prior": 300.0,
+   "end": "2017-03-31",
+   "eps": 40.27,
+   "eps_prior": 6.0,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 80,
+   "src_dps": "Dividend Per Share  Net Assets Per Share \u23ce  6  300",
+   "src_eps": "Earnings per Share  Dividend per Share \u23ce Rs.  40.27  Rs.  6.00",
+   "title": "Annual Report 2016/17",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/643_1500375807913.pdf",
+   "v": 6,
+   "vals_dps": [
+    6.0,
+    300.0
+   ],
+   "vals_eps": [
+    40.27,
+    6.0
+   ],
+   "year_only": false
+  },
+  "23823": {
+   "dps": 6.0,
+   "dps_prior": 6.0,
+   "end": "2018-03-31",
+   "eps": 17.65,
+   "eps_prior": 40.27,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 92,
+   "src_dps": "Dividend per share (Rs)  13  6.00  6.00  6.00  6.00",
+   "src_eps": "Earnings per share (Rs)  12  17.65  40.27  19.74  41.99",
+   "title": "Annual Report- ACL Plastics PLC- 2017/18",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/643_1531214131136.pdf",
+   "v": 6,
+   "vals_dps": [
+    6.0,
+    6.0,
+    6.0,
+    6.0
+   ],
+   "vals_eps": [
+    17.65,
+    40.27,
+    19.74,
+    41.99
+   ],
+   "year_only": false
+  },
+  "33592": {
+   "dps": 6.0,
+   "dps_prior": 6.0,
+   "end": "2019-03-31",
+   "eps": 7.07,
+   "eps_prior": 17.65,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 96,
+   "src_dps": "Dividend per share (Rs)  13  6.00  6.00  6.00  6.00",
+   "src_eps": "Earnings per share (Rs)  12  7.07  17.65  5.71  19.74",
+   "title": "ACL PLASTICS PLC-Annual Report for YE 2018/19",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/643_1564739339581.pdf",
+   "v": 6,
+   "vals_dps": [
+    6.0,
+    6.0,
+    6.0,
+    6.0
+   ],
+   "vals_eps": [
+    7.07,
+    17.65,
+    5.71,
+    19.74
+   ],
+   "year_only": false
+  },
   "36189": {
    "dps": 6.0,
    "dps_prior": 6.0,
@@ -382,7 +489,7 @@
     "id": "33592",
     "title": "ACL PLASTICS PLC-Annual Report for YE 2018/19",
     "uploaded": 1564739339581,
-    "url": "https://cdn.cse.lk/upload_report_file/643_1564739339581.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/643_1564739339581.pdf",
     "year_only": false
    },
    {
@@ -391,7 +498,7 @@
     "id": "23823",
     "title": "Annual Report- ACL Plastics PLC- 2017/18",
     "uploaded": 1531161000000,
-    "url": "https://cdn.cse.lk/upload_report_file/643_1531214131136.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/643_1531214131136.pdf",
     "year_only": false
    },
    {
@@ -400,7 +507,7 @@
     "id": "21777",
     "title": "Annual Report 2016/17",
     "uploaded": 1500316200000,
-    "url": "https://cdn.cse.lk/upload_report_file/643_1500375807913.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/643_1500375807913.pdf",
     "year_only": false
    }
   ],

@@ -1,14 +1,5 @@
 {
  "annual": {
-  "36162": {
-   "end": "2020-12-31",
-   "ok": true,
-   "pages": 64,
-   "title": "Audited Financial Statements as of 31-03-2020",
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/1992_1597748926595.pdf",
-   "v": 6,
-   "year_only": true
-  },
   "36223": {
    "dps": 0.23,
    "dps_prior": 0.13,
@@ -55,15 +46,6 @@
     9.0
    ],
    "year_only": false
-  },
-  "38334": {
-   "end": "2021-12-31",
-   "ok": true,
-   "pages": 90,
-   "title": "Audited Financial Statements as of 31-03-2021",
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/1992_1625022920472.pdf",
-   "v": 6,
-   "year_only": true
   },
   "38417": {
    "dps": 0.23,
@@ -155,15 +137,6 @@
     3.18,
     2.85
    ],
-   "year_only": false
-  },
-  "43576": {
-   "end": "2023-12-31",
-   "ok": true,
-   "pages": 109,
-   "title": "Audited Financial Statements for the year ended 31.3.2023",
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/1992_1688020942376.pdf",
-   "v": 6,
    "year_only": false
   },
   "43599": {
@@ -347,15 +320,6 @@
    },
    {
     "amended": false,
-    "end": "2023-12-31",
-    "id": "43576",
-    "title": "Audited Financial Statements for the year ended 31.3.2023",
-    "uploaded": 1688020942376,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/1992_1688020942376.pdf",
-    "year_only": false
-   },
-   {
-    "amended": false,
     "end": "2023-03-31",
     "id": "43599",
     "title": "Annual Report 2022/2023",
@@ -374,30 +338,12 @@
    },
    {
     "amended": false,
-    "end": "2021-12-31",
-    "id": "38334",
-    "title": "Audited Financial Statements as of 31-03-2021",
-    "uploaded": 1625022920472,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/1992_1625022920472.pdf",
-    "year_only": true
-   },
-   {
-    "amended": false,
     "end": "2021-03-31",
     "id": "38417",
     "title": "Annual Report 2020/21",
     "uploaded": 1626948833670,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/1992_1626948833670.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2020-12-31",
-    "id": "36162",
-    "title": "Audited Financial Statements as of 31-03-2020",
-    "uploaded": 1597748926595,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/1992_1597748926595.pdf",
-    "year_only": true
    },
    {
     "amended": false,
@@ -493,20 +439,20 @@
    },
    {
     "amended": false,
-    "end": "2024-03-31",
-    "id": "45765",
-    "title": "Interim Financial Statements of HNB Finance PLC as at 31st March 2024",
-    "uploaded": 1717065601776,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/1992_1717065601776.03.2024.pdf",
-    "year_only": false
+    "end": "2024-06-30",
+    "id": "46295",
+    "title": "Interim Financial Statements as at 30-06-2024",
+    "uploaded": 1723541332427,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1992_1723541332427.06.2024.pdf",
+    "year_only": true
    }
   ]
  },
  "quarterly": {
-  "45765": {
-   "end": "2024-03-31",
-   "eps": 0.13,
-   "eps_prior": 0.05,
+  "46295": {
+   "end": "2024-06-30",
+   "eps": 0.06,
+   "eps_prior": 0.07,
    "layout_eps": [
     0,
     1,
@@ -528,56 +474,44 @@
     true
    ],
    "months": 3,
-   "navps": 3.29,
-   "navps_prior": 2.94,
+   "navps": 3.34,
+   "navps_prior": 3.29,
    "ok": true,
    "pages": 11,
-   "profit": 217856588.0,
-   "profit_growth": 142.2,
-   "profit_prior": 89941312.0,
-   "revenue": 1640085306.0,
-   "revenue_growth": 28.4,
-   "revenue_prior": 1277803266.0,
-   "src_eps": "Basic Earnings Per Share (Rs.)  0.13  0.05  142.22  0.36  (0.27)  (0.29)  224.53",
-   "src_navps": "Net Asset Value Per Share  3.29  2.94",
-   "src_profit": "Profit/(Loss) for the Period  217,856,588  89,941,312  142.22  620,988,341  (468,397,264)  (496,117,663)  225.17",
-   "src_revenue": "Net Interest Income  1,640,085,306  1,277,803,266  28.35  5,525,925,807  4,388,252,656  4,263,709,861  29.60",
-   "title": "Interim Financial Statements of HNB Finance PLC as at 31st March 2024",
+   "profit": 100098370.0,
+   "profit_growth": -17.9,
+   "profit_prior": 121968019.0,
+   "revenue": 1237807199.0,
+   "revenue_growth": -0.7,
+   "revenue_prior": 1247014996.0,
+   "src_eps": "Basic Earnings Per Share (Rs.)  0.06  0.07  (16.84)",
+   "src_navps": "Net Asset Value Per Share (Rs.)  3.34  3.29",
+   "src_profit": "Profit/(Loss) for the Period  100,098,370  121,968,019  (17.93)",
+   "src_revenue": "Net Interest Income  1,237,807,199  1,247,014,996  (0.74)",
+   "title": "Interim Financial Statements as at 30-06-2024",
    "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/1992_1717065601776.03.2024.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1992_1723541332427.06.2024.pdf",
    "v": 6,
    "vals_eps": [
-    0.13,
-    0.05,
-    142.22,
-    0.36,
-    -0.27,
-    -0.29,
-    224.53
+    0.06,
+    0.07,
+    -16.84
    ],
    "vals_navps": [
-    3.29,
-    2.94
+    3.34,
+    3.29
    ],
    "vals_profit": [
-    217856588.0,
-    89941312.0,
-    142.22,
-    620988341.0,
-    -468397264.0,
-    -496117663.0,
-    225.17
+    100098370.0,
+    121968019.0,
+    -17.93
    ],
    "vals_revenue": [
-    1640085306.0,
-    1277803266.0,
-    28.35,
-    5525925807.0,
-    4388252656.0,
-    4263709861.0,
-    29.6
+    1237807199.0,
+    1247014996.0,
+    -0.74
    ],
-   "year_only": false
+   "year_only": true
   },
   "47069": {
    "end": "2024-09-30",

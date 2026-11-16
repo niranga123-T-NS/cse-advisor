@@ -1,9 +1,152 @@
 {
  "annual": {
+  "21704": {
+   "dps": 2.0,
+   "dps_prior": 2.0,
+   "end": "2017-03-31",
+   "eps": 10.13,
+   "eps_prior": 13.03,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 130.5,
+   "navps_prior": 122.17,
+   "ok": true,
+   "pages": 195,
+   "src_dps": "Dividend per share  Rs.  2.00  2.00",
+   "src_eps": "Earnings per share  Rs.  10.13  13.03",
+   "src_navps": "Net assets per share  Rs.  130.50  122.17",
+   "title": "Annual Report 2016/2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/684_1500529474147.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.0,
+    2.0
+   ],
+   "vals_eps": [
+    10.13,
+    13.03
+   ],
+   "vals_navps": [
+    130.5,
+    122.17
+   ],
+   "year_only": false
+  },
+  "23671": {
+   "dps": 1.25,
+   "dps_prior": 2.0,
+   "end": "2018-03-31",
+   "eps": 2.09,
+   "eps_prior": 10.13,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 130.9,
+   "navps_prior": 130.5,
+   "ok": true,
+   "pages": 103,
+   "src_dps": "Dividend per share  Rs.  1.25  2.00  (0.8)  (38)  Mr G. H. A. Wimalasena",
+   "src_eps": "Earnings per share  Rs.  2.09  10.13  (8.0)  Mr D. G. P. S. Abeygunawardana (Director/ General Manager)",
+   "src_navps": "Net assets per share  Rs.  130.90  130.50  0.4",
+   "title": "Annual Report 2017/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/684_1528265074236.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.25,
+    2.0,
+    -0.8,
+    -38.0
+   ],
+   "vals_eps": [
+    2.09,
+    10.13,
+    -8.0
+   ],
+   "vals_navps": [
+    130.9,
+    130.5,
+    0.4
+   ],
+   "year_only": false
+  },
+  "33274": {
+   "dps": 2.0,
+   "dps_prior": 1.25,
+   "end": "2019-03-31",
+   "eps": 5.91,
+   "eps_prior": 0.04,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 150.76,
+   "navps_prior": 146.3,
+   "ok": true,
+   "pages": 201,
+   "src_dps": "Dividend per share  Rs.  2.00  1.25  0.8  60",
+   "src_eps": "Earnings per share  Rs.  5.91  0.04  5.9",
+   "src_navps": "Net assets per share  Rs.  150.76  146.30  4.5",
+   "title": "Annual Report as at 31.03.2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/684_1559815050896.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.0,
+    1.25,
+    0.8,
+    60.0
+   ],
+   "vals_eps": [
+    5.91,
+    0.04,
+    5.9
+   ],
+   "vals_navps": [
+    150.76,
+    146.3,
+    4.5
+   ],
+   "year_only": true
+  },
   "36314": {
    "dps": 1.0,
    "dps_prior": 2.0,
-   "end": "2020-12-31",
+   "end": "2020-03-31",
    "eps": 2.91,
    "eps_prior": 5.91,
    "layout_dps": [
@@ -404,7 +547,7 @@
    },
    {
     "amended": false,
-    "end": "2020-12-31",
+    "end": "2020-03-31",
     "id": "36314",
     "title": "Annual Report as at 31.03.2020",
     "uploaded": 1599560284338,
@@ -413,11 +556,11 @@
    },
    {
     "amended": false,
-    "end": "2019-12-31",
+    "end": "2019-03-31",
     "id": "33274",
     "title": "Annual Report as at 31.03.2019",
     "uploaded": 1559759400000,
-    "url": "https://cdn.cse.lk/upload_report_file/684_1559815050896.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/684_1559815050896.pdf",
     "year_only": true
    },
    {
@@ -426,7 +569,7 @@
     "id": "23671",
     "title": "Annual Report 2017/2018",
     "uploaded": 1528137000000,
-    "url": "https://cdn.cse.lk/upload_report_file/684_1528265074236.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/684_1528265074236.pdf",
     "year_only": false
    },
    {
@@ -435,7 +578,7 @@
     "id": "21704",
     "title": "Annual Report 2016/2017",
     "uploaded": 1496687400000,
-    "url": "https://cdn.cse.lk/upload_report_file/684_1500529474147.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/684_1500529474147.pdf",
     "year_only": false
    }
   ],

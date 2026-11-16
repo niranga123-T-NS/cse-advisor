@@ -1,5 +1,71 @@
 {
  "annual": {
+  "23648": {
+   "end": "2018-03-31",
+   "eps": 30.0,
+   "eps_prior": 1.02,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 120,
+   "src_eps": "Earnings per share \u23ce - Basic (LKR)  30  1.02",
+   "title": "Annual Report 2017/18",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1045_1528168841632.pdf",
+   "v": 6,
+   "vals_eps": [
+    30.0,
+    1.02
+   ],
+   "year_only": false
+  },
+  "33278": {
+   "dps": 0.25,
+   "dps_prior": 0.5,
+   "end": "2019-03-31",
+   "eps": -0.48,
+   "eps_prior": 1.8,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 6.61,
+   "navps_prior": 8.25,
+   "ok": true,
+   "pages": 136,
+   "src_dps": "Dividend per share (LKR)  0.25  0.50",
+   "src_eps": "\u2022 EPS LKR (0.48)  \u2022 LKR 1.8 Bn expended on salaries,  certifications \u2013 Rainforest Alliance",
+   "src_navps": "Net assets value per share (LKR)  6.61  8.25",
+   "title": "Annual Report 2018/2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1045_1559818272.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.25,
+    0.5
+   ],
+   "vals_eps": [
+    -0.48,
+    1.8
+   ],
+   "vals_navps": [
+    6.61,
+    8.25
+   ],
+   "year_only": false
+  },
   "36942": {
    "dps": 0.25,
    "dps_prior": 0.5,
@@ -415,7 +481,7 @@
     "id": "33278",
     "title": "Annual Report 2018/2019",
     "uploaded": 1559759400000,
-    "url": "https://cdn.cse.lk/upload_report_file/1045_1559818272.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1045_1559818272.pdf",
     "year_only": false
    },
    {
@@ -424,7 +490,7 @@
     "id": "23648",
     "title": "Annual Report 2017/18",
     "uploaded": 1528137000000,
-    "url": "https://cdn.cse.lk/upload_report_file/1045_1528168841632.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1045_1528168841632.pdf",
     "year_only": false
    }
   ],

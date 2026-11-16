@@ -1,5 +1,149 @@
 {
  "annual": {
+  "23643": {
+   "dps": 2.75,
+   "dps_prior": 2.75,
+   "end": "2018-03-31",
+   "eps": 4.16,
+   "eps_prior": 5.18,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 16.78,
+   "navps_prior": 24.33,
+   "ok": true,
+   "pages": 162,
+   "src_dps": "Dividend per share (Rs.)  -  -  2.75  2.75  0.85  0.85  0.35  0.35",
+   "src_eps": "Earnings per share \u23ce  - Basic (LKR)  33  4.16  5.18  4.52  5.20",
+   "src_navps": "Net assets per share  LKR  16.78  24.33",
+   "title": "Annual Report 2017/18",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/728_1528113349459.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.75,
+    2.75,
+    0.85,
+    0.85,
+    0.35,
+    0.35
+   ],
+   "vals_eps": [
+    4.16,
+    5.18,
+    4.52,
+    5.2
+   ],
+   "vals_navps": [
+    16.78,
+    24.33
+   ],
+   "year_only": false
+  },
+  "30472": {
+   "dps": 1.4,
+   "dps_prior": 0.5,
+   "end": "2017-03-31",
+   "eps": 5.18,
+   "eps_prior": 2.19,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 25.56,
+   "navps_prior": 20.2,
+   "ok": true,
+   "pages": 172,
+   "src_dps": "Dividend per share  LKR/share  1.40  0.50  1.45",
+   "src_eps": "Earnings per share  LKR.  5.18  2.19  1.65",
+   "src_navps": "Net assets per share  LKR  25.56  20.20  18.10",
+   "title": "Annual Report 2016/2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/728_1496718654.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.4,
+    0.5,
+    1.45
+   ],
+   "vals_eps": [
+    5.18,
+    2.19,
+    1.65
+   ],
+   "vals_navps": [
+    25.56,
+    20.2,
+    18.1
+   ],
+   "year_only": false
+  },
+  "33276": {
+   "dps": 2.25,
+   "dps_prior": 1.6,
+   "end": "2019-03-31",
+   "eps": 5.08,
+   "eps_prior": 4.52,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 19.92,
+   "navps_prior": 17.18,
+   "ok": true,
+   "pages": 184,
+   "src_dps": "Dividend per share  LKR  2.25  1.60",
+   "src_eps": "Earnings per share  LKR  5.08  4.52",
+   "src_navps": "Net assets per share  LKR.  19.92  17.18",
+   "title": "Annual report for the financial year ended 31st March 2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/728_1559815563983.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.25,
+    1.6
+   ],
+   "vals_eps": [
+    5.08,
+    4.52
+   ],
+   "vals_navps": [
+    19.92,
+    17.18
+   ],
+   "year_only": false
+  },
   "35468": {
    "dps": 0.3,
    "dps_prior": 2.25,
@@ -418,7 +562,7 @@
     "id": "33276",
     "title": "Annual report for the financial year ended 31st March 2019",
     "uploaded": 1559759400000,
-    "url": "https://cdn.cse.lk/upload_report_file/728_1559815563983.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/728_1559815563983.pdf",
     "year_only": false
    },
    {
@@ -427,7 +571,7 @@
     "id": "23643",
     "title": "Annual Report 2017/18",
     "uploaded": 1528050600000,
-    "url": "https://cdn.cse.lk/upload_report_file/728_1528113349459.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/728_1528113349459.pdf",
     "year_only": false
    },
    {
@@ -436,7 +580,7 @@
     "id": "30472",
     "title": "Annual Report 2016/2017",
     "uploaded": 1496687400000,
-    "url": "https://cdn.cse.lk/upload_report_file/728_1496718654.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/728_1496718654.pdf",
     "year_only": false
    }
   ],
@@ -524,18 +668,18 @@
    },
    {
     "amended": false,
-    "end": "2024-03-31",
-    "id": "45721",
-    "title": "Interim condensed financial statements for the quarter ended 31st March 2024",
-    "uploaded": 1716983919286,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/728_1716983919286.pdf",
-    "year_only": false
+    "end": "2024-06-30",
+    "id": "46196",
+    "title": "Interim Financial Statements as of 30/06/2024",
+    "uploaded": 1722510555351,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/728_1722510555351.pdf",
+    "year_only": true
    }
   ]
  },
  "quarterly": {
-  "45721": {
-   "end": "2024-03-31",
+  "46196": {
+   "end": "2024-06-30",
    "layout_navps": [
     0,
     1,
@@ -551,43 +695,39 @@
     1,
     false
    ],
-   "months": null,
-   "navps": 30.44,
-   "navps_prior": 31.99,
+   "months": 3,
+   "navps": 26.29,
+   "navps_prior": 30.44,
    "ok": true,
-   "pages": 16,
-   "profit": 155731.0,
-   "profit_growth": null,
-   "profit_prior": -237042.0,
-   "revenue": 1837567.0,
-   "revenue_growth": -13.3,
-   "revenue_prior": 2118879.0,
-   "src_navps": "Net assets per share  30.44  31.99  32.01  32.23",
-   "src_profit": "Equity holders of the parent  155,731  (237,042)  2,358,770  2,364,292",
-   "src_revenue": "Revenue  1,837,567  2,118,879  -13%  8,320,903  8,768,041  -5%",
-   "title": "Interim condensed financial statements for the quarter ended 31st March 2024",
+   "pages": 15,
+   "profit": 579304.0,
+   "profit_growth": -23.3,
+   "profit_prior": 755269.0,
+   "revenue": 2065358.0,
+   "revenue_growth": -12.4,
+   "revenue_prior": 2357367.0,
+   "src_navps": "Net Assets Per Share  26.29  30.44  27.74  32.01",
+   "src_profit": "Equity holders of the parent  579,304  755,269",
+   "src_revenue": "Revenue  2,065,358  2,357,367  -12%",
+   "title": "Interim Financial Statements as of 30/06/2024",
    "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/728_1716983919286.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/728_1722510555351.pdf",
    "v": 6,
    "vals_navps": [
+    26.29,
     30.44,
-    31.99,
-    32.01,
-    32.23
+    27.74,
+    32.01
    ],
    "vals_profit": [
-    155731.0,
-    -237042.0,
-    2358770.0,
-    2364292.0
+    579304.0,
+    755269.0
    ],
    "vals_revenue": [
-    1837567.0,
-    2118879.0,
-    8320903.0,
-    8768041.0
+    2065358.0,
+    2357367.0
    ],
-   "year_only": false
+   "year_only": true
   },
   "46896": {
    "end": "2024-09-30",

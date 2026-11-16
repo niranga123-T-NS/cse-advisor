@@ -197,6 +197,24 @@
    },
    {
     "amended": false,
+    "end": "2025-06-30",
+    "id": "48728",
+    "title": "Quarterly Financial Statement for the period ended 30.06.2025",
+    "uploaded": 1755226282961,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2774_1755226282961.06.2025 Signed.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-03-31",
+    "id": "47974",
+    "title": "Quarterly Financial Statement for the period ended 31.03.2025",
+    "uploaded": 1748399870425,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2774_1748399870425.03.2025 Upload File.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
     "end": "2024-12-31",
     "id": "47380",
     "title": "Quarterly Financial Statement for the period ended 31.12.2024",
@@ -206,159 +224,222 @@
    },
    {
     "amended": false,
-    "end": "2023-12-31",
-    "id": "44989",
-    "title": "Quarterly Financial Statement for the period ended 31/12/2023",
-    "uploaded": 1707448115901,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/2774_1707448115901.12.2023.pdf",
+    "end": "2024-09-30",
+    "id": "47036",
+    "title": "Quarterly Financial Statement for the period ended 30/09/2024",
+    "uploaded": 1731553405187,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2774_1731553405187.pdf",
     "year_only": false
    },
    {
     "amended": false,
-    "end": "2022-12-31",
-    "id": "42765",
-    "title": "Interim Financial Statements as of 31/12/2022",
-    "uploaded": 1676540512398,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/2772_1676540512398.pdf",
-    "year_only": true
+    "end": "2024-06-30",
+    "id": "46413",
+    "title": "Quarterly Financial Statement for the period ended 30/06/2024",
+    "uploaded": 1723716062208,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2774_1723716062208.06.2024.pdf",
+    "year_only": false
    },
    {
     "amended": false,
-    "end": "2022-06-30",
-    "id": "42193",
-    "title": "SUPPLEMENTARY DISCLOSURE STATEMENT FOR THE PERIOD ENDED 30 JUNE 2022",
-    "uploaded": 1665479400000,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/2772_1669977669801.pdf",
+    "end": "2024-03-31",
+    "id": "45657",
+    "title": "Quarterly Financial Statement for the period ended 31/03/2024",
+    "uploaded": 1716865294601,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2774_1716865294601.03.2024.pdf",
     "year_only": false
    }
   ]
  },
  "quarterly": {
-  "42193": {
-   "end": "2022-06-30",
-   "eps": 0.75,
-   "eps_prior": -13.77,
+  "45657": {
+   "end": "2024-03-31",
+   "eps": 0.72,
+   "eps_prior": 0.37,
    "layout_eps": [
     0,
     1,
     false
    ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "ok": true,
-   "pages": 4,
-   "profit": 2070859.0,
-   "profit_growth": null,
-   "profit_prior": -165282.0,
-   "revenue": 64107152.0,
-   "revenue_growth": 0.5,
-   "revenue_prior": 63810066.0,
-   "src_eps": "Basic Earnings / (Loss) Per Share  0.75  (13.77)",
-   "src_profit": "Profit / (Loss) for the Period  2,070,859  (165,282)",
-   "src_revenue": "Revenue  64,107,152  63,810,066",
-   "title": "SUPPLEMENTARY DISCLOSURE STATEMENT FOR THE PERIOD ENDED 30 JUNE 2022",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/2772_1669977669801.pdf",
-   "v": 6,
-   "vals_eps": [
-    0.75,
-    -13.77
-   ],
-   "vals_profit": [
-    2070859.0,
-    -165282.0
-   ],
-   "vals_revenue": [
-    64107152.0,
-    63810066.0
-   ],
-   "year_only": false
-  },
-  "42765": {
-   "end": "2022-12-31",
-   "eps": 1.09,
-   "eps_prior": 1.03,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "ok": true,
-   "pages": 4,
-   "profit": 2996369.0,
-   "profit_growth": 5.6,
-   "profit_prior": 2836365.0,
-   "revenue": 56353787.0,
-   "revenue_growth": -23.9,
-   "revenue_prior": 74021193.0,
-   "src_eps": "Basic Earnings Per Share  1.09  1.03  2.97  1.39",
-   "src_profit": "Profit for the Period  2,996,369  2,836,365  6%  8,197,909  3,842,901  113%",
-   "src_revenue": "Revenue  56,353,787  74,021,193  -24%  211,207,189  154,566,564  37%",
-   "title": "Interim Financial Statements as of 31/12/2022",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/2772_1676540512398.pdf",
-   "v": 6,
-   "vals_eps": [
-    1.09,
-    1.03,
-    2.97,
-    1.39
-   ],
-   "vals_profit": [
-    2996369.0,
-    2836365.0,
-    8197909.0,
-    3842901.0
-   ],
-   "vals_revenue": [
-    56353787.0,
-    74021193.0,
-    211207189.0,
-    154566564.0
-   ],
-   "year_only": true
-  },
-  "44989": {
-   "end": "2023-12-31",
    "layout_navps": [
     0,
     1,
     false
    ],
-   "months": null,
-   "navps": 19.37,
-   "navps_prior": 26.95,
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 3.92,
+   "navps_prior": 1.96,
    "ok": true,
-   "pages": 8,
-   "profit_growth": null,
-   "revenue_growth": null,
-   "src_navps": "Net Assets Value Per Share*  19.37  26.95",
-   "title": "Quarterly Financial Statement for the period ended 31/12/2023",
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/2774_1707448115901.12.2023.pdf",
+   "pages": 9,
+   "profit": 5412993.0,
+   "profit_growth": 32.1,
+   "profit_prior": 4096465.0,
+   "revenue": 74553599.0,
+   "revenue_growth": -5.5,
+   "revenue_prior": 78898397.0,
+   "src_eps": "Earnings Per Share (Rs.)  0.72  0.37",
+   "src_navps": "Net Assets Value Per Share  3.92  1.96",
+   "src_profit": "Profit after taxation  5,412,993  4,096,465  32%  27,199,218  13,979,605  95%",
+   "src_revenue": "Revenue  74,553,599  78,898,397  -6%  326,572,741  289,663,882  13%",
+   "title": "Quarterly Financial Statement for the period ended 31/03/2024",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2774_1716865294601.03.2024.pdf",
    "v": 6,
+   "vals_eps": [
+    0.72,
+    0.37
+   ],
    "vals_navps": [
-    19.37,
-    26.95
+    3.92,
+    1.96
+   ],
+   "vals_profit": [
+    5412993.0,
+    4096465.0,
+    27199218.0,
+    13979605.0
+   ],
+   "vals_revenue": [
+    74553599.0,
+    78898397.0,
+    326572741.0,
+    289663882.0
+   ],
+   "year_only": false
+  },
+  "46413": {
+   "end": "2024-06-30",
+   "eps": 0.2,
+   "eps_prior": 0.18,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 4.29,
+   "navps_prior": 4.1,
+   "ok": true,
+   "pages": 9,
+   "profit": 7728261.0,
+   "profit_growth": 15.4,
+   "profit_prior": 6698207.0,
+   "revenue": 82145433.0,
+   "revenue_growth": 2.6,
+   "revenue_prior": 80025560.0,
+   "src_eps": "Earnings Per Share (Rs.)  0.20  0.18",
+   "src_navps": "Net Assets Value Per Share  4.29  4.10",
+   "src_profit": "Profit after taxation  7,728,261  6,698,207  15%",
+   "src_revenue": "Revenue  82,145,433  80,025,560  3%",
+   "title": "Quarterly Financial Statement for the period ended 30/06/2024",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2774_1723716062208.06.2024.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.2,
+    0.18
+   ],
+   "vals_navps": [
+    4.29,
+    4.1
+   ],
+   "vals_profit": [
+    7728261.0,
+    6698207.0
+   ],
+   "vals_revenue": [
+    82145433.0,
+    80025560.0
+   ],
+   "year_only": false
+  },
+  "47036": {
+   "end": "2024-09-30",
+   "eps": 0.55,
+   "eps_prior": 0.38,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 4.38,
+   "navps_prior": 3.83,
+   "ok": true,
+   "pages": 9,
+   "profit": 13086327.0,
+   "profit_growth": 66.3,
+   "profit_prior": 7871456.0,
+   "revenue": 112589123.0,
+   "revenue_growth": 23.3,
+   "revenue_prior": 91323887.0,
+   "src_eps": "Earnings Per Share (Rs.)  0.55  0.38",
+   "src_navps": "Net Assets Value Per Share  4.38  3.83",
+   "src_profit": "Profit after taxation  13,086,327  7,871,456  66%  20,814,587  14,569,662  43%",
+   "src_revenue": "Revenue  112,589,123  91,323,887  23%  194,734,556  171,349,446  14%",
+   "title": "Quarterly Financial Statement for the period ended 30/09/2024",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2774_1731553405187.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.55,
+    0.38
+   ],
+   "vals_navps": [
+    4.38,
+    3.83
+   ],
+   "vals_profit": [
+    13086327.0,
+    7871456.0,
+    20814587.0,
+    14569662.0
+   ],
+   "vals_revenue": [
+    112589123.0,
+    91323887.0,
+    194734556.0,
+    171349446.0
    ],
    "year_only": false
   },
@@ -424,6 +505,132 @@
     80669695.0,
     304206293.0,
     252019141.0
+   ],
+   "year_only": false
+  },
+  "47974": {
+   "end": "2025-03-31",
+   "eps": 1.17,
+   "eps_prior": 0.65,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 4.85,
+   "navps_prior": 3.83,
+   "ok": true,
+   "pages": 9,
+   "profit": 13274023.0,
+   "profit_growth": 145.2,
+   "profit_prior": 5412993.0,
+   "revenue": 112064216.0,
+   "revenue_growth": 50.3,
+   "revenue_prior": 74553599.0,
+   "src_eps": "Earnings Per Share (Rs.)  1.17  0.65",
+   "src_navps": "Net Assets Value Per Share  4.85  3.83",
+   "src_profit": "Profit after taxation  13,274,023  5,412,993  145%  44,236,791  24,586,355  80%",
+   "src_revenue": "Revenue  112,064,216  74,553,599  50%  416,270,509  326,569,040  27%",
+   "title": "Quarterly Financial Statement for the period ended 31.03.2025",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2774_1748399870425.03.2025 Upload File.pdf",
+   "v": 6,
+   "vals_eps": [
+    1.17,
+    0.65
+   ],
+   "vals_navps": [
+    4.85,
+    3.83
+   ],
+   "vals_profit": [
+    13274023.0,
+    5412993.0,
+    44236791.0,
+    24586355.0
+   ],
+   "vals_revenue": [
+    112064216.0,
+    74553599.0,
+    416270509.0,
+    326569040.0
+   ],
+   "year_only": false
+  },
+  "48728": {
+   "end": "2025-06-30",
+   "eps": 0.37,
+   "eps_prior": 0.2,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 5.22,
+   "navps_prior": 4.85,
+   "ok": true,
+   "pages": 8,
+   "profit": 14115558.0,
+   "profit_growth": 82.6,
+   "profit_prior": 7728261.0,
+   "revenue": 120054826.0,
+   "revenue_growth": 46.1,
+   "revenue_prior": 82145433.0,
+   "src_eps": "Earnings Per Share (Rs.)  0.37  0.20",
+   "src_navps": "Net Assets Value Per Share  5.22  4.85",
+   "src_profit": "Profit after taxation  14,115,558  7,728,261  83%",
+   "src_revenue": "Revenue  120,054,826  82,145,433  46%",
+   "title": "Quarterly Financial Statement for the period ended 30.06.2025",
+   "unit": null,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2774_1755226282961.06.2025 Signed.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.37,
+    0.2
+   ],
+   "vals_navps": [
+    5.22,
+    4.85
+   ],
+   "vals_profit": [
+    14115558.0,
+    7728261.0
+   ],
+   "vals_revenue": [
+    120054826.0,
+    82145433.0
    ],
    "year_only": false
   },

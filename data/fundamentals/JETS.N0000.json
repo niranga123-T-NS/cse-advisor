@@ -1,5 +1,71 @@
 {
  "annual": {
+  "23736": {
+   "end": "2018-03-31",
+   "eps": -0.74,
+   "eps_prior": -0.32,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 10.7,
+   "navps_prior": 11.09,
+   "ok": true,
+   "pages": 69,
+   "src_eps": "Earnings/(Loss) per share  Rs.  (0.74)  (0.32)",
+   "src_navps": "Net Assets per Share  Rs.  10.70  11.09",
+   "title": "Annual Report 2017/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1686_1529404837296.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.74,
+    -0.32
+   ],
+   "vals_navps": [
+    10.7,
+    11.09
+   ],
+   "year_only": false
+  },
+  "33281": {
+   "end": "2019-03-31",
+   "eps": -0.56,
+   "eps_prior": -0.74,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 10.59,
+   "navps_prior": 10.7,
+   "ok": true,
+   "pages": 164,
+   "src_eps": "Earnings/(Loss) per share  Rs.  (0.56)  (0.74)",
+   "src_navps": "Net Assets per Share  Rs.  10.59  10.70",
+   "title": "Annual Report 2018/2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1686_1559818764.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.56,
+    -0.74
+   ],
+   "vals_navps": [
+    10.59,
+    10.7
+   ],
+   "year_only": false
+  },
   "35810": {
    "end": "2020-03-31",
    "eps": -0.9,
@@ -304,7 +370,7 @@
     "id": "33281",
     "title": "Annual Report 2018/2019",
     "uploaded": 1559759400000,
-    "url": "https://cdn.cse.lk/upload_report_file/1686_1559818764.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1686_1559818764.pdf",
     "year_only": false
    },
    {
@@ -313,7 +379,7 @@
     "id": "23736",
     "title": "Annual Report 2017/2018",
     "uploaded": 1529346600000,
-    "url": "https://cdn.cse.lk/upload_report_file/1686_1529404837296.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1686_1529404837296.pdf",
     "year_only": false
    }
   ],

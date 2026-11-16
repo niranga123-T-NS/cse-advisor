@@ -1,5 +1,97 @@
 {
  "annual": {
+  "24426": {
+   "dps": 0.65,
+   "dps_prior": 0.4,
+   "end": "2018-03-31",
+   "eps": -0.5,
+   "eps_prior": 0.58,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 11.38,
+   "navps_prior": 11.38,
+   "ok": true,
+   "pages": 184,
+   "src_dps": "Dividend per Share(LKR)  -  0.65  -  -  0.40  -  -  -  -  -",
+   "src_eps": "Earnings/(loss) per Share (LKR)  (0.50)  0.58",
+   "src_navps": "Net Assets Value per Share (LKR)  11.38  11.38",
+   "title": "Annual Report for 2017/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/669_1535710148642.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.65,
+    0.4
+   ],
+   "vals_eps": [
+    -0.5,
+    0.58
+   ],
+   "vals_navps": [
+    11.38,
+    11.38
+   ],
+   "year_only": false
+  },
+  "30771": {
+   "dps": 0.65,
+   "dps_prior": 0.4,
+   "end": "2017-03-31",
+   "eps": 0.74,
+   "eps_prior": 0.15,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 11.38,
+   "navps_prior": 11.45,
+   "ok": true,
+   "pages": 79,
+   "src_dps": "Dividend per Share(LKR)  0.65  -  -  0.40  -  -  -  -  -  -",
+   "src_eps": "Earnings Per Share  22  0.74  0.15  0.58  0.53",
+   "src_navps": "Net Assets Value per Share (LKR)  11.38  11.45",
+   "title": "Annual Report 2016/2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/669_1504523975.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.65,
+    0.4
+   ],
+   "vals_eps": [
+    0.74,
+    0.15,
+    0.58,
+    0.53
+   ],
+   "vals_navps": [
+    11.38,
+    11.45
+   ],
+   "year_only": false
+  },
   "34063": {
    "dps": 0.65,
    "dps_prior": 0.4,
@@ -437,7 +529,7 @@
     "id": "24426",
     "title": "Annual Report for 2017/2018",
     "uploaded": 1535653800000,
-    "url": "https://cdn.cse.lk/upload_report_file/669_1535710148642.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/669_1535710148642.pdf",
     "year_only": false
    },
    {
@@ -446,7 +538,7 @@
     "id": "30771",
     "title": "Annual Report 2016/2017",
     "uploaded": 1504463400000,
-    "url": "https://cdn.cse.lk/upload_report_file/669_1504523975.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/669_1504523975.pdf",
     "year_only": false
    }
   ],

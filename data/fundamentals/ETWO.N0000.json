@@ -1,5 +1,141 @@
 {
  "annual": {
+  "21433": {
+   "dps": 1.4,
+   "dps_prior": 0.2,
+   "end": "2017-03-31",
+   "eps": 1.83,
+   "eps_prior": 5.6,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 32.27,
+   "navps_prior": 32.03,
+   "ok": true,
+   "pages": 60,
+   "src_dps": "Dividend per share*  (Rs.)  1.40  0.20  0.20  -  -",
+   "src_eps": "Earnings per share (Rs.)  16  1.83  5.60",
+   "src_navps": "Net assets per share (Rs.)  32.27  32.03",
+   "title": "Annual Report 2016/17",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/621_1495620426487.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.4,
+    0.2,
+    0.2
+   ],
+   "vals_eps": [
+    1.83,
+    5.6
+   ],
+   "vals_navps": [
+    32.27,
+    32.03
+   ],
+   "year_only": false
+  },
+  "23360": {
+   "dps": 2.25,
+   "dps_prior": 1.4,
+   "end": "2018-03-31",
+   "eps": 4.29,
+   "eps_prior": 1.83,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 34.3,
+   "navps_prior": 32.27,
+   "ok": true,
+   "pages": 60,
+   "src_dps": "Dividend per share (Rs.)  2.25  1.40",
+   "src_eps": "Earnings per share (Rs.)  16  4.29  1.83",
+   "src_navps": "Net assets per share (Rs.)  34.30  32.27",
+   "title": "Annual Report 2017/18",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/621_1527067796398.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.25,
+    1.4
+   ],
+   "vals_eps": [
+    4.29,
+    1.83
+   ],
+   "vals_navps": [
+    34.3,
+    32.27
+   ],
+   "year_only": false
+  },
+  "32921": {
+   "dps": 1.5,
+   "dps_prior": 2.25,
+   "end": "2019-03-31",
+   "eps": 6.13,
+   "eps_prior": 4.29,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 38.93,
+   "navps_prior": 34.3,
+   "ok": true,
+   "pages": 64,
+   "src_dps": "Dividend per share (Rs.)  1.50  2.25",
+   "src_eps": "Earnings per share (Rs.)  16  6.13  4.29",
+   "src_navps": "Net assets per share (Rs.)  38.93  34.30",
+   "title": "Annual Report 2018/2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/621_1558495139048.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.5,
+    2.25
+   ],
+   "vals_eps": [
+    6.13,
+    4.29
+   ],
+   "vals_navps": [
+    38.93,
+    34.3
+   ],
+   "year_only": false
+  },
   "35940": {
    "dps": 0.85,
    "dps_prior": 1.5,
@@ -394,7 +530,7 @@
     "id": "32921",
     "title": "Annual Report 2018/2019",
     "uploaded": 1558463400000,
-    "url": "https://cdn.cse.lk/upload_report_file/621_1558495139048.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/621_1558495139048.pdf",
     "year_only": false
    },
    {
@@ -403,7 +539,7 @@
     "id": "23360",
     "title": "Annual Report 2017/18",
     "uploaded": 1527013800000,
-    "url": "https://cdn.cse.lk/upload_report_file/621_1527067796398.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/621_1527067796398.pdf",
     "year_only": false
    },
    {
@@ -412,7 +548,7 @@
     "id": "21433",
     "title": "Annual Report 2016/17",
     "uploaded": 1495564200000,
-    "url": "https://cdn.cse.lk/upload_report_file/621_1495620426487.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/621_1495620426487.pdf",
     "year_only": false
    }
   ],
@@ -491,29 +627,29 @@
    },
    {
     "amended": false,
-    "end": "2023-12-31",
-    "id": "45082",
-    "title": "ETWO Interim Financials 31 December 2023",
-    "uploaded": 1707903014492,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/621_1707903014492.pdf",
-    "year_only": false
+    "end": "2024-09-30",
+    "id": "47001",
+    "title": "Quarterly Financial Report as of 30-09-2024",
+    "uploaded": 1731496488058,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/621_1731496488058.pdf",
+    "year_only": true
    },
    {
     "amended": false,
-    "end": "2023-09-30",
-    "id": "44492",
-    "title": "ETWO Interim Financials 30 September 2023",
-    "uploaded": 1699955214990,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/621_1699955214990.pdf",
-    "year_only": false
+    "end": "2024-06-30",
+    "id": "46331",
+    "title": "Quarterly Financial Report as of 30-06-2024",
+    "uploaded": 1723626465178,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/621_1723626465178.pdf",
+    "year_only": true
    }
   ]
  },
  "quarterly": {
-  "44492": {
-   "end": "2023-09-30",
-   "eps": 0.7,
-   "eps_prior": 0.64,
+  "46331": {
+   "end": "2024-06-30",
+   "eps": 0.94,
+   "eps_prior": 0.76,
    "layout_eps": [
     0,
     1,
@@ -535,56 +671,48 @@
     true
    ],
    "months": 3,
-   "navps": 50.21,
-   "navps_prior": 48.76,
+   "navps": 56.35,
+   "navps_prior": 55.91,
    "ok": true,
    "pages": 8,
-   "profit": 21544.0,
-   "profit_growth": 8.6,
-   "profit_prior": 19846.0,
-   "revenue": 42406.0,
-   "revenue_growth": 22.5,
-   "revenue_prior": 34613.0,
-   "src_eps": "Earnings per share (Rs.)  0.70  0.64  1.46  1.14",
-   "src_navps": "Net assets per share (Rs.)  50.21  48.76",
-   "src_profit": "Profit for the period  21,544  19,846  9  45,123  35,414  27",
-   "src_revenue": "Revenue  42,406  34,613  23  83,946  69,094  21",
-   "title": "ETWO Interim Financials 30 September 2023",
+   "profit": 29165.0,
+   "profit_growth": 23.7,
+   "profit_prior": 23579.0,
+   "revenue": 48660.0,
+   "revenue_growth": 17.1,
+   "revenue_prior": 41540.0,
+   "src_eps": "Earnings per share (Rs.)  0.94  0.76",
+   "src_navps": "Net assets per share (Rs.)  56.35  55.91",
+   "src_profit": "Profit for the period  29,165  23,579  24",
+   "src_revenue": "Revenue  48,660  41,540  17",
+   "title": "Quarterly Financial Report as of 30-06-2024",
    "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/621_1699955214990.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/621_1723626465178.pdf",
    "v": 6,
    "vals_eps": [
-    0.7,
-    0.64,
-    1.46,
-    1.14
+    0.94,
+    0.76
    ],
    "vals_navps": [
-    50.21,
-    48.76
+    56.35,
+    55.91
    ],
    "vals_profit": [
-    21544.0,
-    19846.0,
-    9.0,
-    45123.0,
-    35414.0,
-    27.0
+    29165.0,
+    23579.0,
+    24.0
    ],
    "vals_revenue": [
-    42406.0,
-    34613.0,
-    23.0,
-    83946.0,
-    69094.0,
-    21.0
+    48660.0,
+    41540.0,
+    17.0
    ],
-   "year_only": false
+   "year_only": true
   },
-  "45082": {
-   "end": "2023-12-31",
-   "eps": 0.82,
-   "eps_prior": -1.88,
+  "47001": {
+   "end": "2024-09-30",
+   "eps": 0.93,
+   "eps_prior": 0.7,
    "layout_eps": [
     0,
     1,
@@ -598,7 +726,7 @@
    "layout_profit": [
     0,
     1,
-    false
+    true
    ],
    "layout_revenue": [
     0,
@@ -606,51 +734,51 @@
     true
    ],
    "months": 3,
-   "navps": 50.53,
-   "navps_prior": 48.76,
+   "navps": 57.28,
+   "navps_prior": 55.91,
    "ok": true,
    "pages": 8,
-   "profit": 25534.0,
-   "profit_growth": null,
-   "profit_prior": -58378.0,
-   "revenue": 43856.0,
-   "revenue_growth": 18.0,
-   "revenue_prior": 37151.0,
-   "src_eps": "Earnings per share (Rs.)  0.82  (1.88)  2.28  (0.74)",
-   "src_navps": "Net assets per share (Rs.)  50.53  48.76",
-   "src_profit": "Profit for the period  25,534  (58,378)  144  70,657  (22,964)  408",
-   "src_revenue": "Revenue  43,856  37,151  18  127,802  106,245  20",
-   "title": "ETWO Interim Financials 31 December 2023",
+   "profit": 28961.0,
+   "profit_growth": 34.4,
+   "profit_prior": 21544.0,
+   "revenue": 54229.0,
+   "revenue_growth": 27.9,
+   "revenue_prior": 42406.0,
+   "src_eps": "Earnings per share (Rs.)  0.93  0.70  1.88  1.46",
+   "src_navps": "Net assets per share (Rs.)  57.28  55.91",
+   "src_profit": "Profit for the period  28,961  21,544  34  58,126  45,123  29",
+   "src_revenue": "Revenue  54,229  42,406  28  102,889  83,946  23",
+   "title": "Quarterly Financial Report as of 30-09-2024",
    "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/621_1707903014492.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/621_1731496488058.pdf",
    "v": 6,
    "vals_eps": [
-    0.82,
-    -1.88,
-    2.28,
-    -0.74
+    0.93,
+    0.7,
+    1.88,
+    1.46
    ],
    "vals_navps": [
-    50.53,
-    48.76
+    57.28,
+    55.91
    ],
    "vals_profit": [
-    25534.0,
-    -58378.0,
-    144.0,
-    70657.0,
-    -22964.0,
-    408.0
+    28961.0,
+    21544.0,
+    34.0,
+    58126.0,
+    45123.0,
+    29.0
    ],
    "vals_revenue": [
-    43856.0,
-    37151.0,
-    18.0,
-    127802.0,
-    106245.0,
-    20.0
+    54229.0,
+    42406.0,
+    28.0,
+    102889.0,
+    83946.0,
+    23.0
    ],
-   "year_only": false
+   "year_only": true
   },
   "47442": {
    "end": "2024-12-31",

@@ -1,5 +1,81 @@
 {
  "annual": {
+  "22086": {
+   "end": "2017-03-31",
+   "eps": 25.73,
+   "eps_prior": 36.76,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 425.87,
+   "navps_prior": 971.96,
+   "ok": true,
+   "pages": 64,
+   "src_eps": "Earnings per Share  10  25.73  36.76  8.36  7.26",
+   "src_navps": "Net Assets per share at year end (Rs.) (Consolidated)  425.87  971.96  987.28  1,018.97  1,040.63",
+   "title": "Annual Report 2016/2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/747_1504177184647.pdf",
+   "v": 6,
+   "vals_eps": [
+    25.73,
+    36.76,
+    8.36,
+    7.26
+   ],
+   "vals_navps": [
+    425.87,
+    971.96,
+    987.28,
+    1018.97,
+    1040.63
+   ],
+   "year_only": false
+  },
+  "24447": {
+   "end": "2018-03-31",
+   "eps": 14.75,
+   "eps_prior": 25.73,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 971.96,
+   "navps_prior": 987.28,
+   "ok": true,
+   "pages": 68,
+   "src_eps": "Earnings per Share  10  14.75  25.73  13.79  8.36",
+   "src_navps": "Net Assets per share at year end (Rs.) (Consolidated)  971.96  987.28  1,018.97  1,040.63  1,822.96",
+   "title": "Annual Report 2017/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/747_1535714566400.pdf",
+   "v": 6,
+   "vals_eps": [
+    14.75,
+    25.73,
+    13.79,
+    8.36
+   ],
+   "vals_navps": [
+    971.96,
+    987.28,
+    1018.97,
+    1040.63,
+    1822.96
+   ],
+   "year_only": false
+  },
   "34083": {
    "end": "2019-03-31",
    "eps": 0.72,
@@ -430,7 +506,7 @@
     "id": "24447",
     "title": "Annual Report 2017/2018",
     "uploaded": 1535653800000,
-    "url": "https://cdn.cse.lk/upload_report_file/747_1535714566400.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/747_1535714566400.pdf",
     "year_only": false
    },
    {
@@ -439,7 +515,7 @@
     "id": "22086",
     "title": "Annual Report 2016/2017",
     "uploaded": 1504117800000,
-    "url": "https://cdn.cse.lk/upload_report_file/747_1504177184647.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/747_1504177184647.pdf",
     "year_only": false
    }
   ],
@@ -527,20 +603,20 @@
    },
    {
     "amended": false,
-    "end": "2024-03-31",
-    "id": "45863",
-    "title": "CONSOLIDATED INTERIM FINANCIAL STATEMENTS FOR THE YEAR ENDED 31ST MARCH, 2024",
-    "uploaded": 1717154880115,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/747_1717154880115. PLC - 31.03.24.pdf",
-    "year_only": false
+    "end": "2024-06-30",
+    "id": "46311",
+    "title": "Interim Financial Statements as at 30-06-2024",
+    "uploaded": 1723544694719,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/747_1723544694719. PLC - 30.06.24 - Final-compressed (1).pdf",
+    "year_only": true
    }
   ]
  },
  "quarterly": {
-  "45863": {
-   "end": "2024-03-31",
-   "eps": -22.35,
-   "eps_prior": 29.55,
+  "46311": {
+   "end": "2024-06-30",
+   "eps": -5.89,
+   "eps_prior": -12.72,
    "layout_eps": [
     0,
     1,
@@ -554,7 +630,7 @@
    "layout_profit": [
     0,
     1,
-    true
+    false
    ],
    "layout_revenue": [
     0,
@@ -562,53 +638,53 @@
     true
    ],
    "months": 3,
-   "navps": 2161.23,
-   "navps_prior": 2168.13,
+   "navps": 2155.34,
+   "navps_prior": 2161.23,
    "ok": true,
-   "pages": 8,
-   "profit": -115001153.0,
+   "pages": 7,
+   "profit": -30329563.0,
    "profit_growth": null,
-   "profit_prior": 152014475.0,
-   "revenue": 1559405496.0,
-   "revenue_growth": -8.8,
-   "revenue_prior": 1709212274.0,
-   "src_eps": "Basic Earnings/(Loss) per Share  (22.35)  29.55  (1.89)  78.56",
-   "src_navps": "Net Assets Per Share  2,161.23  2,168.13  738.26  731.13",
-   "src_profit": "Equity Holders of the Parent Company  (115,001,153)  152,014,475  (176)  (9,743,699)  404,187,541  (102)",
-   "src_revenue": "REVENUE  1,559,405,496  1,709,212,274  (9)  5,696,620,918  5,896,028,032  (3)",
-   "title": "CONSOLIDATED INTERIM FINANCIAL STATEMENTS FOR THE YEAR ENDED 31ST MARCH, 2024",
+   "profit_prior": -65453049.0,
+   "revenue": 1232994433.0,
+   "revenue_growth": 1.6,
+   "revenue_prior": 1213474429.0,
+   "src_eps": "Basic Earnings/(Loss) per Share  (5.89)  (12.72)  (6.39)  6.73",
+   "src_navps": "Net Assets Per Share  2,155.34  2,161.23  731.87  738.26",
+   "src_profit": "Equity Holders of the Parent Company  (30,329,563)  (65,453,049)  54  (32,882,354)  34,611,117  (195)",
+   "src_revenue": "REVENUE  1,232,994,433  1,213,474,429  2  174,368,119  220,156,533  (21)",
+   "title": "Interim Financial Statements as at 30-06-2024",
    "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/747_1717154880115. PLC - 31.03.24.pdf",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/747_1723544694719. PLC - 30.06.24 - Final-compressed (1).pdf",
    "v": 6,
    "vals_eps": [
-    -22.35,
-    29.55,
-    -1.89,
-    78.56
+    -5.89,
+    -12.72,
+    -6.39,
+    6.73
    ],
    "vals_navps": [
+    2155.34,
     2161.23,
-    2168.13,
-    738.26,
-    731.13
+    731.87,
+    738.26
    ],
    "vals_profit": [
-    -115001153.0,
-    152014475.0,
-    -176.0,
-    -9743699.0,
-    404187541.0,
-    -102.0
+    -30329563.0,
+    -65453049.0,
+    54.0,
+    -32882354.0,
+    34611117.0,
+    -195.0
    ],
    "vals_revenue": [
-    1559405496.0,
-    1709212274.0,
-    -9.0,
-    5696620918.0,
-    5896028032.0,
-    -3.0
+    1232994433.0,
+    1213474429.0,
+    2.0,
+    174368119.0,
+    220156533.0,
+    -21.0
    ],
-   "year_only": false
+   "year_only": true
   },
   "46970": {
    "end": "2024-09-30",

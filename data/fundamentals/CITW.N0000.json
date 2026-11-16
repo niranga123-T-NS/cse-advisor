@@ -1,5 +1,83 @@
 {
  "annual": {
+  "22099": {
+   "end": "2017-03-31",
+   "eps": -0.03,
+   "eps_prior": -0.07,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 10.34,
+   "navps_prior": 10.27,
+   "ok": true,
+   "pages": 104,
+   "src_eps": "Earnings/(Loss) per Share - Basic  Rs.  (0.03)  (0.07)  (2.45)  (1.18)  (1.13)",
+   "src_navps": "Net Asset per Share  Rs.  10.34  10.27  8.46  7.84  6.71",
+   "title": "Waskaduwa Beach Resort PLC Annual report -2016/2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1106_1504178274194.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.03,
+    -0.07,
+    -2.45,
+    -1.18,
+    -1.13
+   ],
+   "vals_navps": [
+    10.34,
+    10.27,
+    8.46,
+    7.84,
+    6.71
+   ],
+   "year_only": false
+  },
+  "24472": {
+   "end": "2018-03-31",
+   "eps": -0.07,
+   "eps_prior": -2.45,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 10.27,
+   "navps_prior": 8.46,
+   "ok": true,
+   "pages": 108,
+   "src_eps": "Earnings/(Loss) per Share - Basic  Rs.  (0.07)  (2.45)  (1.18)  (1.13)  (1.27)",
+   "src_navps": "Net Asset per Share  Rs.  10.27  8.46  7.84  6.71  8.63",
+   "title": "Annual Report 2017/2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1106_1536057766562.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.07,
+    -2.45,
+    -1.18,
+    -1.13,
+    -1.27
+   ],
+   "vals_navps": [
+    10.27,
+    8.46,
+    7.84,
+    6.71,
+    8.63
+   ],
+   "year_only": false
+  },
   "34060": {
    "end": "2019-03-31",
    "eps": -1.26,
@@ -384,7 +462,7 @@
     "id": "24472",
     "title": "Annual Report 2017/2018",
     "uploaded": 1535999400000,
-    "url": "https://cdn.cse.lk/upload_report_file/1106_1536057766562.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1106_1536057766562.pdf",
     "year_only": false
    },
    {
@@ -393,7 +471,7 @@
     "id": "22099",
     "title": "Waskaduwa Beach Resort PLC Annual report -2016/2017",
     "uploaded": 1504117800000,
-    "url": "https://cdn.cse.lk/upload_report_file/1106_1504178274194.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1106_1504178274194.pdf",
     "year_only": false
    }
   ],

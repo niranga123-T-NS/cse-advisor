@@ -1,5 +1,142 @@
 {
  "annual": {
+  "23612": {
+   "dps": 1.0,
+   "dps_prior": 2.0,
+   "end": "2018-03-31",
+   "eps": -4.36,
+   "eps_prior": 5.84,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 90.09,
+   "navps_prior": 95.61,
+   "ok": true,
+   "pages": 148,
+   "src_dps": "Dividend per share(Rs.)  1  2  4",
+   "src_eps": "Basic/Diluted earnings per share (EPS)  Rs.  (4.36)  5.84",
+   "src_navps": "Net assets per share  Rs.  90.09  95.61",
+   "title": "Annual Report 2017/18",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/493_1527852523222.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.0,
+    2.0,
+    4.0
+   ],
+   "vals_eps": [
+    -4.36,
+    5.84
+   ],
+   "vals_navps": [
+    90.09,
+    95.61
+   ],
+   "year_only": false
+  },
+  "30533": {
+   "dps": 2.0,
+   "dps_prior": 4.0,
+   "end": "2017-03-31",
+   "eps": 5.84,
+   "eps_prior": 14.29,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 95.61,
+   "navps_prior": 93.44,
+   "ok": true,
+   "pages": 128,
+   "src_dps": "dividend per share of Rs. 2.00 (2016 - Rs. 4.00) once it is approved at the Annual General Meeting.",
+   "src_eps": "Basic/Diluted earnings per share (EPS)  Rs.  5.84  14.29",
+   "src_navps": "Net assets per share  Rs.  95.61  93.44",
+   "title": "Annual Report 2016/2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/493_1498815708.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.0,
+    4.0
+   ],
+   "vals_eps": [
+    5.84,
+    14.29
+   ],
+   "vals_navps": [
+    95.61,
+    93.44
+   ],
+   "year_only": false
+  },
+  "33249": {
+   "dps": 1.0,
+   "dps_prior": 1.0,
+   "end": "2019-03-31",
+   "eps": 5.1,
+   "eps_prior": -4.36,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 97.26,
+   "navps_prior": 90.09,
+   "ok": true,
+   "pages": 152,
+   "src_dps": "Dividend per share (Rs.)  1.00  1.00  2.00",
+   "src_eps": "Basic/Diluted earnings per share (EPS)  Rs.  5.10  (4.36)",
+   "src_navps": "Net assets per share  Rs.  97.26  90.09",
+   "title": "Annual Report 2018/19",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/493_1559561326070.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.0,
+    1.0,
+    2.0
+   ],
+   "vals_eps": [
+    5.1,
+    -4.36
+   ],
+   "vals_navps": [
+    97.26,
+    90.09
+   ],
+   "year_only": false
+  },
   "36271": {
    "dps": 2.0,
    "dps_prior": 1.0,
@@ -401,7 +538,7 @@
     "id": "33249",
     "title": "Annual Report 2018/19",
     "uploaded": 1559500200000,
-    "url": "https://cdn.cse.lk/upload_report_file/493_1559561326070.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/493_1559561326070.pdf",
     "year_only": false
    },
    {
@@ -410,7 +547,7 @@
     "id": "23612",
     "title": "Annual Report 2017/18",
     "uploaded": 1527791400000,
-    "url": "https://cdn.cse.lk/upload_report_file/493_1527852523222.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/493_1527852523222.pdf",
     "year_only": false
    },
    {
@@ -419,7 +556,7 @@
     "id": "30533",
     "title": "Annual Report 2016/2017",
     "uploaded": 1498761000000,
-    "url": "https://cdn.cse.lk/upload_report_file/493_1498815708.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/493_1498815708.pdf",
     "year_only": false
    }
   ],

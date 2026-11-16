@@ -1,5 +1,113 @@
 {
  "annual": {
+  "23621": {
+   "end": "2017-12-31",
+   "eps": 0.62,
+   "eps_prior": 0.68,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 20.57,
+   "navps_prior": 19.69,
+   "ok": true,
+   "pages": 56,
+   "src_eps": "Basic Earnings Per Share  26  0.62  0.68",
+   "src_navps": "Net assets value per share  20.57  19.69  18.29  18.29  17.39",
+   "title": "Galadari Hotels (Lanka) PLC - Annual Report for the Year Ended 31st December, 2017",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1528103159754.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.62,
+    0.68
+   ],
+   "vals_navps": [
+    20.57,
+    19.69,
+    18.29,
+    18.29,
+    17.39
+   ],
+   "year_only": false
+  },
+  "30476": {
+   "end": "2016-12-31",
+   "eps": 0.68,
+   "eps_prior": 0.42,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 19.69,
+   "navps_prior": 18.29,
+   "ok": true,
+   "pages": 52,
+   "src_eps": "Basic Earnings Per Share  26  0.68  0.42",
+   "src_navps": "Net assets value per share  19.69  18.29  18.29  17.39  4.25",
+   "title": "Annual Report 2016",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1496743158.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.68,
+    0.42
+   ],
+   "vals_navps": [
+    19.69,
+    18.29,
+    18.29,
+    17.39,
+    4.25
+   ],
+   "year_only": false
+  },
+  "33259": {
+   "end": "2018-12-31",
+   "eps": 0.43,
+   "eps_prior": 0.62,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 21.13,
+   "navps_prior": 20.57,
+   "ok": true,
+   "pages": 56,
+   "src_eps": "Basic Earnings Per Share  26  0.43  0.62",
+   "src_navps": "Net assets value per share  21.13  20.57  19.69  18.29  18.29",
+   "title": "Annual Report 2018",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1559641817286.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.43,
+    0.62
+   ],
+   "vals_navps": [
+    21.13,
+    20.57,
+    19.69,
+    18.29,
+    18.29
+   ],
+   "year_only": false
+  },
   "36151": {
    "end": "2019-12-31",
    "eps": 0.17,
@@ -265,7 +373,7 @@
     "id": "33259",
     "title": "Annual Report 2018",
     "uploaded": 1559586600000,
-    "url": "https://cdn.cse.lk/upload_report_file/541_1559641817286.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1559641817286.pdf",
     "year_only": false
    },
    {
@@ -274,7 +382,7 @@
     "id": "23621",
     "title": "Galadari Hotels (Lanka) PLC - Annual Report for the Year Ended 31st December, 2017",
     "uploaded": 1528050600000,
-    "url": "https://cdn.cse.lk/upload_report_file/541_1528103159754.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1528103159754.pdf",
     "year_only": false
    },
    {
@@ -283,7 +391,7 @@
     "id": "30476",
     "title": "Annual Report 2016",
     "uploaded": 1496687400000,
-    "url": "https://cdn.cse.lk/upload_report_file/541_1496743158.pdf",
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1496743158.pdf",
     "year_only": false
    }
   ],
@@ -335,6 +443,24 @@
    },
    {
     "amended": false,
+    "end": "2025-06-30",
+    "id": "48751",
+    "title": "Interim Financial Statements for the period ended 30.06.2025",
+    "uploaded": 1755250560839,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1755250560839.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2025-03-31",
+    "id": "47871",
+    "title": "Interim Financial Statements for the period ended 31.03.2025",
+    "uploaded": 1747393561474,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1747393561474.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
     "end": "2024-12-31",
     "id": "47859",
     "title": "Interim Financial Statements for the period ended 31.12.2024",
@@ -344,197 +470,46 @@
    },
    {
     "amended": false,
-    "end": "2023-12-31",
-    "id": "45262",
-    "title": "Interim Financial Statements for the period ended 31.12.2023",
-    "uploaded": 1709199736662,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1709199736662.12.2023.pdf",
+    "end": "2024-09-30",
+    "id": "47071",
+    "title": "Interim Financial Statements for the period ended 30.09.2024",
+    "uploaded": 1731582335511,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1731582335511.pdf",
     "year_only": false
    },
    {
     "amended": false,
-    "end": "2023-03-31",
-    "id": "43090",
-    "title": "Interim financial statements for the quarter ended 31st march 2023..",
-    "uploaded": 1684146977722,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1684146977722.N0000 - Interim Financial Statements 31st March 2023.pdf",
-    "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2022-12-31",
-    "id": "42846",
-    "title": "INTERIM FINANCIAL STATEMENTS For the 12 months ended 31st December 2022",
-    "uploaded": 1677576773995,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1677576773995.pdf",
-    "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2022-09-30",
-    "id": "42095",
-    "title": "Interim Financial Statements for the Period Ended 30th September, 2022",
-    "uploaded": 1668505141982,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1668505141982.pdf",
+    "end": "2024-06-30",
+    "id": "46338",
+    "title": "Interim Financial Statements for the period ended 30.06.2024",
+    "uploaded": 1723627627037,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1723627627037.06.2024.pdf",
     "year_only": false
    }
   ]
  },
  "quarterly": {
-  "42095": {
-   "end": "2022-09-30",
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "navps": 16.62,
-   "navps_prior": 17.56,
-   "ok": true,
-   "pages": 7,
-   "profit_growth": null,
-   "revenue": 260664324.0,
-   "revenue_growth": 189.9,
-   "revenue_prior": 89906711.0,
-   "src_navps": "Net assets per share  16.62  17.56  16.74",
-   "src_revenue": "Revenue  260,664,324  89,906,711  796,578,989  291,548,779  554,024,830",
-   "title": "Interim Financial Statements for the Period Ended 30th September, 2022",
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1668505141982.pdf",
-   "v": 6,
-   "vals_navps": [
-    16.62,
-    17.56,
-    16.74
-   ],
-   "vals_revenue": [
-    260664324.0,
-    89906711.0,
-    796578989.0,
-    291548779.0,
-    554024830.0
-   ],
-   "year_only": false
-  },
-  "42846": {
-   "end": "2022-12-31",
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "navps": 16.76,
-   "navps_prior": 16.74,
-   "ok": true,
-   "pages": 7,
-   "profit": 70513045.0,
-   "profit_growth": null,
-   "profit_prior": -47610542.0,
-   "revenue": 386640566.0,
-   "revenue_growth": 47.3,
-   "revenue_prior": 262476051.0,
-   "src_navps": "Net assets per share  16.76  16.74",
-   "src_profit": "Profit / (Loss) For The Period  70,513,045  (47,610,542)  12,737,356  (342,431,170)",
-   "src_revenue": "Revenue  386,640,566  262,476,051  1,183,219,555  554,024,830",
-   "title": "INTERIM FINANCIAL STATEMENTS For the 12 months ended 31st December 2022",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1677576773995.pdf",
-   "v": 6,
-   "vals_navps": [
-    16.76,
-    16.74
-   ],
-   "vals_profit": [
-    70513045.0,
-    -47610542.0,
-    12737356.0,
-    -342431170.0
-   ],
-   "vals_revenue": [
-    386640566.0,
-    262476051.0,
-    1183219555.0,
-    554024830.0
-   ],
-   "year_only": false
-  },
-  "43090": {
-   "end": "2023-03-31",
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "navps": 16.1,
-   "navps_prior": 16.76,
-   "ok": true,
-   "pages": 7,
-   "profit": 37477514.0,
-   "profit_growth": 276.1,
-   "profit_prior": 9965765.0,
-   "revenue": 345110773.0,
-   "revenue_growth": 16.8,
-   "revenue_prior": 295394241.0,
-   "src_navps": "Net assets per share  16.10  16.76  16.03",
-   "src_profit": "Profit / (Loss) For The Period  37,477,514  9,965,765  (830,204,103)",
-   "src_revenue": "Revenue  345,110,773  295,394,241  1,183,219,555",
-   "title": "Interim financial statements for the quarter ended 31st march 2023..",
-   "unit": null,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1684146977722.N0000 - Interim Financial Statements 31st March 2023.pdf",
-   "v": 6,
-   "vals_navps": [
-    16.1,
-    16.76,
-    16.03
-   ],
-   "vals_profit": [
-    37477514.0,
-    9965765.0,
-    -830204103.0
-   ],
-   "vals_revenue": [
-    345110773.0,
-    295394241.0,
-    1183219555.0
-   ],
-   "year_only": false
-  },
-  "45262": {
-   "end": "2023-12-31",
+  "46338": {
+   "end": "2024-06-30",
    "months": null,
    "ok": true,
    "pages": 7,
    "profit_growth": null,
    "revenue_growth": null,
-   "title": "Interim Financial Statements for the period ended 31.12.2023",
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1709199736662.12.2023.pdf",
+   "title": "Interim Financial Statements for the period ended 30.06.2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1723627627037.06.2024.pdf",
+   "v": 6,
+   "year_only": false
+  },
+  "47071": {
+   "end": "2024-09-30",
+   "months": null,
+   "ok": true,
+   "pages": 7,
+   "profit_growth": null,
+   "revenue_growth": null,
+   "title": "Interim Financial Statements for the period ended 30.09.2024",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1731582335511.pdf",
    "v": 6,
    "year_only": false
   },
@@ -586,6 +561,84 @@
     494934841.0,
     1060709448.0,
     1606029441.0
+   ],
+   "year_only": false
+  },
+  "47871": {
+   "end": "2025-03-31",
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 14.31,
+   "navps_prior": 17.27,
+   "ok": true,
+   "pages": 7,
+   "profit_growth": null,
+   "revenue": 113921815.0,
+   "revenue_growth": -68.4,
+   "revenue_prior": 360526902.0,
+   "src_navps": "Net assets per share  14.31  17.27  14.48",
+   "src_revenue": "Revenue  113,921,815  360,526,902  1,060,709,448",
+   "title": "Interim Financial Statements for the period ended 31.03.2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1747393561474.pdf",
+   "v": 6,
+   "vals_navps": [
+    14.31,
+    17.27,
+    14.48
+   ],
+   "vals_revenue": [
+    113921815.0,
+    360526902.0,
+    1060709448.0
+   ],
+   "year_only": false
+  },
+  "48751": {
+   "end": "2025-06-30",
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 14.05,
+   "navps_prior": 17.17,
+   "ok": true,
+   "pages": 7,
+   "profit_growth": null,
+   "revenue": 76749425.0,
+   "revenue_growth": -71.2,
+   "revenue_prior": 266816565.0,
+   "src_navps": "Net assets per share  14.05  17.17  14.48",
+   "src_revenue": "Revenue  76,749,425  266,816,565  190,671,240  627,343,467  1,060,709,448",
+   "title": "Interim Financial Statements for the period ended 30.06.2025",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/541_1755250560839.pdf",
+   "v": 6,
+   "vals_navps": [
+    14.05,
+    17.17,
+    14.48
+   ],
+   "vals_revenue": [
+    76749425.0,
+    266816565.0,
+    190671240.0,
+    627343467.0,
+    1060709448.0
    ],
    "year_only": false
   },

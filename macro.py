@@ -38,30 +38,27 @@ def pdf_text(raw: bytes) -> str:
 
 
 def probe():
-    """Save the auction list page and its scripts, to find how the list is loaded."""
-    out = DIR / "raw"
-    out.mkdir(parents=True, exist_ok=True)
+    """Find how CSE serves report files uploaded before about 2019 (their usual address is refused)."""
     s0 = requests.Session()
-    r = s0.get(LIST, headers=UA, timeout=60)
-    (out / "list.html").write_text(r.text)
-    js = re.findall(r'(?:src|href)="(/_next/static/[^"]+\.js)"', r.text)
-    print("scripts", len(js))
-    keep = []
-    for j in js:
-        try:
-            t = s0.get("https://www.treasury.gov.lk" + j, headers=UA, timeout=60).text
-        except requests.RequestException:
-            continue
-        hits = sorted(set(re.findall(r'.{0,80}(?:api|fetch|axios|section_id|sectionId).{0,120}', t)))
-        if hits:
-            keep.append({"js": j, "hits": hits[:80]})
-    (out / "scripts.json").write_text(json.dumps(keep, indent=1))
-    for k in ("api/sections", "api/section", "api/page", "api/web"):
-        try:
-            rr = s0.get(f"https://www.treasury.gov.lk/{k}/aeIk8yAz_qtECx2njknwx", headers=UA, timeout=30)
-            print("TRY", k, rr.status_code, rr.headers.get("content-type"), rr.text[:200])
-        except requests.RequestException as ex:
-            print("TRY", k, repr(ex)[:80])
+    f = "644_1564739378501.pdf"
+    heads = {"plain": {"User-Agent": "Mozilla/5.0 (personal CSE research tool)"},
+             "browser": {**UA, "Referer": "https://www.cse.lk/", "Accept": "application/pdf,*/*"}}
+    for u in ("https://cdn.cse.lk/upload_report_file/" + f, "https://cdn.cse.lk/cmt/upload_report_file/" + f,
+              "https://www.cse.lk/upload_report_file/" + f, "https://www.cse.lk/cmt/upload_report_file/" + f,
+              "https://cse.lk/upload_report_file/" + f, "https://cdn.cse.lk/cmt/" + f):
+        for hn, h in heads.items():
+            try:
+                r = s0.get(u, headers=h, timeout=60)
+                print("TRY", hn, u, r.status_code, r.headers.get("content-type"), len(r.content), r.content[:8])
+            except requests.RequestException as ex:
+                print("TRY", hn, u, repr(ex)[:80])
+    try:
+        r = s0.post("https://www.cse.lk/api/financials", data={"symbol": "ACL.N0000"}, headers=UA, timeout=60)
+        j = r.json()
+        for it in (j.get("infoAnnualData") or [])[-6:]:
+            print("ITEM", {k: it.get(k) for k in it if k not in ("description",)})
+    except Exception as ex:
+        print("financials", repr(ex)[:120])
 
 
 def fx(s: requests.Session) -> list[list]:

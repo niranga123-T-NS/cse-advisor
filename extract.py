@@ -100,5 +100,73 @@ def main(symbols: list[str]):
     print("published:", live.publish_to(files, "extracts", f"extracts: {' '.join(symbols)[:200]}"))
 
 
+EPS_LINE = re.compile(r"earnings\s*(/\s*\(?loss\)?\s*)?per|\(loss\)\s*per|loss\)?\s*per\s*(ordinary\s*)?share|\beps\b|basic|diluted", re.I)
+HEAD_LINE = re.compile(r"months|quarter|period|year ended|ended|unaudited|audited|group|company|bank|consolidated|\b20\d\d\b|note", re.I)
+
+
+def extract_eps(item: dict) -> str:
+    """Only what is needed to read earnings per share: the column headers near each EPS row and the rows themselves."""
+    data = reports.fetch_pdf(item["url"])
+    if not data:
+        return "  (download failed)\n"
+    n = reports.pdf_pages(data)
+    out, used = [], 0
+    for p in range(1, min(n, 30) + 1):
+        t = reports.pdf_text(data, p, p)
+        if not EPS_LINE.search(t):
+            continue
+        lines = [re.sub(r"\s{3,}", "   ", l.rstrip()) for l in t.splitlines() if l.strip() and len(l) < 260]
+        idx = [i for i, l in enumerate(lines) if EPS_LINE.search(l)]
+        if not idx:
+            continue
+        heads = [l for l in lines[:40] if HEAD_LINE.search(l) and len(NUMS.findall(l)) <= 8][:10]
+        keep = []
+        for i in idx:
+            keep.extend(lines[max(0, i - 1): i + 4])
+        seen, rows = set(), []
+        for l in heads + ["..."] + keep:
+            if l not in seen:
+                seen.add(l); rows.append(l)
+        out.append(f"  --- page {p} ---")
+        out.extend("  " + l for l in rows[:45])
+        used += 1
+        if used >= 3:
+            break
+    if not out:
+        txt = reports.pdf_text(data, 1, min(n, 3))
+        return f"  (no EPS row found; {n} pages; text on first pages: {len(txt.strip())} characters{' - probably scanned images' if len(txt.strip()) < 200 else ''})\n"
+    return "\n".join(out) + "\n"
+
+
+def gaps(symbols: list[str]):
+    """Quarterly reports read without an EPS figure: extract their EPS rows to extracts/q/<SYM>.txt."""
+    files = {}
+    for s in symbols:
+        d = F.load(s)
+        miss = [(k, x) for k, x in (d.get("quarterly") or {}).items() if x.get("eps") is None]
+        if not miss:
+            continue
+        parts = [f"##### {s}   shares in issue: {d.get('shares')}\n"]
+        for k, x in sorted(miss, key=lambda t: t[1].get("end") or "", reverse=True):
+            print(s, x.get("end"), flush=True)
+            parts.append(f"=== id {k}  period end {x.get('end')}  {x.get('title', '')[:90]}\n  {x.get('url')}\n")
+            parts.append(extract_eps({"url": x.get("url")}))
+        files[f"extracts/q/{s}.txt"] = "".join(parts)
+    import live
+    try:
+        subprocess.run(["git", "fetch", "-q", "origin", "+refs/heads/extracts:refs/remotes/origin/extracts"], check=True)
+        old = subprocess.run(["git", "ls-tree", "-r", "--name-only", "origin/extracts"], capture_output=True, text=True).stdout.split()
+        for name in old:
+            if name not in files:
+                files[name] = subprocess.run(["git", "show", f"origin/extracts:{name}"], capture_output=True, text=True).stdout
+    except subprocess.CalledProcessError:
+        pass
+    print("published:", live.publish_to(files, "extracts", f"EPS gaps: {len(symbols)} companies"))
+
+
 if __name__ == "__main__":
-    main([a.upper() for a in sys.argv[1:]])
+    args = [a.upper() for a in sys.argv[1:]]
+    if args and args[0] == "--GAPS":
+        gaps(args[1:])
+    else:
+        main(args)

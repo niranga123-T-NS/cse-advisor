@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       symbols:
-        description: "Stocks (space-separated)"
+        description: "Stocks (space-separated); start with --gaps to extract only the EPS rows of quarterly reports read without EPS"
         required: true
 
 permissions:

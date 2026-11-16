@@ -36,6 +36,9 @@ def _clean(o):
     return o
 
 
+NO_FETCH = True
+
+
 def _dump(path: Path, obj):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(_clean(obj), separators=(",", ":")))
@@ -119,19 +122,20 @@ def build():
                         "fc_rank": (p["forecast"] or {}).get("rank"),
                         "pr": (p["pressure"] or {}).get("label") or None,
                         "fields_n": len(f.get("verified") or {}), **a})
-    # The rating. ratings.py grades each share on price and volume measures that have been tested since 2010;
-    # the company's checked report figures can move that grade one step. Shares that trade too little are not rated.
+    # The rating. ratings.py places each share on five price and volume measures (tested since 2010) and on the
+    # figures in its latest published report (tested since 2024). Shares that trade too little are not rated.
     rstudy = None
     try:
         import ratings
-        RT, rstudy = ratings.build(sec)
+        bad = {s: {c["end"] for c in (f.get("checks") or []) if c.get("level") == "fail"} for s, f in funds.items()}
+        RT, rstudy = ratings.build(sec, bad=bad)
         for x in signals:
             a, r = payloads[x["symbol"]]["advice"], RT.get(x["symbol"]) or {"rated": False, "why": "it has not traded recently"}
             a["rule_signal"], a["rule_score"] = a["signal"], a["score"]          # the earlier chart rules: kept as notes and for the trading-setup test
             if r["rated"]:
-                g, step = ratings.headline(r["grade"], a.get("fund_score"))
-                a["signal"], a["score"], a["rating"] = g, r["pct"], {**r, "fund_step": step}
-                x.update(signal=g, score=r["pct"], pg=r["grade"], of=r["of"])
+                g = r["grade"]
+                a["signal"], a["score"], a["rating"] = g, r["pct"], r
+                x.update(signal=g, score=r["pct"], pg=r["price_grade"], of=r["of"])
                 st = a["style"]
                 if "SELL" in r["grade"] and (st["trade"] or st.get("trade_watch")):
                     st["trade"], st["trade_watch"] = False, False
@@ -146,10 +150,34 @@ def build():
         import traceback
         traceback.print_exc()
         print("ratings step failed:", repr(e))
+    # what changed since the last daily build (for the closing Telegram summary). Only the daily build moves the
+    # saved copy on, so a re-publish during the day does not wipe out the day's changes.
+    try:
+        lastf = Path(__file__).parent / "data" / "model" / "last_ratings.json"
+        prev = json.loads(lastf.read_text()) if lastf.exists() else {}
+        day, now = (signals[0]["date"] if signals else None), {x["symbol"]: x["signal"] for x in signals}
+        if prev.get("date") == day:                      # already moved on today: keep the day's list
+            rec = prev
+        else:
+            old = prev.get("ratings", {})
+            rec = {"date": day, "since": prev.get("date"), "ratings": now,
+                   "changes": [{"s": k, "from": old[k], "to": g} for k, g in now.items() if old.get(k) and old[k] != g]}
+            if not NO_FETCH or not prev:
+                lastf.write_text(json.dumps(rec))
+        _dump(OUT / "changes.json", {k: rec.get(k) for k in ("date", "since", "changes")})
+    except Exception as e:
+        print("rating changes step failed:", repr(e))
     for s, p in payloads.items():
         _dump(OUT / "stocks" / f"{s}.json", p)
     signals.sort(key=lambda x: (not x["watch"], -(x["score"] if x["score"] is not None else -1)))
     _dump(OUT / "signals.json", signals)
+    try:                                    # interest rates and the rupee, for the Market page and Telegram
+        import macro
+        mx = macro.build(signals)
+        if mx:
+            _dump(OUT / "macro.json", mx)
+    except Exception as e:
+        print("rates step failed:", repr(e))
 
     # peers: every industry group with its medians and members (most traded first)
     def med(vals):
@@ -271,6 +299,8 @@ def main():
     ap.add_argument("--backfill", nargs="*", default=[])
     ap.add_argument("--backfill-all", action="store_true")
     a = ap.parse_args()
+    global NO_FETCH
+    NO_FETCH = a.no_fetch
 
     if not a.no_fetch:
         collector.snapshot()

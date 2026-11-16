@@ -42,9 +42,8 @@ def probe():
     out = DIR / "raw"
     out.mkdir(parents=True, exist_ok=True)
     s0 = requests.Session()
-    for name, u in (("page", "https://www.treasury.gov.lk/web/public-debt-management-office"),
-                    ("file", "https://www.treasury.gov.lk/api/file/4a4e9baf-a75c-4d58-893f-d25dc7e3e43c"),
-                    ("home", "https://www.treasury.gov.lk/")):
+    for name, u in (("list", LIST), ("list2", LIST + "?page=2"),
+                    ):
         try:
             r = s0.get(u, headers=UA, timeout=60)
             print("PROBE", name, r.status_code, r.headers.get("content-type"), len(r.content))

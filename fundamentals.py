@@ -12,13 +12,14 @@ from __future__ import annotations
 import json
 import os
 import sys
+import datetime as dt
 import time
 from pathlib import Path
 
 import db
 import reports
 
-N_QUARTERLY, N_ANNUAL = 10, 5
+N_QUARTERLY, N_ANNUAL = 10, 10
 FDIR = Path(__file__).parent / "data" / "fundamentals"
 
 
@@ -438,11 +439,103 @@ def _v(x, f):
     return f in x["_ok"] and f not in x["_bad"] and x.get(f) is not None
 
 
+def _history(a: list[dict], f: str) -> dict:
+    """{year end: (value, number of different reports agreeing, [report years])} from each annual report's own
+    figure, its last-year column, and its multi-year summary. A summary table is used only when its first two
+    figures match the report's own current and last-year figures AND its figure for two years back matches what
+    another report printed for that year, so stray numbers (such as year labels) are not mistaken for a table."""
+    back = lambda end, k: f"{int(end[:4]) - k}{end[4:]}"
+    near = lambda u, v: u is not None and v is not None and (_close(u, v, 0.02) or abs(u - v) < 0.011)
+    simple = {}                                          # own and last-year figures, by report
+    for x in a:
+        if x.get(f) is not None:
+            simple.setdefault(x["end"], []).append((float(x[f]), x["end"][:4]))
+        if x.get(f + "_prior") is not None:
+            simple.setdefault(back(x["end"], 1), []).append((float(x[f + "_prior"]), x["end"][:4]))
+    cand = {k: list(v) for k, v in simple.items()}
+    for x in a:
+        own, prior, vals = x.get(f), x.get(f + "_prior"), x.get("vals_" + f) or []
+        if len(vals) < 3 or not (near(vals[0], own) and near(vals[1], prior)):
+            continue
+        two = back(x["end"], 2)
+        if not any(near(vals[2], v) for v, r in simple.get(two, []) if r != x["end"][:4]):
+            continue
+        for k, v in enumerate(vals[2:11], start=2):
+            if v is not None and v == v:
+                cand.setdefault(back(x["end"], k), []).append((float(v), x["end"][:4]))
+    out = {}
+    for end, lst in cand.items():
+        groups = []
+        for v, _ in lst:
+            srcs = sorted({r for w, r in lst if near(w, v)})
+            groups.append((len(srcs), v, srcs))
+        groups.sort(key=lambda g: -g[0])
+        n, v, srcs = groups[0]
+        rival = next((g for g in groups[1:] if not near(g[1], v)), None)
+        if rival and rival[0] == n:                         # two figures with equal backing: neither is confirmed
+            n = 1
+        out[end] = (v, n, srcs)
+    return out
+
+
+PER_SHARE = ("eps", "eps_prior", "dps", "dps_prior", "navps", "navps_prior")
+
+
+def share_events(symbol: str) -> list[tuple[str, float]]:
+    """Share splits, consolidations and bonus issues as (date, factor), from CSE's prices (db.splits) and from the
+    long price history's source (Yahoo Finance), which reaches back far enough to cover ten years of reports."""
+    ev = [(x["date"], float(x["factor"])) for x in db.splits(symbol)]
+    try:
+        meta = json.loads((Path(__file__).parent / "data" / "long" / "yahoo_meta.json").read_text()).get(symbol) or {}
+        for date, num, den in meta.get("splits") or []:
+            if num and den and abs(num / den - 1) > 0.01 and not any(abs((dt.date.fromisoformat(date) - dt.date.fromisoformat(e[0])).days) <= 10 for e in ev):
+                ev.append((date, num / den))
+    except (OSError, ValueError):
+        pass
+    return sorted(ev)
+
+
+def rebase(d: dict, symbol: str) -> tuple[dict, list[dict]]:
+    """A copy of the stored report figures with every per-share figure put onto today's share basis: divided by
+    each split or bonus issue that came after the report was published. Reports published after an event already
+    state earlier years on the new basis, so they are left alone."""
+    ev, notes = share_events(symbol), []
+    if not ev:
+        return d, notes
+    L = {x["id"]: x for k in ("annual", "quarterly") for x in (d.get("listing") or {}).get(k, [])}
+    out = {**d}
+    for kind in ("annual", "quarterly"):
+        new = {}
+        for k, x in (d.get(kind) or {}).items():
+            up = (L.get(k) or {}).get("uploaded")
+            pub = dt.datetime.fromtimestamp(up / 1000, dt.timezone.utc).date().isoformat() if up else \
+                (dt.date.fromisoformat(x["end"]) + dt.timedelta(days=150 if kind == "annual" else 60)).isoformat()
+            f = 1.0
+            for date, fac in ev:
+                if date > pub:
+                    f *= fac
+            if abs(f - 1) > 0.005:
+                x = {**x}
+                for fld in PER_SHARE:
+                    if x.get(fld) is not None:
+                        x[fld] = x[fld] / f
+                for fld in ("vals_eps", "vals_dps", "vals_navps"):
+                    if x.get(fld):
+                        x[fld] = [v / f if v is not None else v for v in x[fld]]
+                x["rebased"] = round(f, 4)
+                notes.append({"level": "ok", "end": x["end"], "msg": f"per-share figures divided by {f:g} for later share splits or bonus issues ({', '.join(e[0] for e in ev if e[0] > pub)})"})
+            new[k] = x
+        out[kind] = new
+    return out, notes
+
+
 def metrics(symbol: str, price: float | None) -> dict | None:
     d = load(symbol)
     if not d.get("quarterly") and not d.get("annual"):
         return None
+    d, base_notes = rebase(d, symbol)
     q, a, checks, fy_month, cum = audit(d, price)
+    checks = base_notes + checks
     m = {"quarters_read": len(q), "annuals_read": len(a), "fy_month": fy_month}
     ver = {}
 
@@ -464,6 +557,21 @@ def metrics(symbol: str, price: float | None) -> dict | None:
         v, ok, src = max(lst, key=lambda t: (t[1], agree_n(t), t[2] == "annual"))
         conflict = any(not _close(v, w[0], 0.03) and w[1] for w in lst)
         fy_eps[end] = (v, (ok or agree_n((v,)) >= 2) and not conflict)
+    # Later reports repeat earlier years: the last-year column, and often a 5- or 10-year summary table.
+    # A year whose own figure failed (or that is older than the reports read) is filled in when at least two
+    # different reports print the same figure for it. One report alone is never enough.
+    for f, out in (("eps", fy_eps), ("dps", None)):
+        seen = _history(sorted(d.get("annual", {}).values(), key=lambda r: r["end"], reverse=True), f)     # figures as read, before any column guess
+        if f == "eps":
+            for end, (v, n, srcs) in seen.items():
+                if n >= 2 and not (end in out and out[end][1]):
+                    if end in out and out[end][1] is False and not _close(out[end][0], v, 0.03):
+                        checks.append({"level": "ok", "end": end, "msg": f"EPS {v} for the year to {end} agreed by {n} reports ({', '.join(srcs)}); replaces the unconfirmed {out[end][0]}"})
+                    elif end not in out:
+                        checks.append({"level": "ok", "end": end, "msg": f"EPS {v} for the year to {end} taken from {n} later reports that agree ({', '.join(srcs)})"})
+                    out[end] = (v, True)
+        else:
+            m["_dps_hist"] = {end: v for end, (v, n, srcs) in seen.items() if n >= 2}
     m["fy_eps"] = [{"end": e, "eps": round(v, 3), "verified": ok} for e, (v, ok) in sorted(fy_eps.items(), reverse=True)][:6]
 
     # --- trailing 12-month EPS = year-to-date + last full year − same period last year
@@ -573,7 +681,18 @@ def metrics(symbol: str, price: float | None) -> dict | None:
             if x.get("src_" + f):
                 row["src_" + f] = x["src_" + f]
         years.append(row)
-    m["annual"] = years
+    have = {y["end"] for y in years}
+    dh = m.pop("_dps_hist", {})
+    for end in sorted(set(fy_eps) | set(dh), reverse=True):        # years known only from later reports
+        if end not in have and end[5:] == (a[0]["end"][5:] if a else end[5:]) and (fy_eps.get(end, (0, False))[1] or end in dh):
+            row = {"end": end, "url": None, "title": "from later reports", "derived": True}
+            if fy_eps.get(end, (0, False))[1]:
+                row["eps"], row["eps_ok"] = round(fy_eps[end][0], 2), True
+            if end in dh and price and 0 <= dh[end] <= 0.5 * price:
+                row["dps"], row["dps_ok"] = round(dh[end], 2), True
+            years.append(row)
+    years.sort(key=lambda y: y["end"], reverse=True)
+    m["annual"] = years[:12]
     dsrc = next((y for y in years if "dps" in y), None)
     if dsrc and price:
         m["dps"], m["div_yield"] = dsrc["dps"], round(dsrc["dps"] / price * 100, 1)
@@ -611,7 +730,7 @@ def metrics(symbol: str, price: float | None) -> dict | None:
     nv, nt = sum(ver.values()), len(ver)
     share = nv / nt if nt else 0
     m["confidence"] = "good" if nv >= 4 and share >= 0.7 else "partial" if nv >= 2 and share >= 0.4 else "low"
-    return split_guard(apply_ai(m, symbol, price), symbol)
+    return apply_ai(m, symbol, price)
 
 
 def split_guard(m: dict, symbol: str) -> dict:

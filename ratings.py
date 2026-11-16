@@ -141,7 +141,8 @@ def reports(columns, bad: dict[str, set] | None = None) -> pd.DataFrame:
         if s not in columns:
             continue
         L = {x["id"]: x for x in d.get("listing", {}).get("quarterly", [])}
-        sp = db.splits(s)
+        import fundamentals
+        sp = [{"date": e[0], "factor": e[1]} for e in fundamentals.share_events(s)]
         for k, q in (d.get("quarterly") or {}).items():
             u = (L.get(k) or {}).get("uploaded")
             if not u or not q.get("ok") or q.get("end") in bad.get(s, ()):

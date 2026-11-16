@@ -38,29 +38,30 @@ def pdf_text(raw: bytes) -> str:
 
 
 def probe():
-    """Save what treasury.gov.lk serves, to find how its list of auction results is published."""
+    """Save the auction list page and its scripts, to find how the list is loaded."""
     out = DIR / "raw"
     out.mkdir(parents=True, exist_ok=True)
     s0 = requests.Session()
-    for name, u in (("list", LIST), ("list2", LIST + "?page=2"),
-                    ):
+    r = s0.get(LIST, headers=UA, timeout=60)
+    (out / "list.html").write_text(r.text)
+    js = re.findall(r'(?:src|href)="(/_next/static/[^"]+\.js)"', r.text)
+    print("scripts", len(js))
+    keep = []
+    for j in js:
         try:
-            r = s0.get(u, headers=UA, timeout=60)
-            print("PROBE", name, r.status_code, r.headers.get("content-type"), len(r.content))
-            if r.content[:4] == b"%PDF":
-                (out / f"{name}.txt").write_text(pdf_text(r.content))
-            else:
-                (out / f"{name}.html").write_bytes(r.content[:400000])
-                for js in re.findall(r'src="([^"]+\.js)"', r.text)[:12]:
-                    jsu = js if js.startswith("http") else "https://www.treasury.gov.lk/" + js.lstrip("/")
-                    try:
-                        jr = s0.get(jsu, headers=UA, timeout=60)
-                        apis = sorted(set(re.findall(r'["\'`](/?api/[A-Za-z0-9_/\-${}.?=&]+)', jr.text)))
-                        print("JS", jsu, jr.status_code, len(jr.text), apis[:60])
-                    except requests.RequestException as ex:
-                        print("JS", jsu, repr(ex)[:100])
+            t = s0.get("https://www.treasury.gov.lk" + j, headers=UA, timeout=60).text
+        except requests.RequestException:
+            continue
+        hits = sorted(set(re.findall(r'.{0,80}(?:api|fetch|axios|section_id|sectionId).{0,120}', t)))
+        if hits:
+            keep.append({"js": j, "hits": hits[:80]})
+    (out / "scripts.json").write_text(json.dumps(keep, indent=1))
+    for k in ("api/sections", "api/section", "api/page", "api/web"):
+        try:
+            rr = s0.get(f"https://www.treasury.gov.lk/{k}/aeIk8yAz_qtECx2njknwx", headers=UA, timeout=30)
+            print("TRY", k, rr.status_code, rr.headers.get("content-type"), rr.text[:200])
         except requests.RequestException as ex:
-            print("PROBE", name, "error", repr(ex)[:200])
+            print("TRY", k, repr(ex)[:80])
 
 
 def fx(s: requests.Session) -> list[list]:

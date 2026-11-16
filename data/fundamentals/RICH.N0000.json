@@ -1,5 +1,101 @@
 {
  "annual": {
+  "36999": {
+   "dps": 11.0,
+   "dps_prior": 0.85,
+   "end": "2020-03-31",
+   "eps": 0.56,
+   "eps_prior": 0.99,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 7.11,
+   "navps_prior": 6.53,
+   "ok": true,
+   "pages": 160,
+   "src_dps": "Dividend per share  11  -  Rs. 0.85",
+   "src_eps": "Earnings per share \u23ce Basic  10  Rs. 0.56  Rs. 0.99",
+   "src_navps": "Net assets per share (Rs.)  7.11  6.53  6.53",
+   "title": "Annual Report 2019/2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/509_1608290048393.pdf",
+   "v": 6,
+   "vals_dps": [
+    11.0,
+    0.85
+   ],
+   "vals_eps": [
+    0.56,
+    0.99
+   ],
+   "vals_navps": [
+    7.11,
+    6.53,
+    6.53
+   ],
+   "year_only": false
+  },
+  "38983": {
+   "dps": 11.0,
+   "dps_prior": 1.0,
+   "end": "2021-03-31",
+   "eps": 2.21,
+   "eps_prior": 0.56,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 8.55,
+   "navps_prior": 7.11,
+   "ok": true,
+   "pages": 156,
+   "src_dps": "Dividend per share  11  Rs. 1.00  -",
+   "src_eps": "Earnings per share \u23ce Basic  10  Rs. 2.21  Rs. 0.56",
+   "src_navps": "Net assets per share (Rs.)  8.55  7.11  6.53  6.53  6.35  5.34  4.87",
+   "title": "Annual Report 2020/21",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/509_1630465754078.pdf",
+   "v": 6,
+   "vals_dps": [
+    11.0,
+    1.0
+   ],
+   "vals_eps": [
+    2.21,
+    0.56
+   ],
+   "vals_navps": [
+    8.55,
+    7.11,
+    6.53,
+    6.53,
+    6.35,
+    5.34,
+    4.87
+   ],
+   "year_only": false
+  },
   "41556": {
    "dps": 0.6,
    "dps_prior": 1.0,
@@ -218,7 +314,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -264,6 +360,51 @@
     "title": "Annual Report For 2021-2022 Richard Pieris and Company PLC",
     "uploaded": 1661943862328,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/509_1661943862328.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38983",
+    "title": "Annual Report 2020/21",
+    "uploaded": 1630465754078,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/509_1630465754078.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36999",
+    "title": "Annual Report 2019/2020",
+    "uploaded": 1608290048393,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/509_1608290048393.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "33416",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1562092200000,
+    "url": "https://cdn.cse.lk/upload_report_file/509_1563446032267.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-12-31",
+    "id": "23655",
+    "title": "Annual Report as of 31/03/2018",
+    "uploaded": 1528137000000,
+    "url": "https://cdn.cse.lk/upload_report_file/509_1528194945621.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "21696",
+    "title": "Annual Report 2016/2017",
+    "uploaded": 1496687400000,
+    "url": "https://cdn.cse.lk/upload_report_file/509_1496742056744.pdf",
     "year_only": false
    }
   ],

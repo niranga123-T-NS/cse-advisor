@@ -1,5 +1,35 @@
 {
  "annual": {
+  "38470": {
+   "end": "2021-12-31",
+   "ok": true,
+   "pages": 22,
+   "title": "Audited financial Statements for the Year ended 31.03.2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2236_1627534480812.pdf",
+   "v": 6,
+   "year_only": false
+  },
+  "39690": {
+   "end": "2021-03-31",
+   "eps": 0.55,
+   "eps_prior": 0.8,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 72,
+   "src_eps": "Earnings Per Share  10  0.55  0.80",
+   "title": "Annual Report 2020/21",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2236_1641526227983.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.55,
+    0.8
+   ],
+   "year_only": false
+  },
   "41512": {
    "end": "2022-03-31",
    "eps": 0.83,
@@ -166,7 +196,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -212,6 +242,24 @@
     "title": "Annual Report 2021/22",
     "uploaded": 1661827010187,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/2236_1661827010187.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-12-31",
+    "id": "38470",
+    "title": "Audited financial Statements for the Year ended 31.03.2021",
+    "uploaded": 1627534480812,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2236_1627534480812.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "39690",
+    "title": "Annual Report 2020/21",
+    "uploaded": 1641526227983,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2236_1641526227983.pdf",
     "year_only": false
    }
   ],

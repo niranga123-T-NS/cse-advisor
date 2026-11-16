@@ -1,5 +1,119 @@
 {
  "annual": {
+  "34083": {
+   "end": "2019-03-31",
+   "eps": 0.72,
+   "eps_prior": 14.75,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 987.28,
+   "navps_prior": 1018.97,
+   "ok": true,
+   "pages": 71,
+   "src_eps": "Earnings per Share  10  0.72  14.75  8.13  13.79",
+   "src_navps": "Net Assets per share at year end (Rs.) (Consolidated)  987.28  1,018.97  1,040.63  1,822.96  1,821.06",
+   "title": "Annual Report 2018/2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/747_1567164743435.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.72,
+    14.75,
+    8.13,
+    13.79
+   ],
+   "vals_navps": [
+    987.28,
+    1018.97,
+    1040.63,
+    1822.96,
+    1821.06
+   ],
+   "year_only": false
+  },
+  "36394": {
+   "end": "2020-03-31",
+   "eps": 1.31,
+   "eps_prior": 0.72,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 1018.97,
+   "navps_prior": 1040.63,
+   "ok": true,
+   "pages": 82,
+   "src_eps": "Earnings per Share  10  1.31  0.72  4.36  8.13",
+   "src_navps": "Net Assets per share at year end (Rs.) (Consolidated)  1,018.97  1,040.63  1,822.96  1,821.06  1,947.51",
+   "title": "Annual Report 2019/20",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/747_1600426937615.2020.pdf",
+   "v": 6,
+   "vals_eps": [
+    1.31,
+    0.72,
+    4.36,
+    8.13
+   ],
+   "vals_navps": [
+    1018.97,
+    1040.63,
+    1822.96,
+    1821.06,
+    1947.51
+   ],
+   "year_only": false
+  },
+  "38915": {
+   "end": "2021-03-31",
+   "eps": 64.81,
+   "eps_prior": 1.31,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 1040.63,
+   "navps_prior": 1822.96,
+   "ok": true,
+   "pages": 80,
+   "src_eps": "Earnings per Share  10  64.81  1.31  14.23  4.36",
+   "src_navps": "Net Assets per share at year end (Rs.) (Consolidated)  1,040.63  1,822.96  1,821.06  1,947.51  2011.62",
+   "title": "Annual Report 2020/2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/747_1630315295209.pdf",
+   "v": 6,
+   "vals_eps": [
+    64.81,
+    1.31,
+    14.23,
+    4.36
+   ],
+   "vals_navps": [
+    1040.63,
+    1822.96,
+    1821.06,
+    1947.51,
+    2011.62
+   ],
+   "year_only": false
+  },
   "41542": {
    "end": "2022-03-31",
    "eps": 104.1,
@@ -235,7 +349,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -281,6 +395,51 @@
     "title": "Annual Report 2021/2022",
     "uploaded": 1661940924592,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/747_1661940924592.2022.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38915",
+    "title": "Annual Report 2020/2021",
+    "uploaded": 1630315295209,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/747_1630315295209.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36394",
+    "title": "Annual Report 2019/20",
+    "uploaded": 1600426937615,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/747_1600426937615.2020.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "34083",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1567164743435,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/747_1567164743435.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "24447",
+    "title": "Annual Report 2017/2018",
+    "uploaded": 1535653800000,
+    "url": "https://cdn.cse.lk/upload_report_file/747_1535714566400.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "22086",
+    "title": "Annual Report 2016/2017",
+    "uploaded": 1504117800000,
+    "url": "https://cdn.cse.lk/upload_report_file/747_1504177184647.pdf",
     "year_only": false
    }
   ],

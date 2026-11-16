@@ -1,5 +1,98 @@
 {
  "annual": {
+  "36271": {
+   "dps": 2.0,
+   "dps_prior": 1.0,
+   "end": "2020-03-31",
+   "eps": 8.79,
+   "eps_prior": 5.1,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 101.04,
+   "navps_prior": 97.26,
+   "ok": true,
+   "pages": 140,
+   "src_dps": "Dividend per share (Rs.)  2.00  -  1.00",
+   "src_eps": "Earnings per share (Rs.)  8.79  5.10  (4.36)",
+   "src_navps": "Net assets per share  Rs.  101.04  97.26",
+   "title": "Annual Report 2019/20",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/493_1599210225020.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.0,
+    1.0
+   ],
+   "vals_eps": [
+    8.79,
+    5.1,
+    -4.36
+   ],
+   "vals_navps": [
+    101.04,
+    97.26
+   ],
+   "year_only": false
+  },
+  "38129": {
+   "dps": 1.25,
+   "dps_prior": 0.5,
+   "end": "2021-03-31",
+   "eps": 8.26,
+   "eps_prior": 2.2,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 34.89,
+   "navps_prior": 25.26,
+   "ok": true,
+   "pages": 148,
+   "src_dps": "Dividend per share  1.25  0.50  1.25  0.50",
+   "src_eps": "Basic/Diluted earnings per share  Rs.  8.26  2.20",
+   "src_navps": "Net assets per share  Rs.  34.89  25.26",
+   "title": "Annual Report 2020/2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/493_1622691450894.pdf",
+   "v": 6,
+   "vals_dps": [
+    1.25,
+    0.5,
+    1.25,
+    0.5
+   ],
+   "vals_eps": [
+    8.26,
+    2.2
+   ],
+   "vals_navps": [
+    34.89,
+    25.26
+   ],
+   "year_only": false
+  },
   "40785": {
    "dps": 2.25,
    "dps_prior": 1.25,
@@ -236,7 +329,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -282,6 +375,51 @@
     "title": "CIC Holdings PLC Annual Report 2021-22",
     "uploaded": 1654280691165,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/493_1654280691165.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38129",
+    "title": "Annual Report 2020/2021",
+    "uploaded": 1622691450894,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/493_1622691450894.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36271",
+    "title": "Annual Report 2019/20",
+    "uploaded": 1599210225020,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/493_1599210225020.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "33249",
+    "title": "Annual Report 2018/19",
+    "uploaded": 1559500200000,
+    "url": "https://cdn.cse.lk/upload_report_file/493_1559561326070.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "23612",
+    "title": "Annual Report 2017/18",
+    "uploaded": 1527791400000,
+    "url": "https://cdn.cse.lk/upload_report_file/493_1527852523222.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "30533",
+    "title": "Annual Report 2016/2017",
+    "uploaded": 1498761000000,
+    "url": "https://cdn.cse.lk/upload_report_file/493_1498815708.pdf",
     "year_only": false
    }
   ],

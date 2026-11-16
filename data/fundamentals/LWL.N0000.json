@@ -1,5 +1,113 @@
 {
  "annual": {
+  "35654": {
+   "dps": 3.0,
+   "dps_prior": -100.0,
+   "end": "2020-03-31",
+   "eps": 7.4,
+   "eps_prior": 11.3,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 212.84,
+   "navps_prior": 205.89,
+   "ok": true,
+   "pages": 176,
+   "src_dps": "Dividend per share  Rs/share  -  3  -100  -  3  -100",
+   "src_eps": "Earnings per share  Rs/share  7.4  11.3  -34  0.7  4.2  -84",
+   "src_navps": "Net assets per share  Rs/share  212.84  205.89  3  98.36  97.80  1",
+   "title": "LWL-Annual Report 2019-2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/678_1594206828278.pdf",
+   "v": 6,
+   "vals_dps": [
+    3.0,
+    -100.0,
+    3.0,
+    -100.0
+   ],
+   "vals_eps": [
+    7.4,
+    11.3,
+    -34.0,
+    0.7,
+    4.2,
+    -84.0
+   ],
+   "vals_navps": [
+    212.84,
+    205.89,
+    3.0,
+    98.36,
+    97.8,
+    1.0
+   ],
+   "year_only": false
+  },
+  "38197": {
+   "dps": 2.72,
+   "dps_prior": 2.72,
+   "end": "2021-03-31",
+   "eps": 10.84,
+   "eps_prior": 1.48,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 53.37,
+   "navps_prior": 42.54,
+   "ok": true,
+   "pages": 200,
+   "src_dps": "Dividend per share*  Rs./share  2.72  -  -  2.72  -  -",
+   "src_eps": "Earnings per share*  Rs./share  10.84  1.48  632  5.92  0.14  4,129",
+   "src_navps": "Net assets per share*  Rs./share  53.37  42.54  25  23.78  19.67  21",
+   "title": "Annual Report 2020/21",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/678_1623120510648.pdf",
+   "v": 6,
+   "vals_dps": [
+    2.72,
+    2.72
+   ],
+   "vals_eps": [
+    10.84,
+    1.48,
+    632.0,
+    5.92,
+    0.14,
+    4129.0
+   ],
+   "vals_navps": [
+    53.37,
+    42.54,
+    25.0,
+    23.78,
+    19.67,
+    21.0
+   ],
+   "year_only": false
+  },
   "40839": {
    "dps": 7.9,
    "dps_prior": 2.72,
@@ -236,7 +344,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -282,6 +390,51 @@
     "title": "ANNUAL REPORT 2021/2022",
     "uploaded": 1654603994610,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/678_1654603994610.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38197",
+    "title": "Annual Report 2020/21",
+    "uploaded": 1623120510648,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/678_1623120510648.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "35654",
+    "title": "LWL-Annual Report 2019-2020",
+    "uploaded": 1594206828278,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/678_1594206828278.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "33312",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1560426033407,
+    "url": "https://cdn.cse.lk/upload_report_file/678_1560426033407.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "23633",
+    "title": "Annual Report 2017/18",
+    "uploaded": 1528050600000,
+    "url": "https://cdn.cse.lk/upload_report_file/678_1528112554798.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "30464",
+    "title": "Annual Report 2016/2017",
+    "uploaded": 1496601000000,
+    "url": "https://cdn.cse.lk/upload_report_file/678_1496660485.pdf",
     "year_only": false
    }
   ],

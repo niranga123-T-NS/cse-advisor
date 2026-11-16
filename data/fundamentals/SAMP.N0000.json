@@ -1,5 +1,107 @@
 {
  "annual": {
+  "35112": {
+   "end": "2019-12-31",
+   "eps": 32.84,
+   "eps_prior": 43.18,
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 275.27,
+   "navps_prior": 300.42,
+   "ok": true,
+   "pages": 390,
+   "src_eps": "Earnings per share - Basic/Diluted (Rs)  32.84  43.18  (23.9)  34.36  44.83  (23.3)",
+   "src_navps": "Net asset value per share (Rs)  275.27  300.42  (8.4)  292.19  320.58  (8.9)",
+   "title": "Sampath Bank PLC Annual Report 2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1582882547029.37 MB).pdf",
+   "v": 6,
+   "vals_eps": [
+    32.84,
+    43.18,
+    -23.9,
+    34.36,
+    44.83,
+    -23.3
+   ],
+   "vals_navps": [
+    275.27,
+    300.42,
+    -8.4,
+    292.19,
+    320.58,
+    -8.9
+   ],
+   "year_only": false
+  },
+  "37508": {
+   "dps": 9.0,
+   "dps_prior": 8.0,
+   "end": "2020-12-31",
+   "eps": 21.04,
+   "eps_prior": 32.84,
+   "layout_dps": [
+    0,
+    2,
+    true
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 281.94,
+   "navps_prior": 275.27,
+   "ok": true,
+   "pages": 386,
+   "src_dps": "Dividend per share (Rs)  9.00  12.00  8.00  11.00  13.00  18.75  17.20  16.25  11.75  8.25*",
+   "src_eps": "Earnings per share - Basic/Diluted (Rs)  21.04  32.84  (35.9)  22.13  34.36  (35.6)",
+   "src_navps": "Net asset value per share (Rs)  281.94  275.27  2.4  299.94  292.19  2.7",
+   "title": "Sampath Bank PLC - Annual Report 2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1614935017082.pdf",
+   "v": 6,
+   "vals_dps": [
+    9.0,
+    12.0,
+    8.0,
+    11.0,
+    13.0,
+    18.75,
+    17.2,
+    16.25,
+    11.75,
+    8.25
+   ],
+   "vals_eps": [
+    21.04,
+    32.84,
+    -35.9,
+    22.13,
+    34.36,
+    -35.6
+   ],
+   "vals_navps": [
+    281.94,
+    275.27,
+    2.4,
+    299.94,
+    292.19,
+    2.7
+   ],
+   "year_only": false
+  },
   "40115": {
    "dps": 12.0,
    "dps_prior": 8.0,
@@ -306,7 +408,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -352,6 +454,51 @@
     "title": "Sampath Bank PLC - Annual Report 2021",
     "uploaded": 1646390362476,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1646390362476.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-12-31",
+    "id": "37508",
+    "title": "Sampath Bank PLC - Annual Report 2020",
+    "uploaded": 1614935017082,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1614935017082.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-12-31",
+    "id": "35112",
+    "title": "Sampath Bank PLC Annual Report 2019",
+    "uploaded": 1582882547029,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/431_1582882547029.37 MB).pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-12-31",
+    "id": "32482",
+    "title": "Annual Report 2018",
+    "uploaded": 1551292200000,
+    "url": "https://cdn.cse.lk/upload_report_file/431_1551345492179.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-12-31",
+    "id": "22976",
+    "title": "Annual Report 2017",
+    "uploaded": 1520188200000,
+    "url": "https://cdn.cse.lk/upload_report_file/431_1520243887563.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2016-12-31",
+    "id": "21144",
+    "title": "Annual Report 2016",
+    "uploaded": 1488479400000,
+    "url": "https://cdn.cse.lk/upload_report_file/431_1488510837745.pdf",
     "year_only": false
    }
   ],

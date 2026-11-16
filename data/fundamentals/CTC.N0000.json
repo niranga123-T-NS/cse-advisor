@@ -1,5 +1,95 @@
 {
  "annual": {
+  "35383": {
+   "dps": 92.13,
+   "dps_prior": 90.77,
+   "end": "2019-12-31",
+   "eps": 92.13,
+   "eps_prior": 90.78,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 24.68,
+   "navps_prior": 28.61,
+   "ok": true,
+   "pages": 148,
+   "src_dps": "Dividend per share (Interim and proposed final dividend)  Rs.  92.13  90.77",
+   "src_eps": "Earnings per share  Rs.  92.13  90.78",
+   "src_navps": "Net assets per share  Rs.  24.68  28.61",
+   "title": "Annual Report 2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/460_1590466336624.pdf",
+   "v": 6,
+   "vals_dps": [
+    92.13,
+    90.77
+   ],
+   "vals_eps": [
+    92.13,
+    90.78
+   ],
+   "vals_navps": [
+    24.68,
+    28.61
+   ],
+   "year_only": false
+  },
+  "37685": {
+   "dps": 82.85,
+   "dps_prior": 92.13,
+   "end": "2020-12-31",
+   "eps": 83.16,
+   "eps_prior": 82.85,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 24.57,
+   "navps_prior": 24.68,
+   "ok": true,
+   "pages": 164,
+   "src_dps": "Dividend per share (interim and proposed final dividend)  Rs.  82.85  92.13",
+   "src_eps": "EARNINGS PER SHARE  DIVIDEND PER SHARE  PERMANENT EMPLOYEES  PAYMENTS TO CONTRACTED FARMERS \u23ce  Rs. 83.16  Rs. 82.85",
+   "src_navps": "Net assets per share  Rs.  24.57  24.68",
+   "title": "Annual Report of Ceylon Tobacco Company 2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/460_1619687146669.pdf",
+   "v": 6,
+   "vals_dps": [
+    82.85,
+    92.13
+   ],
+   "vals_eps": [
+    83.16,
+    82.85
+   ],
+   "vals_navps": [
+    24.57,
+    24.68
+   ],
+   "year_only": false
+  },
   "40272": {
    "dps": 53.0,
    "dps_prior": 82.85,
@@ -235,7 +325,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -281,6 +371,51 @@
     "title": "Annual Report for the Financial Year ended 31st December 2021",
     "uploaded": 1650882497084,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/460_1650882497084.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-12-31",
+    "id": "37685",
+    "title": "Annual Report of Ceylon Tobacco Company 2020",
+    "uploaded": 1619687146669,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/460_1619687146669.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-12-31",
+    "id": "35383",
+    "title": "Annual Report 2019",
+    "uploaded": 1590466336624,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/460_1590466336624.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-12-31",
+    "id": "32683",
+    "title": "Annual Report 2018",
+    "uploaded": 1555439400000,
+    "url": "https://cdn.cse.lk/upload_report_file/460_1555498758602.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-12-31",
+    "id": "23084",
+    "title": "Annual Report 2017",
+    "uploaded": 1522607400000,
+    "url": "https://cdn.cse.lk/upload_report_file/460_1522664563893.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2016-12-31",
+    "id": "21218",
+    "title": "Annual Report 2016",
+    "uploaded": 1490553000000,
+    "url": "https://cdn.cse.lk/upload_report_file/460_1490610645939.PDF",
     "year_only": false
    }
   ],

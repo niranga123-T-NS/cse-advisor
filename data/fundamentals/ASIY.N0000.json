@@ -1,5 +1,239 @@
 {
  "annual": {
+  "34026": {
+   "dps": 0.25,
+   "dps_prior": 0.25,
+   "end": "2019-03-31",
+   "eps": 0.43,
+   "eps_prior": 0.38,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 2.82,
+   "navps_prior": 2.62,
+   "ok": true,
+   "pages": 148,
+   "src_dps": "Dividend per share  0.25  0.25  0.10",
+   "src_eps": "Earnings per share  Rs.  0.43  0.38  15.88",
+   "src_navps": "Net Asset value per share  Rs.  2.82  2.62  7.49",
+   "title": "Annual Report 2018/2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1205_1567074859693.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.25,
+    0.25,
+    0.1
+   ],
+   "vals_eps": [
+    0.43,
+    0.38,
+    15.88
+   ],
+   "vals_navps": [
+    2.82,
+    2.62,
+    7.49
+   ],
+   "year_only": false
+  },
+  "36419": {
+   "dps": 0.15,
+   "dps_prior": 0.25,
+   "end": "2020-12-31",
+   "eps": 0.06,
+   "eps_prior": 0.43,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 3.33,
+   "navps_prior": 2.82,
+   "ok": true,
+   "pages": 132,
+   "src_dps": "Dividend Per Share  27  0.15  0.25  0.15  0.25",
+   "src_eps": "Earnings per share  Rs.  0.06  0.43  (85.09)",
+   "src_navps": "Net Asset Value per share  Rs.  3.33  2.82  18.15",
+   "title": "Annual Report as at 31.03.2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1205_1601976866402.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.15,
+    0.25,
+    0.15,
+    0.25
+   ],
+   "vals_eps": [
+    0.06,
+    0.43,
+    -85.09
+   ],
+   "vals_navps": [
+    3.33,
+    2.82,
+    18.15
+   ],
+   "year_only": true
+  },
+  "38932": {
+   "dps": 0.18,
+   "dps_prior": 0.15,
+   "end": "2021-12-31",
+   "eps": -0.02,
+   "eps_prior": 0.06,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 46,
+   "src_dps": "Dividend Per Share  27  0.18  0.15  0.18  0.15",
+   "src_eps": "Basic/Diluted Earnings/ (Loss) Per Share  26  (0.02)  0.06  (0.07)  0.18",
+   "title": "Audited Financial statements as of 31.03.2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1205_1630404467630.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.18,
+    0.15,
+    0.18,
+    0.15
+   ],
+   "vals_eps": [
+    -0.02,
+    0.06,
+    -0.07,
+    0.18
+   ],
+   "year_only": true
+  },
+  "39023": {
+   "dps": 0.18,
+   "dps_prior": 0.15,
+   "end": "2021-03-31",
+   "eps": -0.02,
+   "eps_prior": 0.06,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 3.38,
+   "navps_prior": 3.33,
+   "ok": true,
+   "pages": 136,
+   "src_dps": "Dividend Per Share  27  0.18  0.15  0.18  0.15",
+   "src_eps": "Basic/Diluted Earnings Per Share  26  (0.02)  0.06  (0.07)  0.18",
+   "src_navps": "Net Asset Value Per Share  Rs.  3.38  3.33  1.42",
+   "title": "Annual Report 2020/21",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1205_1631014669457.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.18,
+    0.15,
+    0.18,
+    0.15
+   ],
+   "vals_eps": [
+    -0.02,
+    0.06,
+    -0.07,
+    0.18
+   ],
+   "vals_navps": [
+    3.38,
+    3.33,
+    1.42
+   ],
+   "year_only": false
+  },
+  "41671": {
+   "dps": 0.1,
+   "dps_prior": 0.18,
+   "end": "2022-03-31",
+   "eps": 0.46,
+   "eps_prior": -0.02,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 3.62,
+   "navps_prior": 3.38,
+   "ok": true,
+   "pages": 132,
+   "src_dps": "Dividend Per Share  26  0.10  0.18  0.10  0.18",
+   "src_eps": "Basic/Diluted Earnings/ (Loss) Per Share  25  0.46  (0.02)  0.40  (0.07)",
+   "src_navps": "Net Asset Value Per Share  Rs.  3.62  3.38  7.10",
+   "title": "Annual Report 2021/2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1205_1662463322395.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.1,
+    0.18,
+    0.1,
+    0.18
+   ],
+   "vals_eps": [
+    0.46,
+    -0.02,
+    0.4,
+    -0.07
+   ],
+   "vals_navps": [
+    3.62,
+    3.38,
+    7.1
+   ],
+   "year_only": false
+  },
   "44094": {
    "end": "2023-12-31",
    "ok": true,
@@ -168,7 +402,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -214,6 +448,51 @@
     "title": "Annual Report 2022/2023",
     "uploaded": 1693798606130,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/1205_1693798606130.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2022-03-31",
+    "id": "41671",
+    "title": "Annual Report 2021/2022",
+    "uploaded": 1662463322395,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1205_1662463322395.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-12-31",
+    "id": "38932",
+    "title": "Audited Financial statements as of 31.03.2021",
+    "uploaded": 1630404467630,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1205_1630404467630.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "39023",
+    "title": "Annual Report 2020/21",
+    "uploaded": 1631014669457,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1205_1631014669457.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-12-31",
+    "id": "36419",
+    "title": "Annual Report as at 31.03.2020",
+    "uploaded": 1601976866402,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1205_1601976866402.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "34026",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1567074859693,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1205_1567074859693.pdf",
     "year_only": false
    }
   ],

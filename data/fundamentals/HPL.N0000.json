@@ -1,5 +1,96 @@
 {
  "annual": {
+  "36942": {
+   "dps": 0.25,
+   "dps_prior": 0.5,
+   "end": "2020-03-31",
+   "eps": -0.51,
+   "eps_prior": -0.48,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 6.7,
+   "navps_prior": 6.6,
+   "ok": true,
+   "pages": 124,
+   "src_dps": "Dividend per share (Rs.)  -  0.25  0.50",
+   "src_eps": "Basic earnings / (loss) per share (LKR)  (0.51)  (0.48)",
+   "src_navps": "Net assets per share  LKR  6.7  6.6  1.5%",
+   "title": "Annual Report 2019/20",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1045_1607051688348.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.25,
+    0.5
+   ],
+   "vals_eps": [
+    -0.51,
+    -0.48
+   ],
+   "vals_navps": [
+    6.7,
+    6.6
+   ],
+   "year_only": false
+  },
+  "38920": {
+   "dps": 0.5,
+   "dps_prior": 0.25,
+   "end": "2021-03-31",
+   "eps": 1.86,
+   "eps_prior": -0.51,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 9.4,
+   "navps_prior": 6.7,
+   "ok": true,
+   "pages": 132,
+   "src_dps": "Dividend per share (Rs.)  0.50  -  0.25  0.50",
+   "src_eps": "Basic earnings/(loss) per share (LKR)  1.86  (0.51)",
+   "src_navps": "Net assets per share  LKR  9.4  6.7  39.9%",
+   "title": "Hatton Plantations PLC - Annual Report 2020-2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1045_1630321600396.pdf",
+   "v": 6,
+   "vals_dps": [
+    0.5,
+    0.25,
+    0.5
+   ],
+   "vals_eps": [
+    1.86,
+    -0.51
+   ],
+   "vals_navps": [
+    9.4,
+    6.7
+   ],
+   "year_only": false
+  },
   "41536": {
    "dps": 0.5,
    "dps_prior": 0.5,
@@ -252,7 +343,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -298,6 +389,42 @@
     "title": "Hatton Plantations PLC - Annual Report 2021-2022",
     "uploaded": 1661938258350,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/1045_1661938258350.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38920",
+    "title": "Hatton Plantations PLC - Annual Report 2020-2021",
+    "uploaded": 1630321600396,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1045_1630321600396.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36942",
+    "title": "Annual Report 2019/20",
+    "uploaded": 1607051688348,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1045_1607051688348.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "33278",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1559759400000,
+    "url": "https://cdn.cse.lk/upload_report_file/1045_1559818272.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "23648",
+    "title": "Annual Report 2017/18",
+    "uploaded": 1528137000000,
+    "url": "https://cdn.cse.lk/upload_report_file/1045_1528168841632.pdf",
     "year_only": false
    }
   ],

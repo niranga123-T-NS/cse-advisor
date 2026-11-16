@@ -1,5 +1,122 @@
 {
  "annual": {
+  "34127": {
+   "end": "2019-03-31",
+   "eps": -278.63,
+   "eps_prior": -116.27,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": -1022.5,
+   "navps_prior": -650.05,
+   "ok": true,
+   "pages": 68,
+   "src_eps": "EPS  Rs.  (278.63)  (116.27)  (98.28)  (253.14)  (122.66)",
+   "src_navps": "Net Asset Per Share  Rs.  (1,022.50)  (650.05)  (519.37)  (391.00)  (112.96)",
+   "title": "Annual Report 2018/2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/742_1569221046940.09.19) FINAL.pdf",
+   "v": 6,
+   "vals_eps": [
+    -278.63,
+    -116.27,
+    -98.28,
+    -253.14,
+    -122.66
+   ],
+   "vals_navps": [
+    -1022.5,
+    -650.05,
+    -519.37,
+    -391.0,
+    -112.96
+   ],
+   "year_only": false
+  },
+  "36695": {
+   "end": "2020-03-31",
+   "eps": -70.63,
+   "eps_prior": -278.63,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": -1178.37,
+   "navps_prior": -1022.5,
+   "ok": true,
+   "pages": 62,
+   "src_eps": "EPS  Rs.  (70.63)  (278.63)  (116.27)  (98.28)  (253.14)",
+   "src_navps": "Net Asset per Share  Rs.  (1,178.37)  (1,022.50)  (650.05)  (519.37)  (391.00)",
+   "title": "Annual Report 2019/20",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/742_1605241019999.pdf",
+   "v": 6,
+   "vals_eps": [
+    -70.63,
+    -278.63,
+    -116.27,
+    -98.28,
+    -253.14
+   ],
+   "vals_navps": [
+    -1178.37,
+    -1022.5,
+    -650.05,
+    -519.37,
+    -391.0
+   ],
+   "year_only": false
+  },
+  "39008": {
+   "end": "2021-03-31",
+   "eps": 982.75,
+   "eps_prior": -70.63,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 30.24,
+   "navps_prior": -1178.37,
+   "ok": true,
+   "pages": 62,
+   "src_eps": "EPS  Rs.  982.75  (70.63)  (278.63)  (116.27)  (98.28)",
+   "src_navps": "Net Asset per Share  Rs.  30.24  (1,178.37)  (1,022.50)  (650.05)  (519.37)",
+   "title": "Annual Report 2020/2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/742_1630581619163.pdf",
+   "v": 6,
+   "vals_eps": [
+    982.75,
+    -70.63,
+    -278.63,
+    -116.27,
+    -98.28
+   ],
+   "vals_navps": [
+    30.24,
+    -1178.37,
+    -1022.5,
+    -650.05,
+    -519.37
+   ],
+   "year_only": false
+  },
   "41653": {
    "end": "2022-03-31",
    "eps": -1.65,
@@ -193,7 +310,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -239,6 +356,51 @@
     "title": "Annual Report 2021/2022",
     "uploaded": 1662372227888,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/742_1662372227888.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "39008",
+    "title": "Annual Report 2020/2021",
+    "uploaded": 1630581619163,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/742_1630581619163.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36695",
+    "title": "Annual Report 2019/20",
+    "uploaded": 1605241019999,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/742_1605241019999.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "34127",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1567967400000,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/742_1569221046940.09.19) FINAL.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "24479",
+    "title": "Annual Report 2017/2018",
+    "uploaded": 1536172200000,
+    "url": "https://cdn.cse.lk/upload_report_file/742_1536229559561.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "30750",
+    "title": "Annual Report 2016/2017",
+    "uploaded": 1503945000000,
+    "url": "https://cdn.cse.lk/upload_report_file/742_1504005912.pdf",
     "year_only": false
    }
   ],

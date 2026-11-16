@@ -1,5 +1,120 @@
 {
  "annual": {
+  "34061": {
+   "end": "2019-03-31",
+   "eps": 96650427.0,
+   "eps_prior": 96650427.0,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 25.3,
+   "navps_prior": 27.71,
+   "ok": true,
+   "pages": 168,
+   "src_eps": "basic earnings/(loss) per share  96,650,427  96,650,427  96,650,427  96,650,427",
+   "src_navps": "Net assets value per share (Rs.)  25.30  27.71  28.15  30.66  29.68",
+   "title": "Annual Report 2018/2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/568_1567161515283.pdf",
+   "v": 6,
+   "vals_eps": [
+    96650427.0,
+    96650427.0,
+    96650427.0,
+    96650427.0
+   ],
+   "vals_navps": [
+    25.3,
+    27.71,
+    28.15,
+    30.66,
+    29.68
+   ],
+   "year_only": false
+  },
+  "36970": {
+   "end": "2020-03-31",
+   "eps": 249003442.0,
+   "eps_prior": 96650427.0,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 12.73,
+   "navps_prior": 25.3,
+   "ok": true,
+   "pages": 172,
+   "src_eps": "basic earnings/(loss) per share  249,003,442  96,650,427  249,003,442  96,650,427",
+   "src_navps": "Net assets value per share (Rs.)  12.73  25.30  27.71  28.15  30.66",
+   "title": "Annual Report for the year ended 31st March 2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/568_1607677780743.pdf",
+   "v": 6,
+   "vals_eps": [
+    249003442.0,
+    96650427.0,
+    249003442.0,
+    96650427.0
+   ],
+   "vals_navps": [
+    12.73,
+    25.3,
+    27.71,
+    28.15,
+    30.66
+   ],
+   "year_only": false
+  },
+  "39002": {
+   "end": "2021-03-31",
+   "eps": -2.26,
+   "eps_prior": -1.47,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 11.7,
+   "navps_prior": 12.73,
+   "ok": true,
+   "pages": 176,
+   "src_eps": "Earnings/(loss) per Share - Basic (Rs.)  (2.26)  (1.47)  (2.46)  (1.59)  (2.53)",
+   "src_navps": "Net assets value per share (Rs.)  11.70  12.73  25.30  27.71  28.15",
+   "title": "Annual Report for the year ended 31st March 2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/568_1630575079093.pdf",
+   "v": 6,
+   "vals_eps": [
+    -2.26,
+    -1.47,
+    -2.46,
+    -1.59,
+    -2.53
+   ],
+   "vals_navps": [
+    11.7,
+    12.73,
+    25.3,
+    27.71,
+    28.15
+   ],
+   "year_only": false
+  },
   "41629": {
    "end": "2022-03-31",
    "eps": -1.72,
@@ -186,7 +301,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -232,6 +347,51 @@
     "title": "Annual Report for the Financial Year ended 31st March 2022",
     "uploaded": 1662110054684,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/568_1662110054684.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "39002",
+    "title": "Annual Report for the year ended 31st March 2021",
+    "uploaded": 1630575079093,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/568_1630575079093.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36970",
+    "title": "Annual Report for the year ended 31st March 2020",
+    "uploaded": 1607677780743,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/568_1607677780743.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "34061",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1567161515283,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/568_1567161515283.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "24485",
+    "title": "Annual Report 2017/2018",
+    "uploaded": 1536258600000,
+    "url": "https://cdn.cse.lk/upload_report_file/568_1536290513604.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "22096",
+    "title": "Annual Report 2016/2017",
+    "uploaded": 1504117800000,
+    "url": "https://cdn.cse.lk/upload_report_file/568_1504178262846.pdf",
     "year_only": false
    }
   ],

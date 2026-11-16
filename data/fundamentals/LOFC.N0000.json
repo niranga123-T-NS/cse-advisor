@@ -1,5 +1,122 @@
 {
  "annual": {
+  "38324": {
+   "end": "2021-12-31",
+   "eps": 0.83,
+   "eps_prior": 0.77,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 80,
+   "src_eps": "Basic earnings per share (Rs.)  0.83  0.77",
+   "title": "Annual Audited Financial Statements as of 03/31/2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1073_1624964404071.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.83,
+    0.77
+   ],
+   "year_only": true
+  },
+  "40974": {
+   "end": "2022-12-31",
+   "eps": 3.23,
+   "eps_prior": 0.83,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 86,
+   "src_eps": "Basic earnings per share  30  3.23  0.83",
+   "title": "Annual Audited Financial Statements as of 03/31/2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1073_1656582179082.pdf",
+   "v": 6,
+   "vals_eps": [
+    3.23,
+    0.83
+   ],
+   "year_only": true
+  },
+  "41604": {
+   "end": "2022-03-31",
+   "eps": 3.23,
+   "eps_prior": 0.83,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 4.34,
+   "navps_prior": 6.84,
+   "ok": true,
+   "pages": 188,
+   "src_eps": "Basic earnings per share  30  3.23  0.83",
+   "src_navps": "Net asset value per share  4.34  6.84",
+   "title": "Annual Report 2021/22",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1073_1662005277638.pdf",
+   "v": 6,
+   "vals_eps": [
+    3.23,
+    0.83
+   ],
+   "vals_navps": [
+    4.34,
+    6.84
+   ],
+   "year_only": false
+  },
+  "43582": {
+   "end": "2023-12-31",
+   "ok": true,
+   "pages": 85,
+   "title": "Annual Audited Financial Statements as of 03/31/2023",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1073_1688108327036.03.2023.pdf",
+   "v": 6,
+   "year_only": true
+  },
+  "44108": {
+   "end": "2023-03-31",
+   "eps": 0.72,
+   "eps_prior": 3.23,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 3.05,
+   "navps_prior": 4.34,
+   "ok": true,
+   "pages": 212,
+   "src_eps": "Basic earnings per share  30  0.72  3.23",
+   "src_navps": "Net asset value per share  3.05  4.34",
+   "title": "ANNUAL REPORT FOR 2022/2023",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1073_1693539154540.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.72,
+    3.23
+   ],
+   "vals_navps": [
+    3.05,
+    4.34
+   ],
+   "year_only": false
+  },
   "46041": {
    "end": "2024-12-31",
    "ok": true,
@@ -118,7 +235,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -165,6 +282,51 @@
     "uploaded": 1725010025209,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/1073_1725010025209.pdf",
     "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2023-12-31",
+    "id": "43582",
+    "title": "Annual Audited Financial Statements as of 03/31/2023",
+    "uploaded": 1688108327036,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1073_1688108327036.03.2023.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2023-03-31",
+    "id": "44108",
+    "title": "ANNUAL REPORT FOR 2022/2023",
+    "uploaded": 1693539154540,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1073_1693539154540.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2022-12-31",
+    "id": "40974",
+    "title": "Annual Audited Financial Statements as of 03/31/2022",
+    "uploaded": 1656582179082,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1073_1656582179082.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2022-03-31",
+    "id": "41604",
+    "title": "Annual Report 2021/22",
+    "uploaded": 1662005277638,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1073_1662005277638.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-12-31",
+    "id": "38324",
+    "title": "Annual Audited Financial Statements as of 03/31/2021",
+    "uploaded": 1624964404071,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1073_1624964404071.pdf",
+    "year_only": true
    }
   ],
   "quarterly": [

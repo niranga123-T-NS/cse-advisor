@@ -1,5 +1,122 @@
 {
  "annual": {
+  "34060": {
+   "end": "2019-03-31",
+   "eps": -1.26,
+   "eps_prior": -1.27,
+   "layout_eps": [
+    1,
+    2,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 8.46,
+   "navps_prior": 10.16,
+   "ok": true,
+   "pages": 140,
+   "src_eps": "Earnings/(Loss) per Share - Basic  Rs.  (2.45)  (1.26)  (1.13)  (1.27)  (1.06)",
+   "src_navps": "Net Assets Value per share  Rs.  8.46  10.16  8.10  8.63  7.58",
+   "title": "Annual Report 2018/2019",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1106_1567161460567.pdf",
+   "v": 6,
+   "vals_eps": [
+    -2.45,
+    -1.26,
+    -1.13,
+    -1.27,
+    -1.06
+   ],
+   "vals_navps": [
+    8.46,
+    10.16,
+    8.1,
+    8.63,
+    7.58
+   ],
+   "year_only": false
+  },
+  "36972": {
+   "end": "2020-03-31",
+   "eps": -1.26,
+   "eps_prior": -1.27,
+   "layout_eps": [
+    0,
+    2,
+    true
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 10.16,
+   "navps_prior": 8.1,
+   "ok": true,
+   "pages": 144,
+   "src_eps": "Earnings/(Loss) per Share - Basic/diluted Rs.  (1.26)  (1.13)  (1.27)  (1.06)  (0.50)",
+   "src_navps": "Net Assets Value per share  Rs.  10.16  8.10  8.63  7.58  3.81",
+   "title": "Annual Report for the year ended 31st March 2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1106_1607678298413.pdf",
+   "v": 6,
+   "vals_eps": [
+    -1.26,
+    -1.13,
+    -1.27,
+    -1.06,
+    -0.5
+   ],
+   "vals_navps": [
+    10.16,
+    8.1,
+    8.63,
+    7.58,
+    3.81
+   ],
+   "year_only": false
+  },
+  "39004": {
+   "end": "2021-03-31",
+   "eps": -1.13,
+   "eps_prior": -1.27,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 8.1,
+   "navps_prior": 8.63,
+   "ok": true,
+   "pages": 140,
+   "src_eps": "Earnings/(Loss) per Share - Basic/diluted Rs.  (1.13)  (1.27)  (1.06)  (0.50)  (0.60)",
+   "src_navps": "Net Assets Value per share  Rs.  8.10  8.63  7.58  3.81  3.79",
+   "title": "Annual Report for the year ended 31st March 2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1106_1630575830400.pdf",
+   "v": 6,
+   "vals_eps": [
+    -1.13,
+    -1.27,
+    -1.06,
+    -0.5,
+    -0.6
+   ],
+   "vals_navps": [
+    8.1,
+    8.63,
+    7.58,
+    3.81,
+    3.79
+   ],
+   "year_only": false
+  },
   "41632": {
    "end": "2022-03-31",
    "eps": -1.27,
@@ -186,7 +303,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -232,6 +349,51 @@
     "title": "Annual Report for the Financial Year ended 31st March 2022",
     "uploaded": 1662110290022,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/1106_1662110290022.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "39004",
+    "title": "Annual Report for the year ended 31st March 2021",
+    "uploaded": 1630575830400,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1106_1630575830400.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36972",
+    "title": "Annual Report for the year ended 31st March 2020",
+    "uploaded": 1607678298413,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1106_1607678298413.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "34060",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1567161460567,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1106_1567161460567.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "24472",
+    "title": "Annual Report 2017/2018",
+    "uploaded": 1535999400000,
+    "url": "https://cdn.cse.lk/upload_report_file/1106_1536057766562.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "22099",
+    "title": "Waskaduwa Beach Resort PLC Annual report -2016/2017",
+    "uploaded": 1504117800000,
+    "url": "https://cdn.cse.lk/upload_report_file/1106_1504178274194.pdf",
     "year_only": false
    }
   ],

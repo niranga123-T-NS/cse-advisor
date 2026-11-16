@@ -1,5 +1,71 @@
 {
  "annual": {
+  "35810": {
+   "end": "2020-03-31",
+   "eps": -0.9,
+   "eps_prior": -0.56,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 9.81,
+   "navps_prior": 10.59,
+   "ok": true,
+   "pages": 137,
+   "src_eps": "Earnings/(Loss) per share  Rs.  (0.90)  (0.56)",
+   "src_navps": "Net Assets per Share  Rs.  9.81  10.59",
+   "title": "Annual report for the year ended 31st March 2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1686_1596186494908.pdf",
+   "v": 6,
+   "vals_eps": [
+    -0.9,
+    -0.56
+   ],
+   "vals_navps": [
+    9.81,
+    10.59
+   ],
+   "year_only": false
+  },
+  "38207": {
+   "end": "2021-03-31",
+   "eps": -1.63,
+   "eps_prior": -0.9,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 8.2,
+   "navps_prior": 9.81,
+   "ok": true,
+   "pages": 126,
+   "src_eps": "Earnings/(Loss) per share  Rs.  (1.63)  (0.90)",
+   "src_navps": "Net Assets per Share  Rs.  8.20  9.81",
+   "title": "Annual report for the year ended 31st March 2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/1686_1623151060555.pdf",
+   "v": 6,
+   "vals_eps": [
+    -1.63,
+    -0.9
+   ],
+   "vals_navps": [
+    8.2,
+    9.81
+   ],
+   "year_only": false
+  },
   "40918": {
    "end": "2022-03-31",
    "eps": -1.76,
@@ -166,7 +232,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -212,6 +278,42 @@
     "title": "Annual report for the year ended 31st March 2022",
     "uploaded": 1655901422477,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/1686_1655901422477.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38207",
+    "title": "Annual report for the year ended 31st March 2021",
+    "uploaded": 1623151060555,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1686_1623151060555.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "35810",
+    "title": "Annual report for the year ended 31st March 2020",
+    "uploaded": 1596186494908,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/1686_1596186494908.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "33281",
+    "title": "Annual Report 2018/2019",
+    "uploaded": 1559759400000,
+    "url": "https://cdn.cse.lk/upload_report_file/1686_1559818764.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "23736",
+    "title": "Annual Report 2017/2018",
+    "uploaded": 1529346600000,
+    "url": "https://cdn.cse.lk/upload_report_file/1686_1529404837296.pdf",
     "year_only": false
    }
   ],

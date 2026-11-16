@@ -1,5 +1,154 @@
 {
  "annual": {
+  "35843": {
+   "end": "2020-12-31",
+   "ok": true,
+   "pages": 42,
+   "title": "Audited Financial Statements as of 31-03-2020",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/488_1596541072731.pdf",
+   "v": 6,
+   "year_only": true
+  },
+  "38450": {
+   "dps": 5.5,
+   "dps_prior": 4.5,
+   "end": "2021-12-31",
+   "eps": 187.6,
+   "eps_prior": 83.43,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 41,
+   "src_dps": "Dividend per share  11  5.50  4.50  5.50  4.50",
+   "src_eps": "Basic and Diluted Earnings Per Share  10  187.60  83.43  187.61  83.43",
+   "title": "Audited Financial statements as of 31.03.2021",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/488_1627380634923.pdf",
+   "v": 6,
+   "vals_dps": [
+    5.5,
+    4.5,
+    5.5,
+    4.5
+   ],
+   "vals_eps": [
+    187.6,
+    83.43,
+    187.61,
+    83.43
+   ],
+   "year_only": true
+  },
+  "38897": {
+   "dps": 5.5,
+   "dps_prior": 4.5,
+   "end": "2021-03-31",
+   "eps": 187.6,
+   "eps_prior": 83.43,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "navps": 623.12,
+   "navps_prior": 444.46,
+   "ok": true,
+   "pages": 116,
+   "src_dps": "Dividend per share  11  5.50  4.50  5.50  4.50",
+   "src_eps": "Earnings per share (Rs.)  187.60  83.43  124.85%",
+   "src_navps": "Net assets per share (Rs.)  623.12  444.46  40.20%",
+   "title": "Annual Report 2020/21",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/488_1629455904879.pdf",
+   "v": 6,
+   "vals_dps": [
+    5.5,
+    4.5,
+    5.5,
+    4.5
+   ],
+   "vals_eps": [
+    187.6,
+    83.43
+   ],
+   "vals_navps": [
+    623.12,
+    444.46
+   ],
+   "year_only": false
+  },
+  "41122": {
+   "end": "2022-12-31",
+   "ok": true,
+   "pages": 39,
+   "title": "Audited financial Statements for the year ended 31.03.2022",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/488_1659353078211.pdf",
+   "v": 6,
+   "year_only": false
+  },
+  "41427": {
+   "dps": 40000.0,
+   "dps_prior": 40.0,
+   "end": "2022-03-31",
+   "eps": 200.0,
+   "eps_prior": 800.0,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "layout_navps": [
+    0,
+    1,
+    true
+   ],
+   "navps": 755.06,
+   "navps_prior": 623.12,
+   "ok": true,
+   "pages": 156,
+   "src_dps": "DPS \u23ce  40,000  40",
+   "src_eps": "Earnings Per Share  Net Asset Per Share  Workforce \u23ce  200  800  300",
+   "src_navps": "Net assets per share  Rs.  755.06  623.12  21",
+   "title": "Annual Financial Report 2021/22",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/488_1660707877212.pdf",
+   "v": 6,
+   "vals_dps": [
+    40000.0,
+    40.0
+   ],
+   "vals_eps": [
+    200.0,
+    800.0,
+    300.0
+   ],
+   "vals_navps": [
+    755.06,
+    623.12,
+    21.0
+   ],
+   "year_only": false
+  },
   "43998": {
    "dps": 3.5,
    "dps_prior": 10.0,
@@ -194,7 +343,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -241,6 +390,51 @@
     "uploaded": 1692180630099,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/488_1692180630099.pdf",
     "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2022-12-31",
+    "id": "41122",
+    "title": "Audited financial Statements for the year ended 31.03.2022",
+    "uploaded": 1659353078211,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/488_1659353078211.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2022-03-31",
+    "id": "41427",
+    "title": "Annual Financial Report 2021/22",
+    "uploaded": 1660648440000,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/488_1660707877212.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-12-31",
+    "id": "38450",
+    "title": "Audited Financial statements as of 31.03.2021",
+    "uploaded": 1627380634923,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/488_1627380634923.pdf",
+    "year_only": true
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "38897",
+    "title": "Annual Report 2020/21",
+    "uploaded": 1629455904879,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/488_1629455904879.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-12-31",
+    "id": "35843",
+    "title": "Audited Financial Statements as of 31-03-2020",
+    "uploaded": 1596541072731,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/488_1596541072731.pdf",
+    "year_only": true
    }
   ],
   "quarterly": [

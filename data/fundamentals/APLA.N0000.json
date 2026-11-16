@@ -1,5 +1,79 @@
 {
  "annual": {
+  "36189": {
+   "dps": 6.0,
+   "dps_prior": 6.0,
+   "end": "2020-03-31",
+   "eps": 36.98,
+   "eps_prior": 7.07,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 92,
+   "src_dps": "Dividend per share (Rs)  13  6.00  6.00  6.00  6.00",
+   "src_eps": "Earnings per share (Rs)  12  36.98  7.07  36.04  5.71",
+   "title": "Annual Report 2019/20",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/643_1598351560341.pdf",
+   "v": 6,
+   "vals_dps": [
+    6.0,
+    6.0,
+    6.0,
+    6.0
+   ],
+   "vals_eps": [
+    36.98,
+    7.07,
+    36.04,
+    5.71
+   ],
+   "year_only": false
+  },
+  "39109": {
+   "dps": 6.0,
+   "dps_prior": 6.0,
+   "end": "2021-03-31",
+   "eps": 42.56,
+   "eps_prior": 36.98,
+   "layout_dps": [
+    0,
+    1,
+    false
+   ],
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 96,
+   "src_dps": "Dividend per share (Rs)  13  6.00  6.00  6.00  6.00",
+   "src_eps": "Basic earnings per share  42.56  36.98  41.63  36.04",
+   "title": "Annual Report 2020/21",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/643_1633669291158.pdf",
+   "v": 6,
+   "vals_dps": [
+    6.0,
+    6.0,
+    6.0,
+    6.0
+   ],
+   "vals_eps": [
+    42.56,
+    36.98,
+    41.63,
+    36.04
+   ],
+   "year_only": false
+  },
   "41529": {
    "dps": 10.0,
    "dps_prior": 6.0,
@@ -236,7 +310,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-15",
+ "listed_at": "2026-11-16",
  "listing": {
   "annual": [
    {
@@ -282,6 +356,51 @@
     "title": "Annual Report for the year ended 31st March 2022",
     "uploaded": 1661936842790,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/643_1661936842790.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2021-03-31",
+    "id": "39109",
+    "title": "Annual Report 2020/21",
+    "uploaded": 1633669291158,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/643_1633669291158.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2020-03-31",
+    "id": "36189",
+    "title": "Annual Report 2019/20",
+    "uploaded": 1598351560341,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/643_1598351560341.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2019-03-31",
+    "id": "33592",
+    "title": "ACL PLASTICS PLC-Annual Report for YE 2018/19",
+    "uploaded": 1564739339581,
+    "url": "https://cdn.cse.lk/upload_report_file/643_1564739339581.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2018-03-31",
+    "id": "23823",
+    "title": "Annual Report- ACL Plastics PLC- 2017/18",
+    "uploaded": 1531161000000,
+    "url": "https://cdn.cse.lk/upload_report_file/643_1531214131136.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
+    "end": "2017-03-31",
+    "id": "21777",
+    "title": "Annual Report 2016/17",
+    "uploaded": 1500316200000,
+    "url": "https://cdn.cse.lk/upload_report_file/643_1500375807913.pdf",
     "year_only": false
    }
   ],

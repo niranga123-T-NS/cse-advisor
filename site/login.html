@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0c111b">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+<title>Sign in, CSE Advisor</title>
+<link rel="stylesheet" href="app.css">
+<style>
+  body { display:grid; place-items:center; min-height:100vh; margin:0; padding:20px; box-sizing:border-box; }
+  .box { width:100%; max-width:360px; }
+  .box h1 { font-size:24px; margin:0 0 4px; } .box p { margin:0 0 18px; }
+  .box label { display:block; font-size:14px; margin:12px 0 4px; color:var(--ink-2); }
+  .box input { width:100%; box-sizing:border-box; font-size:16px; padding:11px 12px; border-radius:10px; border:1px solid var(--line); background:var(--surface); color:var(--ink); }
+  .box button { width:100%; margin-top:18px; font-size:16px; padding:12px; border-radius:10px; border:0; background:var(--sapphire); color:#fff; font-weight:600; }
+  .box button[disabled] { opacity:.6; }
+  #err { color:var(--ruby); min-height:1.4em; margin-top:10px; font-size:14px; }
+</style>
+</head>
+<body>
+<form class="box" id="f" autocomplete="on">
+  <h1>CSE Advisor</h1>
+  <p class="mute">Sign in with the email and password you were given.</p>
+  <label for="email">Email</label>
+  <input id="email" name="email" type="email" autocomplete="username" required autofocus>
+  <label for="password">Password</label>
+  <input id="password" name="password" type="password" autocomplete="current-password" required>
+  <button type="submit" id="go">Sign in</button>
+  <div id="err" role="alert"></div>
+  <p class="small mute" style="margin-top:14px">Forgot your password or need access? Ask the person who invited you.</p>
+</form>
+<script src="login.js"></script>
+</body>
+</html>

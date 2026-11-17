@@ -167,6 +167,19 @@ def build():
         _dump(OUT / "changes.json", {k: rec.get(k) for k in ("date", "since", "changes")})
     except Exception as e:
         print("rating changes step failed:", repr(e))
+    try:                                    # price outlook: likely range over the next 5/10/20/60 trading days
+        import outlook
+        badf = {s: {c["end"] for c in (f.get("checks") or []) if c.get("level") == "fail"} for s, f in funds.items()}
+        OL = outlook.build(sec, names, bad=badf)
+        for s, p in payloads.items():
+            if s in OL["shares"]:
+                p["outlook"] = {"date": OL["date"], "h": OL["shares"][s]}
+        _dump(OUT / "outlook.json", {k: v for k, v in OL.items() if k != "shares"})
+        print(f"Price outlook: {len(OL['shares'])} shares")
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        print("outlook step failed:", repr(e))
     for s, p in payloads.items():
         _dump(OUT / "stocks" / f"{s}.json", p)
     signals.sort(key=lambda x: (not x["watch"], -(x["score"] if x["score"] is not None else -1)))

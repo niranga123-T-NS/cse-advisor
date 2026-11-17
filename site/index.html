@@ -140,6 +140,9 @@
   table.depth td { padding:3px 4px; border-top:1px solid var(--line-soft); position:relative; }
   table.depth td.num, table.depth th.num { text-align:right; }
   .dbar { height:3px; border-radius:2px; margin-top:2px; margin-left:auto; } .dbar.b { background:var(--emerald); } .dbar.s { background:var(--ruby); margin-left:0; margin-right:auto; }
+  .osvg { width:100%; height:auto; display:block; } .osvg .ob80 { fill:var(--sapphire-soft); opacity:.55; } .osvg .ob50 { fill:var(--sapphire-soft); }
+  .osvg .ohist { fill:none; stroke:var(--ink-2); stroke-width:1.6; } .osvg .omed { fill:none; stroke:var(--sapphire); stroke-width:1.6; stroke-dasharray:5 4; }
+  .osvg .onow { stroke:var(--line); stroke-width:1; } .osvg .olab { font-size:12px; fill:var(--ink-2); font-variant-numeric:tabular-nums; } .osvg .olab.up { fill:var(--emerald); } .osvg .olab.down { fill:var(--ruby); }
   .tcols { display:grid; grid-template-columns:1fr 1fr; gap:14px; } .tcol { min-width:0; }
   .dspark { width:100%; height:60px; display:block; background:var(--surface-2, transparent); border-radius:6px; }
 
@@ -1004,6 +1007,53 @@ function peersCard(d, sym) {
     <p class="small" style="margin:8px 0 0">Peer figures are the middle of the group and use checked report figures only. Tap a peer to open it.</p></div>`;
 }
 
+// ---------- price outlook: likely range over the next 5/10/20/60 trading days (outlook.py, tested walk-forward) ----------
+let outlookMeta = null, outlookHz = (() => { try { return +localStorage.getItem('outlookHz') || 20; } catch (e) { return 20; } })();
+function businessDays(fromISO, n) {
+  const out = [], d = new Date(fromISO + 'T00:00:00');
+  while (out.length < n) { d.setDate(d.getDate() + 1); if (d.getDay() % 6) out.push(d.toISOString().slice(0, 10)); }
+  return out;
+}
+function outlookCard(d) {
+  const o = d.outlook, head = '<div class="card wide" id="sec-outlook"><h3>Price outlook';
+  if (!o) return `${head}</h3><p class="mute">No outlook: this share trades too little (it needs to trade on most days, about LKR 0.5M a day, and cost LKR 5 or more).</p></div>`;
+  const hz = o.h[outlookHz] ? outlookHz : 20, q = o.h[hz], last = d.candles[d.candles.length - 1], px = last.close;
+  const lvl = v => px * (1 + v / 100), f2 = v => v.toFixed(2), sg = v => `${v > 0 ? '+' : ''}${v.toFixed(1)}%`;
+  const days = businessDays(typeof last.time === 'string' ? last.time : new Date(last.time * 1000).toISOString().slice(0, 10), hz);
+  // drawing: the last 60 closes, then the range opening out (width grows with the square root of time)
+  const hist = d.candles.slice(-60).map(c => c.close), W = 640, H = 220, padR = 70, n0 = hist.length, nT = n0 + hz;
+  const path = t => { const k = t / hz, mid = q[2] * k; return q.map((v, i) => i === 2 ? mid : mid + (v - q[2]) * Math.sqrt(k)); };
+  const fut = Array.from({ length: hz + 1 }, (_, t) => path(t).map(lvl));
+  const all = hist.concat(fut.flat()), lo = Math.min(...all), hi = Math.max(...all), pad = (hi - lo) * 0.06 || 1;
+  const X = i => (i / (nT - 1)) * (W - padR), Y = v => H - 8 - ((v - lo + pad) / (hi - lo + 2 * pad)) * (H - 16);
+  const line = hist.map((v, i) => `${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' ');
+  const band = (a, b) => fut.map((r, t) => `${X(n0 - 1 + t).toFixed(1)},${Y(r[a]).toFixed(1)}`).join(' ') + ' ' + fut.slice().reverse().map((r, t) => `${X(n0 - 1 + hz - t).toFixed(1)},${Y(r[b]).toFixed(1)}`).join(' ');
+  const med = fut.map((r, t) => `${X(n0 - 1 + t).toFixed(1)},${Y(r[2]).toFixed(1)}`).join(' ');
+  const lab = (v, cls) => `<text x="${W - padR + 6}" y="${(Y(v) + 4).toFixed(1)}" class="olab ${cls}">${f2(v)}</text>`;
+  const T = outlookMeta && outlookMeta.test && outlookMeta.test[hz], rk = q[5];
+  const btn = [5, 10, 20, 60].filter(h => o.h[h]).map(h => `<button class="chip${h === hz ? ' on' : ''}" data-ohz="${h}">${h} days</button>`).join('');
+  return `${head} <span class="mute">from the close on ${dmy(o.date)}</span></h3>
+    <div class="chips" style="margin:0 0 8px">${btn}</div>
+    <svg viewBox="0 0 ${W} ${H}" class="osvg" role="img" aria-label="Last 60 days and the likely range over the next ${hz} trading days">
+      <polygon points="${band(0, 4)}" class="ob80"/><polygon points="${band(1, 3)}" class="ob50"/>
+      <polyline points="${line}" class="ohist"/><polyline points="${med}" class="omed"/>
+      <line x1="${X(n0 - 1)}" x2="${X(n0 - 1)}" y1="4" y2="${H - 4}" class="onow"/>
+      ${lab(fut[hz][4], 'up')}${lab(fut[hz][2], '')}${lab(fut[hz][0], 'down')}</svg>
+    <div class="kv" style="margin-top:8px">
+      <span class="mute">By about ${dmy(days[days.length - 1])}</span><span>middle estimate <b>${f2(lvl(q[2]))}</b> (${sg(q[2])})</span>
+      <span class="mute">1 in 2 chance</span><span>between ${f2(lvl(q[1]))} and ${f2(lvl(q[3]))} (${sg(q[1])} to ${sg(q[3])})</span>
+      <span class="mute">8 in 10 chance</span><span>between <span class="down">${f2(lvl(q[0]))}</span> and <span class="up">${f2(lvl(q[4]))}</span> (${sg(q[0])} to ${sg(q[4])})</span>
+      <span class="mute">Against other shares</span><span>${rk >= 80 ? 'top fifth' : rk <= 20 ? 'bottom fifth' : rk >= 60 ? 'above the middle' : rk <= 40 ? 'below the middle' : 'middle'} (its outlook beats ${rk}% of shares)</span>
+    </div>
+    ${T ? `<p class="small" style="margin:8px 0 0">How reliable: tested on ${T.years} with models that had not seen those years, ${T.in80}% of outcomes landed inside the 8-in-10 range and ${T.in50}% inside the 1-in-2 range. The middle estimate pointed the right way only ${T.dir}% of the time, about a coin toss, so read the range, not the middle. Shares in the top fifth of the outlook did ${p2(T.top20)}% on average over ${hz} days after costs, against ${p2(T.bottom20)}% for the bottom fifth.</p>` : ''}
+    <p class="small" style="margin:6px 0 0">Built from the chart (trend, momentum, volatility, volume), the market, and the company's report figures as published at the time. The range widens with time; a share can still land outside it, about 2 times in 10. Not financial advice.</p></div>`;
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-ohz]'); if (!b || !detailCtx) return;
+  outlookHz = +b.dataset.ohz; try { localStorage.setItem('outlookHz', outlookHz); } catch (er) {}
+  const el = document.getElementById('sec-outlook'); if (el && detailCtx.d) el.outerHTML = outlookCard(detailCtx.d);
+});
+
 function forecastCard(d) {
   const f = d.forecast, v = acc && acc.validation;
   const swing = d.atr_pct != null ? (d.atr_pct * Math.sqrt(5)).toFixed(1) : null;
@@ -1101,6 +1151,7 @@ async function show(sym) {
   if (fresh) { $('#detail').innerHTML = '<div class="empty">Loading…</div>'; if (phone) scrollTo(0, 0); else $('#detail').scrollTop = 0; }
   if (!peers) { try { peers = await (await fetch('data/peers.json')).json(); } catch (e) {} }
   if (!acc) { try { acc = await (await fetch('data/accuracy.json')).json(); } catch (e) {} }
+  if (!outlookMeta) { try { outlookMeta = await (await fetch('data/outlook.json')).json(); } catch (e) { outlookMeta = {}; } }
   let d;
   try { d = await (await fetch('data/stocks/' + encodeURIComponent(sym) + '.json')).json(); }
   catch (e) { $('#detail').innerHTML = `<div class="empty">No data for ${esc(sym)}. It may have been delisted, or its history has not been collected yet.</div>`; return; }
@@ -1123,13 +1174,14 @@ async function show(sym) {
       ${a.rating && a.rating.rated ? fact(a.score, 'rating score of 99') : a.rating ? '' : fact(a.score, 'score')}
     </div>
     ${(d.splits || []).map(x => `<div class="splitnote">Share ${x.factor >= 1 ? 'split' : 'consolidation'} on ${dmy(x.date)}: earlier prices are divided by ${x.factor}, so the chart and signals are on today's share basis (ratio from: ${esc(x.basis)}).</div>`).join('')}
-    <div class="chips secnav">${[['sec-chart', 'Chart'], ['sec-trends', 'Trends'], ['sec-why', 'Rating'], ['sec-book', 'Orders'], ['sec-plan', 'Plan'], ['sec-peers', 'Peers'], ['sec-history', '10 years'], ['sec-pressure', 'Pressure'], ['sec-fund', 'Fundamentals'], ['sec-more', 'Levels']]
+    <div class="chips secnav">${[['sec-chart', 'Chart'], ['sec-trends', 'Trends'], ['sec-why', 'Rating'], ['sec-outlook', 'Outlook'], ['sec-book', 'Orders'], ['sec-plan', 'Plan'], ['sec-peers', 'Peers'], ['sec-history', '10 years'], ['sec-pressure', 'Pressure'], ['sec-fund', 'Fundamentals'], ['sec-more', 'Levels']]
       .map(([id, label]) => `<button class="chip" data-to="${id}">${label}</button>`).join('')}</div>
     <div id="intraday" style="display:none"></div>
     <div id="sec-chart" style="scroll-margin-top:60px"><div id="chart"></div><div id="rsi"></div><div id="macd"></div></div>
     <div class="cards">
       <div class="card wide" id="sec-trends"><h3>Trends</h3><p class="mute">Loading…</p></div>
       ${ratingCard(a)}
+      ${outlookCard(d)}
       ${bookCard(sym)}
       ${planCard(a)}
       ${styleCard(a)}
@@ -1179,7 +1231,7 @@ async function show(sym) {
   }));
   c.timeScale().fitContent();
   // live: today's candle, the minute chart and the peers line update on every tick
-  detailCtx = { sym, cs, last: d.candles[d.candles.length - 1] };
+  detailCtx = { sym, cs, d, last: d.candles[d.candles.length - 1] };
   window.__adv = a; plan();
   loadView(sym); loadLong(sym);
   if (tick) { updateLiveDetail(sym); pollMinute(); }

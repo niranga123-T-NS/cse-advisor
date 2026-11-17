@@ -282,3 +282,14 @@ trained only on earlier years, with the cut-off from those years): about +1.1% a
 10 years, but only around a dozen signals a year lately. Buying any share at the open and selling at the close lost
 about 2.6% a trade after costs; chasing 2%+ gap-ups lost about 4%. 3%+ gap-downs held 3 to 5 days tested at +2.0% to +2.6%.
 The site receives the model's chance on a grid of opening gaps and market gaps for each share, so the signal lights up live.
+
+### Price outlook
+
+Each share page has a **Price outlook** card (chip "Outlook", `outlook.py`): the likely range of the price over the
+next 5, 10, 20 or 60 trading days, drawn as a widening band after the last 60 closes, with the middle estimate, the
+1-in-2 and 8-in-10 ranges, and where the share's outlook ranks against other shares. Inputs: the chart (trend,
+momentum, volatility, volume, RSI, money flow, sector), the market, and the company's report figures as published at
+the time. Tested walk-forward 2018-2026 (each year by models that had not seen it): about 80% of outcomes landed in the
+8-in-10 range and 50% in the 1-in-2 range, but the middle estimate's direction was right only about 52% of the time,
+so the card says to read the range, not the middle. The top fifth of the outlook beat the bottom fifth by about 1.6
+points over 20 days and 3.1 points over 60 days. The test re-runs monthly (`data/model/outlook.json`).

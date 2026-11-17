@@ -349,7 +349,7 @@
    "year_only": false
   }
  },
- "listed_at": "2026-11-16",
+ "listed_at": "2026-11-17",
  "listing": {
   "annual": [
    {
@@ -446,6 +446,15 @@
   "quarterly": [
    {
     "amended": false,
+    "end": "2026-09-30",
+    "id": "53877",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794795988649,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/568_1794795988649.09.2026 U.pdf",
+    "year_only": false
+   },
+   {
+    "amended": false,
     "end": "2026-06-30",
     "id": "52719",
     "title": "Interim Financial Statements for the Quarter ended 30th June 2026",
@@ -524,88 +533,10 @@
     "uploaded": 1723720641994,
     "url": "https://cdn.cse.lk/cmt/upload_report_file/568_1723720641994.06.2024.pdf",
     "year_only": false
-   },
-   {
-    "amended": false,
-    "end": "2024-03-31",
-    "id": "45845",
-    "title": "Interim Financial Statements for the quarter ended 31st March 2024",
-    "uploaded": 1717151285599,
-    "url": "https://cdn.cse.lk/cmt/upload_report_file/568_1717151285599.03.2024.pdf",
-    "year_only": false
    }
   ]
  },
  "quarterly": {
-  "45845": {
-   "end": "2024-03-31",
-   "eps": 0.23,
-   "eps_prior": -1.26,
-   "layout_eps": [
-    0,
-    1,
-    false
-   ],
-   "layout_navps": [
-    0,
-    1,
-    false
-   ],
-   "layout_profit": [
-    0,
-    1,
-    false
-   ],
-   "layout_revenue": [
-    0,
-    1,
-    false
-   ],
-   "months": 3,
-   "navps": 8.09,
-   "navps_prior": 8.65,
-   "ok": true,
-   "pages": 11,
-   "profit": 60892.0,
-   "profit_growth": null,
-   "profit_prior": -336751.0,
-   "revenue": 770214.0,
-   "revenue_growth": 38.2,
-   "revenue_prior": 557287.0,
-   "src_eps": "Basic earnings/(loss) per share - (Rs.)  0.23  (1.26)  (2.22)  (4.24)",
-   "src_navps": "Net assets per share  8.09  8.65  11.59  11.84",
-   "src_profit": "Equity holders of the parent company  60,892  (336,751)  -118%  (593,304)  (1,133,779)  -48%",
-   "src_revenue": "Revenue from contracts with customers  770,214  557,287  38%  2,176,969  1,625,242  34%",
-   "title": "Interim Financial Statements for the quarter ended 31st March 2024",
-   "unit": 1000.0,
-   "url": "https://cdn.cse.lk/cmt/upload_report_file/568_1717151285599.03.2024.pdf",
-   "v": 6,
-   "vals_eps": [
-    0.23,
-    -1.26,
-    -2.22,
-    -4.24
-   ],
-   "vals_navps": [
-    8.09,
-    8.65,
-    11.59,
-    11.84
-   ],
-   "vals_profit": [
-    60892.0,
-    -336751.0,
-    -593304.0,
-    -1133779.0
-   ],
-   "vals_revenue": [
-    770214.0,
-    557287.0,
-    2176969.0,
-    1625242.0
-   ],
-   "year_only": false
-  },
   "46461": {
    "end": "2024-06-30",
    "eps": -0.13,
@@ -1139,6 +1070,63 @@
    "vals_revenue": [
     277540.0,
     414696.0,
+    2286520.0
+   ],
+   "year_only": false
+  },
+  "53877": {
+   "end": "2026-09-30",
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 3.68,
+   "navps_prior": 3.9,
+   "ok": true,
+   "pages": 10,
+   "profit": -126222.0,
+   "profit_growth": null,
+   "profit_prior": 10079.0,
+   "revenue": 439217.0,
+   "revenue_growth": -6.4,
+   "revenue_prior": 469498.0,
+   "src_navps": "Net assets per share  3.68  3.90  7.11  7.23",
+   "src_profit": "Equity holders of the parent company  (126,222)  10,079  (1352%)  (287,768)  (104,459)  175%  (159,110)",
+   "src_revenue": "Revenue from contracts with customers  439,217  469,498  (6%)  716,757  884,194  (19%)  2,286,520",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/568_1794795988649.09.2026 U.pdf",
+   "v": 6,
+   "vals_navps": [
+    3.68,
+    3.9,
+    7.11,
+    7.23
+   ],
+   "vals_profit": [
+    -126222.0,
+    10079.0,
+    -287768.0,
+    -104459.0,
+    -159110.0
+   ],
+   "vals_revenue": [
+    439217.0,
+    469498.0,
+    716757.0,
+    884194.0,
     2286520.0
    ],
    "year_only": false

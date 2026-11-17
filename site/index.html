@@ -144,6 +144,10 @@
   table.depth td { padding:3px 4px; border-top:1px solid var(--line-soft); position:relative; }
   table.depth td.num, table.depth th.num { text-align:right; }
   .dbar { height:3px; border-radius:2px; margin-top:2px; margin-left:auto; } .dbar.b { background:var(--emerald); } .dbar.s { background:var(--ruby); margin-left:0; margin-right:auto; }
+  .vprof { display:grid; gap:2px; font-variant-numeric:tabular-nums; } .vrow { display:grid; grid-template-columns:118px 1fr 92px; gap:8px; align-items:center; font-size:12.5px; padding:1px 4px; border-radius:4px; }
+  .vrow.va { background:var(--surface-2); } .vrow.here { outline:1px solid var(--sapphire); } .vlab { color:var(--ink-3); white-space:nowrap; } .vnum { text-align:right; white-space:nowrap; }
+  .vbar { display:flex; height:12px; } .vbar i { display:block; height:100%; } .vbar .u { background:var(--emerald); opacity:.75; border-radius:2px 0 0 2px; } .vbar .d { background:var(--ruby); opacity:.75; border-radius:0 2px 2px 0; }
+  @media (max-width:420px) { .vrow { grid-template-columns:96px 1fr 74px; gap:5px; font-size:11.5px; } }
   .osvg { width:100%; height:auto; display:block; } .osvg .ob80 { fill:var(--sapphire-soft); opacity:.55; } .osvg .ob50 { fill:var(--sapphire-soft); }
   .osvg .ohist { fill:none; stroke:var(--ink-2); stroke-width:1.6; } .osvg .omed { fill:none; stroke:var(--sapphire); stroke-width:1.6; stroke-dasharray:5 4; }
   .osvg .onow { stroke:var(--line); stroke-width:1; } .osvg .olab { font-size:13px; fill:var(--ink-2); font-variant-numeric:tabular-nums; } .osvg .olab.up { fill:var(--emerald); } .osvg .olab.down { fill:var(--ruby); }
@@ -1130,6 +1134,66 @@ document.addEventListener('click', e => {
   const el = document.getElementById('sec-outlook'); if (el && detailCtx.d) el.outerHTML = outlookCard(detailCtx.d);
 });
 
+// ---------- price and volume bands: where the shares changed hands (volume profile from daily bars) + trade history ----------
+let bandDays = (() => { try { return +localStorage.getItem('bandDays') || 60; } catch (e) { return 60; } })();
+function bandsCard(d) {
+  const C = d.candles, V = d.volume, head = '<div class="card wide" id="sec-bands"><h3>Price and volume bands';
+  if (!C || C.length < 20) return `${head}</h3><p class="mute">Not enough trading history yet.</p></div>`;
+  const opts = [[20, '1 month'], [60, '3 months'], [125, '6 months'], [250, '1 year']].filter(([n]) => n <= C.length + 5);
+  const n = Math.min(bandDays, C.length), cs = C.slice(-n), vs = V.slice(-n).map(v => v.value), px = C[C.length - 1].close;
+  const lo = Math.min(...cs.map(c => c.low)), hi = Math.max(...cs.map(c => c.high));
+  const NB = 18, step = (hi - lo) / NB || 1;
+  const up = new Array(NB).fill(0), dn = new Array(NB).fill(0);
+  cs.forEach((c, i) => {            // spread each day's volume evenly over the day's high-low range
+    const prev = i ? cs[i - 1].close : (C[C.length - n - 1] || c).close, side = c.close >= prev ? up : dn;
+    const l = Math.max(lo, c.low), h = Math.min(hi, Math.max(c.high, l + 1e-9)), span = h - l;
+    for (let b = Math.floor((l - lo) / step); b <= Math.min(NB - 1, Math.floor((h - lo) / step)); b++) {
+      const a0 = lo + b * step, a1 = a0 + step, part = span > 1e-9 ? Math.max(0, Math.min(h, a1) - Math.max(l, a0)) / span : 1;
+      side[Math.min(NB - 1, Math.max(0, b))] += vs[i] * part;
+    }
+  });
+  const tot = up.map((u, i) => u + dn[i]), all = tot.reduce((a, b) => a + b, 0) || 1, poc = tot.indexOf(Math.max(...tot));
+  let va = new Set([poc]), acc = tot[poc], a = poc - 1, b = poc + 1;           // value area: 70% of volume around the busiest band
+  while (acc < 0.7 * all && (a >= 0 || b < NB)) {
+    if (b >= NB || (a >= 0 && tot[a] >= tot[b])) { acc += tot[a]; va.add(a--); } else { acc += tot[b]; va.add(b++); }
+  }
+  const vaLo = lo + Math.min(...va) * step, vaHi = lo + (Math.max(...va) + 1) * step, mx = Math.max(...tot) || 1;
+  const band = i => `${(lo + i * step).toFixed(2)}–${(lo + (i + 1) * step).toFixed(2)}`;
+  const heavy = tot.map((t, i) => [t, i]).filter(([t]) => t >= 0.6 * mx).map(([, i]) => i);
+  const below = heavy.filter(i => lo + (i + 1) * step <= px).pop(), above = heavy.find(i => lo + i * step >= px);
+  const rows = [];
+  for (let i = NB - 1; i >= 0; i--) {
+    const here = px >= lo + i * step && px < lo + (i + 1) * step + (i === NB - 1 ? 1e-9 : 0);
+    rows.push(`<div class="vrow${va.has(i) ? ' va' : ''}${here ? ' here' : ''}"><span class="vlab">${band(i)}</span>
+      <span class="vbar"><i class="u" style="width:${(up[i] / mx * 100).toFixed(1)}%"></i><i class="d" style="width:${(dn[i] / mx * 100).toFixed(1)}%"></i></span>
+      <span class="vnum">${shr(Math.round(tot[i]))}${i === poc ? ' <b>●</b>' : ''}${here ? ' ◀' : ''}</span></div>`);
+  }
+  const chips = opts.map(([k, l]) => `<button class="chip ${k === bandDays || (k === opts[opts.length - 1][0] && bandDays > C.length) ? 'on' : ''}" data-bd="${k}">${l}</button>`).join('');
+  const where = px > vaHi ? 'above the busy range: buyers have pushed it past where most shares changed hands' : px < vaLo ? 'below the busy range: it trades under where most shares changed hands' : 'inside the busy range';
+  // trade history: the latest sessions
+  const hist = C.slice(-20).map((c, i, arr) => { const k = C.length - 20 + i, pv = k ? C[k - 1].close : c.close, ch = (c.close / pv - 1) * 100, v = V[k] ? V[k].value : 0;
+    return `<tr><td class="mute">${dmy(c.time)}</td><td class="num">${c.close.toFixed(2)}</td><td class="num ${ch > 0 ? 'up' : ch < 0 ? 'down' : ''}">${ch > 0 ? '+' : ''}${ch.toFixed(2)}%</td><td class="num mute">${c.low.toFixed(2)}–${c.high.toFixed(2)}</td><td class="num">${shr(v)}</td><td class="num">${lkr(v * c.close)}</td></tr>`; }).reverse().join('');
+  return `${head} <span class="mute">where shares changed hands</span></h3>
+    <div class="chips" style="margin:0 0 8px">${chips}</div>
+    <div class="vprof">${rows.join('')}</div>
+    <div class="small" style="margin:6px 0 0"><span class="up">■ on up days</span> <span class="down">■ on down days</span> <span class="mute">· shaded: the busy range (70% of all shares traded) · ● busiest band · ◀ today's price</span></div>
+    <div class="kv" style="margin-top:10px">
+      <span class="mute">Busiest band</span><span><b>${band(poc)}</b> (${Math.round(tot[poc] / all * 100)}% of shares traded)</span>
+      <span class="mute">Busy range</span><span>${vaLo.toFixed(2)} to ${vaHi.toFixed(2)}</span>
+      <span class="mute">Today's price ${px.toFixed(2)}</span><span>${where}</span>
+      <span class="mute">Heavy band below</span><span>${below != null ? `${band(below)} <span class="mute">(possible support)</span>` : '–'}</span>
+      <span class="mute">Heavy band above</span><span>${above != null ? `${band(above)} <span class="mute">(possible resistance)</span>` : '–'}</span>
+    </div>
+    <p class="small" style="margin:8px 0 0">From daily prices: each day's volume is spread evenly between its high and low, so the bands are an estimate of where trading happened, not a count of single trades. Bands where many shares changed hands often act as support or resistance, but not always.</p>
+    <details style="margin-top:8px"><summary class="small">Trade history, last 20 sessions</summary>
+      <table class="dt" style="margin-top:6px"><thead><tr><th>Date</th><th class="num">Close</th><th class="num">Change</th><th class="num">Low–high</th><th class="num">Shares</th><th class="num">Value</th></tr></thead><tbody>${hist}</tbody></table></details></div>`;
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-bd]'); if (!b || !detailCtx) return;
+  bandDays = +b.dataset.bd; try { localStorage.setItem('bandDays', bandDays); } catch (er) {}
+  const el = document.getElementById('sec-bands'); if (el && detailCtx.d) el.outerHTML = bandsCard(detailCtx.d);
+});
+
 function forecastCard(d) {
   const f = d.forecast, v = acc && acc.validation;
   const swing = d.atr_pct != null ? (d.atr_pct * Math.sqrt(5)).toFixed(1) : null;
@@ -1250,7 +1314,7 @@ async function show(sym) {
       ${a.rating && a.rating.rated ? fact(a.score, 'rating score of 99') : a.rating ? '' : fact(a.score, 'score')}
     </div>
     ${(d.splits || []).map(x => `<div class="splitnote">Share ${x.factor >= 1 ? 'split' : 'consolidation'} on ${dmy(x.date)}: earlier prices are divided by ${x.factor}, so the chart and signals are on today's share basis (ratio from: ${esc(x.basis)}).</div>`).join('')}
-    <div class="chips secnav">${[['sec-chart', 'Chart'], ['sec-trends', 'Trends'], ['sec-why', 'Rating'], ['sec-outlook', 'Outlook'], ['sec-book', 'Orders'], ['sec-plan', 'Plan'], ['sec-peers', 'Peers'], ['sec-history', '10 years'], ['sec-pressure', 'Pressure'], ['sec-fund', 'Fundamentals'], ['sec-more', 'Levels']]
+    <div class="chips secnav">${[['sec-chart', 'Chart'], ['sec-trends', 'Trends'], ['sec-why', 'Rating'], ['sec-outlook', 'Outlook'], ['sec-bands', 'Bands'], ['sec-book', 'Orders'], ['sec-plan', 'Plan'], ['sec-peers', 'Peers'], ['sec-history', '10 years'], ['sec-pressure', 'Pressure'], ['sec-fund', 'Fundamentals'], ['sec-more', 'Levels']]
       .map(([id, label]) => `<button class="chip" data-to="${id}">${label}</button>`).join('')}</div>
     <div id="intraday" style="display:none"></div>
     <div id="sec-chart" style="scroll-margin-top:60px"><div id="chart"></div><div id="rsi"></div><div id="macd"></div></div>
@@ -1258,6 +1322,7 @@ async function show(sym) {
       <div class="card wide" id="sec-trends"><h3>Trends</h3><p class="mute">Loading…</p></div>
       ${ratingCard(a)}
       ${outlookCard(d)}
+      ${bandsCard(d)}
       ${bookCard(sym)}
       ${planCard(a)}
       ${styleCard(a)}

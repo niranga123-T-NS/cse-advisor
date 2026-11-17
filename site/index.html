@@ -142,7 +142,7 @@
   .dbar { height:3px; border-radius:2px; margin-top:2px; margin-left:auto; } .dbar.b { background:var(--emerald); } .dbar.s { background:var(--ruby); margin-left:0; margin-right:auto; }
   .osvg { width:100%; height:auto; display:block; } .osvg .ob80 { fill:var(--sapphire-soft); opacity:.55; } .osvg .ob50 { fill:var(--sapphire-soft); }
   .osvg .ohist { fill:none; stroke:var(--ink-2); stroke-width:1.6; } .osvg .omed { fill:none; stroke:var(--sapphire); stroke-width:1.6; stroke-dasharray:5 4; }
-  .osvg .onow { stroke:var(--line); stroke-width:1; } .osvg .olab { font-size:12px; fill:var(--ink-2); font-variant-numeric:tabular-nums; } .osvg .olab.up { fill:var(--emerald); } .osvg .olab.down { fill:var(--ruby); }
+  .osvg .onow { stroke:var(--line); stroke-width:1; } .osvg .olab { font-size:13px; fill:var(--ink-2); font-variant-numeric:tabular-nums; } .osvg .olab.up { fill:var(--emerald); } .osvg .olab.down { fill:var(--ruby); }
   .tcols { display:grid; grid-template-columns:1fr 1fr; gap:14px; } .tcol { min-width:0; }
   .dspark { width:100%; height:60px; display:block; background:var(--surface-2, transparent); border-radius:6px; }
 
@@ -1017,28 +1017,31 @@ function businessDays(fromISO, n) {
 function outlookCard(d) {
   const o = d.outlook, head = '<div class="card wide" id="sec-outlook"><h3>Price outlook';
   if (!o) return `${head}</h3><p class="mute">No outlook: this share trades too little (it needs to trade on most days, about LKR 0.5M a day, and cost LKR 5 or more).</p></div>`;
-  const hz = o.h[outlookHz] ? outlookHz : 20, q = o.h[hz], last = d.candles[d.candles.length - 1], px = last.close;
+  const hz = o.h[outlookHz] ? outlookHz : 20, q = o.h[hz].slice(0, 5), last = d.candles[d.candles.length - 1], px = last.close;
   const lvl = v => px * (1 + v / 100), f2 = v => v.toFixed(2), sg = v => `${v > 0 ? '+' : ''}${v.toFixed(1)}%`;
   const days = businessDays(typeof last.time === 'string' ? last.time : new Date(last.time * 1000).toISOString().slice(0, 10), hz);
   // drawing: the last 60 closes, then the range opening out (width grows with the square root of time)
-  const hist = d.candles.slice(-60).map(c => c.close), W = 640, H = 220, padR = 70, n0 = hist.length, nT = n0 + hz;
+  const hist = d.candles.slice(-Math.min(120, Math.max(40, hz * 3))).map(c => c.close), W = 640, H = 240, padR = 64, n0 = hist.length, split = (W - padR) * 0.68;
   const path = t => { const k = t / hz, mid = q[2] * k; return q.map((v, i) => i === 2 ? mid : mid + (v - q[2]) * Math.sqrt(k)); };
   const fut = Array.from({ length: hz + 1 }, (_, t) => path(t).map(lvl));
   const all = hist.concat(fut.flat()), lo = Math.min(...all), hi = Math.max(...all), pad = (hi - lo) * 0.06 || 1;
-  const X = i => (i / (nT - 1)) * (W - padR), Y = v => H - 8 - ((v - lo + pad) / (hi - lo + 2 * pad)) * (H - 16);
+  const X = i => i < n0 ? (i / (n0 - 1)) * split : split + ((i - n0 + 1) / hz) * (W - padR - split), Y = v => H - 8 - ((v - lo + pad) / (hi - lo + 2 * pad)) * (H - 16);
   const line = hist.map((v, i) => `${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(' ');
   const band = (a, b) => fut.map((r, t) => `${X(n0 - 1 + t).toFixed(1)},${Y(r[a]).toFixed(1)}`).join(' ') + ' ' + fut.slice().reverse().map((r, t) => `${X(n0 - 1 + hz - t).toFixed(1)},${Y(r[b]).toFixed(1)}`).join(' ');
   const med = fut.map((r, t) => `${X(n0 - 1 + t).toFixed(1)},${Y(r[2]).toFixed(1)}`).join(' ');
-  const lab = (v, cls) => `<text x="${W - padR + 6}" y="${(Y(v) + 4).toFixed(1)}" class="olab ${cls}">${f2(v)}</text>`;
-  const T = outlookMeta && outlookMeta.test && outlookMeta.test[hz], rk = q[5];
+  const ly = [Y(fut[hz][4]), Y(fut[hz][2]), Y(fut[hz][0])];
+  if (ly[1] - ly[0] < 15) ly[0] = ly[1] - 15; if (ly[2] - ly[1] < 15) ly[2] = ly[1] + 15;
+  const lab = (v, cls, y) => `<text x="${W - padR + 6}" y="${(y + 4).toFixed(1)}" class="olab ${cls}">${f2(v)}</text>`;
+  const T = outlookMeta && outlookMeta.test && outlookMeta.test[hz], rk = o.h[hz][5];
   const btn = [5, 10, 20, 60].filter(h => o.h[h]).map(h => `<button class="chip${h === hz ? ' on' : ''}" data-ohz="${h}">${h} days</button>`).join('');
   return `${head} <span class="mute">from the close on ${dmy(o.date)}</span></h3>
     <div class="chips" style="margin:0 0 8px">${btn}</div>
-    <svg viewBox="0 0 ${W} ${H}" class="osvg" role="img" aria-label="Last 60 days and the likely range over the next ${hz} trading days">
+    <svg viewBox="0 0 ${W} ${H}" class="osvg" role="img" aria-label="Recent prices and the likely range over the next ${hz} trading days">
       <polygon points="${band(0, 4)}" class="ob80"/><polygon points="${band(1, 3)}" class="ob50"/>
       <polyline points="${line}" class="ohist"/><polyline points="${med}" class="omed"/>
       <line x1="${X(n0 - 1)}" x2="${X(n0 - 1)}" y1="4" y2="${H - 4}" class="onow"/>
-      ${lab(fut[hz][4], 'up')}${lab(fut[hz][2], '')}${lab(fut[hz][0], 'down')}</svg>
+      ${lab(fut[hz][4], 'up', ly[0])}${lab(fut[hz][2], '', ly[1])}${lab(fut[hz][0], 'down', ly[2])}
+      <text x="4" y="14" class="olab">last ${n0} days</text><text x="${(split + 6).toFixed(0)}" y="14" class="olab">next ${hz} days</text></svg>
     <div class="kv" style="margin-top:8px">
       <span class="mute">By about ${dmy(days[days.length - 1])}</span><span>middle estimate <b>${f2(lvl(q[2]))}</b> (${sg(q[2])})</span>
       <span class="mute">1 in 2 chance</span><span>between ${f2(lvl(q[1]))} and ${f2(lvl(q[3]))} (${sg(q[1])} to ${sg(q[3])})</span>

@@ -19,6 +19,7 @@ Each 15-second tick
        t/HHMMSS.json   every 15 s : prices, alerts, sector moves, order-book totals   (small)
        m/HHMM.json     every minute: full rows + today's minute-by-minute prices
        b/HHMM.json     every minute: each share's latest buy and sell orders (also books.json, for after the close)
+       tape.json       every minute: the whole market's latest 600 trades; each tick also carries its new ones ("tp")
      Each file has its own name because GitHub caches a file for 5 minutes; a new name is always fresh.
 
 Reliability (GitHub's scheduler can be hours late)
@@ -218,6 +219,8 @@ class Engine:
         self.depth_hist = collections.defaultdict(list)   # symbol -> [[hh:mm:ss, shares to buy, shares to sell], ...] today
         self.focus = focus_list()                  # shares whose book is read every 30 s (focus.txt)
         self.trade_hist: dict[str, list] = {}      # latest trades carried over from an earlier run today
+        self.mtape: collections.deque = collections.deque(maxlen=600)   # the whole market's latest trades, oldest first
+        self.mtape_n = 0                                                  # trades ever added (the deque forgets old ones)
         self.side_code = {"bid": 1, "ask": 2}      # CSE's buySell codes ...
         self.side_votes = [0, 0]                   # ... checked against the data: [books that agree, books that say the opposite]
         self.refill: dict[tuple, dict] = {}        # (symbol, side) -> the best price being watched for refilling
@@ -393,6 +396,11 @@ class Engine:
                     break
 
     # -- large trades and hidden buying / selling
+    def tape_since(self, n_before: int) -> list:
+        """Trades added to the market tape since the count was n_before (newest first)."""
+        k = min(len(self.mtape), self.mtape_n - n_before)
+        return list(self.mtape)[-k:][::-1] if k > 0 else []
+
     def trades(self, ts: float, levels: dict, rows: dict):
         """What traded since the last reading, price by price.  Call before tick() (it needs the previous prices).
 
@@ -446,6 +454,8 @@ class Engine:
                 groups[side].append((px, dq, dn))
                 self.prints[s].append((ts, px, dq, dn, side))
                 self.print_log[s].append([i, px, dq, dn, side])
+                self.mtape.append([s, self._clock(ts), round(px, 2), round(dq), dn, side])
+                self.mtape_n += 1
             r = rows.get(s) or {}
             cur = r.get("p") or max(new, key=lambda x: x[1])[0]
             if cur > last + EPS:
@@ -664,6 +674,7 @@ class Engine:
         return {"date": self.day, "alerts": self.alerts, "seen": self.seen, "opened": sorted(self.opened), "rebased": sorted(self.rebased),
                 "big": self.big, "rest": self.rest, "hidden": self.hidden, "flow": self.flow, "dirn": self.dirn,
                 "depth": self.depth, "depth_hist": {k: v[-90:] for k, v in self.depth_hist.items()},
+                "mtape": list(self.mtape),
                 "trade_hist": {k: self.recent_trades(k)[::-1] for k, v in self.prints.items() if v or k in self.trade_hist},
                 "lv": None if self.lv is None else {s: [[px, q, n] for px, (q, n) in lv.items()] for s, lv in self.lv.items()}}
 
@@ -677,6 +688,7 @@ class Engine:
         self.flow, self.dirn = st.get("flow", {}), st.get("dirn", {})
         self.depth = st.get("depth", {})
         self.trade_hist = st.get("trade_hist", {})
+        self.mtape.extend(st.get("mtape") or [])
         for k, v in (st.get("depth_hist") or {}).items():
             self.depth_hist[k] = v
         if st.get("lv") is not None:
@@ -788,6 +800,7 @@ def main(test: bool = False):
     recent_ticks: dict[str, str] = {}
     recent_mins: dict[str, str] = {}
     recent_books: dict[str, str] = {}
+    tape_mark = None
     base_files: dict[str, str] = {}
     fails, tick_no, traded_today, status = 0, 0, False, ""
     max_ticks = int(os.environ.get("LIVE_TEST_TICKS", "8")) if test else 10 ** 9
@@ -825,6 +838,8 @@ def main(test: bool = False):
                     eng.market(ts, cse.sector_indices(), cse.aspi())
                 except Exception as e:
                     print("index error:", e)
+            tick_tape = eng.tape_since(tape_mark) if tape_mark is not None else []
+            tape_mark = eng.mtape_n
             try:
                 eng.order_books(ts, rows, deadline=ts + 9.0)
             except Exception as e:
@@ -835,7 +850,7 @@ def main(test: bool = False):
                     "x": {"aspi": [eng.aspi.get("value"), round(eng.aspi.get("percentage") or 0, 2)] if eng.aspi else None,
                           "sec": {k: round(v["pct"], 2) for k, v in eng.sectors.items() if v.get("pct") is not None},
                           "peers": {k: round(v, 2) for k, v in eng.sec_pct.items()}},
-                    "ob": eng.ob, "bg": eng.orders_view(10)}
+                    "ob": eng.ob, "bg": eng.orders_view(10), "tp": tick_tape}
             recent_ticks[t.strftime("%H%M") + f"{(t.second // TICK) * TICK:02d}"] = json.dumps(tick, separators=(",", ":"))
             for k in sorted(recent_ticks)[:-12]:
                 del recent_ticks[k]
@@ -865,7 +880,8 @@ def main(test: bool = False):
                               "state.json": json.dumps(eng.state(), separators=(",", ":")),
                               "alerts.json": json.dumps({"date": day, "alerts": eng.alerts}, separators=(",", ":")),
                               "orders.json": json.dumps(orders, separators=(",", ":")),
-                              "books.json": books}
+                              "books.json": books,
+                              "tape.json": json.dumps({"date": day, "updated": stamp, "t": list(eng.mtape)[::-1]}, separators=(",", ":"))}
             # when pushes keep failing, fall back to once a minute
             if fails < 3 or on_minute:
                 files = dict(base_files)

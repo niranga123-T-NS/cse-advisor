@@ -55,7 +55,11 @@
   #home, #list, #alertsPane, #detail { min-width:0; }
   body[data-view=home] #list, body[data-view=home] #alertsPane, body[data-view=shares] #home, body[data-view=shares] #alertsPane,
   body[data-view=alerts] #home, body[data-view=alerts] #list { display:none; }
-  #dayPane { display:none; min-width:0; } body[data-view=day] #dayPane { display:block; }
+  #dayPane, #tradesPane { display:none; min-width:0; } body[data-view=day] #dayPane, body[data-view=trades] #tradesPane { display:block; }
+  body[data-view=trades] #home, body[data-view=trades] #list, body[data-view=trades] #alertsPane { display:none; }
+  .tpbar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:0 0 10px; } .tpbar input { flex:1; min-width:120px; }
+  @media (max-width:520px) { table.dt.tape th:nth-child(4), table.dt.tape td:nth-child(4) { display:table-cell; } table.dt.tape td, table.dt.tape th { padding-left:3px; padding-right:3px; font-size:13px; } }
+  table.tape td.side { width:6px; padding:0; } table.tape td.side i { display:block; width:4px; height:28px; border-radius:2px; }
   body[data-view=day] #home, body[data-view=day] #list, body[data-view=day] #alertsPane { display:none; }
   .dtwarn { border:1px solid var(--line); border-radius:12px; padding:12px 14px; margin:0 0 16px; background:var(--surface-2); font-size:14px; line-height:1.5; }
   .dtwarn b.down { font-weight:650; }
@@ -75,8 +79,8 @@
   @media (min-width:900px) and (min-height:501px) {
     body { display:flex; flex-direction:column; height:100vh; height:100dvh; }
     #app { flex:1; min-height:0; display:grid; grid-template-columns:clamp(450px, 42vw, 680px) minmax(0, 1fr); grid-template-rows:minmax(0, 1fr); }
-    #home, #dayPane { grid-column:1 / -1; overflow:auto; }
-    body[data-view=day] #detail { display:none; }
+    #home, #dayPane, #tradesPane { grid-column:1 / -1; overflow:auto; }
+    body[data-view=day] #detail, body[data-view=trades] #detail { display:none; }
     #list, #alertsPane { overflow:auto; border-right:1px solid var(--line-soft); }
     #detail { overflow:auto; }
     body[data-view=home] #detail { display:none; }
@@ -276,6 +280,7 @@
     <div id="empty" class="empty" hidden></div>
   </section>
 
+  <section id="tradesPane"><div class="wrap" id="trades"><p class="mute">Loading…</p></div></section>
   <section id="dayPane"><div class="wrap" id="day"><p class="mute">Loading…</p></div></section>
   <section id="alertsPane"><div id="alerts"></div></section>
   <section id="detail"><div class="empty">Pick a share from the list, or press / to search.</div></section>
@@ -346,7 +351,9 @@ async function pollTick() {
     if (s.live && s.live.p !== r[0]) changed[s.symbol] = r[0] > s.live.p ? 'fu' : 'fd';
     s.live = { p: r[0], c: r[1], v: r[2] }; } });
   tick = t;
+  tapeFromTick();
   showLiveStatus(); render(); renderAlerts(); renderBig(); renderHome(); if (view === 'day') renderDay();
+  if (view === 'trades' && !(document.activeElement && document.activeElement.id === 'tapeQ')) { if (!tapeData || Date.now() - tapeData._at > 55000) loadTape().then(() => renderTape()); else renderTape(); }
   if (current) { updateLiveDetail(current); if (!minute || Date.now() - minute._at > 55000) pollMinute(); pollBooks(); }
   else if (view === 'day' && (!minute || Date.now() - minute._at > 55000)) pollMinute();
 }
@@ -382,7 +389,7 @@ setInterval(showLiveStatus, 5000);
 // ---------- getting about: three views and the open share, all in the address after # so Back works everywhere ----------
 // #/home  #/shares  #/shares/<screen>  #/alerts  #<SYMBOL>
 const PHONE = matchMedia('(max-width:899.98px), (max-height:500px)');
-const TITLE = { home:'Today', shares:'Shares', day:'Day trade', alerts:'Alerts' };
+const TITLE = { home:'Today', shares:'Shares', day:'Day trade', alerts:'Alerts', trades:'Live trades' };
 let steps = 0, lastSeen = null; const scrollAt = {};
 try { history.scrollRestoration = 'manual'; } catch (e) {}      // this page puts you back where you were itself
 function parseHash() {
@@ -395,18 +402,18 @@ function setView(v) {
   if (v !== view && !document.body.classList.contains('open')) scrollAt[view] = scrollY;
   view = v; document.body.dataset.view = v; A.setActive(v);
   const t = document.querySelector('.top .title'); if (t) t.textContent = TITLE[v];
-  renderAlerts(); if (v === 'home') renderHome(); if (v === 'shares') render(); if (v === 'day') renderDay();
+  renderAlerts(); if (v === 'home') renderHome(); if (v === 'shares') render(); if (v === 'day') renderDay(); if (v === 'trades') renderTape(true);
 }
 let routed = false;
 function route() {
   const r = parseHash();
   if (r.view === 'compare') { if (!routed) setView(view); routed = true; showCompare(r.arg); return; }      // the pop-up opens over whatever is showing
   routed = true; hideCompare();
-  if (r.sym) { if (view === 'home' || view === 'day') setView('shares'); show(r.sym); return; }
+  if (r.sym) { if (view === 'home' || view === 'day' || view === 'trades') setView('shares'); show(r.sym); return; }
   closeDetail(); setView(r.view);
   if (r.view === 'shares' && r.arg) setFilter(r.arg);
   if (PHONE.matches) scrollTo(0, scrollAt[r.view] || 0);
-  else if (r.view !== 'home' && r.view !== 'day') {      // wide screens: the pane beside the list is never left empty
+  else if (r.view !== 'home' && r.view !== 'day' && r.view !== 'trades') {      // wide screens: the pane beside the list is never left empty
     const first = lastSeen || ((document.querySelector('#rows tr') || {}).dataset || {}).sym;
     if (first) show(first);
   }
@@ -475,6 +482,72 @@ function flowHtml(sym) {
   if (!fl && !hid.length && !big.length && !rest.length) h += `<span class="small">No large trades, large waiting orders or hidden-order signs in this share.</span>`;
   return h;
 }
+// ---------- live trades: every trade in the market, newest first (tape.json each minute + "tp" in every 15-second tick) ----------
+let tapeData = null, tapeKeys = new Set(), tapeFilter = 'all', tapeQuery = '';
+const tapeKey = r => r.slice(0, 5).join('|');
+const tapeVal = v => v >= 1e6 ? (v / 1e6).toFixed(v >= 1e7 ? 0 : 1) + 'M' : v >= 1e3 ? Math.round(v / 1e3) + 'K' : Math.round(v).toString();
+function tapeAdd(rows, front) {                 // rows newest first: [symbol, time, price, shares, trades, side]
+  const fresh = rows.filter(r => !tapeKeys.has(tapeKey(r)));
+  fresh.forEach(r => tapeKeys.add(tapeKey(r)));
+  tapeData.t = front ? fresh.concat(tapeData.t) : tapeData.t.concat(fresh);
+  if (tapeData.t.length > 800) { tapeData.t.slice(800).forEach(r => tapeKeys.delete(tapeKey(r))); tapeData.t.length = 800; }
+}
+async function loadTape(force) {
+  if (!RAW) return;
+  if (tapeData && !force && Date.now() - tapeData._at < 55000) return;
+  const j = await getJSON('tape.json');
+  if (!j) { if (!tapeData) tapeData = { t: [], _at: Date.now(), none: true }; return; }
+  if (!tapeData || tapeData.date !== j.date) { tapeData = { t: [], date: j.date }; tapeKeys = new Set(); }
+  tapeAdd(j.t, false); tapeData.t.sort((a, b) => b[1].localeCompare(a[1]));
+  tapeData._at = Date.now(); tapeData.updated = j.updated;
+}
+function tapeFromTick() {                       // the trades in the newest 15-second reading
+  if (!tick || !tick.tp || !tick.tp.length) return;
+  if (!tapeData) tapeData = { t: [], date: tick.t.slice(0, 10), _at: 0 };
+  tapeAdd(tick.tp, true);
+  if (current && tapeIntoBook(current)) { const el = document.getElementById('sec-book'); if (el) el.outerHTML = bookCard(current); }
+}
+function tapeIntoBook(sym) {                    // newer trades from the tape into a share's Buyers and sellers lists
+  if (!tapeData || !books || !books.s || !books.s[sym] || books.date !== tapeData.date) return false;
+  const x = books.s[sym], have = new Set((x.tr || []).map(r => r.slice(0, 3).join('|')));
+  const newest = (x.tr && x.tr[0] && x.tr[0][0]) || '';
+  const add = tapeData.t.filter(r => r[0] === sym && r[1] >= newest).map(r => r.slice(1)).filter(r => !have.has(r.slice(0, 3).join('|')));
+  if (!add.length) return false;
+  x.tr = add.concat(x.tr || []).sort((a, b) => b[0].localeCompare(a[0])).slice(0, 40);
+  return true;
+}
+async function renderTape(fetchNow) {
+  const el = document.getElementById('trades'); if (!el) return;
+  if (fetchNow || !tapeData || tapeData.none) await loadTape(fetchNow);
+  if (!RAW) { el.innerHTML = '<h2>Live trades</h2><p class="mute">Live data is not available here.</p>'; return; }
+  const all = (tapeData && tapeData.t) || [];
+  const q = tapeQuery.trim().toUpperCase();
+  const rows = all.filter(r => (tapeFilter === 'all' || (tapeFilter === 'big' && r[2] * r[3] >= 1e6) || (tapeFilter === 'fav' && stars.has(r[0]))
+    || (tapeFilter === 'buy' && r[5] > 0) || (tapeFilter === 'sell' && r[5] < 0)) && (!q || r[0].includes(q)));
+  const val = side => rows.filter(r => Math.sign(r[5]) === side).reduce((a, r) => a + r[2] * r[3], 0);
+  const vb = val(1), vs = val(-1), tot = vb + vs || 1;
+  const live = tick && marketWindow() && tick.t.slice(0, 10) === ymd(colomboNow());
+  const chips = [['all', 'All'], ['big', 'LKR 1M+'], ['fav', 'Favourites'], ['buy', 'Buyer-driven'], ['sell', 'Seller-driven']]
+    .map(([k, l]) => `<button class="chip ${tapeFilter === k ? 'on' : ''}" data-tf="${k}">${l}</button>`).join('');
+  const body = rows.slice(0, 300).map(r => `<tr data-sym="${esc(r[0])}"><td class="side"><i style="background:${r[5] > 0 ? 'var(--emerald)' : r[5] < 0 ? 'var(--ruby)' : 'var(--line)'}"></i></td>
+      <td class="mute">${esc(r[1])}</td><td><b>${short(r[0])}</b></td><td class="num ${r[5] > 0 ? 'up' : r[5] < 0 ? 'down' : ''}">${r[2].toFixed(2)}</td>
+      <td class="num">${shr(r[3])}${r[4] > 1 ? `<span class="mute"> ×${r[4]}</span>` : ''}</td><td class="num">${tapeVal(r[2] * r[3])}</td></tr>`).join('');
+  el.innerHTML = `<h2>Live trades</h2>
+    <p class="small" style="margin-top:-4px">${live ? `Every trade on the CSE, newest first, updated every 15 seconds.` : tapeData && tapeData.date ? `The market is closed. These are the last trades of ${dmy(tapeData.date)}.` : 'Shown during market hours.'}</p>
+    <div class="tpbar"><div class="chips">${chips}</div><input type="search" id="tapeQ" placeholder="Filter by share, e.g. COMB" value="${esc(tapeQuery)}" autocomplete="off"></div>
+    ${rows.length ? `<div class="small"><span class="up">Buyer-driven ${lkr(vb)}</span> · <span class="down">Seller-driven ${lkr(vs)}</span> <span class="mute">in the trades shown</span></div>
+      <div class="fbar"><i style="width:${(vb / tot * 100).toFixed(1)}%;background:var(--emerald)"></i><i style="width:${(vs / tot * 100).toFixed(1)}%;background:var(--ruby)"></i></div>` : ''}
+    <table class="dt tape"><thead><tr><th></th><th>Time</th><th>Share</th><th class="num">Price</th><th class="num">Shares</th><th class="num">LKR</th></tr></thead>
+      <tbody>${body || `<tr><td colspan="6" class="mute">${all.length ? 'No trades match this filter.' : 'No trades yet.'}</td></tr>`}</tbody></table>
+    <p class="small" style="margin-top:10px">Trades at the same price within one 15-second reading are added together (×n = number of trades). Green: buyer-driven, red: seller-driven, grey: unclear or a pre-agreed crossing; read from the price move, not from who placed the order. Up to the latest 800 trades of the day.</p>`;
+  const inp = document.getElementById('tapeQ');
+  if (inp) inp.addEventListener('input', e => { tapeQuery = e.target.value; const pos = e.target.selectionStart; renderTape(); const n = document.getElementById('tapeQ'); if (n) { n.focus(); n.setSelectionRange(pos, pos); } });
+}
+document.addEventListener('click', e => {
+  const c = e.target.closest('[data-tf]'); if (c) { tapeFilter = c.dataset.tf; renderTape(); return; }
+  const tr = e.target.closest('#trades tr[data-sym]'); if (tr) openShare(tr.dataset.sym);
+});
+
 // ---------- day trade: shares where a same-day trade is physically possible, with the honest test (data/daytrade.json) ----------
 let dayData = null;
 function dayGap(x) {                     // today's opening gap from the minute file: open against yesterday's close
@@ -541,7 +614,7 @@ async function pollBooks(force) {
     for (const back of [1, 2, 3]) { const d = new Date(now.getTime() - back * 60000); b = await getJSON(`b/${two(d.getHours())}${two(d.getMinutes())}.json`); if (b) break; }
   }
   if (!b) b = await getJSON('books.json');
-  if (b) { b._at = Date.now(); books = b; }
+  if (b) { b._at = Date.now(); books = b; if (current) tapeIntoBook(current); }
   else if (!books) books = { none: true, _at: Date.now(), s: {} };       // nothing published yet: stop showing "Loading
   const el = document.getElementById('sec-book'); if (el && current) el.outerHTML = bookCard(current);
 }

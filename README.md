@@ -293,3 +293,11 @@ the time. Tested walk-forward 2018-2026 (each year by models that had not seen i
 8-in-10 range and 50% in the 1-in-2 range, but the middle estimate's direction was right only about 52% of the time,
 so the card says to read the range, not the middle. The top fifth of the outlook beat the bottom fifth by about 1.6
 points over 20 days and 3.1 points over 60 days. The test re-runs monthly (`data/model/outlook.json`).
+
+### Live trades
+
+The **Live trades** screen (More menu on phones, side bar on tablets) lists every trade on the CSE, newest first,
+updated every 15 seconds, with filters (LKR 1M+, favourites, buyer- or seller-driven, one share) and the buyer- vs
+seller-driven value of the trades shown. The live job keeps the market's latest 600 trades in `tape.json` (each minute)
+and sends each 15-second reading's new trades in the tick file (`tp`), which also refreshes the open share's
+Buyers and sellers trade lists every 15 seconds.

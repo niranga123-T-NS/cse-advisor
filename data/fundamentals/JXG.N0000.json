@@ -1,9 +1,18 @@
 {
  "annual": {},
- "listed_at": "2026-11-16",
+ "listed_at": "2026-11-17",
  "listing": {
   "annual": [],
   "quarterly": [
+   {
+    "amended": false,
+    "end": "2026-09-30",
+    "id": "53939",
+    "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+    "uploaded": 1794844414949,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/3579_1794844414949.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2026-06-30",
@@ -67,6 +76,60 @@
     6400178.0,
     7239289.0,
     76621.0
+   ],
+   "year_only": false
+  },
+  "53939": {
+   "end": "2026-09-30",
+   "layout_navps": [
+    0,
+    1,
+    false
+   ],
+   "layout_profit": [
+    0,
+    1,
+    false
+   ],
+   "layout_revenue": [
+    0,
+    1,
+    false
+   ],
+   "months": 3,
+   "navps": 6.0,
+   "navps_prior": 5.68,
+   "ok": true,
+   "pages": 16,
+   "profit": -662278.0,
+   "profit_growth": null,
+   "profit_prior": 483993.0,
+   "revenue": 6566293.0,
+   "revenue_growth": -9.9,
+   "revenue_prior": 7289977.0,
+   "src_navps": "Net assets per share (LKR.)  6.00  5.68  6.01  5.68",
+   "src_profit": "Equity holders of the company  (662,278)  483,993  (634,664)  483,993",
+   "src_revenue": "Revenue  6,566,293  7,289,977  38,853  -",
+   "title": "Interim Financial Statements for the Quarter ended 30th September 2026",
+   "unit": 1000.0,
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/3579_1794844414949.pdf",
+   "v": 6,
+   "vals_navps": [
+    6.0,
+    5.68,
+    6.01,
+    5.68
+   ],
+   "vals_profit": [
+    -662278.0,
+    483993.0,
+    -634664.0,
+    483993.0
+   ],
+   "vals_revenue": [
+    6566293.0,
+    7289977.0,
+    38853.0
    ],
    "year_only": false
   }

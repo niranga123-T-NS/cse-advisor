@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import pandas as pd
 import math
 import shutil
 from pathlib import Path
@@ -293,6 +294,18 @@ def build():
             x["vet"] = "".join({"fits": "F", "partly": "P", "no": "N", "unknown": "U"}[l["verdict"]] for l in V.get(s, []))
             x["mcap"] = round(shares[s] * x["close"]) if shares.get(s) else None
             x["spark"] = [round(float(v), 4) for v in longterm.BARS[s]["close"].tail(30)]
+        # every trading day on record, for the share page's full trade history (loaded only when asked for)
+        nh = 0
+        for s_, b in longterm.BARS.items():
+            b = b.dropna(subset=["close"])
+            b = b[b["volume"].fillna(0) > 0] if len(b) else b
+            if not len(b):
+                continue
+            r2 = lambda col: [None if pd.isna(v) else round(float(v), 2) for v in b[col]]
+            _dump(OUT / "hist" / f"{s_}.json", {"s": s_, "d": [x.strftime("%Y-%m-%d") for x in b.index], "c": r2("close"),
+                                               "h": r2("high"), "l": r2("low"), "v": [int(v) for v in b["volume"].fillna(0)]})
+            nh += 1
+        print(f"Trade history files: {nh}")
         # the words: the home brief and a summary for each share
         import brief
         words = brief.build(signals, T, V, tsum, mk, longterm.official()[1])

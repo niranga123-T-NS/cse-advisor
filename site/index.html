@@ -144,6 +144,7 @@
   table.depth td { padding:3px 4px; border-top:1px solid var(--line-soft); position:relative; }
   table.depth td.num, table.depth th.num { text-align:right; }
   .dbar { height:3px; border-radius:2px; margin-top:2px; margin-left:auto; } .dbar.b { background:var(--emerald); } .dbar.s { background:var(--ruby); margin-left:0; margin-right:auto; }
+  #thist td.num { white-space:nowrap; }
   .vprof { display:grid; gap:2px; font-variant-numeric:tabular-nums; } .vrow { display:grid; grid-template-columns:118px 1fr 92px; gap:8px; align-items:center; font-size:12.5px; padding:1px 4px; border-radius:4px; }
   .vrow.va { background:var(--surface-2); } .vrow.here { outline:1px solid var(--sapphire); } .vlab { color:var(--ink-3); white-space:nowrap; } .vnum { text-align:right; white-space:nowrap; }
   .vbar { display:flex; height:12px; } .vbar i { display:block; height:100%; } .vbar .u { background:var(--emerald); opacity:.75; border-radius:2px 0 0 2px; } .vbar .d { background:var(--ruby); opacity:.75; border-radius:0 2px 2px 0; }
@@ -1170,9 +1171,6 @@ function bandsCard(d) {
   }
   const chips = opts.map(([k, l]) => `<button class="chip ${k === bandDays || (k === opts[opts.length - 1][0] && bandDays > C.length) ? 'on' : ''}" data-bd="${k}">${l}</button>`).join('');
   const where = px > vaHi ? 'above the busy range: buyers have pushed it past where most shares changed hands' : px < vaLo ? 'below the busy range: it trades under where most shares changed hands' : 'inside the busy range';
-  // trade history: the latest sessions
-  const hist = C.slice(-20).map((c, i, arr) => { const k = C.length - 20 + i, pv = k ? C[k - 1].close : c.close, ch = (c.close / pv - 1) * 100, v = V[k] ? V[k].value : 0;
-    return `<tr><td class="mute">${dmy(c.time)}</td><td class="num">${c.close.toFixed(2)}</td><td class="num ${ch > 0 ? 'up' : ch < 0 ? 'down' : ''}">${ch > 0 ? '+' : ''}${ch.toFixed(2)}%</td><td class="num mute">${c.low.toFixed(2)}–${c.high.toFixed(2)}</td><td class="num">${shr(v)}</td><td class="num">${lkr(v * c.close)}</td></tr>`; }).reverse().join('');
   return `${head} <span class="mute">where shares changed hands</span></h3>
     <div class="chips" style="margin:0 0 8px">${chips}</div>
     <div class="vprof">${rows.join('')}</div>
@@ -1185,9 +1183,74 @@ function bandsCard(d) {
       <span class="mute">Heavy band above</span><span>${above != null ? `${band(above)} <span class="mute">(possible resistance)</span>` : '–'}</span>
     </div>
     <p class="small" style="margin:8px 0 0">From daily prices: each day's volume is spread evenly between its high and low, so the bands are an estimate of where trading happened, not a count of single trades. Bands where many shares changed hands often act as support or resistance, but not always.</p>
-    <details style="margin-top:8px"><summary class="small">Trade history, last 20 sessions</summary>
-      <table class="dt" style="margin-top:6px"><thead><tr><th>Date</th><th class="num">Close</th><th class="num">Change</th><th class="num">Low–high</th><th class="num">Shares</th><th class="num">Value</th></tr></thead><tbody>${hist}</tbody></table></details></div>`;
+    <div id="thist" style="margin-top:10px">${histHtml(d.symbol)}</div></div>`;
 }
+
+// ---------- full trade history: every trading day on record (data/hist/<symbol>.json, loaded when opened) ----------
+let histData = {}, histView = { mode: 'day', year: 'all', shown: 60 };
+async function openHist(sym) {
+  if (!histData[sym]) { try { histData[sym] = await (await fetch('data/hist/' + encodeURIComponent(sym) + '.json')).json(); } catch (e) { histData[sym] = { none: true }; } }
+  const el = document.getElementById('thist'); if (el && current === sym) el.innerHTML = histHtml(sym);
+}
+function histRows(H) {                          // daily rows newest first: [date, close, change %, low, high, shares, value]
+  const out = [];
+  for (let i = 0; i < H.d.length; i++) {
+    const pc = i ? H.c[i - 1] : null;
+    out.push([H.d[i], H.c[i], pc ? (H.c[i] / pc - 1) * 100 : null, H.l[i], H.h[i], H.v[i], H.v[i] * H.c[i]]);
+  }
+  return out.reverse();
+}
+function histGroup(rows, key) {                 // monthly or yearly: close at the end, change over the period, range, totals
+  const g = new Map();
+  rows.slice().reverse().forEach(r => { const k = key(r[0]); const x = g.get(k) || { k, first: null, last: r[1], lo: Infinity, hi: -Infinity, v: 0, val: 0, n: 0 };
+    x.last = r[1]; x.lo = Math.min(x.lo, r[3] ?? r[1]); x.hi = Math.max(x.hi, r[4] ?? r[1]); x.v += r[5]; x.val += r[6]; x.n++; g.set(k, x); });
+  const arr = [...g.values()];
+  arr.forEach((x, i) => { x.prev = i ? arr[i - 1].last : null; });
+  return arr.reverse().map(x => [x.k, x.last, x.prev ? (x.last / x.prev - 1) * 100 : null, x.lo, x.hi, x.v, x.val, x.n]);
+}
+function histHtml(sym) {
+  const H = histData[sym];
+  if (!H) return `<button class="chip" data-hist="open">Trade history: every day on record</button>`;
+  if (H.none) return '<p class="small mute">Trade history is not available for this share yet.</p>';
+  const all = histRows(H), years = [...new Set(all.map(r => r[0].slice(0, 4)))];
+  if (histView.year !== 'all' && !years.includes(histView.year)) histView.year = 'all';
+  const yr = histView.year, rowsY = yr === 'all' ? all : all.filter(r => r[0].startsWith(yr));
+  const mode = histView.mode;
+  const rows = mode === 'day' ? rowsY : histGroup(all, mode === 'month' ? d => d.slice(0, 7) : d => d.slice(0, 4)).filter(r => yr === 'all' || r[0].startsWith(yr));
+  const label = r => mode === 'day' ? dmy(r[0]) : mode === 'month' ? new Date(r[0] + '-01T00:00:00').toLocaleDateString('en-GB', { month: 'short', year: 'numeric' }) : r[0];
+  const ch = v => v == null ? '<span class="mute">–</span>' : `<span class="${v > 0 ? 'up' : v < 0 ? 'down' : ''}">${v > 0 ? '+' : ''}${v.toFixed(2)}%</span>`;
+  const shown = rows.slice(0, histView.shown);
+  const tv = rowsY.reduce((a, r) => a + r[5], 0), tval = rowsY.reduce((a, r) => a + r[6], 0);
+  const tabs = [['day', 'Daily'], ['month', 'Monthly'], ['year', 'Yearly']].map(([k, l]) => `<button class="chip ${mode === k ? 'on' : ''}" data-hm="${k}">${l}</button>`).join('');
+  return `<h4 style="margin:4px 0 6px">Trade history <span class="mute small">${dmy(H.d[0])} to ${dmy(H.d[H.d.length - 1])}, ${H.d.length.toLocaleString()} trading days</span></h4>
+    <div class="tpbar"><div class="chips">${tabs}</div>
+      <select id="histYear" aria-label="Year"><option value="all">All years</option>${years.slice().reverse().map(y => `<option ${y === yr ? 'selected' : ''}>${y}</option>`).join('')}</select>
+      <button class="chip" data-hist="csv">Download CSV</button></div>
+    <div class="small mute" style="margin-bottom:4px">${yr === 'all' ? 'All years' : yr}: ${rowsY.length.toLocaleString()} trading days, ${shr(tv)} shares, ${lkr(tval)} traded</div>
+    <div style="overflow-x:auto"><table class="dt"><thead><tr><th>${mode === 'day' ? 'Date' : mode === 'month' ? 'Month' : 'Year'}</th><th class="num">Close</th><th class="num">Change</th><th class="num">Low–high</th><th class="num">Shares</th><th class="num">Value</th>${mode === 'day' ? '' : '<th class="num">Days</th>'}</tr></thead>
+      <tbody>${shown.map(r => `<tr><td class="mute">${label(r)}</td><td class="num">${r[1].toFixed(2)}</td><td class="num">${ch(r[2])}</td><td class="num mute">${r[3] != null ? r[3].toFixed(2) : '–'}–${r[4] != null ? r[4].toFixed(2) : '–'}</td><td class="num">${shr(r[5])}</td><td class="num">${lkr(r[6])}</td>${mode === 'day' ? '' : `<td class="num">${r[7]}</td>`}</tr>`).join('')}</tbody></table></div>
+    ${rows.length > shown.length ? `<button class="chip" data-hist="more" style="margin-top:8px">Show ${Math.min(100, rows.length - shown.length)} more (${(rows.length - shown.length).toLocaleString()} left)</button>` : ''}
+    <p class="small" style="margin:8px 0 0">Days with trades only. Prices before CSE's own records come from a long-history source and are put on today's share basis, so they allow for later splits and bonus issues. Value is shares × closing price, an estimate.</p>`;
+}
+function histCsv(sym) {
+  const H = histData[sym]; if (!H || H.none) return;
+  const lines = ['date,close,low,high,shares,value_estimate'].concat(H.d.map((d, i) => [d, H.c[i], H.l[i] ?? '', H.h[i] ?? '', H.v[i], Math.round(H.v[i] * H.c[i])].join(',')));
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([lines.join('\n')], { type: 'text/csv' }));
+  a.download = `${sym}-trade-history.csv`; document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-hist],[data-hm]'); if (!b || !current) return;
+  if (b.dataset.hm) { histView.mode = b.dataset.hm; histView.shown = 60; }
+  else if (b.dataset.hist === 'open') { openHist(current); return; }
+  else if (b.dataset.hist === 'more') histView.shown += 100;
+  else if (b.dataset.hist === 'csv') { histCsv(current); return; }
+  const el = document.getElementById('thist'); if (el) el.innerHTML = histHtml(current);
+});
+document.addEventListener('change', e => {
+  if (e.target.id !== 'histYear' || !current) return;
+  histView.year = e.target.value; histView.shown = 60;
+  const el = document.getElementById('thist'); if (el) el.innerHTML = histHtml(current);
+});
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-bd]'); if (!b || !detailCtx) return;
   bandDays = +b.dataset.bd; try { localStorage.setItem('bandDays', bandDays); } catch (er) {}

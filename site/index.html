@@ -673,14 +673,24 @@ function bookCard(sym) {
     <div class="small"><span class="up">To buy: ${shr(x.b)} shares</span>${val(x.b)} · <span class="down">To sell: ${shr(x.a)} shares</span>${val(x.a)}</div>
     <div class="fbar"><i style="width:${(x.b / tot * 100).toFixed(1)}%;background:var(--emerald)"></i><i style="width:${(x.a / tot * 100).toFixed(1)}%;background:var(--ruby)"></i></div>
     <p style="margin:0 0 8px"><b>${ratio}</b></p>`;
+  // CSE's free data has no sell prices. Trades that went through above the best buy price must have met a seller,
+  // so the lowest such price in the last 10 minutes is a fair estimate of the best sell price (shown with ≈).
+  let estAsk = null;
+  if (bb && !ba && x.tr && x.tr.length) {
+    const sec = t => { const [a, b, c] = String(t).split(':').map(Number); return a * 3600 + b * 60 + (c || 0); };
+    const from = sec(x.t) - 600, above = x.tr.filter(r => r[1] > bb[0] + 1e-9 && sec(r[0]) >= from).map(r => r[1]);
+    if (above.length) estAsk = Math.min(...above);
+  }
+  if (estAsk) x = { ...x, sell: [[estAsk, null, 0, 1]] };
   const n = Math.max(x.buy.length, x.sell.length);
   if (n) {
     const mx = Math.max(...x.buy.map(r => r[1] || 0), ...x.sell.map(r => r[1] || 0), 1);
     const cell = (r, side) => r ? `<td class="num">${r[2] || ''}</td><td class="num">${r[1] == null ? '–' : shr(r[1])}<div class="dbar ${side}" style="width:${((r[1] || 0) / mx * 100).toFixed(0)}%"></div></td><td class="num ${side === 'b' ? 'up' : 'down'}"><b>${r[0].toFixed(2)}</b></td>` : '<td></td><td></td><td></td>';
     h += `<table class="depth"><thead><tr><th class="num">Orders</th><th class="num">Shares</th><th class="num up">Buy at</th><th class="num down">Sell at</th><th class="num">Shares</th><th class="num">Orders</th></tr></thead><tbody>` +
       Array.from({ length: n }, (_, i) => { const b = x.buy[i], a = x.sell[i];
-        return `<tr>${cell(b, 'b')}${a ? `<td class="num down"><b>${a[0].toFixed(2)}</b></td><td class="num">${a[1] == null ? '–' : shr(a[1])}<div class="dbar s" style="width:${((a[1] || 0) / mx * 100).toFixed(0)}%"></div></td><td class="num">${a[2] || ''}</td>` : '<td></td><td></td><td></td>'}</tr>`; }).join('') + '</tbody></table>';
+        return `<tr>${cell(b, 'b')}${a ? `<td class="num down"><b>${a[3] ? '≈' : ''}${a[0].toFixed(2)}</b></td><td class="num">${a[1] == null ? (a[3] ? '<span class="mute">not shown</span>' : '–') : shr(a[1])}<div class="dbar s" style="width:${((a[1] || 0) / mx * 100).toFixed(0)}%"></div></td><td class="num">${a[2] || ''}</td>` : '<td></td><td></td><td></td>'}</tr>`; }).join('') + '</tbody></table>';
   } else h += '<p class="small">CSE showed no price levels in this reading, only the totals.</p>';
+  if (!ba && x.a) h += `<p class="small" style="margin:6px 0 0"><span class="down">${shr(x.a)} shares are waiting to sell</span>, but CSE's free data does not show their prices or orders${estAsk ? `. The sell price ≈ ${estAsk.toFixed(2)} is estimated: the lowest price trades went through above the best buy (${bb[0].toFixed(2)}) in the last 10 minutes` : ''}. Full buy and sell order lists are only in your broker's app (ATrad).</p>`;
   if (bb && ba) { const gap = ba[0] - bb[0]; h += `<p class="small" style="margin:6px 0 0">Gap between the best buy and sell prices: ${gap.toFixed(2)} (${(gap / ref * 100).toFixed(2)}% of the price)${gap / ref > 0.01 ? '. A wide gap makes buying and quickly selling again costly.' : '.'}</p>`; }
   const hs = x.h || [];
   if (hs.length >= 2) {

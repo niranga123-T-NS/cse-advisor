@@ -1,8 +1,42 @@
 {
- "annual": {},
- "listed_at": "2026-11-17",
+ "annual": {
+  "53942": {
+   "end": "2026-03-31",
+   "eps": 0.7,
+   "eps_prior": 4.22,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 140,
+   "src_eps": "Basic earnings per share  50  0.70  4.22  0.75  4.76",
+   "title": "Audited Financial Statements for the Period ended 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/3579_1794884278279.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.7,
+    4.22,
+    0.75,
+    4.76
+   ],
+   "year_only": false
+  }
+ },
+ "listed_at": "2026-11-18",
  "listing": {
-  "annual": [],
+  "annual": [
+   {
+    "amended": false,
+    "end": "2026-03-31",
+    "id": "53942",
+    "title": "Audited Financial Statements for the Period ended 31st March 2026",
+    "uploaded": 1794884278279,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/3579_1794884278279.pdf",
+    "year_only": false
+   }
+  ],
   "quarterly": [
    {
     "amended": false,

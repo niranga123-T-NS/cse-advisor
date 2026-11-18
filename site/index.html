@@ -75,6 +75,7 @@
   .wrap { max-width:1180px; margin:0 auto; padding:20px 22px 30px; }
   .empty { padding:22px; color:var(--ink-3); font-size:14px; }
 
+  #paneBtn { display:none; }   /* only wide screens show the list/share split, and the handle (below) */
   /* wide screens: Home fills the window; Shares and Alerts sit beside the open share, each scrolling on its own */
   @media (min-width:900px) and (min-height:501px) {
     body { display:flex; flex-direction:column; height:100vh; height:100dvh; }
@@ -164,6 +165,7 @@
   .osvg .onow { stroke:var(--line); stroke-width:1; } .osvg .olab { font-size:13px; fill:var(--ink-2); font-variant-numeric:tabular-nums; } .osvg .olab.up { fill:var(--emerald); } .osvg .olab.down { fill:var(--ruby); }
   .vlist { margin:4px 0 0; padding-left:18px; font-size:13.5px; } .vlist li { margin:3px 0; color:var(--ink); } .vlist.up li::marker { color:var(--emerald); } .vlist.down li::marker { color:var(--ruby); }
   .tcols { display:grid; grid-template-columns:1fr 1fr; gap:14px; } .tcol { min-width:0; }
+  @media (max-width:560px) { .tcols { grid-template-columns:minmax(0, 1fr); gap:6px; } table.depth th, table.depth td { padding-left:3px; padding-right:3px; font-size:12.5px; } }
   .dspark { width:100%; height:60px; display:block; background:var(--surface-2, transparent); border-radius:6px; }
 
   /* ---------- Shares ---------- */

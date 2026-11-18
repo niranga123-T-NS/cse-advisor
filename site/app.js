@@ -114,14 +114,14 @@
       const when = t => new Date(t * 1000).toLocaleString('en-GB', { timeZone: 'Asia/Colombo', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
       const groups = [...new Set(items.map(x => x.g))];
       const rrow = x => x.d1 !== undefined
-        ? `<tr><td><b>${esc(x.l)}</b><div class="small mute">${when(x.t)}</div></td><td class="num">${rv(x)}</td><td class="num">${pts(ppc(x, x.d1))}</td><td class="num">${pts(ppc(x, x.w1))}</td><td class="num">${pts(ppc(x, x.m1))}</td></tr>`
+        ? `<tr><td><b>${esc(x.l)}</b><div class="small mute">${when(x.t)}</div></td><td class="num">${rv(x)}</td><td class="num">${pts(ppc(x, x.d1))}</td><td class="num w1c">${pts(ppc(x, x.w1))}</td><td class="num">${pts(ppc(x, x.m1))}</td></tr>`
         : `<tr><td><b>${esc(x.l)}</b><div class="small mute">${esc(x.src)}</div></td><td class="num">${rv(x)}</td><td colspan="3" class="small mute" style="text-align:right;white-space:normal">${esc(x.note || '')}${x.chg == null ? '' : Math.abs(x.chg) < 0.005 ? ' (same as the auction before)' : ' (' + pts(x.chg) + ' from the auction before)'}</td></tr>`;
       const rows = groups.map(g => `<tr><th colspan="5" class="wg">${esc({ Rupee: 'Rupee (Rs for one unit)', Shares: 'Share markets', 'US rates': 'US interest rates (changes in % points)', 'Sri Lanka rates': 'Sri Lanka interest rates (changes in % points)' }[g] || g)}</th></tr>` +
         items.filter(x => x.g === g).map(x => x.rate ? rrow(x) : `<tr><td><b>${esc(x.l)}</b><div class="small mute">${x.u ? esc(x.u) + ' · ' : ''}${when(x.t)}</div></td>
-          <td class="num">${fmt(x.p)}</td><td class="num">${chg(x.d1)}</td><td class="num">${chg(x.w1)}</td><td class="num">${chg(x.m1)}</td></tr>`).join('')).join('');
+          <td class="num">${fmt(x.p)}</td><td class="num">${chg(x.d1)}</td><td class="num w1c">${chg(x.w1)}</td><td class="num">${chg(x.m1)}</td></tr>`).join('')).join('');
       const sh = sheet(`<div class="whead"><h2>World markets</h2><button type="button" class="btn" data-wclose>Close</button></div>
         <div class="wbody"><p class="small mute" style="margin:0 0 10px">From Yahoo Finance's free data, delayed about 10 to 30 minutes; currency rates are unofficial. LME metal prices are paid data, so US futures prices stand in for them (COMEX copper and aluminium, CME steel; diesel is NYMEX heating oil, petrol is RBOB). Rates: Sri Lanka's T-bill and T-bond yields are the weighted averages at the latest Public Debt Management Office auctions; the US Fed range and effective rate are from the New York Fed. Updated ${W ? when(W.updated) : '–'} Colombo time.</p>
-        <div style="overflow-x:auto"><table class="wtab"><thead><tr><th></th><th class="num">Price</th><th class="num">1 day</th><th class="num">1 week</th><th class="num">1 month</th></tr></thead><tbody>${rows}</tbody></table></div></div>`, true);
+        <div style="overflow-x:auto"><table class="wtab"><thead><tr><th></th><th class="num">Price</th><th class="num">1 day</th><th class="num w1c">1 week</th><th class="num">1 month</th></tr></thead><tbody>${rows}</tbody></table></div></div>`, true);
       const c = document.querySelector('[data-wclose]'); if (c) { c.addEventListener('click', () => closeSheet && closeSheet()); c.focus(); }
     });
     load(); setInterval(load, 5 * 60 * 1000);

@@ -53,7 +53,9 @@ BUDGET_MIN = float(os.environ.get("LIVE_BUDGET_MIN", "325"))   # hand over befor
 REACH_MIN = 320                            # only wait for an open that is at most this far away
 ROOT = Path(__file__).parent
 cse.MIN_INTERVAL_SEC = 0.5
-BIG_MIN = 2_000_000                        # LKR: smallest trade kept for the "big orders" list
+BIG_MIN = 2_000_000                        # LKR: smallest trade kept for the "big orders" list (smaller ones count if large for the share)
+ALERT_MIN = 1_500_000                      # LKR: smallest trade that can raise a "large buying / selling" alert...
+ALERT_SHARE = 0.10                         # ...and it must also be at least 10% of a normal day's turnover in that share
 CROSS_MIN = 20_000_000                     # CSE's minimum value for a crossing (a block agreed between two parties)
 EPS = 1e-6
 
@@ -468,7 +470,7 @@ class Engine:
                     continue
                 q, val, n = sum(x[1] for x in g), sum(x[0] * x[1] for x in g), sum(x[2] for x in g)
                 fl[0 if side > 0 else 1 if side < 0 else 2] += val
-                if val >= BIG_MIN:                  # several trades in one instant are usually one large order filling
+                if val >= min(BIG_MIN, max(ALERT_MIN, ALERT_SHARE * tov)):   # several trades in one instant are usually one order filling
                     self._big(t, s, side, q, val, n, tov, ts)
             if f:
                 self._hidden(ts, s, f, cur)
@@ -485,11 +487,15 @@ class Engine:
         if len(self.big) > 500:                      # keep the largest and the latest
             ids = {id(x) for x in sorted(self.big, key=lambda x: -x["v"])[:300]} | {id(x) for x in self.big[-150:]}
             self.big = [x for x in self.big if id(x) in ids]
-        if ts is not None and val >= max(5_000_000, 0.1 * tov):
+        # Large for THIS share: until 18 Nov 2026 this needed LKR 5M or more for every share, which missed big
+        # trades in the many shares that normally turn over well under LKR 50M a day (e.g. LKR 1.9M in CSLK, 20%
+        # of its normal day).  Now: LKR 1.5M or more AND at least 10% of a normal day's turnover.
+        if ts is not None and val >= max(ALERT_MIN, ALERT_SHARE * tov):
             word = "crossing (a block agreed between two parties)" if cross else \
                 {1: "large buying", -1: "large selling", 0: "large trade"}[side]
+            share = f", {val / tov * 100:.0f}% of a normal day" if tov > 0 else ""
             self.emit(ts, s, "block", f"{word}: {q:,.0f} shares at {val / q:.2f} (LKR {val / 1e6:.1f}M"
-                                      + (f" in {n} trades" if n > 1 else "") + ")",
+                                      + (f" in {n} trades" if n > 1 else "") + share + ")",
                       2 if val >= max(CROSS_MIN, 0.5 * tov) else 1, key=f"{s}|block|{side}", cooldown=180)
 
     def _flag(self, ts: float, s: str, side: int, kind: str, price: float | None, val: float, msg: str, big: bool = False):

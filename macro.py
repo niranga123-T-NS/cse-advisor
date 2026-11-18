@@ -101,7 +101,7 @@ def _page(s: requests.Session, url: str) -> dict | None:
         return None
 
 
-def listing(s: requests.Session) -> list[tuple[str, str]]:
+def listing(s: requests.Session, LIST: str = LIST) -> list[tuple[str, str]]:
     """(file url, title) for every T-bill auction result the debt office lists, across its yearly sections and pages."""
     out, seen = [], set()
     first = _page(s, LIST)
@@ -148,6 +148,75 @@ def parse_tbill(text: str) -> dict | None:
     return out if len(out) > 1 else None
 
 
+BONDS = "https://www.treasury.gov.lk/web/result-treasury-bonds"
+MON = {m: i for i, m in enumerate(["january", "february", "march", "april", "may", "june", "july", "august", "september",
+                                   "october", "november", "december"], 1)}
+
+
+def parse_bond(text: str) -> dict | None:
+    """Treasury bond auction press release (English): maturity and weighted average yield of each bond sold."""
+    t = " ".join(text.split())
+    m = re.search(r"TREASURY BONDS? AUCTION HELD ON (\d{1,2} [A-Za-z]+ \d{4})", t, re.I)
+    if not m:
+        return None
+    try:
+        day = dt.datetime.strptime(m.group(1).title(), "%d %B %Y").date().isoformat()
+    except ValueError:
+        return None
+    mat = re.search(r"Date of Maturity (.*?) International Securities", t, re.I)
+    wy = re.search(r"Weighted Average Yield Rate \(%\) ((?:(?:\d{1,2}\.\d{2}|-) ?)+)", t, re.I)
+    if not mat or not wy:
+        return None
+    dates = re.findall(r"(\d{1,2}) ([A-Za-z]+) (\d{4})", mat.group(1))
+    ys = wy.group(1).split()
+    out = []
+    for (dd, mm, yy), y in zip(dates, ys):
+        if y == "-" or mm.lower() not in MON:
+            continue
+        v = float(y)
+        if 3 <= v <= 40:
+            out.append([f"{yy}-{MON[mm.lower()]:02d}-{int(dd):02d}", v])
+    return {"date": day, "bonds": out} if out else None
+
+
+def fetch_bonds(s: requests.Session):
+    f = DIR / "tbond.json"
+    have = json.loads(f.read_text()) if f.exists() else {"auctions": {}, "seen": []}
+    links = listing(s, BONDS)
+    new = 0
+    for href, title in links:
+        if href in have["seen"]:
+            continue
+        try:
+            r = s.get(href, headers=UA, timeout=60)
+        except requests.RequestException:
+            continue
+        if r.status_code != 200 or r.content[:4] != b"%PDF":
+            continue
+        have["seen"].append(href)
+        a = parse_bond(pdf_text(r.content))
+        if a:
+            have["auctions"][a["date"]] = {"bonds": a["bonds"], "src": href}
+            new += 1
+            print("bond auction", a)
+        time.sleep(0.5)
+    f.write_text(json.dumps(have, indent=1, sort_keys=True))
+    print(f"bonds: {len(links)} links, {new} new auctions, {len(have['auctions'])} in all")
+
+
+def fed() -> dict | None:
+    """US Federal Reserve: target range and the effective federal funds rate (New York Fed, free)."""
+    try:
+        r = requests.get("https://markets.newyorkfed.org/api/rates/unsecured/effr/last/1.json", headers=UA, timeout=40)
+        x = r.json()["refRates"][0]
+        out = {"date": x["effectiveDate"], "effr": x["percentRate"], "from": x["targetRateFrom"], "to": x["targetRateTo"]}
+        (DIR / "fed.json").write_text(json.dumps(out))
+        return out
+    except Exception as e:
+        print("fed:", repr(e)[:120])
+        return None
+
+
 def fetch():
     DIR.mkdir(parents=True, exist_ok=True)
     f = DIR / "tbill.json"
@@ -175,6 +244,8 @@ def fetch():
     print(f"{len(links)} links, {new} new auctions, {len(have['auctions'])} in all")
     rows = fx(s)
     print("fx rows", len(rows), rows[-1:] if rows else None)
+    fetch_bonds(s)
+    print("fed", fed())
 
 
 # ---------------------------------------------------------------- for the site

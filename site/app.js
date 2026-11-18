@@ -34,7 +34,7 @@
   const NAV = [['home', 'Home', './#/home'], ['shares', 'Shares', './#/shares'], ['day', 'Day trade', './#/day'], ['alerts', 'Alerts', './#/alerts'], ['trades', 'Live trades', './#/trades'], ['trends', 'Trends', 'trends.html'],
                ['veterans', 'Veterans', 'veterans.html'], ['market', 'Market', 'market.html'], ['accuracy', 'Accuracy', 'accuracy.html'], ['checks', 'Checks', 'audit.html']];
   if (location.protocol === 'https:' && !/github\.io$/.test(location.hostname)) NAV.push(['account', 'Account', 'account.html']);   // signed-in hosting only
-  const link = ([k, label, href]) => `<a href="${href}" data-nav="${k}">${ICON[k]}<span>${label}</span></a>`;
+  const link = ([k, label, href]) => `<a href="${href}" data-nav="${k}">${ICON[k] || ICON.tape}<span>${label}</span></a>`;
 
   // ---------- theme: follows the device until you choose ----------
   const root = document.documentElement;
@@ -77,7 +77,7 @@
   }
   const repo = (() => { const m = location.hostname.match(/^([^.]+)\.github\.io$/), r = location.pathname.split('/').filter(Boolean)[0]; return m && r ? `https://github.com/${m[1]}/${r}` : null; })();
   function openMore() {
-    const rows = NAV.slice(4).map(([k, label, href]) => `<a class="pi" href="${href}">${ICON[k]}<span class="t">${{ trades:'Live trades in the whole market', account:'Your account and password', trends:'Trends in every share', veterans:"Veterans' checklists", market:'Market history', accuracy:'Accuracy of ratings and forecasts', checks:'Data checks' }[k]}</span>${ICON.chev}</a>`).join('');
+    const rows = NAV.slice(4).map(([k, label, href]) => `<a class="pi" href="${href}">${ICON[k] || ICON.tape}<span class="t">${{ trades:'Live trades in the whole market', account:'Your account and password', trends:'Trends in every share', veterans:"Veterans' checklists", market:'Market history', accuracy:'Accuracy of ratings and forecasts', checks:'Data checks' }[k]}</span>${ICON.chev}</a>`).join('');
     const sh = sheet(`<div class="list" style="padding:10px"><a class="pi" href="./#/compare">${ICON.compare}<span class="t">Compare shares</span><span class="s">up to four</span></a>${rows}
       ${repo ? `<a class="pi" href="${repo}/actions/workflows/update.yml" target="_blank" rel="noopener">${ICON.plus}<span class="t">Add shares or refresh the data</span><span class="s">on GitHub</span></a>` : ''}
       <button class="pi" data-theme-row>${dark() ? ICON.sun : ICON.moon}<span class="t">${dark() ? 'Use the light theme' : 'Use the dark theme'}</span></button></div>

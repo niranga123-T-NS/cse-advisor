@@ -84,6 +84,16 @@
     #list, #alertsPane { overflow:auto; border-right:1px solid var(--line-soft); }
     #detail { overflow:auto; }
     body[data-view=home] #detail { display:none; }
+    #app { position:relative; }
+    #paneBtn { display:none; position:absolute; z-index:20; top:50%; left:clamp(450px, 42vw, 680px); transform:translate(-50%, -50%); width:26px; height:56px;
+        border-radius:13px; border:1px solid var(--line); background:var(--surface); color:var(--ink-2); font-size:18px; line-height:1; cursor:pointer;
+        box-shadow:0 2px 8px rgba(0,0,0,.25); padding:0; }
+    #paneBtn:hover, #paneBtn:focus-visible { color:var(--ink); border-color:var(--sapphire); }
+    body[data-view=shares] #paneBtn, body[data-view=alerts] #paneBtn { display:block; }
+    body.wide #app { grid-template-columns:minmax(0, 1fr); }
+    body.wide #list, body.wide #alertsPane { display:none; }
+    body.wide #paneBtn { left:0; width:20px; transform:translate(0, -50%); border-radius:0 12px 12px 0; border-left:0; }
+    body.wide #detail { padding-left:14px; }
   }
   /* phones and upright tablets: one thing at a time; an open share covers the view under a Back bar */
   @media (max-width:899.98px), (max-height:500px) {
@@ -288,6 +298,7 @@
   <section id="tradesPane"><div class="wrap" id="trades"><p class="mute">Loading…</p></div></section>
   <section id="dayPane"><div class="wrap" id="day"><p class="mute">Loading…</p></div></section>
   <section id="alertsPane"><div id="alerts"></div></section>
+  <button id="paneBtn" type="button" aria-controls="list alertsPane"></button>
   <section id="detail"><div class="empty">Pick a share from the list, or press / to search.</div></section>
 </main>
 <div id="cmp" class="cmp" hidden><div class="cmpbox" role="dialog" aria-modal="true" aria-label="Compare shares">
@@ -1458,6 +1469,26 @@ async function load() {
   else if (RAW) { getJSON('alerts.json').then(a => { dayAlerts = a; renderAlerts(); }); getJSON('orders.json').then(o => { dayOrders = o; renderBig(); }); }
 }
 load();
+
+// Wide screens: hide the list beside an open share so the share gets the full width ( [ key or the edge button ).
+(() => {
+  const b = document.getElementById('paneBtn');
+  const set = on => {
+    document.body.classList.toggle('wide', on);
+    b.textContent = on ? '›' : '‹';
+    b.title = on ? 'Show the list' : 'Hide the list and use the full width';
+    b.setAttribute('aria-label', b.title); b.setAttribute('aria-expanded', String(!on));
+    try { localStorage.setItem('cse-wide', on ? '1' : '0'); } catch (e) {}
+  };
+  let on = false; try { on = localStorage.getItem('cse-wide') === '1'; } catch (e) {}
+  set(on);
+  b.addEventListener('click', () => set(!document.body.classList.contains('wide')));
+  addEventListener('keydown', e => {
+    if (e.key !== '[' || e.metaKey || e.ctrlKey || e.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test((e.target.tagName || ''))) return;
+    if (!/^(shares|alerts)$/.test(document.body.dataset.view || '')) return;
+    e.preventDefault(); set(!document.body.classList.contains('wide'));
+  });
+})();
 </script>
 </body>
 </html>

@@ -38,27 +38,31 @@ def pdf_text(raw: bytes) -> str:
 
 
 def probe():
-    """Find how CSE serves report files uploaded before about 2019 (their usual address is refused)."""
+    """Check the sources for Treasury bond auction yields and US policy rates (prints what they serve)."""
     s0 = requests.Session()
-    f = "644_1564739378501.pdf"
-    heads = {"plain": {"User-Agent": "Mozilla/5.0 (personal CSE research tool)"},
-             "browser": {**UA, "Referer": "https://www.cse.lk/", "Accept": "application/pdf,*/*"}}
-    for u in ("https://cdn.cse.lk/upload_report_file/" + f, "https://cdn.cse.lk/cmt/upload_report_file/" + f,
-              "https://www.cse.lk/upload_report_file/" + f, "https://www.cse.lk/cmt/upload_report_file/" + f,
-              "https://cse.lk/upload_report_file/" + f, "https://cdn.cse.lk/cmt/" + f):
-        for hn, h in heads.items():
+    for u in ("https://www.treasury.gov.lk/web/result-treasury-bonds", "https://www.treasury.gov.lk/web/results-treasury-bonds"):
+        pp = _page(s0, u)
+        print("BONDLIST", u, bool(pp), list(pp)[:10] if pp else None)
+        if not pp:
+            continue
+        links = [x for x in ((pp.get("pageData") or {}).get("links") or []) if x.get("urlType") == "file"][:3]
+        print("SECTIONS", [x.get("anchor") for x in pp.get("sections") or []][:10])
+        for x in links:
+            print("LINK", x.get("title") or x.get("linkText"), x.get("link"))
             try:
-                r = s0.get(u, headers=h, timeout=60)
-                print("TRY", hn, u, r.status_code, r.headers.get("content-type"), len(r.content), r.content[:8])
+                r = s0.get("https://www.treasury.gov.lk/api/file/" + x["link"], headers=UA, timeout=60)
+                if r.content[:4] == b"%PDF":
+                    print("TEXT", " ".join(pdf_text(r.content).split())[:2500])
             except requests.RequestException as ex:
-                print("TRY", hn, u, repr(ex)[:80])
-    try:
-        r = s0.post("https://www.cse.lk/api/financials", data={"symbol": "ACL.N0000"}, headers=UA, timeout=60)
-        j = r.json()
-        for it in (j.get("infoAnnualData") or [])[-6:]:
-            print("ITEM", {k: it.get(k) for k in it if k not in ("description",)})
-    except Exception as ex:
-        print("financials", repr(ex)[:120])
+                print("ERR", repr(ex)[:100])
+        break
+    for u in ("https://markets.newyorkfed.org/api/rates/unsecured/effr/last/1.json",
+              "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DFEDTARU", "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS10"):
+        try:
+            r = s0.get(u, headers=UA, timeout=40)
+            print("US", u, r.status_code, r.text[:300].replace("\n", " | ") if r.status_code == 200 else "", r.text[-120:].replace("\n", " | "))
+        except requests.RequestException as ex:
+            print("US", u, repr(ex)[:100])
 
 
 def fx(s: requests.Session) -> list[list]:

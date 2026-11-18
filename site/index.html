@@ -162,6 +162,7 @@
   .osvg { width:100%; height:auto; display:block; } .osvg .ob80 { fill:var(--sapphire-soft); opacity:.55; } .osvg .ob50 { fill:var(--sapphire-soft); }
   .osvg .ohist { fill:none; stroke:var(--ink-2); stroke-width:1.6; } .osvg .omed { fill:none; stroke:var(--sapphire); stroke-width:1.6; stroke-dasharray:5 4; }
   .osvg .onow { stroke:var(--line); stroke-width:1; } .osvg .olab { font-size:13px; fill:var(--ink-2); font-variant-numeric:tabular-nums; } .osvg .olab.up { fill:var(--emerald); } .osvg .olab.down { fill:var(--ruby); }
+  .vlist { margin:4px 0 0; padding-left:18px; font-size:13.5px; } .vlist li { margin:3px 0; color:var(--ink); } .vlist.up li::marker { color:var(--emerald); } .vlist.down li::marker { color:var(--ruby); }
   .tcols { display:grid; grid-template-columns:1fr 1fr; gap:14px; } .tcol { min-width:0; }
   .dspark { width:100%; height:60px; display:block; background:var(--surface-2, transparent); border-radius:6px; }
 
@@ -1120,6 +1121,69 @@ function businessDays(fromISO, n) {
   while (out.length < n) { d.setDate(d.getDate() + 1); if (d.getDay() % 6) out.push(d.toISOString().slice(0, 10)); }
   return out;
 }
+function verdictCard(d, sym) {
+  const a = d.advice || {}, r = a.rating || {}, f = a.fundamentals || {}, ind = a.ind || {};
+  const live = tick && tick.r && tick.r[sym] ? tick.r[sym][0] : null, px = live || a.close;
+  const G = r.rated ? r.grade : null;
+  const call = !G ? 'No call' : /BUY/.test(G) ? 'Buy' : /SELL/.test(G) ? 'Sell' : 'Hold';
+  const cls = call === 'Buy' ? 'up' : call === 'Sell' ? 'down' : '';
+  const W = (window.__world && window.__world.items) || [], wv = k => W.find(x => x.k === k);
+  const pros = [], cons = [], mixed = [];
+  const add = (side, t) => (side > 0 ? pros : side < 0 ? cons : mixed).push(t);
+  // 1. the tested rating
+  if (G) {
+    const gs = r.groups || {}, names = { trend: 'trend over the year', strength: 'strength over the month', calm: 'steadiness', volume: 'buying on volume', sector: 'its industry group', reports: 'company figures' };
+    const best = Object.entries(gs).sort((x, y) => y[1] - x[1]), hi = best.filter(x => x[1] >= 70).map(x => names[x[0]]), lo = best.filter(x => x[1] <= 30).map(x => names[x[0]]);
+    add(call === 'Buy' ? 1 : call === 'Sell' ? -1 : 0, `Rated <b>${esc(G.toLowerCase())}</b>: ahead of ${r.pct}% of ${r.of} rated shares${hi.length ? `; strong on ${hi.join(', ')}` : ''}${lo.length ? `; weak on ${lo.join(', ')}` : ''}.`);
+  }
+  // 2. trend
+  if (ind.sma50 && ind.sma200) {
+    const u50 = px > ind.sma50, u200 = px > ind.sma200;
+    add(u50 && u200 ? 1 : !u50 && !u200 ? -1 : 0, u50 && u200 ? 'Price is above its 50- and 200-day averages: rising trend.' : !u50 && !u200 ? 'Price is below its 50- and 200-day averages: falling trend.' : `Price is ${u50 ? 'above' : 'below'} its 50-day but ${u200 ? 'above' : 'below'} its 200-day average: trend is changing.`);
+  }
+  // 3. company figures and value against what a T-bill pays
+  const tb = wv('TB364');
+  if (f.pe > 0) {
+    const ey = 100 / f.pe;
+    if (tb) add(ey > tb.p + 2 ? 1 : ey < tb.p ? -1 : 0, `Earns ${ey.toFixed(1)}% of its price a year (P/E ${f.pe.toFixed(1)}), against ${tb.p.toFixed(2)}% on a 1-year T-bill${ey < tb.p ? ': the T-bill pays more, with no risk' : ey > tb.p + 2 ? ': well above the T-bill' : ': close to the T-bill'}.`);
+  } else if (f.pe != null || f.eps_ttm < 0) add(-1, 'Made a loss over the last year (no P/E).');
+  if (f.roe != null) add(f.roe >= 15 ? 1 : f.roe < 8 ? -1 : 0, `Return on equity ${f.roe.toFixed(1)}%${f.roe >= 15 ? ' (strong)' : f.roe < 8 ? ' (weak)' : ''}.`);
+  if (f.profit_growth != null) add(f.profit_growth > 10 ? 1 : f.profit_growth < 0 ? -1 : 0, `Profit ${f.profit_growth >= 0 ? 'up' : 'down'} ${Math.abs(f.profit_growth).toFixed(1)}% on the year before${f.profit_growth_hit ? ` (rose in ${f.profit_growth_hit} checked reports)` : ''}.`);
+  if (f.div_yield) add(tb && f.div_yield > tb.p ? 1 : 0, `Dividend yield ${f.div_yield.toFixed(1)}%.`);
+  // 4. money flow, RSI, live orders
+  if (d.pressure && d.pressure.label) add({ acc: 1, buy: 1, dist: -1, sell: -1 }[d.pressure.label] || 0, esc(d.pressure.text) + '.');
+  if (a.rsi != null && (a.rsi > 70 || a.rsi < 30)) add(a.rsi > 70 ? -1 : 0, a.rsi > 70 ? `RSI ${a.rsi.toFixed(0)}: stretched after a fast rise, so short pullbacks are common.` : `RSI ${a.rsi.toFixed(0)}: heavily sold; bounces happen but the trend is down.`);
+  const bk = books && books.s && books.s[sym], today = books && books.date === ymd(colomboNow());
+  if (bk && today && bk.b && bk.a) { const q = bk.b / bk.a; add(q > 1.5 ? 1 : q < 0.67 ? -1 : 0, `Orders waiting now: ${q >= 1 ? q.toFixed(1) + '× as many shares to buy as to sell' : (1 / q).toFixed(1) + '× as many shares to sell as to buy'}.`); }
+  // 5. outlook (weak record) and the price to buy at
+  const o = d.outlook && d.outlook.h && d.outlook.h['20'];
+  if (o) add(o[2] > 2 ? 1 : o[2] < -2 ? -1 : 0, `Price outlook, 1 month: middle estimate ${o[2] > 0 ? '+' : ''}${o[2].toFixed(1)}% (its direction has been right only about half the time).`);
+  const bz = d.buyzone;
+  // 6. world context for this industry (shown, not counted)
+  const links = { 'Energy': ['BZ=F', 'HO=F'], 'Transportation': ['BZ=F', 'HO=F'], 'Utilities': ['BZ=F', 'NG=F'], 'Capital Goods': ['HG=F', 'ALI=F', 'HRC=F'],
+    'Materials': ['HRC=F', 'ALI=F', 'HG=F'], 'Banks': ['TB364', 'OPR'], 'Diversified Financials': ['TB364', 'OPR'], 'Insurance': ['TB364', 'TBD'] }[d.sector] || [];
+  const ctx = [...links, 'LKR=X', '^GSPC'].map(k => k === 'TBD' ? W.find(x => /^TBD/.test(x.k)) : wv(k)).filter(Boolean)
+    .map(x => x.rate ? `${esc(x.l)} ${x.lo != null ? x.lo.toFixed(2) + '–' : ''}${x.p.toFixed(2)}%${x.note ? ' (' + esc(x.note) + ')' : ''}` : `${esc(x.l)} ${x.m1 != null ? (x.m1 > 0 ? '+' : '') + x.m1.toFixed(1) + '% over a month' : ''}`);
+  const agree = call === 'Buy' ? pros.length - 1 : call === 'Sell' ? cons.length - 1 : 0, against = call === 'Buy' ? cons.length : call === 'Sell' ? pros.length : 0;
+  const tone = call === 'Hold' || call === 'No call' ? `${pros.length} factors for, ${cons.length} against` : agree >= against + 2 ? 'most other factors agree' : against >= agree + 2 ? 'most other factors disagree, so be careful' : 'other factors are mixed';
+  const act = call === 'Buy' ? `Buy${bz ? ` at or below <b>${bz.price.toFixed(2)}</b> if you can wait (see Best price to buy), or now if you want to be sure of getting in` : ''}. ${a.stop ? `Plan to sell if it falls to ${a.stop.toFixed(2)}` : ''}${a.target ? `, take profit near ${a.target.toFixed(2)}` : ''}.`
+    : call === 'Sell' ? `If you own it, consider selling or setting a stop${a.stop ? ` near ${a.stop.toFixed(2)}` : ''}. If you don't, avoid buying for now.`
+    : call === 'Hold' ? `If you own it, keep it. No strong reason to buy now${bz ? `; if you want it, wait for about ${bz.price.toFixed(2)}` : ''}.`
+    : 'Too little trading or history for a tested rating. Weigh the factors below yourself.';
+  const R = acc && acc.ratings && acc.ratings.horizons && acc.ratings.horizons['20'], gr = R && G && R.grades[G];
+  const rec = gr ? `How this call has done: since ${acc.ratings.from.slice(0, 4)}, shares rated ${esc(G.toLowerCase())} made ${gr.net > 0 ? '+' : ''}${gr.net.toFixed(2)}% on average over the next month after ${acc.ratings.cost_pct}% costs (the market: ${R.grades.ALL.net.toFixed(2)}%), and made money ${gr.hit.toFixed(0)}% of the time. An edge on average, not a promise for one share.` : '';
+  const li = (l, c) => l.length ? `<ul class="vlist ${c}">${l.map(x => `<li>${x}</li>`).join('')}</ul>` : '';
+  return `<div class="card wide" id="sec-verdict"><h3>Buy, hold or sell</h3>
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><span class="${cls}" style="font-size:30px;font-weight:700">${call}</span><span class="mute">${tone}</span></div>
+    <p style="margin:6px 0 10px">${act}</p>
+    <div class="tcols"><div class="tcol"><div class="small up"><b>For</b> · ${pros.length}</div>${li(pros, 'up') || '<p class="small mute">None.</p>'}</div>
+      <div class="tcol"><div class="small down"><b>Against</b> · ${cons.length}</div>${li(cons, 'down') || '<p class="small mute">None.</p>'}</div></div>
+    ${mixed.length ? `<div class="small mute" style="margin-top:6px"><b>Neutral</b></div>${li(mixed, '')}` : ''}
+    ${ctx.length ? `<p class="small" style="margin:8px 0 0"><b>World and rates for this industry</b> (context, not counted): ${ctx.join(' · ')}.</p>` : ''}
+    <p class="small" style="margin:8px 0 0">${rec}</p>
+    <p class="small mute" style="margin:4px 0 0">The call comes from the tested rating alone. The other factors are shown for you to weigh; they are not added into the call, because that mix has not been tested (and some, like the trend and company figures, are already part of the rating). Not financial advice.</p></div>`;
+}
+addEventListener('worldload', () => { const el = document.getElementById('sec-verdict'); if (el && detailCtx && detailCtx.d && current) el.outerHTML = verdictCard(detailCtx.d, current); });
 function buyCard(d, sym) {
   const b = d.buyzone;
   if (!b) return '';
@@ -1432,12 +1496,13 @@ async function show(sym) {
       ${a.rating && a.rating.rated ? fact(a.score, 'rating score of 99') : a.rating ? '' : fact(a.score, 'score')}
     </div>
     ${(d.splits || []).map(x => `<div class="splitnote">Share ${x.factor >= 1 ? 'split' : 'consolidation'} on ${dmy(x.date)}: earlier prices are divided by ${x.factor}, so the chart and signals are on today's share basis (ratio from: ${esc(x.basis)}).</div>`).join('')}
-    <div class="chips secnav">${[['sec-chart', 'Chart'], ['sec-trends', 'Trends'], ['sec-why', 'Rating'], ['sec-buy', 'Buy price'], ['sec-outlook', 'Outlook'], ['sec-bands', 'Bands'], ['sec-book', 'Orders'], ['sec-plan', 'Plan'], ['sec-peers', 'Peers'], ['sec-history', '10 years'], ['sec-pressure', 'Pressure'], ['sec-fund', 'Fundamentals'], ['sec-more', 'Levels']]
+    <div class="chips secnav">${[['sec-verdict', 'Verdict'], ['sec-chart', 'Chart'], ['sec-trends', 'Trends'], ['sec-why', 'Rating'], ['sec-buy', 'Buy price'], ['sec-outlook', 'Outlook'], ['sec-bands', 'Bands'], ['sec-book', 'Orders'], ['sec-plan', 'Plan'], ['sec-peers', 'Peers'], ['sec-history', '10 years'], ['sec-pressure', 'Pressure'], ['sec-fund', 'Fundamentals'], ['sec-more', 'Levels']]
       .map(([id, label]) => `<button class="chip" data-to="${id}">${label}</button>`).join('')}</div>
     <div id="intraday" style="display:none"></div>
     <div id="sec-chart" style="scroll-margin-top:60px"><div id="chart"></div><div id="rsi"></div><div id="macd"></div></div>
     <div class="cards">
       <div class="card wide" id="sec-trends"><h3>Trends</h3><p class="mute">Loading…</p></div>
+      ${verdictCard(d, sym)}
       ${ratingCard(a)}
       ${buyCard(d, sym)}
       ${outlookCard(d)}

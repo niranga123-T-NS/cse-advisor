@@ -94,6 +94,7 @@
       const out = items.slice(); if (i >= 0) out.splice(i, 0, ...us); else out.push(...us); return out.concat(lk); };
     function render() {
       const items = all();
+      window.__world = { items, at: W && W.updated }; dispatchEvent(new Event('worldload'));
       if (!items.length) { box.hidden = true; return; }
       const one = items.map(x => x.rate ? `<span class="wi"><b>${esc(x.l)}</b> ${rv(x)}${x.d1 != null ? ' ' + pts(ppc(x, x.d1)) : ''}</span>`
         : `<span class="wi"><b>${esc(x.l)}</b> ${fmt(x.p)} ${chg(x.d1)}</span>`).join('');

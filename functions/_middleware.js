@@ -3,7 +3,7 @@
 // read. An expired session is renewed with the refresh token; anything else goes to the sign-in page. Fails closed.
 import { cookie, verify, supabase, sessionCookies, clearCookies } from './_lib.js';
 
-const PUBLIC = [/^\/login\.html$/, /^\/auth\/(login|logout)$/, /^\/\.well-known\/assetlinks\.json$/,
+const PUBLIC = [/^\/login(\.html)?$/, /^\/auth\/(login|logout)$/, /^\/\.well-known\/assetlinks\.json$/,
                 /^\/(icon-[\w-]+\.png|favicon\.ico|manifest\.webmanifest|login\.js|app\.css)$/];
 
 export async function onRequest({ request, env, next }) {
@@ -14,7 +14,7 @@ export async function onRequest({ request, env, next }) {
     const html = (request.headers.get('Accept') || '').includes('text/html');
     const h = new Headers({ 'Cache-Control': 'no-store' });
     clearCookies().forEach(c => h.append('Set-Cookie', c));
-    if (html) { h.set('Location', '/login.html?next=' + encodeURIComponent(url.pathname + url.search + url.hash)); return new Response(null, { status: 302, headers: h }); }
+    if (html) { h.set('Location', '/login?next=' + encodeURIComponent(url.pathname + url.search + url.hash)); return new Response(null, { status: 302, headers: h }); }
     return new Response('Please sign in.', { status: 401, headers: h });
   };
   let claims = null;

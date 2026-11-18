@@ -2,7 +2,7 @@
 (function () {
   try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
   const f = document.getElementById('f'), go = document.getElementById('go'), err = document.getElementById('err');
-  const next = (() => { const n = new URLSearchParams(location.search).get('next') || '/'; return n.startsWith('/') && !n.startsWith('//') ? n : '/'; })();
+  const next = (() => { const n = new URLSearchParams(location.search).get('next') || '/'; return n.startsWith('/') && !n.startsWith('//') && !/^\/login/.test(n) ? n : '/'; })();
   f.addEventListener('submit', async e => {
     e.preventDefault(); err.textContent = ''; go.disabled = true; go.textContent = 'Signing in…';
     try {

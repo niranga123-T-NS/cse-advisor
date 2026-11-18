@@ -14,6 +14,6 @@
   });
   $('out').addEventListener('click', async () => {
     try { await fetch('/auth/logout', { method: 'POST', credentials: 'same-origin' }); } catch (e) {}
-    location.replace('/login.html');
+    location.replace('/login');
   });
 })();

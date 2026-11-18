@@ -45,8 +45,14 @@ def probe():
         print("BONDLIST", u, bool(pp), list(pp)[:10] if pp else None)
         if not pp:
             continue
-        links = [x for x in ((pp.get("pageData") or {}).get("links") or []) if x.get("urlType") == "file"][:3]
         print("SECTIONS", [x.get("anchor") for x in pp.get("sections") or []][:10])
+        sec = _page(s0, u + "/section/2026") or {}
+        print("SECKEYS", list(sec)[:12], "pagination", sec.get("pagination"))
+        links = [x for x in ((sec.get("pageData") or {}).get("links") or []) if x.get("urlType") == "file"][:4]
+        if not links:
+            ids = re.findall(r'/api/file/([0-9a-f-]{36})', json.dumps(sec))[:4]
+            print("RAWIDS", ids, json.dumps(sec)[:800])
+            links = [{"link": i} for i in ids]
         for x in links:
             print("LINK", x.get("title") or x.get("linkText"), x.get("link"))
             try:

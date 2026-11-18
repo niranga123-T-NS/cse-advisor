@@ -1113,12 +1113,39 @@ function peersCard(d, sym) {
 }
 
 // ---------- price outlook: likely range over the next 5/10/20/60 trading days (outlook.py, tested walk-forward) ----------
+let buyMeta = null;
 let outlookMeta = null, outlookHz = (() => { try { return +localStorage.getItem('outlookHz') || 20; } catch (e) { return 20; } })();
 function businessDays(fromISO, n) {
   const out = [], d = new Date(fromISO + 'T00:00:00');
   while (out.length < n) { d.setDate(d.getDate() + 1); if (d.getDay() % 6) out.push(d.toISOString().slice(0, 10)); }
   return out;
 }
+function buyCard(d, sym) {
+  const b = d.buyzone;
+  if (!b) return '';
+  const live = tick && tick.r && tick.r[sym] ? tick.r[sym][0] : null, px = live || b.close;
+  const st = buyMeta && buyMeta[b.trend];
+  const lv = b.levels && b.levels.length ? `where ${b.levels.map(esc).join(', ')} ${b.levels.length > 1 ? 'meet' : 'sits'}` : `${b.atr_away.toFixed(1)} typical daily ranges below the close`;
+  const now = px <= b.price ? `<p class="up" style="margin:4px 0 0"><b>The price${live ? ' now' : ''} (${px.toFixed(2)}) is at or below it.</b></p>`
+    : live ? `<p class="small" style="margin:4px 0 0">Live price ${live.toFixed(2)}: ${((1 - b.price / live) * 100).toFixed(1)}% above it.</p>` : '';
+  const rec = st && st.n ? (b.trend === 'up'
+    ? `In past rising trends an order like this filled ${Math.round(st.fill_pct)}% of the time. When it filled, it beat buying at once ${Math.round(st.better_when_filled_pct)}% of the time (30 trading days later, after costs: ${sg2(st.limit_when_filled)}% against ${sg2(st.market_same_days)}%). But the chances it missed had risen ${sg2(st.market_when_missed)}% on average, so over all cases waiting did not beat buying at once (${sg2(st.limit_overall)}% against ${sg2(st.market_all)}%). Use it when you are not in a hurry.`
+    : `<span class="warn">Falling trend (below its 50-day average).</span> In past falling trends buying at once lost ${sg2(st.market_all)}% on average after 30 trading days. This deeper price filled ${Math.round(st.fill_pct)}% of the time and roughly broke even when it did (${sg2(st.limit_when_filled)}%). Waiting for the trend to turn is the other choice.`) : '';
+  return `<div class="card wide" id="sec-buy"><h3>Best price to buy <span class="mute">technically</span></h3>
+    <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap"><span style="font-size:30px;font-weight:700;font-variant-numeric:tabular-nums">${b.price.toFixed(2)}</span>
+      <span class="mute">${b.below_pct.toFixed(1)}% below the close of ${b.close.toFixed(2)}, ${lv}</span></div>
+    ${now}
+    <p style="margin:8px 0 0">${b.fill_chance != null ? `In this share's last 3 years the price reached this far below the close within 10 trading days on <b>${b.fill_chance}%</b> of days.` : ''}
+      <button class="btn" id="useBuy" data-p="${b.price}" style="margin-left:6px">Use in Plan a trade</button></p>
+    <p class="small" style="margin:8px 0 0">${rec}</p>
+    <p class="small mute" style="margin:6px 0 0">A buy order at this price, left for up to 10 trading days. Worked out from daily prices with fixed, tested rules (tested on ${st && st.n ? st.n.toLocaleString() : 'many'} past cases since 2014, counted as filled only when the price traded below it). Not financial advice.</p></div>`;
+}
+const sg2 = x => (x > 0 ? '+' : '') + (+x).toFixed(2);
+document.addEventListener('click', e => {
+  const b = e.target.closest && e.target.closest('#useBuy'); if (!b) return;
+  const inp = document.getElementById('pBuy'); if (!inp) return;
+  inp.value = b.dataset.p; plan(); document.getElementById('sec-plan').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
 function outlookCard(d) {
   const o = d.outlook, head = '<div class="card wide" id="sec-outlook"><h3>Price outlook';
   if (!o) return `${head}</h3><p class="mute">No outlook: this share trades too little (it needs to trade on most days, about LKR 0.5M a day, and cost LKR 5 or more).</p></div>`;
@@ -1382,6 +1409,7 @@ async function show(sym) {
   if (!peers) { try { peers = await (await fetch('data/peers.json')).json(); } catch (e) {} }
   if (!acc) { try { acc = await (await fetch('data/accuracy.json')).json(); } catch (e) {} }
   if (!outlookMeta) { try { outlookMeta = await (await fetch('data/outlook.json')).json(); } catch (e) { outlookMeta = {}; } }
+  if (!buyMeta) { try { buyMeta = await (await fetch('data/buyzone.json')).json(); } catch (e) { buyMeta = {}; } }
   let d;
   try { d = await (await fetch('data/stocks/' + encodeURIComponent(sym) + '.json')).json(); }
   catch (e) { $('#detail').innerHTML = `<div class="empty">No data for ${esc(sym)}. It may have been delisted, or its history has not been collected yet.</div>`; return; }
@@ -1404,13 +1432,14 @@ async function show(sym) {
       ${a.rating && a.rating.rated ? fact(a.score, 'rating score of 99') : a.rating ? '' : fact(a.score, 'score')}
     </div>
     ${(d.splits || []).map(x => `<div class="splitnote">Share ${x.factor >= 1 ? 'split' : 'consolidation'} on ${dmy(x.date)}: earlier prices are divided by ${x.factor}, so the chart and signals are on today's share basis (ratio from: ${esc(x.basis)}).</div>`).join('')}
-    <div class="chips secnav">${[['sec-chart', 'Chart'], ['sec-trends', 'Trends'], ['sec-why', 'Rating'], ['sec-outlook', 'Outlook'], ['sec-bands', 'Bands'], ['sec-book', 'Orders'], ['sec-plan', 'Plan'], ['sec-peers', 'Peers'], ['sec-history', '10 years'], ['sec-pressure', 'Pressure'], ['sec-fund', 'Fundamentals'], ['sec-more', 'Levels']]
+    <div class="chips secnav">${[['sec-chart', 'Chart'], ['sec-trends', 'Trends'], ['sec-why', 'Rating'], ['sec-buy', 'Buy price'], ['sec-outlook', 'Outlook'], ['sec-bands', 'Bands'], ['sec-book', 'Orders'], ['sec-plan', 'Plan'], ['sec-peers', 'Peers'], ['sec-history', '10 years'], ['sec-pressure', 'Pressure'], ['sec-fund', 'Fundamentals'], ['sec-more', 'Levels']]
       .map(([id, label]) => `<button class="chip" data-to="${id}">${label}</button>`).join('')}</div>
     <div id="intraday" style="display:none"></div>
     <div id="sec-chart" style="scroll-margin-top:60px"><div id="chart"></div><div id="rsi"></div><div id="macd"></div></div>
     <div class="cards">
       <div class="card wide" id="sec-trends"><h3>Trends</h3><p class="mute">Loading…</p></div>
       ${ratingCard(a)}
+      ${buyCard(d, sym)}
       ${outlookCard(d)}
       ${bandsCard(d)}
       ${bookCard(sym)}

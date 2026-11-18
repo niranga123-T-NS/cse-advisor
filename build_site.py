@@ -181,6 +181,23 @@ def build():
         import traceback
         traceback.print_exc()
         print("outlook step failed:", repr(e))
+    try:                                    # best price to buy, technically (tested rule, see buyzone.py)
+        import buyzone
+        import db as _db
+        bzs = json.loads((Path(__file__).parent / "data" / "model" / "buyzone.json").read_text())
+        for s, p in payloads.items():
+            d_ = _db.load_bars(s)
+            if d_ is None or len(d_) < 60:
+                continue
+            got = buyzone.build({s: d_}, [s]).get(s)
+            if got:
+                p["buyzone"] = got
+        _dump(OUT / "buyzone.json", bzs)
+        print(f"Best buy price: {sum(1 for p in payloads.values() if 'buyzone' in p)} shares")
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        print("buy price step failed:", repr(e))
     for s, p in payloads.items():
         _dump(OUT / "stocks" / f"{s}.json", p)
     signals.sort(key=lambda x: (not x["watch"], -(x["score"] if x["score"] is not None else -1)))

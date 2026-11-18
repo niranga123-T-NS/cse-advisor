@@ -1,0 +1,36 @@
+{
+ "wait_days": 10,
+ "hold_days": 30,
+ "cost_each_way": 0.0112,
+ "from": "2014-01-01",
+ "all": {
+  "n": 126976,
+  "fill_pct": 41.4,
+  "limit_when_filled": 0.87,
+  "market_same_days": -3.41,
+  "market_when_missed": 2.12,
+  "market_all": -0.17,
+  "limit_overall": 0.36,
+  "better_when_filled_pct": 86.3
+ },
+ "up": {
+  "n": 62691,
+  "fill_pct": 62.2,
+  "limit_when_filled": 1.13,
+  "market_same_days": -2.05,
+  "market_when_missed": 6.64,
+  "market_all": 1.24,
+  "limit_overall": 0.7,
+  "better_when_filled_pct": 82.7
+ },
+ "down": {
+  "n": 64285,
+  "fill_pct": 21.1,
+  "limit_when_filled": 0.12,
+  "market_same_days": -7.32,
+  "market_when_missed": 0.0,
+  "market_all": -1.54,
+  "limit_overall": 0.02,
+  "better_when_filled_pct": 96.5
+ }
+}

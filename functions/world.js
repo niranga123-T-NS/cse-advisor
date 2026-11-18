@@ -34,7 +34,12 @@ export async function onRequestGet(ctx) {
   const cache = caches.default, key = new Request('https://world-cache.internal/v1');
   const hit = await cache.match(key);
   if (hit) return hit;
-  const got = await Promise.all(LIST.items.map(it => one(it.k)));
+  const direct = LIST.items.filter(it => !it.calc);
+  const fetched = Object.fromEntries((await Promise.all(direct.map(it => one(it.k)))).map((g, i) => [direct[i].k, g]));
+  const ch = (x, y) => (x != null && y != null ? Math.round(((1 + x / 100) / (1 + y / 100) - 1) * 10000) / 100 : null);
+  const cross = (a, b) => (!a || !b || !b.p ? null : { p: r4(a.p / b.p), d1: ch(a.d1, b.d1), w1: ch(a.w1, b.w1), m1: ch(a.m1, b.m1), t: Math.min(a.t, b.t),
+    line: a.line.slice(-Math.min(a.line.length, b.line.length)).map((x, i, arr) => r4(x / b.line[b.line.length - arr.length + i])) });
+  const got = LIST.items.map(it => (it.calc ? cross(fetched[it.calc[0]], fetched[it.calc[1]]) : fetched[it.k]));
   const items = LIST.items.map((it, i) => (got[i] ? { ...it, ...got[i] } : null)).filter(Boolean);
   const res = new Response(JSON.stringify({ updated: Math.floor(Date.now() / 1000), items }), {
     status: items.length ? 200 : 502,

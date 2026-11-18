@@ -1,5 +1,5 @@
 // POST {email, password} -> session cookies. Supabase limits repeated attempts on its side.
-import { supabase, sessionCookies } from '../_lib.js';
+import { supabase, sessionCookies, sbBase } from '../_lib.js';
 
 export async function onRequestPost({ request, env }) {
   if (!env.SUPABASE_URL || !env.SUPABASE_ANON_KEY) return Response.json({ error: 'Sign-in is not set up yet.' }, { status: 503 });
@@ -16,7 +16,7 @@ export async function onRequestPost({ request, env }) {
     if (r.status === 429) { error = 'Too many attempts. Wait a few minutes and try again.'; status = 429; }
     else if (code === 'email_not_confirmed' || /not confirmed/i.test(msg)) error = 'This account is not confirmed yet. In Supabase, open the user and confirm it (or recreate it with Auto Confirm ticked).';
     else if (/api key|apikey|jwt/i.test(msg) || (r.status === 401 && code !== 'invalid_credentials')) { error = 'Setup problem: SUPABASE_ANON_KEY is not accepted by Supabase.'; status = 502; }
-    else if (r.status === 404 || !r.j) { error = 'Setup problem: SUPABASE_URL does not point at a Supabase project.'; status = 502; }
+    else if (r.status === 404 || !r.j) { error = 'Setup problem: SUPABASE_URL (' + new URL(sbBase(env)).host + ') does not point at a Supabase project.'; status = 502; }
     else if (code && code !== 'invalid_credentials' && code !== 'invalid_grant') error = 'Sign-in failed (' + String(code).slice(0, 40) + ').';
     return Response.json({ error }, { status });
   }

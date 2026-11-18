@@ -1,0 +1,393 @@
+{
+ "auctions": {
+  "2025-12-11": {
+   "bonds": [
+    [
+     "2030-03-01",
+     9.55
+    ],
+    [
+     "2032-10-01",
+     10.29
+    ],
+    [
+     "2035-06-15",
+     10.67
+    ]
+   ],
+   "src": "https://www.treasury.gov.lk/api/file/4bde89fb-a64a-4c5a-8162-db9f97e8bcc5"
+  },
+  "2025-12-30": {
+   "bonds": [
+    [
+     "2030-07-01",
+     9.8
+    ],
+    [
+     "2037-07-01",
+     10.9
+    ]
+   ],
+   "src": "https://www.treasury.gov.lk/api/file/0496ee3f-becc-46b7-bf2a-00fb3b91d98d"
+  },
+  "2026-01-12": {
+   "bonds": [
+    [
+     "2030-03-01",
+     9.74
+    ],
+    [
+     "2033-06-01",
+     10.65
+    ],
+    [
+     "2035-06-15",
+     11.08
+    ],
+    [
+     "2039-08-15",
+     11.09
+    ]
+   ],
+   "src": "https://www.treasury.gov.lk/api/file/a1211e5a-449e-4543-8e7e-4e0585333e76"
+  },
+  "2026-01-29": {
+   "bonds": [
+    [
+     "2030-03-01",
+     9.72
+    ],
+    [
+     "2034-06-15",
+     10.92
+    ],
+    [
+     "2037-07-01",
+     11.08
+    ]
+   ],
+   "src": "https://www.treasury.gov.lk/api/file/3bc16242-d026-4b0c-9424-acaf5951f372"
+  },
+  "2026-02-12": {
+   "bonds": [
+    [
+     "2030-03-01",
+     9.52
+    ],
+    [
+     "2036-08-15",
+     10.73
+    ]
+   ],
+   "src": "https://www.treasury.gov.lk/api/file/fdd5b329-962f-482c-921b-0b4cbea10933"
+  },
+  "2026-02-26": {
+   "bonds": [
+    [
+     "2030-03-01",
+     9.5
+    ],
+    [
+     "2034-06-15",
+     10.7
+    ],
+    [
+     "2037-07-01",
+     10.88
+    ]
+   ],
+   "src": "https://www.treasury.gov.lk/api/file/fca1d505-783e-4063-b6f5-9bbad2f17032"
+  },
+  "2026-03-12": {
+   "bonds": [
+    [
+     "2030-03-01",
+     9.63
+    ],
+    [
+     "2034-06-15",
+     10.7
+    ],
+    [
+     "2036-08-15",
+     10.8
+    ]
+   ],
+   "src": "https://www.treasury.gov.lk/api/file/c601de98-a034-4222-8eb3-3cb2b634bf81"
+  },
+  "2026-04-09": {
+   "bonds": [
+    [
+     "2030-07-01",
+     10.12
+    ],
+    [
+     "2034-06-15",
+     11.16
+    ],
+    [
+     "2037-07-01",
+     11.19
+    ]
+   ],
+   "src": "https://www.treasury.gov.lk/api/file/a5646658-cd26-4148-968b-6d61d10e17a3"
+  },
+  "2026-05-12": {
+   "bonds": [
+    [
+     "2030-08-01",
+     10.16
+    ],
+    [
+     "2034-06-15",
+     11.24
+    ],
+    [
+     "2036-08-15",
+     11.4
+    ]
+   ],
+   "src": "https://www.treasury.gov.lk/api/file/ee650222-c5ce-4a88-bd7e-303ebec82b70"
+  },
+  "2026-05-27": {
+   "bonds": [
+    [
+     "2030-08-01",
+     11.86
+    ],
+    [
+     "2033-01-15",
+     12.32
+    ],
+    [
+     "2035-03-15",
+     12.93
+    ]
+   ],
+   "src": "https://www.treasury.gov.lk/api/file/573f481a-0f44-4426-9b7c-4c6be019b8a4"
+  },
+  "2026-06-11": {
+   "bonds": [
+    [
+     "2030-05-15",
+     11.65
+    ],
+    [
+     "2032-12-15",
+     12.69
+    ]
+   ],
+   "src": "https://www.treasury.gov.lk/api/file/e3c8aba3-7bd4-4c8d-b365-8fd581817047"
+  },
+  "2026-06-26": {
+   "bonds": [
+    [
+     "2030-10-15",
+     11.44
+    ],
+    [
+     "2035-03-15",
+     11.88
+    ]
+   ],
+   "src": "https://www.treasury.gov.lk/api/file/340fabbf-f0e1-4b38-9e54-121c40667150"
+  },
+  "2026-07-13": {
+   "bonds": [
+    [
+     "2030-10-15",
+     11.57
+    ],
+    [
+     "2034-10-15",
+     12.04
+    ],
+    [
+     "2037-07-01",
+     12.58
+    ]
+   ],
+   "src": "https://www.treasury.gov.lk/api/file/91ad1df4-4a75-4a57-8a8f-03c4e8fbff60"
+  },
+  "2026-07-30": {
+   "bonds": [
+    [
+     "2031-02-01",
+     11.9
+    ],
+    [
+     "2034-10-15",
+     12.42
+    ],
+    [
+     "2036-08-15",
+     12.91
+    ],
+    [
+     "2037-07-01",
+     13.01
+    ]
+   ],
+   "src": "https://www.treasury.gov.lk/api/file/9cad4c2b-b031-4333-8b84-e90bee951141"
+  },
+  "2026-08-25": {
+   "bonds": [
+    [
+     "2030-08-01",
+     10.54
+    ],
+    [
+     "2035-03-15",
+     11.7
+    ]
+   ],
+   "src": "https://www.treasury.gov.lk/api/file/a8475a07-5d0a-49c0-a67b-db8d082c7bdf"
+  },
+  "2026-09-11": {
+   "bonds": [
+    [
+     "2030-08-01",
+     10.83
+    ],
+    [
+     "2034-10-15",
+     11.96
+    ],
+    [
+     "2037-07-01",
+     12.08
+    ]
+   ],
+   "src": "https://www.treasury.gov.lk/api/file/03893452-45c4-492e-88a2-def411e19f54"
+  },
+  "2026-10-13": {
+   "bonds": [
+    [
+     "2029-09-15",
+     11.0
+    ],
+    [
+     "2031-12-01",
+     11.67
+    ],
+    [
+     "2036-08-15",
+     12.33
+    ]
+   ],
+   "src": "https://www.treasury.gov.lk/api/file/9bbd0c45-de62-4129-80c4-1e2a72ee7f58"
+  },
+  "2026-10-29": {
+   "bonds": [
+    [
+     "2030-05-15",
+     11.44
+    ],
+    [
+     "2034-10-15",
+     12.61
+    ],
+    [
+     "2036-08-15",
+     12.85
+    ]
+   ],
+   "src": "https://www.treasury.gov.lk/api/file/8125a924-e9b6-44c3-89ab-24ac73d55750"
+  }
+ },
+ "seen": [
+  "https://www.treasury.gov.lk/api/file/701b2e4d-7f6a-45fd-af85-021ca34e8269",
+  "https://www.treasury.gov.lk/api/file/d11b8850-8682-4c0f-ae8a-823e3fc2fc53",
+  "https://www.treasury.gov.lk/api/file/8125a924-e9b6-44c3-89ab-24ac73d55750",
+  "https://www.treasury.gov.lk/api/file/bc918824-e6d8-4aa5-83a8-4c9a84c6854a",
+  "https://www.treasury.gov.lk/api/file/c6df9e06-0d83-40b3-ae90-aba2f5c51ad8",
+  "https://www.treasury.gov.lk/api/file/4136fa2d-bb2c-4f87-a07a-72c76feb5152",
+  "https://www.treasury.gov.lk/api/file/9bbd0c45-de62-4129-80c4-1e2a72ee7f58",
+  "https://www.treasury.gov.lk/api/file/abfdd73d-8dbf-46af-96d4-e670a75a97f1",
+  "https://www.treasury.gov.lk/api/file/1a4d6059-a918-41f4-9f2d-bbb288490de9",
+  "https://www.treasury.gov.lk/api/file/03893452-45c4-492e-88a2-def411e19f54",
+  "https://www.treasury.gov.lk/api/file/3055e2ec-68b5-4625-99d3-8546247d5b0d",
+  "https://www.treasury.gov.lk/api/file/5d0790e9-3d24-4024-ae21-3a55d592b516",
+  "https://www.treasury.gov.lk/api/file/1b8794b6-ac02-4299-a60b-b7acbdfda8d6",
+  "https://www.treasury.gov.lk/api/file/a8475a07-5d0a-49c0-a67b-db8d082c7bdf",
+  "https://www.treasury.gov.lk/api/file/7cd702a1-cb9f-4cf0-b254-27031bceb695",
+  "https://www.treasury.gov.lk/api/file/a22a4994-8c05-42c1-a91e-231b1c97f9e0",
+  "https://www.treasury.gov.lk/api/file/0d4e7e81-fee9-4522-ab10-0a6393a7748d",
+  "https://www.treasury.gov.lk/api/file/e3cbc265-0aa6-4ca7-8233-9b1aab39ea5c",
+  "https://www.treasury.gov.lk/api/file/9cad4c2b-b031-4333-8b84-e90bee951141",
+  "https://www.treasury.gov.lk/api/file/7dbc91ce-00b5-4734-8223-d191948edbe5",
+  "https://www.treasury.gov.lk/api/file/295a6dc2-b573-4998-9198-c393b9491b86",
+  "https://www.treasury.gov.lk/api/file/d7fab866-2c4e-4ef7-bffe-942395932275",
+  "https://www.treasury.gov.lk/api/file/7234f385-f1f1-42f9-a0ae-9884eacfad41",
+  "https://www.treasury.gov.lk/api/file/91ad1df4-4a75-4a57-8a8f-03c4e8fbff60",
+  "https://www.treasury.gov.lk/api/file/3fd446e8-aef0-43d5-bf72-0a7404fcad21",
+  "https://www.treasury.gov.lk/api/file/f65f0d7e-eafd-4a8b-9611-b43541735844",
+  "https://www.treasury.gov.lk/api/file/42fb8aa9-660f-4eea-a931-ac6713f170d1",
+  "https://www.treasury.gov.lk/api/file/8abd2d4c-55eb-4754-9ccf-7e50ca3f8a7c",
+  "https://www.treasury.gov.lk/api/file/0b4b1b73-f353-4bcd-b0f5-7bd526dc6788",
+  "https://www.treasury.gov.lk/api/file/8116d594-47e0-48b4-92b0-e46ce33f2242",
+  "https://www.treasury.gov.lk/api/file/340fabbf-f0e1-4b38-9e54-121c40667150",
+  "https://www.treasury.gov.lk/api/file/af2cd5e2-39c5-484c-9b4a-a3b9387020fe",
+  "https://www.treasury.gov.lk/api/file/1a09df44-802e-495d-83a4-d56ff72c4696",
+  "https://www.treasury.gov.lk/api/file/e3c8aba3-7bd4-4c8d-b365-8fd581817047",
+  "https://www.treasury.gov.lk/api/file/31646ace-256f-4733-bd2c-754524f5cd8e",
+  "https://www.treasury.gov.lk/api/file/6fe8c8ed-8856-44a3-af87-1775ee6b1f21",
+  "https://www.treasury.gov.lk/api/file/0aeeaffe-48b5-407a-ac50-e7ae53e2290e",
+  "https://www.treasury.gov.lk/api/file/9f4b1c6d-93d1-476a-b500-de4f00dbf38a",
+  "https://www.treasury.gov.lk/api/file/c39d5931-b69e-4812-a85b-568795a6bf52",
+  "https://www.treasury.gov.lk/api/file/573f481a-0f44-4426-9b7c-4c6be019b8a4",
+  "https://www.treasury.gov.lk/api/file/810d45f0-3e63-47b0-b770-e350b28eb267",
+  "https://www.treasury.gov.lk/api/file/078531b1-6b7f-45ba-be16-63b5003c2275",
+  "https://www.treasury.gov.lk/api/file/e56a6e31-e969-498b-90c2-80dc4cf85d4c",
+  "https://www.treasury.gov.lk/api/file/84ab0da5-dda7-4f13-a848-c3fed273f0db",
+  "https://www.treasury.gov.lk/api/file/ee650222-c5ce-4a88-bd7e-303ebec82b70",
+  "https://www.treasury.gov.lk/api/file/3b22f5c7-b8d9-4abc-bcd7-564173d1f9fe",
+  "https://www.treasury.gov.lk/api/file/d7fa6760-7a99-420d-b2ad-c4afda5f3e1a",
+  "https://www.treasury.gov.lk/api/file/dac08072-15a4-4e89-b804-1748a0964c51",
+  "https://www.treasury.gov.lk/api/file/a5646658-cd26-4148-968b-6d61d10e17a3",
+  "https://www.treasury.gov.lk/api/file/6dc50dd5-7fa6-487d-a41a-3b65c5a052e4",
+  "https://www.treasury.gov.lk/api/file/b9c80810-02b6-47dc-9887-a8c00d5b3968",
+  "https://www.treasury.gov.lk/api/file/777aab93-a02e-4a4a-a3b2-615495d57393",
+  "https://www.treasury.gov.lk/api/file/31a08af4-ea6e-4e22-93e8-543311b9ab1a",
+  "https://www.treasury.gov.lk/api/file/181df3d6-6abd-4569-8b86-46d3c1044357",
+  "https://www.treasury.gov.lk/api/file/c601de98-a034-4222-8eb3-3cb2b634bf81",
+  "https://www.treasury.gov.lk/api/file/123ca79f-2025-43fb-a8a3-d5e970f10656",
+  "https://www.treasury.gov.lk/api/file/3a0d0073-76c0-44d4-b0d7-ad46f03c803a",
+  "https://www.treasury.gov.lk/api/file/c6ede515-5e91-4e22-a149-02ef86430291",
+  "https://www.treasury.gov.lk/api/file/5fe02626-b9b3-4a20-9723-43d3620bf596",
+  "https://www.treasury.gov.lk/api/file/a621d208-8f97-4190-bfbd-56a33f6271f4",
+  "https://www.treasury.gov.lk/api/file/fca1d505-783e-4063-b6f5-9bbad2f17032",
+  "https://www.treasury.gov.lk/api/file/4b12056c-069a-42f3-8144-46d04d9a3e30",
+  "https://www.treasury.gov.lk/api/file/08646667-7f93-461f-af1e-81f410d012e3",
+  "https://www.treasury.gov.lk/api/file/62c3294e-bb1d-4dd4-8c1d-f3da152c4ba8",
+  "https://www.treasury.gov.lk/api/file/091c6c86-93f4-4f50-84a2-67d3fbb06744",
+  "https://www.treasury.gov.lk/api/file/9f95ccf4-72c7-4ca4-bc26-18a763b87a14",
+  "https://www.treasury.gov.lk/api/file/fdd5b329-962f-482c-921b-0b4cbea10933",
+  "https://www.treasury.gov.lk/api/file/efebc9e9-04bf-4411-8470-77d050552f4a",
+  "https://www.treasury.gov.lk/api/file/e1dfc480-f833-48b4-b98d-f706211259c5",
+  "https://www.treasury.gov.lk/api/file/78bc7453-0a39-4100-90b3-a799488b9ff2",
+  "https://www.treasury.gov.lk/api/file/711fa185-f587-4c38-9ad7-ef61bbbafa84",
+  "https://www.treasury.gov.lk/api/file/77c863a7-eabe-4e92-ad37-2017ce35441f",
+  "https://www.treasury.gov.lk/api/file/3bc16242-d026-4b0c-9424-acaf5951f372",
+  "https://www.treasury.gov.lk/api/file/55c2047a-eeeb-4628-a69b-0f3257e3a0e0",
+  "https://www.treasury.gov.lk/api/file/2c9e6647-232d-436d-b2f8-a3474184a7f8",
+  "https://www.treasury.gov.lk/api/file/b59ab342-6eeb-43a6-b9f6-ffba9fdc26e7",
+  "https://www.treasury.gov.lk/api/file/b491249b-648f-4ade-9ee5-0b64f6fdd85f",
+  "https://www.treasury.gov.lk/api/file/adf6b942-9f10-429e-9d91-1402859679a5",
+  "https://www.treasury.gov.lk/api/file/a1211e5a-449e-4543-8e7e-4e0585333e76",
+  "https://www.treasury.gov.lk/api/file/3305802e-0817-489c-be4e-9a16c31d6c6b",
+  "https://www.treasury.gov.lk/api/file/5a17e335-0186-47ec-a319-9ddd46b35ebb",
+  "https://www.treasury.gov.lk/api/file/acc95259-d999-43d3-b024-b3e72a3e49c6",
+  "https://www.treasury.gov.lk/api/file/12d8c670-1a8c-4b4f-82c0-5dd9cdeb0c3e",
+  "https://www.treasury.gov.lk/api/file/698c31d0-bf12-4d87-8f77-709246defd2b",
+  "https://www.treasury.gov.lk/api/file/f10a585b-3eaa-4dc3-a320-116d03863aad",
+  "https://www.treasury.gov.lk/api/file/0496ee3f-becc-46b7-bf2a-00fb3b91d98d",
+  "https://www.treasury.gov.lk/api/file/4e91c12c-7fc2-4dcc-868a-df366f5edaa1",
+  "https://www.treasury.gov.lk/api/file/d43d3d40-b0fd-4120-b90a-e1ecb0fb66c6",
+  "https://www.treasury.gov.lk/api/file/8aa1e92f-e520-498b-b564-87d326b55af9",
+  "https://www.treasury.gov.lk/api/file/b6d96156-e25c-4f57-bf5e-44ff0c8a8e02",
+  "https://www.treasury.gov.lk/api/file/4bde89fb-a64a-4c5a-8162-db9f97e8bcc5",
+  "https://www.treasury.gov.lk/api/file/d16bea27-33f7-40f3-9948-094cdca23db1",
+  "https://www.treasury.gov.lk/api/file/51011d50-3ed3-47d7-8b84-d1b92ab73aa5"
+ ]
+}

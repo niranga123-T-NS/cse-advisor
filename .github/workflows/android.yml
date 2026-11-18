@@ -65,6 +65,9 @@ jobs:
           BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
           "$BT/apksigner" verify --verbose android/app/build/outputs/apk/release/app-release.apk
           cp android/app/build/outputs/apk/release/app-release.apk "CSE-Advisor-1.${VERSION_CODE}.apk"
+          mkdir -p site/app
+          cp android/app/build/outputs/apk/release/app-release.apk site/app/CSE-Advisor.apk   # download link on the Account page (sign-in required)
+          printf '{"version":"1.%s","built":"%s"}\n' "$VERSION_CODE" "$(date -u +%Y-%m-%d)" > site/app/version.json
       - name: Remove the key from the runner
         if: always()
         run: shred -u "$RUNNER_TEMP/release.jks" 2>/dev/null || rm -f "$RUNNER_TEMP/release.jks"
@@ -72,11 +75,16 @@ jobs:
         run: |
           git config user.name "cse-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add android/keystore.enc site/.well-known/assetlinks.json
-          git diff --cached --quiet || git commit -m "Android: signing key (encrypted) and assetlinks.json"
+          git add android/keystore.enc site/.well-known/assetlinks.json site/app/CSE-Advisor.apk site/app/version.json
+          git diff --cached --quiet || git commit -m "Android app 1.${VERSION_CODE}, encrypted signing key and assetlinks.json"
           git pull -q --rebase --autostash origin main && git push -q origin HEAD:main
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: CSE-Advisor-android
           path: CSE-Advisor-*.apk
           retention-days: 30
+
+  publish:
+    needs: build
+    uses: ./.github/workflows/cloudflare.yml
+    secrets: inherit

@@ -17,3 +17,9 @@
     location.replace('/login');
   });
 })();
+
+// Android app download: shown once a build exists.
+fetch('/app/version.json', { credentials: 'same-origin', cache: 'no-store' })
+  .then(r => r.ok ? r.json() : null)
+  .then(v => { if (!v) return; document.getElementById('apkv').textContent = 'Version ' + v.version + ', ' + v.built; document.getElementById('android').hidden = false; })
+  .catch(() => {});

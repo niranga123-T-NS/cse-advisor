@@ -14,6 +14,7 @@
   .acc { max-width:420px; } .acc label { display:block; font-size:14px; margin:12px 0 4px; color:var(--ink-2); }
   .acc input { width:100%; box-sizing:border-box; font-size:16px; padding:11px 12px; border-radius:10px; border:1px solid var(--line); background:var(--surface); color:var(--ink); }
   .acc button { margin-top:14px; font-size:15px; padding:10px 16px; border-radius:10px; border:1px solid var(--line); background:var(--surface); color:var(--ink); }
+  .acc a.btn { display:inline-block; padding:10px 16px; border-radius:10px; background:var(--sapphire); color:#fff; font-weight:600; text-decoration:none; }
   .acc button.primary { background:var(--sapphire); color:#fff; border:0; font-weight:600; }
   #msg { min-height:1.4em; margin-top:10px; font-size:14px; }
 </style>
@@ -32,6 +33,11 @@
     <button class="primary" type="submit">Change password</button>
   </form>
   <div id="msg" role="status"></div>
+  <div id="android" hidden>
+    <h3 style="margin-top:28px">Android app</h3>
+    <p class="small mute">Open this page on your Android phone, then tap Download. When Android asks, allow installing from your browser. The app needs Chrome; sign in once and it remembers you.</p>
+    <p><a class="btn" id="apk" href="/app/CSE-Advisor.apk" download>Download the app</a> <span class="small mute" id="apkv"></span></p>
+  </div>
   <h3 style="margin-top:28px">Sign out</h3>
   <p class="small mute">Signs this device out. You will need your password to come back.</p>
   <button id="out">Sign out</button>

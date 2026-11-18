@@ -75,6 +75,43 @@
     body.appendChild(s); closeSheet = close;
     return { el: s.firstElementChild, close };
   }
+  // ---------- world markets banner ----------
+  // Metals, oil and fuels, the rupee, major currencies and share indices, scrolling under the header. Tap it for the
+  // full table. The signed-in site refreshes every 5 minutes (/world); elsewhere the copy from the last site build.
+  (() => {
+    const top = document.querySelector('header.top'); if (!top) return;
+    top.insertAdjacentHTML('afterend', '<button class="wtick" id="wtick" type="button" aria-label="World markets: tap for the full table" hidden><span class="wtrack"></span></button>');
+    const box = document.getElementById('wtick'), track = box.querySelector('.wtrack');
+    const live = location.protocol === 'https:' && !/github\.io$/.test(location.hostname);
+    const fmt = x => { const a = Math.abs(x); return x.toLocaleString('en-US', { minimumFractionDigits: a >= 1000 ? 0 : a >= 10 ? 2 : a >= 1 ? 3 : 4, maximumFractionDigits: a >= 1000 ? 0 : a >= 10 ? 2 : a >= 1 ? 3 : 4 }); };
+    const chg = x => x == null ? '<span class="mute">–</span>' : `<span class="${x > 0 ? 'up' : x < 0 ? 'down' : 'mute'}">${x > 0 ? '+' : ''}${x.toFixed(2)}%</span>`;
+    let W = null;
+    function render() {
+      if (!W || !W.items || !W.items.length) { box.hidden = true; return; }
+      const one = W.items.map(x => `<span class="wi"><b>${esc(x.l)}</b> ${fmt(x.p)} ${chg(x.d1)}</span>`).join('');
+      track.innerHTML = one + one;                                     // twice, so the loop is seamless
+      box.hidden = false;
+      requestAnimationFrame(() => { track.style.animationDuration = Math.max(30, track.scrollWidth / 2 / 45) + 's'; });
+    }
+    async function load() {
+      for (const u of live ? ['/world', 'data/world.json'] : ['data/world.json']) {
+        try { const r = await fetch(u, { credentials: 'same-origin' }); if (r.ok) { const j = await r.json(); if (j.items && j.items.length) { W = j; render(); return; } } } catch (e) {}
+      }
+    }
+    box.addEventListener('click', () => {
+      if (!W) return;
+      const when = t => new Date(t * 1000).toLocaleString('en-GB', { timeZone: 'Asia/Colombo', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+      const groups = [...new Set(W.items.map(x => x.g))];
+      const rows = groups.map(g => `<tr><th colspan="5" class="wg">${esc({ Rupee: 'Rupee (Rs for one unit)', Shares: 'Share markets' }[g] || g)}</th></tr>` +
+        W.items.filter(x => x.g === g).map(x => `<tr><td><b>${esc(x.l)}</b><div class="small mute">${x.u ? esc(x.u) + ' · ' : ''}${when(x.t)}</div></td>
+          <td class="num">${fmt(x.p)}</td><td class="num">${chg(x.d1)}</td><td class="num">${chg(x.w1)}</td><td class="num">${chg(x.m1)}</td></tr>`).join('')).join('');
+      sheet(`<div style="padding:16px 16px 22px"><h2 style="margin:0 0 4px">World markets</h2>
+        <p class="small mute" style="margin:0 0 10px">From Yahoo Finance's free data, delayed about 10 to 30 minutes; currency rates are unofficial. LME metal prices are paid data, so US futures prices stand in for them (COMEX copper and aluminium, CME steel; diesel is NYMEX heating oil, petrol is RBOB). Updated ${when(W.updated)} Colombo time.</p>
+        <div style="overflow-x:auto"><table class="wtab"><thead><tr><th></th><th class="num">Price</th><th class="num">1 day</th><th class="num">1 week</th><th class="num">1 month</th></tr></thead><tbody>${rows}</tbody></table></div></div>`, true);
+    });
+    load(); setInterval(load, 5 * 60 * 1000);
+  })();
+
   const repo = (() => { const m = location.hostname.match(/^([^.]+)\.github\.io$/), r = location.pathname.split('/').filter(Boolean)[0]; return m && r ? `https://github.com/${m[1]}/${r}` : null; })();
   function openMore() {
     const rows = NAV.slice(4).map(([k, label, href]) => `<a class="pi" href="${href}">${ICON[k] || ICON.tape}<span class="t">${{ trades:'Live trades in the whole market', account:'Your account and password', trends:'Trends in every share', veterans:"Veterans' checklists", market:'Market history', accuracy:'Accuracy of ratings and forecasts', checks:'Data checks' }[k]}</span>${ICON.chev}</a>`).join('');

@@ -198,6 +198,14 @@ def build():
         import traceback
         traceback.print_exc()
         print("buy price step failed:", repr(e))
+    try:                                    # world markets banner (the Cloudflare site refreshes this itself)
+        import world
+        W = world.build()
+        if W["items"]:
+            _dump(OUT / "world.json", W)
+        print(f"World markets: {len(W['items'])} of {len(world.symbols())}")
+    except Exception as e:
+        print("world step failed:", repr(e))
     for s, p in payloads.items():
         _dump(OUT / "stocks" / f"{s}.json", p)
     signals.sort(key=lambda x: (not x["watch"], -(x["score"] if x["score"] is not None else -1)))

@@ -198,3 +198,16 @@ main.page h3 { font-size:15px; font-weight:650; margin:0 0 8px; }
   .x { display:none; }
 }
 @media (max-width:350px) { th, td { font-size:12.5px; padding:7px 4px; } .xs { display:none; } }   /* the smallest phones */
+
+/* world markets banner */
+.wtick { display:block; width:100%; overflow:hidden; white-space:nowrap; border:0; border-bottom:1px solid var(--line-soft); background:var(--surface-1);
+         color:var(--ink-2); font:500 12.5px/1 var(--sans); padding:8px 0; cursor:pointer; text-align:left; font-variant-numeric:tabular-nums; }
+.wtick[hidden] { display:none; }
+.wtrack { display:inline-block; padding-left:14px; animation:wscroll 120s linear infinite; }
+.wtick:hover .wtrack, .wtick:focus-visible .wtrack { animation-play-state:paused; }
+.wi { display:inline-block; margin-right:28px; } .wi b { color:var(--ink); font-weight:600; margin-right:2px; }
+@keyframes wscroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .wtick { overflow-x:auto; } .wtrack { animation:none; padding-left:14px; } }
+.wtab { width:100%; border-collapse:collapse; font-size:13.5px; font-variant-numeric:tabular-nums; }
+.wtab td, .wtab th { padding:7px 8px; border-top:1px solid var(--line-soft); text-align:left; vertical-align:top; }
+.wtab .num { text-align:right; white-space:nowrap; } .wtab .wg { padding-top:14px; color:var(--ink-3); font-weight:600; border-top:0; }

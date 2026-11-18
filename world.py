@@ -83,6 +83,51 @@ def build() -> dict:
     return {"updated": int(time.time()), "items": out}
 
 
+def rates() -> dict:
+    """Interest rates that change at most daily: Sri Lanka's policy rate, latest T-bill and T-bond auction yields
+    (Public Debt Management Office), and the US Fed's target range with the effective rate (New York Fed)."""
+    import csv
+    import datetime as dt
+    M = ROOT / "data" / "macro"
+    out = []
+    nice = lambda d: dt.date.fromisoformat(d).strftime("%-d %b %Y")
+    try:
+        pol = list(csv.DictReader((M / "policy.csv").open()))
+        last = pol[-1]
+        out.append({"g": "Sri Lanka rates", "k": "OPR", "l": "Policy rate (OPR)", "p": float(last["opr"]), "rate": True,
+                    "note": f"since {nice(last['date'])}", "src": "Central Bank of Sri Lanka"})
+    except Exception as e:
+        print("rates: policy", repr(e)[:80])
+    try:
+        tb = json.loads((M / "tbill.json").read_text())["auctions"]
+        ds = sorted(tb)
+        for days in ("91", "182", "364"):
+            have = [d for d in ds if tb[d].get(days)]
+            if have:
+                a, b = tb[have[-1]][days], (tb[have[-2]][days] if len(have) > 1 else None)
+                out.append({"g": "Sri Lanka rates", "k": f"TB{days}", "l": f"T-bill {days} days", "p": a, "rate": True,
+                            "chg": round(a - b, 2) if b is not None else None, "note": f"auction {nice(have[-1])}", "src": "PDMO auction"})
+    except Exception as e:
+        print("rates: tbill", repr(e)[:80])
+    try:
+        bd = json.loads((M / "tbond.json").read_text())["auctions"]
+        d = sorted(bd)[-1]
+        when = dt.date.fromisoformat(d)
+        for mat, y in bd[d]["bonds"]:
+            yrs = (dt.date.fromisoformat(mat) - when).days / 365.25
+            out.append({"g": "Sri Lanka rates", "k": f"TBD{mat}", "l": f"T-bond {mat[:4]} ({yrs:.1f} yrs)", "p": y, "rate": True,
+                        "note": f"auction {nice(d)}", "src": "PDMO auction"})
+    except Exception as e:
+        print("rates: tbond", repr(e)[:80])
+    try:
+        f = json.loads((M / "fed.json").read_text())
+        out.append({"g": "US rates", "k": "FEDT", "l": "Fed target range", "p": f["to"], "lo": f["from"], "rate": True,
+                    "note": f"effective rate {f['effr']:.2f}% on {nice(f['date'])}", "src": "New York Fed"})
+    except Exception as e:
+        print("rates: fed", repr(e)[:80])
+    return {"items": out}
+
+
 if __name__ == "__main__":
     w = build()
     print(json.dumps({x["l"]: [x["p"], x["d1"]] for x in w["items"]}, indent=1))

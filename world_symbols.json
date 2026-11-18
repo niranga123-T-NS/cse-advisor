@@ -1,33 +1,241 @@
 {
  "note": "Yahoo Finance symbols for the world-markets banner. LME prices are not free; COMEX/CME futures are used instead and labelled so.",
  "items": [
-  {"g": "Metals", "k": "HG=F", "l": "Copper", "u": "US$/lb", "src": "COMEX futures (LME is paid data)"},
-  {"g": "Metals", "k": "ALI=F", "l": "Aluminium", "u": "US$/t", "src": "COMEX futures (LME is paid data)"},
-  {"g": "Metals", "k": "HRC=F", "l": "Steel (hot-rolled coil)", "u": "US$/short t", "src": "CME US Midwest futures"},
-  {"g": "Metals", "k": "GC=F", "l": "Gold", "u": "US$/oz", "src": "COMEX futures"},
-  {"g": "Metals", "k": "SI=F", "l": "Silver", "u": "US$/oz", "src": "COMEX futures"},
-  {"g": "Energy", "k": "BZ=F", "l": "Brent crude", "u": "US$/bbl", "src": "ICE futures"},
-  {"g": "Energy", "k": "CL=F", "l": "WTI crude", "u": "US$/bbl", "src": "NYMEX futures"},
-  {"g": "Energy", "k": "HO=F", "l": "Diesel (heating oil)", "u": "US$/gal", "src": "NYMEX ULSD futures"},
-  {"g": "Energy", "k": "RB=F", "l": "Petrol (RBOB)", "u": "US$/gal", "src": "NYMEX futures"},
-  {"g": "Energy", "k": "NG=F", "l": "Natural gas", "u": "US$/MMBtu", "src": "NYMEX futures"},
-  {"g": "Rupee", "k": "LKR=X", "l": "USD/LKR", "u": "Rs", "src": "Yahoo FX (unofficial)"},
-  {"g": "Rupee", "k": "EURLKR=X", "l": "EUR/LKR", "u": "Rs", "src": "Yahoo FX (unofficial)"},
-  {"g": "Rupee", "k": "JPYLKR", "l": "JPY/LKR", "u": "Rs", "src": "worked out: USD/LKR ÷ USD/JPY", "calc": ["LKR=X", "JPY=X"]},
-  {"g": "Rupee", "k": "CNYLKR", "l": "RMB/LKR", "u": "Rs", "src": "worked out: USD/LKR ÷ USD/RMB", "calc": ["LKR=X", "CNY=X"]},
-  {"g": "Currencies", "k": "DX-Y.NYB", "l": "US dollar index", "u": "", "src": "ICE"},
-  {"g": "Currencies", "k": "EURUSD=X", "l": "EUR/USD", "u": "", "src": "Yahoo FX"},
-  {"g": "Currencies", "k": "JPY=X", "l": "USD/JPY", "u": "", "src": "Yahoo FX"},
-  {"g": "Currencies", "k": "CNY=X", "l": "USD/RMB", "u": "", "src": "Yahoo FX"},
-  {"g": "Shares", "k": "^GSPC", "l": "S&P 500", "u": "", "src": "US"},
-  {"g": "Shares", "k": "^DJI", "l": "Dow Jones", "u": "", "src": "US"},
-  {"g": "Shares", "k": "^IXIC", "l": "Nasdaq", "u": "", "src": "US"},
-  {"g": "Shares", "k": "^FTSE", "l": "FTSE 100", "u": "", "src": "UK"},
-  {"g": "Shares", "k": "^GDAXI", "l": "DAX", "u": "", "src": "Germany"},
-  {"g": "Shares", "k": "^N225", "l": "Nikkei 225", "u": "", "src": "Japan"},
-  {"g": "Shares", "k": "^HSI", "l": "Hang Seng", "u": "", "src": "Hong Kong"},
-  {"g": "Shares", "k": "000001.SS", "l": "Shanghai", "u": "", "src": "China"},
-  {"g": "Shares", "k": "^NSEI", "l": "Nifty 50", "u": "", "src": "India"},
-  {"g": "Shares", "k": "^STI", "l": "Straits Times", "u": "", "src": "Singapore"}
+  {
+   "g": "Metals",
+   "k": "HG=F",
+   "l": "Copper",
+   "u": "US$/lb",
+   "src": "COMEX futures (LME is paid data)"
+  },
+  {
+   "g": "Metals",
+   "k": "ALI=F",
+   "l": "Aluminium",
+   "u": "US$/t",
+   "src": "COMEX futures (LME is paid data)"
+  },
+  {
+   "g": "Metals",
+   "k": "HRC=F",
+   "l": "Steel (hot-rolled coil)",
+   "u": "US$/short t",
+   "src": "CME US Midwest futures"
+  },
+  {
+   "g": "Metals",
+   "k": "GC=F",
+   "l": "Gold",
+   "u": "US$/oz",
+   "src": "COMEX futures"
+  },
+  {
+   "g": "Metals",
+   "k": "SI=F",
+   "l": "Silver",
+   "u": "US$/oz",
+   "src": "COMEX futures"
+  },
+  {
+   "g": "Energy",
+   "k": "BZ=F",
+   "l": "Brent crude",
+   "u": "US$/bbl",
+   "src": "ICE futures"
+  },
+  {
+   "g": "Energy",
+   "k": "CL=F",
+   "l": "WTI crude",
+   "u": "US$/bbl",
+   "src": "NYMEX futures"
+  },
+  {
+   "g": "Energy",
+   "k": "HO=F",
+   "l": "Diesel (heating oil)",
+   "u": "US$/gal",
+   "src": "NYMEX ULSD futures"
+  },
+  {
+   "g": "Energy",
+   "k": "RB=F",
+   "l": "Petrol (RBOB)",
+   "u": "US$/gal",
+   "src": "NYMEX futures"
+  },
+  {
+   "g": "Energy",
+   "k": "NG=F",
+   "l": "Natural gas",
+   "u": "US$/MMBtu",
+   "src": "NYMEX futures"
+  },
+  {
+   "g": "Rupee",
+   "k": "LKR=X",
+   "l": "USD/LKR",
+   "u": "Rs",
+   "src": "Yahoo FX (unofficial)"
+  },
+  {
+   "g": "Rupee",
+   "k": "EURLKR=X",
+   "l": "EUR/LKR",
+   "u": "Rs",
+   "src": "Yahoo FX (unofficial)"
+  },
+  {
+   "g": "Rupee",
+   "k": "JPYLKR",
+   "l": "JPY/LKR",
+   "u": "Rs",
+   "src": "worked out: USD/LKR ÷ USD/JPY",
+   "calc": [
+    "LKR=X",
+    "JPY=X"
+   ]
+  },
+  {
+   "g": "Rupee",
+   "k": "CNYLKR",
+   "l": "RMB/LKR",
+   "u": "Rs",
+   "src": "worked out: USD/LKR ÷ USD/RMB",
+   "calc": [
+    "LKR=X",
+    "CNY=X"
+   ]
+  },
+  {
+   "g": "Currencies",
+   "k": "DX-Y.NYB",
+   "l": "US dollar index",
+   "u": "",
+   "src": "ICE"
+  },
+  {
+   "g": "Currencies",
+   "k": "EURUSD=X",
+   "l": "EUR/USD",
+   "u": "",
+   "src": "Yahoo FX"
+  },
+  {
+   "g": "Currencies",
+   "k": "JPY=X",
+   "l": "USD/JPY",
+   "u": "",
+   "src": "Yahoo FX"
+  },
+  {
+   "g": "Currencies",
+   "k": "CNY=X",
+   "l": "USD/RMB",
+   "u": "",
+   "src": "Yahoo FX"
+  },
+  {
+   "g": "Shares",
+   "k": "^GSPC",
+   "l": "S&P 500",
+   "u": "",
+   "src": "US"
+  },
+  {
+   "g": "Shares",
+   "k": "^DJI",
+   "l": "Dow Jones",
+   "u": "",
+   "src": "US"
+  },
+  {
+   "g": "Shares",
+   "k": "^IXIC",
+   "l": "Nasdaq",
+   "u": "",
+   "src": "US"
+  },
+  {
+   "g": "Shares",
+   "k": "^FTSE",
+   "l": "FTSE 100",
+   "u": "",
+   "src": "UK"
+  },
+  {
+   "g": "Shares",
+   "k": "^GDAXI",
+   "l": "DAX",
+   "u": "",
+   "src": "Germany"
+  },
+  {
+   "g": "Shares",
+   "k": "^N225",
+   "l": "Nikkei 225",
+   "u": "",
+   "src": "Japan"
+  },
+  {
+   "g": "Shares",
+   "k": "^HSI",
+   "l": "Hang Seng",
+   "u": "",
+   "src": "Hong Kong"
+  },
+  {
+   "g": "Shares",
+   "k": "000001.SS",
+   "l": "Shanghai",
+   "u": "",
+   "src": "China"
+  },
+  {
+   "g": "Shares",
+   "k": "^NSEI",
+   "l": "Nifty 50",
+   "u": "",
+   "src": "India"
+  },
+  {
+   "g": "Shares",
+   "k": "^STI",
+   "l": "Straits Times",
+   "u": "",
+   "src": "Singapore"
+  },
+  {
+   "g": "US rates",
+   "k": "^IRX",
+   "l": "US 3-month T-bill",
+   "u": "% yield",
+   "src": "Yahoo (CBOE)",
+   "rate": true
+  },
+  {
+   "g": "US rates",
+   "k": "^FVX",
+   "l": "US 5-year Treasury",
+   "u": "% yield",
+   "src": "Yahoo (CBOE)",
+   "rate": true
+  },
+  {
+   "g": "US rates",
+   "k": "^TNX",
+   "l": "US 10-year Treasury",
+   "u": "% yield",
+   "src": "Yahoo (CBOE)",
+   "rate": true
+  },
+  {
+   "g": "US rates",
+   "k": "^TYX",
+   "l": "US 30-year Treasury",
+   "u": "% yield",
+   "src": "Yahoo (CBOE)",
+   "rate": true
+  }
  ]
 }

@@ -85,28 +85,41 @@
     const live = location.protocol === 'https:' && !/github\.io$/.test(location.hostname);
     const fmt = x => { const a = Math.abs(x); return x.toLocaleString('en-US', { minimumFractionDigits: a >= 1000 ? 0 : a >= 10 ? 2 : a >= 1 ? 3 : 4, maximumFractionDigits: a >= 1000 ? 0 : a >= 10 ? 2 : a >= 1 ? 3 : 4 }); };
     const chg = x => x == null ? '<span class="mute">–</span>' : `<span class="${x > 0 ? 'up' : x < 0 ? 'down' : 'mute'}">${x > 0 ? '+' : ''}${x.toFixed(2)}%</span>`;
-    let W = null;
+    let W = null, R = [];
+    const pts = x => x == null ? '<span class="mute">–</span>' : `<span class="${x > 0 ? 'down' : x < 0 ? 'up' : 'mute'}">${x > 0 ? '+' : ''}${x.toFixed(2)}</span>`;   // rates up = red; in percentage points
+    const ppc = (x, d) => d == null ? null : x.p - x.p / (1 + d / 100);              // a yield's % change -> change in points
+    const rv = x => x.lo != null ? `${x.lo.toFixed(2)}–${x.p.toFixed(2)}%` : `${x.p.toFixed(2)}%`;
+    const all = () => { const items = (W && W.items) || [], i = items.findIndex(x => x.g === 'US rates');
+      const us = R.filter(x => x.g === 'US rates'), lk = R.filter(x => x.g !== 'US rates');
+      const out = items.slice(); if (i >= 0) out.splice(i, 0, ...us); else out.push(...us); return out.concat(lk); };
     function render() {
-      if (!W || !W.items || !W.items.length) { box.hidden = true; return; }
-      const one = W.items.map(x => `<span class="wi"><b>${esc(x.l)}</b> ${fmt(x.p)} ${chg(x.d1)}</span>`).join('');
+      const items = all();
+      if (!items.length) { box.hidden = true; return; }
+      const one = items.map(x => x.rate ? `<span class="wi"><b>${esc(x.l)}</b> ${rv(x)}${x.d1 != null ? ' ' + pts(ppc(x, x.d1)) : ''}</span>`
+        : `<span class="wi"><b>${esc(x.l)}</b> ${fmt(x.p)} ${chg(x.d1)}</span>`).join('');
       track.innerHTML = one + one;                                     // twice, so the loop is seamless
       box.hidden = false;
       requestAnimationFrame(() => { track.style.animationDuration = Math.max(30, track.scrollWidth / 2 / 45) + 's'; });
     }
     async function load() {
+      if (!R.length) { try { const r = await fetch('data/rates.json'); if (r.ok) R = ((await r.json()).items) || []; } catch (e) {} }
       for (const u of live ? ['/world', 'data/world.json'] : ['data/world.json']) {
         try { const r = await fetch(u, { credentials: 'same-origin' }); if (r.ok) { const j = await r.json(); if (j.items && j.items.length) { W = j; render(); return; } } } catch (e) {}
       }
+      render();
     }
     box.addEventListener('click', () => {
-      if (!W) return;
+      const items = all(); if (!items.length) return;
       const when = t => new Date(t * 1000).toLocaleString('en-GB', { timeZone: 'Asia/Colombo', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
-      const groups = [...new Set(W.items.map(x => x.g))];
-      const rows = groups.map(g => `<tr><th colspan="5" class="wg">${esc({ Rupee: 'Rupee (Rs for one unit)', Shares: 'Share markets' }[g] || g)}</th></tr>` +
-        W.items.filter(x => x.g === g).map(x => `<tr><td><b>${esc(x.l)}</b><div class="small mute">${x.u ? esc(x.u) + ' · ' : ''}${when(x.t)}</div></td>
+      const groups = [...new Set(items.map(x => x.g))];
+      const rrow = x => x.d1 !== undefined
+        ? `<tr><td><b>${esc(x.l)}</b><div class="small mute">${when(x.t)}</div></td><td class="num">${rv(x)}</td><td class="num">${pts(ppc(x, x.d1))}</td><td class="num">${pts(ppc(x, x.w1))}</td><td class="num">${pts(ppc(x, x.m1))}</td></tr>`
+        : `<tr><td><b>${esc(x.l)}</b><div class="small mute">${esc(x.src)}</div></td><td class="num">${rv(x)}</td><td colspan="3" class="small mute" style="text-align:right;white-space:normal">${esc(x.note || '')}${x.chg == null ? '' : Math.abs(x.chg) < 0.005 ? ' (same as the auction before)' : ' (' + pts(x.chg) + ' from the auction before)'}</td></tr>`;
+      const rows = groups.map(g => `<tr><th colspan="5" class="wg">${esc({ Rupee: 'Rupee (Rs for one unit)', Shares: 'Share markets', 'US rates': 'US interest rates (changes in % points)', 'Sri Lanka rates': 'Sri Lanka interest rates (changes in % points)' }[g] || g)}</th></tr>` +
+        items.filter(x => x.g === g).map(x => x.rate ? rrow(x) : `<tr><td><b>${esc(x.l)}</b><div class="small mute">${x.u ? esc(x.u) + ' · ' : ''}${when(x.t)}</div></td>
           <td class="num">${fmt(x.p)}</td><td class="num">${chg(x.d1)}</td><td class="num">${chg(x.w1)}</td><td class="num">${chg(x.m1)}</td></tr>`).join('')).join('');
       const sh = sheet(`<div class="whead"><h2>World markets</h2><button type="button" class="btn" data-wclose>Close</button></div>
-        <div class="wbody"><p class="small mute" style="margin:0 0 10px">From Yahoo Finance's free data, delayed about 10 to 30 minutes; currency rates are unofficial. LME metal prices are paid data, so US futures prices stand in for them (COMEX copper and aluminium, CME steel; diesel is NYMEX heating oil, petrol is RBOB). Updated ${when(W.updated)} Colombo time.</p>
+        <div class="wbody"><p class="small mute" style="margin:0 0 10px">From Yahoo Finance's free data, delayed about 10 to 30 minutes; currency rates are unofficial. LME metal prices are paid data, so US futures prices stand in for them (COMEX copper and aluminium, CME steel; diesel is NYMEX heating oil, petrol is RBOB). Rates: Sri Lanka's T-bill and T-bond yields are the weighted averages at the latest Public Debt Management Office auctions; the US Fed range and effective rate are from the New York Fed. Updated ${W ? when(W.updated) : '–'} Colombo time.</p>
         <div style="overflow-x:auto"><table class="wtab"><thead><tr><th></th><th class="num">Price</th><th class="num">1 day</th><th class="num">1 week</th><th class="num">1 month</th></tr></thead><tbody>${rows}</tbody></table></div></div>`, true);
       const c = document.querySelector('[data-wclose]'); if (c) { c.addEventListener('click', () => closeSheet && closeSheet()); c.focus(); }
     });

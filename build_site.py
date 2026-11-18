@@ -204,6 +204,9 @@ def build():
         if W["items"]:
             _dump(OUT / "world.json", W)
         print(f"World markets: {len(W['items'])} of {len(world.symbols())}")
+        R = world.rates()
+        _dump(OUT / "rates.json", R)
+        print(f"Rates: {len(R['items'])}")
     except Exception as e:
         print("world step failed:", repr(e))
     for s, p in payloads.items():

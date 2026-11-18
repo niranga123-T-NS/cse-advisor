@@ -105,9 +105,10 @@
       const rows = groups.map(g => `<tr><th colspan="5" class="wg">${esc({ Rupee: 'Rupee (Rs for one unit)', Shares: 'Share markets' }[g] || g)}</th></tr>` +
         W.items.filter(x => x.g === g).map(x => `<tr><td><b>${esc(x.l)}</b><div class="small mute">${x.u ? esc(x.u) + ' · ' : ''}${when(x.t)}</div></td>
           <td class="num">${fmt(x.p)}</td><td class="num">${chg(x.d1)}</td><td class="num">${chg(x.w1)}</td><td class="num">${chg(x.m1)}</td></tr>`).join('')).join('');
-      sheet(`<div style="padding:16px 16px 22px"><h2 style="margin:0 0 4px">World markets</h2>
-        <p class="small mute" style="margin:0 0 10px">From Yahoo Finance's free data, delayed about 10 to 30 minutes; currency rates are unofficial. LME metal prices are paid data, so US futures prices stand in for them (COMEX copper and aluminium, CME steel; diesel is NYMEX heating oil, petrol is RBOB). Updated ${when(W.updated)} Colombo time.</p>
+      const sh = sheet(`<div class="whead"><h2>World markets</h2><button type="button" class="btn" data-wclose>Close</button></div>
+        <div class="wbody"><p class="small mute" style="margin:0 0 10px">From Yahoo Finance's free data, delayed about 10 to 30 minutes; currency rates are unofficial. LME metal prices are paid data, so US futures prices stand in for them (COMEX copper and aluminium, CME steel; diesel is NYMEX heating oil, petrol is RBOB). Updated ${when(W.updated)} Colombo time.</p>
         <div style="overflow-x:auto"><table class="wtab"><thead><tr><th></th><th class="num">Price</th><th class="num">1 day</th><th class="num">1 week</th><th class="num">1 month</th></tr></thead><tbody>${rows}</tbody></table></div></div>`, true);
+      const c = document.querySelector('[data-wclose]'); if (c) { c.addEventListener('click', () => closeSheet && closeSheet()); c.focus(); }
     });
     load(); setInterval(load, 5 * 60 * 1000);
   })();

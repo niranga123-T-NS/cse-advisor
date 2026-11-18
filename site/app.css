@@ -211,3 +211,7 @@ main.page h3 { font-size:15px; font-weight:650; margin:0 0 8px; }
 .wtab { width:100%; border-collapse:collapse; font-size:13.5px; font-variant-numeric:tabular-nums; }
 .wtab td, .wtab th { padding:7px 8px; border-top:1px solid var(--line-soft); text-align:left; vertical-align:top; }
 .wtab .num { text-align:right; white-space:nowrap; } .wtab .wg { padding-top:14px; color:var(--ink-3); font-weight:600; border-top:0; }
+.whead { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:14px 16px 10px; border-bottom:1px solid var(--line-soft); flex:none; }
+.whead h2 { margin:0; font-size:18px; }
+.wbody { overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; min-height:0; flex:1; padding:12px 16px calc(22px + env(safe-area-inset-bottom)); }
+@media (max-width:560px) { .wtab td, .wtab th { padding:7px 5px; } .wtab { font-size:13px; } }

@@ -5,7 +5,7 @@
 //              GH_REPO       optional, default niranga123-T-NS/cse-advisor
 //
 // GitHub allows 5,000 requests an hour per token, so answers are cached at Cloudflare's edge: the 15-second and
-// 1-minute files never change once written (cached for an hour), the rest for 15 seconds, a "not yet" for 5 seconds.
+// 1-minute files never change once written (cached for an hour), the rest for 6 seconds (so a reading is at most ~20 s old), a "not yet" for 5 seconds.
 
 export async function onRequestGet(ctx) {
   const { params, env } = ctx;
@@ -18,7 +18,7 @@ export async function onRequestGet(ctx) {
   const headers = { 'User-Agent': 'cse-advisor', 'Accept': 'application/vnd.github.raw' };
   if (env.GH_READ_TOKEN) headers.Authorization = `Bearer ${env.GH_READ_TOKEN}`;
   const r = await fetch(`https://api.github.com/repos/${repo}/contents/${path}?ref=live`, { headers });
-  const ttl = !r.ok ? 5 : /^[tmb]\//.test(path) ? 3600 : 15;
+  const ttl = !r.ok ? 5 : /^[tmb]\//.test(path) ? 3600 : 6;
   const res = new Response(r.ok ? await r.arrayBuffer() : 'Not found', { status: r.ok ? 200 : 404,
     headers: { 'Content-Type': r.ok ? 'application/json; charset=utf-8' : 'text/plain', 'Cache-Control': `max-age=${ttl}` } });
   ctx.waitUntil(cache.put(key, res.clone()));

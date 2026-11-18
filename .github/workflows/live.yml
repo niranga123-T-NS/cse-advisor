@@ -7,6 +7,9 @@ on:
   schedule:
     - cron: "30 14-23 * * 0-4"   # 20:00-05:00 Colombo, evenings before a trading day
     - cron: "30 0-8 * * 1-5"     # 06:00-14:00 Colombo, trading days
+    # Back-ups every 15 minutes from 05:37 to 14:22 Colombo on trading days, at quiet minutes (GitHub drops many
+    # :00/:30 runs when busy). Extra runs see the engine already running and stop at once, costing ~1 minute each.
+    - cron: "7,22,37,52 0-8 * * 1-5"
   workflow_dispatch:
     inputs:
       takeover:

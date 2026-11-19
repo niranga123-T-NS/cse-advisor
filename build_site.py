@@ -59,6 +59,40 @@ def _perf(c, n):
     return round(float(c.iloc[-1] / c.iloc[-1 - n] - 1) * 100, 2) if len(c) > n and c.iloc[-1 - n] else None
 
 
+_LONG_META = None
+
+
+def _candles(symbol: str, t: list, d) -> list:
+    """Daily candles. CSE's daily data has no opening price for most days (open was stored equal to the close,
+    which drew every candle as a flat green bar). Real opens come from the long Yahoo history where it has them;
+    otherwise the previous close stands in, the usual approximation, so a candle's colour shows the day's change."""
+    global _LONG_META
+    real = {}
+    try:
+        import longterm
+        if _LONG_META is None:
+            _LONG_META = longterm.load_meta()
+        raw = longterm.ROOT / "data" / "long" / "raw" / f"{symbol}.csv.gz" if hasattr(longterm, "ROOT") else None
+        if raw is None or raw.exists():
+            lj = longterm.load(symbol, _LONG_META)[0]
+            ok = (lj["open"] >= lj["low"] - 1e-9) & (lj["open"] <= lj["high"] + 1e-9) & \
+                 ~((lj["open"] == lj["close"]) & (lj["high"] != lj["low"]))       # skip stand-in opens
+            real = {ts.strftime("%Y-%m-%d"): float(o) for ts, o, g in zip(lj.index, lj["open"], ok) if g and o > 0}
+    except Exception:
+        real = {}
+    out, prev = [], None
+    for ti, r in zip(t, d.itertuples()):
+        o = r.open
+        if not (r.low - 1e-9 <= o <= r.high + 1e-9) or (o == r.close and r.high != r.low):
+            o = real.get(ti, prev if prev is not None else r.close)
+        elif o == r.close and ti in real:
+            o = real[ti]
+        o = min(max(o, r.low), r.high)
+        out.append({"time": ti, "open": round(float(o), 4), "high": r.high, "low": r.low, "close": r.close})
+        prev = r.close
+    return out
+
+
 def stock_payload(symbol: str, df, sector: str = "", forecast: dict | None = None) -> dict:
     fund = fundamentals.metrics(symbol, float(df["close"].iloc[-1])) if len(df) else None
     d = analysis.indicators(df)
@@ -73,8 +107,7 @@ def stock_payload(symbol: str, df, sector: str = "", forecast: dict | None = Non
 
     return {
         "symbol": symbol,
-        "candles": [{"time": ti, "open": r.open, "high": r.high, "low": r.low, "close": r.close}
-                    for ti, r in zip(t, d.itertuples())],
+        "candles": _candles(symbol, t, d),
         "volume": [{"time": ti, "value": r.volume} for ti, r in zip(t, d.itertuples())],
         "sma20": series("sma20"), "sma50": series("sma50"),
         "rsi": series("rsi"), "macd_hist": series("macd_hist"),

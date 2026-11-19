@@ -905,7 +905,7 @@ function updateLiveDetail(sym) {
   const fb = document.getElementById('flowbox'); if (fb) fb.innerHTML = flowHtml(sym);
   if (detailCtx && detailCtx.sym === sym) {
     const p = r[0], day = tick.t.slice(0, 10), lc = detailCtx.last;
-    try { detailCtx.cs.update({ time: day, open: (full && full.o) ?? (lc && lc.time === day ? lc.open : p),
+    try { detailCtx.cs.update({ time: day, open: (full && full.o && full.o !== p) ? full.o : (lc && lc.time === day ? lc.open : lc ? lc.close : p),   // no open from CSE: yesterday's close
       high: Math.max((full && full.h) ?? p, p), low: Math.min((full && full.l) ?? p, p), close: p }); } catch (e) {}
   }
   const intraday = minute && minute.intraday, pts = intraday && intraday.p && intraday.p[sym];

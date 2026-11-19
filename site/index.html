@@ -55,7 +55,8 @@
   #home, #list, #alertsPane, #detail { min-width:0; }
   body[data-view=home] #list, body[data-view=home] #alertsPane, body[data-view=shares] #home, body[data-view=shares] #alertsPane,
   body[data-view=alerts] #home, body[data-view=alerts] #list { display:none; }
-  #dayPane, #tradesPane { display:none; min-width:0; } body[data-view=day] #dayPane, body[data-view=trades] #tradesPane { display:block; }
+  #dayPane, #tradesPane, #moversPane { display:none; min-width:0; } body[data-view=day] #dayPane, body[data-view=trades] #tradesPane, body[data-view=movers] #moversPane { display:block; }
+  body[data-view=movers] #home, body[data-view=movers] #list, body[data-view=movers] #alertsPane { display:none; }
   body[data-view=trades] #home, body[data-view=trades] #list, body[data-view=trades] #alertsPane { display:none; }
   .tpbar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:0 0 10px; } .tpbar input { flex:1; min-width:120px; }
   @media (max-width:520px) { table.dt.tape th:nth-child(4), table.dt.tape td:nth-child(4) { display:table-cell; } table.dt.tape td, table.dt.tape th { padding-left:3px; padding-right:3px; font-size:13px; } }
@@ -80,8 +81,8 @@
   @media (min-width:900px) and (min-height:501px) {
     body { display:flex; flex-direction:column; height:100vh; height:100dvh; }
     #app { flex:1; min-height:0; display:grid; grid-template-columns:clamp(450px, 42vw, 680px) minmax(0, 1fr); grid-template-rows:minmax(0, 1fr); }
-    #home, #dayPane, #tradesPane { grid-column:1 / -1; overflow:auto; }
-    body[data-view=day] #detail, body[data-view=trades] #detail { display:none; }
+    #home, #dayPane, #tradesPane, #moversPane { grid-column:1 / -1; overflow:auto; }
+    body[data-view=day] #detail, body[data-view=trades] #detail, body[data-view=movers] #detail { display:none; }
     #list, #alertsPane { overflow:auto; border-right:1px solid var(--line-soft); }
     #detail { overflow:auto; }
     body[data-view=home] #detail { display:none; }
@@ -164,6 +165,10 @@
   .osvg .ohist { fill:none; stroke:var(--ink-2); stroke-width:1.6; } .osvg .omed { fill:none; stroke:var(--sapphire); stroke-width:1.6; stroke-dasharray:5 4; }
   .osvg .onow { stroke:var(--line); stroke-width:1; } .osvg .olab { font-size:13px; fill:var(--ink-2); font-variant-numeric:tabular-nums; } .osvg .olab.up { fill:var(--emerald); } .osvg .olab.down { fill:var(--ruby); }
   .vlist { margin:4px 0 0; padding-left:18px; font-size:13.5px; } .vlist li { margin:3px 0; color:var(--ink); } .vlist.up li::marker { color:var(--emerald); } .vlist.down li::marker { color:var(--ruby); }
+  table.mv { width:100%; table-layout:fixed; border-collapse:collapse; font-variant-numeric:tabular-nums; font-size:14px; }
+  table.mv td, table.mv th { padding:8px 4px; border-top:1px solid var(--line-soft); vertical-align:top; overflow:hidden; } table.mv th { font-weight:500; color:var(--ink-3); font-size:12.5px; border-top:0; text-align:left; }
+  table.mv .num { text-align:right; white-space:nowrap; } table.mv .ell { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; } table.mv tr[data-sym] { cursor:pointer; } table.mv tr[data-sym]:hover td { background:var(--surface-2); }
+  .mvcols { gap:28px; } @media (max-width:400px) { table.mv .mvt { display:none; } table.mv col.mvt { width:0; } }
   .tcols { display:grid; grid-template-columns:1fr 1fr; gap:14px; } .tcol { min-width:0; }
   @media (max-width:560px) { .tcols { grid-template-columns:minmax(0, 1fr); gap:6px; } table.depth th, table.depth td { padding-left:3px; padding-right:3px; font-size:12.5px; } }
   .dspark { width:100%; height:60px; display:block; background:var(--surface-2, transparent); border-radius:6px; }
@@ -304,6 +309,7 @@
     <div id="empty" class="empty" hidden></div>
   </section>
 
+  <section id="moversPane"><div class="wrap" id="movers"><p class="mute">Loading…</p></div></section>
   <section id="tradesPane"><div class="wrap" id="trades"><p class="mute">Loading…</p></div></section>
   <section id="dayPane"><div class="wrap" id="day"><p class="mute">Loading…</p></div></section>
   <section id="alertsPane"><div id="alerts"></div></section>
@@ -378,6 +384,7 @@ async function pollTick() {
   tick = t;
   tapeFromTick();
   showLiveStatus(); render(); renderAlerts(); renderBig(); renderHome(); if (view === 'day') renderDay();
+  if (view === 'movers') renderMovers();
   if (view === 'trades' && !(document.activeElement && document.activeElement.id === 'tapeQ')) { if (!tapeData || Date.now() - tapeData._at > 55000) loadTape().then(() => renderTape()); else renderTape(); }
   if (current) { updateLiveDetail(current); if (!minute || Date.now() - minute._at > 55000) pollMinute(); pollBooks(); }
   else if (view === 'day' && (!minute || Date.now() - minute._at > 55000)) pollMinute();
@@ -414,7 +421,7 @@ setInterval(showLiveStatus, 5000);
 // ---------- getting about: three views and the open share, all in the address after # so Back works everywhere ----------
 // #/home  #/shares  #/shares/<screen>  #/alerts  #<SYMBOL>
 const PHONE = matchMedia('(max-width:899.98px), (max-height:500px)');
-const TITLE = { home:'Today', shares:'Shares', day:'Day trade', alerts:'Alerts', trades:'Live trades' };
+const TITLE = { home:'Today', shares:'Shares', day:'Day trade', alerts:'Alerts', trades:'Live trades', movers:'Gainers and losers' };
 let steps = 0, lastSeen = null; const scrollAt = {};
 try { history.scrollRestoration = 'manual'; } catch (e) {}      // this page puts you back where you were itself
 function parseHash() {
@@ -427,18 +434,18 @@ function setView(v) {
   if (v !== view && !document.body.classList.contains('open')) scrollAt[view] = scrollY;
   view = v; document.body.dataset.view = v; A.setActive(v);
   const t = document.querySelector('.top .title'); if (t) t.textContent = TITLE[v];
-  renderAlerts(); if (v === 'home') renderHome(); if (v === 'shares') render(); if (v === 'day') renderDay(); if (v === 'trades') renderTape(true);
+  renderAlerts(); if (v === 'home') renderHome(); if (v === 'shares') render(); if (v === 'day') renderDay(); if (v === 'trades') renderTape(true); if (v === 'movers') renderMovers();
 }
 let routed = false;
 function route() {
   const r = parseHash();
   if (r.view === 'compare') { if (!routed) setView(view); routed = true; showCompare(r.arg); return; }      // the pop-up opens over whatever is showing
   routed = true; hideCompare();
-  if (r.sym) { if (view === 'home' || view === 'day' || view === 'trades') setView('shares'); show(r.sym); return; }
+  if (r.sym) { if (view === 'home' || view === 'day' || view === 'trades' || view === 'movers') setView('shares'); show(r.sym); return; }
   closeDetail(); setView(r.view);
   if (r.view === 'shares' && r.arg) setFilter(r.arg);
   if (PHONE.matches) scrollTo(0, scrollAt[r.view] || 0);
-  else if (r.view !== 'home' && r.view !== 'day' && r.view !== 'trades') {      // wide screens: the pane beside the list is never left empty
+  else if (r.view !== 'home' && r.view !== 'day' && r.view !== 'trades' && r.view !== 'movers') {      // wide screens: the pane beside the list is never left empty
     const first = lastSeen || ((document.querySelector('#rows tr') || {}).dataset || {}).sym;
     if (first) show(first);
   }
@@ -541,6 +548,38 @@ function tapeIntoBook(sym) {                    // newer trades from the tape in
   x.tr = add.concat(x.tr || []).sort((a, b) => b[0].localeCompare(a[0])).slice(0, 40);
   return true;
 }
+let moversPeriod = 'day', moversActive = true;
+function renderMovers() {
+  const el = document.getElementById('movers'); if (!el || !all) return;
+  const live = tick && tick.t && tick.t.slice(0, 10) === ymd(colomboNow());
+  const per = { day: ['Today', null], m1: ['1 month', 'd20'], m3: ['3 months', 'd60'] };
+  const rows = all.map(x => {
+    const r = live && tick.r[x.symbol];
+    const px = r ? r[0] : x.close, ch = moversPeriod === 'day' ? (r ? r[1] : x.change_pct) : x[per[moversPeriod][1]];
+    const tovToday = r ? r[0] * r[2] : null;
+    return { s: x.symbol, name: x.name, sector: x.sector, px, ch, tov: moversPeriod === 'day' && r ? tovToday : x.tov, avg: x.tov };
+  }).filter(x => x.ch != null && isFinite(x.ch) && (!moversActive || (x.avg || 0) >= 1e6 && (moversPeriod !== 'day' || !live || (x.tov || 0) >= 250000)));
+  const up = rows.filter(x => x.ch > 0).sort((a, b) => b.ch - a.ch).slice(0, 10), dn = rows.filter(x => x.ch < 0).sort((a, b) => a.ch - b.ch).slice(0, 10);
+  const nUp = rows.filter(x => x.ch > 0).length, nDn = rows.filter(x => x.ch < 0).length;
+  const m = x => x >= 1e9 ? (x / 1e9).toFixed(1) + 'B' : x >= 1e6 ? (x / 1e6).toFixed(1) + 'M' : (x / 1e3).toFixed(0) + 'k';
+  const tbl = (L, cls) => L.length ? `<table class="mv"><colgroup><col style="width:24px"><col><col style="width:68px"><col style="width:72px"><col class="mvt" style="width:62px"></colgroup>
+    <thead><tr><th></th><th>Share</th><th class="num">Price</th><th class="num">Change</th><th class="num mvt">LKR${moversPeriod === 'day' && live ? ' today' : ' a day'}</th></tr></thead><tbody>${
+    L.map((x, i) => `<tr data-sym="${esc(x.s)}"><td class="mute">${i + 1}</td><td><b>${short(x.s)}</b><div class="small mute ell">${esc(x.name || '')}</div></td>
+      <td class="num">${x.px.toFixed(2)}</td><td class="num ${cls}"><b>${x.ch > 0 ? '+' : ''}${x.ch.toFixed(2)}%</b></td><td class="num mvt">${x.tov ? m(x.tov) : '–'}</td></tr>`).join('')}</tbody></table>`
+    : '<p class="mute">None.</p>';
+  const chips = Object.entries(per).map(([k, [l]]) => `<button class="chip ${moversPeriod === k ? 'on' : ''}" data-mp="${k}">${l}</button>`).join('');
+  el.innerHTML = `<p class="small" style="margin:0">${moversPeriod === 'day' ? (live ? `Live, updated every 15 seconds (${esc(tick.t.slice(11, 19))}). ${nUp} shares up, ${nDn} down.` : `At the close on ${dmy(all[0] && all[0].date)}. ${nUp} up, ${nDn} down.`) : `Change over the last ${per[moversPeriod][0]} to the latest close.`}</p>
+    <div class="chips" style="margin:8px 0">${chips}<button class="chip ${moversActive ? 'on' : ''}" data-ma="1" title="Leave out shares that rarely trade">Actively traded only</button></div>
+    <div class="tcols mvcols"><div class="tcol"><h3 class="up" style="margin:6px 0">Top 10 gainers</h3>${tbl(up, 'up')}</div>
+      <div class="tcol"><h3 class="down" style="margin:6px 0">Top 10 losers</h3>${tbl(dn, 'down')}</div></div>
+    <p class="small mute" style="margin-top:10px">Actively traded only: shares that normally trade at least LKR 1M a day${live && moversPeriod === 'day' ? ' and LKR 250,000 so far today' : ''}, so one small trade in a quiet share does not top the list. Tap a share to open it.</p>`;
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest) return;
+  const p = e.target.closest('[data-mp]'); if (p) { moversPeriod = p.dataset.mp; renderMovers(); return; }
+  if (e.target.closest('[data-ma]')) { moversActive = !moversActive; renderMovers(); return; }
+  const r = e.target.closest('#movers tr[data-sym]'); if (r) location.hash = r.dataset.sym;
+});
 async function renderTape(fetchNow) {
   const el = document.getElementById('trades'); if (!el) return;
   if (fetchNow || !tapeData || tapeData.none) await loadTape(fetchNow);

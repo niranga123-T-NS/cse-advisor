@@ -198,7 +198,7 @@ fetch('data/accuracy.json').then(r => r.json()).then(A => {
       <li><b>Costs are the main hurdle.</b> A share must rise more than ${v.cost_pct}% in ${v.holding_days} days just to break even. In this test period only about one share in five did.</li>
       <li><b>The model has learnt from one year of daily prices,</b> the year CSE's own site provides. A model needs several years, covering rising and falling markets, to learn patterns that last.
         This site now also holds 10 to 20 years of older prices from an unofficial source (see <a href="market.html">Market history</a>); the model has not been retrained and re-tested on them yet.</li>
-      <li><b>There is no intraday history yet.</b> During market hours the site saves every share's price and volume every 15 seconds, plus order-book totals. After some weeks there will be enough to test intraday patterns the same strict way.</li>
+      <li><b>There is no intraday history yet.</b> During market hours the site saves every share's price and volume every 5 seconds, plus order-book totals. After some weeks there will be enough to test intraday patterns the same strict way.</li>
       <li><b>No model predicts share prices with very high accuracy.</b> Prices already reflect what is publicly known. Any tool that claims otherwise should be asked for a test like the one on this page.</li>
     </ul>
     <p class="note" style="margin-top:16px">For the accuracy of the company-report figures see <a href="audit.html">Data checks</a>. Each share's page also shows a backtest of the rule-based BUY/SELL signals.

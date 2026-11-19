@@ -39,6 +39,7 @@ import json
 import os
 import subprocess
 import sys
+import threading
 import time
 from pathlib import Path
 
@@ -47,7 +48,8 @@ import requests
 import cse_client as cse
 
 COLOMBO = dt.timezone(dt.timedelta(hours=5, minutes=30))
-TICK = 15                                  # seconds
+TICK = 5                                   # seconds between price readings (order books run alongside, trades every 15 s)
+TRADES_EVERY = 15                          # CSE refreshes its per-price trade totals only every ~45 s; no need to ask more often
 START, END = (9, 25), (14, 40)             # CSE trades 09:30-14:30
 BUDGET_MIN = float(os.environ.get("LIVE_BUDGET_MIN", "325"))   # hand over before GitHub's 6-hour job limit
 REACH_MIN = 320                            # only wait for an open that is at most this far away
@@ -576,6 +578,21 @@ class Engine:
             if ob:
                 self._book(ts, t, s, ob, rows.get(s) or {})
 
+    def next_book(self, ts: float, rows: dict) -> str | None:
+        """The most overdue order book (same rotation as order_books), marked as read; None if nothing is due."""
+        recent = {a["s"] for a in self.alerts[-30:] if a["s"]}
+        active = {x for x in sorted((x for x in rows if rows[x].get("to")), key=lambda x: -rows[x]["to"])[:40]}
+        def every(x):
+            return 30 if x in self.focus or x in recent else 120 if x in active else 300 if x in rows else 900
+        cand = set(self.ref) | set(rows) | set(self.focus) | recent
+        if not cand:
+            return None
+        over, s = min((self.polled.get(x, 0.0) + every(x) - ts, x) for x in cand)
+        if over > 0:
+            return None
+        self.polled[s] = ts
+        return s
+
     def recent_trades(self, s: str, n: int = 40) -> list:
         """The latest trades in one share, newest first: [time, price, shares, trades, side]. Side is read from the
         price move (+1 buyers pushed it up, -1 sellers pushed it down, 0 unclear); trades within one 15-second
@@ -810,6 +827,29 @@ def main(test: bool = False):
     base_files: dict[str, str] = {}
     fails, tick_no, traded_today, status = 0, 0, False, ""
     max_ticks = int(os.environ.get("LIVE_TEST_TICKS", "8")) if test else 10 ** 9
+    # Order books: CSE answers one share per request, so they are read in a background thread (about one a second)
+    # while the main loop reads prices every 5 seconds. The lock keeps the two from changing the engine at once.
+    lock, latest, stop = threading.Lock(), {"rows": {}}, threading.Event()
+
+    def books_loop():
+        while not stop.is_set():
+            rows_now = latest["rows"]
+            s = None
+            if rows_now:
+                with lock:
+                    s = eng.next_book(time.time(), rows_now)
+            if s:
+                try:
+                    ob = cse.order_book(s)
+                    if ob:
+                        with lock:
+                            ts_ = time.time()
+                            eng._book(ts_, eng._clock(ts_), s, ob, rows_now.get(s) or {})
+                except Exception as e:
+                    print("order book error:", repr(e))
+            stop.wait(1.2 if s else 3.0)
+
+    threading.Thread(target=books_loop, daemon=True).start()
     while tick_no < max_ticks:
         t = now()
         if not test and hm(t) >= END:
@@ -817,10 +857,14 @@ def main(test: bool = False):
             break
         if not test and (time.time() - t_start) / 60 > BUDGET_MIN:
             print("Near the job time limit - handing over to a fresh run.")
-            return hand_over(eng)
-        if not test and tick_no and tick_no % 20 == 0 and older_run_active():
+            stop.set()
+            with lock:
+                return hand_over(eng)
+        if not test and tick_no and tick_no % 60 == 0 and older_run_active():
             print("An older run is handling the session - standing down.")
-            eng.archive()
+            stop.set()
+            with lock:
+                eng.archive()
             return
         ts = time.time()
         try:
@@ -831,66 +875,70 @@ def main(test: bool = False):
         on_minute = t.second < TICK
         if rows and (session == day or test):
             traded_today = True
-            try:                                    # before tick(): it compares with the previous prices
-                levels = cse.detailed_trades()
-                if levels:
-                    eng.trades(ts, levels, rows)
-            except Exception as e:
-                print("trades error:", repr(e))
-            eng.tick(ts, rows)
-            if on_minute or tick_no == 0:
-                try:
-                    status = cse.market_status() or status
-                    eng.market(ts, cse.sector_indices(), cse.aspi())
-                except Exception as e:
-                    print("index error:", e)
-            tick_tape = eng.tape_since(tape_mark) if tape_mark is not None else []
-            tape_mark = eng.mtape_n
+            latest["rows"] = rows
+            lock.acquire()
             try:
-                eng.order_books(ts, rows, deadline=ts + 9.0)
-            except Exception as e:
-                print("order book error:", repr(e))
-            stamp = t.strftime("%Y-%m-%d %H:%M:%S")
-            tick = {"t": stamp, "m": status, "n": len(eng.alerts), "a": eng.alerts[-40:][::-1],
-                    "r": {s: [r["p"], r["c"], r["v"]] for s, r in rows.items()},
-                    "x": {"aspi": [eng.aspi.get("value"), round(eng.aspi.get("percentage") or 0, 2)] if eng.aspi else None,
-                          "sec": {k: round(v["pct"], 2) for k, v in eng.sectors.items() if v.get("pct") is not None},
-                          "peers": {k: round(v, 2) for k, v in eng.sec_pct.items()}},
-                    "ob": eng.ob, "bg": eng.orders_view(10), "tp": tick_tape}
-            recent_ticks[t.strftime("%H%M") + f"{(t.second // TICK) * TICK:02d}"] = json.dumps(tick, separators=(",", ":"))
-            for k in sorted(recent_ticks)[:-12]:
-                del recent_ticks[k]
-            if on_minute or tick_no == 0:
-                hhmm = t.strftime("%H:%M")
-                if not times or times[-1] != hhmm:
-                    times.append(hhmm)
-                i = len(times) - 1
-                for s, r in rows.items():
-                    sr = series.setdefault(s, [])
-                    if not sr or sr[-1][1] != r["p"]:
-                        sr.append([i, r["p"]])
-                full = [{"s": s, **r} for s, r in rows.items()]
-                live = {"updated": stamp, "date": day, "market": status, "rows": full}
-                intraday = {"date": day, "t": times, "p": series}
-                orders = {"date": day, "updated": stamp, **eng.orders_view(60)}
-                books = json.dumps({"date": day, "updated": stamp, "focus": sorted(eng.focus), "s": eng.books_view()},
-                                   separators=(",", ":"))
-                recent_books[t.strftime("%H%M")] = books
-                for k in sorted(recent_books)[:-6]:
-                    del recent_books[k]
-                recent_mins[t.strftime("%H%M")] = json.dumps({**live, "intraday": intraday, "orders": orders}, separators=(",", ":"))
-                for k in sorted(recent_mins)[:-6]:
-                    del recent_mins[k]
-                base_files = {"live.json": json.dumps(live, separators=(",", ":")),
-                              "intraday.json": json.dumps(intraday, separators=(",", ":")),
-                              "state.json": json.dumps(eng.state(), separators=(",", ":")),
-                              "alerts.json": json.dumps({"date": day, "alerts": eng.alerts}, separators=(",", ":")),
-                              "orders.json": json.dumps(orders, separators=(",", ":")),
-                              "books.json": books,
-                              "tape.json": json.dumps({"date": day, "updated": stamp, "t": list(eng.mtape)[::-1]}, separators=(",", ":"))}
+                if t.second % TRADES_EVERY < TICK or tick_no == 0:
+                    try:                                # before tick(): it compares with the previous prices
+                        levels = cse.detailed_trades()
+                        if levels:
+                            eng.trades(ts, levels, rows)
+                    except Exception as e:
+                        print("trades error:", repr(e))
+                eng.tick(ts, rows)
+                if on_minute or tick_no == 0:
+                    try:
+                        status = cse.market_status() or status
+                        eng.market(ts, cse.sector_indices(), cse.aspi())
+                    except Exception as e:
+                        print("index error:", e)
+                tick_tape = eng.tape_since(tape_mark) if tape_mark is not None else []
+                tape_mark = eng.mtape_n
+                stamp = t.strftime("%Y-%m-%d %H:%M:%S")
+                tick = {"t": stamp, "m": status, "n": len(eng.alerts), "a": eng.alerts[-40:][::-1],
+                        "r": {s: [r["p"], r["c"], r["v"]] for s, r in rows.items()},
+                        "x": {"aspi": [eng.aspi.get("value"), round(eng.aspi.get("percentage") or 0, 2)] if eng.aspi else None,
+                              "sec": {k: round(v["pct"], 2) for k, v in eng.sectors.items() if v.get("pct") is not None},
+                              "peers": {k: round(v, 2) for k, v in eng.sec_pct.items()}},
+                        "ob": eng.ob, "bg": eng.orders_view(10), "tp": tick_tape}
+                now_json = json.dumps(tick, separators=(",", ":"))
+                recent_ticks[t.strftime("%H%M") + f"{(t.second // TICK) * TICK:02d}"] = now_json
+                for k in sorted(recent_ticks)[:-36]:          # the last 3 minutes
+                    del recent_ticks[k]
+                if on_minute or tick_no == 0:
+                    hhmm = t.strftime("%H:%M")
+                    if not times or times[-1] != hhmm:
+                        times.append(hhmm)
+                    i = len(times) - 1
+                    for s, r in rows.items():
+                        sr = series.setdefault(s, [])
+                        if not sr or sr[-1][1] != r["p"]:
+                            sr.append([i, r["p"]])
+                    full = [{"s": s, **r} for s, r in rows.items()]
+                    live = {"updated": stamp, "date": day, "market": status, "rows": full}
+                    intraday = {"date": day, "t": times, "p": series}
+                    orders = {"date": day, "updated": stamp, **eng.orders_view(60)}
+                    books = json.dumps({"date": day, "updated": stamp, "focus": sorted(eng.focus), "s": eng.books_view()},
+                                       separators=(",", ":"))
+                    recent_books[t.strftime("%H%M")] = books
+                    for k in sorted(recent_books)[:-6]:
+                        del recent_books[k]
+                    recent_mins[t.strftime("%H%M")] = json.dumps({**live, "intraday": intraday, "orders": orders}, separators=(",", ":"))
+                    for k in sorted(recent_mins)[:-6]:
+                        del recent_mins[k]
+                    base_files = {"live.json": json.dumps(live, separators=(",", ":")),
+                                  "intraday.json": json.dumps(intraday, separators=(",", ":")),
+                                  "state.json": json.dumps(eng.state(), separators=(",", ":")),
+                                  "alerts.json": json.dumps({"date": day, "alerts": eng.alerts}, separators=(",", ":")),
+                                  "orders.json": json.dumps(orders, separators=(",", ":")),
+                                  "books.json": books,
+                                  "tape.json": json.dumps({"date": day, "updated": stamp, "t": list(eng.mtape)[::-1]}, separators=(",", ":"))}
+            finally:
+                lock.release()
             # when pushes keep failing, fall back to once a minute
             if fails < 3 or on_minute:
                 files = dict(base_files)
+                files["now.json"] = now_json                 # always the newest reading (the signed-in site reads this)
                 files.update({f"t/{k}.json": v for k, v in recent_ticks.items()})
                 files.update({f"m/{k}.json": v for k, v in recent_mins.items()})
                 files.update({f"b/{k}.json": v for k, v in recent_books.items()})
@@ -906,7 +954,7 @@ def main(test: bool = False):
                 print("No trades by 10:15 - the market is not trading today. Stopping.")
                 return
         tick_no += 1
-        time.sleep(max(1.0, TICK - (time.time() % TICK)))      # wake on the next :00/:15/:30/:45
+        time.sleep(max(0.5, TICK - (time.time() % TICK)))      # wake on the next multiple of 5 seconds
 
     if test:    # self-check of the pieces the real run relies on: seeing other runs, and starting a workflow
         v = eng.orders_view(5)

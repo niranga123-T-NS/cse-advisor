@@ -24,18 +24,21 @@ MIN_INTERVAL_SEC = 1.0  # be polite: at most ~1 request/second
 _session = requests.Session()
 _session.headers.update(HEADERS)
 _last_call = 0.0
+import threading as _threading
+_lock = _threading.Lock()          # the live engine reads prices and order books from two threads; one request at a time
 
 
 def post(endpoint: str, data: dict | None = None, retries: int = 3) -> Any:
     """POST to a CSE endpoint and return parsed JSON (or None on failure)."""
     global _last_call
     for attempt in range(retries):
-        wait = MIN_INTERVAL_SEC - (time.time() - _last_call)
-        if wait > 0:
-            time.sleep(wait)
-        _last_call = time.time()
         try:
-            r = _session.post(BASE_URL + endpoint, data=data or {}, timeout=20)
+            with _lock:
+                wait = MIN_INTERVAL_SEC - (time.time() - _last_call)
+                if wait > 0:
+                    time.sleep(wait)
+                _last_call = time.time()
+                r = _session.post(BASE_URL + endpoint, data=data or {}, timeout=20)
             r.raise_for_status()
             return r.json()
         except (requests.RequestException, ValueError) as e:

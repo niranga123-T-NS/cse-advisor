@@ -341,8 +341,8 @@ const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','
 const dmy = d => { if (!d) return ''; const [y, m, dd] = d.split('-'); return `${+dd} ${MON[m - 1]} ${y}`; };
 const my = d => { const m = /^(\d{4})-(\d\d)/.exec(d || ''); return m ? `${MON[m[2] - 1]} ${m[1]}` : esc(d || ''); };
 
-// ---------- live: prices, alerts and sector moves every 15 seconds while the market is open ----------
-// The "Live prices" job publishes t/HHMMSS.json (every 15 s) and m/HHMM.json (every minute) on the `live` branch.
+// ---------- live: prices, alerts and sector moves every 5 seconds while the market is open ----------
+// The "Live prices" job publishes now.json and t/HHMMSS.json (every 5 s) and m/HHMM.json (every minute) on the `live` branch.
 // Every file has its own name because GitHub caches a file for 5 minutes; a name nobody asked for yet is fresh.
 let tick = null, minute = null, peers = null, acc = null, detailCtx = null, liveChart = null, liveSeries = null, changed = {}, dayAlerts = null, dayOrders = null;
 let brief = null, trendsData = null;
@@ -367,13 +367,16 @@ async function getJSON(name) {
 }
 async function pollTick() {
   if (!RAW || !marketWindow() || document.hidden) return;
-  // Ask first for the tick from about 25-40 s ago: it is sure to be published. Asking for a file before it
-  // exists makes GitHub remember "not found" for a minute, which would hide that tick.
-  const base = Math.floor((colomboNow().getTime() - 24000) / 15000) * 15000;
-  let t = null;
-  for (let k = 0; k < 6 && !t; k++) {
-    const d = new Date(base - k * 15000);
-    t = await getJSON(`t/${two(d.getHours())}${two(d.getMinutes())}${two(d.getSeconds())}.json`);
+  // Signed-in site: now.json is always the newest reading (its proxy caches it for 2 seconds).
+  // GitHub Pages: ask for the reading from about 25-55 s ago, which is sure to be published; asking for a file
+  // before it exists makes GitHub remember "not found" for a minute, which would hide that reading.
+  let t = RAW === 'live/' ? await getJSON('now.json') : null;
+  if (!t) {
+    const base = Math.floor((colomboNow().getTime() - 24000) / 5000) * 5000;
+    for (let k = 0; k < 8 && !t; k++) {
+      const d = new Date(base - k * 5000);
+      t = await getJSON(`t/${two(d.getHours())}${two(d.getMinutes())}${two(d.getSeconds())}.json`);
+    }
   }
   if (!t || t.t.slice(0, 10) !== ymd(colomboNow())) { showLiveStatus(); return; }
   if (tick && t.t <= tick.t) { showLiveStatus(); return; }
@@ -514,7 +517,7 @@ function flowHtml(sym) {
   if (!fl && !hid.length && !big.length && !rest.length) h += `<span class="small">No large trades, large waiting orders or hidden-order signs in this share.</span>`;
   return h;
 }
-// ---------- live trades: every trade in the market, newest first (tape.json each minute + "tp" in every 15-second tick) ----------
+// ---------- live trades: every trade in the market, newest first (tape.json each minute + "tp" in every 5-second tick) ----------
 let tapeData = null, tapeKeys = new Set(), tapeFilter = 'all', tapeQuery = '';
 const tapeKey = r => r.slice(0, 5).join('|');
 const tapeVal = v => v >= 1e6 ? (v / 1e6).toFixed(v >= 1e7 ? 0 : 1) + 'M' : v >= 1e3 ? Math.round(v / 1e3) + 'K' : Math.round(v).toString();
@@ -533,7 +536,7 @@ async function loadTape(force) {
   tapeAdd(j.t, false); tapeData.t.sort((a, b) => b[1].localeCompare(a[1]));
   tapeData._at = Date.now(); tapeData.updated = j.updated;
 }
-function tapeFromTick() {                       // the trades in the newest 15-second reading
+function tapeFromTick() {                       // the trades in the newest reading
   if (!tick || !tick.tp || !tick.tp.length) return;
   if (!tapeData) tapeData = { t: [], date: tick.t.slice(0, 10), _at: 0 };
   tapeAdd(tick.tp, true);
@@ -568,7 +571,7 @@ function renderMovers() {
       <td class="num">${x.px.toFixed(2)}</td><td class="num ${cls}"><b>${x.ch > 0 ? '+' : ''}${x.ch.toFixed(2)}%</b></td><td class="num mvt">${x.tov ? m(x.tov) : '–'}</td></tr>`).join('')}</tbody></table>`
     : '<p class="mute">None.</p>';
   const chips = Object.entries(per).map(([k, [l]]) => `<button class="chip ${moversPeriod === k ? 'on' : ''}" data-mp="${k}">${l}</button>`).join('');
-  el.innerHTML = `<p class="small" style="margin:0">${moversPeriod === 'day' ? (live ? `Live, updated every 15 seconds (${esc(tick.t.slice(11, 19))}). ${nUp} shares up, ${nDn} down.` : `At the close on ${dmy(all[0] && all[0].date)}. ${nUp} up, ${nDn} down.`) : `Change over the last ${per[moversPeriod][0]} to the latest close.`}</p>
+  el.innerHTML = `<p class="small" style="margin:0">${moversPeriod === 'day' ? (live ? `Live, updated every 5 seconds (${esc(tick.t.slice(11, 19))}). ${nUp} shares up, ${nDn} down.` : `At the close on ${dmy(all[0] && all[0].date)}. ${nUp} up, ${nDn} down.`) : `Change over the last ${per[moversPeriod][0]} to the latest close.`}</p>
     <div class="chips" style="margin:8px 0">${chips}<button class="chip ${moversActive ? 'on' : ''}" data-ma="1" title="Leave out shares that rarely trade">Actively traded only</button></div>
     <div class="tcols mvcols"><div class="tcol"><h3 class="up" style="margin:6px 0">Top 10 gainers</h3>${tbl(up, 'up')}</div>
       <div class="tcol"><h3 class="down" style="margin:6px 0">Top 10 losers</h3>${tbl(dn, 'down')}</div></div>
@@ -597,13 +600,13 @@ async function renderTape(fetchNow) {
       <td class="mute">${esc(r[1])}</td><td><b>${short(r[0])}</b></td><td class="num ${r[5] > 0 ? 'up' : r[5] < 0 ? 'down' : ''}">${r[2].toFixed(2)}</td>
       <td class="num">${shr(r[3])}${r[4] > 1 ? `<span class="mute"> ×${r[4]}</span>` : ''}</td><td class="num">${tapeVal(r[2] * r[3])}</td></tr>`).join('');
   el.innerHTML = `<h2>Live trades</h2>
-    <p class="small" style="margin-top:-4px">${live ? `Every trade on the CSE, newest first, updated every 15 seconds.` : tapeData && tapeData.date ? `The market is closed. These are the last trades of ${dmy(tapeData.date)}.` : 'Shown during market hours.'}</p>
+    <p class="small" style="margin-top:-4px">${live ? `Every trade on the CSE, newest first. Prices update every 5 seconds; CSE releases new trades in batches about every 45 seconds.` : tapeData && tapeData.date ? `The market is closed. These are the last trades of ${dmy(tapeData.date)}.` : 'Shown during market hours.'}</p>
     <div class="tpbar"><div class="chips">${chips}</div><input type="search" id="tapeQ" placeholder="Filter by share, e.g. COMB" value="${esc(tapeQuery)}" autocomplete="off"></div>
     ${rows.length ? `<div class="small"><span class="up">Buyer-driven ${lkr(vb)}</span> · <span class="down">Seller-driven ${lkr(vs)}</span> <span class="mute">in the trades shown</span></div>
       <div class="fbar"><i style="width:${(vb / tot * 100).toFixed(1)}%;background:var(--emerald)"></i><i style="width:${(vs / tot * 100).toFixed(1)}%;background:var(--ruby)"></i></div>` : ''}
     <table class="dt tape"><thead><tr><th></th><th>Time</th><th>Share</th><th class="num">Price</th><th class="num">Shares</th><th class="num">LKR</th></tr></thead>
       <tbody>${body || `<tr><td colspan="6" class="mute">${all.length ? 'No trades match this filter.' : 'No trades yet.'}</td></tr>`}</tbody></table>
-    <p class="small" style="margin-top:10px">Trades at the same price within one 15-second reading are added together (×n = number of trades). Green: buyer-driven, red: seller-driven, grey: unclear or a pre-agreed crossing; read from the price move, not from who placed the order. Up to the latest 800 trades of the day.</p>`;
+    <p class="small" style="margin-top:10px">Trades at the same price within one reading are added together (×n = number of trades). Green: buyer-driven, red: seller-driven, grey: unclear or a pre-agreed crossing; read from the price move, not from who placed the order. Up to the latest 800 trades of the day.</p>`;
   const inp = document.getElementById('tapeQ');
   if (inp) inp.addEventListener('input', e => { tapeQuery = e.target.value; const pos = e.target.selectionStart; renderTape(); const n = document.getElementById('tapeQ'); if (n) { n.focus(); n.setSelectionRange(pos, pos); } });
 }
@@ -691,12 +694,12 @@ function tradeLists(tr) {
       l.slice(0, 15).map(r => `<tr><td class="mute">${esc(r[0].slice(0, 5))}</td><td class="num ${cls}">${r[1].toFixed(2)}</td><td class="num">${shr(r[2])}${r[3] > 1 ? `<span class="mute"> ×${r[3]}</span>` : ''}</td></tr>`).join('') + '</tbody></table>'
       : '<p class="small mute">None in the latest trades.</p>') + '</div>';
   return `<h4 style="margin:14px 0 4px">Latest trades</h4><div class="tcols">${col(up, 'up', 'Buyer-driven')}${col(dn, 'down', 'Seller-driven')}</div>
-    <p class="small" style="margin:4px 0 0">Buyer-driven: the trade lifted the price or happened at a higher price than the one before; seller-driven: the opposite. This is read from the price move, not from who placed the order${unc ? `; ${unc} trade${unc === 1 ? '' : 's'} could not be classed` : ''}. ×n = number of trades at that price in one 15-second reading.</p>`;
+    <p class="small" style="margin:4px 0 0">Buyer-driven: the trade lifted the price or happened at a higher price than the one before; seller-driven: the opposite. This is read from the price move, not from who placed the order${unc ? `; ${unc} trade${unc === 1 ? '' : 's'} could not be classed` : ''}. ×n = number of trades at that price in one reading.</p>`;
 }
 function bookCard(sym) {
   const today = ymd(colomboNow());
   let x = books && books.s && books.s[sym];
-  const ob = !x && tick && tick.ob && tick.ob[sym];     // fallback: the totals and best buy price carried in every 15-second tick
+  const ob = !x && tick && tick.ob && tick.ob[sym];     // fallback: the totals and best buy price carried in every tick
   if (ob) {
     x = { t: ob[3], b: ob[0], a: ob[1], buy: ob[2] ? [[ob[2], null, 0]] : [], sell: ob[4] ? [[ob[4], null, 0]] : [], h: [] };
     books = books || { _at: 0, s: {} }; if (!books.date) books = { ...books, date: tick.t.slice(0, 10) };
@@ -921,7 +924,7 @@ function updateLiveDetail(sym) {
     liveChart.timeScale().fitContent();
   }
 }
-setInterval(pollTick, 15000);
+setInterval(pollTick, 5000);
 document.addEventListener('visibilitychange', () => { if (!document.hidden) pollTick(); });
 
 // ---------- Home ----------

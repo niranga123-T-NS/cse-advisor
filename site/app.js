@@ -76,6 +76,18 @@
     body.appendChild(s); closeSheet = close;
     return { el: s.firstElementChild, close };
   }
+
+  // ---------- visit log (signed-in site only): one record per open tab, kept alive once a minute while showing ----------
+  (() => {
+    if (location.protocol !== 'https:' || /github\.io$/.test(location.hostname) || !(window.crypto && crypto.randomUUID)) return;
+    const sid = crypto.randomUUID();
+    const send = page => { try { fetch('/auth/visit', { method: 'POST', credentials: 'same-origin', keepalive: true, headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sid, page, path: location.pathname + location.hash, ref: document.referrer }) }).catch(() => {}); } catch (e) {} };
+    send(true);
+    addEventListener('hashchange', () => send(true));
+    setInterval(() => { if (!document.hidden) send(false); }, 60000);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) send(false); });
+  })();
   // ---------- world markets banner ----------
   // Metals, oil and fuels, the rupee, major currencies and share indices, scrolling under the header. Tap it for the
   // full table. The signed-in site refreshes every 5 minutes (/world); elsewhere the copy from the last site build.

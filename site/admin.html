@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0c111b">
+<link rel="icon" href="icon-192.png">
+<title>Admin, CSE Advisor</title>
+<link rel="stylesheet" href="app.css">
+<style>
+  .adm { max-width:1100px; margin:0 auto; padding:18px 16px calc(30px + env(safe-area-inset-bottom)); box-sizing:border-box; }
+  .tiles { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:10px; margin:12px 0 18px; }
+  .tile { border:1px solid var(--line-soft); border-radius:12px; padding:12px 14px; background:var(--surface-1); }
+  .tile b { display:block; font-size:24px; font-variant-numeric:tabular-nums; } .tile span { font-size:13px; color:var(--ink-3); }
+  table.at { width:100%; border-collapse:collapse; font-size:14px; font-variant-numeric:tabular-nums; }
+  table.at th, table.at td { padding:8px 6px; border-top:1px solid var(--line-soft); text-align:left; vertical-align:top; }
+  table.at th { border-top:0; color:var(--ink-3); font-weight:500; font-size:12.5px; } table.at .num { text-align:right; white-space:nowrap; }
+  .scroll { overflow-x:auto; } table.at td:first-child { white-space:nowrap; } .chips { display:flex; gap:6px; flex-wrap:wrap; margin:6px 0 4px; }
+  .chip { padding:6px 12px; border-radius:16px; border:1px solid var(--line); background:var(--surface); color:var(--ink-2); font-size:14px; cursor:pointer; }
+  .chip.on { background:var(--sapphire); color:#fff; border-color:var(--sapphire); }
+  .live { display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--emerald); margin-right:5px; }
+  @media (max-width:640px) { .tiles { grid-template-columns:repeat(2, minmax(0, 1fr)); } .hide-s { display:none; } }
+</style>
+</head>
+<body>
+<div class="adm" id="page">
+  <p><a href="./">‹ Back to the app</a></p>
+  <h2>Admin: who is using the site</h2>
+  <p class="small mute" id="sub">Loading…</p>
+  <div class="chips" id="per"></div>
+  <div class="tiles" id="tiles"></div>
+  <h3>People</h3>
+  <div class="scroll"><table class="at" id="users"></table></div>
+  <h3 style="margin-top:24px">Latest visits</h3>
+  <div class="scroll"><table class="at" id="visits"></table></div>
+  <p class="small mute" style="margin-top:16px">A visit is one open browser tab or app session. Time on the site counts while the page is open and showing (checked once a minute), so short visits read as under a minute. Times are Colombo time; places are approximate, from the internet connection. Only signed-in use is counted; people who have never signed in do not appear. Kept for 90 days on this page.</p>
+</div>
+<script src="admin.js"></script>
+</body>
+</html>

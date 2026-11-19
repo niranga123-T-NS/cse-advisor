@@ -39,6 +39,22 @@ export async function supabase(env, path, body, token) {
   return { ok: r.ok, status: r.status, j };
 }
 
+// Supabase database (PostgREST) as the signed-in user: Row Level Security decides what they may read and write.
+export async function rest(env, path, { method = 'GET', body, token, prefer } = {}) {
+  const headers = { apikey: env.SUPABASE_ANON_KEY, Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' };
+  if (prefer) headers.Prefer = prefer;
+  const r = await fetch(`${sbBase(env)}/rest/v1/${path}`, { method, headers, body: body === undefined ? undefined : JSON.stringify(body) });
+  let j = null; try { j = await r.json(); } catch (e) {}
+  return { ok: r.ok, status: r.status, j };
+}
+
+// Is this user an admin? Listed in the Supabase table public.admins (which each user can only see their own row of).
+export async function isAdmin(env, claims, token) {
+  if (!claims || !claims.sub || !token) return false;
+  const r = await rest(env, `admins?select=user_id&user_id=eq.${encodeURIComponent(claims.sub)}`, { token });
+  return !!(r.ok && Array.isArray(r.j) && r.j.length);
+}
+
 // Checks the access token: signature (the project's public keys; older projects are asked directly), issuer,
 // audience and expiry. Returns the token's claims or null.
 export async function verify(token, env) {

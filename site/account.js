@@ -23,3 +23,7 @@ fetch('/app/version.json', { credentials: 'same-origin', cache: 'no-store' })
   .then(r => r.ok ? r.json() : null)
   .then(v => { if (!v) return; document.getElementById('apkv').textContent = 'Version ' + v.version + ', ' + v.built; document.getElementById('android').hidden = false; })
   .catch(() => {});
+
+// Admin link: the admin page answers only for admins (everyone else gets "not found").
+fetch('/admin.html', { method: 'HEAD', credentials: 'same-origin', cache: 'no-store' })
+  .then(r => { if (r.ok) document.getElementById('adminbox').hidden = false; }).catch(() => {});

@@ -108,11 +108,43 @@
     2.11
    ],
    "year_only": false
+  },
+  "53955": {
+   "end": "2026-03-31",
+   "eps": 0.18,
+   "eps_prior": -0.22,
+   "layout_eps": [
+    0,
+    1,
+    false
+   ],
+   "ok": true,
+   "pages": 117,
+   "src_eps": "Earnings/ (loss) per share  13  0.18  (0.22)  0.05  (0.26)",
+   "title": "Annual Report as at 31st March 2026",
+   "url": "https://cdn.cse.lk/cmt/upload_report_file/2741_1795030405734.pdf",
+   "v": 6,
+   "vals_eps": [
+    0.18,
+    -0.22,
+    0.05,
+    -0.26
+   ],
+   "year_only": false
   }
  },
- "listed_at": "2026-11-19",
+ "listed_at": "2026-11-20",
  "listing": {
   "annual": [
+   {
+    "amended": false,
+    "end": "2026-03-31",
+    "id": "53955",
+    "title": "Annual Report as at 31st March 2026",
+    "uploaded": 1795030405734,
+    "url": "https://cdn.cse.lk/cmt/upload_report_file/2741_1795030405734.pdf",
+    "year_only": false
+   },
    {
     "amended": false,
     "end": "2025-03-31",

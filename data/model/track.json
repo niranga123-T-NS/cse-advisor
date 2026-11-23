@@ -1,4 +1,133 @@
 {
- "forecast_days": 0,
- "note": "Scored once each forecast's holding period has finished."
+ "forecast_days": 1,
+ "note": "Scored once each forecast's holding period has finished.",
+ "all": {
+  "n": 127,
+  "days": 1,
+  "hit": 5.5,
+  "hit_ci": [
+   NaN,
+   NaN
+  ],
+  "avg_net": -4.75,
+  "avg_ci": [
+   NaN,
+   NaN
+  ],
+  "median_net": -4.94,
+  "gross_up": 11.8,
+  "worst": -12.9,
+  "best": 5.6
+ },
+ "top": {
+  "1": {
+   "n": 1,
+   "days": 1,
+   "hit": 0.0,
+   "hit_ci": [
+    NaN,
+    NaN
+   ],
+   "avg_net": -3.19,
+   "avg_ci": [
+    NaN,
+    NaN
+   ],
+   "median_net": -3.19,
+   "gross_up": 0.0,
+   "worst": -3.2,
+   "best": -3.2
+  },
+  "3": {
+   "n": 3,
+   "days": 1,
+   "hit": 0.0,
+   "hit_ci": [
+    NaN,
+    NaN
+   ],
+   "avg_net": -7.56,
+   "avg_ci": [
+    NaN,
+    NaN
+   ],
+   "median_net": -6.62,
+   "gross_up": 0.0,
+   "worst": -12.9,
+   "best": -3.2
+  },
+  "5": {
+   "n": 5,
+   "days": 1,
+   "hit": 0.0,
+   "hit_ci": [
+    NaN,
+    NaN
+   ],
+   "avg_net": -6.32,
+   "avg_ci": [
+    NaN,
+    NaN
+   ],
+   "median_net": -5.6,
+   "gross_up": 0.0,
+   "worst": -12.9,
+   "best": -3.2
+  },
+  "10": {
+   "n": 10,
+   "days": 1,
+   "hit": 10.0,
+   "hit_ci": [
+    NaN,
+    NaN
+   ],
+   "avg_net": -4.98,
+   "avg_ci": [
+    NaN,
+    NaN
+   ],
+   "median_net": -5.36,
+   "gross_up": 10.0,
+   "worst": -12.9,
+   "best": 3.9
+  }
+ },
+ "recent": [
+  {
+   "date": "2026-11-13",
+   "symbol": "TKYO.N0000",
+   "p": 0.288,
+   "rank": 1,
+   "net": -3.19
+  },
+  {
+   "date": "2026-11-13",
+   "symbol": "PARQ.N0000",
+   "p": 0.285,
+   "rank": 2,
+   "net": -6.62
+  },
+  {
+   "date": "2026-11-13",
+   "symbol": "SHL.N0000",
+   "p": 0.285,
+   "rank": 3,
+   "net": -12.88
+  },
+  {
+   "date": "2026-11-13",
+   "symbol": "JETS.N0000",
+   "p": 0.28,
+   "rank": 4,
+   "net": -5.6
+  },
+  {
+   "date": "2026-11-13",
+   "symbol": "SLTL.N0000",
+   "p": 0.278,
+   "rank": 5,
+   "net": -3.34
+  }
+ ]
 }

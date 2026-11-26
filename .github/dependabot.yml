@@ -1,13 +1,14 @@
 # Weekly check for security fixes in the Python packages and the GitHub Actions used by the workflows.
+# PAUSED: open-pull-requests-limit 0 stops version-update runs and pull requests until set back to 5.
 version: 2
 updates:
   - package-ecosystem: pip
     directory: "/"
     schedule:
       interval: weekly
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 0   # paused 26 Nov 2026 at the owner's request (set back to 5 to resume)
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
       interval: weekly
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 0   # paused 26 Nov 2026 at the owner's request (set back to 5 to resume)
